@@ -1,9 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@font-face {
+  font-family: Pretendard;
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css')
+    format('woff');
+}
 
 /* Theme */
 :root {
   /* font-family */
-  $font-family: 'Pretendard';
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
   /* letter-spacing */
   $letter-spacing-lg: -0.06em;
@@ -21,7 +27,7 @@
   $--color-gray-800: #2a3648;
   $--color-gray-900: #1b232f;
   $--color-black: #10141a;
-  $--color-black-40: rgba($black, 0.4);
+  $--color-black-40: rgba($--color-black, 0.4);
   $--color-primary-yellow-100: #fed15f;
   $--color-primary-yellow-200: #febe30;
   $--color-primary-yellow-300: #de9408;
