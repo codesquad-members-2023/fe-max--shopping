@@ -8,20 +8,15 @@
   "author": "Kakamotobi",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/preset-modules": "^0.1.5",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "live-server": "^1.2.2",
-    "nodemon": "^2.0.22",
     "prettier": "^2.8.7",
     "sass": "^1.60.0"
   },
   "scripts": {
-    "build:sass": "sass -w src:build/styles/",
-    "build:js": "nodemon -w src --exec 'babel src -d build/js'",
-    "dev": "npm run build:sass & wait & npm run build:js & wait & live-server"
+    "build:sass": "sass -w src/styles:src/styles",
+    "dev": "npm run build:sass & wait & live-server"
   }
 }
