@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "아마존 쇼핑몰 사이트 클론 프로젝트",
   "main": "index.js",
-  "dependencies": {
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.7"
-  },
   "devDependencies": {
     "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7",
+    "sass": "^1.60.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
