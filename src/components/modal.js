@@ -4,25 +4,40 @@ export function modal() {
             modal.classList.add("show");
         }, time);
     };
-    function loginModal() {
+    function showLoginModal() {
         const loginModal = document.querySelector(".login-modal");
         document.addEventListener(
             "DOMContentLoaded",
             fadeInModal(loginModal, 1000)
         );
     }
-    loginModal();
+    showLoginModal();
 
-    function addressModal() {
+    function showAddressModal() {
         const address = document.querySelector(".address");
         const addressModal = document.querySelector(".address-modal");
         address.addEventListener("mouseover", (e) => {
-            console.log(e.currentTarget === address);
             if (e.currentTarget === address) {
                 fadeInModal(addressModal, 500);
             }
         });
     }
 
-    addressModal();
+    showAddressModal();
+
+    const hideModal = (modal) => {
+        modal.classList.remove("show");
+    };
+
+    function hideAddressModal() {
+        const address = document.querySelector(".address");
+        const addressModal = document.querySelector(".address-modal");
+        address.addEventListener("mouseout", (e) => {
+            if (e.currentTarget === address) {
+                hideModal(addressModal);
+            }
+        });
+    }
+
+    hideAddressModal();
 }
