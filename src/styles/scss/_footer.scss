@@ -1,0 +1,70 @@
+@import "variables", "mixin";
+
+footer {
+  width: 100%;
+  color: $color-white;
+  .nav-to-top {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background-color: $color-gray-800;
+    span {
+      width: 100px;
+      margin: 0 auto;
+      @include boldSm;
+    }
+  }
+  .site-link {
+    margin: 0 auto;
+    height: 284px;
+    padding-top: 40px;
+    background-color: $color-gray-900;
+    .site-link-container {
+      width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      .footer-nav-container {
+        .footer-nav-header {
+          @include boldMd;
+          margin-bottom: 16px;
+        }
+        .footer-nav-list {
+          li {
+            @include bodySm;
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+  }
+  .info {
+    display: flex;
+    align-items: center;
+    height: 88px;
+    background-color: $color-black;
+    @include boldSm;
+    .footer-info-container {
+      display: flex;
+      align-items: center;
+      width: 410px;
+      margin: 0 auto;
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        width: 100px;
+        height: 40px;
+        margin-right: 46px;
+      }
+      .footer-info {
+        width: 258px;
+        height: 34px;
+        .footer-info-link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

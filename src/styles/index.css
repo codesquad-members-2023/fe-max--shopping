@@ -159,3 +159,258 @@
 .navigation-bar .navigation-sub .menu {
   gap: 4px;
 }
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+main {
+  width: 100%;
+  height: 660px;
+  background-color: #f5f5f5;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+footer {
+  width: 100%;
+  color: #ffffff;
+}
+footer .nav-to-top {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background-color: #2a3648;
+}
+footer .nav-to-top span {
+  width: 100px;
+  margin: 0 auto;
+  font: 600 11px Pretendard;
+  letter-spacing: -0.06em;
+}
+footer .site-link {
+  margin: 0 auto;
+  height: 284px;
+  padding-top: 40px;
+  background-color: #1b232f;
+}
+footer .site-link .site-link-container {
+  width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+footer .site-link .site-link-container .footer-nav-container .footer-nav-header {
+  font: 900 13px Pretendard;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+footer .site-link .site-link-container .footer-nav-container .footer-nav-list li {
+  font: 500 11px/1.6 Pretendard;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+footer .info {
+  display: flex;
+  align-items: center;
+  height: 88px;
+  background-color: #10141a;
+  font: 600 11px Pretendard;
+  letter-spacing: -0.06em;
+}
+footer .info .footer-info-container {
+  display: flex;
+  align-items: center;
+  width: 410px;
+  margin: 0 auto;
+}
+footer .info .footer-info-container .footer-logo {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  margin-right: 46px;
+}
+footer .info .footer-info-container .footer-info {
+  width: 258px;
+  height: 34px;
+}
+footer .info .footer-info-container .footer-info .footer-info-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
