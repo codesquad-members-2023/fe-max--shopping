@@ -1,4 +1,4 @@
-import { Component } from '../abstract/Component.js';
+import { Component } from '../base/Component.js';
 
 export class NavbarMain extends Component {
   constructor() {

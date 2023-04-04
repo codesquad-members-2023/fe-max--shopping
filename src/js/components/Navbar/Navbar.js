@@ -1,4 +1,4 @@
-import { Component } from '../abstract/Component.js';
+import { Component } from '../base/Component.js';
 import { NavbarMain } from './NavbarMain.js';
 import { NavbarSub } from './NavbarSub.js';
 
