@@ -11,7 +11,7 @@ export class Login extends Base {
 
     const loginText = new Base("span");
     loginText.setAttribute("class", "login__text");
-    loginText.setTextContent("계정 및 등록");
+    loginText.setTextContent("계정 및 목록");
 
     this.setChildren(loginLabel, loginText);
   }
