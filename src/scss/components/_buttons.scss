@@ -1,0 +1,7 @@
+@import '../abstracts/mixins';
+
+.button-common{
+    @include pointer;
+    @include button-common; 
+     
+}
