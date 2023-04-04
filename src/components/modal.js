@@ -1,4 +1,6 @@
 export function modal() {
+    const hero = document.querySelector(".hero");
+
     const fadeInModal = (modal, time) => {
         setTimeout(() => {
             modal.classList.add("show");
@@ -19,6 +21,7 @@ export function modal() {
         address.addEventListener("mouseover", (e) => {
             if (e.currentTarget === address) {
                 fadeInModal(addressModal, 500);
+                hero.classList.add("dim");
             }
         });
     }
@@ -35,6 +38,7 @@ export function modal() {
         address.addEventListener("mouseout", (e) => {
             if (e.currentTarget === address) {
                 hideModal(addressModal);
+                hero.classList.remove("dim");
             }
         });
     }
