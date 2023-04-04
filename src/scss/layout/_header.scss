@@ -22,7 +22,7 @@
       color: $color-gray-400;
     }
     .main-menu-button {
-      @include button;
+      @include pointer;
     }
     .icon-box {
       @include flex-row;
@@ -32,6 +32,8 @@
     .main-shipping-address {
       @include flex-column;
       justify-content: center;
+      position: relative;
+      /* todo - position지정 없는 상태에서 js로 걸어줄 수 있는지 확인하기 */
     }
     .main-search-bar,
     form,
@@ -49,9 +51,13 @@
           @include place-holder;
         }
       }
-      button {
-        @include button;
+      .search-btn {
+        @include pointer;
       }
+    }
+    .main-login {
+      position: relative;
+      /* todo - position지정 없는 상태에서 js로 걸어줄 수 있는지 확인하기 */
     }
     .main-login,
     .main-my-page {
@@ -68,7 +74,7 @@
     align-items: center;
     padding: 0 16px;
     background-color: $color-gray-900;
-    @include font-bold-md;
+    @include font-bold-md-s;
     color: $color-white;
     .sub-left-buttons {
       @include flex-row;
@@ -79,11 +85,14 @@
       }
     }
     .sub-menu-button {
-      @include button;
-      @include font-bold-md;
+      @include pointer;
       padding: 8px;
     }
+    .side-bar {
+      @include font-bold-md;
+    }
     .sub-menu-right-button {
+      @include font-bold-md;
       padding: 8px 0;
     }
   }
