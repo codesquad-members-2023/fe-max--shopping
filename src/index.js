@@ -1,3 +1,3 @@
-import { loginModal } from "./components/loginModal.js";
+import { modal } from "./components/modal.js";
 
-loginModal();
+modal();
