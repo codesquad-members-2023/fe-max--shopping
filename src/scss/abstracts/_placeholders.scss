@@ -1,0 +1,27 @@
+@import './variables';
+@import './mixins';
+
+%expanded-modal {
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: $color-gray-100;
+  }
+  .modal-text-layout {
+    @include flex-row;
+    gap: 3px;
+    width: 100%;
+  }
+  dl {
+    flex: 1;
+  }
+  dt {
+    @include font-bold-md;
+    margin-bottom: 4px;
+
+  }
+  dd {
+    @include font-body-sm;
+    margin-bottom: 4px;
+  }
+}

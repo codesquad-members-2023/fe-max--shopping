@@ -22,37 +22,34 @@
 }
 
 @mixin font-bold-xl {
-  // font-family: var(--font-family);
-  @include font-family;
   font: $font-bold-xl;
   line-height: 33px;
 }
 
 @mixin font-bold-lg {
-  @include font-family;
   font: $font-bold-lg;
   line-height: 21px;
 }
 @mixin font-bold-md {
-  @include font-family;
   font: $font-bold-md;
   line-height: 16px;
   letter-spacing: $letter-spacing-bold;
 }
+@mixin font-bold-md-s {
+  font: $font-bold-md-s;
+  line-height: 16px;
+}
 @mixin font-bold-sm {
-  @include font-family;
   font: $font-bold-sm;
   line-height: 13px;
   letter-spacing: $letter-spacing-bold;
 }
 @mixin font-body-md {
-  @include font-family;
   font: $font-body-md;
 
   letter-spacing: $letter-spacing-body;
 }
 @mixin font-body-sm {
-  @include font-family;
   font: $font-body-sm;
   letter-spacing: $letter-spacing-body;
 }
@@ -117,6 +114,32 @@
   color: $color-gray-600;
 }
 
-@mixin button {
+@mixin pointer {
   cursor: pointer;
+}
+
+@mixin modal-bg {
+  background-color: $color-black-40;
+}
+@mixin modal {
+  @include flex-column;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: $color-white;
+  @include font-body-sm;
+  color: $color-black;
+
+  box-shadow: 0 5px 5px 0 $color-gray-600;
+}
+
+@mixin modal-triangle {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: -10%;
+  border-bottom: 14px solid red;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
 }
