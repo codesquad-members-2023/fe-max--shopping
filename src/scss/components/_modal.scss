@@ -1,10 +1,11 @@
 @import '../abstracts/mixins';
 @import '../abstracts/variables';
 @import '../abstracts/placeholders';
+@import '../base/animations';
 
 .modal-bg {
   @include modal-bg;
-  width: $vw100;
+  width: 100%;
   height: $vh100;
 }
 
@@ -15,6 +16,8 @@
   right: 0;
   width: 235px;
   gap: 8px;
+  opacity: 0;
+  animation: fade-in 0.5s forwards; 
   button {
     @include pointer;
     @include font-bold-sm;
@@ -31,6 +34,17 @@
     top: -12%;
     right: 14.2%;
   }
+  &:hover{
+    width: 335px;
+    box-shadow: 0 3px 5px 0 $color-gray-600;
+    @extend %expanded-modal;
+    .modal-triangle {
+      @include modal-triangle;
+      top: -3%;
+      right: 10%;
+    }
+  }
+
 }
 /* todo 모달창 템플릿을 하나만 가지고 변형이 가능한지 고민하기 */
 .modal-temp1 {
