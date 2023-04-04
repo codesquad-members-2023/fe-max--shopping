@@ -135,11 +135,11 @@
 .nav-bar__sub {
   height: 32px;
   padding: 0px 16px;
+  background-color: var(--gray900);
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--gray900);
 }
 
 .sub__left-menus {
