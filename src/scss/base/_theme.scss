@@ -30,7 +30,7 @@
   --color-gray-800: #2a3648;
   --color-gray-900: #1b232f;
   --color-black: #10141a;
-  --color-black-40: rgba(--color-black, 0.4);
+  --color-black-40: rgba(16, 20, 26, 0.4);
   --color-primary-yellow-100: #fed15f;
   --color-primary-yellow-200: #febe30;
   --color-primary-yellow-300: #de9408;
@@ -40,7 +40,6 @@
   --color-secondary-navy: #074099;
   --color-secondary-green: #0c5e72;
 
-  /* filter */
-  --filter-gray-400: invert(89%) sepia(0%) saturate(1921%) hue-rotate(142deg) brightness(88%)
-    contrast(117%);
+  --linear-gradient-button: 174.6deg, var(--color-white) 4.31%,
+    var(--color-primary-yellow-100) 50.01%, var(--color-primary-yellow-200) 95.71%;
 }

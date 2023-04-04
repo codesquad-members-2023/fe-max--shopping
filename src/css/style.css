@@ -185,7 +185,7 @@ table {
   --color-gray-800: #2a3648;
   --color-gray-900: #1b232f;
   --color-black: #10141a;
-  --color-black-40: rgba(--color-black, 0.4);
+  --color-black-40: rgba(16, 20, 26, 0.4);
   --color-primary-yellow-100: #fed15f;
   --color-primary-yellow-200: #febe30;
   --color-primary-yellow-300: #de9408;
@@ -194,9 +194,8 @@ table {
   --color-secondary-purple: #941387;
   --color-secondary-navy: #074099;
   --color-secondary-green: #0c5e72;
-  /* filter */
-  --filter-gray-400: invert(89%) sepia(0%) saturate(1921%) hue-rotate(142deg) brightness(88%)
-    contrast(117%);
+  --linear-gradient-button: 174.6deg, var(--color-white) 4.31%,
+    var(--color-primary-yellow-100) 50.01%, var(--color-primary-yellow-200) 95.71%;
 }
 
 /* Typography */
@@ -326,4 +325,81 @@ table {
   line-height: normal;
   display: inline-flex;
   align-items: center;
+}
+
+.dialog-wrapper {
+  position: relative;
+}
+.dialog-wrapper::before {
+  position: absolute;
+  top: 6px;
+  left: 30px;
+  content: "";
+  width: 0;
+  border-style: solid;
+  border-width: 0 10px 25px 10px;
+  border-color: var(--color-white) transparent;
+}
+
+.login-modal {
+  margin: 0;
+  position: absolute;
+  width: 235px;
+  height: 90px;
+  top: 16px;
+  left: -180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--color-white);
+  border: none;
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-sm);
+  line-height: normal;
+}
+.login-modal span:last-child {
+  color: var(--color-secondary-navy);
+}
+
+.login-btn {
+  width: 160px;
+  height: 32px;
+  border-radius: 4px;
+  background: linear-gradient(var(--linear-gradient-button));
+  border: 1px solid var(--color-primary-yellow-300);
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-lg);
+  line-height: normal;
+}
+
+.continue-btn {
+  width: 39px;
+  height: 32px;
+  border-radius: 4px;
+  background: linear-gradient(var(--linear-gradient-button));
+  border: 1px solid var(--color-primary-yellow-300);
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-lg);
+  line-height: normal;
+}
+
+.address-btn {
+  width: 58px;
+  height: 32px;
+  border-radius: 4px;
+  background: linear-gradient(var(--linear-gradient-button));
+  border: 1px solid var(--color-primary-yellow-300);
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-lg);
+  line-height: normal;
 }

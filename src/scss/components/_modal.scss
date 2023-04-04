@@ -1,0 +1,15 @@
+@use '../base';
+
+.dialog-wrapper {
+  position: relative;
+  &::before {
+    @include base.tooltip(6px, 30px);
+  }
+}
+
+.login-modal {
+  @include base.modal(235px, 90px, 16px, -180px);
+  span:last-child {
+    color: var(--color-secondary-navy);
+  }
+}
