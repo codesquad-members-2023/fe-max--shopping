@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style/reset.css" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
+    />
     <link rel="stylesheet" href="./src/style/index.scss" />
     <title>fe-max--shopping</title>
   </head>
@@ -15,17 +22,19 @@
         </div>
         <div class="shipping-address">
           <div class="shipping-address__label-wrapper">
-            <img
-              class="shipping-address__icon"
-              src="./src/assets/address-icon.svg"
-              alt="배송처 아이콘"
-            />
+            <div class="shipping-address__icon-wrapper">
+              <img
+                class="shipping-address__icon"
+                src="./src/assets/address-icon.svg"
+                alt="배송처 아이콘"
+              />
+            </div>
             <p class="shipping-address__label">배송처</p>
           </div>
           <p class="shipping-address__text">대한민국</p>
         </div>
-        <div class="search-bar">
-          <input type="text" class="search-bar__input" />
+        <form class="search-bar">
+          <input type="text" class="search-bar__input" placeholder="검색 Amazon" />
           <button class="search-bar__submit-button">
             <img
               class="search-bar__search-icon"
@@ -33,10 +42,10 @@
               alt="검색 아이콘"
             />
           </button>
-        </div>
-        <div class="nation">
-          <img class="nation-flag" src="./src/assets/flag-ko.svg" alt="국기 아이콘" />
-          <span class="nation-text"></span>
+        </form>
+        <div class="nav-bar__nation">
+          <img class="nav-bar__nation-flag" src="./src/assets/flag-ko.svg" alt="국기 아이콘" />
+          <span class="nav-bar__nation-text">KO</span>
         </div>
         <div class="nav-bar__login">
           <div class="nav-bar__login-label">안녕하세요, 로그인</div>
