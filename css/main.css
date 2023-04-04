@@ -1,0 +1,90 @@
+main {
+  padding: 0 80px;
+  position: relative;
+}
+
+main .bg {
+  background-color: var(--color-gray-200);
+  height: 100%;
+}
+
+#hero {
+  display: flex;
+}
+
+#hero .hero__wrapper{
+  flex-grow: 1;
+  order: 2;
+}
+
+#hero .hero__slide {
+  text-align: center;
+  padding: 75px;
+}
+
+#hero .hero__slide h1 {
+  font: var(--font-bold-xl);
+}
+
+#hero .hero__control {
+  width: 95px;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+#hero .hero__control--left{
+  order: 1;
+  text-align: left;
+}
+#hero .hero__control--right{
+  order: 3;
+  text-align: right;
+}
+
+#contents .contents__list{
+  column-count: 4;
+  column-gap: 1em;
+}
+
+#contents .contents__item {
+  background-color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+#contents .contents__card {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#contents .contents__item:nth-child(1) {
+  padding: 16px;
+
+}
+
+#contents .contents__item:nth-child(1) .contents__card {
+  align-items: center;
+  gap: 16px;
+}
+
+#contents .contents__card_img img {
+  width: 100%;
+}
+
+#contents .contents__card_text {
+  padding: 16px;
+}
+
+#contents .contents__item h1 {
+  font: var(--font-bold-md);
+}
+
+#contents .contents__item a {
+  text-decoration: none;
+  font: var(--font-bold-sm);
+  color: var(--color-secondary-green);
+  margin-top: 8px;
+}
+

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <header>
@@ -32,7 +33,12 @@
         <div class="search">
           <form action="post" class="search__form">
             <fieldset class="search__keyword-field">
-              <input type="text" id="keyword" name="keyword" placeholder="검색 Amazon"/>
+              <input
+                type="text"
+                id="keyword"
+                name="keyword"
+                placeholder="검색 Amazon"
+                autocomplete="off" />
             </fieldset>
             <button type="submit">
               <figure>
@@ -60,7 +66,7 @@
         <div class="cart">
           <a href="#">
             <figure>
-              <img src="./img/icon/cart-white.svg" alt="">
+              <img src="./img/icon/cart-white.svg" alt="" />
               <figcaption>장바구니</figcaption>
             </figure>
           </a>
@@ -71,7 +77,7 @@
           <ul class="navbar__list">
             <li class="navbar__item">
               <button class="menu-trigger">
-                <img src="./img/icon/menu-white.svg" alt="드롭다운 열기">
+                <img src="./img/icon/menu-white.svg" alt="드롭다운 열기" />
                 모두
               </button>
             </li>
@@ -82,13 +88,205 @@
             <li class="navbar__item"><a href="#">카드</a></li>
           </ul>
         </nav>
-        <a href="#" class="right">
-          지금 특가 상품 쇼핑하기
-        </a>
+        <a href="#" class="right"> 지금 특가 상품 쇼핑하기 </a>
       </div>
     </header>
     <main>
-      <!-- main -->
+      <h1 class="blind">메인</h1>
+      <figure class="bg">
+        <img src="./img/Image.png" alt="">
+      </figure>
+      <div class="inner">
+        <div id="hero">
+          <ul class="hero__wrapper wrapper">
+            <li>
+              <article class="hero__slide slide" tabindex="0">
+                <h1>해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오</h1>
+              </article>
+            </li>
+          </ul>
+          <button class="hero__control hero__control--left">
+            <figure>
+              <img src="./img/arrow-left.svg" alt="">
+              <figcaption class="blind">이전</figcaption>
+            </figure>
+          </button>
+          <button class="hero__control hero__control--right">
+            <figure>
+              <img src="./img/arrow-right.svg" alt="">
+              <figcaption class="blind">다음</figcaption>
+            </figure>
+          </button>
+        </div>
+        <div id="contents">
+          <ul class="contents__list">
+            <li class="contents__item">
+              <article class="contents__card">
+                <a href="#" class="contents__login-link button button--lg">
+                  로그인
+                </a>
+                <h1>최상의 경험을 위해 로그인하세요</h1>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/4.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>집에서 입어보기</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/8.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>특가</h1>
+                  <a class="more" href="#">지금 쇼핑하세요</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/12.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>피트니스용</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/1.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>Amazon Basics</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/5.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>건강 및 퍼스널 케어</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/9.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>가정 및 주방</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/2.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>Click here to shop in English</h1>
+                  <a class="more" href="#">Change your language preference</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/6.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>드레스</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/10.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>활동추적기 및 스마트워치 쇼핑</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/13.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>노트북 및 태블릿 쇼핑</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/3.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>전자기기</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/7.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>Kindle E-readers</h1>
+                  <a class="more" href="#">지금 쇼핑하세요</a>
+                </div>
+              </article>
+            </li>
+            <li class="contents__item">
+              <article class="contents__card">
+                <figure class="contents__card_img">
+                  <img src="./img/content/11.png" alt="">
+                  <figcaption class="blind">더미이미지</figcaption>
+                </figure>
+                <div class="contents__card_text">
+                  <h1>반려동물용품 쇼핑</h1>
+                  <a class="more" href="#">더보기</a>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </div>
     </main>
     <footer>
       <!-- contentinfo -->
