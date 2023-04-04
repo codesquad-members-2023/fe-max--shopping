@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style/index.scss" />
+    <title>fe-max--shopping</title>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <div class="nav-bar__main">
+        <div class="logo"></div>
+        <div class="shipping-address">
+          <div class="shipping-address__label-wrapper">
+            <img
+              class="shipping-address__icon"
+              src="./src/assets/address-icon.svg"
+              alt="배송처 아이콘"
+            />
+            <p class="shipping-address__label">배송처</p>
+          </div>
+          <p class="shipping-address__text">대한민국</p>
+        </div>
+        <div class="search-bar">
+          <input type="text" class="search-bar__input" />
+          <button class="search-bar__submit-button">
+            <img
+              class="search-bar__search-icon"
+              src="./src/assets/search-icon.svg"
+              alt="검색 아이콘"
+            />
+          </button>
+        </div>
+        <div class="nation">
+          <img class="nation-flag" src="./src/assets/flag-ko.svg" alt="국기 아이콘" />
+          <span class="nation-text"></span>
+        </div>
+        <div class="nav-bar__login">
+          <div class="nav-bar__login-label">안녕하세요, 로그인</div>
+          <div class="nav-bar__login-text">계정 및 목록</div>
+        </div>
+        <div class="nav-bar__my-page">
+          <div class="nav-bar__my-page-label">반품</div>
+          <div class="nav-bar__my-page-text">& 주문</div>
+        </div>
+        <div class="nav-bar__cart">
+          <img class="nav-bar__cart-icon" src="./src/assets/cart-icon.svg" alt="장바구니 아이콘" />
+          <div class="nav-bar__cart-text">장바구니</div>
+        </div>
+      </div>
+      <div class="nav-bar__sub">
+        <div class="sub__left-menus">
+          <div class="sub__side-bar-button">
+            <img
+              class="sub__side-bar-button-icon"
+              src="./src/assets/menu-icon.svg"
+              alt="사이드바 아이콘"
+            />
+            <div class="sub__side-bar-buttton-text">모두</div>
+          </div>
+          <div class="sub__left-menu">오늘의 딜</div>
+          <div class="sub__left-menu">고객 서비스</div>
+          <div class="sub__left-menu">레지스트리</div>
+          <div class="sub__left-menu">기프트 카드</div>
+          <div class="sub__left-menu">판매</div>
+        </div>
+        <div class="sub-right-menu">지금 특가 상품 쇼핑하기</div>
+      </div>
+    </header>
+    <script type="module" src="./src/index.ts"></script>
+  </body>
+</html>
