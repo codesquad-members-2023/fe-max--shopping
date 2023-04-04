@@ -1,0 +1,9 @@
+@import '../abstracts/mixins';
+
+// body * {
+//   @include border-common;
+// }
+
+.body-layout {
+  @include body-layout;
+}
