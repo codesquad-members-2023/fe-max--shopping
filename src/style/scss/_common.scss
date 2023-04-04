@@ -13,8 +13,6 @@
   font-weight: 800;
   font-size: 28px;
   line-height: 33px;
-
-  color: #000000;
 }
 
 @mixin BoldLG {
@@ -23,8 +21,6 @@
   font-weight: 800;
   font-size: 18px;
   line-height: 21px;
-
-  color: #000000;
 }
 @mixin BoldMD {
   font-family: var(--font-family);
@@ -34,8 +30,6 @@
   line-height: 16px;
 
   letter-spacing: -0.06em;
-
-  color: #000000;
 }
 @mixin BoldSM {
   font-family: var(--font-family);
@@ -44,8 +38,6 @@
   font-size: 11px;
   line-height: 13px;
   letter-spacing: -0.06em;
-
-  color: #000000;
 }
 @mixin BodyMD {
   font-family: var(--font-family);
@@ -55,8 +47,6 @@
   line-height: 160%;
 
   letter-spacing: -0.03em;
-
-  color: #000000;
 }
 @mixin BodySM {
   font-family: var(--font-family);
@@ -66,8 +56,6 @@
   line-height: 160%;
 
   letter-spacing: -0.03em;
-
-  color: #000000;
 }
 
 :root {

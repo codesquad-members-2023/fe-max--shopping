@@ -28,3 +28,283 @@
   --secondary-navy: #074099;
   --secondary-green: #0c5e72;
 }
+
+#navBar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 24px;
+  height: 56px;
+  background: var(--black);
+}
+
+#BI {
+  box-sizing: border-box;
+  width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shippingAddress {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 43px;
+  height: 29px;
+}
+#shippingAddress .address__label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  width: 40px;
+  height: 13px;
+}
+#shippingAddress .address__label .address__labelText {
+  width: 28px;
+  height: 13px;
+  color: var(--gray400);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+}
+#shippingAddress .adddress__text {
+  width: 43px;
+  height: 16px;
+  color: var(--white);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+
+#searchBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px 0px 12px;
+  gap: 12px;
+  width: 747px;
+  height: 40px;
+  background: var(--white);
+  border-radius: 4px;
+}
+#searchBar .inputBar {
+  width: 683px;
+  height: 21px;
+  letter-spacing: -0.03em;
+  color: var(--gray60);
+  border: none;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+#searchBar .searchBar__btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  width: 40px;
+  height: 40px;
+  background-image: url("/src/assets/search.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: #fcb057;
+  border-radius: 0px 4px 4px 0px;
+}
+
+#nation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: 35px;
+  height: 16px;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+#nation .nation__flag {
+  width: 13px;
+  height: 13px;
+  color: var(--black);
+}
+#nation .nation__text {
+  width: 18px;
+  height: 16px;
+  color: var(--white);
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 76px;
+  height: 29px;
+}
+#login .login__label {
+  width: 76px;
+  height: 13px;
+  color: var(--gray400);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+}
+#login .login__text {
+  width: 58px;
+  height: 16px;
+  color: var(--white);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+
+#mypage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  width: 32px;
+  height: 29px;
+}
+#mypage .mypage__label {
+  width: 19px;
+  height: 13px;
+  color: var(--gray400);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+}
+#mypage .mypage__text {
+  width: 32px;
+  height: 16px;
+  color: var(--white);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+
+#cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  width: 71px;
+  height: 24px;
+}
+#cart .cart__symbol {
+  width: 24px;
+  height: 24px;
+}
+#cart .cart__text {
+  width: 43px;
+  height: 16px;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+  color: var(--white);
+}
+
+#subNavBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 16px;
+  height: 32px;
+  background: var(--gray900);
+}
+
+#leftButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  width: 387px;
+  height: 32px;
+}
+#leftButtons .menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 4px;
+}
+#leftButtons .menu .menu__text {
+  color: var(--white);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+
+#rightButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 0px;
+  gap: 4px;
+  width: 112px;
+  height: 32px;
+}
+#rightButtons .menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 4px;
+}
+#rightButtons .menu .menu__text {
+  width: 112px;
+  height: 16px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: -0.06em;
+  /* White */
+  color: #ffffff;
+}
