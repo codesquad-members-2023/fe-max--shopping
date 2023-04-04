@@ -17,6 +17,6 @@
   },
   "scripts": {
     "build:sass": "sass -w src/styles:src/styles",
-    "dev": "npm run build:sass & wait & live-server"
+    "dev": "npm run build:sass & wait & live-server --no-css-inject"
   }
 }
