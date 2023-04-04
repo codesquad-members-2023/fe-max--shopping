@@ -1,0 +1,99 @@
+@import url('/src/style/css/reset.css');
+
+@mixin flex-row($justify: flex-start, $align: center) {
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+  @if $justify != flex-start {
+    justify-content: $justify;
+  }
+}
+
+@mixin bold-sm {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+  color: #d5d5d5;
+}
+
+@mixin bold-md {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+
+@mixin body-md {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+  color: #878787;
+}
+
+#navigation-bar {
+  header {
+    @include flex-row;
+    padding: 8px 16px;
+    gap: 24px;
+    height: 56px;
+    background: #10141a;
+  }
+
+  nav {
+    @include flex-row(space-between);
+    padding: 0px 16px;
+    height: 32px;
+    background: #1b232f;
+  }
+
+  .label {
+    @include flex-row;
+    @include bold-sm;
+  }
+
+  .content {
+    @include bold-md;
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    @include flex-row(flex-start, stretch);
+    height: 40px;
+    background: #ffffff;
+    border-radius: 4px;
+
+    input {
+      flex-grow: 1;
+      padding-left: 12px;
+
+      &::placeholder {
+        @include body-md;
+      }
+    }
+
+    button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+
+      width: 40px;
+      height: 40px;
+
+      /* PrimaryOrange100 */
+
+      background: #fcb057;
+      border-radius: 0px 4px 4px 0px;
+    }
+  }
+}
