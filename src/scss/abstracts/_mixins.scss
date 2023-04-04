@@ -1,0 +1,122 @@
+// 반응형을 위한 @media only 등
+@charset "UTF-8";
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+@import 'variables';
+
+// :root {
+//   --font-family: 'Pretendard Variable', Pretendard, -apple-system,
+//     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+//     'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+//     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+// }
+
+@mixin border-common {
+  border: 1px solid red;
+}
+
+@mixin font-family {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+@mixin font-bold-xl {
+  // font-family: var(--font-family);
+  @include font-family;
+  font: $font-bold-xl;
+  line-height: 33px;
+}
+
+@mixin font-bold-lg {
+  @include font-family;
+  font: $font-bold-lg;
+  line-height: 21px;
+}
+@mixin font-bold-md {
+  @include font-family;
+  font: $font-bold-md;
+  line-height: 16px;
+  letter-spacing: $letter-spacing-bold;
+}
+@mixin font-bold-sm {
+  @include font-family;
+  font: $font-bold-sm;
+  line-height: 13px;
+  letter-spacing: $letter-spacing-bold;
+}
+@mixin font-body-md {
+  @include font-family;
+  font: $font-body-md;
+
+  letter-spacing: $letter-spacing-body;
+}
+@mixin font-body-sm {
+  @include font-family;
+  font: $font-body-sm;
+  letter-spacing: $letter-spacing-body;
+}
+
+@mixin button-common {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  background: linear-gradient(
+    174.6deg,
+    $color-white 4.31%,
+    $color-primary-yellow-100 50.01%,
+    $color-primary-yellow-200 95.71%
+  );
+
+  border: 1px solid $color-primary-yellow-300;
+  border-radius: 4px;
+}
+
+@mixin body-layout {
+  width: $vw100;
+  display: flex;
+  justify-content: center;
+}
+
+// @mixin respond-to($breakpoint) {
+//   $raw-query: map-get(breakpoints, breakpoint);
+//   @if $raw-query {
+//     @media #{$query} {
+//       @content;
+//     }
+//   }
+// }
+
+@mixin screen-large {
+  @media (min-width: #{$breakpoints}) {
+    @content;
+  }
+}
+@mixin header {
+  flex-direction: column;
+  justify-content: center;
+  width: 1120px;
+  @include screen-large {
+    width: $vw100;
+  }
+}
+
+@mixin flex-row {
+  display: flex;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin place-holder {
+  @include font-body-md;
+  color: $color-gray-600;
+}
+
+@mixin button {
+  cursor: pointer;
+}
