@@ -1,0 +1,17 @@
+@mixin button() {
+  @include typography($BoldSM);
+  display: flex;
+  line-height: 13px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 9.5px;
+  background: linear-gradient(
+    174.6deg,
+    $White,
+    $PrimaryYellow100,
+    $PrimaryYellow200
+  );
+  border: 1px solid $PrimaryYellow300;
+  border-radius: 4px;
+}
