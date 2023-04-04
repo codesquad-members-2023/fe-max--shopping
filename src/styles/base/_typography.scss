@@ -1,0 +1,32 @@
+$font-path: '../../assets/fonts/Pretendard';
+
+@mixin font-face($font-family, $font-path, $font-name, $font-weight: normal) {
+  @font-face {
+    font-family: '#{$font-family}';
+    font-weight: $font-weight;
+    font-display: swap;
+    src: url('#{$font-path}-#{$font-name}.woff2') format('woff2'),
+      url('#{$font-path}-#{$font-name}.woff') format('woff');
+  }
+}
+
+@include font-face('Pretendard', $font-path, 'Medium', 500);
+@include font-face('Pretendard', $font-path, 'SemiBold', 600);
+@include font-face('Pretendard', $font-path, 'ExtraBold', 800);
+
+// typography styles
+$BoldXL: 2.8rem 800 auto 0;
+$BoldLG: 1.8rem 800 auto 0;
+$BoldMD: 1.3rem 800 auto -0.06em;
+$BoldSM: 1.1rem 600 auto -0.06em;
+$BodyMD: 1.3rem 500 160% -0.03em;
+$BodySM: 1.1rem 500 160% -0.03em;
+
+@mixin typography($type, $color: $Black) {
+  font-family: 'Pretendard', sans-serif;
+  font-size: nth($type, 1);
+  font-weight: nth($type, 2);
+  line-height: nth($type, 3);
+  letter-spacing: nth($type, 4);
+  color: $color;
+}
