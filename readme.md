@@ -33,8 +33,11 @@
 
 ### Web Components and SCSS
 
-- SCSS cannot be hooked into Web Components.
-- Idea: _compile SCSS files into CSS (using dart-sass compiler) and import it as text in JS. Then, insert that CSS string into the Web Component._
+- SCSS cannot be naturally hooked into Web Components.
+
+#### Approach 1
+
+- **Compile SCSS files into CSS (using dart-sass compiler) and fetch it as text in JS. Then, insert that CSS string into the Web Component.**
 - Example
 
   ```zsh
@@ -42,7 +45,7 @@
   ```
 
   ```js
-  const cssString = await (await fetch("build/css/index.css")).text();
+  const cssString = await (await fetch("build/styles/index.css")).text();
 
   const template = document.createElement("template");
   const style = document.createElement("style");
@@ -65,7 +68,83 @@
   customElements.define("test-component", TestComponent);
   ```
 
-#### Notes
-
 - Although the overhead is minimal since it is fetched from my own server (relatively cheap), it is still a request/response cycle.
   - However, it is acceptable since the request is only sent once for each corresponding component (i.e. no need to fetch every time the component is generated).
+
+#### Approach 2
+
+- **Use SASS' JavaScript API.**
+- Example 1 - `compile`
+  ```js
+  const sass = require("sass");
+  const cssString = sass.compile("./index.scss").css;
+  ```
+- Example 2 - `compileString`
+  ```js
+  const sass = require("sass");
+  const sassString = `
+    div {
+      p {
+        color: blue;
+      }
+    }
+  `;
+  const cssString = sass.compileString(sassString).css;
+  ```
+  - No formatter --> Prone to runtime errors.
+- **Problem:** the "sass" library only supports CommonJS.
+  - Need a way to use ESModules instead of Commonjs.
+    - Transpile the whole "sass" library to ESModules?
+      - Check "sass-loader" source code?
+    - Simpler and better to use a module bundler.
+
+### SCSS Modules - `@use` vs `@import`
+
+- **`@import` makes variables, mixins, etc. globally accessible.**
+
+  - `@import` is discouraged as it will eventually be removed.
+
+  ```scss
+  // index.scss
+
+  @import "./_variables.scss";
+  @import "./otherfile.scss";
+  ```
+
+  ```scss
+  // _variables.scss
+
+  $color-blue: "blue";
+  ```
+
+  ```scss
+  // otherfile.scss
+
+  p {
+    color: $color-blue;
+  }
+  ```
+
+- **`@use` makes variables, mixins, etc. only available within the scope of the current file (i.e. not globally accessible).**
+
+  ```scss
+  // index.scss
+
+  @use "./otherfile.scss";
+  ```
+
+  ```scss
+  // _variables.scss
+
+  $color-blue: "blue";
+  ```
+
+  ```scss
+  // otherfile.scss
+
+  @use "./variables.scss" as *;
+
+  p {
+    color: $color-blue;
+  }
+  ```
