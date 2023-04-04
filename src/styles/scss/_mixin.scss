@@ -1,0 +1,29 @@
+@import "variables";
+
+@mixin boldXl {
+  font: $font-bold-xl;
+}
+
+@mixin boldLg {
+  font: $font-bold-lg;
+}
+
+@mixin boldMd {
+  font: $font-bold-md;
+  letter-spacing: $letter-spacing-body-md;
+}
+
+@mixin boldSm {
+  font: $font-bold-sm;
+  letter-spacing: $letter-spacing-bold-sm;
+}
+
+@mixin bodyMd {
+  font: $font-body-md;
+  letter-spacing: $letter-spacing-body-md;
+}
+
+@mixin bodySm {
+  font: $font-body-sm;
+  letter-spacing: $letter-spacing-body-sm;
+}

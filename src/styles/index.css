@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Thin.woff") format("woff");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraLight.woff") format("woff");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Light.woff") format("woff");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Medium.woff") format("woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-SemiBold.woff") format("woff");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Bold.woff") format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("../../../node_modules/pretendard/dist/web/static/woff/Pretendard-Black.woff") format("woff");
+  font-weight: 900;
+}
+.navigation-bar {
+  min-width: 1120px;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+.navigation-bar .has-img {
+  display: flex;
+  align-items: center;
+}
+.navigation-bar > div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 900 13px Pretendard;
+  letter-spacing: -0.03em;
+}
+.navigation-bar .navigation-main {
+  height: 56px;
+  background-color: #10141a;
+}
+.navigation-bar .navigation-main nav {
+  margin: 0 12px;
+}
+.navigation-bar .navigation-main label {
+  font: 600 11px Pretendard;
+  letter-spacing: -0.06em;
+}
+.navigation-bar .navigation-main .search-bar {
+  margin: 0 12px;
+  flex: 1;
+  height: 40px;
+}
+.navigation-bar .navigation-main .search-input {
+  padding: 0 12px;
+  border: none;
+  width: 100%;
+  height: inherit;
+  border-radius: 4px 0 0 4px;
+  font: 900 13px Pretendard;
+  color: #878787;
+}
+.navigation-bar .navigation-main .search-button {
+  border: none;
+  width: 40px;
+  height: inherit;
+  background-color: #fcb057;
+  border-radius: 0 4px 4px 0;
+}
+.navigation-bar .navigation-main .nation {
+  gap: 4px;
+}
+.navigation-bar .navigation-main .cart {
+  gap: 4px;
+}
+.navigation-bar .navigation-sub {
+  height: 32px;
+  background-color: #1b232f;
+}
+.navigation-bar .navigation-sub .left-sub {
+  display: flex;
+}
+.navigation-bar .navigation-sub nav {
+  margin: 8px;
+}
+.navigation-bar .navigation-sub .menu {
+  gap: 4px;
+}

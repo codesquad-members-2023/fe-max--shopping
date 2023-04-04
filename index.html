@@ -5,45 +5,84 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./src/styles/reset.css">
+  <link rel="stylesheet" href="./src/styles/index.css">
   <title>Amazon</title>
 </head>
 <body>
   <header class="navigation-bar">
     <div class="navigation-main">
-      <nav class="header-logo"></nav>
-      <nav class="shipping-address">
-        <label for="address">배송지</label>
-        <div id="address">대한민국</div>
+      <nav class="header-logo has-img">
+        <img src="./src/assets/logo.svg" alt="logo">
       </nav>
-      <form class="search-bar">
-        <input type="text" class="search-input">
-        <button type="submit" class="search-button"></button>
+      <nav class="shipping-address">
+        <label class="has-img" for="address">
+          <img src="./src/assets/location.svg" alt="location">
+          <span>배송지</span>
+        </label>
+        <div id="address">
+          <span>대한민국</span>
+        </div>
+      </nav>
+      <form class="search-bar has-img">
+        <input type="text" class="search-input" placeholder="검색 Amazon">
+        <button type="submit" class="search-button">
+          <img src="./src/assets/search.svg" alt="search">
+        </button>
       </form>
-      <nav class="nation">KO</nav>
+      <nav class="nation has-img">
+        <img src="./src/assets/flag.svg" alt="flag">
+        <span>KO</span>
+      </nav>
       <nav class="login">
-        <label for="account-list">안녕하세요, 로그인</label>
-        <div id="account-list">계정 및 목록</div>
+        <label for="account-list">
+          <span>안녕하세요, 로그인</span>
+        </label>
+        <div id="account-list">
+          <span>계정 및 목록</span>
+        </div>
       </nav>
       <nav class="my-page">
-        <label for="returns-and-orders">반품</label>
-        <div id="returns-and-orders">&주문</div>
+        <label for="returns-and-orders">
+          <span>반품</span>
+        </label>
+        <div id="returns-and-orders">
+          <span>&주문</span>
+        </div>
       </nav>
-      <nav class="cart">장바구니</nav>
+      <nav class="cart has-img">
+        <img src="./src/assets/cart.svg" alt="cart">
+        <span>장바구니</span>
+      </nav>
     </div>
-    <div class="naviation-sub">
+    <div class="navigation-sub">
       <div class="left-sub">
         <div class="menu-container">
-          <nav class="menu">모두</nav>
+          <nav class="menu has-img">
+            <img src="./src/assets/menu.svg" alt="menu">
+            <span>모두</span>
+          </nav>
           <aside class="menu-sidebar"></aside>
         </div>
-        <nav class="today-deal">오늘의 딜</nav>
-        <nav class="support">고객 서비스</nav>
-        <nav class="registry">레지스트리</nav>
-        <nav class="gift-card">기프트 카드</nav>
-        <nav class="sales">판매</nav>
+        <nav class="today-deal">
+          <span>오늘의 딜</span>
+        </nav>
+        <nav class="support">
+          <span>고객 서비스</span>
+        </nav>
+        <nav class="registry">
+          <span>레지스트리</span>
+        </nav>
+        <nav class="gift-card">
+          <span>기프트 카드</span>
+        </nav>
+        <nav class="sales">
+          <span>판매</span>
+        </nav>
       </div>
       <div class="right-sub">
-        <nav class="special-offers">지금 특가 상품 쇼핑하기</nav>
+        <nav class="special-offers">
+          <span>지금 특가 상품 쇼핑하기</span>
+        </nav>
       </div>
     </div>
   </header>
@@ -53,7 +92,7 @@
   </main>
 
   <footer>
-    <button class="nav-to-top" type="button">위로 돌아가기</button>
+    <div class="nav-to-top">위로 돌아가기</div>
     <div class="site-link">
       <div class="footer-nav-container">
         <h1 class="footer-nav-header">당사에 대해 알아보기</h1>
