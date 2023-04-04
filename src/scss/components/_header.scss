@@ -33,7 +33,6 @@
       @include flex-column;
       justify-content: center;
       position: relative;
-      /* todo - position지정 없는 상태에서 js로 걸어줄 수 있는지 확인하기 */
     }
     .main-search-bar,
     form,
@@ -57,7 +56,9 @@
     }
     .main-login {
       position: relative;
-      /* todo - position지정 없는 상태에서 js로 걸어줄 수 있는지 확인하기 */
+      .login-label{
+        @include flex-column;
+      }
     }
     .main-login,
     .main-my-page {
