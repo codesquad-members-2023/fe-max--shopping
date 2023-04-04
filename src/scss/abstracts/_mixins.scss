@@ -1,24 +1,8 @@
-// 반응형을 위한 @media only 등
-@charset "UTF-8";
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
 @import 'variables';
 
-// :root {
-//   --font-family: 'Pretendard Variable', Pretendard, -apple-system,
-//     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-//     'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-//     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-// }
-
 @mixin border-common {
   border: 1px solid red;
-}
-
-@mixin font-family {
-  font-family: 'Pretendard Variable', Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
 @mixin font-bold-xl {
@@ -76,15 +60,6 @@
   display: flex;
   justify-content: center;
 }
-
-// @mixin respond-to($breakpoint) {
-//   $raw-query: map-get(breakpoints, breakpoint);
-//   @if $raw-query {
-//     @media #{$query} {
-//       @content;
-//     }
-//   }
-// }
 
 @mixin screen-large {
   @media (min-width: #{$breakpoints}) {
