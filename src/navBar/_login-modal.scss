@@ -1,0 +1,24 @@
+@import "../style/common";
+@import "../style/modal";
+
+.modal__login-button {
+  @include Button;
+  @include BoldSM;
+
+  width: 160px;
+  height: 32px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.modal__login-caption {
+  @include BodySM;
+
+  color: var(--black);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+}

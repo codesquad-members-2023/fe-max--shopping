@@ -81,3 +81,14 @@
   font-size: 28px;
   line-height: 33px;
 }
+
+@mixin Button {
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  padding: 0px 10px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

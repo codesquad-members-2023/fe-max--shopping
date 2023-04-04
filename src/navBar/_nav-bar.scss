@@ -1,4 +1,4 @@
-@import "./common";
+@import "../style/common";
 
 @mixin nav-bar__label {
   @include BoldSM;
@@ -43,7 +43,8 @@
 .shipping-address,
 .search-bar__submit-button,
 .nav-bar__nation,
-.nav-bar__login,
+.nav-bar__login-label,
+.nav-bar__login-text,
 .nav-bar__my-page,
 .nav-bar__cart,
 .sub__left-menus,
@@ -123,6 +124,8 @@
 }
 
 .nav-bar__login {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 }
