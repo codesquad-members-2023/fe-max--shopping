@@ -10,27 +10,26 @@ import { ShippingAddress } from "./ShippingAddress.js";
 export class NavBar extends Base {
   constructor() {
     super("div");
+    this.logoNode = new BI();
+    this.shippingAddress = new ShippingAddress();
+    this.searchBar = new SearchBar();
+    this.nation = new Nation();
+    this.login = new Login();
+    this.mypage = new Mypage();
+    this.cart = new Cart();
     this.init();
   }
 
   init() {
     this.setAttribute("id", "navBar");
-    const logoNode = new BI();
-    const shippingAddress = new ShippingAddress();
-    const searchBar = new SearchBar();
-    const nation = new Nation();
-    const login = new Login();
-    const mypage = new Mypage();
-    const cart = new Cart();
-
     this.setChildren(
-      logoNode,
-      shippingAddress,
-      searchBar,
-      nation,
-      login,
-      mypage,
-      cart
+      this.logoNode,
+      this.shippingAddress,
+      this.searchBar,
+      this.nation,
+      this.login,
+      this.mypage,
+      this.cart
     );
   }
 }

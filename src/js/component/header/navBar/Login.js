@@ -1,4 +1,5 @@
 import { Base } from "../../Base.js";
+import { LoginTooltip } from "./LoginToolTip.js";
 
 export class Login extends Base {
   constructor() {
@@ -13,6 +14,8 @@ export class Login extends Base {
     loginText.setAttribute("class", "login__text");
     loginText.setTextContent("계정 및 목록");
 
-    this.setChildren(loginLabel, loginText);
+    const loginTooltip = new LoginTooltip();
+
+    this.setChildren(loginLabel, loginText, loginTooltip);
   }
 }
