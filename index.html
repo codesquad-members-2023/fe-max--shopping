@@ -3,24 +3,39 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Amazon</title>
+		<link rel="stylesheet" href="./resources/css/normalize.css" />
 		<link
 			rel="stylesheet"
 			as="style"
 			crossorigin
 			href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
 		/>
-		<link rel="stylesheet" href="./styles/css/style.css" />
+		<link rel="stylesheet" href="./resources/css/style.css" />
+		<link rel="stylesheet" href="./resources/css/header.css" />
 	</head>
 	<body>
-		<header>
-			<div id="nav-main"></div>
-			<div id="nav-sub"></div>
+		<header id="nav-bar">
+			<div id="nav-main">
+				<div id="nav-logo">
+					<img src="./resources/images/logo.svg" alt="amazon logo" />
+				</div>
+				<div id="nav-shipping-address">
+					<div class="font-BoldSM text-gray4">
+						<img src="./resources/images/location.svg" alt="location icon" />
+						<span class="font-BoldMD">배송처</span>
+					</div>
+					<span>대한민국</span>
+				</div>
+				<div id="nav-search-bar">검색</div>
+				<div id="nav-nation">국가</div>
+				<div id="nav-login">로그인</div>
+				<div id="nav-mypage">주문</div>
+				<div id="nav-cart" class="font-BoldMD">카트</div>
+			</div>
+			<div id="nav-sub">
+				<div class="nav-left"></div>
+				<div class="nav-right"></div>
+			</div>
 		</header>
-		<p class="BoldXL">안녕하세요</p>
-		<p class="BoldLG">안녕하세요</p>
-		<p class="BoldMD">안녕하세요</p>
-		<p class="BoldSM">안녕하세요</p>
-		<p class="BodyMD">안녕하세요</p>
-		<p class="BodySM">안녕하세요</p>
 	</body>
 </html>

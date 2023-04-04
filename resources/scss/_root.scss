@@ -1,0 +1,18 @@
+:root {
+	--color-white: #{$white};
+
+	@each $color, $value in $grays {
+		--color-gray-#{$color}: #{$value};
+	}
+
+	--color-primary-yellow-100: #{$primary-yellow-100};
+	--color-primary-yellow-200: #{$primary-yellow-200};
+	--color-primary-yellow-300: #{$primary-yellow-300};
+
+	--color-primary-orange-100: #{$primary-orange-100};
+	--color-primary-orange-200: #{$primary-orange-200};
+
+	--color-secondary-puple: #{$secondary-puple};
+	--color-secondary-navy: #{$secondary-navy};
+	--color-secondary-green: #{$secondary-green};
+}
