@@ -1,0 +1,27 @@
+@import 'normalize';
+@import 'variables';
+@import 'font';
+
+.BoldXL {
+	@include BoldXL;
+}
+
+.BoldLG {
+	@include BoldLG;
+}
+
+.BoldMD {
+	@include BoldMD;
+}
+
+.BoldSM {
+	@include BoldSM;
+}
+
+.BodyMD {
+	@include BodyMD;
+}
+
+.BodySM {
+	@include BodySM;
+}

@@ -308,46 +308,50 @@ template {
   display: none;
 }
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
+.BoldXL {
+  font-size: 28px;
+  font-weight: 800;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: 0;
 }
 
-h1 {
-  margin: 0;
+.BoldLG {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.BoldMD {
+  font-size: 13px;
+  font-weight: 800;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: -0.06em;
 }
 
-button,
-input,
-select,
-textarea {
-  background-color: transparent;
-  border: 0;
-}
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  box-shadow: none;
+.BoldSM {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: -0.06em;
 }
 
-a,
-button {
-  cursor: pointer;
+.BodyMD {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 160%;
+  letter-spacing: -0.03em;
 }
 
-ul,
-ol {
-  padding-left: 0;
-  list-style: none;
-}/*# sourceMappingURL=main.css.map */
+.BodySM {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}/*# sourceMappingURL=style.css.map */
