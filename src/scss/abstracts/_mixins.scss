@@ -56,7 +56,7 @@
 }
 
 @mixin body-layout {
-  width: $vw100;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -70,6 +70,7 @@
   flex-direction: column;
   justify-content: center;
   width: 1120px;
+  min-width: 1120px;
   @include screen-large {
     width: $vw100;
   }
@@ -106,7 +107,7 @@
   @include font-body-sm;
   color: $color-black;
 
-  box-shadow: 0 5px 5px 0 $color-gray-600;
+  box-shadow: 0 3px 5px 0 $color-gray-400;
 }
 
 @mixin modal-triangle {
