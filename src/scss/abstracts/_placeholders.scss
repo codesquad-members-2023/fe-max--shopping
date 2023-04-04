@@ -18,10 +18,10 @@
   dt {
     @include font-bold-md;
     margin-bottom: 4px;
-
   }
   dd {
     @include font-body-sm;
+    @include pointer;
     margin-bottom: 4px;
-  }
+  } 
 }

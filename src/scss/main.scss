@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "UTF-8";
 
 @import 'abstracts/variables';
 @import 'abstracts/placeholders';
@@ -7,12 +7,10 @@
 @import 'base/base'; 
 @import 'base/animations';
 
-@import 'layout/navigation';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/sidebar';
-
+@import 'components/navigation';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/sidebar';
 @import 'components/buttons';
 @import 'components/carousel';
 @import 'components/modal';
-
