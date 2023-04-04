@@ -239,3 +239,141 @@
     margin-left: 8px;
   }
 }
+
+.login-modal.show {
+  display: flex;
+}
+
+.login-modal {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 235px;
+  height: 100px;
+  top: 48px;
+  margin-left: 873px;
+
+  animation: fadein 1s;
+
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  .modal__rectangle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin-left: 188.62px;
+    top: -1px;
+    background-image: url(/src/assets/img/rectangle.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 235px;
+    height: 90px;
+    border-radius: 4px;
+    color: var(--black);
+    background-color: var(--white);
+  }
+  .login-modal__button {
+    width: 160px;
+    height: 32px;
+    margin-top: 16px;
+
+    background-image: url(/src/assets/img/login-button.svg);
+  }
+  .login-modal__caption {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    width: 203px;
+    height: 18px;
+    @include BodySM;
+
+    .caption__text {
+      width: 112px;
+      height: 18px;
+    }
+    .caption__link {
+      width: 88px;
+      height: 18px;
+      color: var(--secondary-navy);
+    }
+  }
+}
+// .login-modal.show {
+//   display: none;
+// }
+
+.address-modal.show {
+  display: flex;
+}
+
+.address-modal {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 320px;
+  height: 126px;
+  top: 58px;
+  margin-left: 131px;
+  @include BodySM;
+
+  animation: fadein 0.7s;
+
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  .modal__rectangle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    margin-left: 10.82px;
+    top: -10px;
+    background-image: url(/src/assets/img/rectangle.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    height: 126px;
+    border-radius: 4px;
+    color: var(--black);
+    background-color: var(--white);
+  }
+
+  .caption__text {
+    width: 288px;
+    height: 36px;
+    margin-top: 16px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 105px;
+    height: 32px;
+    margin-top: 26px;
+    margin-left: 183px;
+  }
+
+  .continue {
+    width: 39px;
+    height: 32px;
+    background-image: url(/src/assets/img/continue-btn.svg);
+    background-size: 100%;
+  }
+
+  .address-change {
+    width: 58px;
+    height: 32px;
+    background-image: url(/src/assets/img/change-btn.svg);
+    background-size: 100%;
+  }
+}
