@@ -1,15 +1,50 @@
 @use '../base';
 
-.dialog-wrapper {
-  position: relative;
-  &::before {
-    @include base.tooltip(6px, 30px);
-  }
+.modal {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .login-modal {
-  @include base.modal(235px, 90px, 16px, -180px);
+  @include base.modal(235px, 90px, 120%, -240%);
+
+  &::before {
+    @include base.tooltip(-8%, 85%);
+  }
+
   span:last-child {
     color: var(--color-secondary-navy);
   }
+}
+
+.shipping-modal {
+  @include base.modal(320px, 126px, 120%, -15%);
+
+  &::before {
+    @include base.tooltip(-8%, 5%);
+  }
+
+  p {
+    @include base.typography('body-sm');
+    width: 288px;
+  }
+
+  div {
+    @include base.typography('bold-sm');
+    width: 288px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}
+
+.login-btn {
+  @include base.button(160px, 32px);
+}
+
+.continue-btn {
+  @include base.button(39px, 32px);
+}
+
+.address-btn {
+  @include base.button(58px, 32px);
 }
