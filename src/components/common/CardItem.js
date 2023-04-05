@@ -1,43 +1,39 @@
-import { fetchStyles } from "../../utils/index.js";
-
-const cssString = await fetchStyles(
-  "src/styles/components/common/CardItem.css"
-);
-
 const template = document.createElement("template");
-const style = document.createElement("style");
-
 template.innerHTML = `
   <div class="card-container">
     <img src="" alt="" />
     <div class="card-content">
       <h3 class="title"></h3>
-      <span>더보기</span>
+      <span class="link">더보기</span>
     </div>
   </div>
+
+  <link rel="stylesheet" href="src/styles/components/common/CardItem.css">
 `;
-style.textContent = cssString;
 
 class CardItem extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true), style);
+    shadowRoot.append(template.content.cloneNode(true));
   }
 
   static get observedAttributes() {
-    return ["data-title", "data-imgSrc", "data-imgAlt"];
+    return ["data-title", "data-link", "data-img-src", "data-img-alt"];
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
     const title = this.shadowRoot.querySelector(".title");
+    const link = this.shadowRoot.querySelector(".link");
     const img = this.shadowRoot.querySelector("img");
 
     if (name === "data-title") {
       title.textContent = newVal;
-    } else if (name === "data-imgSrc") {
+    } else if (name === "data-link") {
+      link.textContent = newVal;
+    } else if (name === "data-img-src") {
       img.src = newVal;
-    } else if (name === "data-imgAlt") {
+    } else if (name === "data-img-alt") {
       img.alt = newVal;
     }
   }
