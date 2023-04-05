@@ -224,6 +224,9 @@ css fixed position 은 상태에 따라 viewport 의 영향을 받는다
 ### 7-1 패턴(n-1 패턴)
 7개의 폴더와 하나의 파일, 필요에 따라 n개의 폴더를 만든다
 
+### mouseover와 mouseenter 차이
+이벤트 버블링의 유무
+mouseover : 이벤트 버블링이 존재하기 때문에 내부의 다른 element 안에 들어가면 이벤트를 다시 발생
 ## 참고 출처
 mdn
 [렌더러 프로세스의 내부 동작](https://d2.naver.com/helloworld/5237120)
