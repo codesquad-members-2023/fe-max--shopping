@@ -42,7 +42,9 @@
     display: flex;
     padding: 0 12px;
     flex-grow: 1;
+    height: 40px;
     input {
+      border: none;
       @include typography($BodyMD, $Gray600);
       width: 100%;
       background-color: $White;

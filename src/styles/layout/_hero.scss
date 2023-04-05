@@ -1,0 +1,70 @@
+body {
+  background-color: $Gray200;
+}
+
+.hero {
+  position: relative;
+  top: 32px;
+  width: 100%;
+
+  &-wrap {
+    max-width: 1280px;
+    height: 512px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  &-slider {
+    width: 100%;
+    overflow: hidden;
+
+    &__slides {
+      width: 100%;
+      height: 512px;
+      display: flex;
+
+      img {
+        flex: 1 0 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+      width: 100%;
+      max-width: 1096px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 221px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .text {
+        display: block;
+        text-align: center;
+        width: 100%;
+        @include typography($BoldXL);
+      }
+    }
+
+    &__btn--prev,
+    &__btn--next {
+      height: 100%;
+      cursor: pointer;
+      transform: translateY(-50%);
+      position: absolute;
+      top: 50%;
+    }
+
+    &__btn--prev {
+      left: 0;
+    }
+
+    &__btn--next {
+      right: 0;
+    }
+  }
+}

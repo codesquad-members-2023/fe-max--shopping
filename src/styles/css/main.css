@@ -8,7 +8,6 @@
     - The "symbol *" part is to solve Firefox SVG sprite bug
  */
 *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
-  all: unset;
   display: revert;
 }
 
@@ -17,12 +16,35 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Reapply the pointer cursor for anchor tags */
-a,
-button {
+a {
+  color: #fff;
+  text-decoration: none;
   cursor: revert;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 /* Remove list styles (bullets/numbers) */
@@ -46,6 +68,7 @@ table {
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
 input,
 textarea {
+  all: unset;
   -webkit-user-select: auto;
 }
 
@@ -182,8 +205,10 @@ html {
   display: flex;
   padding: 0 12px;
   flex-grow: 1;
+  height: 40px;
 }
 .header__search-bar input {
+  border: none;
   font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
   font-weight: 500;
@@ -484,4 +509,71 @@ html {
 }
 .header-layer__popup--address.hidden, .header-layer__popup--login-extend.hidden, .header-layer__popup--login.hidden {
   display: none;
+}
+
+body {
+  background-color: #e5e9e9;
+}
+
+.hero {
+  position: relative;
+  top: 32px;
+  width: 100%;
+}
+.hero-wrap {
+  max-width: 1280px;
+  height: 512px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.hero-slider {
+  width: 100%;
+  overflow: hidden;
+}
+.hero-slider__slides {
+  width: 100%;
+  height: 512px;
+  display: flex;
+}
+.hero-slider__slides img {
+  flex: 1 0 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero-slider__content {
+  width: 100%;
+  max-width: 1096px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 221px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-slider__content .text {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-family: "Pretendard", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: 0;
+  color: #10141a;
+}
+.hero-slider__btn--prev, .hero-slider__btn--next {
+  height: 100%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+}
+.hero-slider__btn--prev {
+  left: 0;
+}
+.hero-slider__btn--next {
+  right: 0;
 }

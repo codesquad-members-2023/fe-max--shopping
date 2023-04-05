@@ -10,7 +10,7 @@
 *:where(
     :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
   ) {
-  all: unset;
+  // all: unset;
   display: revert;
 }
 
@@ -19,12 +19,36 @@
 *::before,
 *::after {
   box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
 }
 
 /* Reapply the pointer cursor for anchor tags */
-a,
-button {
+a {
+  color: #fff;
+  text-decoration: none;
   cursor: revert;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 /* Remove list styles (bullets/numbers) */
@@ -48,6 +72,7 @@ table {
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
 input,
 textarea {
+  all: unset;
   -webkit-user-select: auto;
 }
 
