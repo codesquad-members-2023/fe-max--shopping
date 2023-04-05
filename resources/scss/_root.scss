@@ -5,6 +5,9 @@
 		--color-gray-#{$color}: #{$value};
 	}
 
+	--color-black: #{$black};
+	--color-black-40: #{$black-40};
+
 	--color-primary-yellow-100: #{$primary-yellow-100};
 	--color-primary-yellow-200: #{$primary-yellow-200};
 	--color-primary-yellow-300: #{$primary-yellow-300};

@@ -1,156 +1,150 @@
 :root {
-	--color-white: #fff;
-	--color-gray-100: #eff2f2;
-	--color-gray-200: #e5e9e9;
-	--color-gray-300: #dce0e0;
-	--color-gray-400: #d5d5d5;
-	--color-gray-500: #c1c1c1;
-	--color-gray-600: #878787;
-	--color-gray-700: #535353;
-	--color-gray-800: #2a3648;
-	--color-gray-900: #1b232f;
-	--color-primary-yellow-100: #fed15f;
-	--color-primary-yellow-200: #febe30;
-	--color-primary-yellow-300: #de9408;
-	--color-primary-orange-100: #fcb057;
-	--color-primary-orange-200: #ff9900;
-	--color-secondary-puple: #941387;
-	--color-secondary-navy: #074099;
-	--color-secondary-green: #0c5e72;
+  --color-white: #fff;
+  --color-gray-100: #eff2f2;
+  --color-gray-200: #e5e9e9;
+  --color-gray-300: #dce0e0;
+  --color-gray-400: #d5d5d5;
+  --color-gray-500: #c1c1c1;
+  --color-gray-600: #878787;
+  --color-gray-700: #535353;
+  --color-gray-800: #2a3648;
+  --color-gray-900: #1b232f;
+  --color-black: #10141a;
+  --color-black-40: rgba(16, 20, 26, 0.4);
+  --color-primary-yellow-100: #fed15f;
+  --color-primary-yellow-200: #febe30;
+  --color-primary-yellow-300: #de9408;
+  --color-primary-orange-100: #fcb057;
+  --color-primary-orange-200: #ff9900;
+  --color-secondary-puple: #941387;
+  --color-secondary-navy: #074099;
+  --color-secondary-green: #0c5e72;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .font-BoldXL {
-	font-size: 28px;
-	font-weight: 800;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: normal;
-	letter-spacing: 0;
+  font-size: 28px;
+  font-weight: 800;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: 0;
 }
 
 .font-BoldLG {
-	font-size: 18px;
-	font-weight: 800;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: normal;
-	letter-spacing: 0;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: 0;
 }
 
 .font-BoldMD {
-	font-size: 13px;
-	font-weight: 800;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: normal;
-	letter-spacing: -0.06em;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: -0.06em;
 }
 
 .font-BoldSM {
-	font-size: 11px;
-	font-weight: 600;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: normal;
-	letter-spacing: -0.06em;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: normal;
+  letter-spacing: -0.06em;
 }
 
 .font-BodyMD {
-	font-size: 13px;
-	font-weight: 500;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: 160%;
-	letter-spacing: -0.03em;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 160%;
+  letter-spacing: -0.03em;
 }
 
 .font-BodySM {
-	font-size: 11px;
-	font-weight: 500;
-	font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-		'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', sans-serif;
-	line-height: 160%;
-	letter-spacing: -0.03em;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 160%;
+  letter-spacing: -0.03em;
 }
 
 .text-white {
-	color: var(--color-white);
+  color: var(--color-white);
 }
 
 .text-gray1 {
-	color: var(--color-gray-100);
+  color: var(--color-gray-100);
 }
 
 .text-gray2 {
-	color: var(--color-gray-200);
+  color: var(--color-gray-200);
 }
 
 .text-gray3 {
-	color: var(--color-gray-300);
+  color: var(--color-gray-300);
 }
 
 .text-gray4 {
-	color: var(--color-gray-400);
+  color: var(--color-gray-400);
 }
 
 .text-gray5 {
-	color: var(--color-gray-500);
+  color: var(--color-gray-500);
 }
 
 .text-gray6 {
-	color: var(--color-gray-600);
+  color: var(--color-gray-600);
 }
 
 .text-gray7 {
-	color: var(--color-gray-700);
+  color: var(--color-gray-700);
 }
 
 .text-gray8 {
-	color: var(--color-gray-800);
+  color: var(--color-gray-800);
 }
 
 .text-gray9 {
-	color: var(--color-gray-900);
+  color: var(--color-gray-900);
 }
 
 .text-yellow1 {
-	color: var(--color-primary-yellow-100);
+  color: var(--color-primary-yellow-100);
 }
 
 .text-yellow2 {
-	color: var(--color-primary-yellow-200);
+  color: var(--color-primary-yellow-200);
 }
 
 .text-yellow2 {
-	color: var(--color-primary-yellow-200);
+  color: var(--color-primary-yellow-200);
 }
 
 .text-orange1 {
-	color: var(--color-primary-orange-100);
+  color: var(--color-primary-orange-100);
 }
 
 .text-orange2 {
-	color: var(--color-primary-orange-200);
+  color: var(--color-primary-orange-200);
 }
 
 .text-purple {
-	color: var(--color-secondary-purple);
+  color: var(--color-secondary-purple);
 }
 
 .text-navy {
-	color: var(--color-secondary-navy);
+  color: var(--color-secondary-navy);
 }
 
 .text-green {
-	color: var(--color-secondary-green);
-} /*# sourceMappingURL=style.css.map */
+  color: var(--color-secondary-green);
+}
+
+.bg-black {
+  background-color: var(--color-black);
+}/*# sourceMappingURL=style.css.map */

@@ -1,11 +1,24 @@
 #nav-bar {
-	height: 56px;
-	color: $white;
-	background-color: $black;
 	#nav-main {
+		height: 56px;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
 		padding: 8px 16px;
 	}
+	#nav-sub {
+		height: 32px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 16px;
+	}
+}
+
+.nav-left {
+	display: flex;
+}
+
+.nav-right {
+	display: flex;
 }
