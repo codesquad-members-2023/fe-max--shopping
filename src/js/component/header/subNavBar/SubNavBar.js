@@ -15,13 +15,13 @@ export class SubNavBar extends Base {
 
   constructor() {
     super("div");
-    this.setAttribute("id", "subNavBar");
-
     this.init();
-    this.setMenu();
   }
 
-  init() {}
+  init() {
+    this.setAttribute("id", "subNavBar");
+    this.setMenu();
+  }
 
   setMenu() {
     const leftButtons = this.setLeftButtons();

@@ -27,6 +27,26 @@ export class Base {
     });
   }
 
+  createChild(tagName, attribute, textContent, name, children) {
+    const child = new Base(tagName);
+    if (attribute) {
+      attribute.forEach((attr) => {
+        child.setAttribute(attr.name, attr.value);
+      });
+    }
+
+    if (textContent) {
+      child.setTextContent(textContent);
+    }
+
+    if (children) {
+      child.setChildren(...children.map((chilldName) => this[chilldName]));
+    }
+
+    this[name] = child;
+    this.setChildren(child);
+  }
+
   isNode(node) {
     return node instanceof Node;
   }

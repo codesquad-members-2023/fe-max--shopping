@@ -3,23 +3,42 @@ import { Base } from "../../Base.js";
 export class ShippingAddress extends Base {
   constructor() {
     super("a");
+    this.init();
+  }
+
+  init() {
     this.setAttribute("id", "shippingAddress");
+    this.addChild();
+  }
 
-    const symbols = new Base("img");
-    symbols.setAttribute("src", "./src/assets/location.svg");
+  addChild() {
+    this.createChild(
+      "img",
+      [{ name: "src", value: "./src/assets/location.svg" }],
+      null,
+      "symbols"
+    );
 
-    const addressLabelText = new Base("span");
-    addressLabelText.setTextContent("배송처");
-    addressLabelText.setAttribute("class", "address__labelText");
+    this.createChild(
+      "span",
+      [{ name: "class", value: "address__labelText" }],
+      "배송처",
+      "addressLabelText"
+    );
 
-    const addressLabel = new Base("div");
-    addressLabel.setChildren(symbols, addressLabelText);
-    addressLabel.setAttribute("class", "address__label");
+    this.createChild(
+      "div",
+      [{ name: "class", value: "address__label" }],
+      null,
+      "addressLabel",
+      ["symbols", "addressLabelText"]
+    );
 
-    const adddressText = new Base("span");
-    adddressText.setTextContent("대한민국");
-    adddressText.setAttribute("class", "adddress__text");
-
-    this.setChildren(addressLabel, adddressText);
+    this.createChild(
+      "span",
+      [{ name: "class", value: "adddress__text" }],
+      "대한민국",
+      "adddressText"
+    );
   }
 }

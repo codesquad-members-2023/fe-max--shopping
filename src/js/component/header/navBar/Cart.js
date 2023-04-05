@@ -3,16 +3,30 @@ import { Base } from "../../Base.js";
 export class Cart extends Base {
   constructor() {
     super("div");
+    this.init();
+  }
+
+  init() {
     this.setAttribute("id", "cart");
+    this.addChild();
+  }
 
-    const cartSymbol = new Base("img");
-    cartSymbol.setAttribute("class", "cart__symbol");
-    cartSymbol.setAttribute("src", "./src/assets/cart.svg");
+  addChild() {
+    this.createChild(
+      "img",
+      [
+        { name: "class", value: "cart__symbol" },
+        { name: "src", value: "./src/assets/cart.svg" },
+      ],
+      null,
+      "cartSymbol"
+    );
 
-    const cartText = new Base("span");
-    cartText.setAttribute("class", "cart__text");
-    cartText.setTextContent("장바구니");
-
-    this.setChildren(cartSymbol, cartText);
+    this.createChild(
+      "span",
+      [{ name: "class", value: "cart__text" }],
+      "장바구니",
+      "cartText"
+    );
   }
 }

@@ -4,18 +4,30 @@ import { LoginTooltip } from "./LoginToolTip.js";
 export class Login extends Base {
   constructor() {
     super("div");
+    this.loginTooltip = new LoginTooltip();
+    this.init();
+  }
+
+  init() {
     this.setAttribute("id", "login");
+    this.addChild();
+  }
 
-    const loginLabel = new Base("span");
-    loginLabel.setAttribute("class", "login__label");
-    loginLabel.setTextContent("안녕하세요, 로그인");
+  addChild() {
+    this.createChild(
+      "span",
+      [{ name: "class", value: "login__label" }],
+      "안녕하세요, 로그인",
+      "loginLabel"
+    );
 
-    const loginText = new Base("span");
-    loginText.setAttribute("class", "login__text");
-    loginText.setTextContent("계정 및 목록");
+    this.createChild(
+      "spann",
+      [{ name: "class", value: "login__text" }],
+      "계정 및 목록",
+      "loginText"
+    );
 
-    const loginTooltip = new LoginTooltip();
-
-    this.setChildren(loginLabel, loginText, loginTooltip);
+    this.setChildren(this.loginTooltip);
   }
 }

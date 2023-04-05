@@ -3,16 +3,29 @@ import { Base } from "../../Base.js";
 export class SearchBar extends Base {
   constructor() {
     super("form");
+    this.init();
+  }
+
+  init() {
     this.setAttribute("id", "searchBar");
+    this.addChild();
+  }
+  addChild() {
+    this.createChild(
+      "input",
+      [
+        { name: "class", value: "inputBar" },
+        { name: "placeholder", value: "검색 Amazon" },
+      ],
+      null,
+      "inputBar"
+    );
 
-    const inputBar = new Base("input");
-    inputBar.setAttribute("class", "inputBar");
-    inputBar.setAttribute("placeholder", "검색 Amazon");
-
-    const searchBtn = new Base("button");
-    searchBtn.setAttribute("class", "searchBar__btn");
-    // searchBtn.setTextContent("button");
-
-    this.setChildren(inputBar, searchBtn);
+    this.createChild(
+      "button",
+      [{ name: "class", value: "searchBar__btn" }],
+      null,
+      "searchBtn"
+    );
   }
 }

@@ -3,14 +3,22 @@ import { Base } from "../../Base.js";
 export class BI extends Base {
   constructor() {
     super("h1");
-    this.setAttribute("id", "BI");
+    this.init();
+  }
 
-    const BiImg = new Base("img");
-    BiImg.setAttribute("src", "./src/assets/BI.svg");
+  init() {
+    this.setAttribute("id", "bi");
+    this.addChild();
+  }
 
-    const aNode = new Base("a");
-    aNode.setChildren(BiImg);
+  addChild() {
+    this.createChild(
+      "img",
+      [{ name: "src", value: "./src/assets/BI.svg" }],
+      null,
+      "biImg"
+    );
 
-    this.setChildren(aNode);
+    this.createChild("a", null, null, "anchorNode", ["biImg"]);
   }
 }

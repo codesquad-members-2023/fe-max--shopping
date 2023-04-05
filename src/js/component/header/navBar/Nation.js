@@ -3,15 +3,26 @@ import { Base } from "../../Base.js";
 export class Nation extends Base {
   constructor() {
     super("div");
+    this.init();
+  }
+  init() {
     this.setAttribute("id", "nation");
+    this.addChild();
+  }
 
-    const nationFlag = new Base("span");
-    nationFlag.setAttribute("class", "nation__flag");
-    nationFlag.setTextContent("🇰🇷");
+  addChild() {
+    this.createChild(
+      "span",
+      [{ name: "class", value: "nation__flag" }],
+      "🇰🇷",
+      "nationFlag"
+    );
 
-    const nationText = new Base("span");
-    nationText.setAttribute("class", "nation__text");
-    nationText.setTextContent("KO");
-    this.setChildren(nationFlag, nationText);
+    this.createChild(
+      "span",
+      [{ name: "class", value: "nation__text" }],
+      "KO",
+      "nationText"
+    );
   }
 }
