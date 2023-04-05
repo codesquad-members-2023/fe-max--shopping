@@ -1,0 +1,22 @@
+[
+  {
+    "url": "./src/assets/images/hero/image-1.jpg",
+    "alt": "slide1"
+  },
+  {
+    "url": "./src/assets/images/hero/image-2.jpg",
+    "alt": "slide2"
+  },
+  {
+    "url": "./src/assets/images/hero/image-3.jpg",
+    "alt": "slide3"
+  },
+  {
+    "url": "./src/assets/images/hero/image-4.jpg",
+    "alt": "slide4"
+  },
+  {
+    "url": "./src/assets/images/hero/image-5.jpg",
+    "alt": "slide5"
+  }
+]
