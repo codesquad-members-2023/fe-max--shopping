@@ -16,7 +16,7 @@ export class LoginModal extends Component {
   }
 }
 
-class ShippingModal extends Component {
+export class ShippingModal extends Component {
   constructor() {
     super('modal shipping-modal', 'DIALOG');
   }

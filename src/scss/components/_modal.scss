@@ -20,11 +20,11 @@
 
 .modal {
   filter: drop-shadow(var(--filter-modal-shadow));
-  animation: fadeIn 1s;
 }
 
 .login-modal {
-  @include base.modal(235px, 90px, 120%, -240%);
+  animation: fadeIn 1s;
+  @include base.modal(235px, 90px, 160%, -240%);
 
   &::before {
     @include base.tooltip(-8%, 85%);
@@ -36,7 +36,7 @@
 }
 
 .shipping-modal {
-  @include base.modal(320px, 126px, 120%, -15%);
+  @include base.modal(320px, 126px, 160%, -15%);
 
   &::before {
     @include base.tooltip(-8%, 5%);
@@ -66,4 +66,13 @@
 
 .address-btn {
   @include base.button(58px, 32px);
+}
+
+.dim-layer {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
 }

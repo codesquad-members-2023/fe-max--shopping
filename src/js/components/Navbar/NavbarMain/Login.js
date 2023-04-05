@@ -4,6 +4,8 @@ import { Component } from '/src/js/components/base/Component.js';
 export class Login extends Component {
   constructor() {
     super('login');
+    this.loginModalNode = new LoginModal().node;
+    this.node.append(this.loginModalNode);
   }
 
   template() {
@@ -14,11 +16,10 @@ export class Login extends Component {
   }
 
   initEventHandlers() {
-    setTimeout(() => this.showLoginModal(this.node), 1000);
+    setTimeout(() => this.showLoginModal(), 1000);
   }
 
-  showLoginModal(loginNode) {
-    const loginModalNode = new LoginModal().node;
-    loginNode.append(loginModalNode);
+  showLoginModal() {
+    this.loginModalNode.show();
   }
 }

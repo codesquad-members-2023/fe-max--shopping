@@ -25,3 +25,11 @@ button {
 input {
   border: none;
 }
+
+.display-none {
+  display: none;
+}
+
+dialog:not([open]) {
+  display: none;
+}

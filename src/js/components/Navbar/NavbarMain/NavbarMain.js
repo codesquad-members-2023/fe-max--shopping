@@ -1,4 +1,5 @@
 import { Login } from './Login.js';
+import { Shipping } from './Shipping.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class NavbarMain extends Component {
@@ -29,22 +30,6 @@ class Logo extends Component {
   <a href="/">
     <img class="amazon-icon" src="/src/assets/images/BI.svg" alt="amazon logo icon" />
   </a>
-    `;
-  }
-}
-
-class Shipping extends Component {
-  constructor() {
-    super('shipping');
-  }
-
-  template() {
-    return `
-<div class="top">
-  <img src="/src/assets/symbols/location.svg" alt="location icon" />
-  <span class="label-text">배송처</span>
-</div>
-<span class="main-text">대한민국</span>
     `;
   }
 }
