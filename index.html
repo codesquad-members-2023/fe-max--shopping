@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="/src/style/css/main.css" />
   </head>
   <body>
-    <div id="navigation-bar">
-      <header>
+    <div id="nav-bar">
+      <header class="nav-bar__main">
         <button>
           <img src="./src/asset/img/logo.svg" alt="로고" />
         </button>
@@ -25,14 +25,66 @@
           <input type="text" placeholder="검색 Amazon" name="search">
           <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
         </form>
-        <section class="nation"></section>
-        <section class="login"></section>
-        <section class="order"></section>
-        <section class="cart"></section>
+        <section class="nation">
+          <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기">
+          <p class="content">KO</p>
+        </section>
+        <section class="login">
+          <div class="label">
+            <span>안녕하세요,로그인</span>
+          </div>
+          <p class="content">계정 및 목록</p>
+        </section>
+        <section class="history">
+          <div class="label">
+            <span>반품</span>
+          </div>
+          <p class="content">& 주문</p>
+        </section>
+        <section class="cart">
+          <img src="./src/asset/img/cart.svg" alt="카트">
+          <p class="content">장바구니</p>
+        </section>
       </header>
-      <nav>
-        <ul class="nav-menu"></ul>
-        <ul class="rest-menu"></ul>
+      <nav class="nav-bar__sub">
+        <ul class="left-menu">
+          <li>
+            <button>
+              <img src="/src/asset/img/menu.svg" alt="메뉴">
+              <p class="action-item">모두</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>오늘의 딜</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>고객 서비스</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>레지스트리</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>기프트 카드</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>판매</p>
+            </button>
+          </li>
+        </ul>
+        <ul class="right-menu">
+          <button>
+            <p class="action-item">지금 특가 상품 쇼핑하기</p>
+          </button>
+        </ul>
       </nav>
     </div>
     <main></main>
