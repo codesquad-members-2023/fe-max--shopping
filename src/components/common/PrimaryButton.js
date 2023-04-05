@@ -21,12 +21,14 @@ class PrimaryButton extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["data-content"];
+    return ["data-content", "data-width"];
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
     if (name === "data-content") {
       this.button.innerText = newVal;
+    } else if (name === "data-width") {
+      this.button.style.width = newVal;
     }
   }
 }
