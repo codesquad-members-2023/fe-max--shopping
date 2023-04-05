@@ -1,2 +1,2 @@
+import "./common/index.js";
 import "./TopHeader.js";
-import "./common/PrimaryButton.js";
