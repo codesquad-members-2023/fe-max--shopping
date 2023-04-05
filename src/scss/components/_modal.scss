@@ -24,7 +24,7 @@
 
 .login-modal {
   animation: fadeIn 1s;
-  @include base.modal(235px, 90px, 160%, -240%);
+  @include base.modal(235px, 90px, 120%, -240%);
 
   &::before {
     @include base.tooltip(-8%, 85%);
@@ -35,8 +35,62 @@
   }
 }
 
+.extended-login-modal {
+  @include base.modal(335px, auto, 120%, -315%);
+  padding: 16px;
+  gap: 8px;
+
+  &::before {
+    @include base.tooltip(-3%, 75%);
+  }
+
+  .base {
+    @include base.typography('bold-sm');
+    align-self: stretch;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-gray-100);
+    }
+
+    span:last-child {
+      color: var(--color-secondary-navy);
+    }
+  }
+
+  .extra {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 150px;
+    }
+    h3 {
+      @include base.typography('bold-md');
+      margin-bottom: 4px;
+      height: 18px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      li {
+        height: 18px;
+      }
+    }
+  }
+}
+
 .shipping-modal {
-  @include base.modal(320px, 126px, 160%, -15%);
+  @include base.modal(320px, 126px, 120%, -15%);
 
   &::before {
     @include base.tooltip(-8%, 5%);

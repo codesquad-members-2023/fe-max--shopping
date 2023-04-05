@@ -11,12 +11,13 @@
     gap: 24px;
 
     .shipping {
-      width: 43px;
-      height: 29px;
+      width: 50px;
+      height: 40px;
       display: flex;
       position: relative;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       .top {
         display: flex;
         align-items: center;
@@ -52,9 +53,14 @@
       }
     }
 
+    .login {
+      position: relative;
+      width: 80px;
+      height: 40px;
+    }
+
     .login,
     .my-page {
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
