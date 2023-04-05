@@ -1,5 +1,5 @@
-import { loginModalHandler } from "./loginModalHandler";
+import { showLoginModalOnLoad } from "./loginController";
 
 export const initNavBar = () => {
-  loginModalHandler();
+  showLoginModalOnLoad();
 };

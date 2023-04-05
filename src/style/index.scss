@@ -1,2 +1,4 @@
-@import "../navBar/nav-bar";
-@import "../navBar/login-modal";
+@use "../style/modal";
+@use "../navBar/nav-bar";
+@use "../navBar/login-modal";
+@use "../main/main-dim";

@@ -1,9 +1,8 @@
-@import "../style/common";
-@import "../style/modal";
+@use "../style/common";
 
 .modal__login-button {
-  @include Button;
-  @include BoldSM;
+  @include common.Button;
+  @include common.BoldSM;
 
   width: 160px;
   height: 32px;
@@ -12,13 +11,50 @@
 }
 
 .modal__login-caption {
-  @include BodySM;
+  @include common.BodySM;
 
   color: var(--black);
+  white-space: nowrap;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  white-space: nowrap;
+}
+
+.modal__nav {
+  margin-top: 8px;
+  padding: 8px 16px 16px 16px;
+  border-top: 1px solid var(--gray100);
+
+  display: flex;
+  gap: 3px;
+}
+
+.modal__nav-left,
+.modal__nav-right {
+  width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal__nav-title {
+  @include common.BoldMD;
+
+  color: var(--black);
+}
+
+.modal__nav-text {
+  @include common.BodySM;
+
+  color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--primary-orange200);
+  }
 }
