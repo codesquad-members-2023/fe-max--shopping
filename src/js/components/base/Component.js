@@ -12,7 +12,14 @@ export class Component {
   }
 
   render() {
-    this.#node.innerHTML = this.template();
+    const template = this.template();
+
+    if (template instanceof Node) {
+      this.#node.append(template);
+      return;
+    }
+
+    this.#node.insertAdjacentHTML('afterbegin', template);
   }
 
   template() {
