@@ -29,9 +29,10 @@
 		}
 
 		#nav-shipping-address {
-			img {
+			.location-icon {
 				width: 12px;
 				height: 12px;
+				filter: invert(77%) sepia(90%) saturate(0%) hue-rotate(189deg) brightness(93%) contrast(95%);
 			}
 		}
 
@@ -81,6 +82,10 @@
 			margin-right: 0;
 			display: flex;
 			align-items: center;
+
+			.cart-icon {
+				filter: invert(71%) sepia(30%) saturate(6011%) hue-rotate(359deg) brightness(101%) contrast(103%);
+			}
 		}
 	}
 
@@ -97,6 +102,10 @@
 			#side-bar-menu {
 				display: flex;
 				align-items: center;
+
+				.hamburger-menu-icon {
+					filter: invert(99%) sepia(9%) saturate(3%) hue-rotate(234deg) brightness(117%) contrast(100%);
+				}
 			}
 		}
 
