@@ -59,6 +59,16 @@
       .login-label{
         @include flex-column;
       }
+      &:hover .modal{
+        width: 335px;
+        box-shadow: 0 3px 5px 0 $color-gray-600;
+        @extend %expanded-modal;
+        .modal-triangle {
+          @include modal-triangle;
+          top: -3%;
+          right: 10%;
+        }
+      }
     }
     .main-login,
     .main-my-page {

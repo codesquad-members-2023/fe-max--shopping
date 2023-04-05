@@ -7,10 +7,12 @@
   @include modal-bg;
   width: 100%;
   height: $vh100;
+  animation: fade-in 0.5s forwards; 
 }
 
 .modal {
   @include modal;
+  z-index: 100;
   position: absolute;
   top: 102%;
   right: 0;
@@ -34,21 +36,13 @@
     top: -12%;
     right: 14.2%;
   }
-  &:hover{
-    width: 335px;
-    box-shadow: 0 3px 5px 0 $color-gray-600;
-    @extend %expanded-modal;
-    .modal-triangle {
-      @include modal-triangle;
-      top: -3%;
-      right: 10%;
-    }
-  }
+
 
 }
 /* todo 모달창 템플릿을 하나만 가지고 변형이 가능한지 고민하기 */
 .modal-temp1 {
   @include modal;
+  z-index: 100;
   align-items: flex-end;
   position: absolute;
   white-space: normal;
@@ -73,28 +67,3 @@
   }
 }
 
-.modal-temp2 {
-  @include modal;
-  position: absolute;
-  top: 102%;
-  right: 0;
-  width: 335px;
-  gap: 8px;
-  button {
-    @include pointer;
-    @include font-bold-sm;
-    width: 160px;
-    height: 32px;
-  }
-  div > span:nth-child(2) {
-    @include pointer;
-    color: $color-secondary-navy;
-    text-decoration: underline;
-  }
-  @extend %expanded-modal;
-  .modal-triangle {
-    @include modal-triangle;
-    top: -3%;
-    right: 10%;
-  }
-}
