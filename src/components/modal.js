@@ -1,23 +1,46 @@
 export function modal() {
     const hero = document.querySelector(".hero");
+    const login = document.querySelector(".login");
+    const loginModal = document.querySelector(".login-modal");
+    const loginModalEx = document.querySelector(".login-modal-ex");
+    const address = document.querySelector(".address");
+    const addressModal = document.querySelector(".address-modal");
 
-    const fadeInModal = (modal, time) => {
+    function fadeInModal(modal, time) {
         setTimeout(() => {
             modal.classList.add("show");
         }, time);
-    };
+    }
+    function hideModal(modal) {
+        modal.classList.remove("show");
+        hero.classList.remove("dim");
+    }
+    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
     function showLoginModal() {
-        const loginModal = document.querySelector(".login-modal");
         document.addEventListener(
             "DOMContentLoaded",
             fadeInModal(loginModal, 1000)
         );
     }
-    showLoginModal();
+
+    login.addEventListener("mouseover", (e) => {
+        if (e.currentTarget === login) {
+            hideModal(loginModal);
+            fadeInModal(loginModalEx);
+            hero.classList.add("dim");
+        }
+    });
+
+    function hideLoginModal() {
+        login.addEventListener("mouseout", (e) => {
+            if (e.currentTarget === login) {
+                hideModal(loginModalEx);
+            }
+        });
+    }
 
     function showAddressModal() {
-        const address = document.querySelector(".address");
-        const addressModal = document.querySelector(".address-modal");
         address.addEventListener("mouseover", (e) => {
             if (e.currentTarget === address) {
                 fadeInModal(addressModal, 500);
@@ -26,22 +49,15 @@ export function modal() {
         });
     }
 
-    showAddressModal();
-
-    const hideModal = (modal) => {
-        modal.classList.remove("show");
-    };
-
     function hideAddressModal() {
-        const address = document.querySelector(".address");
-        const addressModal = document.querySelector(".address-modal");
         address.addEventListener("mouseout", (e) => {
             if (e.currentTarget === address) {
                 hideModal(addressModal);
-                hero.classList.remove("dim");
             }
         });
     }
-
+    showLoginModal();
+    hideLoginModal();
+    showAddressModal();
     hideAddressModal();
 }

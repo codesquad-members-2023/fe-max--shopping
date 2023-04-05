@@ -193,7 +193,10 @@ display:revert; revert to element instead of attribute */
   }
 }
 .nav-bar {
-  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 1120px;
   height: 88px;
   color: var(--white);
 }
@@ -201,22 +204,24 @@ display:revert; revert to element instead of attribute */
   display: flex;
   position: relative;
   align-items: center;
-  width: 1280px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  width: 100%;
   height: 56px;
+  gap: 24px;
   background-color: var(--black);
 }
 .nav-bar .nav-bar__main .bi {
-  width: 100px;
-  height: 40px;
-  margin-left: 16px;
-  background-image: url(/src/assets/img/bi.svg);
-  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .nav-bar .nav-bar__sub {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1280px;
+  width: 100%;
   height: 32px;
   background-color: var(--gray900);
 }
@@ -245,9 +250,7 @@ display:revert; revert to element instead of attribute */
 }
 
 .address {
-  width: 43px;
   height: 29px;
-  margin-left: 24px;
 }
 .address .address__label {
   display: flex;
@@ -276,11 +279,11 @@ display:revert; revert to element instead of attribute */
 }
 
 .search-bar {
+  position: relative;
   display: flex;
   align-items: center;
-  width: 747px;
+  flex-grow: 1;
   height: 40px;
-  margin-left: 24px;
   background-color: var(--white);
   border-radius: 4px;
   overflow: hidden;
@@ -289,20 +292,19 @@ display:revert; revert to element instead of attribute */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 707px;
+  width: calc(100% - 40px);
   height: 40px;
 }
 .search-bar .search-bar__input {
-  width: 683px;
+  box-sizing: border-box;
+  padding: 9.5px 12px;
+  width: 100%;
   height: 21px;
 }
 .search-bar .search-bar__button {
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-orange100);
-  background-image: url(/src/assets/img/search.svg);
-  background-repeat: no-repeat;
-  background-position: center center;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
 }
 
 .nation {
@@ -310,7 +312,6 @@ display:revert; revert to element instead of attribute */
   justify-content: space-between;
   width: 35px;
   height: 16px;
-  margin-left: 24px;
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 800;
@@ -328,9 +329,9 @@ display:revert; revert to element instead of attribute */
 }
 
 .login {
+  position: relative;
   width: 76px;
   height: 29px;
-  margin-left: 24px;
 }
 .login .login__label {
   width: 76px;
@@ -357,7 +358,6 @@ display:revert; revert to element instead of attribute */
 .my-page {
   width: 32px;
   height: 29px;
-  margin-left: 24px;
 }
 .my-page .my-page__label {
   width: 19px;
@@ -387,7 +387,7 @@ display:revert; revert to element instead of attribute */
   align-items: center;
   width: 71px;
   height: 24px;
-  margin-left: 24px;
+  cursor: pointer;
 }
 .cart .cart__img {
   width: 24px;
@@ -475,8 +475,9 @@ display:revert; revert to element instead of attribute */
   justify-content: flex-end;
   width: 235px;
   height: 100px;
-  top: 48px;
-  margin-left: 873px;
+  right: 4px;
+  top: 36px;
+  z-index: 10;
   -webkit-animation: fadein 1s;
           animation: fadein 1s;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -505,6 +506,7 @@ display:revert; revert to element instead of attribute */
   width: 160px;
   height: 32px;
   margin-top: 16px;
+  cursor: pointer;
   background-image: url(/src/assets/img/login-button.svg);
 }
 .login-modal .login-modal__caption {
@@ -528,6 +530,7 @@ display:revert; revert to element instead of attribute */
   width: 88px;
   height: 18px;
   color: var(--secondary-navy);
+  cursor: pointer;
 }
 
 .address-modal.show {
@@ -543,6 +546,7 @@ display:revert; revert to element instead of attribute */
   height: 126px;
   top: 58px;
   margin-left: 131px;
+  z-index: 10;
   font-family: var(--font-family);
   font-style: normal;
   font-weight: 500;
@@ -591,10 +595,146 @@ display:revert; revert to element instead of attribute */
   height: 32px;
   background-image: url(/src/assets/img/continue-btn.svg);
   background-size: 100%;
+  cursor: pointer;
 }
 .address-modal .address-change {
   width: 58px;
   height: 32px;
   background-image: url(/src/assets/img/change-btn.svg);
   background-size: 100%;
+  cursor: pointer;
+}
+
+.hero {
+  width: 1120px;
+  background-color: azure;
+}
+
+.hero.dim {
+  position: relative;
+}
+
+.hero.dim::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black40);
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  z-index: 1;
+}
+
+.login-modal-ex.show {
+  display: flex;
+}
+
+.login-modal-ex {
+  position: absolute;
+  display: none;
+  justify-content: flex-end;
+  width: 335px;
+  height: 375px;
+  right: 4px;
+  top: 46px;
+  margin-left: 131px;
+  z-index: 15;
+  -webkit-animation: fadein 1s;
+          animation: fadein 1s;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.login-modal-ex .modal-ex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  width: 335px;
+  height: 365px;
+  border-radius: 4px;
+  background-color: var(--white);
+}
+.login-modal-ex .modal-ex__rectangle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 289px;
+  top: -11px;
+  background-image: url(/src/assets/img/rectangle.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.login-modal-ex .login-modal-ex__button {
+  width: 160px;
+  height: 32px;
+  cursor: pointer;
+  background-image: url(/src/assets/img/login-button.svg);
+}
+.login-modal-ex .list-wrapper {
+  display: grid;
+  gap: 4px;
+  width: 150px;
+  height: 82px;
+}
+.login-modal-ex .list-wrapper li:first-child {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+.login-modal-ex .user-info {
+  display: grid;
+  gap: 4px;
+  width: 150px;
+  height: 258px;
+}
+.login-modal-ex .user-info li:first-child {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+.login-modal-ex .login-modal-ex__caption {
+  display: flex;
+  justify-content: space-between;
+  width: 203px;
+  height: 18px;
+  gap: 3px;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+.login-modal-ex .login-modal-ex__caption .ex-caption__text {
+  width: 112px;
+  height: 18px;
+  color: var(--black);
+}
+.login-modal-ex .login-modal-ex__caption .ex-caption__link {
+  width: 88px;
+  height: 18px;
+  color: var(--secondary-navy);
+  cursor: pointer;
+}
+.login-modal-ex .modal-ex-content__bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 303px;
+  height: 258px;
+  gap: 3px;
+  color: var(--black);
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
 }/*# sourceMappingURL=style.css.map */
