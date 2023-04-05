@@ -14,12 +14,12 @@ export class Component {
   render() {
     const template = this.template();
 
-    if (template instanceof Node) {
-      this.#node.append(template);
+    if (typeof template === 'string') {
+      this.#node.insertAdjacentHTML('afterbegin', template);
       return;
     }
 
-    this.#node.insertAdjacentHTML('afterbegin', template);
+    this.#node.append(...template);
   }
 
   template() {

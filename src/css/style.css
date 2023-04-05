@@ -206,43 +206,38 @@ table {
   padding: 8px 16px;
   display: flex;
   background-color: var(--color-black);
+  gap: 24px;
 }
-.navbar .main .left {
+.navbar .main .shipping {
   display: flex;
-  min-width: 200px;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
-.navbar .main .left .shipping .top {
+.navbar .main .shipping .top {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.navbar .main .left .shipping img {
+.navbar .main .shipping img {
   width: 12px;
   height: 12px;
 }
-.navbar .main .center {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-}
-.navbar .main .center .search-bar {
+.navbar .main .search-bar {
   display: flex;
   flex-grow: 1;
   max-height: 40px;
 }
-.navbar .main .center .search-bar input {
+.navbar .main .search-bar input {
   flex-grow: 1;
   border-radius: 4px 0px 0px 4px;
 }
-.navbar .main .center .search-bar input::-moz-placeholder {
+.navbar .main .search-bar input::-moz-placeholder {
   padding-left: 12px;
 }
-.navbar .main .center .search-bar input::placeholder {
+.navbar .main .search-bar input::placeholder {
   padding-left: 12px;
 }
-.navbar .main .center .search-bar .submit-btn {
+.navbar .main .search-bar .submit-btn {
   width: 40px;
   height: 40px;
   border-radius: 0px 4px 4px 0px;
@@ -251,25 +246,21 @@ table {
   background-repeat: no-repeat;
   background-image: url("/src/assets/symbols/search.svg");
 }
-.navbar .main .right {
-  display: flex;
-  min-width: 300px;
-  justify-content: space-around;
-  align-items: center;
-}
-.navbar .main .right .login,
-.navbar .main .right .my-page {
+.navbar .main .login,
+.navbar .main .my-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.navbar .main .right .nation {
-  display: flex;
-  justify-content: space-between;
-}
-.navbar .main .right .cart {
+.navbar .main .nation {
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+.navbar .main .cart {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 .navbar .main .label-text {
   font-family: var(--font-family);
@@ -290,6 +281,7 @@ table {
 .navbar .sub {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0px 16px;
   background-color: var(--color-gray-900);
   color: var(--color-white);
@@ -298,9 +290,7 @@ table {
   display: flex;
   width: 387px;
   justify-content: space-between;
-}
-.navbar .sub .left a:first-child > img {
-  padding-right: 6px;
+  gap: 4px;
 }
 .navbar .sub .right {
   display: flex;
@@ -309,15 +299,16 @@ table {
   width: 16px;
   height: 16px;
 }
-.navbar .sub a {
+.navbar .sub .menu {
+  gap: 4px;
   font-family: var(--font-family);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: var(--letter-spacing-sm);
   line-height: var(--line-height);
 }
-.navbar .sub a:first-child,
-.navbar .sub a:last-child {
+.navbar .sub .menu:first-child,
+.navbar .sub .menu:last-child {
   font-family: var(--font-family);
   font-size: 13px;
   font-weight: 800;
