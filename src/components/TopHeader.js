@@ -8,16 +8,16 @@ const style = document.createElement("style");
 template.innerHTML = `
   <header>
     <nav class="nav-main">
-      <div id="logo-container">
-        <a href="#"><img src="src/assets/logo.png" alt="Amazon Logo" /></a>
-      </div>
-      <div id="shipping-container">
+      <a href="/" id="logo-container">
+        <img src="src/assets/logo.png" alt="Amazon Logo" /></a>
+      </a>
+      <a href="#" id="shipping-container">
         <div>
           <img src="src/assets/icons/location.svg" alt="Shipping" />
           <span>배송처</span>
         </div>
         <span>대한민국</span>
-      </div>
+      </a>
       <div id="search-container">
         <form>
           <input type="text" placeholder="검색 Amazon" />
@@ -30,7 +30,7 @@ template.innerHTML = `
         <span>🇰🇷</span>
         <span>KO</span>
       </a>
-      <a href="#" id="login-container">
+      <a href="#" class="tool-tip-parent" id="login-container">
         <span>안녕하세요, 로그인</span>
         <span>계정 및 목록</span>
       </a>
