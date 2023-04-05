@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/footer.css" />
   </head>
   <body>
-    <header>
+    <header id="banner">
       <!-- 배너 -->
       <div class="inner">
         <div class="logo">
@@ -66,7 +68,7 @@
         <div class="cart">
           <a href="#">
             <figure>
-              <img src="./img/icon/cart-white.svg" alt="" />
+              <img src="./img/icon/cart-orange.svg" alt="" />
               <figcaption>장바구니</figcaption>
             </figure>
           </a>
@@ -76,8 +78,8 @@
         <nav class="left">
           <ul class="navbar__list">
             <li class="navbar__item">
-              <button class="menu-trigger">
-                <img src="./img/icon/menu-white.svg" alt="드롭다운 열기" />
+              <button class="sidebar-trigger">
+                <img src="./img/icon/menu-white.svg" alt="사이드바 열기" />
                 모두
               </button>
             </li>
@@ -91,29 +93,117 @@
         <a href="#" class="right"> 지금 특가 상품 쇼핑하기 </a>
       </div>
     </header>
-    <main>
+    <div id="sidebar">
+      <aside>
+        <h1>
+          <span class="icon">
+            <figure>
+              <img src="./img/icon/user-white.svg" alt="" />
+              <figcaption class="blind">손님</figcaption>
+            </figure>
+          </span>
+          &nbsp; 안녕하세요 로그인
+        </h1>
+        <h2>디지털 콘텐츠 및 기기</h2>
+        <ul class="sidebar__sub">
+          <li>
+            <button class="sidebar__item">
+              <span>Amazon Music</span>
+              <span class="icon">
+                <img src="./img/icon/chevron-right.svg" alt="" />
+                <figcaption class="blind">자세히 보기</figcaption>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__item">
+              <span> Kindle E-Reader 및 도서 </span>
+              <span class="icon">
+                <img src="./img/icon/chevron-right.svg" alt="" />
+                <figcaption class="blind">자세히 보기</figcaption>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="sidebar__item">
+              <span> 안드로이드 앱스토어 </span>
+              <span class="icon">
+                <img src="./img/icon/chevron-right.svg" alt="" />
+                <figcaption class="blind">자세히 보기</figcaption>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <h2>부서별 쇼핑</h2>
+        <ul class="sidebar__sub">
+          <li>
+            <button class="sidebar__item">
+              <span> 전자 </span>
+              <span class="icon">
+                <img src="./img/icon/chevron-right.svg" alt="" />
+                <figcaption class="blind">자세히 보기</figcaption>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <details class="sidebar__details">
+          <summary class="sidebar__item sidebar__item--summary">
+            <span>모두보기</span>
+            &nbsp; &nbsp;
+            <span class="icon">
+              <img src="./img/icon/chevron-down.svg" alt="" />
+              <figcaption class="blind">열기</figcaption>
+            </span>
+          </summary>
+          <ul>
+            <li>
+              <button class="sidebar__item">
+                <span> 전자 </span>
+                <span class="icon">
+                  <img src="./img/icon/chevron-right.svg" alt="" />
+                  <figcaption class="blind">자세히 보기</figcaption>
+                </span>
+              </button>
+            </li>
+            <li>
+              <button class="sidebar__item">
+                <span> 전자 </span>
+                <span class="icon">
+                  <img src="./img/icon/chevron-right.svg" alt="" />
+                  <figcaption class="blind">자세히 보기</figcaption>
+                </span>
+              </button>
+            </li>
+          </ul>
+        </details>
+      </aside>
+    </div>
+    <main id="main">
       <h1 class="blind">메인</h1>
       <figure class="bg">
-        <img src="./img/Image.png" alt="">
+        <img src="./img/Image.png" alt="" />
       </figure>
       <div class="inner">
         <div id="hero">
           <ul class="hero__wrapper wrapper">
             <li>
               <article class="hero__slide slide" tabindex="0">
-                <h1>해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오</h1>
+                <h1>
+                  해외 쇼핑을 즐기고 한국 직불 카드 또는 <br />
+                  한국 신용카드로 결제하십시오
+                </h1>
               </article>
             </li>
           </ul>
           <button class="hero__control hero__control--left">
             <figure>
-              <img src="./img/arrow-left.svg" alt="">
+              <img src="./img/arrow-left.svg" alt="" />
               <figcaption class="blind">이전</figcaption>
             </figure>
           </button>
           <button class="hero__control hero__control--right">
             <figure>
-              <img src="./img/arrow-right.svg" alt="">
+              <img src="./img/arrow-right.svg" alt="" />
               <figcaption class="blind">다음</figcaption>
             </figure>
           </button>
@@ -131,7 +221,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/4.png" alt="">
+                  <img src="./img/content/4.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -143,7 +233,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/8.png" alt="">
+                  <img src="./img/content/8.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -155,7 +245,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/12.png" alt="">
+                  <img src="./img/content/12.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -167,7 +257,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/1.png" alt="">
+                  <img src="./img/content/1.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -179,7 +269,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/5.png" alt="">
+                  <img src="./img/content/5.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -191,7 +281,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/9.png" alt="">
+                  <img src="./img/content/9.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -203,7 +293,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/2.png" alt="">
+                  <img src="./img/content/2.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -215,7 +305,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/6.png" alt="">
+                  <img src="./img/content/6.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -227,7 +317,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/10.png" alt="">
+                  <img src="./img/content/10.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -239,7 +329,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/13.png" alt="">
+                  <img src="./img/content/13.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -251,7 +341,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/3.png" alt="">
+                  <img src="./img/content/3.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -263,7 +353,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/7.png" alt="">
+                  <img src="./img/content/7.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -275,7 +365,7 @@
             <li class="contents__item">
               <article class="contents__card">
                 <figure class="contents__card_img">
-                  <img src="./img/content/11.png" alt="">
+                  <img src="./img/content/11.png" alt="" />
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
@@ -288,8 +378,102 @@
         </div>
       </div>
     </main>
-    <footer>
-      <!-- contentinfo -->
+    <footer id="footer">
+      <a href="#banner" class="scroll-top">위로 돌아가기</a>
+      <div class="footer__menu-container">
+        <article class="footer__menu">
+          <h1>당사에 대해 알아보기</h1>
+          <ul class="footer__menu__list">
+            <li class="footer__menu__item">커리어</li>
+            <li class="footer__menu__item">블로그</li>
+            <li class="footer__menu__item">Amazon 소개</li>
+            <li class="footer__menu__item">투자자 관계</li>
+            <li class="footer__menu__item">Amazon 디바이스</li>
+            <li class="footer__menu__item">아마존 사이언스</li>
+          </ul>
+        </article>
+        <article class="footer__menu">
+          <h1>당사와 함께 돈 벌기</h1>
+          <ul class="footer__menu__list">
+            <li class="footer__menu__item">Amazon에서 판매</li>
+            <li class="footer__menu__item">Amazon Buxiness에서 판매</li>
+            <li class="footer__menu__item">Amazon에서 앱 판매</li>
+            <li class="footer__menu__item">계열사 되기</li>
+            <li class="footer__menu__item">제품 광고</li>
+            <li class="footer__menu__item">Amazon에 자체 게시</li>
+            <li class="footer__menu__item">Amazon 허브 호스팅</li>
+            <li class="footer__menu__item">당사와 함게 돈 벌기에 대해 자세히 보기</li>
+          </ul>
+        </article>
+        <article class="footer__menu">
+          <h1>Amazon 결제 제품</h1>
+          <ul class="footer__menu__list">
+            <li class="footer__menu__item">포인트로 구입</li>
+            <li class="footer__menu__item">잔고 재로드</li>
+            <li class="footer__menu__item">Amazon 환율 변환기</li>
+          </ul>
+        </article>
+        <article class="footer__menu">
+          <h1>지원</h1>
+          <ul class="footer__menu__list">
+            <li class="footer__menu__item">COVID-19 및 Amazon</li>
+            <li class="footer__menu__item">사용자 계정</li>
+            <li class="footer__menu__item">내 주문</li>
+            <li class="footer__menu__item">배송 요금 및 정책</li>
+            <li class="footer__menu__item">반품 및 교환</li>
+            <li class="footer__menu__item">콘텐츠 및 디바이스 관리</li>
+            <li class="footer__menu__item">Amazon Assistant</li>
+            <li class="footer__menu__item">도움말</li>
+          </ul>
+        </article>
+      </div>
+      <div class="footer__info">
+        <figure class="footer__info__logo">
+          <img src="./img/logo.svg" alt="">
+          <figcaption class="blind">아마존</figcaption>
+        </figure>
+        <div class="footer__info__inner">
+          <ul class="footer__info__list">
+            <li class="footer__info__item">
+              <a href="#">이용약관</a>
+            </li>
+            <li class="footer__info__item">
+              <a href="#">개인정보 취급 고지</a>
+            </li>
+            <li class="footer__info__item">
+              <a href="#">광고 개인정보보호 선택 항목</a>
+            </li>
+          </ul>
+          <address class="footer__info__address">
+            @ 1996-2023, Amazon.com, Inc. 또는 계열사
+          </address>
+        </div>
+      </div>
     </footer>
+    <script>
+      function sidebarToggleActive() {
+        const sidebar = document.querySelector("#sidebar");
+        sidebar.classList.toggle("active");
+      }
+
+      (function () {
+        const sidebar = document.querySelector("#sidebar");
+        sidebar.style.opacity = "0";
+        setTimeout(() => {
+          sidebar.style.opacity = "1";
+        }, 1000);
+
+        sidebar.addEventListener("click", sidebarToggleActive);
+
+        const aside = sidebar.querySelector("ASIDE");
+        aside.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+
+        const sidebarTrigger = document.querySelector(".sidebar-trigger");
+
+        sidebarTrigger.addEventListener("click", sidebarToggleActive);
+      })();
+    </script>
   </body>
 </html>

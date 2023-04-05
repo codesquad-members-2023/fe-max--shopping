@@ -135,6 +135,10 @@
   height: 32px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .button--lg {
   width: 160px;
 }
@@ -142,3 +146,17 @@
 .button--sm {
   width: auto;
 }
+
+.icon {
+  font-size: 0;
+}
+
+.icon figure {
+  display: inline-block;
+  font-size: 0;
+}
+
+.icon {
+  vertical-align: middle;
+}
+

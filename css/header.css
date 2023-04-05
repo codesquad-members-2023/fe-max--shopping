@@ -1,57 +1,57 @@
-header {
+#banner {
   background-color: var(--color-black);
   min-width: 1024px;
 }
 
-header .inner {
-  padding: 8px;
+#banner .inner {
+  padding: 8px 16px;
   display: flex;
   justify-content: space-between;
   gap: 24px;
 }
 
-.logo {
+#banner .logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.shipping-address {
+#banner .shipping-address {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.shipping-address dt {
+#banner .shipping-address dt {
   color: var(--color-gray-400);
   font: var(--font-bold-sm);
   letter-spacing: var(--letter-spacing-bold-sm);
 }
 
 
-.shipping-address dd {
+#banner .shipping-address dd {
   color: var(--color-white);
   font: var(--font-bold-md);
   letter-spacing: var(--letter-spacing-bold-md);
 }
 
 
-.search {
+#banner .search {
   flex-grow: 1;
 }
 
-.search .search__form {
+#banner .search .search__form {
   display: flex;
   overflow: hidden;
   border-radius: 4px;
 }
 
-.search .search__keyword-field {
+#banner .search .search__keyword-field {
   background-color: var(--color-white);
   width: 100%;
 }
 
-.search .search__keyword-field #keyword {
+#banner .search .search__keyword-field #keyword {
   padding: 12px;
   box-sizing: border-box;
   width: 100%;
@@ -61,80 +61,80 @@ header .inner {
   letter-spacing: var(--letter-spacing-body-md);
 }
 
-.search [type="submit"] {
+#banner .search [type="submit"] {
   padding: 12px;
   border: 0;
   font-size: 0;
   background-color: var(--color-primary-orange-100);
 }
 
-.nation {
+#banner .nation {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.nation figure {
+#banner .nation figure {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
 
-.nation figure img {
+#banner .nation figure img {
   width: 24px;
   height: 24px;
 }
 
-.nation figure figcaption {
+#banner .nation figure figcaption {
   color: var(--color-white);
   font: var(--font-bold-md)
 }
 
-.login {
+#banner .login {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login a {
+#banner .login a {
   text-decoration: none;
   color: white;
   font: var(--font-bold-md)
 }
 
-.mypage {
+#banner .mypage {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 
-.mypage a {
+#banner .mypage a {
   text-decoration: none;
   color: white;
   font: var(--font-bold-md)
 }
 
-.cart {
+#banner .cart {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.cart figure {
+#banner .cart figure {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
 
-.cart figure img {
+#banner .cart figure img {
   width: 24px;
   height: 24px;
 }
 
-.cart figure figcaption {
+#banner .cart figure figcaption {
   color: var(--color-white);
   font: var(--font-bold-md)
 }
@@ -159,7 +159,7 @@ header .inner {
   justify-content: center;
 }
 
-#navbar .menu-trigger {
+#navbar .sidebar-trigger {
   background-color: transparent;
   border: none;
   color: white;

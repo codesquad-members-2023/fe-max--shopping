@@ -1,9 +1,9 @@
-main {
-  padding: 0 80px;
+#main {
+  padding: 0 80px 40px;
   position: relative;
 }
 
-main .bg {
+#main .bg {
   background-color: var(--color-gray-200);
   height: 100%;
 }
@@ -24,6 +24,7 @@ main .bg {
 
 #hero .hero__slide h1 {
   font: var(--font-bold-xl);
+  word-break: keep-all
 }
 
 #hero .hero__control {
@@ -88,3 +89,21 @@ main .bg {
   margin-top: 8px;
 }
 
+@media screen and (min-width:1024px) {
+	/* Desktop */
+  #contents .contents__list{
+    column-count: 4;
+  }
+}
+@media screen and (min-width:768px) and (max-width: 1023px) {
+	/* Tablet */
+  #contents .contents__list{
+    column-count: 2;
+  }
+}
+@media screen and (max-width:767px){ 
+	/* Mobile */
+  #contents .contents__list{
+    column-count: 1;
+  }
+}
