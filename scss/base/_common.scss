@@ -1,0 +1,33 @@
+@font-face {
+  font-family: Pretendard Variable;
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css')
+    format('woff');
+}
+:root {
+  //font-family
+  $font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  // color
+  $white: #ffffff;
+  $gray100: #eff2f2;
+  $gray200: #e5e9e9;
+  $gray300: #dce0e0;
+  $gray400: #d5d5d5;
+  $gray500: #c1c1c1;
+  $gray600: #878787;
+  $gray700: #535353;
+  $gray800: #2a3648;
+  $gray900: #1b232f;
+  $black: #10141a;
+  $black40: rgba($black, 0.4);
+  $yellow100: #fed15f;
+  $yellow200: #febe30;
+  $yellow300: #de9408;
+  $orange100: #fcb057;
+  $orange200: #ff9900;
+  $secondaryPurple: #941387;
+  $secondaryNavy: #074099;
+  $secondaryGreen: #0c5e72;
+}
