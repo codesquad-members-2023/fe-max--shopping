@@ -105,6 +105,14 @@
 }
 
 // background color
+.bg-white {
+	background-color: var(--color-white);
+}
+
 .bg-black {
 	background-color: var(--color-black);
+}
+
+.bg-orange1 {
+	background-color: var(--color-primary-orange-100);
 }

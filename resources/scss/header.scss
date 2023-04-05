@@ -18,35 +18,81 @@
 		display: flex;
 		align-items: center;
 		padding: 8px 16px;
-		.nav-left {
-			flex-basis: 167px;
+
+		& > div {
+			margin: 0 12px;
+			flex-shrink: 0;
 		}
-		.nav-right {
-			width: 286px;
+
+		#nav-logo {
+			margin-left: 0;
 		}
+
 		#nav-shipping-address {
 			img {
 				width: 12px;
 				height: 12px;
 			}
 		}
+
 		#nav-search-bar {
+			height: 40px;
+			border-radius: 4px;
 			text-align: center;
-			border: 1px solid wheat;
 			flex-basis: 386px;
 			flex-grow: 1;
 			flex-shrink: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			input {
+				height: 21px;
+				margin: 0 12px;
+				flex-grow: 1;
+			}
+
+			button {
+				width: 40px;
+				height: 40px;
+				border-radius: 0 4px 4px 0;
+			}
+
+			img {
+				width: 24px;
+				height: 24px;
+			}
+		}
+
+		#nav-nation {
+		}
+
+		#nav-login {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#nav-mypage {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#nav-cart {
+			margin-right: 0;
 		}
 	}
+
 	#nav-sub {
 		height: 32px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 16px;
+
 		.nav-left {
 			flex-basis: 387px;
 		}
+
 		.nav-right {
 			flex-basis: 112px;
 		}
