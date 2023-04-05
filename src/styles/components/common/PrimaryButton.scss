@@ -5,11 +5,12 @@ button {
   padding-inline: 10px;
   background: linear-gradient(
     174.6deg,
-    #ffffff 4.31%,
-    #fed15f 50.01%,
-    #febe30 95.71%
+    $color-white 4.31%,
+    $color-primary-yellow-100 50.01%,
+    $color-primary-yellow-200 95.71%
   );
-  border: 1px solid #de9408;
+  border: 1px solid $color-primary-yellow-300;
   border-radius: 4px;
   @include f-bold-sm;
+  cursor: pointer;
 }
