@@ -1,4 +1,5 @@
-import { Component } from '../base/Component.js';
+import { Login } from './Login.js';
+import { Component } from '/src/js/components/base/Component.js';
 
 export class NavbarMain extends Component {
   constructor() {
@@ -70,19 +71,6 @@ class Nation extends Component {
     return `
 <img src="/src/assets/images/flag.svg" alt="flag icon" />
 <span class="main-text">KO</span>
-    `;
-  }
-}
-
-class Login extends Component {
-  constructor() {
-    super('login');
-  }
-
-  template() {
-    return `
-<span class="label-text">안녕하세요, 로그인</span>
-<span class="main-text">계정 및 목록</span>
     `;
   }
 }

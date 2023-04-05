@@ -1,13 +1,15 @@
 import { Navbar } from '../js/components/Navbar/Navbar.js';
 
 export class App {
+  #node;
+
   constructor(rootNode) {
-    this.node = rootNode;
-    this.init();
+    this.#node = rootNode;
+    this.init(this.#node);
   }
 
-  init() {
+  init(rootNode) {
     const headerNode = new Navbar().node;
-    this.node.append(headerNode);
+    rootNode.append(headerNode);
   }
 }
