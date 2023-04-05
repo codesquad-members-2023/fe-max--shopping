@@ -1,15 +1,6 @@
 import { delay } from '../utils/delay.js';
 import { $ } from '../utils/dom.js';
-// 돔이 로딩된 후 1초후
-// 보이지 않던 로그인 모달이 나타난다
-// 나타나는 과정은 스르륵 나타난다
 
-// 로그인 모달에 호버하면
-// 확장된 모달로 변한다
-// 모달에서 마우스가 아웃되면
-// 모달이 사라진다
-
-// ? 이후 그냥 라벨에 호버할때도 똑같이 동작해야한다
 export function initLoginModal() {
   // if( ){
   //   렌더?
