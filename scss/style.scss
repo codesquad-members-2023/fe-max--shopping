@@ -1,6 +1,8 @@
-@import 'variables';
-@import 'font';
-@import 'root';
+@import './base/normalize';
+@import './base/reset';
+@import './base/variables';
+@import './base/font';
+@import './base/root';
 
 * {
 	box-sizing: border-box;

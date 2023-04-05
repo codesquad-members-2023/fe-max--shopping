@@ -1,5 +1,5 @@
 node_modules
 .DS_Store
-resources/css/*.css
-resources/css/*.css.map
+css/*.css
+css/*.css.map
 

@@ -3,27 +3,26 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Amazon</title>
-		<link rel="stylesheet" href="./resources/css/normalize.css" />
 		<link
 			rel="stylesheet"
 			as="style"
 			crossorigin
 			href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
 		/>
-		<link rel="stylesheet" href="./resources/css/style.css" />
-		<link rel="stylesheet" href="./resources/css/header.css" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="stylesheet" href="./css/header.css" />
 	</head>
 	<body>
 		<header id="nav-bar" class="bg-black text-white">
 			<div id="nav-main" class="font-BoldMD">
 				<div id="nav-logo">
 					<a href="/">
-						<img src="./resources/images/logo.svg" alt="amazon logo" />
+						<img src="./assets/icons/logo.svg" alt="amazon logo" />
 					</a>
 				</div>
 				<div id="nav-shipping-address">
 					<div class="font-BoldSM text-gray4">
-						<img src="./resources/images/location.svg" alt="location icon" />
+						<img src="./assets/icons/location.svg" alt="location icon" />
 						<span class="font-BoldMD">배송처</span>
 					</div>
 					<span>대한민국</span>
@@ -31,7 +30,7 @@
 				<div id="nav-search-bar" class="bg-white">
 					<input type="text" name="search-bar" id="search-bar-input" placeholder="검색 Amazon" />
 					<button class="bg-orange1">
-						<img src="./resources/images/search.svg" alt="search icon" />
+						<img src="./assets/icons/search.svg" alt="search icon" />
 					</button>
 				</div>
 				<div id="nav-nation">🇺🇸 KO</div>
@@ -44,13 +43,16 @@
 					<span>& 주문</span>
 				</div>
 				<div id="nav-cart" class="font-BoldMD">
-					<img src="./resources/images/cart.svg" alt="cart icon" />
+					<img src="./assets/icons/cart.svg" alt="cart icon" />
 					<span>장바구니</span>
 				</div>
 			</div>
 			<div id="nav-sub" class="bg-black">
 				<div class="nav-left font-BodyMD">
-					<div class="font-BoldMD">메뉴 아이콘</div>
+					<div id="side-bar-menu" class="font-BoldMD">
+						<img src="assets/icons/menu.svg" alt="menu icon" />
+						<span>메뉴</span>
+					</div>
 					<div>오늘의 딜</div>
 					<div>고객 서비스</div>
 					<div>레지스트리</div>
