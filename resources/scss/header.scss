@@ -1,10 +1,42 @@
+.nav-left {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.nav-right {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-shrink: 0;
+}
+
 #nav-bar {
 	#nav-main {
 		height: 56px;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		padding: 8px 16px;
+		.nav-left {
+			flex-basis: 167px;
+		}
+		.nav-right {
+			width: 286px;
+		}
+		#nav-shipping-address {
+			img {
+				width: 12px;
+				height: 12px;
+			}
+		}
+		#nav-search-bar {
+			text-align: center;
+			border: 1px solid wheat;
+			flex-basis: 386px;
+			flex-grow: 1;
+			flex-shrink: 0;
+		}
 	}
 	#nav-sub {
 		height: 32px;
@@ -12,13 +44,11 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 16px;
+		.nav-left {
+			flex-basis: 387px;
+		}
+		.nav-right {
+			flex-basis: 112px;
+		}
 	}
-}
-
-.nav-left {
-	display: flex;
-}
-
-.nav-right {
-	display: flex;
 }
