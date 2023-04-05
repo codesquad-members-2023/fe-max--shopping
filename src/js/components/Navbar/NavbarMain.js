@@ -6,21 +6,21 @@ export class NavbarMain extends Component {
   }
 
   template() {
-    const logoNode = new Logo('logo', 'H1').node;
-    const shippingNode = new Shipping('shipping').node;
-    const searchBarNode = new SearchBar('search-bar', 'FORM').node;
-    const nationNode = new Nation('nation').node;
-    const loginNode = new Login('login').node;
-    const myPageNode = new MyPage('my-page').node;
-    const cartNode = new Cart('cart').node;
+    const logoNode = new Logo().node;
+    const shippingNode = new Shipping().node;
+    const searchBarNode = new SearchBar().node;
+    const nationNode = new Nation().node;
+    const loginNode = new Login().node;
+    const myPageNode = new MyPage().node;
+    const cartNode = new Cart().node;
 
     return [logoNode, shippingNode, searchBarNode, nationNode, loginNode, myPageNode, cartNode];
   }
 }
 
 class Logo extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('logo', 'H1');
   }
 
   template() {
@@ -33,8 +33,8 @@ class Logo extends Component {
 }
 
 class Shipping extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('shipping');
   }
 
   template() {
@@ -49,8 +49,8 @@ class Shipping extends Component {
 }
 
 class SearchBar extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('search-bar', 'FORM');
   }
 
   template() {
@@ -62,8 +62,8 @@ class SearchBar extends Component {
 }
 
 class Nation extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('nation');
   }
 
   template() {
@@ -75,8 +75,8 @@ class Nation extends Component {
 }
 
 class Login extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('login');
   }
 
   template() {
@@ -88,8 +88,8 @@ class Login extends Component {
 }
 
 class MyPage extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('my-page');
   }
 
   template() {
@@ -101,8 +101,8 @@ class MyPage extends Component {
 }
 
 class Cart extends Component {
-  constructor(className, tagName) {
-    super(className, tagName);
+  constructor() {
+    super('cart');
   }
 
   template() {

@@ -1,8 +1,16 @@
 import { Component } from '../base/Component.js';
+import { NavbarMain } from '../Navbar/NavbarMain.js';
+import { NavbarSub } from '../Navbar/NavbarSub.js';
 
 export class Navbar extends Component {
-  constructor(navbarMain, navbarSub) {
+  constructor() {
     super('navbar', 'HEADER');
-    this.node.append(navbarMain, navbarSub);
+  }
+
+  template() {
+    const navbarMainNode = new NavbarMain().node;
+    const navbarSubNode = new NavbarSub().node;
+
+    return [navbarMainNode, navbarSubNode];
   }
 }

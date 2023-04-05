@@ -1,11 +1,13 @@
-import { Header } from './components/Header.js';
+import { Navbar } from '../js/components/Navbar/Navbar.js';
 
 export class App {
-  constructor(node) {
-    this.node = node;
-    this.headerNode = new Header().node;
-    this.node.append(this.headerNode);
+  constructor(rootNode) {
+    this.node = rootNode;
+    this.init();
   }
 
-  init() {}
+  init() {
+    const headerNode = new Navbar().node;
+    this.node.append(headerNode);
+  }
 }
