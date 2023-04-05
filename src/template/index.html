@@ -13,71 +13,65 @@
     <div id="root">
       <header class="navbar">
         <div class="main">
-          <div class="left">
-            <h1 class="logo">
-              <a href="/">
-                <img class="amazon-icon" src="../assets/images/BI.svg" alt="amazon logo icon" />
-              </a>
-            </h1>
-            <div class="shipping">
-              <div class="top">
-                <img src="../assets/symbols/location.svg" alt="location icon" />
-                <span class="label-text">배송처</span>
-              </div>
-              <span class="main-text">대한민국</span>
+          <h1 class="logo">
+            <a href="/">
+              <img class="amazon-icon" src="../assets/images/BI.svg" alt="amazon logo icon" />
+            </a>
+          </h1>
+          <div class="shipping">
+            <div class="top">
+              <img src="../assets/symbols/location.svg" alt="location icon" />
+              <span class="label-text">배송처</span>
+            </div>
+            <span class="main-text">대한민국</span>
+          </div>
+
+          <form class="search-bar">
+            <input type="search" class="input" placeholder="검색 Amazon" />
+            <button type="submit" class="submit-btn"></button>
+          </form>
+
+          <div class="nation">
+            <img src="../assets/images/flag.svg" alt="flag icon" />
+            <span class="main-text">KO</span>
+          </div>
+
+          <div class="login">
+            <span class="label-text">안녕하세요, 로그인</span>
+            <span class="main-text">계정 및 목록</span>
+            <div class="dialog-wrapper">
+              <dialog class="login-modal">
+                <button class="login-btn">로그인</button>
+                <div>
+                  <span>기존 사용자가 아니십니까?</span>
+                  <span><a href="/">여기에서 시작합니다.</a></span>
+                </div>
+              </dialog>
             </div>
           </div>
 
-          <div class="center">
-            <form class="search-bar">
-              <input type="search" class="input" placeholder="검색 Amazon" />
-              <button type="submit" class="submit-btn"></button>
-            </form>
+          <div class="my-page">
+            <span class="label-text">반품</span>
+            <span class="main-text">& 주문</span>
           </div>
 
-          <div class="right">
-            <div class="nation">
-              <img src="../assets/images/flag.svg" alt="flag icon" />
-              <span class="main-text">KO</span>
-            </div>
-
-            <div class="login">
-              <span class="label-text">안녕하세요, 로그인</span>
-              <span class="main-text">계정 및 목록</span>
-              <div class="dialog-wrapper">
-                <dialog class="login-modal">
-                  <button class="login-btn">로그인</button>
-                  <div>
-                    <span>기존 사용자가 아니십니까?</span>
-                    <span><a href="/">여기에서 시작합니다.</a></span>
-                  </div>
-                </dialog>
-              </div>
-            </div>
-
-            <div class="my-page">
-              <span class="label-text">반품</span>
-              <span class="main-text">& 주문</span>
-            </div>
-
-            <div class="cart">
-              <img src="../assets/symbols/cart.svg" alt="cart icon" />
-              <span class="main-text">장바구니</span>
-            </div>
+          <div class="cart">
+            <img src="../assets/symbols/cart.svg" alt="cart icon" />
+            <span class="main-text">장바구니</span>
           </div>
         </div>
 
         <div class="sub">
           <div class="left">
-            <a href=""><img src="../assets/symbols/menu.svg" alt="" /> 모두</a>
-            <a href="">오늘의 딜</a>
-            <a href="">고객 서비스</a>
-            <a href="">레지스트리</a>
-            <a href="">기프트 카드</a>
-            <a href="">판매</a>
+            <a class="menu" href=""><img src="../assets/symbols/menu.svg" alt="" /> 모두</a>
+            <a class="menu" href="">오늘의 딜</a>
+            <a class="menu" href="">고객 서비스</a>
+            <a class="menu" href="">레지스트리</a>
+            <a class="menu" href="">기프트 카드</a>
+            <a class="menu" href="">판매</a>
           </div>
           <div class="right">
-            <a href="">지금 특가 상품 쇼핑하기</a>
+            <a class="menu" href="">지금 특가 상품 쇼핑하기</a>
           </div>
         </div>
       </header>
