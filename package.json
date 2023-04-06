@@ -1,0 +1,27 @@
+{
+  "name": "fe-max--shopping",
+  "version": "1.0.0",
+  "description": "Codesquad fe-max--shopping clone project\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacenam/fe-max--shopping.git"
+  },
+  "author": "Jace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacenam/fe-max--shopping/issues"
+  },
+  "homepage": "https://github.com/jacenam/fe-max--shopping#readme",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1"
+  }
+}
