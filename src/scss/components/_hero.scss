@@ -1,0 +1,34 @@
+.hero {
+  width: 100%;
+  position: relative;
+
+  .slider {
+    width: 100%;
+  }
+
+  .slide {
+    width: 100%;
+    height: 512px;
+    background: url('/src/assets/images/banner/hero-6.jpg');
+    background-size: cover;
+  }
+
+  .slider-button {
+    width: 24px;
+    height: 40px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 20%;
+
+    &.left {
+      left: 80px;
+      background-image: url('/src/assets/symbols/LeftButton.svg');
+    }
+
+    &.right {
+      right: 80px;
+      background-image: url('/src/assets/symbols/RightButton.svg');
+    }
+  }
+}
