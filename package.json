@@ -1,0 +1,25 @@
+{
+  "name": "amazon",
+  "version": "1.0.0",
+  "description": "- html\r - sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Youngjaemj/fe-max--shopping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Youngjaemj/fe-max--shopping/issues"
+  },
+  "homepage": "https://github.com/Youngjaemj/fe-max--shopping#readme",
+  "dependencies": {
+    "dart-sass": "^1.25.0"
+  },
+  "devDependencies": {
+    "sass": "^1.60.0"
+  }
+}
