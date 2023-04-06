@@ -19,11 +19,12 @@
 }
 
 .modal {
+  z-index: 2;
+  animation: fadeIn 0.5s;
   filter: drop-shadow(var(--filter-modal-shadow));
 }
 
 .login-modal {
-  animation: fadeIn 1s;
   @include base.modal(235px, 90px, 120%, -240%);
 
   &::before {
@@ -122,11 +123,14 @@
   @include base.button(58px, 32px);
 }
 
-.dim-layer {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.4);
+.dim::before {
+  content: '';
+  position: absolute;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
+  animation: fadeIn 0.3s;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }

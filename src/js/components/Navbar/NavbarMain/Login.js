@@ -1,14 +1,13 @@
-import { DimLayer } from '../../element/DimLayer.js';
+import { Main } from '../../../Main.js';
 import { ExtendedLoginModal, LoginModal } from '../../element/Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Login extends Component {
   constructor() {
     super('login');
-    this.loginModalNode = new LoginModal().node;
-    this.extendedLoginModalNode = new ExtendedLoginModal().node;
-    this.dimLayer = new DimLayer();
-    this.node.append(this.loginModalNode, this.extendedLoginModalNode);
+    this.loginModal = new LoginModal();
+    this.extendedLoginModal = new ExtendedLoginModal();
+    this.node.append(this.loginModal.node, this.extendedLoginModal.node);
   }
 
   initEventHandlers() {
@@ -18,19 +17,18 @@ export class Login extends Component {
   }
 
   showExtendedLoginModal() {
-    this.loginModalNode.close();
-    this.extendedLoginModalNode.show();
-    this.dimLayer.on();
+    this.loginModal.node.close();
+    this.extendedLoginModal.node.show();
+    Main.onDimmed();
   }
 
   closeExtendedLoginModal() {
-    this.loginModalNode.close();
-    this.extendedLoginModalNode.close();
-    this.dimLayer.off();
+    this.extendedLoginModal.node.close();
+    Main.offDimmed();
   }
 
   showLoginModal() {
-    this.loginModalNode.show();
+    this.loginModal.node.show();
   }
 
   template() {

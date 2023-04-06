@@ -1,13 +1,12 @@
-import { DimLayer } from '../../element/DimLayer.js';
+import { Main } from '../../../Main.js';
 import { ShippingModal } from '../../element/Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Shipping extends Component {
   constructor() {
     super('shipping', 'A');
-    this.shippingModalNode = new ShippingModal().node;
-    this.dimLayer = new DimLayer();
-    this.node.append(this.shippingModalNode);
+    this.shippingModal = new ShippingModal();
+    this.node.append(this.shippingModal.node);
   }
 
   initEventHandlers() {
@@ -16,13 +15,13 @@ export class Shipping extends Component {
   }
 
   showShippingModal() {
-    this.shippingModalNode.show();
-    this.dimLayer.on();
+    this.shippingModal.node.show();
+    Main.onDimmed();
   }
 
   closeShippingModal() {
-    this.shippingModalNode.close();
-    this.dimLayer.off();
+    this.shippingModal.node.close();
+    Main.offDimmed();
   }
 
   template() {
