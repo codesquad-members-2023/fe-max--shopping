@@ -16,7 +16,15 @@ header {
   align-items: center;
   background-color: $color-black;
 
-  #shipping-container {
+  .nav-main__item-container {
+    position: relative;
+
+    > a {
+      color: inherit;
+    }
+  }
+
+  #shipping-link {
     div {
       &:first-of-type {
         img {
@@ -56,7 +64,7 @@ header {
     }
   }
 
-  #lang-container {
+  #lang-link {
     span {
       &:first-of-type {
         width: 13px;
@@ -66,8 +74,8 @@ header {
     }
   }
 
-  #login-container,
-  #orders-container {
+  #login-link,
+  #orders-link {
     display: flex;
     flex-direction: column;
 
@@ -79,7 +87,7 @@ header {
     }
   }
 
-  #cart-container {
+  #cart-link {
     display: flex;
     align-items: center;
   }
@@ -93,6 +101,13 @@ header {
   align-items: center;
   background-color: $color-grey-900;
 
+  a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: inherit;
+  }
+
   ul {
     height: 100%;
     display: flex;
@@ -103,12 +118,6 @@ header {
       padding: 8px;
       display: flex;
       align-items: center;
-
-      a {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
     }
   }
 }
