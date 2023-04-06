@@ -1,27 +1,29 @@
-export function showLoginModalOnLoad() {
+import { $ } from "../utils.js";
+
+export const showLoginModalOnLoad = () => {
     document.addEventListener(
         "DOMContentLoaded",
         fadeInModal(".login-modal", 1000)
     );
-}
+};
 
-export function fadeInModal(modalClassName, time) {
-    const modal = document.querySelector(modalClassName);
+export const fadeInModal = (modalClassName, time) => {
+    const modal = $(modalClassName);
     setTimeout(() => {
         modal.classList.add("show");
     }, time);
-}
+};
 
-export function hideModal(modalClassName) {
-    const modal = document.querySelector(modalClassName);
+export const hideModal = (modalClassName) => {
+    const modal = $(modalClassName);
     modal.classList.remove("show");
-}
+};
 
-export function addDimming(className) {
-    const elem = document.querySelector(className);
+export const addDimming = (className) => {
+    const elem = $(className);
     elem.classList.add("dim");
-}
-export function removeDimming(className) {
-    const elem = document.querySelector(className);
+};
+export const removeDimming = (className) => {
+    const elem = $(className);
     elem.classList.remove("dim");
-}
+};
