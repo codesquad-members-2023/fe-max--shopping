@@ -4,10 +4,15 @@ import { Header } from "./component/header/Header.js";
 class App extends Base {
   constructor() {
     super("div");
-    this.setAttribute("id", "root");
-    const header = new Header();
+    this.header = new Header();
 
-    this.setChildren(header);
+    this.init();
+  }
+
+  init() {
+    this.setAttribute("id", "root");
+    this.setChildren(this.header);
+
     document.body.appendChild(this.node);
   }
 }

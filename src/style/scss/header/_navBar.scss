@@ -1,3 +1,7 @@
+#header {
+  min-width: 1120px;
+}
+
 #navBar {
   box-sizing: border-box;
   display: flex;
@@ -6,6 +10,8 @@
   align-items: center;
   padding: 8px 16px;
   gap: 24px;
+  min-width: 1120px;
+  width: 100%;
   height: 56px;
   background: var(--black);
 }
@@ -53,21 +59,21 @@
 }
 
 #searchBar {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 0px 0px 12px;
   gap: 12px;
-  width: 747px;
+  min-width: 500px;
   height: 40px;
   background: var(--white);
   border-radius: 4px;
 
   .inputBar {
-    width: 683px;
+    width: 100%;
     height: 21px;
-    letter-spacing: -0.03em;
     color: var(--gray60);
     border: none;
     @include BoldMD;
@@ -182,12 +188,14 @@
   }
 }
 
+// sub
 #subNavBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 16px;
+  min-width: 1120px;
   height: 32px;
   background: var(--gray900);
 }
@@ -241,82 +249,14 @@
   }
 }
 
-#login__tooltip {
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  position: relative;
-  width: 235px;
-  height: 100px;
-  left: -160px;
-  top: 15px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-  .login__tooltip__rectangle {
-    position: absolute;
-    left: 180px;
-    top: -10px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 25px solid white;
-  }
-
-  .login__tooltip__box {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    gap: 8px;
-    width: 235px;
-    height: 90px;
-    background: #ffffff;
-    border-radius: 4px;
-  }
-}
-
-.box__btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 10px;
-  width: 160px;
-  height: 32px;
-  background: linear-gradient(
-    174.6deg,
-    #ffffff 4.31%,
-    #fed15f 50.01%,
-    #febe30 95.71%
-  );
-  border: 1px solid var(--primary-yellow300);
-  border-radius: 4px;
-  @include BoldSM;
-}
-
-.box__caption {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 3px;
-  width: 203px;
-  height: 18px;
-}
-
-.box__text {
-  width: 112px;
-  height: 18px;
-  color: var(--black);
-  @include BoldSM;
-}
-
-.box__anchor {
-  width: 88px;
-  height: 18px;
-  color: var(--secondary-navy);
-  @include BoldSM;
-}
-
-#login__tooltip.show {
-  opacity: 1;
+#backdrop {
+  display: none;
+  min-width: 1120px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black);
+  position: absolute;
+  top: 88px;
+  left: 0;
+  opacity: 0.4;
 }

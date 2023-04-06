@@ -27,6 +27,14 @@ export class Base {
     });
   }
 
+  setEvent(type, handler) {
+    this.#_node.addEventListener(type, handler);
+  }
+
+  setStyle(prop, attr) {
+    this.#_node.style[prop] = attr;
+  }
+
   createChild(tagName, attribute, textContent, name, children) {
     const child = new Base(tagName);
     if (attribute) {
