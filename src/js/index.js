@@ -1,4 +1,5 @@
-import "./loginModal.js";
+import { initAddressModal } from "./addressModal.js";
 import { initLoginModal } from "./loginModal.js";
 
-document.addEventListener("DOMContentLoaded", initLoginModal);
+initLoginModal();
+initAddressModal();
