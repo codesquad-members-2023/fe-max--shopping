@@ -1,0 +1,14 @@
+/* base */
+@import './base/_color.scss';
+@import './base/_typography.scss';
+@import './base/_mixin.scss';
+
+/* components */
+@import './components/_button.scss';
+@import './components/_nav-bar.scss';
+@import './components/_modal.scss';
+
+.main {
+  width: 100vw;
+  height: 100vh;
+}

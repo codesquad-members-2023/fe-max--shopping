@@ -1,0 +1,462 @@
+/* base */ /* color */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
+/* font */
+/* components */
+.login-btn {
+  color: #10141a;
+  width: 160px;
+  height: 32px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  padding: 0px;
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+  margin-bottom: 8px;
+}
+
+.continue-btn {
+  color: #10141a;
+  width: 39px;
+  height: 32px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  padding: 0px;
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+  margin-right: 8px;
+}
+
+.changeAddress-btn {
+  color: #10141a;
+  width: 58px;
+  height: 32px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  padding: 0px;
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+}
+
+.nav-bar {
+  min-width: 1120px;
+  width: 100%;
+  height: 88px;
+}
+.nav-bar > div {
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  color: #ffffff;
+  font-family: "Pretendard Variable";
+  font-size: 13px;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -6;
+}
+
+.nav-main {
+  height: 56px;
+  gap: 24px;
+  background-color: #10141a;
+}
+.nav-main > div {
+  display: flex;
+  height: 40px;
+}
+.nav-main > div:hover {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+
+.main-location {
+  position: relative;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+}
+.main-location img {
+  width: 12px;
+  height: 12px;
+}
+.main-location > div {
+  display: flex;
+}
+.main-location .location-title {
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+  color: #d5d5d5;
+}
+
+.main-search {
+  display: flex;
+  flex-grow: 1;
+  height: 40px;
+}
+.main-search .search-bar {
+  flex-grow: 1;
+  border-radius: 4px 0px 0px 4px;
+  padding: 0px 0px 0px 12px;
+  border: none;
+}
+.main-search::placeholder {
+  font-family: "Pretendard Variable";
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -3;
+  color: #878787;
+}
+.main-search .search-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 0px 4px 4px 0px;
+  border: none;
+  background-color: #fcb057;
+}
+.main-search .search-btn > img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.main-lang {
+  align-items: center;
+}
+.main-lang .lang-flag {
+  margin-right: 4px;
+}
+
+.main-login {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+}
+.main-login .login-greeting {
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+  color: #d5d5d5;
+}
+
+.main-order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.main-order > span:first-child {
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -6;
+  color: #d5d5d5;
+}
+
+.main-cart {
+  align-items: center;
+}
+.main-cart > img {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.nav-sub {
+  height: 32px;
+  background-color: #1b232f;
+  justify-content: space-between;
+}
+
+.sub-category {
+  display: flex;
+}
+.sub-category > div,
+.sub-category li {
+  height: 16px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub-category > div:hover,
+.sub-category li:hover {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+
+.menu-category > img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.sub-link {
+  font-family: "Pretendard Variable";
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -3;
+  display: flex;
+}
+.sub-link a,
+.sub-link a:hover,
+.sub-link a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.dim {
+  width: 100%;
+  height: 100%;
+  background-color: #10141a;
+  opacity: 40%;
+  animation: dimFadeIn 0.5s;
+}
+.dim.hidden {
+  animation: dimFadeOut 0.5s;
+}
+
+.login-modal__small {
+  z-index: 1;
+  position: absolute;
+  padding: 0px;
+  width: 235px;
+  height: 90px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 45px;
+  left: -160px;
+  animation: fadeIn 0.5s;
+}
+.login-modal__small.hidden {
+  animation: fadeOut 0.5s;
+}
+.login-modal__small::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #ffffff;
+  border-top: 0;
+  margin-left: 60px;
+  margin-top: -10px;
+}
+.login-modal__small span {
+  color: #10141a;
+  margin-right: 3px;
+}
+.login-modal__small a {
+  color: #074099;
+}
+.login-modal__small a:hover,
+.login-modal__small a:active {
+  color: #de9408;
+  text-decoration: underline;
+}
+
+.login-modal__large {
+  z-index: 1;
+  position: absolute;
+  padding: 0px;
+  width: 303px;
+  height: 333px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  top: 45px;
+  left: -160px;
+  animation: fadeIn 0.5s;
+}
+.login-modal__large.hidden {
+  animation: fadeOut 0.5s;
+}
+.login-modal__large .login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-modal__large .login-section span {
+  color: #10141a;
+  margin-right: 3px;
+}
+.login-modal__large .login-section a {
+  color: #074099;
+}
+.login-modal__large .login-section a:hover,
+.login-modal__large .login-section a:active {
+  color: #de9408;
+  text-decoration: underline;
+}
+.login-modal__large .account-section {
+  margin-top: 7px;
+  display: flex;
+}
+.login-modal__large .account-section > ul {
+  margin-top: 8px;
+  width: 150px;
+}
+.login-modal__large .account-section span {
+  font-family: "Pretendard Variable";
+  font-size: 13px;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -6;
+}
+.login-modal__large .account-section li {
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -3;
+  height: 17.6px;
+  padding: 0px;
+  margin-top: 4px;
+  justify-content: start;
+}
+.login-modal__large .account-section a,
+.login-modal__large .account-section a:hover,
+.login-modal__large .account-section a:active {
+  color: #10141a;
+  text-decoration: none;
+}
+.login-modal__large .account-section::before {
+  position: absolute;
+  content: "";
+  width: 303px;
+  height: 1px;
+  background-color: #eef2f2;
+}
+.login-modal__large::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #ffffff;
+  border-top: 0;
+  margin-left: 60px;
+  margin-top: -10px;
+}
+
+.location-modal {
+  z-index: 1;
+  position: absolute;
+  padding: 0px;
+  width: 288px;
+  height: 94px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-family: "Pretendard Variable";
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -3;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  top: 45px;
+  left: -10px;
+  animation: fadeIn 0.5s;
+}
+.location-modal.hidden {
+  animation: fadeOut 0.5s;
+}
+.location-modal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -12%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #ffffff;
+  border-top: 0;
+  margin-left: 60px;
+  margin-top: -10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes dimFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+@keyframes dimFadeOut {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.main {
+  width: 100vw;
+  height: 100vh;
+}
+
+/*# sourceMappingURL=style.css.map */
