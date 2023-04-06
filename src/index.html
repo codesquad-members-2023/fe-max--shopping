@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아마존</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./styles/css/style.css" />
   </head>
   <body>
     <nav>
       <section class="nav__main">
         <div class="main__logo">
-          <img src="/icon/logo.svg" alt="아마존로고" />
+          <a href="#" class="logo__logo-icon">
+            <img src="./assets/icons/logo.svg" alt="아마존로고" />
+          </a>
         </div>
         <div class="main__address">
           <div class="address__label">
@@ -38,11 +40,11 @@
             placeholder="검색Amazon"
           />
           <button class="searchbar__btn">
-            <img src="/icon/name=search.svg" alt="" />
+            <img src="./assets/icons/name=search.svg" alt="검색아이콘" />
           </button>
         </div>
         <div class="main__nation">
-          <img src="/icon/flag.svg" alt="국기" />
+          <img src="/src/assets/icons/flag.svg" alt="국기" />
           <div class="nation__text">KO</div>
         </div>
         <div class="main__login">
@@ -54,26 +56,26 @@
           <div class="mypage__text">&주문</div>
         </div>
         <div class="main__cart">
-          <img src="/icon/name=cart.svg" alt="" />
+          <img src="./assets/icons/name=cart.svg" alt="" />
           <div class="cart__text">장바구니</div>
         </div>
       </section>
-      <section class="nav__sub">
-        <div class="sub__leftbtn">
-          <button class="menu-all">
-            <img src="/icon/name=menu.svg" alt="" />
+      <form action="" class="nav__sub">
+        <div class="sub__left-menu">
+          <a class="left-menu--menuAll">
+            <img src="./assets/icons/name=menu.svg" alt="메뉴아이콘" />
             <span>모두</span>
-          </button>
-          <button class="menu1">오늘의 딜</button>
-          <button class="menu2">고객 서비스</button>
-          <button class="menu3">레지스트리</button>
-          <button class="menu4">기프트 카드</button>
-          <button class="menu5">판매</button>
+          </a>
+          <a class="left-menu--deal">오늘의 딜</a>
+          <a class="left-menu--services">고객 서비스</a>
+          <a class="left-menu--registry">레지스트리</a>
+          <a class="left-menu--gift-card">기프트 카드</a>
+          <a class="left-menu--sales">판매</a>
         </div>
         <div class="sub__rightbtn">
-          <button>지금 특가 상품 쇼핑하기</button>
+          <a>지금 특가 상품 쇼핑하기</a>
         </div>
-      </section>
+      </form>
     </nav>
   </body>
 </html>
