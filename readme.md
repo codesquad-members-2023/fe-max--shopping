@@ -148,3 +148,8 @@
     color: $color-blue;
   }
   ```
+
+### Elements that are not Suitable for Attaching the Shadow DOM
+
+- Elements related to headings, tables, form, img, inline elements (Ex: `a`, `span`).
+- The Shadow DOM can be attached to any HTML tag. However, attaching it to one of these elements may not make sense and lead to displacements.
