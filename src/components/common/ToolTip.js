@@ -1,13 +1,14 @@
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="tool-tip-container">
-    <slot name="tool-tip-content"></slot>
+    <slot name="tool-tip-top-content"></slot>
+    <slot name="tool-tip-bottom-content"></slot>
   </div>
 
   <link rel="stylesheet" href="src/styles/components/common/ToolTip.css">
 `;
 
-class ToolTip extends HTMLElement {
+export class ToolTip extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });

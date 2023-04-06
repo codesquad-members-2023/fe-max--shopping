@@ -1,0 +1,12 @@
+@use "../../config/component-reset.scss";
+@use "../../config/design-system.scss" as *;
+
+:host {
+  right: -40px;
+  // opacity: 1;
+  // visibility: visible;
+
+  &::before {
+    right: 63px;
+  }
+}
