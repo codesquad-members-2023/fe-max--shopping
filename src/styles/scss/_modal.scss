@@ -1,0 +1,49 @@
+@import "variables", "mixin";
+
+#login-modal {
+  background-color: $color-white;
+  position: absolute;
+  top: 55px;
+  right: 172px;
+  width: auto;
+  border-radius: 4px;
+  opacity: 0;
+  transition: 1s;
+  z-index: 2;
+  .login-modal-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 16px;
+    @include bodySm;
+    color: $color-black;
+    .login-button {
+      @include loginButton;
+      margin-bottom: 8px;
+    }
+    span {
+      text-align: center;
+    }
+    a {
+      color: $color-secondary-navy;
+      text-decoration: none;
+    }
+    .login-modal-expand {
+      display: flex;
+      opacity: 0;
+      transition: 1s;
+      .login-modal-expand-container {
+        width: 0;
+        height: 0;
+        transition: 1s;
+        h1 {
+          margin: 8px 0 4px;
+          @include boldMd;
+        }
+        li {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+}

@@ -135,4 +135,35 @@
   -> HTML 파일의 크기가 작아지는 장점을 가진다
   - 성능상에는 큰 차이가 없다
 
+- 툴팁 vs 팝오버 vs 모달
+
+```markdown
+
+```
+
+- keyframe
+
+```scss
+@include keyframes(enlarge) {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 150px;
+    height: 258px;
+  }
+  @include animtae(enlarge, 1s, linear)
+}
+@include keyframes(fadein) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+  @include animtae(fadein, 1s, linear)
+}
+```
+
 ### **🤔 생각해볼 거리**

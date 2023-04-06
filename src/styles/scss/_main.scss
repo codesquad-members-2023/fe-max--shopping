@@ -1,8 +1,10 @@
 @import "variables", "mixin";
 
-main {
+.main-container {
   width: 100%;
   background-color: $color-gray-200;
+  z-index: 1;
+  transition: 1s;
   .main-content-container {
     height: 1430px;
     .main-banner-container {
@@ -46,18 +48,7 @@ main {
           display: block;
         }
         .login-button {
-          width: 160px;
-          height: 32px;
-          margin: 0 auto;
-          background: linear-gradient(
-            174.6deg,
-            $color-white 4.31%,
-            $color-primary-yellow-100 50.01%,
-            $color-primary-yellow-200 95.71%
-          );
-          border: 1px solid $color-primary-yellow-300;
-          border-radius: 4px;
-          @include boldSm;
+          @include loginButton;
         }
         .login-card-text {
           margin-top: 12px;
@@ -82,4 +73,13 @@ main {
       }
     }
   }
+}
+.dimmed {
+  position: absolute;
+  width: 100%;
+  height: 1430px;
+  background-color: black;
+  opacity: 0;
+  z-index: 1;
+  transition: 1s;
 }

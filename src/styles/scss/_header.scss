@@ -41,6 +41,9 @@
       border-radius: 4px 0 0 4px;
       font: $font-bold-md;
       color: $color-gray-600;
+      &:focus {
+        outline: none;
+      }
     }
     .search-button {
       border: none;

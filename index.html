@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/styles/index.css" />
+    <script type="module" src="./src/js/index.js"></script>
     <title>Amazon</title>
   </head>
   <body>
@@ -24,7 +25,7 @@
         </nav>
         <form class="search-bar has-img">
           <input type="text" class="search-input" placeholder="검색 Amazon" />
-          <button type="submit" class="search-button">
+          <button type="button" class="search-button">
             <img src="./src/assets/svg/search.svg" alt="search" />
           </button>
         </form>
@@ -38,6 +39,41 @@
           </label>
           <div id="account-list">
             <span>계정 및 목록</span>
+          </div>
+          <div id="login-modal">
+            <div class="login-modal-container">
+              <button class="login-button" type="button">로그인</button>
+              <span
+                >기존 사용자가 아니십니까?
+                <a>여기에서 시작합니다.</a>
+              </span>
+              <div class="login-modal-expand">
+                <div class="login-modal-expand-container">
+                  <h1>귀하의 목록</h1>
+                  <ul>
+                    <li>목록 생성</li>
+                    <li>목록 또는 레지스트리 찾기</li>
+                    <li>AmazonSmile 자산 품목 목록</li>
+                  </ul>
+                </div>
+                <div class="login-modal-expand-container">
+                  <h1>계정</h1>
+                  <ul>
+                    <li>계정</li>
+                    <li>주문</li>
+                    <li>권장 사항</li>
+                    <li>검색 기록</li>
+                    <li>위시리스트</li>
+                    <li>비디오 구매 및 대여</li>
+                    <li>Kindle 언리미티드</li>
+                    <li>콘텐츠 및 기기</li>
+                    <li>항목 구독 및 저장</li>
+                    <li>멤버십 및 구독</li>
+                    <li>음악 라이브러리</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
         <nav class="my-page">
@@ -86,110 +122,177 @@
       </div>
     </header>
 
-    <main>
+    <main class="main-container">
+    <div class="dimmed"></div>
       <div class="main-banner">
         <div class="main-content-container">
           <div class="main-banner-container">
-            <img src="./src/assets/svg/chevron-left.svg" alt="left-button"  class="chevron" id="chevron-left" >
+            <img
+              src="./src/assets/svg/chevron-left.svg"
+              alt="left-button"
+              class="chevron"
+              id="chevron-left"
+            />
             <div>
-              <div class="main-banner-text">해외 쇼핑을 즐기고 한국 직불 카드 또는</div>
+              <div class="main-banner-text">
+                해외 쇼핑을 즐기고 한국 직불 카드 또는
+              </div>
               <div class="main-banner-text">한국 신용카드로 결제하십시오</div>
             </div>
-            <img src="./src/assets/svg/chevron-right.svg" alt="right-button" class="chevron" id="chevron-right">
+            <img
+              src="./src/assets/svg/chevron-right.svg"
+              alt="right-button"
+              class="chevron"
+              id="chevron-right"
+            />
           </div>
           <div class="main-card-container">
             <div class="card" id="card1">
               <div class="frame">
                 <button class="login-button" type="button">로그인</button>
-                <span class="login-card-text">최상의 경험을 위해 로그인하세요</span>
+                <span class="login-card-text"
+                  >최상의 경험을 위해 로그인하세요</span
+                >
               </div>
             </div>
             <div class="card" id="card2">
-              <img src="./src/assets/png/card2.png" alt="card2" class="card-img">
+              <img
+                src="./src/assets/png/card2.png"
+                alt="card2"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">집에서 입어보기</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card3">
-              <img src="./src/assets/png/card3.png" alt="card3" class="card-img">
+              <img
+                src="./src/assets/png/card3.png"
+                alt="card3"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">특가</span>
                 <span class="card-text">지금 쇼핑하세요</span>
               </div>
             </div>
             <div class="card" id="card4">
-              <img src="./src/assets/png/card4.png" alt="card4" class="card-img">
+              <img
+                src="./src/assets/png/card4.png"
+                alt="card4"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">피트니스용</span>
                 <span class="card-text">지금 쇼핑하세요</span>
               </div>
             </div>
             <div class="card" id="card5">
-              <img src="./src/assets/png/card5.png" alt="card5" class="card-img">
+              <img
+                src="./src/assets/png/card5.png"
+                alt="card5"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">Amazon Basics</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card6">
-              <img src="./src/assets/png/card6.png" alt="card6" class="card-img">
+              <img
+                src="./src/assets/png/card6.png"
+                alt="card6"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">건강 및 퍼스널 케어</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card7">
-              <img src="./src/assets/png/card7.png" alt="card7" class="card-img">
+              <img
+                src="./src/assets/png/card7.png"
+                alt="card7"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">가정 및 주방</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card8">
-              <img src="./src/assets/png/card8.png" alt="card8" class="card-img">
+              <img
+                src="./src/assets/png/card8.png"
+                alt="card8"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">Click here to shop in English</span>
                 <span class="card-text">Change your language preference</span>
               </div>
             </div>
             <div class="card" id="card9">
-              <img src="./src/assets/png/card9.png" alt="card9" class="card-img">
+              <img
+                src="./src/assets/png/card9.png"
+                alt="card9"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">드레스</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card10">
-              <img src="./src/assets/png/card10.png" alt="card10" class="card-img">
+              <img
+                src="./src/assets/png/card10.png"
+                alt="card10"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">활동 추적기 및 스마트워치 쇼핑</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card11">
-              <img src="./src/assets/png/card11.png" alt="card11" class="card-img">
+              <img
+                src="./src/assets/png/card11.png"
+                alt="card11"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">노트북 및 태블릿 쇼핑</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card12">
-              <img src="./src/assets/png/card12.png" alt="card12" class="card-img">
+              <img
+                src="./src/assets/png/card12.png"
+                alt="card12"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">전자기기</span>
                 <span class="card-text">더보기</span>
               </div>
             </div>
             <div class="card" id="card13">
-              <img src="./src/assets/png/card13.png" alt="card13" class="card-img">
+              <img
+                src="./src/assets/png/card13.png"
+                alt="card13"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">Kindle E-readers</span>
                 <span class="card-text">지금 쇼핑하세요</span>
               </div>
             </div>
             <div class="card" id="card14">
-              <img src="./src/assets/png/card14.png" alt="card14" class="card-img">
+              <img
+                src="./src/assets/png/card14.png"
+                alt="card14"
+                class="card-img"
+              />
               <div class="frame">
                 <span class="card-title">반려동물용품 쇼핑</span>
                 <span class="card-text">더보기</span>
