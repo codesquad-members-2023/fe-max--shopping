@@ -1,4 +1,248 @@
-@use '../base/mixin';
+@use '../base/common';
+
+body {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 nav {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 88px;
+  color: var(--color-white);
+  .nav__main {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 24px;
+    width: calc(100% - 32px);
+    height: 56px;
+    background: var(--color-black);
+  }
+  .nav__sub {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 16px;
+    width: calc(100% - 32px);
+    height: 32px;
+    background: var(--color-gray900);
+  }
+}
+.main__logo {
+  box-sizing: border-box;
+  width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  position: relative;
+  img {
+    left: 5%;
+    right: 5%;
+    top: 20%;
+    bottom: 11.94%;
+    padding: 8px 0px 8px 0px;
+  }
+}
+.main__address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 43px;
+  height: 29px;
+  flex: none;
+  .address__label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 49px;
+    height: 13px;
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+    .address__label--text {
+      @include common.boldsm;
+      color: var(--color-gray400);
+    }
+  }
+  .address__text {
+    @include common.boldmd;
+    color: var(--color-white);
+  }
+}
+.main__searchbar {
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 0px 12px;
+  width: 747px;
+  height: 40px;
+  background: var(--color-white);
+  border-radius: 4px;
+  flex-grow: 1;
+  input:focus {
+    outline: none;
+  }
+  .searchbar__input {
+    @include common.bodymd;
+    min-width: 300px;
+    width: calc(100% - 40px);
+    height: 21px;
+    padding: 9.5px 12px;
+    color: var(--color-gray600);
+    border: none;
+    flex-grow: 1;
+  }
+  .searchbar__btn {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    background: var(--color-orange100);
+    border-radius: 0px 4px 4px 0px;
+    border: none;
+  }
+}
+.main__nation {
+  display: flex;
+  gap: 4px;
+  width: 35px;
+  height: 16px;
+  .nation__text {
+    @include common.boldmd;
+    color: var(--color-white);
+  }
+}
+.main__login {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  width: 76px;
+  height: 29px;
+  .login__label {
+    @include common.boldsm;
+    width: 76px;
+    height: 13px;
+    color: var(--color-gray400);
+  }
+  .login__text {
+    @include common.boldmd;
+    width: 58px;
+    height: 16px;
+    color: var(--color-white);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+}
+.main__mypage {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  width: 32px;
+  height: 29px;
+  .mypage__label {
+    @include common.boldsm;
+    width: 19px;
+    height: 13px;
+    color: var(--color-gray400);
+  }
+  .mypage__text {
+    @include common.boldmd;
+    width: 32px;
+    height: 16px;
+    color: var(--color-white);
+  }
+}
+
+.main__cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  width: 71px;
+  height: 24px;
+  .cart__text {
+    @include common.boldmd;
+    width: 43px;
+    height: 16px;
+    color: #ffffff;
+  }
+}
+.sub__leftbtn {
+  display: flex;
+  padding: 0px;
+  width: 387px;
+  height: 32px;
+  .menu-all {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 58px;
+    height: 32px;
+    border: none;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+    cursor: pointer;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+    span {
+      @include common.boldmd;
+      width: 22px;
+      height: 16px;
+    }
+  }
+  .menu1 {
+    @include common.boldmd;
+    border: none;
+    align-items: center;
+    width: 65px;
+    height: 32px;
+    cursor: pointer;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+  }
+  .menu2 {
+    @include common.boldmd;
+    border: none;
+    align-items: center;
+    width: 76px;
+    height: 32px;
+    cursor: pointer;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+  }
+  .menu3 {
+    @include common.boldmd;
+    border: none;
+    align-items: center;
+    width: 73px;
+    height: 32px;
+    cursor: pointer;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+  }
+  .menu4 {
+    @include common.boldmd;
+    border: none;
+    align-items: center;
+    width: 76px;
+    height: 32px;
+    cursor: pointer;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+  }
+  .menu5 {
+    @include common.boldmd;
+    border: none;
+    align-items: center;
+    width: 39px;
+    height: 32px;
+    cursor: pointer;
+    background-color: var(--color-gray900);
+    color: var(--color-white);
+  }
 }

@@ -1,33 +1,80 @@
-@font-face {
-  font-family: Pretendard Variable;
-  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css')
-    format('woff');
-}
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+
 :root {
-  //font-family
-  $font-family: 'Pretendard Variable', Pretendard, -apple-system,
+  --font-family: 'Pretendard Variable', Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
     'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+@mixin bodySM {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+@mixin bodymd {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+@mixin boldsm {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+}
+@mixin boldmd {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+@mixin boldlg {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+@mixin boldxl {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 33px;
+  color: #000000;
+}
+
+:root {
   // color
-  $white: #ffffff;
-  $gray100: #eff2f2;
-  $gray200: #e5e9e9;
-  $gray300: #dce0e0;
-  $gray400: #d5d5d5;
-  $gray500: #c1c1c1;
-  $gray600: #878787;
-  $gray700: #535353;
-  $gray800: #2a3648;
-  $gray900: #1b232f;
-  $black: #10141a;
-  $black40: rgba($black, 0.4);
-  $yellow100: #fed15f;
-  $yellow200: #febe30;
-  $yellow300: #de9408;
-  $orange100: #fcb057;
-  $orange200: #ff9900;
-  $secondaryPurple: #941387;
-  $secondaryNavy: #074099;
-  $secondaryGreen: #0c5e72;
+  --color-white: #ffffff;
+  --color-gray100: #eff2f2;
+  --color-gray200: #e5e9e9;
+  --color-gray300: #dce0e0;
+  --color-gray400: #d5d5d5;
+  --color-gray500: #c1c1c1;
+  --color-gray600: #878787;
+  --color-gray700: #535353;
+  --color-gray800: #2a3648;
+  --color-gray900: #1b232f;
+  --color-black: #10141a;
+  --color-black40: rgba(--color-black, 0.4);
+  --color-yellow100: #fed15f;
+  --color-yellow200: #febe30;
+  --color-yellow300: #de9408;
+  --color-orange100: #fcb057;
+  --color-orange200: #ff9900;
+  --color-secondaryPurple: #941387;
+  --color-secondaryNavy: #074099;
+  --color-secondaryGreen: #0c5e72;
 }
