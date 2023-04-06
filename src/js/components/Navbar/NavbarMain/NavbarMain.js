@@ -4,7 +4,7 @@ import { Component } from '/src/js/components/base/Component.js';
 
 export class NavbarMain extends Component {
   constructor() {
-    super('main');
+    super('navbar-main');
   }
 
   template() {

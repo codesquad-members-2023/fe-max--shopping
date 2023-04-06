@@ -1,17 +1,18 @@
 import { Navbar } from '../js/components/Navbar/Navbar.js';
+import { Main } from './Main.js';
+import { Component } from './components/base/Component.js';
 import { DimLayer } from './components/element/DimLayer.js';
 
-export class App {
-  #node;
-
-  constructor(rootNode) {
-    this.#node = rootNode;
-    this.dimLayerNode = new DimLayer().node;
-    this.headerNode = new Navbar(this.dimLayer).node;
-    this.render();
+export class App extends Component {
+  constructor() {
+    super('app');
   }
 
-  render() {
-    this.#node.append(this.dimLayerNode, this.headerNode);
+  template() {
+    const dimLayer = new DimLayer();
+    const header = new Navbar();
+    const main = new Main();
+
+    return [dimLayer.node, header.node, main.node];
   }
 }

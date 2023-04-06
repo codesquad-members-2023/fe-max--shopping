@@ -1,5 +1,7 @@
 import { App } from './App.js';
 import { $ } from './utils/querySelector.js';
 
-const rootNode = $('#app');
-new App(rootNode);
+const body = $('body');
+const app = new App();
+
+body.append(app.node);

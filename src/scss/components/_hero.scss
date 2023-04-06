@@ -1,15 +1,16 @@
 .hero {
   width: 100%;
+  height: 100%;
   position: relative;
 
   .slider {
-    width: 100%;
+    display: flex;
+    height: 100%;
   }
 
   .slide {
-    width: 100%;
-    height: 512px;
-    background: url('/src/assets/images/banner/hero-6.jpg');
+    width: 100vw;
+    height: 50vh;
     background-size: cover;
   }
 
@@ -19,15 +20,15 @@
     position: absolute;
     background-repeat: no-repeat;
     background-position: center;
-    top: 20%;
+    top: 7vw;
 
     &.left {
-      left: 80px;
+      left: 6vw;
       background-image: url('/src/assets/symbols/LeftButton.svg');
     }
 
     &.right {
-      right: 80px;
+      right: 6vw;
       background-image: url('/src/assets/symbols/RightButton.svg');
     }
   }

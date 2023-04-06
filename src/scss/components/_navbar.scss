@@ -4,7 +4,7 @@
   width: 100%;
   min-width: 1120px;
 
-  .main {
+  &-main {
     padding: 8px 16px;
     display: flex;
     align-items: center;
@@ -89,7 +89,7 @@
     }
   }
 
-  .sub {
+  &-sub {
     display: flex;
     justify-content: space-between;
     align-items: center;
