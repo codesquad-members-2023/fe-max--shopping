@@ -1,22 +1,15 @@
-import { fetchStyles } from "../../utils/index.js";
-
-const cssString = await fetchStyles(
-  "src/styles/components/common/PrimaryButton.css"
-);
-
 const template = document.createElement("template");
-const style = document.createElement("style");
-
 template.innerHTML = `
   <button type="button"></button>
+
+  <link rel="stylesheet" href="src/styles/components/common/PrimaryButton.css">
 `;
-style.textContent = cssString;
 
 class PrimaryButton extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true), style);
+    shadowRoot.append(template.content.cloneNode(true));
     this.button = this.shadowRoot.querySelector("button");
   }
 

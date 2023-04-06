@@ -1,10 +1,4 @@
-import { fetchStyles } from "../utils/index.js";
-
-const cssString = await fetchStyles("src/styles/components/TopHeader.css");
-
 const template = document.createElement("template");
-const style = document.createElement("style");
-
 template.innerHTML = `
   <header>
     <nav class="nav-main">
@@ -61,14 +55,15 @@ template.innerHTML = `
       <a href="#">지금 특가 상품 쇼핑하기</a>
     </nav>
   </header>
+
+  <link rel="stylesheet" href="src/styles/components/TopHeader.css"></link>
 `;
-style.textContent = cssString;
 
 class TopHeader extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true), style);
+    shadowRoot.append(template.content.cloneNode(true));
   }
 }
 
