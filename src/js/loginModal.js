@@ -8,7 +8,8 @@ export function initLoginModal() {
   document.addEventListener('DOMContentLoaded', () => {
     addLoginModal();
     addModalCover();
-    addMouseoverHandler(navLoginTabEl, 'modal-login', showLoginModalDetails);
+    addMouseoverHandler(navLoginTabEl, 'modal-login', showLoginModal);
+    addMouseoutHandler(navLoginTabEl);
   });
 }
 
@@ -17,7 +18,7 @@ function addLoginModal() {
 }
 
 function createLoginModalEl() {
-  const modalEl = createEmptyEl('modal-login');
+  const modalEl = createEmptyEl('modal', 'modal-login');
   const btnEl = createButtonEl('로그인');
   const captionEl = createCaptionEl();
   const detailsEl = createDetailsEl();
@@ -25,12 +26,14 @@ function createLoginModalEl() {
   modalEl.append(btnEl, detailsEl);
   btnEl.insertAdjacentHTML('afterend', captionEl);
 
+  modalEl.style.animationDelay = '1s';
+
   return modalEl;
 }
 
-export function createEmptyEl(className) {
+export function createEmptyEl(...classNames) {
   const el = document.createElement('div');
-  el.className = className;
+  el.classList.add(...classNames);
 
   return el;
 }
@@ -97,13 +100,21 @@ function createListWithTitle(info) {
   return sectionEl;
 }
 
-export function addMouseoverHandler(targetEl, className, showElement) {
+export function addMouseoverHandler(targetEl, className, showTargetEl) {
   targetEl.addEventListener('mouseover', (e) => {
     if (e.target.className === className || e.target.closest(`.${className}`)) return;
 
-    showElement();
+    showTargetEl();
     showModalCover();
   });
+}
+
+function showLoginModal() {
+  const loginModalEl = document.querySelector('.modal-login');
+  loginModalEl.style.animationDelay = '';
+  loginModalEl.style.display = 'flex';
+
+  showLoginModalDetails();
 }
 
 function showLoginModalDetails() {
@@ -121,4 +132,42 @@ function addModalCover() {
 export function showModalCover() {
   const modalCoverEl = document.querySelector('.modal-cover');
   modalCoverEl.style.display = 'block';
+}
+
+export function addMouseoutHandler(targetEl) {
+  targetEl.addEventListener('mouseleave', () => {
+    hideModals();
+    hideModalCover();
+  });
+}
+
+function hideModals() {
+  const modals = findAllModals();
+  modals.forEach((modal) => hideByFadeout(modal));
+}
+
+function findAllModals() {
+  return document.querySelectorAll('.modal');
+}
+
+function hideModalCover() {
+  const modalCoverEl = document.querySelector('.modal-cover');
+  hideByFadeout(modalCoverEl);
+}
+
+async function hideByFadeout(el) {
+  el.style.animation = 'fade-out 0.5s forwards';
+  await delay(500);
+  el.style.display = 'none';
+  el.style.animation = '';
+}
+
+function delay(ms) {
+  return new Promise((resolve, reject) => {
+    try {
+      setTimeout(resolve, ms);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

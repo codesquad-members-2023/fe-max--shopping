@@ -46,6 +46,12 @@ html {
   overflow-y: scroll;
 }
 
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 #nav-bar {
   position: relative;
 
@@ -183,7 +189,7 @@ html {
     min-width: 235px;
     right: 0;
     opacity: 0;
-    animation: fade-in 0.5s 1s forwards;
+    animation: fade-in 0.5s forwards;
 
     span {
       @include flex-row;
@@ -259,10 +265,6 @@ html {
   background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
   border: 1px solid #de9408;
   border-radius: 4px;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 @keyframes fade-in {
@@ -271,5 +273,15 @@ html {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
   }
 }
