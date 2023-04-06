@@ -4,68 +4,78 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style/reset.css" />
-    <link rel="stylesheet" href="./src/style/style.css" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./src/style/css/reset.css" />
+    <link rel="stylesheet" href="./src/style/css/style.css" />
     <script defer type="module" src="./src/js/app.js"></script>
-    <title>Amazon</title>
+    <title>Amazon.com</title>
   </head>
   <body>
     <header class="header">
       <nav class="nav-bar">
         <div class="nav-main">
-          <a href="./index.html">
-            <img src="./src/asset/images/BI.png" alt="" />
-          </a>
-          <div class="nav-location">
+          <div class="main-BI">
+            <a href="./index.html">
+              <img src="./src/asset/images/BI.svg" alt="" />
+            </a>
+          </div>
+          <div class="main-location">
             <div>
-              <img src="./src/asset/icons#D5D5D5/location.svg" alt="" />
-              <span>배송처</span>
+              <img src="./src/asset/icons/location.svg" alt="" />
+              <span class="location-title">배송처</span>
             </div>
             <div>
               <span>대한민국</span>
             </div>
           </div>
-          <div class="nav-search">
-            <form action="">
-              <input type="text" />
-              <button></button>
-            </form>
+          <form class="main-search" action="">
+            <input class="search-bar" placeholder="검색 Amazon" type="text" />
+            <button class="search-btn" type="submit">
+              <img src="src/asset/icons/search.svg" alt="" />
+            </button>
+          </form>
+          <div class="main-lang">
+            <span class="lang-flag">🇺🇸</span>
+            <span class="lang-text">KO</span>
           </div>
-          <div class="nav-lang">
-            <img src="" alt="" />
-            <span>ENG</span>
-          </div>
-          <div class="nav-login">
-            <span>안녕하세요, 로그인</span>
+          <div class="main-login">
+            <span class="login-greeting">안녕하세요, 로그인</span>
             <span>계정 및 목록</span>
           </div>
-          <div class="nav-order">
+          <div class="main-order">
             <span>반품</span>
-            <span>&주문</span>
+            <span>& 주문</span>
           </div>
-          <div class="nav-cart">
+          <div class="main-cart">
             <img src="./src/asset/icons/cart.svg" alt="" />
             <span>장바구니</span>
           </div>
         </div>
         <div class="nav-sub">
-          <ul class="sub-menu">
-            <li class="menu-category">
+          <div class="sub-category">
+            <div class="menu-category">
               <img src="./src/asset/icons/menu.svg" alt="" />
               <span>모두</span>
-            </li>
-            <li class="menu-today">오늘의 딜</li>
-            <li class="menu-service">고객 서비스</li>
-            <li class="menu-registry">레지스트리</li>
-            <li class="menu-gift">기프트 카드</li>
-            <li class="menu-sale">판매</li>
-          </ul>
-          <ul class="sub-bargain">
-            지금 특가 상품 쇼핑하기
-          </ul>
+            </div>
+            <ul class="sub-link">
+              <li>
+                <a href="#">오늘의 딜</a>
+              </li>
+              <li><a href="#">고객 서비스</a></li>
+              <li><a href="#">레지스트리</a></li>
+              <li><a href="#">기프트 카드</a></li>
+              <li><a href="#">판매</a></li>
+            </ul>
+          </div>
+          <div class="sub-right">지금 특가 상품 쇼핑하기</div>
         </div>
       </nav>
     </header>
-    <main></main>
+    <main class="main"></main>
   </body>
 </html>
