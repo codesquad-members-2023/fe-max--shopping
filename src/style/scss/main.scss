@@ -1,5 +1,5 @@
-@import url('/src/style/css/reset.css');
-@import url('/src/style/css/values.css');
+@import url("/src/style/css/reset.css");
+@import url("/src/style/css/values.css");
 
 @mixin flex-row($justify: flex-start, $align: center) {
   display: flex;
@@ -28,6 +28,12 @@
   color: var(--color-gray-600);
 }
 
+@mixin body-sm {
+  font: var(--font-body-sm);
+  letter-spacing: var(--letter-spacing-body-sm);
+  color: var(--color-black);
+}
+
 .nav-bar__main {
   @include flex-row;
   padding: 8px 16px;
@@ -44,7 +50,7 @@
     @include bold-md;
   }
 
-  .search-bar {
+  &-search {
     @include flex-row;
     padding-left: 12px;
     gap: 12px;
@@ -71,7 +77,7 @@
     }
   }
 
-  .nation {
+  &-nation {
     @include flex-row;
     padding: 0;
     gap: 4px;
@@ -82,7 +88,11 @@
     }
   }
 
-  .cart {
+  &-login {
+    position: relative;
+  }
+
+  &-cart {
     @include flex-row;
     padding: 0;
     gap: 4px;
@@ -107,7 +117,7 @@
         @include flex-row;
       }
     }
-    
+
     .action-item {
       @include bold-md;
     }
@@ -122,4 +132,58 @@
   .right-menu {
     @extend .left-menu;
   }
+}
+
+// 모달
+.modal-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  position: absolute;
+  width: 235px;
+  top: 180%;
+  right: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  opacity: 0;
+
+  span {
+    @include flex-row;
+    @include body-sm;
+    gap: 3px;
+
+    a {
+      color: #074099;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 0px;
+    top: -12px;
+    right: 20px;
+    border-right: solid 10px transparent;
+    border-left: solid 10px transparent;
+    border-bottom: solid 20px #FFFFFF;
+  }
+}
+
+.check-btn {
+  @include body-sm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  width: 160px;
+  height: 32px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
 }

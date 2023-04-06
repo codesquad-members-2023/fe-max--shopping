@@ -7,41 +7,42 @@
     <title>Amazon</title>
 
     <link rel="stylesheet" href="/src/style/css/main.css" />
+    <script src="/src/js/index.js" type="module"></script>
   </head>
   <body>
     <div id="nav-bar">
       <header class="nav-bar__main">
-        <button>
+        <button class="nav-bar__main-logo">
           <img src="./src/asset/img/logo.svg" alt="로고" />
         </button>
-        <section class="shipping-address">
+        <section class="nav-bar__main-address">
           <div class="label">
             <img src="./src/asset/img/marker.svg" alt="맵 마커" />
             <span>배송지</span>
           </div>
           <p class="content">대한민국</p>
         </section>
-        <form class="search-bar">
+        <form class="nav-bar__main-search">
           <input type="text" placeholder="검색 Amazon" name="search">
           <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
         </form>
-        <section class="nation">
+        <section class="nav-bar__main-nation">
           <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기">
           <p class="content">KO</p>
         </section>
-        <section class="login">
+        <section class="nav-bar__main-login">
           <div class="label">
             <span>안녕하세요,로그인</span>
           </div>
           <p class="content">계정 및 목록</p>
         </section>
-        <section class="history">
+        <section class="nav-bar__main-history">
           <div class="label">
             <span>반품</span>
           </div>
           <p class="content">& 주문</p>
         </section>
-        <section class="cart">
+        <section class="nav-bar__main-cart">
           <img src="./src/asset/img/cart.svg" alt="카트">
           <p class="content">장바구니</p>
         </section>

@@ -4,7 +4,8 @@
   "description": "Shopping site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass -w src/style/scss -o src/style/css"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "node-sass": "^8.0.0",
     "prettier": "^2.8.7"
   },
   "dependencies": {
