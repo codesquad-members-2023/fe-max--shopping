@@ -1,7 +1,14 @@
-const template = document.createElement("template");
+import { cards } from "../data/index.js";
 
+const template = document.createElement("template");
 template.innerHTML = `
   <top-header></top-header>
+
+  <main>
+    <cards-panel data-cards='${JSON.stringify(cards)}'></cards-panel>
+  </main>
+
+  <link rel="stylesheet" href="src/styles/pages/MainPage.css">
 `;
 
 class MainPage extends HTMLElement {
