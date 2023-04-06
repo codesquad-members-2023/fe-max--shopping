@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아마존</title>
-    <link rel="stylesheet" href="./style/index.css" />
-    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <nav>
@@ -15,13 +14,30 @@
           <img src="/icon/logo.svg" alt="아마존로고" />
         </div>
         <div class="main__address">
-          <img src="/icon/name=location.svg" alt="배송처아이콘" />
-          <div class="address__label">배송처</div>
+          <div class="address__label">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 12C12.55 12 13.021 11.804 13.413 11.412C13.8043 11.0207 14 10.55 14 10C14 9.45 13.8043 8.979 13.413 8.587C13.021 8.19567 12.55 8 12 8C11.45 8 10.9793 8.19567 10.588 8.587C10.196 8.979 10 9.45 10 10C10 10.55 10.196 11.0207 10.588 11.412C10.9793 11.804 11.45 12 12 12ZM12 22C9.31667 19.7167 7.31267 17.5957 5.988 15.637C4.66267 13.679 4 11.8667 4 10.2C4 7.7 4.80433 5.70833 6.413 4.225C8.021 2.74167 9.88333 2 12 2C14.1167 2 15.979 2.74167 17.587 4.225C19.1957 5.70833 20 7.7 20 10.2C20 11.8667 19.3377 13.679 18.013 15.637C16.6877 17.5957 14.6833 19.7167 12 22Z"
+                fill="#D5D5D5"
+              />
+            </svg>
+            <span class="address__label--text">배송처</span>
+          </div>
           <div class="address__text">대한민국</div>
         </div>
-        <div class="main__search-bar">
-          <input class="searchbar__input" type="text" />
-          <button>
+        <div class="main__searchbar">
+          <input
+            class="searchbar__input"
+            type="text"
+            placeholder="검색Amazon"
+          />
+          <button class="searchbar__btn">
             <img src="/icon/name=search.svg" alt="" />
           </button>
         </div>
@@ -38,21 +54,21 @@
           <div class="mypage__text">&주문</div>
         </div>
         <div class="main__cart">
-          <img src="/icon/name=cart.svg" alt="카트" />
+          <img src="/icon/name=cart.svg" alt="" />
           <div class="cart__text">장바구니</div>
         </div>
       </section>
-      <section class="sub">
+      <section class="nav__sub">
         <div class="sub__leftbtn">
-          <button>
-            <img src="/icon/name=menu.svg" alt="메뉴아이콘" />
+          <button class="menu-all">
+            <img src="/icon/name=menu.svg" alt="" />
             <span>모두</span>
           </button>
-          <button>오늘의 딜</button>
-          <button>고객 서비스</button>
-          <button>레지스트리</button>
-          <button>기프트 카드</button>
-          <button>판매</button>
+          <button class="menu1">오늘의 딜</button>
+          <button class="menu2">고객 서비스</button>
+          <button class="menu3">레지스트리</button>
+          <button class="menu4">기프트 카드</button>
+          <button class="menu5">판매</button>
         </div>
         <div class="sub__rightbtn">
           <button>지금 특가 상품 쇼핑하기</button>
