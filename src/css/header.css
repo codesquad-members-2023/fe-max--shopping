@@ -2,55 +2,44 @@
   background-color: var(--color-black);
   min-width: 1024px;
 }
-
 #banner .inner {
   padding: 8px 16px;
   display: flex;
   justify-content: space-between;
   gap: 24px;
 }
-
 #banner .logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #banner .shipping-address {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #banner .shipping-address dt {
   color: var(--color-gray-400);
   font: var(--font-bold-sm);
   letter-spacing: var(--letter-spacing-bold-sm);
 }
-
-
 #banner .shipping-address dd {
   color: var(--color-white);
   font: var(--font-bold-md);
   letter-spacing: var(--letter-spacing-bold-md);
 }
-
-
 #banner .search {
   flex-grow: 1;
 }
-
 #banner .search .search__form {
   display: flex;
   overflow: hidden;
   border-radius: 4px;
 }
-
 #banner .search .search__keyword-field {
   background-color: var(--color-white);
   width: 100%;
 }
-
 #banner .search .search__keyword-field #keyword {
   padding: 12px;
   box-sizing: border-box;
@@ -60,83 +49,69 @@
   font: var(--font-body-md);
   letter-spacing: var(--letter-spacing-body-md);
 }
-
-#banner .search [type="submit"] {
+#banner .search [type=submit] {
   padding: 12px;
   border: 0;
   font-size: 0;
   background-color: var(--color-primary-orange-100);
 }
-
 #banner .nation {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #banner .nation figure {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
-
 #banner .nation figure img {
   width: 24px;
   height: 24px;
 }
-
 #banner .nation figure figcaption {
   color: var(--color-white);
-  font: var(--font-bold-md)
+  font: var(--font-bold-md);
 }
-
 #banner .login {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #banner .login a {
   text-decoration: none;
   color: white;
-  font: var(--font-bold-md)
+  font: var(--font-bold-md);
 }
-
 #banner .mypage {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
 #banner .mypage a {
   text-decoration: none;
   color: white;
-  font: var(--font-bold-md)
+  font: var(--font-bold-md);
 }
-
 #banner .cart {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #banner .cart figure {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
-
 #banner .cart figure img {
   width: 24px;
   height: 24px;
 }
-
 #banner .cart figure figcaption {
   color: var(--color-white);
-  font: var(--font-bold-md)
+  font: var(--font-bold-md);
 }
 
 #navbar {
@@ -146,19 +121,20 @@
   padding: 0 16px;
   background-color: var(--color-gray-900);
 }
-
-#navbar .navbar__list{
+#navbar .navbar__list {
   display: flex;
 }
-
-
 #navbar .navbar__item {
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+#navbar .navbar__item a {
+  text-decoration: none;
+  color: var(--color-white);
+  font: var(--font-bold-md);
+}
 #navbar .sidebar-trigger {
   background-color: transparent;
   border: none;
@@ -171,17 +147,10 @@
   color: var(--color-white);
   font: var(--font-bold-md);
 }
-
-#navbar .navbar__item a {
-  text-decoration: none;
-  color: var(--color-white);
-  font: var(--font-bold-md);
-
-}
-
-
 #navbar .right {
   text-decoration: none;
   color: var(--color-white);
   font: var(--font-bold-md);
 }
+
+/*# sourceMappingURL=header.css.map */
