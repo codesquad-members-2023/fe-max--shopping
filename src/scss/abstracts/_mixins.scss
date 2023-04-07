@@ -152,16 +152,18 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 170px;
+  // top: 170px;
   width: 1120px;
-  height: fit-content;
+  height: 211px;
   border: 1px solid red;
-}
+} 
 
 @mixin slide-button {
-  width: 24px;
-  height: 40px;
   @include pointer;
+  @include flex-column;
+  justify-content: center;
+  width: 24px;
+  height: inherit;
 }
 
 // @mixin contents {
@@ -201,7 +203,6 @@
   background-color: $color-white;
 }
 @mixin item {
-  // width: calc(25% - 18px);
   width: 262px;
 }
 
