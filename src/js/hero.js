@@ -1,23 +1,15 @@
 async function initHeroSlides() {
-  const slides = document.querySelector('.hero-slider__slides');
-  const images = await fetchImages();
-  const addedImages = addImageInBothEnd(images);
+  try {
+    const slides = document.querySelector('.hero-slider__slides');
+    const response = await fetch('./src/data/images.json');
+    const images = await response.json();
+    const addedImages = addImageInBothEnd(images);
 
-  insertImagesInSlides(slides, addedImages);
-  startHeroSlides(slides);
-}
-
-function fetchImages() {
-  return fetch('./src/data/images.json')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network error');
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('error', error);
-    });
+    insertImagesInSlides(slides, addedImages);
+    startHeroSlides(slides);
+  } catch (error) {
+    console.error('에러..', error);
+  }
 }
 
 function startHeroSlides(slide) {
@@ -46,12 +38,7 @@ function startHeroSlides(slide) {
     isMoving = true;
     slide.style.transition = 'transform 450ms ease-in-out';
 
-    if (direction === 'left') {
-      slideIndex -= 1;
-    }
-    if (direction === 'right') {
-      slideIndex += 1;
-    }
+    slideIndex += direction === 'left' ? -1 : 1;
 
     moveSlides();
     checkIndex();
