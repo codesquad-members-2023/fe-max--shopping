@@ -4,6 +4,7 @@
 :host {
   width: 100%;
   max-width: $max-width-body;
+  z-index: 1;
 }
 
 .cards-container {
