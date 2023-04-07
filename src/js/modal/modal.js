@@ -1,4 +1,4 @@
-import { $ } from "../utils.js";
+import { $, $All } from "../utils.js";
 
 export const showLoginModalOnLoad = () => {
     document.addEventListener(
@@ -23,6 +23,7 @@ export const addDimming = (className) => {
     const elem = $(className);
     elem.classList.add("dim");
 };
+
 export const removeDimming = (className) => {
     const elem = $(className);
     elem.classList.remove("dim");

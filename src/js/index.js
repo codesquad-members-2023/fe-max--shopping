@@ -3,6 +3,7 @@ import {
     addLoginEventListeners,
     addAddressEventListeners,
 } from "./modal/event.js";
+import { init } from "./hero/hero.js";
 
 function initModal() {
     showLoginModalOnLoad();
@@ -11,3 +12,4 @@ function initModal() {
 }
 
 initModal();
+init();
