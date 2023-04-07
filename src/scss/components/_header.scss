@@ -8,7 +8,7 @@
     @include flex-row;
     gap: 24px;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 0 26px;
     background-color: $color-black;
     @include font-bold-md;
     color: $color-white;
@@ -83,7 +83,7 @@
     @include flex-row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 26px;
     background-color: $color-gray-900;
     @include font-bold-md-s;
     color: $color-white;

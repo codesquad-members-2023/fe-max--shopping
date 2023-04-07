@@ -4,11 +4,15 @@
 //     @include border-common;
 // }
 
-body{
-    overflow-y: scroll;
-    overflow-x: hidden;
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: $color-gray-200;
 }
 
 .body-layout {
   @include body-layout;
+}
+.main {
+  @include main;
 }

@@ -1,0 +1,18 @@
+@import '../abstracts/mixins';
+@import '../abstracts/variables';
+@import '../abstracts/placeholders';
+@import '../base/animations';
+
+.hero {
+  @include flex-column;
+  align-items: center;
+}
+.slide-banner {
+  @include carousel;
+}
+.slide-buttons-layout {
+  @include slide-buttons-layout;
+}
+.slide-item {
+  @include carousel-item;
+}
