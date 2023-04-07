@@ -1,0 +1,165 @@
+@use "../style/common";
+
+@mixin nav-bar__label {
+  @include common.bold-sm;
+
+  color: var(--gray400);
+  white-space: nowrap;
+}
+
+@mixin nav-bar__text {
+  @include common.bold-md;
+
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.shipping-address__label,
+.nav-bar__login-label,
+.nav-bar__my-page-label {
+  @include nav-bar__label;
+}
+
+.shipping-address__text,
+.nav-bar__nation-text,
+.nav-bar__login-text,
+.nav-bar__my-page-text,
+.nav-bar__cart-text,
+.sub__side-bar-buttton-text,
+.sub-right-menu {
+  @include nav-bar__text;
+}
+
+.sub__left-menu {
+  @include nav-bar__text;
+
+  font-weight: 600;
+  letter-spacing: 0em;
+
+  padding: 8px;
+}
+
+.logo,
+.shipping-address-container,
+.search-bar__submit-button,
+.nav-bar__nation,
+.nav-bar__login-label,
+.nav-bar__login-text,
+.nav-bar__my-page,
+.nav-bar__cart,
+.sub__left-menus,
+.sub-right-menu {
+  cursor: pointer;
+}
+
+.nav-bar__main {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: var(--black);
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.shipping-address {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.shipping-address__label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.shipping-address__icon-wrapper {
+  width: 12px;
+  height: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shipping-address__icon {
+  width: 8px;
+  height: 10px;
+}
+
+.search-bar {
+  width: 100%;
+  min-width: 200px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+
+.search-bar__input {
+  @include common.body-md;
+
+  width: 100%;
+  height: 100%;
+  padding: 0px 0px 0px 12px;
+  color: var(--gray500);
+}
+
+.search-bar__submit-button {
+  min-width: 40px;
+  height: 100%;
+  background-color: var(--primary-orange100);
+
+  &:hover {
+    background-color: var(--primary-orange200);
+  }
+}
+
+.nav-bar__nation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-bar__login {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar__cart {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar__sub {
+  height: 32px;
+  padding: 0px 16px;
+  background-color: var(--gray900);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub__left-menus {
+  display: flex;
+}
+
+.sub__side-bar-button {
+  padding: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sub__side-bar-button-icon {
+  width: 16px;
+  height: 16px;
+}

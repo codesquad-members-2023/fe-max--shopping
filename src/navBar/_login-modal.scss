@@ -1,0 +1,84 @@
+@use "../style/common";
+@use "../modal/modal";
+
+.login-modal {
+  @include modal.modal;
+
+  top: 100%;
+  right: 0;
+
+  transition: all 500ms;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::before {
+    top: -12px;
+    left: calc(100% - 40px);
+
+    @include modal.triangle;
+  }
+}
+
+.modal__login-button {
+  @include common.button;
+  @include common.bold-sm;
+
+  width: 160px;
+  height: 32px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.modal__login-caption {
+  @include common.body-sm;
+
+  color: var(--black);
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.modal__nav {
+  margin-top: 8px;
+  padding: 8px 16px 16px 16px;
+  border-top: 1px solid var(--gray100);
+
+  display: flex;
+  gap: 3px;
+}
+
+.modal__nav-left,
+.modal__nav-right {
+  width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal__nav-title {
+  @include common.bold-md;
+
+  color: var(--black);
+}
+
+.modal__nav-text {
+  @include common.body-sm;
+
+  color: var(--black);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--primary-orange200);
+  }
+}

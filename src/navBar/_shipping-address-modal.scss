@@ -1,0 +1,49 @@
+@use "../style/common";
+@use "../modal/modal";
+
+.shipping-address-modal {
+  @include modal.modal;
+
+  top: 100%;
+  left: 0;
+  width: 320px;
+
+  transition: all 500ms;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::before {
+    top: -12px;
+    left: 16px;
+
+    @include modal.triangle;
+  }
+}
+
+.shipping-address-modal__caption {
+  @include common.body-sm;
+
+  margin-bottom: 26px;
+}
+
+.shipping-address-modal__button-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.shipping-address-modal__continue-button,
+.shipping-address-modal__change-button {
+  @include common.button;
+  @include common.bold-sm;
+
+  height: 32px;
+  cursor: pointer;
+}

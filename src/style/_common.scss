@@ -1,0 +1,94 @@
+:root {
+  --font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+  --white: #ffffff;
+  --gray100: #eff2f2;
+  --gray100: #e5e9e9;
+  --gray200: #dce0e0;
+  --gray300: #d5d5d5;
+  --gray400: #c1c1c1;
+  --gray500: #878787;
+  --gray700: #535353;
+  --gray800: #2a3648;
+  --gray900: #1b232f;
+  --black: #10141a;
+  --black40: rgba(16, 20, 26, 0.4);
+  --primary-yellow100: #fed15f;
+  --primary-yellow200: #febe30;
+  --primary-yellow300: #de9408;
+  --primary-orange100: #fcb057;
+  --primary-orange200: #ff9900;
+  --secondary-purple: #941387;
+  --secondary-navy: #074099;
+  --secondary-green: #0c5e72;
+}
+
+@mixin base-font-style {
+  font-family: var(--font-family);
+  font-style: normal;
+}
+
+@mixin body-sm {
+  @include base-font-style;
+
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+
+@mixin body-md {
+  @include base-font-style;
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+
+@mixin bold-sm {
+  @include base-font-style;
+
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: -0.06em;
+}
+
+@mixin bold-md {
+  @include base-font-style;
+
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.06em;
+}
+
+@mixin bold-lg {
+  @include base-font-style;
+
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+@mixin bold-xl {
+  @include base-font-style;
+
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 33px;
+}
+
+@mixin button {
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  padding: 0px 10px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
