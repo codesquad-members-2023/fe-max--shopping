@@ -1,5 +1,8 @@
-@import url('/src/style/css/reset.css');
-@import url('/src/style/css/values.css');
+// @import url('/src/style/css/reset.css');
+// @import url('/src/style/css/values.css');
+@import './reset';
+@import './values';
+@import './carousel';
 
 @mixin flex-row($justify: flex-start, $align: center) {
   display: flex;
@@ -54,6 +57,7 @@ button {
 
 #nav-bar {
   position: relative;
+  min-width: 1120px;
 
   .modal-cover {
     position: absolute;
@@ -282,6 +286,6 @@ button {
   }
   to {
     opacity: 0;
-    display: none;
+    visibility: hidden;
   }
 }
