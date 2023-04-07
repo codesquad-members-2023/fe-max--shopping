@@ -2,21 +2,55 @@ import { Component } from './base/Component.js';
 
 export class Hero extends Component {
   static slideCount = 6;
+  static autoIntervalSecs = 10000;
+  static direction = { left: -1, right: 1 };
+  static transitionSecs = 0.5;
 
   constructor() {
     super('hero');
+    this.direction;
+    this.slideIndex = 0;
     this.slider = this.$('.slider');
-    this.setSliderWidth(this.slider, Hero.slideCount);
-    this.appendSlides(this.slider, Hero.slideCount);
+    this.initSlider(this.slider, Hero.slideCount);
   }
 
-  appendSlides(slider, slideCount) {
-    const slides = this.makeSlideNodes(slideCount);
-    slider.append(...slides);
+  initEventHandlers() {
+    this.moveAutoInterval(Hero.autoIntervalSecs);
+    this.$('.left').addEventListener('click', () => this.moveToPrevSlide());
+    this.$('.right').addEventListener('click', () => this.moveToNextSlide());
+  }
+
+  moveAutoInterval(interval) {
+    setInterval(() => this.moveToNextSlide(), interval);
+  }
+
+  moveToPrevSlide() {}
+
+  moveToNextSlide() {
+    this.direction = Hero.direction.left;
+    this.slideIndex += 1;
+    this.moveSlide(this.direction, this.slideIndex);
+  }
+
+  moveSlide(direction, slideIndex) {
+    this.slider.style.transform = `translateX(${
+      direction * (100 / Hero.slideCount) * slideIndex
+    }%)`;
+    this.slider.style.transition = `all ${Hero.transitionSecs}s ease-in-out`;
+  }
+
+  initSlider(slider, slideCount) {
+    this.setSliderWidth(slider, slideCount);
+    this.appendSlides(slider, slideCount);
   }
 
   setSliderWidth(slider, slideCount) {
     slider.style.width = `${slideCount * 100}vw`;
+  }
+
+  appendSlides(slider, slideCount) {
+    const slideNodes = this.makeSlideNodes(slideCount);
+    slider.append(...slideNodes);
   }
 
   makeSlideNodes(slideCount) {
