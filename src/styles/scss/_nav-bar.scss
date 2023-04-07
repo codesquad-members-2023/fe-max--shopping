@@ -250,8 +250,8 @@
   justify-content: flex-end;
   width: 235px;
   height: 100px;
-  right: 171px;
-  top: 48px;
+  right: 4px;
+  top: 36px;
   z-index: 10;
   animation: fadein 1s;
 
@@ -300,7 +300,6 @@
       width: 88px;
       height: 18px;
       color: var(--secondary-navy);
-      cursor: pointer;
     }
   }
 }
@@ -317,7 +316,7 @@
   width: 320px;
   height: 126px;
   top: 58px;
-  margin-left: 131px;
+  left: 133px;
   z-index: 10;
   @include BodySM;
 
@@ -392,8 +391,8 @@
   width: 335px;
   height: 375px;
   right: 171px;
-  top: 58px;
-  margin-left: 131px;
+  top: 45px;
+  right: 4px;
   z-index: 15;
   animation: fadein 1s;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));

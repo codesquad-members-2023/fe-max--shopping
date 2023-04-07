@@ -1,5 +1,9 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 
+body {
+  background-color: #e3e6e6;
+}
+
 @mixin BoldXL {
   font-family: var(--font-family);
   font-style: normal;
@@ -93,5 +97,14 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
