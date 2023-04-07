@@ -1,39 +1,38 @@
-const navLogin = document.querySelector('#nav-login');
-const loginTextArea = document.querySelector('#nav-login-wrapper');
-const popover = document.querySelector('#nav-login-popover');
-const expandedPopover = document.querySelector('#nav-login-popover-expanded');
+import { setEvent } from './utility.js';
 
-const backdrop = document.createElement('div');
-backdrop.classList.add('modal-backdrop');
-navLogin.parentNode.appendChild(backdrop);
+const loginArea = document.querySelector('#nav-login');
+const loginTextArea = document.querySelector('#nav-login-text');
+const loginPopover = document.querySelector('#nav-login-popover');
+const loginModal = document.querySelector('#nav-login-modal');
+const backdrop = document.querySelector('.modal-backdrop');
 
-window.addEventListener('DOMContentLoaded', () => {
+export function initHeader() {
+  setEvent(window, 'DOMContentLoaded', fadeInLoginPopover);
+  setEvent(loginTextArea, 'mouseenter', showExpandedPopover);
+  setEvent(loginArea, 'mouseleave', hideExpandedPopover);
+}
+
+function fadeInLoginPopover() {
   setTimeout(() => {
-    popover.show();
-    popover.classList.add('show');
+    loginPopover.show();
+    loginPopover.classList.add('show');
   }, 1000);
-});
+}
 
-loginTextArea.addEventListener('mouseenter', () => {
-  popover.close();
-  popover.classList.remove('show');
-
-  expandedPopover.show();
-  expandedPopover.classList.add('show');
+function showExpandedPopover() {
+  if (loginPopover) {
+    loginPopover.close();
+    loginPopover.classList.remove('show');
+  }
+  loginModal.show();
+  loginModal.classList.add('show');
   backdrop.style.display = 'block';
   backdrop.classList.add('show');
-});
+}
 
-// navLogin.addEventListener('mouseout', () => {
-//   expandedPopover.close();
-//   expandedPopover.classList.remove('show');
-//   backdrop.style.display = 'none';
-//   backdrop.classList.remove('show');
-// });
-
-expandedPopover.addEventListener('mouseleave', () => {
-  expandedPopover.close();
-  expandedPopover.classList.remove('show');
+function hideExpandedPopover() {
+  loginModal.close();
+  loginModal.classList.remove('show');
   backdrop.style.display = 'none';
   backdrop.classList.remove('show');
-});
+}

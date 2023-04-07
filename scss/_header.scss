@@ -1,32 +1,17 @@
+// 스크롤 될 때 작동 테스트를 위해 임시로 height값을 추가했습니다.
 body {
   height: 2000px;
   position: relative;
 }
 
+// 모달, 팝오버 관련 스타일
 dialog {
   border: none;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 dialog.show {
-  opacity: 1;
-}
-
-.modal-backdrop {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 88px;
-  left: -12px;
-  background-color: var(--color-black-40);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 8;
-}
-
-.modal-backdrop.show {
   opacity: 1;
 }
 
@@ -45,6 +30,7 @@ dialog.show {
 }
 
 #nav-bar {
+  // 상단 메인 네비게이션 관련 스타일
   #nav-main {
     height: 56px;
     display: flex;
@@ -52,8 +38,12 @@ dialog.show {
     padding: 8px 16px;
 
     & > div {
+      height: 52px;
       margin: 0 12px;
       flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     #nav-logo {
@@ -61,6 +51,8 @@ dialog.show {
     }
 
     #nav-shipping-address {
+      flex-direction: column;
+
       .location-icon {
         width: 12px;
         height: 12px;
@@ -114,9 +106,8 @@ dialog.show {
 
     #nav-login {
       position: relative;
-      margin: 10px 12px;
 
-      #nav-login-wrapper {
+      #nav-login-text {
         display: flex;
         flex-direction: column;
       }
@@ -125,7 +116,7 @@ dialog.show {
         padding: 16px;
         border-radius: 4px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        top: 42px;
+        top: 54px;
         z-index: 10;
 
         &::before {
@@ -161,32 +152,51 @@ dialog.show {
         }
       }
 
-      #nav-login-popover-expanded {
+      #nav-login-modal {
         width: 335px;
         height: 365px;
         left: -220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
 
         &::before {
           left: 250px;
         }
 
-        #login-popover-list-wrapper {
+        #login-modal-text-wrapper {
+          width: 303px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--color-gray-100);
+          text-align: center;
+        }
+
+        #login-modal-list-wrapper {
           width: 303px;
           height: 258px;
+          margin-top: 8px;
           display: flex;
           align-items: flex-start;
           align-self: stretch;
 
           article {
             width: 150px;
+
+            ul {
+              li {
+                height: 18px;
+                margin-bottom: 4px;
+              }
+            }
           }
         }
       }
     }
 
     #nav-mypage {
-      display: flex;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     #nav-cart {
@@ -200,6 +210,7 @@ dialog.show {
     }
   }
 
+  // 하단 서브 네비게이션바 스타일
   #nav-sub {
     height: 32px;
     display: flex;
@@ -223,5 +234,20 @@ dialog.show {
     .nav-right {
       flex-basis: 112px;
     }
+  }
+
+  .modal-backdrop {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 88px;
+    background-color: var(--color-black-40);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .modal-backdrop.show {
+    opacity: 1;
   }
 }
