@@ -9,15 +9,9 @@
   background-color: transparent;
 
   transition: background-color 500ms;
-}
 
-.dimmed {
-  z-index: 500;
-  position: absolute;
-
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--black40);
-
-  transition: background-color 500ms;
+  &.dimmed {
+    z-index: 500;
+    background-color: var(--black40);
+  }
 }

@@ -3,14 +3,10 @@ import { hideElement, isShowElement, showElement } from "../utils/elementVisibil
 export const mainDimmed = () => {
   const $dim = document.querySelector(".dim");
 
-  if ($dim) {
-    $dim.className = "dimmed";
-  }
+  $dim?.classList.add("dimmed");
 
   return function undimmed() {
-    if ($dim) {
-      $dim.className = "dim";
-    }
+    $dim?.classList.remove("dimmed");
   };
 };
 
