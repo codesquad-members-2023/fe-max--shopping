@@ -7,6 +7,14 @@
   top: 100%;
   left: 0;
   width: 320px;
+  transition: all 1s;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &::before {
     content: "";

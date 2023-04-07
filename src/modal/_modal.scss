@@ -3,14 +3,6 @@
 @mixin modal {
   z-index: 1000;
   position: absolute;
-
-  animation: fadeIn 1s;
-
-  &.fadeOut {
-    @extend .fadeOut;
-
-    opacity: 0;
-  }
 }
 
 .modal__content {

@@ -1,44 +1,24 @@
-import { handleModalMouseLeave, mainDimmed } from "../modal/modal";
-import { loginModalView, extendLoginModalView } from "./loginModalView";
+import { handleNavBarMouseEnter } from "../modal/modal";
+import { hideElement, showElement } from "../utils/elementVisibility";
 
 export const showLoginModalOnLoad = ($loginContainer: Element | null | undefined) => {
+  const $modal = document.querySelector("#login-modal");
   const id = setTimeout(() => {
-    appendLoginModalView(loginModalView);
+    showElement($modal);
   }, 1000);
 
-  $loginContainer?.addEventListener("mouseenter", () => handleLoginModalClose(id), { once: true });
-};
-
-const appendLoginModalView = (view: string) => {
-  const $login = document.querySelector(".nav-bar__login");
-
-  $login?.insertAdjacentHTML("beforeend", view);
-};
-
-export const handleNavBarLoginMouseEnter = (event: Event) => {
-  const $loginContainer = event.currentTarget as HTMLElement;
-
-  if ($loginContainer.classList.contains("open")) {
-    return;
-  }
-
-  $loginContainer.classList.add("open");
-  appendLoginModalView(extendLoginModalView);
-
-  const undimmed = mainDimmed();
-  const $extendLoginModal = document.querySelector("#extend-login-modal");
-
-  $extendLoginModal?.addEventListener("mouseleave", (event) =>
-    handleModalMouseLeave(event, $loginContainer, undimmed)
+  $loginContainer?.addEventListener(
+    "mouseenter",
+    () => {
+      clearTimeout(id);
+      hideElement($modal);
+    },
+    { once: true }
   );
 };
 
-export const handleLoginModalClose = (id: number) => {
-  if (id) {
-    clearTimeout(id);
-  }
+export const handleNavBarLoginMouseEnter = () => {
+  const $modal = document.querySelector("#extend-login-modal");
 
-  const $loginModal = document.querySelector("#login-modal");
-
-  $loginModal?.remove();
+  handleNavBarMouseEnter($modal);
 };

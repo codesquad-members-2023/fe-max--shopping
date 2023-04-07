@@ -1,26 +1,15 @@
 import { handleModalMouseLeave, mainDimmed } from "../modal/modal";
-import { shippingAddressModalView } from "./shippingAddressView";
+import { isShowElement, showElement } from "../utils/elementVisibility";
 
-export const handleShippingAddressMouseEnter = (event: Event) => {
-  const $shippingAddressContainer = event.currentTarget as HTMLElement;
+export const handleShippingAddressMouseEnter = () => {
+  const $modal = document.querySelector(".shipping-address-modal");
 
-  if ($shippingAddressContainer.classList.contains("open")) {
+  if (isShowElement($modal)) {
     return;
   }
 
-  $shippingAddressContainer.classList.add("open");
-  appendShippingAddressModalView(shippingAddressModalView);
-
+  showElement($modal);
   const undimmed = mainDimmed();
-  const $modal = document.querySelector(".shipping-address-modal");
 
-  $modal?.addEventListener("mouseleave", (event) =>
-    handleModalMouseLeave(event, $shippingAddressContainer, undimmed)
-  );
-};
-
-const appendShippingAddressModalView = (view: string) => {
-  const $shippingAddress = document.querySelector(".shipping-address");
-
-  $shippingAddress?.insertAdjacentHTML("beforeend", view);
+  $modal?.addEventListener("mouseleave", (event) => handleModalMouseLeave(event, undimmed));
 };

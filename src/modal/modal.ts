@@ -1,3 +1,5 @@
+import { hideElement, isShowElement, showElement } from "../utils/elementVisibility";
+
 export const mainDimmed = () => {
   const $dim = document.querySelector(".dim");
 
@@ -12,19 +14,24 @@ export const mainDimmed = () => {
   };
 };
 
-export const handleModalMouseLeave = (
-  event: Event,
-  $parentNode: HTMLElement,
-  undimmed: () => void
-) => {
-  const currentTarget = event.currentTarget as HTMLElement;
+export const handleNavBarMouseEnter = ($modal: Element | null) => {
+  if (isShowElement($modal)) {
+    return;
+  }
+
+  showElement($modal);
+  const undimmed = mainDimmed();
+
+  $modal?.addEventListener("mouseleave", (event: Event) => handleModalMouseLeave(event, undimmed));
+};
+
+export const handleModalMouseLeave = (event: Event, undimmed: () => void) => {
+  const $modal = event.currentTarget as HTMLElement;
 
   const id = setTimeout(() => {
-    setTimeout(() => currentTarget?.remove(), 500);
-    currentTarget?.classList.add("fadeOut");
-    $parentNode.classList.remove("open");
+    hideElement($modal);
     undimmed();
   }, 500);
 
-  currentTarget?.addEventListener("mouseover", () => clearTimeout(id), { once: true });
+  $modal?.addEventListener("mouseenter", () => clearTimeout(id), { once: true });
 };
