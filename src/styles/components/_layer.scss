@@ -18,3 +18,52 @@
   background-color: $White;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
+
+@mixin popupAnimation {
+  -webkit-animation: fadeAnimation 0.7s linear;
+  -moz-animation: fadeAnimation 0.7s linear;
+  -ms-animation: fadeAnimation 0.7s linear;
+  -o-animation: fadeAnimation 0.7s linear;
+  animation: fadeAnimation 0.7s linear;
+}
+
+@-webkit-keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
