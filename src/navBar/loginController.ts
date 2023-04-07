@@ -1,4 +1,5 @@
-import { extendLoginModalView, loginModalView } from "./loginView";
+import { mainDimmed } from "../modal/modal";
+import { loginModalView, extendLoginModalView } from "./loginView";
 
 export const showLoginModalOnLoad = () => {
   setTimeout(() => {
@@ -6,10 +7,10 @@ export const showLoginModalOnLoad = () => {
     const $loginContainer = $login?.querySelector(".nav-bar__login-container");
 
     appendLoginModalView($login, loginModalView);
-    $loginContainer?.addEventListener("mouseover", (event) =>
-      handleNavBarLoginMouseOver(event, $login)
+    $loginContainer?.addEventListener("mouseenter", (event) =>
+      handleNavBarLoginMouseEnter(event, $login)
     );
-    $loginContainer?.addEventListener("mouseover", removeLoginModal, { once: true });
+    $loginContainer?.addEventListener("mouseover", removeModal, { once: true });
   }, 1000);
 };
 
@@ -17,52 +18,45 @@ const appendLoginModalView = (targetElement: Element | null, view: string) => {
   targetElement?.insertAdjacentHTML("beforeend", view);
 };
 
-const handleNavBarLoginMouseOver = (event: Event, $login: Element | null) => {
-  const currentTarget = event.currentTarget as HTMLElement;
+const handleNavBarLoginMouseEnter = (event: Event, $login: Element | null) => {
+  const $loginContainer = event.currentTarget as HTMLElement;
 
-  if (currentTarget.classList.contains("open")) {
+  if ($loginContainer.classList.contains("open")) {
     return;
   }
 
-  currentTarget.classList.add("open");
+  $loginContainer.classList.add("open");
   appendLoginModalView($login, extendLoginModalView);
-  mainDimmed();
 
+  const undimmed = mainDimmed();
   const $extendLoginModal = document.querySelector("#extend-login-modal");
 
-  $extendLoginModal?.addEventListener("mouseout", (event) =>
-    handleExtendLoginModalMouseout(event, currentTarget)
+  $extendLoginModal?.addEventListener("mouseleave", (event) =>
+    handleExtendLoginModalMouseLeave(event, $loginContainer, undimmed)
   );
 };
 
-const mainDimmed = () => {
-  const $dim = document.querySelector(".dim");
-
-  if ($dim) {
-    $dim.className = "dimmed";
-  }
-};
-
-const removeLoginModal = () => {
+const removeModal = () => {
   document.querySelector("#login-modal")?.remove();
 };
 
-const handleExtendLoginModalMouseout = (event: Event, $loginContainer: HTMLElement) => {
-  const currentTarget = event.currentTarget as HTMLElement;
-  const $dimmed = document.querySelector(".dimmed");
+const handleExtendLoginModalMouseLeave = (
+  event: Event,
+  $loginContainer: HTMLElement,
+  undimmed: () => void
+) => {
+  const $extendLoginModal = event.currentTarget as HTMLElement;
 
   const id = setTimeout(() => {
-    setTimeout(() => currentTarget?.remove(), 500);
-    currentTarget?.classList.add("fadeOut");
+    setTimeout(() => $extendLoginModal?.remove(), 500);
+    $extendLoginModal?.classList.add("fadeOut");
     $loginContainer.classList.remove("open");
 
-    if ($dimmed) {
-      $dimmed.className = "dim";
-    }
+    undimmed();
   }, 500);
 
-  currentTarget?.addEventListener(
-    "mouseover",
+  $extendLoginModal?.addEventListener(
+    "mouseleave",
     () => {
       clearTimeout(id);
     },

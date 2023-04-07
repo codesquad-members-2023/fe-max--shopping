@@ -1,3 +1,5 @@
+# 1주차 학습 정리
+
 ## Sass란?
 
 - Syntactically Awesome Style Sheets의 약자이다. (문법적으로 어썸한 스타일 시트?)

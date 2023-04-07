@@ -1,0 +1,33 @@
+@use "../style/common";
+@use "../modal/modal";
+
+.shipping-address-modal {
+  @include modal.modal;
+
+  top: 100%;
+  left: 0;
+  width: 320px;
+}
+
+.shipping-address-modal__caption {
+  @include common.BodySM;
+
+  margin-bottom: 26px;
+}
+
+.shipping-address-modal__button-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.shipping-address-modal__continue-button,
+.shipping-address-modal__change-button {
+  @include common.Button;
+  @include common.BoldSM;
+
+  height: 32px;
+  cursor: pointer;
+}

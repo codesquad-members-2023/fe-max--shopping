@@ -40,7 +40,7 @@
 }
 
 .logo,
-.shipping-address,
+.shipping-address-container,
 .search-bar__submit-button,
 .nav-bar__nation,
 .nav-bar__login-label,
@@ -64,6 +64,8 @@
 }
 
 .shipping-address {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 }
