@@ -6,13 +6,15 @@
 }
 
 .header {
-  position: relative;
   @include header-layout(56px, $BoldMD, $Black);
 
   &__wrap {
-    min-width: 1024px;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 30;
     height: 100%;
-    padding: 8px 16px;
+    // padding: 8px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,6 +70,7 @@
     transition: all 0.3s ease-in-out;
     padding: 0 12px;
     a {
+      @include typography($BodyMD, $White);
       height: 100%;
       display: flex;
       justify-content: center;
@@ -91,9 +94,14 @@
   .top-text {
     @include typography($BoldSM, $Gray400);
   }
+  .down-text {
+    @include typography($BoldMD, $White);
+  }
 }
 
 .nav-sub {
+  position: relative;
+  z-index: 30;
   @include header-layout(32px, $BoldSM, $Gray900);
   line-height: 32px;
   min-width: 1024px;
@@ -126,6 +134,9 @@
     li {
       padding: 0 8px;
       transition: box-shadow 0.3s ease-in-out;
+      a {
+        @include typography($BoldMD, $White);
+      }
     }
     > li:hover,
     > li:focus,
@@ -137,11 +148,11 @@
 
   &__right {
     transition: box-shadow 0.3s ease-in-out;
-    @include typography($BoldMD, $White);
     a {
       display: block;
       height: 32px;
       padding: 0 12px;
+      @include typography($BoldMD, $White);
     }
     &:hover,
     &:focus,
@@ -153,8 +164,8 @@
 }
 
 .header-layer {
+  width: 100%;
   position: absolute;
-  // left: 147px;
 
   &__popup--address,
   &__popup--login,
@@ -163,9 +174,13 @@
   }
 
   &__popup--address {
-    position: relative;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 131px;
     width: 320px;
     height: 126px;
+    @include popupAnimation;
 
     .shape-triangle {
       @include clip-path-triangle(10px);
@@ -192,6 +207,12 @@
   }
 
   &__popup--login {
+    width: 235px;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 172px;
+    @include popupAnimation;
     .shape-triangle {
       @include clip-path-triangle(188px);
     }
@@ -209,6 +230,11 @@
 
   &__popup--login-extend {
     width: 335px;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 126px;
+    @include popupAnimation;
     .shape-triangle {
       @include clip-path-triangle(242px);
     }
@@ -250,8 +276,12 @@
     }
   }
 
-  &__popup--address.hidden,
-  &__popup--login-extend.hidden,
+  &__popup--address.hidden {
+    display: none;
+  }
+  &__popup--login-extend.hidden {
+    display: none;
+  }
   &__popup--login.hidden {
     display: none;
   }

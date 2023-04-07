@@ -7,6 +7,7 @@
     <title>Amazon</title>
     <link rel="stylesheet" href="./src/styles/css/main.css" />
     <script src="./src/js/hero.js" defer></script>
+    <script src="./src/js/layer.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -14,20 +15,13 @@
       <div class="header__wrap">
         <div class="header__brand-logo">
           <a href="./index.html">
-            <img
-              src="./src/assets/images/img_logo.svg"
-              alt="아마존 사이트 로고"
-            />
+            <img src="./src/assets/images/img_logo.svg" alt="아마존 사이트 로고" />
             <h1 class="sr-only">아마존</h1>
           </a>
         </div>
         <div class="header__shipping-address">
           <div>
-            <img
-              src="./src/assets/images/icn_location.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="./src/assets/images/icn_location.svg" alt="" aria-hidden="true" />
             <div class="top-text">배송처</div>
           </div>
           <div>대한민국</div>
@@ -40,45 +34,38 @@
         </form>
         <div class="header__nation">
           <a href="#">
-            <img
-              src="./src/assets/images/icn_flag_america.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="./src/assets/images/icn_flag_america.svg" alt="" aria-hidden="true" />
             <div>KO</div>
           </a>
         </div>
         <div class="header__login">
           <a href="#">
             <div class="top-text">안녕하세요,로그인</div>
-            <div>계정및목록</div>
+            <div class="down-text">계정 및 목록</div>
           </a>
         </div>
         <div class="header__my-page">
           <a href="#">
             <div class="top-text">반품</div>
-            <div>&주문</div>
+            <div class="down-text">&주문</div>
           </a>
         </div>
         <div class="header__cart">
           <a href="#">
-            <img
-              src="./src/assets/images/icn_cart.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <img src="./src/assets/images/icn_cart.svg" alt="" aria-hidden="true" />
             <div>장바구니</div>
           </a>
         </div>
       </div>
       <!-- header-layer -->
+
       <div class="header-layer">
         <div class="header-layer__popup--address hidden">
           <div class="shape-triangle"></div>
           <div class="layer-content">
             <div>
-              KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을
-              보려면 배송 주소를 변경하십시오.
+              KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를
+              변경하십시오.
             </div>
             <div class="btn">
               <button class="btn--continue">계속</button>
@@ -87,21 +74,17 @@
           </div>
         </div>
 
-        <div class="header-layer__popup--login hidden" hidden>
+        <div class="header-layer__popup--login hidden">
           <div class="shape-triangle"></div>
           <button class="btn-login">로그인</button>
-          <div>
-            기존 사용자가 아니십니까? <a href="#">여기에서 시작합니다</a>
-          </div>
+          <div>기존 사용자가 아니십니까? <a href="#">여기에서 시작합니다</a></div>
         </div>
 
-        <div class="header-layer__popup--login-extend hidden" hidden>
+        <div class="header-layer__popup--login-extend hidden">
           <div class="shape-triangle"></div>
           <div class="top-area">
             <button class="btn-login">로그인</button>
-            <div>
-              기존 사용자가 아니십니까? <a href="#">여기서 시작합니다.</a>
-            </div>
+            <div>기존 사용자가 아니십니까? <a href="#">여기서 시작합니다.</a></div>
           </div>
           <div class="bottom-area">
             <div class="left-list">
@@ -131,6 +114,8 @@
           </div>
         </div>
       </div>
+      <div class="dim hidden"></div>
+
       <!-- navbar -->
       <nav class="nav-sub">
         <div class="nav-sub__wrap">
