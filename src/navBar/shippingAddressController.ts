@@ -41,7 +41,6 @@ const handleModalMouseLeave = (
   $shippingAddress?.addEventListener(
     "mouseover",
     () => {
-      console.log("bye");
       clearTimeout(id);
     },
     { once: true }
