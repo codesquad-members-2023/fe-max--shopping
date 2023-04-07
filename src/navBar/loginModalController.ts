@@ -1,5 +1,5 @@
 import { mainDimmed } from "../modal/modal";
-import { loginModalView, extendLoginModalView } from "./loginView";
+import { loginModalView, extendLoginModalView } from "./loginModalView";
 
 export const showLoginModalOnLoad = () => {
   setTimeout(() => {
