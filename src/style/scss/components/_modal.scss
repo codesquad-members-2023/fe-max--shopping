@@ -1,15 +1,41 @@
-.hidden {
-  display: none;
+.dimmed {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-black40;
+    z-index: 1;
+  }
 }
 
-.dim {
-  width: 100%;
-  height: 100%;
-  background-color: $color-black;
-  opacity: 40%;
-  animation: dimFadeIn 0.5s;
-  &.hidden {
-    animation: dimFadeOut 0.5s;
+.location-modal {
+  @include modal(288px, 94px);
+  @include typo('bodySM');
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  top: 48px;
+  left: -15px;
+  z-index: 100;
+  animation: fadeIn 0.5s;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -12%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #ffffff;
+    border-top: 0;
+    margin-left: 60px;
+    margin-top: -10px;
   }
 }
 
@@ -20,12 +46,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 45px;
+  top: 48px;
   left: -160px;
+  z-index: 100;
   animation: fadeIn 0.5s;
-  &.hidden {
-    animation: fadeOut 0.5s;
-  }
   &::after {
     content: '';
     position: absolute;
@@ -36,7 +60,7 @@
     border: 10px solid transparent;
     border-bottom-color: #ffffff;
     border-top: 0;
-    margin-left: 60px;
+    margin-left: 70px;
     margin-top: -10px;
   }
   span {
@@ -55,15 +79,14 @@
 
 .login-modal__large {
   @include modal(303px, 333px);
+  @include typo('bodySM');
   padding: 16px;
   display: flex;
   flex-direction: column;
-  top: 45px;
-  left: -160px;
+  top: 48px;
+  left: -197px;
+  z-index: 100;
   animation: fadeIn 0.5s;
-  &.hidden {
-    animation: fadeOut 0.5s;
-  }
   .login-section {
     display: flex;
     flex-direction: column;
@@ -98,11 +121,14 @@
       margin-top: 4px;
       justify-content: start;
     }
-    a,
-    a:hover,
-    a:active {
+    a {
       color: $color-black;
       text-decoration: none;
+    }
+    a:hover,
+    a:active {
+      color: $color-primaryYellow300;
+      text-decoration: underline;
     }
     &::before {
       position: absolute;
@@ -127,33 +153,8 @@
   }
 }
 
-.location-modal {
-  @include modal(288px, 94px);
-  @include typo('bodySM');
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: end;
-  top: 45px;
-  left: -10px;
-  animation: fadeIn 0.5s;
-  &.hidden {
-    animation: fadeOut 0.5s;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -12%;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-bottom-color: #ffffff;
-    border-top: 0;
-    margin-left: 60px;
-    margin-top: -10px;
-  }
+.hidden {
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -162,32 +163,5 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes dimFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.4;
-  }
-}
-
-@keyframes dimFadeOut {
-  from {
-    opacity: 0.4;
-  }
-  to {
-    opacity: 0;
   }
 }
