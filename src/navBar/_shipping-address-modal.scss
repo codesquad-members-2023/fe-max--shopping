@@ -26,7 +26,7 @@
 }
 
 .shipping-address-modal__caption {
-  @include common.BodySM;
+  @include common.body-sm;
 
   margin-bottom: 26px;
 }
@@ -41,8 +41,8 @@
 
 .shipping-address-modal__continue-button,
 .shipping-address-modal__change-button {
-  @include common.Button;
-  @include common.BoldSM;
+  @include common.button;
+  @include common.bold-sm;
 
   height: 32px;
   cursor: pointer;

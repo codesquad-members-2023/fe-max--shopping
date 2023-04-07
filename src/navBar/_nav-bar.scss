@@ -1,14 +1,14 @@
 @use "../style/common";
 
 @mixin nav-bar__label {
-  @include common.BoldSM;
+  @include common.bold-sm;
 
   color: var(--gray400);
   white-space: nowrap;
 }
 
 @mixin nav-bar__text {
-  @include common.BoldMD;
+  @include common.bold-md;
 
   color: var(--white);
   white-space: nowrap;
@@ -101,7 +101,7 @@
 }
 
 .search-bar__input {
-  @include common.BodyMD;
+  @include common.body-md;
 
   width: 100%;
   height: 100%;

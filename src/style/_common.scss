@@ -25,13 +25,13 @@
   --secondary-green: #0c5e72;
 }
 
-@mixin BaseFontStyle {
+@mixin base-font-style {
   font-family: var(--font-family);
   font-style: normal;
 }
 
-@mixin BodySM {
-  @include BaseFontStyle;
+@mixin body-sm {
+  @include base-font-style;
 
   font-weight: 500;
   font-size: 11px;
@@ -39,8 +39,8 @@
   letter-spacing: -0.03em;
 }
 
-@mixin BodyMD {
-  @include BaseFontStyle;
+@mixin body-md {
+  @include base-font-style;
 
   font-weight: 500;
   font-size: 13px;
@@ -48,8 +48,8 @@
   letter-spacing: -0.03em;
 }
 
-@mixin BoldSM {
-  @include BaseFontStyle;
+@mixin bold-sm {
+  @include base-font-style;
 
   font-weight: 600;
   font-size: 11px;
@@ -57,8 +57,8 @@
   letter-spacing: -0.06em;
 }
 
-@mixin BoldMD {
-  @include BaseFontStyle;
+@mixin bold-md {
+  @include base-font-style;
 
   font-weight: 800;
   font-size: 13px;
@@ -66,23 +66,23 @@
   letter-spacing: -0.06em;
 }
 
-@mixin BoldLG {
-  @include BaseFontStyle;
+@mixin bold-lg {
+  @include base-font-style;
 
   font-weight: 800;
   font-size: 18px;
   line-height: 21px;
 }
 
-@mixin BoldXL {
-  @include BaseFontStyle;
+@mixin bold-xl {
+  @include base-font-style;
 
   font-weight: 800;
   font-size: 28px;
   line-height: 33px;
 }
 
-@mixin Button {
+@mixin button {
   border: 1px solid #de9408;
   border-radius: 4px;
   padding: 0px 10px;

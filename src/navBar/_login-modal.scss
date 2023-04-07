@@ -25,8 +25,8 @@
 }
 
 .modal__login-button {
-  @include common.Button;
-  @include common.BoldSM;
+  @include common.button;
+  @include common.bold-sm;
 
   width: 160px;
   height: 32px;
@@ -35,7 +35,7 @@
 }
 
 .modal__login-caption {
-  @include common.BodySM;
+  @include common.body-sm;
 
   color: var(--black);
   white-space: nowrap;
@@ -65,13 +65,13 @@
 }
 
 .modal__nav-title {
-  @include common.BoldMD;
+  @include common.bold-md;
 
   color: var(--black);
 }
 
 .modal__nav-text {
-  @include common.BodySM;
+  @include common.body-sm;
 
   color: var(--black);
   text-decoration: none;
