@@ -19,63 +19,110 @@
     <header class="header">
       <nav class="nav-bar">
         <div class="nav-main">
-          <div class="main-BI">
+          <div class="nav-main__BI">
             <a href="./index.html">
               <img src="./src/asset/images/BI.svg" alt="" />
             </a>
           </div>
-          <div class="main-location">
+          <div class="nav-main__location">
             <div>
-              <img src="./src/asset/icons/location.svg" alt="" />
-              <span class="location-title">배송처</span>
+              <img class="location-icon" src="./src/asset/icons/location.svg" alt="" />
+              <span class="sub-title">배송처</span>
             </div>
             <div>
               <span>대한민국</span>
             </div>
+            <dialog open class="location-modal hidden">
+              <p>KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</p>
+              <div>
+                <button class="continue-btn">계속</button>
+                <button class="changeAddress-btn">주소변경</button>
+              </div>
+            </dialog>
           </div>
-          <form class="main-search" action="">
+          <form class="nav-main__search" action="">
             <input class="search-bar" placeholder="검색 Amazon" type="text" />
             <button class="search-btn" type="submit">
               <img src="src/asset/icons/search.svg" alt="" />
             </button>
           </form>
-          <div class="main-lang">
+          <div class="nav-main__lang">
             <span class="lang-flag">🇺🇸</span>
             <span class="lang-text">KO</span>
           </div>
-          <div class="main-login">
-            <span class="login-greeting">안녕하세요, 로그인</span>
-            <span>계정 및 목록</span>
+          <div class="nav-main__login">
+            <div class="login-wrap">
+              <span class="sub-title">안녕하세요, 로그인</span>
+              <span>계정 및 목록</span>
+            </div>
+            <dialog open class="login-modal__small hidden">
+              <button class="login-btn">로그인</button>
+              <div>
+                <span>기존 사용자가 아니십니까?</span>
+                <a href="#">여기에서 시작합니다</a>
+              </div>
+            </dialog>
+            <dialog open class="login-modal__large hidden">
+              <div class="login-section">
+                <button class="login-btn">로그인</button>
+                <div>
+                  <span>기존 사용자가 아니십니까?</span>
+                  <a href="#">여기에서 시작합니다</a>
+                </section>
+              </div>
+              <div class="account-section">
+                <ul class="section-title">
+                  <span>귀하의 목록</span>
+                  <li><a>목록 생성</a></li>
+                  <li><a>목록 또는 레지스트리 찾기</a></li>
+                  <li><a>AmazonSmile 자선 품목 목록</a></li>
+                </ul>
+                <ul class="section-title">
+                  <span>계정</span>
+                  <li><a>계정</a></li>
+                  <li><a>주문</a></li>
+                  <li><a>권장 사항</a></li>
+                  <li><a>검색 기록</a></li>
+                  <li><a>워치리스트</a></li>
+                  <li><a>비디오 구매 및 대여</a></li>
+                  <li><a>Kindle 언리미티드</a></li>
+                  <li><a>콘텐츠 및 기기</a></li>
+                  <li><a>항목 구독 및 저장</a></li>
+                  <li><a>멤버십 및 구독</a></li>
+                  <li><a>음악 라이브러리</a></li>
+                </ul>
+              </div>
+            </dialog>
           </div>
-          <div class="main-order">
-            <span>반품</span>
+          <div class="nav-main__order">
+            <span class="sub-title">반품</span>
             <span>& 주문</span>
           </div>
-          <div class="main-cart">
+          <div class="nav-main__cart">
             <img src="./src/asset/icons/cart.svg" alt="" />
             <span>장바구니</span>
           </div>
         </div>
         <div class="nav-sub">
-          <div class="sub-category">
+          <section class="nav-sub__category">
             <div class="menu-category">
               <img src="./src/asset/icons/menu.svg" alt="" />
               <span>모두</span>
             </div>
             <ul class="sub-link">
-              <li>
-                <a href="#">오늘의 딜</a>
-              </li>
+              <li><a href="#">오늘의 딜</a></li>
               <li><a href="#">고객 서비스</a></li>
               <li><a href="#">레지스트리</a></li>
               <li><a href="#">기프트 카드</a></li>
               <li><a href="#">판매</a></li>
             </ul>
-          </div>
-          <div class="sub-right">지금 특가 상품 쇼핑하기</div>
+          </section>
+          <div class="nav-sub__event">지금 특가 상품 쇼핑하기</div>
         </div>
       </nav>
     </header>
-    <main class="main"></main>
+    <main id="main" class="main">
+      <section class="main-section"></section>
+    </main>
   </body>
 </html>
