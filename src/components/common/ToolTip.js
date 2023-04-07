@@ -16,9 +16,9 @@ export class ToolTip extends HTMLElement {
   }
 
   connectedCallback() {
-    setTimeout(() => {
-      this.showSelf();
-    }, 1000);
+    if (!this.shadowRoot.host.classList.contains("dimmed-bg")) {
+      setTimeout(this.showSelf.bind(this), 1000);
+    }
   }
 
   showSelf() {

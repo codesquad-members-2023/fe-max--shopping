@@ -12,7 +12,7 @@
   opacity: 0;
   visibility: hidden;
   transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
-  z-index: 1;
+  z-index: 9;
   color: $color-black;
   @include f-body-sm;
   white-space: nowrap;
@@ -28,6 +28,34 @@
     transform: translateX(-50%) rotate(45deg);
     background-color: $color-white;
     border: 1px solid black;
+  }
+}
+
+:host(.dimmed-bg) {
+  right: -40px;
+
+  &::before {
+    right: 63px;
+  }
+
+  // &::after {
+  //   content: "";
+  //   width: 1000%;
+  //   height: 1000%;
+  //   display: block;
+  //   position: absolute;
+  //   top: 28px;
+  //   left: -2000px;
+  //   background-color: $color-black-40;
+  //   // z-index: 1;
+  // }
+}
+
+:host(.is-left) {
+  left: -10px;
+
+  &::before {
+    left: 28px;
   }
 }
 

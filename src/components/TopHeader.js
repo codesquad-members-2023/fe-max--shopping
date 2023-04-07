@@ -5,7 +5,7 @@ template.innerHTML = `
       <a href="/" id="logo-container">
         <img src="src/assets/logo.png" alt="Amazon Logo" /></a>
       </a>
-      <div class="nav-main__item-container">
+      <div class="nav-main__item-container tool-tip-parent">
         <a href="#" id="shipping-link">
           <div>
             <img src="src/assets/icons/location.svg" alt="Shipping" />
@@ -13,6 +13,16 @@ template.innerHTML = `
           </div>
           <span>대한민국</span>
         </a>
+
+        <tool-tip class="shipping-tooltip is-left dimmed-bg">
+          <div slot="tool-tip-top-content">
+            <div class="shipping-tooltip__desc">KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</div>
+            <div class="shipping-tooltip__btns">
+              <primary-button data-content="계속" data-width="39px"></primary-button>
+              <primary-button data-content="주소 변경" data-width="58px"></primary-button>
+            </div>
+          </div>
+        </tool-tip>
       </div>
       <div id="search-container">
         <form>
@@ -40,7 +50,7 @@ template.innerHTML = `
             <div>기존사용자가 아니십니까? <a href="#">여기에서 시작합니다.</a></div>
           </div>
         </tool-tip>
-        <tool-tip-enhanced>
+        <tool-tip class="dimmed-bg">
           <div slot="tool-tip-top-content">
             <primary-button data-content="로그인" data-width="160px"></primary-button>
             <div>기존사용자가 아니십니까? <a href="#">여기에서 시작합니다.</a></div>
@@ -71,7 +81,7 @@ template.innerHTML = `
               </ul>
             </div>
           </div>
-        </tool-tip-enhanced>
+        </tool-tip>
       </div>
       <div class="nav-main__item-container">
         <a href="#" id="orders-link">
@@ -109,6 +119,25 @@ template.innerHTML = `
 
   <style>
     /* tool-tip-enhanced component styles */
+    .shipping-tooltip {
+      width: 320px;
+    }
+
+    .shipping-tooltip div:last-of-type {
+      width: 100%;
+      gap: 8px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .shipping-tooltip__desc {
+      white-space: normal;
+    }
+
+    .shipping-tooltip div[slot=tool-tip-top-content] {
+      gap: 26px;
+    }
+
     .tool-tip-bottom-content {
       margin-top: 8px;
       padding-top: 8px;
@@ -151,20 +180,21 @@ class TopHeader extends HTMLElement {
   connectedCallback() {
     const toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
     toolTipParents.forEach((parent) => {
-      const toolTip = parent.querySelector("tool-tip");
-      const toolTipEnhanced = parent.querySelector("tool-tip-enhanced");
+      const toolTipNotDimmedBg = parent.querySelector(
+        "tool-tip:not(.dimmed-bg)"
+      );
+      const toolTipDimmedBg = parent.querySelector("tool-tip.dimmed-bg");
 
       parent.addEventListener("mouseover", (evt) => {
-        const el = evt.target;
-
-        if (!toolTip.contains(el)) {
-          toolTip.hideSelf();
-          toolTipEnhanced.showSelf();
+        if (!toolTipNotDimmedBg?.contains(evt.target)) {
+          toolTipNotDimmedBg?.hideSelf();
+          toolTipDimmedBg.showSelf();
         }
       });
 
-      parent.addEventListener("mouseout", () => {
-        toolTipEnhanced.hideSelf();
+      parent.addEventListener("mouseleave", () => {
+        toolTipNotDimmedBg?.hideSelf();
+        toolTipDimmedBg.hideSelf();
       });
     });
   }
