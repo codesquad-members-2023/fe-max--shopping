@@ -2,7 +2,6 @@ import { delay } from '../utils/delay.js';
 import { $ } from '../utils/dom.js';
 
 export function initLoginModal() {
-
   document.addEventListener('DOMContentLoaded', renderLoginModal);
   $('.main-login').addEventListener('mouseenter', expandLoginModal);
   $('.main-login').addEventListener('mouseleave', removeLoginModal);
@@ -64,9 +63,7 @@ function expandLoginModal() {
 
 function removeLoginModal() {
   const loginModal = $('.modal');
-  const modalBg =  $('.modal-bg');
+  const modalBg = $('.modal-bg');
   loginModal.remove();
   modalBg.remove();
 }
-
-// export { loginModal, renderLoginModal, expandLoginModal, removeLoginModal };

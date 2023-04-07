@@ -41,7 +41,6 @@ function handleSlideTransitionEnd({ slide, firstClone, lastClone }) {
     let slides = getSlides();
     if (slides[index].id === firstClone.id) {
       slide.style.transition = 'none';
-      // 트랜지션이 있으면 backward 이동하는게 보임
       index = 1;
       setSlideInitialPosition({ slides, slide });
     }
@@ -54,7 +53,6 @@ function handleSlideTransitionEnd({ slide, firstClone, lastClone }) {
   });
 }
 
-//
 const moveToNextSlide = () => {
   const slide = $('.slide-banner');
   let slides = getSlides();
