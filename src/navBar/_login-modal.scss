@@ -6,9 +6,10 @@
 
   top: 100%;
   right: 0;
+
+  transition: all 500ms;
   opacity: 0;
   visibility: hidden;
-  transition: all 1s;
 
   &.show {
     opacity: 1;
