@@ -1,17 +1,19 @@
 import { $ } from '../utils/dom.js';
 
-export const initShippingModal = () => {
-  document
-    .querySelector('.main-shipping-address')
-    .addEventListener('mouseenter', renderShippingModal);
-  document
-    .querySelector('.main-shipping-address')
-    .addEventListener('mouseleave', removeShippingModal);
-};
+export function initShippingModal() {
+  $('.main-shipping-address').addEventListener(
+    'mouseenter',
+    renderShippingModal
+  );
+  $('.main-shipping-address').addEventListener(
+    'mouseleave',
+    removeShippingModal
+  );
+}
 
 function renderShippingModal() {
   const mainShippingAddress = $('.main-shipping-address');
-  const header = $('.header');
+  const bodyLayout = $('.body-layout');
 
   mainShippingAddress.insertAdjacentHTML(
     'beforeend',
@@ -25,16 +27,16 @@ function renderShippingModal() {
 </div>`
   );
 
-  header.insertAdjacentHTML(
-    'beforeend',
+  bodyLayout.insertAdjacentHTML(
+    'afterend',
     `<div class="modal-bg">
   </div>`
   );
 }
 
 function removeShippingModal() {
-  const shippingModal = document.querySelector('.modal-temp1');
-  const modalBg = document.querySelector('.modal-bg');
+  const shippingModal = $('.modal-temp1');
+  const modalBg = $('.modal-bg');
 
   shippingModal.remove();
   modalBg.remove();

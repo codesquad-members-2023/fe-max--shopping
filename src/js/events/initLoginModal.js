@@ -2,9 +2,6 @@ import { delay } from '../utils/delay.js';
 import { $ } from '../utils/dom.js';
 
 export function initLoginModal() {
-  // if( ){
-  //   렌더?
-  // }
 
   document.addEventListener('DOMContentLoaded', renderLoginModal);
   $('.main-login').addEventListener('mouseenter', expandLoginModal);
@@ -27,9 +24,9 @@ async function renderLoginModal() {
   );
 }
 
-function expandLoginModal(e) {
+function expandLoginModal() {
   const loginModal = $('.modal');
-  const header = $('.header');
+  const bodyLayout = $('.body-layout');
 
   loginModal.insertAdjacentHTML(
     'beforeend',
@@ -58,7 +55,7 @@ function expandLoginModal(e) {
       </div>`
   );
 
-  header.insertAdjacentHTML(
+  bodyLayout.insertAdjacentHTML(
     'beforeend',
     `<div class="modal-bg">
     </div>`
@@ -67,8 +64,7 @@ function expandLoginModal(e) {
 
 function removeLoginModal() {
   const loginModal = $('.modal');
-  const modalBg = document.querySelector('.modal-bg');
-
+  const modalBg =  $('.modal-bg');
   loginModal.remove();
   modalBg.remove();
 }
