@@ -1,5 +1,9 @@
 ### **📰 구현 사항 정리**
 
+- 메인 페이지 html 마크업
+- 메인 페이지 css 작업
+- 로그인, 주소 모달 구현
+
 ### **🔥 새롭게 배운 점 - 키워드 및 요약**
 
 -  모듈화 & 컴포넌트(component)
@@ -79,40 +83,40 @@
     - 선택자를 포함할 수 있으며, 상위 요소 참조(&) 등도 할 수 있다
     - 함수처럼 인수를 가질 수 있다, 기본값을 설정해 주는 것이 좋다, 가변인수 또한 활용 가능하다
 
-    ```scss
-    $color: black;
-    $backgroudColor: gray;
+      ```scss
+      $color: black;
+      $backgroudColor: gray;
 
-    // mixin 선언하기
-    @mixin large-text($color, $backgroundColor) {
-      color: $color;
-      background-color: $backgroundColor;
-      font-size: 22px;
-      font-weight: bold;
-    }
+      // mixin 선언하기
+      @mixin large-text($color, $backgroundColor) {
+        color: $color;
+        background-color: $backgroundColor;
+        font-size: 22px;
+        font-weight: bold;
+      }
 
-    h1 {
-      // mixin 사용하기
-      @include large-text;
-    }
-    ```
+      h1 {
+        // mixin 사용하기
+        @include large-text;
+      }
+      ```
 
   - 확장(extend)
     - 특정 선택자가 다른 선택자의 스타일을 가져야 할 때 사용 가능하다
     - 사용을 권장하지 않는다, mixin을 대신 사용하도록 한다  
     -> 한번의 확장으로 엄청난 크기의 CSS가 생성되는 등 원치 않는 부작용이 초래될 수 있다
 
-    ```SCSS
-    .btn {
-      padding: 10px;
-      margin: 10px;
-      background: blue;
-    }
-    .btn-danger {
-      @extend .btn;
-      background: red;
-    }
-    ```
+      ```css
+      .btn {
+        padding: 10px;
+        margin: 10px;
+        background: blue;
+      }
+      .btn-danger {
+        @extend .btn;
+        background: red;
+      }
+      ```
 
   - 함수와 조건, 반복등의 기능도 사용 가능하다
 
@@ -138,7 +142,22 @@
 - 툴팁 vs 팝오버 vs 모달
 
 ```markdown
+- 툴팁 Tootip
+  - 텍스트나 아이콘 위로 마우스를 올리면 짧은 텍스트를 표시한다
 
+- 팝오버 Popover
+  - 툴팁보다 더 긴 텍스트를 표시하거나 외부 웹페이지에 대한 링크를 원할 때 사용한다
+  - 텍스트나 아이콘을 클릭하면 표시한다
+  - 외부를 클릭할 때 까지 계속 표시된다
+
+- 모달 Modal
+  - 긴 텍스트, 이미지 및 링크를 표시한다
+  - 화면의 상당 부분을 덮는 오버레이가 생성되며 배경이 어두워진다
+  - 모달 창 내의 닫는 버튼 또는 모달 창 외부에 있는 X 버튼을 클릭하여 닫는다
+
+- 참고 링크
+  1. https://www.checkmarket.com/kb/survey-tooltips-popovers-modal-windows/
+  2. https://cultureamp.design/guidelines/tooltip-popover-modal/
 ```
 
 - keyframe
@@ -167,3 +186,7 @@
 ```
 
 ### **🤔 생각해볼 거리**
+
+- 여러 개발 용어를 혼용하지 않기 위해 필요한 노력에 대해 알아본다
+- scss 작업 시 변수나 재활용 뿐만 아니라 함수와 반복문, 조건문 등도 활용해본다
+- 애니메이션을 적극적으로 활용해본다

@@ -18,6 +18,10 @@
     align-items: center;
     justify-content: space-between;
     @include boldMd;
+    label,
+    nav {
+      cursor: pointer;
+    }
   }
   .navigation-main {
     height: 56px;

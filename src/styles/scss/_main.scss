@@ -25,6 +25,7 @@
       .chevron {
         width: 24px;
         height: 40px;
+        cursor: pointer;
       }
     }
     .main-card-container {
@@ -38,6 +39,7 @@
       .card {
         width: 262px;
         margin-bottom: 24px;
+        cursor: pointer;
         .frame {
           padding: 16px;
           background-color: $color-white;
@@ -64,6 +66,7 @@
       }
       #card1 {
         > div {
+          cursor: default;
           display: flex;
           flex-direction: column;
           align-items: center;

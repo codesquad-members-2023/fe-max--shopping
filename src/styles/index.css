@@ -199,6 +199,10 @@ table {
   font: 900 13px Pretendard;
   letter-spacing: -0.03em;
 }
+.navigation-bar > div label,
+.navigation-bar > div nav {
+  cursor: pointer;
+}
 .navigation-bar .navigation-main {
   height: 56px;
   background-color: #10141a;
@@ -282,6 +286,7 @@ table {
 .main-container .main-content-container .main-banner-container .chevron {
   width: 24px;
   height: 40px;
+  cursor: pointer;
 }
 .main-container .main-content-container .main-card-container {
   display: flex;
@@ -295,6 +300,7 @@ table {
 .main-container .main-content-container .main-card-container .card {
   width: 262px;
   margin-bottom: 24px;
+  cursor: pointer;
 }
 .main-container .main-content-container .main-card-container .card .frame {
   padding: 16px;
@@ -329,6 +335,7 @@ table {
   letter-spacing: -0.03em;
 }
 .main-container .main-content-container .main-card-container #card1 > div {
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -383,6 +390,7 @@ footer .site-link .site-link-container .footer-nav-container .footer-nav-list li
   font: 500 11px/1.6 Pretendard;
   letter-spacing: -0.03em;
   margin-bottom: 4px;
+  cursor: pointer;
 }
 footer .info {
   display: flex;
@@ -405,6 +413,9 @@ footer .info .footer-info-container .footer-logo {
   height: 40px;
   margin-right: 46px;
 }
+footer .info .footer-info-container .footer-logo img {
+  cursor: pointer;
+}
 footer .info .footer-info-container .footer-info {
   width: 258px;
   height: 34px;
@@ -413,6 +424,13 @@ footer .info .footer-info-container .footer-info .footer-info-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+footer .info .footer-info-container .footer-info .footer-info-link div {
+  cursor: pointer;
+}
+
+.modal {
+  cursor: default;
 }
 
 #address-modal {
@@ -535,4 +553,7 @@ html {
 }
 html a {
   text-decoration: none;
+}
+html button {
+  cursor: pointer;
 }

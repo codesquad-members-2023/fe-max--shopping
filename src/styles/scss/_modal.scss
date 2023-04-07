@@ -1,5 +1,9 @@
 @import "variables", "mixin";
 
+.modal {
+  cursor: default;
+}
+
 #address-modal {
   @include modal;
   z-index: -1;
