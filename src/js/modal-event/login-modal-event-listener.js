@@ -1,46 +1,72 @@
 import { constant } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
-import { setDisplay, setOpacity, setSize, setZindex } from "../util/set-style.js";
+import { dim, undim } from "./dim.js";
+import {
+  setOpacity,
+  setSize,
+  setZindex,
+  setTransform,
+} from "../util/set-style.js";
 
-async function showLoginModalWithDelay() {
+async function expandLoginModalWithDelay() {
+  for (const element of constant.loginModalExpandContainer) {
+    setSize(element, "150px", "258px");
+  }
+  await delay(500);
+  setOpacity(constant.loginModalExpand, "1");
+  setTransform(constant.loginModalTail, "290px", "-10px");
+}
+
+async function hideLoginModal() {
+  setZindex(constant.loginModal, "-1");
+  setOpacity(constant.loginModal, "0");
+}
+
+function preventExpand() {
+  constant.loginModal.removeEventListener("mouseenter", expandLoginModal);
+}
+
+async function openLoginModalWithDelay() {
   await delay(1000);
   setOpacity(constant.loginModal, "1");
 }
 
-async function expandLoginModalWithDelay() {
-  const expandWidth = "150px";
-  const expandHeight = "258px";
-  setOpacity(constant.mainDimmed, "0.5")
-  for (const element of constant.loginModalExpandContainer) {
-    setSize(element, expandWidth, expandHeight);
-  }
-  await delay(500);
-  setOpacity(constant.loginModalExpand, "1");
+function expandLoginModal() {
+  dim();
+  expandLoginModalWithDelay();
+  preventExpand();
 }
 
-async function closeLoginModalWithDelay() {
-  setOpacity(constant.loginModal, "0");
-  setOpacity(constant.mainDimmed, "0");
-  await delay(1000);
-  setDisplay(constant.loginModal, "none");
-  setDisplay(constant.mainDimmed, "none");
+function closeLoginModal() {
+  undim();
+  hideLoginModal();
+}
+
+function reOpenLoginModal() {
+  setZindex(constant.loginModal, "2");
+  setOpacity(constant.loginModal, "1");
+  dim();
 }
 
 function loginModalLoadEventHandler() {
-  document.addEventListener("DOMContentLoaded", showLoginModalWithDelay);
+  document.addEventListener("DOMContentLoaded", openLoginModalWithDelay);
 }
 
 function loginModalMouseenterEventHandler() {
-  constant.loginArea.addEventListener("mouseenter", expandLoginModalWithDelay);
-  constant.loginModal.addEventListener("mouseenter", expandLoginModalWithDelay);
+  constant.loginModal.addEventListener("mouseenter", expandLoginModal);
 }
 
 function loginModalMouseleaveEventHandler() {
-  constant.loginModal.addEventListener("mouseleave", closeLoginModalWithDelay);
+  constant.loginModal.addEventListener("mouseleave", closeLoginModal);
+}
+
+function loginModalClickEventHandler() {
+  constant.loginArea.addEventListener("click", reOpenLoginModal);
 }
 
 export {
   loginModalLoadEventHandler,
   loginModalMouseenterEventHandler,
   loginModalMouseleaveEventHandler,
+  loginModalClickEventHandler,
 };

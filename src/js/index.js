@@ -1,9 +1,3 @@
-import {
-  loginModalLoadEventHandler,
-  loginModalMouseenterEventHandler,
-  loginModalMouseleaveEventHandler,
-} from "./modal-event/login-modal-event-listener.js";
+import { initModalEvent } from "./modal-event/init-modal-event.js";
 
-loginModalLoadEventHandler();
-loginModalMouseenterEventHandler();
-loginModalMouseleaveEventHandler();
+initModalEvent();

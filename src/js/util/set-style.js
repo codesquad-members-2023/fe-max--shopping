@@ -12,7 +12,11 @@ function setDisplay(element, state) {
 }
 
 function setZindex(element, zindex) {
-  element.setAttribute("z-index", zindex);
+  element.style.zIndex = zindex;
 }
 
-export { setOpacity, setSize, setDisplay, setZindex };
+function setTransform(element, xMove, yMove) {
+  element.style.transform = `translate(${xMove}, ${yMove})`;
+}
+
+export { setOpacity, setSize, setDisplay, setZindex, setTransform };

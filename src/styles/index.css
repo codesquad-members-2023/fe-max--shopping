@@ -257,8 +257,6 @@ table {
 .main-container {
   width: 100%;
   background-color: #e5e9e9;
-  z-index: 1;
-  transition: 1s;
 }
 .main-container .main-content-container {
   height: 1430px;
@@ -340,8 +338,8 @@ table {
   position: absolute;
   width: 100%;
   height: 1430px;
+  opacity: -1;
   background-color: black;
-  opacity: 0;
   z-index: 1;
   transition: 1s;
 }
@@ -356,11 +354,13 @@ footer .nav-to-top {
   height: 32px;
   background-color: #2a3648;
 }
-footer .nav-to-top span {
+footer .nav-to-top a {
   width: 100px;
   margin: 0 auto;
+  color: #ffffff;
   font: 600 11px Pretendard;
   letter-spacing: -0.06em;
+  text-align: center;
 }
 footer .site-link {
   margin: 0 auto;
@@ -415,27 +415,86 @@ footer .info .footer-info-container .footer-info .footer-info-link {
   justify-content: space-between;
 }
 
-#login-modal {
+#address-modal {
   background-color: #ffffff;
   position: absolute;
   top: 55px;
-  right: 172px;
-  width: auto;
   border-radius: 4px;
   opacity: 0;
   transition: 1s;
   z-index: 2;
+  z-index: -1;
+}
+#address-modal .tail {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background-image: url("../assets/svg/triangle.svg");
+  background-repeat: no-repeat;
+  transition: 1.5s;
+  transform: translate(10px, -10px);
+}
+#address-modal .address-modal-container {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  font: 500 11px/1.6 Pretendard;
+  letter-spacing: -0.03em;
+  color: #10141a;
+  gap: 26px;
+}
+#address-modal .address-button-container {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+#address-modal .address-button-container .address-button {
+  margin: 0 auto;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  font: 600 11px Pretendard;
+  letter-spacing: -0.06em;
+  margin: 0;
+  height: 32px;
+}
+#address-modal .address-button-container #continue {
+  width: 39px;
+}
+#address-modal .address-button-container #change-address {
+  width: 58px;
+}
+
+#login-modal {
+  background-color: #ffffff;
+  position: absolute;
+  top: 55px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: 1s;
+  z-index: 2;
+  right: 172px;
+}
+#login-modal .tail {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background-image: url("../assets/svg/triangle.svg");
+  background-repeat: no-repeat;
+  transition: 1.5s;
+  transform: translate(190px, -10px);
 }
 #login-modal .login-modal-container {
   display: flex;
   flex-direction: column;
-  width: auto;
   margin: 16px;
   font: 500 11px/1.6 Pretendard;
   letter-spacing: -0.03em;
   color: #10141a;
 }
 #login-modal .login-modal-container .login-button {
+  width: 160px;
+  height: 32px;
   width: 160px;
   height: 32px;
   margin: 0 auto;
@@ -451,7 +510,6 @@ footer .info .footer-info-container .footer-info .footer-info-link {
 }
 #login-modal .login-modal-container a {
   color: #074099;
-  text-decoration: none;
 }
 #login-modal .login-modal-container .login-modal-expand {
   display: flex;
@@ -463,11 +521,18 @@ footer .info .footer-info-container .footer-info .footer-info-link {
   height: 0;
   transition: 1s;
 }
-#login-modal .login-modal-container .login-modal-expand .login-modal-expand-container h1 {
+#login-modal .login-modal-container .login-modal-expand .login-modal-expand-container h2 {
   margin: 8px 0 4px;
   font: 900 13px Pretendard;
   letter-spacing: -0.03em;
 }
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container li {
   margin-bottom: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+html a {
+  text-decoration: none;
 }

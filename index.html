@@ -9,7 +9,7 @@
     <title>Amazon</title>
   </head>
   <body>
-    <header class="navigation-bar">
+    <header class="navigation-bar" id="top">
       <div class="navigation-main">
         <nav class="header-logo has-img">
           <img src="./src/assets/svg/logo.svg" alt="logo" />
@@ -21,6 +21,28 @@
           </label>
           <div id="address">
             <span>대한민국</span>
+          </div>
+          <div id="address-modal">
+            <div class="tail" id="address-tail"></div>
+            <div class="address-modal-container">
+              <span
+                >KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는
+                품목을 <br />
+                보려면 배송 주소를 변경하십시오.</span
+              >
+              <div class="address-button-container">
+                <button class="address-button" id="continue" type="button">
+                  계속
+                </button>
+                <button
+                  class="address-button"
+                  id="change-address"
+                  type="button"
+                >
+                  주소변경
+                </button>
+              </div>
+            </div>
           </div>
         </nav>
         <form class="search-bar has-img">
@@ -41,6 +63,7 @@
             <span>계정 및 목록</span>
           </div>
           <div id="login-modal">
+            <div class="tail" id="login-tail"></div>
             <div class="login-modal-container">
               <button class="login-button" type="button">로그인</button>
               <span
@@ -49,7 +72,7 @@
               </span>
               <div class="login-modal-expand">
                 <div class="login-modal-expand-container">
-                  <h1>귀하의 목록</h1>
+                  <h2>귀하의 목록</h2>
                   <ul>
                     <li>목록 생성</li>
                     <li>목록 또는 레지스트리 찾기</li>
@@ -57,7 +80,7 @@
                   </ul>
                 </div>
                 <div class="login-modal-expand-container">
-                  <h1>계정</h1>
+                  <h2>계정</h2>
                   <ul>
                     <li>계정</li>
                     <li>주문</li>
@@ -123,7 +146,7 @@
     </header>
 
     <main class="main-container">
-    <div class="dimmed"></div>
+      <div class="dimmed"></div>
       <div class="main-banner">
         <div class="main-content-container">
           <div class="main-banner-container">
@@ -305,12 +328,12 @@
 
     <footer>
       <div class="nav-to-top">
-        <span>위로 돌아가기</span>
+        <a href="#top">위로 돌아가기</a>
       </div>
       <div class="site-link">
         <div class="site-link-container">
           <div class="footer-nav-container">
-            <h1 class="footer-nav-header">당사에 대해 알아보기</h1>
+            <h2 class="footer-nav-header">당사에 대해 알아보기</h2>
             <ul class="footer-nav-list">
               <li>커리어</li>
               <li>블로그</li>
@@ -321,7 +344,7 @@
             </ul>
           </div>
           <div class="footer-nav-container">
-            <h1 class="footer-nav-header">당사와 함께 돈 벌기</h1>
+            <h2 class="footer-nav-header">당사와 함께 돈 벌기</h2>
             <ul class="footer-nav-list">
               <li>Amazon에서 판매</li>
               <li>Amazon Business에서 판매</li>
@@ -334,7 +357,7 @@
             </ul>
           </div>
           <div class="footer-nav-container">
-            <h1 class="footer-nav-header">Amazon 결제 제품</h1>
+            <h2 class="footer-nav-header">Amazon 결제 제품</h2>
             <ul class="footer-nav-list">
               <li>포인트로 구입</li>
               <li>잔고 재로드</li>
@@ -342,7 +365,7 @@
             </ul>
           </div>
           <div class="footer-nav-container">
-            <h1 class="footer-nav-header">지원</h1>
+            <h2 class="footer-nav-header">지원</h2>
             <ul class="footer-nav-list">
               <li>COVID-19 및 Amazon</li>
               <li>사용자 계정</li>
