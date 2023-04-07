@@ -11,3 +11,20 @@ export const mainDimmed = () => {
     }
   };
 };
+
+export const handleModalMouseLeave = (
+  event: Event,
+  $parentNode: HTMLElement,
+  undimmed: () => void
+) => {
+  const currentTarget = event.currentTarget as HTMLElement;
+
+  const id = setTimeout(() => {
+    setTimeout(() => currentTarget?.remove(), 500);
+    currentTarget?.classList.add("fadeOut");
+    $parentNode.classList.remove("open");
+    undimmed();
+  }, 500);
+
+  currentTarget?.addEventListener("mouseover", () => clearTimeout(id), { once: true });
+};

@@ -1,4 +1,4 @@
-import { mainDimmed } from "../modal/modal";
+import { handleModalMouseLeave, mainDimmed } from "../modal/modal";
 import { loginModalView, extendLoginModalView } from "./loginModalView";
 
 export const showLoginModalOnLoad = ($loginContainer: Element | null | undefined) => {
@@ -15,16 +15,6 @@ const appendLoginModalView = (view: string) => {
   $login?.insertAdjacentHTML("beforeend", view);
 };
 
-export const handleLoginModalClose = (id: number) => {
-  if (id) {
-    clearTimeout(id);
-  }
-
-  const $loginModal = document.querySelector("#login-modal");
-
-  $loginModal?.remove();
-};
-
 export const handleNavBarLoginMouseEnter = (event: Event) => {
   const $loginContainer = event.currentTarget as HTMLElement;
 
@@ -39,30 +29,16 @@ export const handleNavBarLoginMouseEnter = (event: Event) => {
   const $extendLoginModal = document.querySelector("#extend-login-modal");
 
   $extendLoginModal?.addEventListener("mouseleave", (event) =>
-    handleExtendLoginModalMouseLeave(event, $loginContainer, undimmed)
+    handleModalMouseLeave(event, $loginContainer, undimmed)
   );
 };
 
-const handleExtendLoginModalMouseLeave = (
-  event: Event,
-  $loginContainer: HTMLElement,
-  undimmed: () => void
-) => {
-  const $extendLoginModal = event.currentTarget as HTMLElement;
+export const handleLoginModalClose = (id: number) => {
+  if (id) {
+    clearTimeout(id);
+  }
 
-  const id = setTimeout(() => {
-    setTimeout(() => $extendLoginModal?.remove(), 500);
-    $extendLoginModal?.classList.add("fadeOut");
-    $loginContainer.classList.remove("open");
+  const $loginModal = document.querySelector("#login-modal");
 
-    undimmed();
-  }, 500);
-
-  $extendLoginModal?.addEventListener(
-    "mouseleave",
-    () => {
-      clearTimeout(id);
-    },
-    { once: true }
-  );
+  $loginModal?.remove();
 };
