@@ -1,17 +1,14 @@
 import { Component } from './base/Component.js';
 
 export class Hero extends Component {
-  static slideCount = 6;
   static autoIntervalSecs = 10000;
-  static direction = { left: -1, right: 1 };
   static transitionSecs = 0.5;
 
-  constructor() {
+  constructor(slideCount) {
     super('hero');
-    this.direction;
-    this.slideIndex = 0;
+    this.currentIndex = 0;
     this.slider = this.$('.slider');
-    this.initSlider(this.slider, Hero.slideCount);
+    this.initSlider(this.slider, slideCount);
   }
 
   initEventHandlers() {
@@ -24,18 +21,18 @@ export class Hero extends Component {
     setInterval(() => this.moveToNextSlide(), interval);
   }
 
-  moveToPrevSlide() {}
-
-  moveToNextSlide() {
-    this.direction = Hero.direction.left;
-    this.slideIndex += 1;
-    this.moveSlide(this.direction, this.slideIndex);
+  moveToPrevSlide() {
+    this.currentIndex -= 1;
+    this.moveSlide(this.currentIndex);
   }
 
-  moveSlide(direction, slideIndex) {
-    this.slider.style.transform = `translateX(${
-      direction * (100 / Hero.slideCount) * slideIndex
-    }%)`;
+  moveToNextSlide() {
+    this.currentIndex += 1;
+    this.moveSlide(this.currentIndex);
+  }
+
+  moveSlide(currentIndex) {
+    this.slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
     this.slider.style.transition = `all ${Hero.transitionSecs}s ease-in-out`;
   }
 

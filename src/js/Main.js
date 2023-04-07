@@ -22,7 +22,7 @@ export class Main extends Component {
   }
 
   template() {
-    const hero = new Hero();
+    const hero = new Hero(6);
     return [hero.node];
   }
 }
