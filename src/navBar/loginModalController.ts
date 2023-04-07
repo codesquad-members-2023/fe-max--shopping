@@ -3,6 +3,7 @@ import { hideElement, showElement } from "../utils/elementVisibility";
 
 export const showLoginModalOnLoad = ($loginContainer: Element | null | undefined) => {
   const $modal = document.querySelector("#login-modal");
+
   const id = setTimeout(() => {
     showElement($modal);
   }, 1000);

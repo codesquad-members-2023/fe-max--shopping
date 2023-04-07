@@ -20,6 +20,7 @@ export const handleNavBarMouseEnter = ($modal: Element | null) => {
   }
 
   showElement($modal);
+
   const undimmed = mainDimmed();
 
   $modal?.addEventListener("mouseleave", (event: Event) => handleModalMouseLeave(event, undimmed));

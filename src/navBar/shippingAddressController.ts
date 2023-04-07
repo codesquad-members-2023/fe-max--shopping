@@ -9,6 +9,7 @@ export const handleShippingAddressMouseEnter = () => {
   }
 
   showElement($modal);
+
   const undimmed = mainDimmed();
 
   $modal?.addEventListener("mouseleave", (event) => handleModalMouseLeave(event, undimmed));
