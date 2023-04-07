@@ -16,3 +16,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.dim {
+  z-index: 0;
+  position: absolute;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+
+  transition: background-color 500ms;
+
+  &.dimmed {
+    z-index: 500;
+    background-color: var(--black40);
+  }
+}
