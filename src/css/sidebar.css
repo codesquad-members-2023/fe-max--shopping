@@ -18,14 +18,14 @@
   height: 100%;
   width: 320px;
 }
-#sidebar h1 {
+#sidebar h2 {
   padding: 16px;
   padding-left: 32px;
   font: var(--font-bold-lg);
   color: var(--color-white);
   background-color: var(--color-black);
 }
-#sidebar h2 {
+#sidebar h3 {
   padding: 16px;
   padding-left: 32px;
   font: var(--font-bold-lg);

@@ -4,6 +4,12 @@
 	.bg 
 		background-color: var(--color-gray-200) 
 		height: 100% 
+	.dimmed 
+		position: absolute 
+		background-color: var(--color-black-40) 
+		height: 100% 
+		width: 100% 
+		left: 0 
 #hero 
 	display: flex 
 	.hero__wrapper 
@@ -12,7 +18,7 @@
 	.hero__slide 
 		text-align: center 
 		padding: 75px 
-		h1 
+		h3 
 			font: var(--font-bold-xl) 
 			word-break: keep-all 
 	.hero__control 
@@ -38,7 +44,7 @@
 			.contents__card 
 				align-items: center 
 				gap: 16px 
-		h1 
+		h3 
 			font: var(--font-bold-md) 
 		a 
 			text-decoration: none 
@@ -54,7 +60,7 @@
 		img 
 			width: 100% 
 	.contents__card_text 
-		padding: 16px 
+		padding: 16px
 
 $desktop-width: 1024px
 $tablet-width: 768px

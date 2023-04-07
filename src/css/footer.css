@@ -20,7 +20,7 @@
 #footer .footer__menu {
   flex-grow: 1;
 }
-#footer .footer__menu h1 {
+#footer .footer__menu h2 {
   font: var(--font-body-md);
   letter-spacing: var(--letter-spacing-body-md);
   color: var(--color-white);

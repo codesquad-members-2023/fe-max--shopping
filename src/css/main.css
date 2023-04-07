@@ -6,6 +6,13 @@
   background-color: var(--color-gray-200);
   height: 100%;
 }
+#main .dimmed {
+  position: absolute;
+  background-color: var(--color-black-40);
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
 
 #hero {
   display: flex;
@@ -18,7 +25,7 @@
   text-align: center;
   padding: 75px;
 }
-#hero .hero__slide h1 {
+#hero .hero__slide h3 {
   font: var(--font-bold-xl);
   word-break: keep-all;
 }
@@ -52,7 +59,7 @@
   align-items: center;
   gap: 16px;
 }
-#contents .contents__item h1 {
+#contents .contents__item h3 {
   font: var(--font-bold-md);
 }
 #contents .contents__item a {

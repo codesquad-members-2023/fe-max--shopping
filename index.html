@@ -14,25 +14,42 @@
   </head>
   <body>
     <header id="banner">
-      <!-- 배너 -->
+      <h1 class="blind">배너</h1>
       <div class="inner">
-        <div class="logo">
+        <section class="group logo">
+          <h2 class="blind">로고</h2>
           <a href="#">
-            <figure>
-              <img src="./src/img/logo.svg" alt="" />
-              <figcaption class="blind">아마존</figcaption>
-            </figure>
+            <img src="./src/img/logo.svg" alt="아마존" />
           </a>
-        </div>
-        <div class="shipping-address">
+        </section>
+        <section class="group shipping-address">
+          <h2 class="blind">배송처</h2>
           <dl tabindex="0">
-            <dt>배송처</dt>
+            <dt>
+              <span class="icon" aria-hidden="true">
+                <img src="./src/img/icon/location-small-white.svg" alt="지역">
+              </span>
+              <span>
+                배송처
+              </span>
+            </dt>
             <dd>
               <address>대한민국</address>
             </dd>
           </dl>
-        </div>
-        <div class="search">
+          <dialog class="popover" open>
+            <p>
+              KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을
+              보려면 배송 주소를 변경하십시오.
+            </p>
+            <menu class="popover__menu">
+              <button class="button">계속</button>
+              <button class="button">주소 변경</button>
+            </menu>
+          </dialog>
+        </section>
+        <section class="group search">
+          <h2 class="blind">검색</h2>
           <form action="post" class="search__form">
             <fieldset class="search__keyword-field">
               <input
@@ -43,36 +60,107 @@
                 autocomplete="off" />
             </fieldset>
             <button type="submit">
-              <figure>
-                <img src="./src/img/icon/search.svg" alt="" />
-                <figcaption class="blind">검색</figcaption>
-              </figure>
+              <span class="icon">
+                <img src="./src/img/icon/search.svg" alt="검색" />
+              </span>
             </button>
           </form>
-        </div>
-        <div class="nation" tabindex="0" aria-label="지역: 한국">
+        </section>
+        <setcion class="group nation" tabindex="0" aria-label="지역: 한국">
+          <h2 class="blind">지역</h2>
           <figure>
             <img src="./src/img/flag/ko.png" alt="" />
             <figcaption>KO</figcaption>
           </figure>
-        </div>
-
-        <div class="login">
-          <a href="#"> 로그인 </a>
-        </div>
-
-        <div class="mypage">
-          <a href="#">반품 & 주문</a>
-        </div>
-
-        <div class="cart">
+        </setcion>
+        <section class="group login">
+          <h2 class="blind">로그인</h2>
+          <p>안녕하세요, 로그인</p>
+          <a href="#">계정 및 목록</a>
+          <dialog class="popover" open>
+            <button class="button button--lg">로그인</button>
+            <p>
+              기존 사용자가 아니십니까?
+              <a href="#">여기에서 시작합니다.</a>
+            </p>
+            <hr />
+            <article class="account">
+              <h3 class="blind">정보</h3>
+              <section class="account__sub">
+                <h4>귀하의 목록</h4>
+                <nav>
+                  <ul>
+                    <li class="account__item">
+                      <a href="#">목록 생성</a>
+                    </li>
+                    <li class="account__item">
+                      <a href="#">목록 또는 레지스트리 찾기</a>
+                    </li>
+                    <li class="account__item">
+                      <a href="#">AmazonSmile 자선 품목 목록</a>
+                    </li>
+                  </ul>
+                </nav>
+              </section>
+              <section class="account__sub">
+                <h4>계정</h4>
+                <ul>
+                  <li class="account__item">
+                    <a href="#">계정</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">목록 또는 레지스트리 찾기</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">권장 사항</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">검색 기록</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">워치리스트</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">비디오 구매 및 대여</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">Kindle 언리미티드</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">콘텐츠 및 기기</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">항목 구독 및 저장</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">멤버십 및 구독</a>
+                  </li>
+                  <li class="account__item">
+                    <a href="#">음악 라이브러리</a>
+                  </li>
+                </ul>
+              </section>
+            </article>
+          </dialog>
+        </section>
+        <section class="group mypage">
+          <h2>
+            반품
+            <span class="blind">& 주문</span>
+          </h2>
           <a href="#">
-            <figure>
-              <img src="./src/img/icon/cart-orange.svg" alt="" />
-              <figcaption>장바구니</figcaption>
-            </figure>
+            <span class="blind">반품</span>
+            & 주문
           </a>
-        </div>
+        </section>
+
+        <section class="group cart">
+          <h2 class="blind">장바구니</h2>
+          <a href="#">
+            <img src="./src/img/icon/cart-orange.svg" alt="" />
+            장바구니
+          </a>
+        </section>
       </div>
       <div id="navbar">
         <nav class="left">
@@ -93,25 +181,22 @@
         <a href="#" class="right"> 지금 특가 상품 쇼핑하기 </a>
       </div>
     </header>
-    <div id="sidebar">
+    <article id="sidebar">
+      <h1 class="blind">사이드바 영역</h1>
       <aside tabindex="-1">
-        <h1 tabindex="-1">
+        <h2 tabindex="-1">
           <span class="icon">
-            <figure>
-              <img src="./src/img/icon/user-white.svg" alt="" />
-              <figcaption class="blind">손님</figcaption>
-            </figure>
+            <img src="./src/img/icon/user-white.svg" alt="손님" />
           </span>
           &nbsp; 안녕하세요 로그인
-        </h1>
-        <h2>디지털 콘텐츠 및 기기</h2>
+        </h2>
+        <h3>디지털 콘텐츠 및 기기</h3>
         <ul class="sidebar__sub">
           <li>
             <button class="sidebar__item" tabindex="-1">
               <span>Amazon Music</span>
               <span class="icon">
-                <img src="./src/img/icon/chevron-right.svg" alt="" />
-                <figcaption class="blind">자세히 보기</figcaption>
+                <img src="./src/img/icon/chevron-right.svg" alt="자세히 보기" />
               </span>
             </button>
           </li>
@@ -119,8 +204,7 @@
             <button class="sidebar__item" tabindex="-1">
               <span> Kindle E-Reader 및 도서 </span>
               <span class="icon">
-                <img src="./src/img/icon/chevron-right.svg" alt="" />
-                <figcaption class="blind">자세히 보기</figcaption>
+                <img src="./src/img/icon/chevron-right.svg" alt="자세히 보기" />
               </span>
             </button>
           </li>
@@ -128,20 +212,18 @@
             <button class="sidebar__item" tabindex="-1">
               <span> 안드로이드 앱스토어 </span>
               <span class="icon">
-                <img src="./src/img/icon/chevron-right.svg" alt="" />
-                <figcaption class="blind">자세히 보기</figcaption>
+                <img src="./src/img/icon/chevron-right.svg" alt="자세히 보기" />
               </span>
             </button>
           </li>
         </ul>
-        <h2>부서별 쇼핑</h2>
+        <h3>부서별 쇼핑</h3>
         <ul class="sidebar__sub">
           <li>
             <button class="sidebar__item" tabindex="-1">
               <span> 전자 </span>
               <span class="icon">
-                <img src="./src/img/icon/chevron-right.svg" alt="" />
-                <figcaption class="blind">자세히 보기</figcaption>
+                <img src="./src/img/icon/chevron-right.svg" alt="자세히 보기" />
               </span>
             </button>
           </li>
@@ -151,8 +233,7 @@
             <span>모두보기</span>
             &nbsp; &nbsp;
             <span class="icon">
-              <img src="./src/img/icon/chevron-down.svg" alt="" />
-              <figcaption class="blind">열기</figcaption>
+              <img src="./src/img/icon/chevron-down.svg" alt="열기" />
             </span>
           </summary>
           <ul>
@@ -160,8 +241,9 @@
               <button class="sidebar__item" tabindex="-1">
                 <span> 전자 </span>
                 <span class="icon">
-                  <img src="./src/img/icon/chevron-right.svg" alt="" />
-                  <figcaption class="blind">자세히 보기</figcaption>
+                  <img
+                    src="./src/img/icon/chevron-right.svg"
+                    alt="자세히 보기" />
                 </span>
               </button>
             </li>
@@ -169,46 +251,48 @@
               <button class="sidebar__item" tabindex="-1">
                 <span> 전자 </span>
                 <span class="icon">
-                  <img src="./src/img/icon/chevron-right.svg" alt="" />
-                  <figcaption class="blind">자세히 보기</figcaption>
+                  <img
+                    src="./src/img/icon/chevron-right.svg"
+                    alt="자세히 보기" />
                 </span>
               </button>
             </li>
           </ul>
         </details>
       </aside>
-    </div>
+    </article>
     <main id="main">
       <h1 class="blind">메인</h1>
       <figure class="bg">
         <img src="./src/img/Image.png" alt="" />
       </figure>
+      <div class="dimmed"></div>
       <div class="inner">
-        <div id="hero">
+        <section id="hero">
+          <h2 class="blind">히어로 영역</h2>
           <ul class="hero__wrapper wrapper">
             <li>
               <article class="hero__slide slide" tabindex="0">
-                <h1>
+                <h3>
                   해외 쇼핑을 즐기고 한국 직불 카드 또는 <br />
                   한국 신용카드로 결제하십시오
-                </h1>
+                </h3>
               </article>
             </li>
           </ul>
           <button class="hero__control hero__control--left">
-            <figure>
-              <img src="./src/img/arrow-left.svg" alt="" />
-              <figcaption class="blind">이전</figcaption>
-            </figure>
+            <span class="icon">
+              <img src="./src/img/arrow-left.svg" alt="이전" />
+            </span>
           </button>
           <button class="hero__control hero__control--right">
-            <figure>
-              <img src="./src/img/arrow-right.svg" alt="" />
-              <figcaption class="blind">다음</figcaption>
-            </figure>
+            <span class="icon">
+              <img src="./src/img/arrow-right.svg" alt="다음" />
+            </span>
           </button>
-        </div>
-        <div id="contents">
+        </section>
+        <section id="contents">
+          <h2 class="blind">콘텐츠 영역</h2>
           <ul class="contents__list">
             <li class="contents__item">
               <article
@@ -218,7 +302,7 @@
                 <a href="#" class="contents__login-link button button--lg">
                   로그인
                 </a>
-                <h1>최상의 경험을 위해 로그인하세요</h1>
+                <h3>최상의 경험을 위해 로그인하세요</h3>
               </article>
             </li>
             <li class="contents__item">
@@ -231,7 +315,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>집에서 입어보기</h1>
+                  <h3>집에서 입어보기</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -243,7 +327,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>특가</h1>
+                  <h3>특가</h3>
                   <a class="more" href="#">지금 쇼핑하세요</a>
                 </div>
               </article>
@@ -258,7 +342,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>피트니스용</h1>
+                  <h3>피트니스용</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -273,7 +357,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>Amazon Basics</h1>
+                  <h3>Amazon Basics</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -288,7 +372,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>건강 및 퍼스널 케어</h1>
+                  <h3>건강 및 퍼스널 케어</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -303,7 +387,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>가정 및 주방</h1>
+                  <h3>가정 및 주방</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -318,7 +402,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>Click here to shop in English</h1>
+                  <h3>Click here to shop in English</h3>
                   <a class="more" href="#">Change your language preference</a>
                 </div>
               </article>
@@ -330,7 +414,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>드레스</h1>
+                  <h3>드레스</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -345,7 +429,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>활동추적기 및 스마트워치 쇼핑</h1>
+                  <h3>활동추적기 및 스마트워치 쇼핑</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -360,7 +444,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>노트북 및 태블릿 쇼핑</h1>
+                  <h3>노트북 및 태블릿 쇼핑</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -375,7 +459,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>전자기기</h1>
+                  <h3>전자기기</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
@@ -390,7 +474,7 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>Kindle E-readers</h1>
+                  <h3>Kindle E-readers</h3>
                   <a class="more" href="#">지금 쇼핑하세요</a>
                 </div>
               </article>
@@ -405,122 +489,131 @@
                   <figcaption class="blind">더미이미지</figcaption>
                 </figure>
                 <div class="contents__card_text">
-                  <h1>반려동물용품 쇼핑</h1>
+                  <h3>반려동물용품 쇼핑</h3>
                   <a class="more" href="#">더보기</a>
                 </div>
               </article>
             </li>
           </ul>
-        </div>
+        </section>
       </div>
     </main>
     <footer id="footer">
+      <h1 class="blind">푸터</h1>
       <a href="#banner" class="scroll-top">위로 돌아가기</a>
       <div class="footer__menu-container">
-        <article
+        <section
           class="footer__menu"
           tabindex="0"
           aria-label="당사에 대해 알아보기">
-          <h1>당사에 대해 알아보기</h1>
-          <ul class="footer__menu__list">
-            <li class="footer__menu__item">
-              <a href="#">커리어</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">블로그</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon 소개</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">투자자 관계</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon 디바이스</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">아마존 사이언스</a>
-            </li>
-          </ul>
-        </article>
-        <article
+          <h2>당사에 대해 알아보기</h2>
+          <nav>
+            <ul class="footer__menu__list">
+              <li class="footer__menu__item">
+                <a href="#">커리어</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">블로그</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon 소개</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">투자자 관계</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon 디바이스</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">아마존 사이언스</a>
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <section
           class="footer__menu"
           tabindex="0"
           aria-label="당사와 함께 돈 벌기">
-          <h1>당사와 함께 돈 벌기</h1>
-          <ul class="footer__menu__list">
-            <li class="footer__menu__item">
-              <a href="#">Amazon에서 판매</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon Buxiness에서 판매</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon에서 앱 판매</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">계열사 되기</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">제품 광고</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon에 자체 게시</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon 허브 호스팅</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">당사와 함게 돈 벌기에 대해 자세히 보기</a>
-            </li>
-          </ul>
-        </article>
-        <article
+          <h2>당사와 함께 돈 벌기</h2>
+          <nav>
+            <ul class="footer__menu__list">
+              <li class="footer__menu__item">
+                <a href="#">Amazon에서 판매</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon Buxiness에서 판매</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon에서 앱 판매</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">계열사 되기</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">제품 광고</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon에 자체 게시</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon 허브 호스팅</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">당사와 함게 돈 벌기에 대해 자세히 보기</a>
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <section
           class="footer__menu"
           tabindex="0"
           aria-label="Amazon 결제 제품">
-          <h1>Amazon 결제 제품</h1>
-          <ul class="footer__menu__list">
-            <li class="footer__menu__item">
-              <a href="#">포인트로 구입</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">잔고 재로드</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon 환율 변환기</a>
-            </li>
-          </ul>
-        </article>
-        <article class="footer__menu" tabindex="0" aria-label="지원">
-          <h1>지원</h1>
-          <ul class="footer__menu__list">
-            <li class="footer__menu__item">
-              <a href="#">COVID-19 및 Amazon</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">사용자 계정</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">내 주문</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">배송 요금 및 정책</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">반품 및 교환</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">콘텐츠 및 디바이스 관리</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">Amazon Assistant</a>
-            </li>
-            <li class="footer__menu__item">
-              <a href="#">도움말</a>
-            </li>
-          </ul>
-        </article>
+          <h2>Amazon 결제 제품</h2>
+          <nav>
+            <ul class="footer__menu__list">
+              <li class="footer__menu__item">
+                <a href="#">포인트로 구입</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">잔고 재로드</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon 환율 변환기</a>
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <section class="footer__menu" tabindex="0" aria-label="지원">
+          <h2>지원</h2>
+          <nav>
+            <ul class="footer__menu__list">
+              <li class="footer__menu__item">
+                <a href="#">COVID-19 및 Amazon</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">사용자 계정</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">내 주문</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">배송 요금 및 정책</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">반품 및 교환</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">콘텐츠 및 디바이스 관리</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">Amazon Assistant</a>
+              </li>
+              <li class="footer__menu__item">
+                <a href="#">도움말</a>
+              </li>
+            </ul>
+          </nav>
+        </section>
       </div>
       <div class="footer__info">
         <figure class="footer__info__logo" tabindex="0">
@@ -528,17 +621,19 @@
           <figcaption class="blind">아마존 로고</figcaption>
         </figure>
         <div class="footer__info__inner">
-          <ul class="footer__info__list">
-            <li class="footer__info__item">
-              <a href="#">이용약관</a>
-            </li>
-            <li class="footer__info__item">
-              <a href="#">개인정보 취급 고지</a>
-            </li>
-            <li class="footer__info__item">
-              <a href="#">광고 개인정보보호 선택 항목</a>
-            </li>
-          </ul>
+          <nav>
+            <ul class="footer__info__list">
+              <li class="footer__info__item">
+                <a href="#">이용약관</a>
+              </li>
+              <li class="footer__info__item">
+                <a href="#">개인정보 취급 고지</a>
+              </li>
+              <li class="footer__info__item">
+                <a href="#">광고 개인정보보호 선택 항목</a>
+              </li>
+            </ul>
+          </nav>
           <address class="footer__info__address" tabindex="0">
             @ 1996-2023, Amazon.com, Inc. 또는 계열사
           </address>
