@@ -3,10 +3,14 @@ import { Component } from './base/Component.js';
 export class Hero extends Component {
   static autoIntervalSecs = 10000;
   static transitionSecs = 0.5;
+  static direction = { left: 'left', right: 'right' };
 
   constructor(slideCount) {
     super('hero');
+    this.slideCount = slideCount;
+    this.lastIndex = this.slideCount + 1;
     this.currentIndex = 0;
+    this.moveDirection;
     this.slider = this.$('.slider');
     this.initSlider(this.slider, slideCount);
   }
@@ -22,32 +26,72 @@ export class Hero extends Component {
   }
 
   moveToPrevSlide() {
+    if (!this.isValidIndex(this.currentIndex)) {
+      return;
+    }
+
+    this.moveDirection = Hero.direction.left;
+    this.cycleSlides(this.moveDirection);
+
     this.currentIndex -= 1;
-    this.moveSlide(this.currentIndex);
+    this.moveToSlide(this.currentIndex);
   }
 
   moveToNextSlide() {
+    if (!this.isValidIndex(this.currentIndex)) {
+      return;
+    }
+
+    this.moveDirection = Hero.direction.right;
+    this.cycleSlides(this.moveDirection);
+
     this.currentIndex += 1;
-    this.moveSlide(this.currentIndex);
+    this.moveToSlide(this.currentIndex);
   }
 
-  moveSlide(currentIndex) {
-    this.slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+  isValidIndex(slideIndex) {
+    return slideIndex >= 0 && slideIndex <= this.lastIndex;
+  }
+
+  cycleSlides(moveDirection) {
+    if (moveDirection === Hero.direction.left && this.currentIndex === 0) {
+      this.currentIndex = this.lastIndex;
+      return;
+    }
+
+    if (moveDirection === Hero.direction.right && this.currentIndex === this.lastIndex) {
+      this.currentIndex = 0;
+    }
+  }
+
+  moveToSlide(slideIndex) {
+    this.slider.style.transform = `translateX(-${slideIndex * 100}vw)`;
     this.slider.style.transition = `all ${Hero.transitionSecs}s ease-in-out`;
   }
 
   initSlider(slider, slideCount) {
     this.setSliderWidth(slider, slideCount);
     this.appendSlides(slider, slideCount);
+    this.renderSlideClone();
   }
 
   setSliderWidth(slider, slideCount) {
-    slider.style.width = `${slideCount * 100}vw`;
+    slider.style.width = `${(slideCount + 2) * 100}vw`;
   }
 
   appendSlides(slider, slideCount) {
     const slideNodes = this.makeSlideNodes(slideCount);
     slider.append(...slideNodes);
+  }
+
+  renderSlideClone() {
+    const firstSlide = this.slider.firstElementChild;
+    const lastSlide = this.slider.lastElementChild;
+    const firstClone = firstSlide.cloneNode(true);
+    const lastClone = lastSlide.cloneNode(true);
+
+    this.slider.prepend(lastClone);
+    this.slider.append(firstClone);
   }
 
   makeSlideNodes(slideCount) {
