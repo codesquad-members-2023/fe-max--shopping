@@ -2,7 +2,7 @@
 // @import url('/src/style/css/values.css');
 @import './reset';
 @import './values';
-@import './carousel';
+@import './hero';
 
 @mixin flex-row($justify: flex-start, $align: center) {
   display: flex;
