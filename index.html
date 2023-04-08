@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
+    <script type="module" src="./src/js/index.js"></script>
+    <title>Amazon</title>
+  </head>
+  <body>
+    <header class="navigation-bar" id="top">
+      <div class="navigation-main">
+        <nav class="header-logo has-img">
+          <img src="./src/assets/svg/logo.svg" alt="logo" />
+        </nav>
+        <nav class="shipping-address">
+          <label class="has-img" for="address">
+            <img src="./src/assets/svg/location.svg" alt="location" />
+            <span>배송지</span>
+          </label>
+          <div id="address">
+            <span>대한민국</span>
+          </div>
+          <div class="modal" id="address-modal">
+            <div class="tail" id="address-tail"></div>
+            <div class="address-modal-container">
+              <span
+                >KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는
+                품목을 <br />
+                보려면 배송 주소를 변경하십시오.</span
+              >
+              <div class="address-button-container">
+                <button class="address-button" id="continue" type="button">
+                  계속
+                </button>
+                <button
+                  class="address-button"
+                  id="change-address"
+                  type="button"
+                >
+                  주소변경
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <form class="search-bar has-img">
+          <input type="text" class="search-input" placeholder="검색 Amazon" />
+          <button type="button" class="search-button">
+            <img src="./src/assets/svg/search.svg" alt="search" />
+          </button>
+        </form>
+        <nav class="nation has-img">
+          <img src="./src/assets/svg/flag.svg" alt="flag" />
+          <span>KO</span>
+        </nav>
+        <nav class="login">
+          <label for="account-list">
+            <span>안녕하세요, 로그인</span>
+          </label>
+          <div id="account-list">
+            <span>계정 및 목록</span>
+          </div>
+          <div class="modal" id="login-modal">
+            <div class="tail" id="login-tail"></div>
+            <div class="login-modal-container">
+              <button class="login-button" type="button">로그인</button>
+              <span
+                >기존 사용자가 아니십니까?
+                <a>여기에서 시작합니다.</a>
+              </span>
+              <div class="login-modal-expand">
+                <div class="login-modal-expand-container">
+                  <h2>귀하의 목록</h2>
+                  <ul>
+                    <li>목록 생성</li>
+                    <li>목록 또는 레지스트리 찾기</li>
+                    <li>AmazonSmile 자산 품목 목록</li>
+                  </ul>
+                </div>
+                <div class="login-modal-expand-container">
+                  <h2>계정</h2>
+                  <ul>
+                    <li>계정</li>
+                    <li>주문</li>
+                    <li>권장 사항</li>
+                    <li>검색 기록</li>
+                    <li>위시리스트</li>
+                    <li>비디오 구매 및 대여</li>
+                    <li>Kindle 언리미티드</li>
+                    <li>콘텐츠 및 기기</li>
+                    <li>항목 구독 및 저장</li>
+                    <li>멤버십 및 구독</li>
+                    <li>음악 라이브러리</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <nav class="my-page">
+          <label for="returns-and-orders">
+            <span>반품</span>
+          </label>
+          <div id="returns-and-orders">
+            <span>&주문</span>
+          </div>
+        </nav>
+        <nav class="cart has-img">
+          <img src="./src/assets/svg/cart.svg" alt="cart" />
+          <span>장바구니</span>
+        </nav>
+      </div>
+      <div class="navigation-sub">
+        <div class="left-sub">
+          <div class="menu-container">
+            <nav class="menu has-img">
+              <img src="./src/assets/svg/menu.svg" alt="menu" />
+              <span>모두</span>
+            </nav>
+            <aside class="menu-sidebar"></aside>
+          </div>
+          <nav class="today-deal">
+            <span>오늘의 딜</span>
+          </nav>
+          <nav class="support">
+            <span>고객 서비스</span>
+          </nav>
+          <nav class="registry">
+            <span>레지스트리</span>
+          </nav>
+          <nav class="gift-card">
+            <span>기프트 카드</span>
+          </nav>
+          <nav class="sales">
+            <span>판매</span>
+          </nav>
+        </div>
+        <div class="right-sub">
+          <nav class="special-offers">
+            <span>지금 특가 상품 쇼핑하기</span>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <div class="dimmed"></div>
+      <div class="main-banner">
+        <div class="main-content-container">
+          <div class="main-banner-container">
+            <img
+              src="./src/assets/svg/chevron-left.svg"
+              alt="left-button"
+              class="chevron"
+              id="chevron-left"
+            />
+            <div>
+              <div class="main-banner-text">
+                해외 쇼핑을 즐기고 한국 직불 카드 또는
+              </div>
+              <div class="main-banner-text">한국 신용카드로 결제하십시오</div>
+            </div>
+            <img
+              src="./src/assets/svg/chevron-right.svg"
+              alt="right-button"
+              class="chevron"
+              id="chevron-right"
+            />
+          </div>
+          <div class="main-card-container">
+            <div class="card" id="card1">
+              <div class="frame">
+                <button class="login-button" type="button">로그인</button>
+                <span class="login-card-text"
+                  >최상의 경험을 위해 로그인하세요</span
+                >
+              </div>
+            </div>
+            <div class="card" id="card2">
+              <img
+                src="./src/assets/png/card2.png"
+                alt="card2"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">집에서 입어보기</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card3">
+              <img
+                src="./src/assets/png/card3.png"
+                alt="card3"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">특가</span>
+                <span class="card-text">지금 쇼핑하세요</span>
+              </div>
+            </div>
+            <div class="card" id="card4">
+              <img
+                src="./src/assets/png/card4.png"
+                alt="card4"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">피트니스용</span>
+                <span class="card-text">지금 쇼핑하세요</span>
+              </div>
+            </div>
+            <div class="card" id="card5">
+              <img
+                src="./src/assets/png/card5.png"
+                alt="card5"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">Amazon Basics</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card6">
+              <img
+                src="./src/assets/png/card6.png"
+                alt="card6"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">건강 및 퍼스널 케어</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card7">
+              <img
+                src="./src/assets/png/card7.png"
+                alt="card7"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">가정 및 주방</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card8">
+              <img
+                src="./src/assets/png/card8.png"
+                alt="card8"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">Click here to shop in English</span>
+                <span class="card-text">Change your language preference</span>
+              </div>
+            </div>
+            <div class="card" id="card9">
+              <img
+                src="./src/assets/png/card9.png"
+                alt="card9"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">드레스</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card10">
+              <img
+                src="./src/assets/png/card10.png"
+                alt="card10"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">활동 추적기 및 스마트워치 쇼핑</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card11">
+              <img
+                src="./src/assets/png/card11.png"
+                alt="card11"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">노트북 및 태블릿 쇼핑</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card12">
+              <img
+                src="./src/assets/png/card12.png"
+                alt="card12"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">전자기기</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+            <div class="card" id="card13">
+              <img
+                src="./src/assets/png/card13.png"
+                alt="card13"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">Kindle E-readers</span>
+                <span class="card-text">지금 쇼핑하세요</span>
+              </div>
+            </div>
+            <div class="card" id="card14">
+              <img
+                src="./src/assets/png/card14.png"
+                alt="card14"
+                class="card-img"
+              />
+              <div class="frame">
+                <span class="card-title">반려동물용품 쇼핑</span>
+                <span class="card-text">더보기</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="nav-to-top">
+        <a href="#top">위로 돌아가기</a>
+      </div>
+      <div class="site-link">
+        <div class="site-link-container">
+          <div class="footer-nav-container">
+            <h2 class="footer-nav-header">당사에 대해 알아보기</h2>
+            <ul class="footer-nav-list">
+              <li>커리어</li>
+              <li>블로그</li>
+              <li>Amazon 소개</li>
+              <li>투자자 관계</li>
+              <li>Amazon 디바이스</li>
+              <li>아마존 사이언스</li>
+            </ul>
+          </div>
+          <div class="footer-nav-container">
+            <h2 class="footer-nav-header">당사와 함께 돈 벌기</h2>
+            <ul class="footer-nav-list">
+              <li>Amazon에서 판매</li>
+              <li>Amazon Business에서 판매</li>
+              <li>Amazon에서 앱 판매</li>
+              <li>계열사 되기</li>
+              <li>제품 광고</li>
+              <li>Amazon에 자체 게시</li>
+              <li>Amazon 허브 호스팅</li>
+              <li>당사와 함께 돈 벌기에 대해 자세히 보기</li>
+            </ul>
+          </div>
+          <div class="footer-nav-container">
+            <h2 class="footer-nav-header">Amazon 결제 제품</h2>
+            <ul class="footer-nav-list">
+              <li>포인트로 구입</li>
+              <li>잔고 재로드</li>
+              <li>Amazon 환율 변환기</li>
+            </ul>
+          </div>
+          <div class="footer-nav-container">
+            <h2 class="footer-nav-header">지원</h2>
+            <ul class="footer-nav-list">
+              <li>COVID-19 및 Amazon</li>
+              <li>사용자 계정</li>
+              <li>내 주문</li>
+              <li>배송 요금 및 정책</li>
+              <li>반품 및 교환</li>
+              <li>콘텐츠 및 디바이스 관리</li>
+              <li>Amazon Assistant</li>
+              <li>도움말</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="footer-info-container">
+          <div class="footer-logo">
+            <img src="./src/assets/svg/logo.svg" alt="logo" />
+          </div>
+          <div class="footer-info">
+            <div class="footer-info-link">
+              <div class="terms">이용 약관</div>
+              <div class="personal-info">개인정보 취급고지</div>
+              <div class="ad-selections">광고 개인정보보호 선택항목</div>
+            </div>
+            <div class="footer-info-text">
+              @ 1996-2023, Amazon.com, Inc. 또는 계열사
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

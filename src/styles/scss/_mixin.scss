@@ -1,0 +1,85 @@
+@import "variables";
+
+@mixin boldXl {
+  font: $font-bold-xl;
+}
+
+@mixin boldLg {
+  font: $font-bold-lg;
+}
+
+@mixin boldMd {
+  font: $font-bold-md;
+  letter-spacing: $letter-spacing-body-md;
+}
+
+@mixin boldSm {
+  font: $font-bold-sm;
+  letter-spacing: $letter-spacing-bold-sm;
+}
+
+@mixin bodyMd {
+  font: $font-body-md;
+  letter-spacing: $letter-spacing-body-md;
+}
+
+@mixin bodySm {
+  font: $font-body-sm;
+  letter-spacing: $letter-spacing-body-sm;
+}
+
+@mixin button {
+  margin: 0 auto;
+  background: linear-gradient(
+    174.6deg,
+    $color-white 4.31%,
+    $color-primary-yellow-100 50.01%,
+    $color-primary-yellow-200 95.71%
+  );
+  border: 1px solid $color-primary-yellow-300;
+  border-radius: 4px;
+  @include boldSm;
+}
+
+@mixin loginButton {
+  width: 160px;
+  height: 32px;
+  @include button;
+}
+
+@mixin modal {
+  background-color: $color-white;
+  position: absolute;
+  top: 55px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: 1s;
+  z-index: 2;
+}
+
+@mixin modalTail {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background-image: url("../assets/svg/triangle.svg");
+  background-repeat: no-repeat;
+  transition: 1.5s;
+}
+
+@mixin modalContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+  @include bodySm;
+  color: $color-black;
+}
+
+@mixin animtae($animation, $duration, $method) {
+  animation: $animation, $duration, $method;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}

@@ -1,0 +1,75 @@
+@import "variables", "mixin";
+
+.modal {
+  cursor: default;
+}
+
+#address-modal {
+  @include modal;
+  z-index: -1;
+  .tail {
+    @include modalTail;
+    transform: translate(10px, -10px);
+  }
+  .address-modal-container {
+    @include modalContainer;
+    gap: 26px;
+  }
+  .address-button-container {
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+    .address-button {
+      @include button;
+      margin: 0;
+      height: 32px;
+    }
+    #continue {
+      width: 39px;
+    }
+    #change-address {
+      width: 58px;
+    }
+  }
+}
+
+#login-modal {
+  @include modal;
+  right: 172px;
+  .tail {
+    @include modalTail;
+    transform: translate(190px, -10px);
+  }
+  .login-modal-container {
+    @include modalContainer;
+    .login-button {
+      width: 160px;
+      height: 32px;
+      @include loginButton;
+      margin-bottom: 8px;
+    }
+    span {
+      text-align: center;
+    }
+    a {
+      color: $color-secondary-navy;
+    }
+    .login-modal-expand {
+      display: flex;
+      opacity: 0;
+      transition: 1s;
+      .login-modal-expand-container {
+        width: 0;
+        height: 0;
+        transition: 1s;
+        h2 {
+          margin: 8px 0 4px;
+          @include boldMd;
+        }
+        li {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+}

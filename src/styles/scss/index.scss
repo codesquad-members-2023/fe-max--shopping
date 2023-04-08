@@ -1,0 +1,12 @@
+@import "reset", "font-face", "variables", "mixin", "header", "main", "footer",
+  "modal";
+
+html {
+  scroll-behavior: smooth;
+  a {
+    text-decoration: none;
+  }
+  button {
+    cursor: pointer;
+  }
+}

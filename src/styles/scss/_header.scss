@@ -1,0 +1,79 @@
+@import "variables", "mixin";
+
+.navigation-bar {
+  min-width: 1120px;
+  display: flex;
+  flex-direction: column;
+  color: $color-white;
+  .has-img {
+    display: flex;
+    align-items: center;
+  }
+  > div {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include boldMd;
+    label,
+    nav {
+      cursor: pointer;
+    }
+  }
+  .navigation-main {
+    height: 56px;
+    background-color: $color-black;
+    nav {
+      margin: 0 12px;
+    }
+    label {
+      @include boldSm;
+    }
+    .search-bar {
+      margin: 0 12px;
+      flex: 1;
+      height: 40px;
+    }
+    .search-input {
+      padding: 0 12px;
+      border: none;
+      width: 100%;
+      height: inherit;
+      border-radius: 4px 0 0 4px;
+      font: $font-bold-md;
+      color: $color-gray-600;
+      &:focus {
+        outline: none;
+      }
+    }
+    .search-button {
+      border: none;
+      width: 40px;
+      height: inherit;
+      background-color: $color-primary-orange-100;
+      border-radius: 0 4px 4px 0;
+    }
+    .nation {
+      gap: 4px;
+    }
+    .cart {
+      gap: 4px;
+    }
+  }
+  .navigation-sub {
+    height: 32px;
+    background-color: $color-gray-900;
+    .left-sub {
+      display: flex;
+    }
+    nav {
+      margin: 8px;
+    }
+    .menu {
+      gap: 4px;
+    }
+  }
+}
