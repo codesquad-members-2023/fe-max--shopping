@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/src/styles/css/style.css" />
+    <title>Amazon.com</title>
+    <script defer src="/src/js/index.js" type="module"></script>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <!------------------------- nav main ------------------------->
+      <div class="nav-bar__main">
+        <div class="bi">
+          <img src="/src/assets/img/bi.svg" />
+        </div>
+        <!---- address ---->
+        <div class="address">
+          <div class="address__label">
+            <div class="address__label-image"></div>
+            <div class="address__label-text">배송처</div>
+          </div>
+          <div class="address__text">대한민국</div>
+          <!------------------------- address modal ------------------------->
+          <div class="address-modal">
+            <div class="modal__rectangle"></div>
+            <div class="modal-content">
+              <div class="caption__text">
+                KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을
+                보려면 배송 주소를 변경하십시오.
+              </div>
+              <div class="buttons">
+                <button class="continue"></button>
+                <button class="address-change"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---- search bar ---->
+        <div class="search-bar">
+          <div class="input-container">
+            <input type="text" class="search-bar__input" />
+          </div>
+          <img
+            class="search-bar__button"
+            src="/src/assets/img/search-btn.svg"
+          />
+        </div>
+        <!---- nation ---->
+        <div class="nation-container">
+          <div class="nation">
+            <div class="nation__emoji">🇰🇷</div>
+            <div class="nation__abb-text">KO</div>
+          </div>
+        </div>
+        <!---- login ---->
+        <div class="login">
+          <div class="login__event-wrap">
+            <div class="login__label">안녕하세요, 로그인</div>
+            <div class="login__text">계정 및 목록</div>
+            <div class="login-modal-ex">
+              <div class="modal-ex__rectangle"></div>
+              <div class="modal-ex-container">
+                <button class="login-modal-ex__button"></button>
+                <div class="login-modal-ex__caption">
+                  <div class="ex-caption__text">기존 사용자가 아니십니까?</div>
+                  <a class="ex-caption__link">여기에서 시작합니다.</a>
+                </div>
+                <div class="modal-ex-content__bottom">
+                  <ul class="list-wrapper">
+                    <li><a href="#">귀하의 목록</a></li>
+                    <li><a href="#">목록 생성</a></li>
+                    <li><a href="#">목록 또는 레지스트리 찾기</a></li>
+                    <li><a href="#">AmazonSmile 자선 품목 목록</a></li>
+                  </ul>
+                  <ul class="user-info">
+                    <li><a href="#">계정</a></li>
+                    <li><a href="#">계정</a></li>
+                    <li><a href="#">주문</a></li>
+                    <li><a href="#">권장 사항</a></li>
+                    <li><a href="#">검색</a></li>
+                    <li><a href="#">워치리스트</a></li>
+                    <li><a href="#">비디오 구매 및 대여</a></li>
+                    <li><a href="#">Kindle 언리미티드</a></li>
+                    <li><a href="#">콘텐츠 및 기기</a></li>
+                    <li><a href="#">항목 구독 및 저장</a></li>
+                    <li><a href="#">멤버십 및 구독</a></li>
+                    <li><a href="#">음악 라이브러리</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------------------------- login modal ------------------------->
+          <div class="login-modal">
+            <div class="modal__rectangle"></div>
+            <div class="modal-content">
+              <button class="login-modal__button"></button>
+              <div class="login-modal__caption">
+                <div class="caption__text">기존 사용자가 아니십니까?</div>
+                <a class="caption__link">여기에서 시작합니다.</a>
+              </div>
+            </div>
+          </div>
+          <!------------------------- login modal ex ------------------------->
+        </div>
+        <!---- my page ---->
+        <div class="my-page">
+          <div class="my-page__label">반품</div>
+          <div class="my-page__text">&주문</div>
+        </div>
+        <!---- cart ---->
+        <div class="cart">
+          <div class="cart__img"></div>
+          <div class="cart__text">장바구니</div>
+        </div>
+      </div>
+      <!------------------------- nav sub ------------------------->
+      <div class="nav-bar__sub">
+        <!-- left buttons -->
+        <div class="left-buttons">
+          <div class="side-bar">
+            <div class="side-bar__img"></div>
+            <div class="side-bar__label">모두</div>
+          </div>
+          <a href="#" class="daily-deal">오늘의 딜</a>
+          <a href="#" class="customer-service">고객 서비스</a>
+          <a href="#" class="registry">레지스트리</a>
+          <a href="#" class="gift-card">기프트 카드</a>
+          <a href="#" class="sale">판매</a>
+        </div>
+        <button class="right-button">지금 특가 상품 쇼핑하기</button>
+      </div>
+    </header>
+    <!--------------------------------- hero --------------------------------->
+    <!-- <section class="hero">
+      <div class="hero-container">
+        <div class="slider-container">
+          <div class="inner">
+            <img class="banner1" src="/src/assets/img/banner1.jpg" />
+          </div>
+          <div class="inner">
+            <img class="banner2" src="/src/assets/img/banner2.jpg" />
+          </div>
+          <div class="inner">
+            <img class="banner3" src="/src/assets/img/banner3.jpg" />
+          </div>
+          <button class="banner-left-btn"></button>
+          <button class="banner-right-btn"></button>
+        </div>
+    </section> -->
+  </body>
+</html>
