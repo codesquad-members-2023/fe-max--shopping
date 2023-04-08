@@ -1,0 +1,67 @@
+/* Typography */
+@mixin typography($type) {
+  @if $type == 'bold-md' {
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: var(--letter-spacing-lg);
+    line-height: normal;
+  } @else if $type == 'bold-sm' {
+    font-family: var(--font-family);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-lg);
+    line-height: normal;
+  } @else if $type == 'body-sm' {
+    font-family: var(--font-family);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-sm);
+    line-height: normal;
+  } @else if $type == 'body-md' {
+    font-family: var(--font-family);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-sm);
+    line-height: var(--line-height);
+  } @else {
+    @error "Invalid typography type: #{$type}. Use 'bold-md', 'bold-sm', or 'body-sm'.";
+  }
+}
+
+@mixin button($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: 4px;
+  background: linear-gradient(var(--linear-gradient-button));
+  border: 1px solid var(--color-primary-yellow-300);
+  @include typography('bold-sm');
+}
+
+@mixin modal($width, $height, $top, $left) {
+  margin: 0;
+  position: absolute;
+  width: $width;
+  height: $height;
+  top: $top;
+  left: $left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--color-white);
+  border: none;
+  @include typography('body-sm');
+}
+
+@mixin tooltip($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  content: '';
+  width: 0;
+  border-style: solid;
+  border-width: 0 10px 20px 10px;
+  border-color: var(--color-white) transparent;
+}
