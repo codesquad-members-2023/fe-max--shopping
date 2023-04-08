@@ -21,10 +21,10 @@ nextBtn.addEventListener("click", () => {
 });
 
 prevBtn.addEventListener("click", () => {
-  if (!isTransitioning) return;
+  if (isTransitioning) return;
 
   isTransitioning = true;
-  slide.style.transition = "transform 117s";
+  slide.style.transition = "transform 117ms";
   counterIndex--;
   slide.style.transform = `translateX(${-width * counterIndex}px)`;
 });
