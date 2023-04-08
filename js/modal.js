@@ -8,8 +8,8 @@ const backdrop = document.querySelector('.modal-backdrop');
 
 export function initHeader() {
   setEvent(window, 'DOMContentLoaded', fadeInLoginPopover);
-  setEvent(loginTextArea, 'mouseenter', showExpandedPopover);
-  setEvent(loginArea, 'mouseleave', hideExpandedPopover);
+  setEvent(loginTextArea, 'mouseenter', showLoginModal);
+  setEvent(loginArea, 'mouseleave', hideLoginModal);
 }
 
 function fadeInLoginPopover() {
@@ -19,19 +19,21 @@ function fadeInLoginPopover() {
   }, 1000);
 }
 
-function showExpandedPopover() {
+function showLoginModal() {
   if (loginPopover) {
     loginPopover.close();
     loginPopover.classList.remove('show');
   }
   loginModal.show();
+  loginModal.style.display = 'flex';
   loginModal.classList.add('show');
   backdrop.style.display = 'block';
   backdrop.classList.add('show');
 }
 
-function hideExpandedPopover() {
+function hideLoginModal() {
   loginModal.close();
+  loginModal.style.display = 'none';
   loginModal.classList.remove('show');
   backdrop.style.display = 'none';
   backdrop.classList.remove('show');

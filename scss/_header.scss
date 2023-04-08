@@ -37,13 +37,18 @@ dialog.show {
     align-items: center;
     padding: 8px 16px;
 
-    & > div {
+    .nav-main-item {
       height: 52px;
-      margin: 0 12px;
+      padding: 0 6px;
+      margin: 0 6px;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:hover {
+        outline: var(--color-white) solid 1px;
+      }
     }
 
     #nav-logo {
@@ -77,6 +82,7 @@ dialog.show {
 
     #nav-search-bar {
       height: 40px;
+      margin: 0 6px;
       border-radius: 4px;
       text-align: center;
       flex-basis: 386px;
@@ -104,6 +110,11 @@ dialog.show {
       }
     }
 
+    #nav-nation {
+      padding: 0 12px;
+      margin-right: 6px;
+    }
+
     #nav-login {
       position: relative;
 
@@ -116,7 +127,7 @@ dialog.show {
         padding: 16px;
         border-radius: 4px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        top: 54px;
+        top: 52px;
         z-index: 10;
 
         &::before {
@@ -156,7 +167,7 @@ dialog.show {
         width: 335px;
         height: 365px;
         left: -220px;
-        display: flex;
+        display: none;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
@@ -195,6 +206,7 @@ dialog.show {
     }
 
     #nav-mypage {
+      padding: 0 12px;
       flex-direction: column;
       align-items: flex-start;
     }
