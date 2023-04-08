@@ -1,5 +1,14 @@
 @use "../style/common";
-@use "../modal/modal";
+@use "./modal";
+
+.shipping-address {
+  &:hover {
+    .shipping-address-modal {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
 
 .shipping-address-modal {
   @include modal.modal;
@@ -12,16 +21,11 @@
   opacity: 0;
   visibility: hidden;
 
-  &.show {
-    opacity: 1;
-    visibility: visible;
-  }
-
   &::before {
+    @include modal.modal-tail;
+
     top: -12px;
     left: 16px;
-
-    @include modal.triangle;
   }
 }
 
