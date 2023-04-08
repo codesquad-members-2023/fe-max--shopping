@@ -5,6 +5,18 @@
   margin: auto;
   overflow: hidden;
 
+  &::before {
+    background: linear-gradient(-180deg, rgba(234, 237, 237, 0), #e3e6e6);
+    bottom: 0;
+    content: '';
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 250px;
+    z-index: 1;
+  }
+
   &__slide {
     display: flex;
     width: 100%;

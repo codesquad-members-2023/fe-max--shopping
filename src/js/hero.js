@@ -1,22 +1,23 @@
+const hero = document.querySelector('.hero');
 const slide = document.querySelector('.hero__slide');
 const items = slide.children;
 
 const prevBtn = document.querySelector('.hero__prev-btn');
 const nextBtn = document.querySelector('.hero__next-btn');
 
-const width = items[0].clientWidth;
+let width;
 const middleIndex = Math.floor(items.length / 2);
 let counterIndex = middleIndex;
 let isTransitioning = false;
 
 hideExceptIndex(items, counterIndex);
-slide.style.transform = `translateX(${-width * counterIndex}px)`;
+updateTranslateX();
 
 nextBtn.addEventListener('click', () => {
   if (isTransitioning) return;
 
   isTransitioning = true;
-  slide.style.transition = 'all 117ms';
+  slide.style.transition = 'all 250ms';
   counterIndex++;
   items[counterIndex].style.visibility = `visible`;
   slide.style.transform = `translateX(${-width * counterIndex}px)`;
@@ -26,7 +27,7 @@ prevBtn.addEventListener('click', () => {
   if (isTransitioning) return;
 
   isTransitioning = true;
-  slide.style.transition = 'all 117ms';
+  slide.style.transition = 'all 250ms';
   counterIndex--;
   items[counterIndex].style.visibility = `visible`;
   slide.style.transform = `translateX(${-width * counterIndex}px)`;
@@ -56,3 +57,10 @@ function hideExceptIndex(items, index) {
     items[i].style.visibility = 'hidden';
   }
 }
+
+function updateTranslateX() {
+  width = hero.clientWidth;
+  slide.style.transform = `translateX(${-width * counterIndex}px)`;
+}
+
+window.addEventListener('resize', updateTranslateX);
