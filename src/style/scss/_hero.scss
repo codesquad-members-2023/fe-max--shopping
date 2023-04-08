@@ -3,6 +3,7 @@
   width: 100%;
   height: 100%;
   margin: auto;
+  overflow: hidden;
 
   &__slide {
     display: flex;
@@ -34,10 +35,10 @@
   }
 
   &__prev-btn {
-    left: 6vw;
+    left: 80px;
   }
 
   &__next-btn {
-    right: 6vw;
+    right: 80px;
   }
 }
