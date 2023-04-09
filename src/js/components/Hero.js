@@ -3,22 +3,21 @@ import { Component } from './base/Component.js';
 export class Hero extends Component {
   static autoIntervalSecs = 10000;
   static transitionSecs = 0.5;
-  static direction = { left: 'left', right: 'right' };
 
   constructor(slideCount) {
     super('hero');
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
     this.currentIndex = 0;
-    this.moveDirection;
     this.slider = this.$('.slider');
     this.initSlider(this.slider, slideCount);
   }
 
   initEventHandlers() {
-    this.moveAutoInterval(Hero.autoIntervalSecs);
+    // this.moveAutoInterval(Hero.autoIntervalSecs);
     this.$('.left').addEventListener('click', () => this.moveToPrevSlide());
     this.$('.right').addEventListener('click', () => this.moveToNextSlide());
+    this.$('.slider').addEventListener('transitionend', () => this.cycleSlides());
   }
 
   moveAutoInterval(interval) {
@@ -30,11 +29,9 @@ export class Hero extends Component {
       return;
     }
 
-    this.moveDirection = Hero.direction.left;
-    this.cycleSlides(this.moveDirection);
-
     this.currentIndex -= 1;
     this.moveToSlide(this.currentIndex);
+    console.log(this.currentIndex);
   }
 
   moveToNextSlide() {
@@ -42,31 +39,38 @@ export class Hero extends Component {
       return;
     }
 
-    this.moveDirection = Hero.direction.right;
-    this.cycleSlides(this.moveDirection);
-
     this.currentIndex += 1;
     this.moveToSlide(this.currentIndex);
+    console.log(this.currentIndex);
   }
 
   isValidIndex(slideIndex) {
-    return slideIndex >= 0 && slideIndex <= this.lastIndex;
+    return slideIndex >= 0 && slideIndex < this.lastIndex;
   }
 
-  cycleSlides(moveDirection) {
-    if (moveDirection === Hero.direction.left && this.currentIndex === 0) {
-      this.currentIndex = this.lastIndex;
+  cycleSlides() {
+    const isFirstSlide = this.currentIndex === 0;
+    const isLastSlide = this.currentIndex === this.lastIndex;
+
+    if (isFirstSlide) {
+      this.currentIndex = this.lastIndex - 1;
+      this.moveToSlide(this.currentIndex, false);
+      console.log(this.currentIndex);
       return;
     }
 
-    if (moveDirection === Hero.direction.right && this.currentIndex === this.lastIndex) {
-      this.currentIndex = 0;
+    if (isLastSlide) {
+      this.currentIndex = 1;
+      this.moveToSlide(this.currentIndex, false);
+      console.log(this.currentIndex);
     }
   }
 
-  moveToSlide(slideIndex) {
+  moveToSlide(slideIndex, withTransition = true) {
     this.slider.style.transform = `translateX(-${slideIndex * 100}vw)`;
-    this.slider.style.transition = `all ${Hero.transitionSecs}s ease-in-out`;
+    this.slider.style.transition = withTransition
+      ? `transform ${Hero.transitionSecs}s ease-in-out`
+      : 'none';
   }
 
   initSlider(slider, slideCount) {
