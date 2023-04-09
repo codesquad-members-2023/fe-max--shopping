@@ -1,0 +1,14 @@
+.nav-bar {
+  width: 100%;
+  min-width: 1280px;
+  height: 88px;
+  background-color: hsl(216, 24%, 8%);
+}
+
+.nav-bar__main {
+  min-width: 1280px;
+  height: 56px;
+}
+
+.nav-bar__sub {
+}
