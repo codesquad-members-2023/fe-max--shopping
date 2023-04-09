@@ -118,12 +118,12 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/TopHeader.css"></link>
 
   <style>
-    /* tool-tip-enhanced component styles */
+    /* tool-tip component's slot's nested elements' styles */
     .shipping-tooltip {
       width: 320px;
     }
 
-    .shipping-tooltip div:last-of-type {
+    .shipping-tooltip__btns {
       width: 100%;
       gap: 8px;
       display: flex;
