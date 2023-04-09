@@ -1,0 +1,16 @@
+.login-btn {
+  @include button(160px, 32px);
+  @include typo('boldSM');
+  margin-bottom: 8px;
+}
+
+.continue-btn {
+  @include button(39px, 32px);
+  @include typo('boldSM');
+  margin-right: 8px;
+}
+
+.changeAddress-btn {
+  @include button(58px, 32px);
+  @include typo('boldSM');
+}

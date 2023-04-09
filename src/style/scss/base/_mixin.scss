@@ -1,0 +1,66 @@
+@mixin typo($type) {
+  @if $type == 'boldXL' {
+    font-family: $font-family;
+    font-size: 28px;
+    font-weight: $weight-extraBold;
+    line-height: auto;
+    letter-spacing: 0;
+  } @else if $type == 'boldLG' {
+    font-family: $font-family;
+    font-size: 18px;
+    font-weight: $weight-extraBold;
+    line-height: auto;
+    letter-spacing: 0;
+  } @else if $type == 'boldMD' {
+    font-family: $font-family;
+    font-size: 13px;
+    font-weight: $weight-extraBold;
+    line-height: auto;
+    letter-spacing: -6;
+  } @else if $type == 'boldSM' {
+    font-family: $font-family;
+    font-size: 11px;
+    font-weight: $weight-semiBold;
+    line-height: auto;
+    letter-spacing: -6;
+  } @else if $type == 'bodyMD' {
+    font-family: $font-family;
+    font-size: 13px;
+    font-weight: $weight-medium;
+    line-height: 160%;
+    letter-spacing: -3;
+  } @else if $type == 'bodySM' {
+    font-family: $font-family;
+    font-size: 11px;
+    font-weight: $weight-medium;
+    line-height: 160%;
+    letter-spacing: -3;
+  }
+}
+
+@mixin button($width, $height) {
+  color: $color-black;
+  width: $width;
+  height: $height;
+  background: linear-gradient(
+    174.6deg,
+    $color-white 4.31%,
+    $color-primaryYellow100 50.01%,
+    $color-primaryYellow200 95.71%
+  );
+  border: 1px solid $color-primaryYellow300;
+  border-radius: 4px;
+  padding: 0px;
+}
+
+@mixin modal($width, $height) {
+  z-index: 1;
+  position: absolute;
+  padding: 0px;
+  width: $width;
+  height: $height;
+  background-color: $color-white;
+  border-radius: 4px;
+  border: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
