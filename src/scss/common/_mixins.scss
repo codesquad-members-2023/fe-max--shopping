@@ -189,6 +189,8 @@
   width: 1120px;
   min-width: 1120px;
   border: 1px solid red;
+
+  z-index: 50;
 }
 @mixin contents-layout {
   --gap: 24px;
@@ -196,7 +198,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: var(--gap);
-  grid-auto-rows: 30px;
+  grid-auto-rows: 1px;
 }
 @mixin login-block{
   height: 92px;

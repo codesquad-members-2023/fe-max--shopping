@@ -1,10 +1,10 @@
-@import '../abstracts/mixins';
-@import '../abstracts/variables';
+@import '../common/mixins';
+@import '../common/variables';
 
 .contents {
   @include contents;
   // transform: translateY(-100px);
-  margin-top: -200px;
+  margin-top: -300px;
 }
 .contents-layout {
   @include contents-layout;

@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-@import 'abstracts/variables';
-@import 'abstracts/placeholders';
-@import 'abstracts/mixins';
+@import 'common/variables';
+@import 'common/placeholders';
+@import 'common/mixins';
 
 @import 'base/base'; 
 @import 'base/animations';
