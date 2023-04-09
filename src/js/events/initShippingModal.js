@@ -1,20 +1,14 @@
 import { $ } from '../utils/dom.js';
 
+const mainShippingAddress = $('.main-shipping-address');
+const bodyLayout = $('.body-layout');
+
 export function initShippingModal() {
-  $('.main-shipping-address').addEventListener(
-    'mouseenter',
-    renderShippingModal
-  );
-  $('.main-shipping-address').addEventListener(
-    'mouseleave',
-    removeShippingModal
-  );
+  mainShippingAddress.addEventListener('mouseenter', renderShippingModal);
+  mainShippingAddress.addEventListener('mouseleave', removeShippingModal);
 }
 
 function renderShippingModal() {
-  const mainShippingAddress = $('.main-shipping-address');
-  const bodyLayout = $('.body-layout');
-
   mainShippingAddress.insertAdjacentHTML(
     'beforeend',
     `<div class="modal-temp1">
