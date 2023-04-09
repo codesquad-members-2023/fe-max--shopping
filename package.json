@@ -6,7 +6,8 @@
   "scripts": {
     "build-css": "npx sass --watch src/style/scss/style.scss:src/style/css/style.css",
     "start-server": "npx live-server",
-    "start": "npm-run-all -p build-css start-server"
+    "start": "npm-run-all -p build-css start-server",
+    "prestart": "npm i -D npm-run-all"
   },
   "repository": {
     "type": "git",
