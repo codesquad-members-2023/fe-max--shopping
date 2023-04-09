@@ -2,10 +2,25 @@
 
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Project Requirements](#project-requirements)
   - [About](#about)
   - [Key Features](#key-features)
 - [Dev Log](#dev-log)
+
+## Getting Started
+1. Clone the repository
+    ```zsh
+    git clone https://github.com/Kakamotobi/fe-max--shopping.git
+    ```
+2. Install dependencies
+    ```zsh
+    npm install
+    ```
+3. Run the development server
+    ```zsh
+    npm run dev
+    ```
 
 ## Project Requirements
 
@@ -17,17 +32,19 @@
 
 - [ ] Top Nav Bar
   - [ ] Login Section
-    - [ ] Login "tooltip"
-      - [ ] Appears after 1 second after page load
-    - [ ] Login Section Hover
-      - [ ] Login "tooltip" disappears
-      - [ ] Login modal appears
-      - [ ] Close modal when no longer hovering over the section or modal.
+    - [x] Login "tooltip"
+      - [x] Appears after 1 second after page load
+    - [x] Login Section Hover
+      - [x] Login "tooltip" disappears
+      - [x] Login modal appears
+      - [x] Close modal when no longer hovering over the section or modal.
+      - [ ] Dim main section.
   - [ ] Shipping Section Hover
-    - [ ] Shipping address modal appears
-    - [ ] Close modal when no longer hovering over the section or modal.
-  - [ ] Navbar expands the whole width of the viewport
-    - [ ] Search bar grows when vw >= 1120px.
+    - [x] Shipping address modal appears
+    - [x] Close modal when no longer hovering over the section or modal.
+    - [ ] Dim main section.
+  - [x] Navbar expands the whole width of the viewport
+    - [x] Search bar grows when vw >= 1120px.
 
 ## Dev Log
 
