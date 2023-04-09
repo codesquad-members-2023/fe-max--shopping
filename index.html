@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아마존</title>
+    <link rel="stylesheet" href="./src/css/main.min.css">
+    <link rel="stylesheet" href="./src/css/reset.css">
+
+    <script type="module" src="./src/js/index.js" defer></script>
+</head>
+
+<body>
+    <div class="body-layout">
+        <header class="header">
+            <div class="nav-main">
+                <h1>
+                    <a href="/" class="logo">
+                        <img src="./src/images/logo.svg" alt="로고">
+                    </a>
+                </h1>
+                <div class="main-shipping-address">
+                    <div class="shipping-label">
+                        <div class="icon-box main-menu-button">
+                            <img src="./src/images/location-white.svg" alt="배송처">
+                            <span class="label-small">배송처</span>
+                        </div>
+                        <span class="main-menu-button">대한민국</span>
+                    </div>
+                </div>
+                <div class="main-search-bar main-menu-button">
+                    <form>
+                        <fieldset>
+                            <label for="search-bar"></label>
+                            <input type="text" id="search-bar" placeholder="검색 Amazon">
+                            <button type="button" class="search-btn">
+                                <img src="./src/images/search-button.svg" alt="검색버튼">
+                            </button>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="main-nation icon-box main-menu-button">
+                    <img src="./src/images/flag-usa.svg" alt="국기">
+                    <span>KO</span>
+                </div>
+                <div class="main-login">
+                    <div class="login-label">
+                        <span class="label-small main-menu-button">안녕하세요, 로그인</span>
+                        <span class="main-menu-button">계정 및 목록</span>
+                    </div>
+                </div>
+                <div class="main-my-page main-menu-button">
+                    <span class="label-small">반품</span>
+                    <span>&주문</span>
+                </div>
+                <div class="main-cart icon-box main-menu-button">
+                    <img src="./src/images/cart-orange.svg" alt="장바구니">
+                    <span>장바구니</span>
+                </div>
+            </div>
+
+            <nav class="nav-sub">
+                <div class="sub-left-buttons">
+                    <button type="button" class="side-bar sub-menu-button">
+                        <img src="./src/images/menu-white.svg" alt="메뉴">
+                        <span>모두</span>
+                    </button>
+                    <button type="button" class="sub-menu-button"><span>오늘의 딜</span></button>
+                    <button type="button" class="sub-menu-button"><span>고객 서비스</span></button>
+                    <button type="button" class="sub-menu-button"><span>레지스트리</span></button>
+                    <button type="button" class="sub-menu-button"><span>기프트 카드</span></button>
+                    <button type="button" class="sub-menu-button"><span>판매</span></button>
+                </div>
+                <div class="sub-right-buttons">
+                    <button type="button" class="sub-menu-button sub-menu-right-button"><span>지금 특가 상품
+                            쇼핑하기</span></button>
+                </div>
+            </nav>
+        </header>
+        <main class="main">
+            <article class="hero">
+                <ul class="slide-banner">
+                    <li class="slide-item">
+                        <img src="./src/images/Image0.png" alt="0">
+                    </li>
+                    <li class="slide-item">
+                        <img src="./src/images/Image1.png" alt="1">
+                    </li>
+                    <li class="slide-item">
+                        <img src="./src/images/Image2.png" alt="2">
+                    </li>
+                </ul>
+                <div class="slide-buttons-layout">
+                    <button type="button" class="slide-prev-button slide-button"><img
+                            src="./src/images/slideLeftButton.svg" class="prev" alt="이전">
+                    </button>
+                    <button type="button" class="slide-next-button slide-button"><img
+                            src="./src/images/slideRightButton.svg" class="next" alt="다음">
+                    </button> 
+                </div>
+            </article>
+            <article class="contents">
+                <ul class="contents-layout">
+                    <li class="item login-block">
+                        <button type="button" class="button-common">로그인</button>
+                        <div>
+                            <span>최상의 경험을 위해 로그인하세요</span>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product0.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product1.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product2.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product3.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product4.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product5.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                    <li class="item product">
+                        <img src="./src/images/product6.png" alt="${item.type}" class="item__thumbnail" />
+                        <div class="product-text">
+                            <p class="product-title">${item.title}</p>
+                            <p class="product-description">${item.title}</p>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+            <div class="loading"></div>
+        </main>
+        <aside></aside>
+        <footer class="footer">
+            <a href="#">위로 돌아가기 </a>
+            <div>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+            </div>
+            <div>
+                <a href="">logo</a>
+                <div>
+                    <div>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <address></address>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

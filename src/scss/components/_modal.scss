@@ -1,0 +1,69 @@
+@import '../common/mixins';
+@import '../common/variables';
+@import '../common/placeholders';
+@import '../base/animations';
+
+.modal-bg {
+  @include modal-bg;
+  width: 100%;
+  height: $vh100;
+  animation: fade-in 0.5s forwards; 
+}
+
+.modal {
+  @include modal;
+  z-index: 100;
+  position: absolute;
+  top: 102%;
+  right: 0;
+  width: 235px;
+  gap: 8px;
+  opacity: 0;
+  animation: fade-in 0.5s forwards; 
+  button {
+    @include pointer;
+    @include font-bold-sm;
+    width: 160px;
+    height: 32px;
+  }
+  div > span:nth-child(2) {
+    @include pointer;
+    color: $color-secondary-navy;
+    text-decoration: underline;
+  }
+  .modal-triangle {
+    @include modal-triangle;
+    top: -12%;
+    right: 14.2%;
+  }
+
+
+}
+/* todo 모달창 템플릿을 하나만 가지고 변형이 가능한지 고민하기 */
+.modal-temp1 {
+  @include modal;
+  z-index: 100;
+  align-items: flex-end;
+  position: absolute;
+  white-space: normal;
+  top: 102%;
+  left: 0;
+  width: 320px;
+  gap: 8px;
+  div {
+    @include flex-row;
+    gap: 8px;
+  }
+  button {
+    @include pointer;
+    @include font-bold-sm;
+    width: fit-content;
+    height: 32px;
+  }
+  .modal-triangle {
+    @include modal-triangle;
+    top: -10%;
+    left: 5%;
+  }
+}
+

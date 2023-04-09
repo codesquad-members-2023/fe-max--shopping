@@ -1,0 +1,110 @@
+@import '../common/mixins';
+@import '../common/variables';
+.header {
+  @include header;
+  white-space: nowrap;
+  .nav-main {
+    height: 56px;
+    @include flex-row;
+    gap: 24px;
+    justify-content: space-between;
+    padding: 0 26px;
+    background-color: $color-black;
+    @include font-bold-md;
+    color: $color-white;
+    > * {
+      @include flex-row;
+      align-items: center;
+    }
+
+    .label-small {
+      @include font-bold-sm;
+      color: $color-gray-400;
+    }
+    .main-menu-button {
+      @include pointer;
+    }
+    .icon-box {
+      @include flex-row;
+      align-items: center;
+      gap: 3px;
+    }
+    .main-shipping-address {
+      @include flex-column;
+      justify-content: center;
+      position: relative;
+    }
+    .main-search-bar,
+    form,
+    fieldset {
+      @include flex-row;
+      flex: 1;
+      #search-bar {
+        width: 100%;
+        height: 40px;
+        background-color: $color-white;
+        border-radius: 4px 0 0 4px;
+        padding: 9.5px 12px;
+        color: $color-black;
+        &::placeholder {
+          @include place-holder;
+        }
+      }
+      .search-btn {
+        @include pointer;
+      }
+    }
+    .main-login {
+      position: relative;
+      .login-label{
+        @include flex-column;
+      }
+      &:hover .modal{
+        width: 335px;
+        box-shadow: 0 3px 5px 0 $color-gray-600;
+        @extend %expanded-modal;
+        .modal-triangle {
+          @include modal-triangle;
+          top: -3%;
+          right: 10%;
+        }
+      }
+    }
+    .main-login,
+    .main-my-page {
+      @include flex-column;
+      justify-content: center;
+      align-items: baseline;
+    }
+  }
+
+  .nav-sub {
+    height: 32px;
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 26px;
+    background-color: $color-gray-900;
+    @include font-bold-md-s;
+    color: $color-white;
+    .sub-left-buttons {
+      @include flex-row;
+      .side-bar {
+        @include flex-row;
+        gap: 6px;
+        align-items: center;
+      }
+    }
+    .sub-menu-button {
+      @include pointer;
+      padding: 8px;
+    }
+    .side-bar {
+      @include font-bold-md;
+    }
+    .sub-menu-right-button {
+      @include font-bold-md;
+      padding: 8px 0;
+    }
+  }
+}

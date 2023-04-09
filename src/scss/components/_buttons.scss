@@ -1,0 +1,9 @@
+@import '../common/mixins';
+
+.button-common{
+    @include pointer;
+    @include button-common; 
+}
+.slide-button{
+    @include slide-button ;
+}

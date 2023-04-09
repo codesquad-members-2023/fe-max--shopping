@@ -1,0 +1,211 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+@import 'variables';
+
+@mixin border-common {
+  border: 1px solid red;
+}
+
+@mixin font-bold-xl {
+  font: $font-bold-xl;
+  line-height: 33px;
+}
+
+@mixin font-bold-lg {
+  font: $font-bold-lg;
+  line-height: 21px;
+}
+@mixin font-bold-md {
+  font: $font-bold-md;
+  line-height: 16px;
+  letter-spacing: $letter-spacing-bold;
+}
+@mixin font-bold-md-s {
+  font: $font-bold-md-s;
+  line-height: 16px;
+}
+@mixin font-bold-sm {
+  font: $font-bold-sm;
+  line-height: 13px;
+  letter-spacing: $letter-spacing-bold;
+}
+@mixin font-body-md {
+  font: $font-body-md;
+  letter-spacing: $letter-spacing-body;
+}
+@mixin font-body-sm {
+  font: $font-body-sm;
+  letter-spacing: $letter-spacing-body;
+}
+
+@mixin button-common {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  background: linear-gradient(
+    174.6deg,
+    $color-white 4.31%,
+    $color-primary-yellow-100 50.01%,
+    $color-primary-yellow-200 95.71%
+  );
+
+  border: 1px solid $color-primary-yellow-300;
+  border-radius: 4px;
+}
+
+@mixin body-layout {
+  width: 100%;
+  @include flex-column;
+  align-items: center;
+}
+
+@mixin screen-large {
+  @media (min-width: #{$breakpoints}) {
+    @content;
+  }
+}
+
+@mixin main {
+  width: 1280px;
+  min-width: 1280px;
+  @include flex-column;
+  align-items: center;
+  // position: relative;
+  // top: 88px;
+}
+
+@mixin header {
+  flex-direction: column;
+  justify-content: center;
+  width: 1120px;
+  min-width: 1120px;
+  @include screen-large {
+    width: $vw100;
+  }
+}
+
+@mixin flex-row {
+  display: flex;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin place-holder {
+  @include font-body-md;
+  color: $color-gray-600;
+}
+
+@mixin pointer {
+  cursor: pointer;
+}
+
+@mixin modal-bg {
+  background-color: $color-black-40;
+  position: absolute;
+  top: 88px;
+}
+@mixin modal {
+  @include flex-column;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: $color-white;
+  @include font-body-sm;
+  color: $color-black;
+  box-shadow: 0 3px 5px 0 $color-gray-400;
+}
+
+@mixin modal-triangle {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: -10%;
+  border-bottom: 14px solid red;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+
+@mixin carousel {
+  @include flex-row;
+  flex-wrap: nowrap;
+  // overflow: hidden;
+  position: relative;
+  width: 1280px;
+  user-select: none;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+
+@mixin carousel-item {
+  position: relative;
+  // left: 0px;
+  width: 1280px;
+  height: fit-content;
+}
+@mixin slide-buttons-layout {
+  @include flex-row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  // top: 170px;
+  width: 1120px;
+  height: 211px;
+  border: 1px solid red;
+} 
+
+@mixin slide-button {
+  @include pointer;
+  @include flex-column;
+  justify-content: center;
+  width: 24px;
+  height: inherit;
+}
+
+// @mixin contents {
+//   width: 1120px;
+//   min-width: 1120px;
+//   border: 1px solid red;
+// }
+// @mixin contents-layout {
+//   @include flex-row;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   align-content: flex-start;
+// }
+// @mixin login-block{
+//   height: 92px;
+//   background-color: $color-white;
+// }
+// @mixin item {
+//   width: calc(25% - 18px);
+// }
+
+@mixin contents {
+  width: 1120px;
+  min-width: 1120px;
+  border: 1px solid red;
+
+  z-index: 50;
+}
+@mixin contents-layout {
+  --gap: 24px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--gap);
+  grid-auto-rows: 1px;
+}
+@mixin login-block{
+  height: 92px;
+  background-color: $color-white;
+}
+@mixin item {
+  width: 262px;
+}
+
+

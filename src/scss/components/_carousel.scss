@@ -1,0 +1,19 @@
+@import '../common/mixins';
+@import '../common/variables';
+@import '../common/placeholders';
+@import '../base/animations';
+
+.hero {
+  @include flex-column;
+  align-items: center;
+  border: 1px solid red;
+}
+.slide-banner {
+  @include carousel;
+}
+.slide-buttons-layout {
+  @include slide-buttons-layout;
+}
+.slide-item {
+  @include carousel-item;
+}
