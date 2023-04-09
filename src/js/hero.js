@@ -1,7 +1,6 @@
 const hero = document.querySelector('.hero');
 const slide = document.querySelector('.hero__slide');
 const items = slide.children;
-
 const prevBtn = document.querySelector('.hero__prev-btn');
 const nextBtn = document.querySelector('.hero__next-btn');
 
@@ -9,28 +8,22 @@ let width;
 const middleIndex = Math.floor(items.length / 2);
 let counterIndex = middleIndex;
 let isTransitioning = false;
+const AUTO_ACTION_WAITTIME = 10000;
+let autoSlideTimer = setInterval(goToNextItem, AUTO_ACTION_WAITTIME);
 
-hideExceptIndex(items, counterIndex);
+showOnlyCurrent(items, counterIndex);
 updateTranslateX();
 
 nextBtn.addEventListener('click', () => {
-  if (isTransitioning) return;
-
-  isTransitioning = true;
-  slide.style.transition = 'all 250ms';
-  counterIndex++;
-  items[counterIndex].style.visibility = `visible`;
-  slide.style.transform = `translateX(${-width * counterIndex}px)`;
+  clearInterval(autoSlideTimer);
+  goToNextItem();
+  autoSlideTimer = setInterval(goToNextItem, AUTO_ACTION_WAITTIME);
 });
 
 prevBtn.addEventListener('click', () => {
-  if (isTransitioning) return;
-
-  isTransitioning = true;
-  slide.style.transition = 'all 250ms';
-  counterIndex--;
-  items[counterIndex].style.visibility = `visible`;
-  slide.style.transform = `translateX(${-width * counterIndex}px)`;
+  clearInterval(autoSlideTimer);
+  goToPrevItem();
+  autoSlideTimer = setInterval(goToNextItem, AUTO_ACTION_WAITTIME);
 });
 
 slide.addEventListener('transitionend', () => {
@@ -42,13 +35,14 @@ slide.addEventListener('transitionend', () => {
     slide.prepend(slide.lastElementChild);
     counterIndex++;
   }
-
-  hideExceptIndex(items, counterIndex);
+  showOnlyCurrent(items, counterIndex);
   slide.style.transform = `translateX(${-width * counterIndex}px)`;
   isTransitioning = false;
 });
 
-function hideExceptIndex(items, index) {
+window.addEventListener('resize', updateTranslateX);
+
+function showOnlyCurrent(items, index) {
   for (let i = 0; i < items.length; i++) {
     if (i == index) {
       items[i].style.visibility = 'visible';
@@ -63,4 +57,20 @@ function updateTranslateX() {
   slide.style.transform = `translateX(${-width * counterIndex}px)`;
 }
 
-window.addEventListener('resize', updateTranslateX);
+function goToNextItem() {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  slide.style.transition = 'all 250ms';
+  counterIndex++;
+  items[counterIndex].style.visibility = 'visible';
+  slide.style.transform = `translateX(${-width * counterIndex}px)`;
+}
+
+function goToPrevItem() {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  slide.style.transition = 'all 250ms';
+  counterIndex--;
+  items[counterIndex].style.visibility = 'visible';
+  slide.style.transform = `translateX(${-width * counterIndex}px)`;
+}
