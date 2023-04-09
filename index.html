@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon</title>
+
+    <link rel="stylesheet" href="/src/style/css/style.css" />
+    <script src="/src/js/index.js" type="module"></script>
+  </head>
+  <body>
+    <div id="nav-bar">
+      <header class="nav-bar__main">
+        <button class="nav-bar__main-logo">
+          <img src="./src/asset/img/logo.svg" alt="로고" />
+        </button>
+        <section class="nav-bar__main-address">
+          <div class="label">
+            <img src="./src/asset/img/marker.svg" alt="맵 마커" />
+            <span>배송지</span>
+          </div>
+          <p class="content">대한민국</p>
+        </section>
+        <form class="nav-bar__main-search">
+          <input type="text" placeholder="검색 Amazon" name="search" />
+          <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
+        </form>
+        <section class="nav-bar__main-nation">
+          <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기" />
+          <p class="content">KO</p>
+        </section>
+        <section class="nav-bar__main-login">
+          <div class="label">
+            <span>안녕하세요,로그인</span>
+          </div>
+          <p class="content">계정 및 목록</p>
+        </section>
+        <section class="nav-bar__main-history">
+          <div class="label">
+            <span>반품</span>
+          </div>
+          <p class="content">& 주문</p>
+        </section>
+        <section class="nav-bar__main-cart">
+          <img src="./src/asset/img/cart.svg" alt="카트" />
+          <p class="content">장바구니</p>
+        </section>
+      </header>
+      <nav class="nav-bar__sub">
+        <ul class="left-menu">
+          <li>
+            <button>
+              <img src="/src/asset/img/menu.svg" alt="메뉴" />
+              <p class="action-item">모두</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>오늘의 딜</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>고객 서비스</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>레지스트리</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>기프트 카드</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <p>판매</p>
+            </button>
+          </li>
+        </ul>
+        <ul class="right-menu">
+          <button>
+            <p class="action-item">지금 특가 상품 쇼핑하기</p>
+          </button>
+        </ul>
+      </nav>
+    </div>
+    <main>
+      <div class="hero">
+        <ul class="hero__slide">
+          <li><img src="/src/asset/img/hero_5.jpg" alt="5번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_6.jpg" alt="6번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_7.jpg" alt="7번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_1.jpg" alt="1번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_2.jpg" alt="2번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_3.jpg" alt="3번째 히어로 이미지" /></li>
+          <li><img src="/src/asset/img/hero_4.jpg" alt="4번째 히어로 이미지" /></li>
+        </ul>
+        <button class="hero__prev-btn">
+          <img src="/src/asset/img/LeftButton.svg" alt="이전 이미지">
+        </button>
+        <button class="hero__next-btn">
+          <img src="/src/asset/img/RightButton.svg" alt="다음 이미지">
+        </button>
+      </div>
+    </main>
+    <aside></aside>
+    <footer></footer>
+  </body>
+</html>
