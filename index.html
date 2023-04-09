@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon</title>
+    <link rel="stylesheet" href="./src/styles/css/main.css" />
+    <script src="./src/js/hero.js" defer></script>
+    <script src="./src/js/layer.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <!-- top-header -->
+      <div class="header__wrap">
+        <div class="header__brand-logo">
+          <a href="./index.html">
+            <img src="./src/assets/images/img_logo.svg" alt="아마존 사이트 로고" />
+            <h1 class="sr-only">아마존</h1>
+          </a>
+        </div>
+        <div class="header__shipping-address">
+          <div>
+            <img src="./src/assets/images/icn_location.svg" alt="" aria-hidden="true" />
+            <div class="top-text">배송처</div>
+          </div>
+          <div>대한민국</div>
+        </div>
+        <form class="header__search-bar">
+          <input type="text" placeholder="검색 Amazon" />
+          <button type="button">
+            <img src="./src/assets/images/icn_search.svg" alt="검색하기" />
+          </button>
+        </form>
+        <div class="header__nation">
+          <a href="#">
+            <img src="./src/assets/images/icn_flag_america.svg" alt="" aria-hidden="true" />
+            <div>KO</div>
+          </a>
+        </div>
+        <div class="header__login">
+          <a href="#">
+            <div class="top-text">안녕하세요,로그인</div>
+            <div class="down-text">계정 및 목록</div>
+          </a>
+        </div>
+        <div class="header__my-page">
+          <a href="#">
+            <div class="top-text">반품</div>
+            <div class="down-text">&주문</div>
+          </a>
+        </div>
+        <div class="header__cart">
+          <a href="#">
+            <img src="./src/assets/images/icn_cart.svg" alt="" aria-hidden="true" />
+            <div>장바구니</div>
+          </a>
+        </div>
+      </div>
+      <!-- header-layer -->
+
+      <div class="header-layer">
+        <div class="header-layer__popup--address hidden">
+          <div class="shape-triangle"></div>
+          <div class="layer-content">
+            <div>
+              KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를
+              변경하십시오.
+            </div>
+            <div class="btn">
+              <button class="btn--continue">계속</button>
+              <button class="btn--chage-address">주소 변경</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-layer__popup--login hidden">
+          <div class="shape-triangle"></div>
+          <button class="btn-login">로그인</button>
+          <div>기존 사용자가 아니십니까? <a href="#">여기에서 시작합니다</a></div>
+        </div>
+
+        <div class="header-layer__popup--login-extend hidden">
+          <div class="shape-triangle"></div>
+          <div class="top-area">
+            <button class="btn-login">로그인</button>
+            <div>기존 사용자가 아니십니까? <a href="#">여기서 시작합니다.</a></div>
+          </div>
+          <div class="bottom-area">
+            <div class="left-list">
+              <div>귀하의 목록</div>
+              <ul>
+                <li><a href="#">목록 생성</a></li>
+                <li><a href="#">목록 또는 레지스트리 찾기</a></li>
+                <li><a href="#">AmazonSmile 자선 품목 목록</a></li>
+              </ul>
+            </div>
+            <div class="right-list">
+              <div>계정</div>
+              <ul>
+                <li><a href="#">계정</a></li>
+                <li><a href="#">주문</a></li>
+                <li><a href="#">권장 사항</a></li>
+                <li><a href="#">검색 기록</a></li>
+                <li><a href="#">워치리스트</a></li>
+                <li><a href="#">비디오 구매 및 대여</a></li>
+                <li><a href="#">Kindle 언리미티드</a></li>
+                <li><a href="#">콘텐츠 및 기기</a></li>
+                <li><a href="#">항목 구독 및 저장</a></li>
+                <li><a href="#">멤버십 및 구독</a></li>
+                <li><a href="#">음악 라이브러리</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dim hidden"></div>
+
+      <!-- navbar -->
+      <nav class="nav-sub">
+        <div class="nav-sub__wrap">
+          <ul class="nav-sub__left">
+            <li class="nav-sub__hmenu">
+              <img src="./src/assets/images/icn_menu.svg" alt="메뉴 버튼" />
+              <span>모두</span>
+            </li>
+            <li><a href="#">오늘의 딜</a></li>
+            <li><a href="#">고객 서비스</a></li>
+            <li><a href="#">레지스트리</a></li>
+            <li><a href="#">기프트 카드</a></li>
+            <li><a href="#">판매</a></li>
+          </ul>
+
+          <div class="nav-sub__right">
+            <a href="#">지금 특가 상품 쇼핑하기</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- hero-slider -->
+    <section class="hero">
+      <div class="hero-wrap">
+        <div class="hero-slider">
+          <div class="hero-slider__slides t1"></div>
+          <div class="hero-slider__content">
+            <p class="text">
+              해외 쇼핑을 즐기고 한국 직불 카드 또는<br />
+              한국 신용카드로 결제하십시오
+            </p>
+            <div class="hero-slider__btn-wrap">
+              <button type="button" class="hero-slider__btn--prev">
+                <img src="./src/assets/images/btn_arrow_left.svg" alt="" />
+              </button>
+              <button type="button" class="hero-slider__btn--next">
+                <img src="./src/assets/images/btn_arrow_right.svg" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

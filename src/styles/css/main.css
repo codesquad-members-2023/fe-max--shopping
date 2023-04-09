@@ -1,0 +1,648 @@
+@charset "UTF-8";
+/***
+    The new CSS reset - version 1.8.4 (last updated 14.2.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a {
+  text-decoration: none;
+  cursor: revert;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+  all: unset;
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  -moz-appearance: revert;
+       appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::-moz-placeholder {
+  color: unset;
+}
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+- fix for the content editable attribute will work properly.
+- webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../assets/fonts/Pretendard-Medium.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-display: swap;
+  src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 800;
+  font-display: swap;
+  src: url("../../assets/fonts/Pretendard-ExtraBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-ExtraBold.woff") format("woff");
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+@keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.header {
+  width: 100%;
+  background-color: #10141a;
+  height: 56px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+.header__wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__wrap > div:hover,
+.header__wrap > div:focus,
+.header__wrap > div:active {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+.header__shipping-address {
+  cursor: pointer;
+}
+.header__shipping-address > div {
+  display: flex;
+  align-items: center;
+}
+.header__shipping-address img {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+.header__search-bar {
+  display: flex;
+  padding: 0 12px;
+  flex-grow: 1;
+  height: 40px;
+}
+.header__search-bar input {
+  border: none;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+  color: #878787;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 9.5px 12px;
+  border-radius: 4px 0 0 4px;
+}
+.header__search-bar button {
+  background-color: #fcb057;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 4px 4px 0;
+}
+.header__nation, .header__cart {
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+  padding: 0 12px;
+}
+.header__nation a, .header__cart a {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.header__brand-logo, .header__shipping-address, .header__login, .header__my-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease-in-out;
+  padding: 0 12px;
+}
+.header .top-text {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #d5d5d5;
+}
+.header .down-text {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+
+.nav-sub {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  background-color: #1b232f;
+  height: 32px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+  line-height: 32px;
+  min-width: 1024px;
+}
+.nav-sub__wrap, .nav-sub__left, .nav-sub__hmenu {
+  display: flex;
+  align-items: center;
+}
+.nav-sub__wrap {
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.nav-sub__hmenu {
+  gap: 4px;
+}
+.nav-sub__hmenu img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+.nav-sub__hmenu span {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+.nav-sub__left li {
+  padding: 0 8px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.nav-sub__left li a {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+.nav-sub__left > li:hover,
+.nav-sub__left > li:focus,
+.nav-sub__left > li:active {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+.nav-sub__right {
+  transition: box-shadow 0.3s ease-in-out;
+}
+.nav-sub__right a {
+  display: block;
+  height: 32px;
+  padding: 0 12px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+}
+.nav-sub__right:hover, .nav-sub__right:focus, .nav-sub__right:active {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 1px #ffffff inset;
+}
+
+.header-layer {
+  width: 100%;
+  position: absolute;
+}
+.header-layer__popup--address, .header-layer__popup--login, .header-layer__popup--login-extend {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+  color: #10141a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+.header-layer__popup--address {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 131px;
+  width: 320px;
+  height: 126px;
+  animation: fadeAnimation 0.7s linear;
+}
+.header-layer__popup--address .shape-triangle {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  width: 19px;
+  height: 19px;
+  background-color: #ffffff;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.header-layer__popup--address .layer-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header-layer__popup--address .layer-content .btn {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  margin-top: auto;
+  text-align: right;
+}
+.header-layer__popup--address .layer-content .btn .btn--continue {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #10141a;
+  display: flex;
+  line-height: 13px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 9.5px;
+  background: linear-gradient(174.6deg, #ffffff, #fed15f, #febe30);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+}
+.header-layer__popup--address .layer-content .btn .btn--chage-address {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #10141a;
+  display: flex;
+  line-height: 13px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 9.5px;
+  background: linear-gradient(174.6deg, #ffffff, #fed15f, #febe30);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+}
+.header-layer__popup--login {
+  width: 235px;
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  right: 172px;
+  animation: fadeAnimation 0.7s linear;
+}
+.header-layer__popup--login .shape-triangle {
+  position: absolute;
+  top: -10px;
+  left: 188px;
+  width: 19px;
+  height: 19px;
+  background-color: #ffffff;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.header-layer__popup--login .btn-login {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #10141a;
+  display: flex;
+  line-height: 13px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 9.5px;
+  background: linear-gradient(174.6deg, #ffffff, #fed15f, #febe30);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  width: 160px;
+}
+.header-layer__popup--login div {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+  color: #10141a;
+}
+.header-layer__popup--login div a {
+  color: #074099;
+}
+.header-layer__popup--login-extend {
+  width: 335px;
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  right: 126px;
+  animation: fadeAnimation 0.7s linear;
+}
+.header-layer__popup--login-extend .shape-triangle {
+  position: absolute;
+  top: -10px;
+  left: 242px;
+  width: 19px;
+  height: 19px;
+  background-color: #ffffff;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.header-layer__popup--login-extend .top-area {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eff2f2;
+}
+.header-layer__popup--login-extend .top-area .btn-login {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #10141a;
+  display: flex;
+  line-height: 13px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 9.5px;
+  background: linear-gradient(174.6deg, #ffffff, #fed15f, #febe30);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  width: 160px;
+  margin: 0 auto 8px;
+}
+.header-layer__popup--login-extend .top-area a {
+  color: #074099;
+}
+.header-layer__popup--login-extend .bottom-area {
+  display: flex;
+  text-align: left;
+}
+.header-layer__popup--login-extend .bottom-area .left-list,
+.header-layer__popup--login-extend .bottom-area .right-list {
+  width: 153px;
+}
+.header-layer__popup--login-extend .bottom-area .left-list div,
+.header-layer__popup--login-extend .bottom-area .right-list div {
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: -0.06em;
+  color: #10141a;
+  padding-bottom: 4px;
+}
+.header-layer__popup--login-extend .bottom-area .left-list ul,
+.header-layer__popup--login-extend .bottom-area .right-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.header-layer__popup--address.hidden {
+  display: none;
+}
+.header-layer__popup--login-extend.hidden {
+  display: none;
+}
+.header-layer__popup--login.hidden {
+  display: none;
+}
+
+body {
+  background-color: #e5e9e9;
+}
+
+.hero {
+  position: relative;
+  top: 32px;
+  width: 100%;
+}
+.hero-wrap {
+  max-width: 1280px;
+  height: 512px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.hero-slider {
+  width: 100%;
+  overflow: hidden;
+}
+.hero-slider__slides {
+  width: 100%;
+  height: 512px;
+  display: flex;
+}
+.hero-slider__slides img {
+  flex: 1 0 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.hero-slider__content {
+  width: 100%;
+  max-width: 1096px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 221px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-slider__content .text {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-family: "Pretendard", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: auto;
+  letter-spacing: 0;
+  color: #10141a;
+}
+.hero-slider__btn--prev, .hero-slider__btn--next {
+  height: 100%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+}
+.hero-slider__btn--prev {
+  left: 0;
+}
+.hero-slider__btn--next {
+  right: 0;
+}
+
+.dim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(16, 20, 26, 0.4);
+  z-index: 5;
+}
+.dim.hidden {
+  animation: fadeAnimation 0.7s linear;
+  display: none;
+}/*# sourceMappingURL=main.css.map */

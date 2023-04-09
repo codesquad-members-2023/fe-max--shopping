@@ -1,0 +1,14 @@
+.dim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $Black40;
+  z-index: 5;
+
+  &.hidden {
+    @include popupAnimation;
+    display: none;
+  }
+}

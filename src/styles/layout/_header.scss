@@ -1,0 +1,283 @@
+@mixin header-layout($height, $typography, $backgroundColor) {
+  width: 100%;
+  background-color: $backgroundColor;
+  height: $height;
+  @include typography($typography, $White);
+}
+
+.header {
+  @include header-layout(56px, $BoldMD, $Black);
+
+  &__wrap {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > div:hover,
+    > div:focus,
+    > div:active {
+      transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 0 1px $White inset;
+    }
+  }
+
+  &__shipping-address {
+    cursor: pointer;
+    > div {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      display: block;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &__search-bar {
+    display: flex;
+    padding: 0 12px;
+    flex-grow: 1;
+    height: 40px;
+    input {
+      border: none;
+      @include typography($BodyMD, $Gray600);
+      width: 100%;
+      background-color: $White;
+      padding: 9.5px 12px;
+      border-radius: 4px 0 0 4px;
+    }
+    button {
+      background-color: $PrimaryOrange100;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px 4px 4px 0;
+    }
+  }
+
+  &__nation,
+  &__cart {
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    padding: 0 12px;
+    a {
+      @include typography($BodyMD, $White);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  &__brand-logo,
+  &__shipping-address,
+  &__login,
+  &__my-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease-in-out;
+    padding: 0 12px;
+  }
+
+  .top-text {
+    @include typography($BoldSM, $Gray400);
+  }
+  .down-text {
+    @include typography($BoldMD, $White);
+  }
+}
+
+.nav-sub {
+  position: relative;
+  z-index: 30;
+  @include header-layout(32px, $BoldSM, $Gray900);
+  line-height: 32px;
+  min-width: 1024px;
+
+  &__wrap,
+  &__left,
+  &__hmenu {
+    display: flex;
+    align-items: center;
+  }
+
+  &__wrap {
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  &__hmenu {
+    gap: 4px;
+    img {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+    span {
+      @include typography($BoldMD, $White);
+    }
+  }
+
+  &__left {
+    li {
+      padding: 0 8px;
+      transition: box-shadow 0.3s ease-in-out;
+      a {
+        @include typography($BoldMD, $White);
+      }
+    }
+    > li:hover,
+    > li:focus,
+    > li:active {
+      transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 0 1px $White inset;
+    }
+  }
+
+  &__right {
+    transition: box-shadow 0.3s ease-in-out;
+    a {
+      display: block;
+      height: 32px;
+      padding: 0 12px;
+      @include typography($BoldMD, $White);
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 0 1px $White inset;
+    }
+  }
+}
+
+.header-layer {
+  width: 100%;
+  position: absolute;
+
+  &__popup--address,
+  &__popup--login,
+  &__popup--login-extend {
+    @include layer;
+  }
+
+  &__popup--address {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 131px;
+    width: 320px;
+    height: 126px;
+    @include popupAnimation;
+
+    .shape-triangle {
+      @include clip-path-triangle(10px);
+    }
+    .layer-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .btn {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+        margin-top: auto;
+        text-align: right;
+
+        .btn--continue {
+          @include button();
+        }
+        .btn--chage-address {
+          @include button();
+        }
+      }
+    }
+  }
+
+  &__popup--login {
+    width: 235px;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 172px;
+    @include popupAnimation;
+    .shape-triangle {
+      @include clip-path-triangle(188px);
+    }
+    .btn-login {
+      @include button();
+      width: 160px;
+    }
+    div {
+      @include typography($BodySM);
+      a {
+        color: $SecondaryNavy;
+      }
+    }
+  }
+
+  &__popup--login-extend {
+    width: 335px;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 126px;
+    @include popupAnimation;
+    .shape-triangle {
+      @include clip-path-triangle(242px);
+    }
+
+    .top-area {
+      width: 100%;
+      text-align: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid $Gray100;
+
+      .btn-login {
+        @include button();
+        width: 160px;
+        margin: 0 auto 8px;
+      }
+      a {
+        color: $SecondaryNavy;
+      }
+    }
+
+    .bottom-area {
+      display: flex;
+      text-align: left;
+
+      .left-list,
+      .right-list {
+        width: 153px;
+        div {
+          @include typography($BoldMD);
+          padding-bottom: 4px;
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+      }
+    }
+  }
+
+  &__popup--address.hidden,
+  &__popup--login-extend.hidden,
+  &__popup--login.hidden {
+    display: none;
+  }
+}
