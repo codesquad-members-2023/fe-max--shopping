@@ -14,7 +14,6 @@
     left: 0;
     z-index: 30;
     height: 100%;
-    // padding: 8px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,12 +275,8 @@
     }
   }
 
-  &__popup--address.hidden {
-    display: none;
-  }
-  &__popup--login-extend.hidden {
-    display: none;
-  }
+  &__popup--address.hidden,
+  &__popup--login-extend.hidden,
   &__popup--login.hidden {
     display: none;
   }

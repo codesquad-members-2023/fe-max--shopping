@@ -50,15 +50,17 @@ function startHeroSlides(slide) {
 
   function checkIndex() {
     slide.addEventListener('transitionend', () => {
-      isMoving = false;
       const slidesArray = [...slide.querySelectorAll('img')];
+      const isFirstSlide = slideIndex === 0;
+      const isLastSlide = slideIndex === slidesArray.length - 1;
+      isMoving = false;
 
-      if (slideIndex === 0) {
+      if (isFirstSlide) {
         slide.style.transition = 'none';
         slideIndex = slidesArray.length - 2;
         moveSlides();
       }
-      if (slideIndex === slidesArray.length - 1) {
+      if (isLastSlide) {
         slide.style.transition = 'none';
         slideIndex = 1;
         moveSlides();

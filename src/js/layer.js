@@ -43,25 +43,22 @@ function openLayer(modal) {
 }
 
 function closeLayer(modal, e) {
-  if (e.relatedTarget !== modal && !isOpenAddresslayer && !isOpenLoginExpandLayer) {
-    modal.classList.add('hidden');
-    dimBackground.classList.add('hidden');
+  if (isOpenAddresslayer || isOpenLoginExpandLayer || e.relatedTarget === modal) {
+    return;
   }
-}
 
-function addMouseEvents(area, layer, handleMouseEnter, handleMouseLeave) {
-  area.addEventListener('mouseenter', handleMouseEnter);
-  layer.addEventListener('mouseenter', handleMouseEnter);
-  area.addEventListener('mouseleave', handleMouseLeave);
-  layer.addEventListener('mouseleave', handleMouseLeave);
+  modal.classList.add('hidden');
+  dimBackground.classList.add('hidden');
 }
 
 function initNavLayer() {
   renderLoginLayer();
-  addMouseEvents(addressArea, addressLayer, handleAddressMouseEnter, handleAddressMouseLeave);
-  addMouseEvents(addressLayer, addressArea, handleAddressMouseEnter, handleAddressMouseLeave);
-  addMouseEvents(loginArea, loginExpandLayer, handleLoginMouseEnter, handleLoginMouseLeave);
-  addMouseEvents(loginExpandLayer, loginArea, handleLoginMouseEnter, handleLoginMouseLeave);
+  addressArea.addEventListener('mouseenter', handleAddressMouseEnter);
+  addressArea.addEventListener('mouseleave', handleAddressMouseLeave);
+  addressLayer.addEventListener('mouseenter', handleAddressMouseEnter);
+  addressLayer.addEventListener('mouseleave', handleAddressMouseLeave);
+  loginArea.addEventListener('mouseenter', handleLoginMouseEnter);
+  loginExpandLayer.addEventListener('mouseleave', handleLoginMouseLeave);
 }
 
 initNavLayer();
