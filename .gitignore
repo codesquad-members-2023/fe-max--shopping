@@ -1,2 +1,3 @@
 /node_modules/
 /src/style/css/*.css
+/src/style/css/*.css.map
