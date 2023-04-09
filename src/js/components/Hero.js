@@ -1,7 +1,7 @@
 import { Component } from './base/Component.js';
 
 export class Hero extends Component {
-  static autoIntervalSecs = 10000;
+  static autoIntervalSecs = 10;
   static transitionSecs = 0.5;
 
   constructor(slideCount) {
@@ -10,11 +10,11 @@ export class Hero extends Component {
     this.lastIndex = this.slideCount + 1;
     this.currentIndex = this.slideCount;
     this.slider = this.$('.slider');
-    this.initSlider(this.slider, slideCount);
+    this.initSlider(this.slider, this.slideCount);
   }
 
   initEventHandlers() {
-    this.moveAutoInterval(Hero.autoIntervalSecs);
+    this.moveAutoInterval(Hero.autoIntervalSecs * 1000);
     this.$('.left').addEventListener('click', () => this.moveToPrevSlide());
     this.$('.right').addEventListener('click', () => this.moveToNextSlide());
     this.$('.slider').addEventListener('transitionend', () => this.cycleSlides());
@@ -53,6 +53,7 @@ export class Hero extends Component {
     if (isFirstSlide) {
       this.currentIndex = this.lastIndex - 1;
       this.moveToSlide(this.currentIndex, false);
+      return;
     }
 
     if (isLastSlide) {
@@ -71,7 +72,7 @@ export class Hero extends Component {
   initSlider(slider, slideCount) {
     this.setSliderWidth(slider, slideCount);
     this.appendSlides(slider, slideCount);
-    this.renderSlideClone();
+    this.renderSlideClone(slider);
     slider.style.transform = `translateX(-${slideCount * 100}vw)`;
   }
 
@@ -84,14 +85,14 @@ export class Hero extends Component {
     slider.append(...slideNodes);
   }
 
-  renderSlideClone() {
-    const firstSlide = this.slider.firstElementChild;
-    const lastSlide = this.slider.lastElementChild;
+  renderSlideClone(slider) {
+    const firstSlide = slider.firstElementChild;
+    const lastSlide = slider.lastElementChild;
     const firstClone = firstSlide.cloneNode(true);
     const lastClone = lastSlide.cloneNode(true);
 
-    this.slider.prepend(lastClone);
-    this.slider.append(firstClone);
+    slider.prepend(lastClone);
+    slider.append(firstClone);
   }
 
   makeSlideNodes(slideCount) {
@@ -104,7 +105,7 @@ export class Hero extends Component {
     return Array.from({ length: slideCount }).map((_, index) => `hero-${index + 1}.jpg`);
   }
 
-  template() {
+  getTemplate() {
     return `
 <ul class="slider"></ul>
 <button class="slider-button left"></button>

@@ -1,52 +1,44 @@
-@use '../base';
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+@use '../base' as *;
 
 .modal {
+  transition: visibility 200ms 100ms, opacity 200ms 100ms linear;
   z-index: 2;
-  animation: fadeIn 0.5s;
-  filter: drop-shadow(var(--filter-modal-shadow));
+
+  &:not([open]) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &[open] {
+    opacity: 1;
+    visibility: visible;
+    filter: drop-shadow($filter-modal-shadow);
+  }
 }
 
 .login-modal {
-  @include base.modal(235px, 90px, 120%, -240%);
+  @include modal(235px, 90px, 120%, -240%);
 
   &::before {
-    @include base.tooltip(-8%, 85%);
+    @include tooltip(-8%, 85%);
   }
 
   span:last-child {
-    color: var(--color-secondary-navy);
+    color: $color-secondary-navy;
   }
 }
 
 .extended-login-modal {
-  @include base.modal(335px, auto, 120%, -315%);
+  @include modal(335px, auto, 120%, -315%);
   padding: 16px;
   gap: 8px;
 
   &::before {
-    @include base.tooltip(-3%, 75%);
+    @include tooltip(-3%, 75%);
   }
 
   .base {
-    @include base.typography('bold-sm');
+    @include typography('bold-sm');
     align-self: stretch;
     gap: 8px;
     display: flex;
@@ -57,11 +49,11 @@
       content: '';
       width: 100%;
       height: 1px;
-      background-color: var(--color-gray-100);
+      background-color: $color-gray-100;
     }
 
     span:last-child {
-      color: var(--color-secondary-navy);
+      color: $color-secondary-navy;
     }
   }
 
@@ -73,7 +65,7 @@
       width: 150px;
     }
     h3 {
-      @include base.typography('bold-md');
+      @include typography('bold-md');
       margin-bottom: 4px;
       height: 18px;
     }
@@ -91,19 +83,19 @@
 }
 
 .shipping-modal {
-  @include base.modal(320px, 126px, 120%, -15%);
+  @include modal(320px, 126px, 120%, -15%);
 
   &::before {
-    @include base.tooltip(-8%, 5%);
+    @include tooltip(-8%, 5%);
   }
 
   p {
-    @include base.typography('body-sm');
+    @include typography('body-sm');
     width: 288px;
   }
 
   div {
-    @include base.typography('bold-sm');
+    @include typography('bold-sm');
     width: 288px;
     display: flex;
     justify-content: flex-end;
@@ -112,25 +104,43 @@
 }
 
 .login-btn {
-  @include base.button(160px, 32px);
+  @include button(160px, 32px);
 }
 
 .continue-btn {
-  @include base.button(39px, 32px);
+  @include button(39px, 32px);
 }
 
 .address-btn {
-  @include base.button(58px, 32px);
+  @include button(58px, 32px);
 }
 
-.dim::before {
-  content: '';
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  animation: fadeIn 0.3s;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+.dim {
+  &-on::before {
+    @include dim;
+    animation: fade-in 0.3s linear forwards;
+  }
+
+  &-off::before {
+    @include dim;
+    animation: fade-out 0.3s linear forwards;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

@@ -12,7 +12,7 @@ export class Component {
   }
 
   render() {
-    const template = this.template();
+    const template = this.getTemplate();
 
     if (typeof template === 'string') {
       this.#node.insertAdjacentHTML('afterbegin', template);
@@ -22,7 +22,7 @@ export class Component {
     this.#node.append(...template);
   }
 
-  template() {
+  getTemplate() {
     return '';
   }
 

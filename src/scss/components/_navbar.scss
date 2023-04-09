@@ -1,14 +1,14 @@
-@use '../base';
+@use '../base' as *;
 
 .navbar {
-  width: 100%;
-  min-width: 1120px;
+  width: 100vw;
+  min-width: 1280px;
 
   &-main {
     padding: 8px 16px;
     display: flex;
     align-items: center;
-    background-color: var(--color-black);
+    background-color: $color-black;
     gap: 24px;
 
     .shipping {
@@ -47,7 +47,7 @@
         width: 40px;
         height: 40px;
         border-radius: 0px 4px 4px 0px;
-        background-color: var(--color-primary-orange-100);
+        background-color: $color-primary-orange-100;
         background-position: center;
         background-repeat: no-repeat;
         background-image: url('/src/assets/symbols/search.svg');
@@ -80,12 +80,12 @@
     }
 
     .label-text {
-      @include base.typography('bold-sm');
-      color: var(--color-gray-400);
+      @include typography('bold-sm');
+      color: $color-gray-400;
     }
     .main-text {
-      @include base.typography('bold-md');
-      color: var(--color-white);
+      @include typography('bold-md');
+      color: $color-white;
     }
   }
 
@@ -94,8 +94,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 16px;
-    background-color: var(--color-gray-900);
-    color: var(--color-white);
+    background-color: $color-gray-900;
+    color: $color-white;
 
     .left {
       display: flex;
@@ -115,12 +115,12 @@
 
     .menu {
       gap: 4px;
-      @include base.typography('body-md');
+      @include typography('body-md');
     }
 
     .menu:first-child,
     .menu:last-child {
-      @include base.typography('bold-md');
+      @include typography('bold-md');
       display: inline-flex;
       align-items: center;
     }

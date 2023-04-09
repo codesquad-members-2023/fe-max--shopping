@@ -5,11 +5,13 @@ export class Main extends Component {
   static #instance;
 
   static onDimmed() {
-    Main.#instance.node.classList.add('dim');
+    Main.#instance.node.classList.remove('dim-off');
+    Main.#instance.node.classList.add('dim-on');
   }
 
   static offDimmed() {
-    Main.#instance.node.classList.remove('dim');
+    Main.#instance.node.classList.remove('dim-on');
+    Main.#instance.node.classList.add('dim-off');
   }
 
   constructor() {
@@ -21,7 +23,7 @@ export class Main extends Component {
     Main.#instance = this;
   }
 
-  template() {
+  getTemplate() {
     const hero = new Hero(6);
     return [hero.node];
   }

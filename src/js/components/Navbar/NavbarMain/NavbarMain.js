@@ -7,7 +7,7 @@ export class NavbarMain extends Component {
     super('navbar-main');
   }
 
-  template() {
+  getTemplate() {
     const logoNode = new Logo().node;
     const shippingNode = new Shipping().node;
     const searchBarNode = new SearchBar().node;
@@ -25,7 +25,7 @@ class Logo extends Component {
     super('logo', 'H1');
   }
 
-  template() {
+  getTemplate() {
     return `
   <a href="/">
     <img class="amazon-icon" src="/src/assets/images/BI.svg" alt="amazon logo icon" />
@@ -39,7 +39,7 @@ class SearchBar extends Component {
     super('search-bar', 'FORM');
   }
 
-  template() {
+  getTemplate() {
     return `
 <input type="search" class="input" placeholder="검색 Amazon" />
 <button type="submit" class="submit-btn"></button>
@@ -52,7 +52,7 @@ class Nation extends Component {
     super('nation');
   }
 
-  template() {
+  getTemplate() {
     return `
 <img src="/src/assets/images/flag.svg" alt="flag icon" />
 <span class="main-text">KO</span>
@@ -65,7 +65,7 @@ class MyPage extends Component {
     super('my-page');
   }
 
-  template() {
+  getTemplate() {
     return `
 <span class="label-text">반품</span>
 <span class="main-text">& 주문</span>
@@ -78,7 +78,7 @@ class Cart extends Component {
     super('cart');
   }
 
-  template() {
+  getTemplate() {
     return `
 <img src="/src/assets/symbols/cart.svg" alt="cart icon" />
 <span class="main-text">장바구니</span>

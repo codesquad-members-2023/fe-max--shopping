@@ -5,8 +5,6 @@ import { Component } from '/src/js/components/base/Component.js';
 export class Shipping extends Component {
   constructor() {
     super('shipping', 'A');
-    this.shippingModal = new ShippingModal();
-    this.node.append(this.shippingModal.node);
   }
 
   initEventHandlers() {
@@ -15,16 +13,29 @@ export class Shipping extends Component {
   }
 
   showShippingModal() {
-    this.shippingModal.node.show();
+    this.$('.shipping-modal').show();
     Main.onDimmed();
   }
 
   closeShippingModal() {
-    this.shippingModal.node.close();
+    this.$('.shipping-modal').close();
     Main.offDimmed();
   }
 
-  template() {
+  getTemplate() {
+    const shippingArea = new ShippingArea();
+    const shippingModal = new ShippingModal();
+
+    return [shippingArea.node, shippingModal.node];
+  }
+}
+
+class ShippingArea extends Component {
+  constructor() {
+    super('shipping-area');
+  }
+
+  getTemplate() {
     return `
 <div class="top">
   <img src="/src/assets/symbols/location.svg" alt="location icon" />

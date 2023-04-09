@@ -5,7 +5,7 @@ export class NavbarSub extends Component {
     super('navbar-sub');
   }
 
-  template() {
+  getTemplate() {
     return `
 <div class="left">
   <a class="menu" href=""><img src="/src/assets/symbols/menu.svg" alt="" /> 모두</a>

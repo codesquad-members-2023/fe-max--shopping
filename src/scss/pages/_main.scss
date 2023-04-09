@@ -1,8 +1,10 @@
+@use '../base' as *;
+
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-gray-200);
+  background-color: $color-gray-200;
   height: 100vh;
 }
 

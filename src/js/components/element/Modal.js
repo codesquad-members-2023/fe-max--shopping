@@ -5,7 +5,7 @@ export class LoginModal extends Component {
     super('modal login-modal', 'DIALOG');
   }
 
-  template() {
+  getTemplate() {
     return `
 <button class="login-btn">로그인</button>
 <div>
@@ -21,7 +21,7 @@ export class ExtendedLoginModal extends Component {
     super('modal extended-login-modal', 'DIALOG');
   }
 
-  template() {
+  getTemplate() {
     return `
 <div class="base">
   <button class="login-btn">로그인</button>
@@ -65,7 +65,7 @@ export class ShippingModal extends Component {
     super('modal shipping-modal', 'DIALOG');
   }
 
-  template() {
+  getTemplate() {
     return `
 <p>
   KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를

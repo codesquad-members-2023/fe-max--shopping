@@ -7,7 +7,7 @@ export class App extends Component {
     super('app');
   }
 
-  template() {
+  getTemplate() {
     const header = new Navbar();
     const main = new Main();
 

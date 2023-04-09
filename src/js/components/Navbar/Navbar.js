@@ -7,7 +7,7 @@ export class Navbar extends Component {
     super('navbar', 'HEADER');
   }
 
-  template() {
+  getTemplate() {
     const navbarMainNode = new NavbarMain().node;
     const navbarSubNode = new NavbarSub().node;
 
