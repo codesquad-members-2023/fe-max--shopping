@@ -118,6 +118,7 @@
 .dim {
   &-on::before {
     @include dim;
+    z-index: 1;
     animation: fade-in 0.3s linear forwards;
   }
 
