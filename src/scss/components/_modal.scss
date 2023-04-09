@@ -115,33 +115,20 @@
   @include button(58px, 32px);
 }
 
-.dim {
-  &-on::before {
-    @include dim;
-    z-index: 1;
-    animation: fade-in 0.3s linear forwards;
-  }
+.dim-layer {
+  position: absolute;
+  visibility: hidden;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: visibility 200ms, opacity 200ms linear;
 
-  &-off::before {
-    @include dim;
-    animation: fade-out 0.3s linear forwards;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
+  &.active {
+    visibility: visible;
     opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
   }
 }
