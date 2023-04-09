@@ -1,0 +1,14 @@
+@use "../config/component-reset.scss";
+@use "../config/design-system.scss" as *;
+
+main {
+  width: 100%;
+  height: 100%;
+  padding-top: 211px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: $color-grey-200;
+}

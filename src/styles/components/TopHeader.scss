@@ -1,0 +1,123 @@
+@use "../config/component-reset.scss" as *;
+@use "../config/design-system.scss" as *;
+
+header {
+  min-width: 768px;
+  width: 100%;
+  color: $color-white;
+  @include f-bold-md;
+}
+
+.nav-main {
+  height: 56px;
+  padding: 8px 16px;
+  gap: 24px;
+  display: flex;
+  align-items: center;
+  background-color: $color-black;
+
+  .nav-main__item-container {
+    position: relative;
+
+    > a {
+      color: inherit;
+    }
+  }
+
+  #shipping-link {
+    div {
+      &:first-of-type {
+        img {
+          width: 12px;
+          height: 12px;
+        }
+        span {
+          @include f-bold-sm;
+          color: $color-grey-400;
+        }
+      }
+    }
+  }
+
+  #search-container {
+    flex-grow: 1;
+
+    form {
+      display: flex;
+      border-radius: 4px;
+      overflow: hidden;
+
+      input {
+        flex-grow: 1;
+        height: 40px;
+        padding-left: 12px;
+      }
+
+      button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-primary-orange-100;
+      }
+    }
+  }
+
+  #lang-link {
+    span {
+      &:first-of-type {
+        width: 13px;
+        height: 13px;
+        margin-right: 4px;
+      }
+    }
+  }
+
+  #login-link,
+  #orders-link {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      &:first-of-type {
+        color: $color-grey-400;
+        @include f-bold-sm;
+      }
+    }
+  }
+
+  #cart-link {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-sub {
+  height: 32px;
+  padding-inline: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-grey-900;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: inherit;
+  }
+
+  ul {
+    height: 100%;
+    display: flex;
+    list-style: none;
+
+    li {
+      height: 100%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

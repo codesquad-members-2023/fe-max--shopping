@@ -1,0 +1,23 @@
+@use "./design-system.scss" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+a {
+  color: $color-secondary-navy;
+  text-decoration: none;
+}
+
+button[type="submit"] {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}

@@ -1,0 +1,29 @@
+@use "../../config/component-reset.scss";
+@use "../../config/design-system.scss" as *;
+
+.card-container {
+  width: 262px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  .card-content {
+    width: 100%;
+    padding: 16px;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+
+    .title {
+      margin: 0;
+      color: $color-black;
+      @include f-bold-lg;
+    }
+
+    .link {
+      color: $color-secondary-green;
+      @include f-body-sm;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "fe-max--shopping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [],
+  "author": "Kakamotobi",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "live-server": "^1.2.2",
+    "prettier": "^2.8.7",
+    "sass": "^1.60.0"
+  },
+  "scripts": {
+    "build:sass": "sass -w src/styles:src/styles",
+    "dev": "npm run build:sass & wait & live-server --no-css-inject"
+  }
+}
