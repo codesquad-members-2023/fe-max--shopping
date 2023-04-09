@@ -8,13 +8,13 @@ export class Hero extends Component {
     super('hero');
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
-    this.currentIndex = 0;
+    this.currentIndex = this.slideCount;
     this.slider = this.$('.slider');
     this.initSlider(this.slider, slideCount);
   }
 
   initEventHandlers() {
-    // this.moveAutoInterval(Hero.autoIntervalSecs);
+    this.moveAutoInterval(Hero.autoIntervalSecs);
     this.$('.left').addEventListener('click', () => this.moveToPrevSlide());
     this.$('.right').addEventListener('click', () => this.moveToNextSlide());
     this.$('.slider').addEventListener('transitionend', () => this.cycleSlides());
@@ -25,13 +25,12 @@ export class Hero extends Component {
   }
 
   moveToPrevSlide() {
-    if (!this.isValidIndex(this.currentIndex)) {
+    if (this.currentIndex <= 0) {
       return;
     }
 
     this.currentIndex -= 1;
     this.moveToSlide(this.currentIndex);
-    console.log(this.currentIndex);
   }
 
   moveToNextSlide() {
@@ -41,7 +40,6 @@ export class Hero extends Component {
 
     this.currentIndex += 1;
     this.moveToSlide(this.currentIndex);
-    console.log(this.currentIndex);
   }
 
   isValidIndex(slideIndex) {
@@ -55,14 +53,11 @@ export class Hero extends Component {
     if (isFirstSlide) {
       this.currentIndex = this.lastIndex - 1;
       this.moveToSlide(this.currentIndex, false);
-      console.log(this.currentIndex);
-      return;
     }
 
     if (isLastSlide) {
       this.currentIndex = 1;
       this.moveToSlide(this.currentIndex, false);
-      console.log(this.currentIndex);
     }
   }
 
@@ -77,6 +72,7 @@ export class Hero extends Component {
     this.setSliderWidth(slider, slideCount);
     this.appendSlides(slider, slideCount);
     this.renderSlideClone();
+    slider.style.transform = `translateX(-${slideCount * 100}vw)`;
   }
 
   setSliderWidth(slider, slideCount) {
