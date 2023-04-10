@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Amazon</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script type="module" src="./js/main.js"></script>
+  </head>
+  <body>
+    <header id="nav-bar" class="nav bg-black text-white">
+      <div id="nav-main" class="nav__main font-BoldMD">
+        <div id="nav-logo" class="nav__main--item">
+          <a href="/">
+            <img src="./assets/icons/logo.svg" alt="amazon logo" />
+          </a>
+        </div>
+        <div id="nav-shipping-address" class="nav__main--item">
+          <div id="shipping-address-label" class="font-BoldSM text-gray4">
+            <img class="location-icon" src="./assets/icons/location.svg" alt="location icon" />
+            <span>배송처</span>
+          </div>
+          <span class="location-name font-BoldMD">대한민국</span>
+          <div id="nav-address-modal" class="modal modal__address bg-white">
+            <p class="font-BodySM text-black">
+              KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.
+            </p>
+            <div>
+              <button class="btn btn--small">계속</button>
+              <button class="btn btn--small">주소 변경</button>
+            </div>
+          </div>
+        </div>
+        <div id="nav-search-bar" class="bg-white">
+          <input type="text" name="search-bar" id="search-bar-input" placeholder="검색 Amazon" />
+          <button class="bg-orange1">
+            <img src="./assets/icons/search.svg" alt="search icon" />
+          </button>
+        </div>
+        <div id="nav-nation" class="nav__main--item">🇺🇸 KO</div>
+        <div id="nav-login" class="nav__main--item">
+          <div id="nav-login-text">
+            <span class="font-BoldSM text-gray4">안녕하세요,로그인</span>
+            <span>계정 및 목록</span>
+          </div>
+          <div id="nav-login-popover" class="modal modal__login modal__login--popover bg-white">
+            <button class="btn btn--large">로그인</button>
+            <div>
+              <span class="font-BodySM text-black">기존 사용자가 아니십니까?</span>
+              <a class="font-BodySM text-navy" href="/somewhere">여기에서 시작합니다.</a>
+            </div>
+          </div>
+          <div id="nav-login-modal" class="modal modal__login modal__login--expanded text-black bg-white">
+            <button class="btn btn--large">로그인</button>
+            <div class="modal__login--text">
+              <span class="font-BodySM">기존 사용자가 아니십니까?</span>
+              <a class="font-BodySM text-navy" href="/somewhere">여기에서 시작합니다.</a>
+            </div>
+            <div class="modal__login--list font-BodySM">
+              <article>
+                <span class="font-BoldMD">귀하의 목록</span>
+                <ul>
+                  <li>목록 생성</li>
+                  <li>목록 또는 레지스트리 찾기</li>
+                  <li>AmazonSmile 자선 품목 목록</li>
+                </ul>
+              </article>
+              <article>
+                <span class="font-BoldMD">계정</span>
+                <ul>
+                  <li>계정</li>
+                  <li>주문</li>
+                  <li>권장 사항</li>
+                  <li>검색 기록</li>
+                  <li>워치리스트</li>
+                  <li>비디오 구매 및 대여</li>
+                  <li>Kindle 언리미티드</li>
+                  <li>콘텐츠 및 기기</li>
+                  <li>항목 구독 및 저장</li>
+                  <li>멤버십 및 구독</li>
+                  <li>음악 라이브러리</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div id="nav-mypage" class="nav__main--item">
+          <span class="font-BoldSM text-gray4">반품</span>
+          <span>& 주문</span>
+        </div>
+        <div id="nav-cart" class="nav__main--item font-BoldMD">
+          <img class="cart-icon" src="./assets/icons/cart.svg" alt="cart icon" />
+          <span>장바구니</span>
+        </div>
+      </div>
+      <div class="nav__sub bg-black">
+        <div class="nav-left font-BodyMD">
+          <div id="side-bar-menu" class="font-BoldMD">
+            <img class="hamburger-menu-icon" src="assets/icons/menu.svg" alt="menu icon" />
+            <span>메뉴</span>
+          </div>
+          <div>오늘의 딜</div>
+          <div>고객 서비스</div>
+          <div>레지스트리</div>
+          <div>기프트 카드</div>
+          <div>판매</div>
+        </div>
+        <div class="nav-right font-BoldMD">
+          <div>지금 특가 상품 쇼핑하기</div>
+        </div>
+      </div>
+    </header>
+    <div class="modal__backdrop"></div>
+  </body>
+</html>

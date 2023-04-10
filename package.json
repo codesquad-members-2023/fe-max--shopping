@@ -1,0 +1,27 @@
+{
+  "name": "amazon",
+  "version": "1.0.0",
+  "description": "아마존 웹사이트 구현하기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvertae/fe-max--shopping.git"
+  },
+  "keywords": [],
+  "author": "fuse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silvertae/fe-max--shopping/issues"
+  },
+  "homepage": "https://github.com/silvertae/fe-max--shopping#readme",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^2.8.7"
+  }
+}

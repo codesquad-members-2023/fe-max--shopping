@@ -1,0 +1,320 @@
+// 스크롤 될 때 작동 테스트를 위해 임시로 height값을 추가했습니다.
+body {
+  height: 2000px;
+  position: relative;
+}
+
+.btn {
+  @include BoldSM;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 0px 10px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid var(--color-primary-yellow-300);
+  border-radius: 4px;
+}
+
+// 모달, 팝오버 관련 스타일
+.modal {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__backdrop {
+  visibility: hidden;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  top: 88px;
+  background-color: var(--color-black-40);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal__backdrop.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+// 네비게이션 바 스타일
+.nav-left {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav {
+  position: relative;
+  // 상단 메인 네비게이션 관련 스타일
+  .nav__main {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+
+    .nav__main--item {
+      height: 52px;
+      padding: 0 6px;
+      margin: 0 6px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        outline: var(--color-white) solid 1px;
+      }
+    }
+
+    #nav-logo {
+      margin-left: 0;
+    }
+
+    #nav-shipping-address {
+      flex-direction: column;
+
+      .location-icon {
+        width: 12px;
+        height: 12px;
+        filter: invert(77%) sepia(90%) saturate(0%) hue-rotate(189deg) brightness(93%) contrast(95%);
+      }
+
+      #shipping-address-label {
+        height: 13px;
+        display: flex;
+
+        span {
+          display: inline-block;
+          width: 28px;
+        }
+      }
+
+      .location-name {
+        display: inline-block;
+        width: 43px;
+      }
+
+      .modal__address {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 16px;
+
+        position: absolute;
+        width: 320px;
+        height: 126px;
+        left: 131px;
+        top: 58px;
+
+        border-radius: 4px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+        &::before {
+          content: '';
+          width: 15px;
+          height: 15px;
+          background-color: var(--color-white);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          position: absolute;
+          top: -10px;
+          left: 24px;
+        }
+
+        p {
+          width: 288px;
+          height: 36px;
+        }
+
+        div {
+          width: 105px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    #nav-search-bar {
+      height: 40px;
+      margin: 0 6px;
+      border-radius: 4px;
+      text-align: center;
+      flex-basis: 386px;
+      flex-grow: 1;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input {
+        height: 21px;
+        margin: 0 12px;
+        flex-grow: 1;
+      }
+
+      button {
+        width: 40px;
+        height: 40px;
+        border-radius: 0 4px 4px 0;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    #nav-nation {
+      padding: 0 12px;
+      margin-right: 6px;
+    }
+
+    #nav-login {
+      position: relative;
+
+      #nav-login-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .modal__login {
+        padding: 16px;
+        border-radius: 4px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+
+        &::before {
+          content: '';
+          width: 15px;
+          height: 15px;
+          background-color: var(--color-white);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          position: absolute;
+          top: -10px;
+        }
+
+        button {
+          width: 160px;
+          margin: 0 auto 8px;
+          padding: 9.5px 10px;
+        }
+      }
+
+      .modal__login--popover {
+        width: 235px;
+        height: 90px;
+        top: 58px;
+        left: -160px;
+
+        &::before {
+          left: 200px;
+        }
+      }
+
+      .modal__login--expanded {
+        width: 335px;
+        height: 365px;
+        top: 52px;
+        left: -220px;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        &::before {
+          left: 260px;
+        }
+
+        .modal__login--text {
+          width: 303px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--color-gray-100);
+          text-align: center;
+        }
+
+        .modal__login--list {
+          width: 303px;
+          height: 258px;
+          margin-top: 8px;
+          display: flex;
+          align-items: flex-start;
+          align-self: stretch;
+
+          article {
+            width: 150px;
+
+            ul {
+              li {
+                height: 18px;
+                margin-bottom: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #nav-mypage {
+      padding: 0 12px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #nav-cart {
+      margin-right: 0;
+      display: flex;
+      align-items: center;
+
+      .cart-icon {
+        filter: invert(71%) sepia(30%) saturate(6011%) hue-rotate(359deg) brightness(101%) contrast(103%);
+      }
+    }
+  }
+
+  // 하단 서브 네비게이션바 스타일
+  .nav__sub {
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+
+    .nav-left {
+      flex-basis: 387px;
+
+      #side-bar-menu {
+        display: flex;
+        align-items: center;
+
+        .hamburger-menu-icon {
+          filter: invert(99%) sepia(9%) saturate(3%) hue-rotate(234deg) brightness(117%) contrast(100%);
+        }
+      }
+    }
+
+    .nav-right {
+      flex-basis: 112px;
+    }
+  }
+}

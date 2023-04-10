@@ -1,0 +1,36 @@
+// Theme Color
+$white: #fff !default;
+$gray-100: #eff2f2 !default;
+$gray-200: #e5e9e9 !default;
+$gray-300: #dce0e0 !default;
+$gray-400: #d5d5d5 !default;
+$gray-500: #c1c1c1 !default;
+$gray-600: #878787 !default;
+$gray-700: #535353 !default;
+$gray-800: #2a3648 !default;
+$gray-900: #1b232f !default;
+$black: #10141a !default;
+$black-40: #10141a66 !default;
+
+$grays: (
+  '100': $gray-100,
+  '200': $gray-200,
+  '300': $gray-300,
+  '400': $gray-400,
+  '500': $gray-500,
+  '600': $gray-600,
+  '700': $gray-700,
+  '800': $gray-800,
+  '900': $gray-900,
+) !default;
+
+$primary-yellow-100: #fed15f !default;
+$primary-yellow-200: #febe30 !default;
+$primary-yellow-300: #de9408 !default;
+
+$primary-orange-100: #fcb057 !default;
+$primary-orange-200: #ff9900 !default;
+
+$secondary-puple: #941387 !default;
+$secondary-navy: #074099 !default;
+$secondary-green: #0c5e72 !default;

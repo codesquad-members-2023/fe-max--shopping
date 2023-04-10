@@ -1,0 +1,64 @@
+// Typography
+$pretendard: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+  'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol', sans-serif;
+
+@mixin BoldXL {
+  font: {
+    size: 28px;
+    weight: 800;
+    family: $pretendard;
+  }
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+@mixin BoldLG {
+  font: {
+    size: 18px;
+    weight: 800;
+    family: $pretendard;
+  }
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+@mixin BoldMD {
+  font: {
+    size: 13px;
+    weight: 800;
+    family: $pretendard;
+  }
+  line-height: normal;
+  letter-spacing: -0.06em;
+}
+
+@mixin BoldSM {
+  font: {
+    size: 11px;
+    weight: 600;
+    family: $pretendard;
+  }
+  line-height: normal;
+  letter-spacing: -0.06em;
+}
+
+@mixin BodyMD {
+  font: {
+    size: 13px;
+    weight: 500;
+    family: $pretendard;
+  }
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+
+@mixin BodySM {
+  font: {
+    size: 11px;
+    weight: 500;
+    family: $pretendard;
+  }
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
