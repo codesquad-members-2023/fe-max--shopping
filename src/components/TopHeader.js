@@ -134,8 +134,13 @@ template.innerHTML = `
       white-space: normal;
     }
 
-    .shipping-tooltip div[slot=tool-tip-top-content] {
+    .shipping-tooltip div[slot="tool-tip-top-content"] {
       gap: 26px;
+    }
+
+    div[slot="tool-tip-top-content"] a,
+    div[slot="tool-tip-bottom-content"] a {
+      color: #074099;
     }
 
     .tool-tip-bottom-content {
