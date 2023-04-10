@@ -21,28 +21,21 @@ export class Login extends Component {
 
   showExtendedLoginModal() {
     this.closeLoginModal();
-
-    const extendedLoginModal = this.$('.extended-login-modal');
-    extendedLoginModal.show();
-
+    this.$('.extended-login-modal').show();
     Main.onDimmed();
   }
 
   closeExtendedLoginModal() {
-    const extendedLoginModal = this.$('.extended-login-modal');
-    extendedLoginModal.close();
-
+    this.$('.extended-login-modal').close();
     Main.offDimmed();
   }
 
   showLoginModal() {
-    const loginModalNode = this.$('.login-modal');
-    loginModalNode.show();
+    this.$('.login-modal').show();
   }
 
   closeLoginModal() {
-    const loginModalNode = this.$('.login-modal');
-    loginModalNode.close();
+    this.$('.login-modal').close();
   }
 
   getTemplate() {

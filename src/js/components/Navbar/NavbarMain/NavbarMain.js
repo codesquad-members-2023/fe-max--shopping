@@ -1,4 +1,5 @@
 import { Login } from './Login.js';
+import Search from './Search/Search.js';
 import { Shipping } from './Shipping.js';
 import { Component } from '/src/js/components/base/Component.js';
 
@@ -8,15 +9,15 @@ export class NavbarMain extends Component {
   }
 
   getTemplate() {
-    const logoNode = new Logo().node;
-    const shippingNode = new Shipping().node;
-    const searchBarNode = new SearchBar().node;
-    const nationNode = new Nation().node;
-    const loginNode = new Login().node;
-    const myPageNode = new MyPage().node;
-    const cartNode = new Cart().node;
+    const logo = new Logo();
+    const shipping = new Shipping();
+    const search = new Search();
+    const nation = new Nation();
+    const login = new Login();
+    const myPage = new MyPage();
+    const cart = new Cart();
 
-    return [logoNode, shippingNode, searchBarNode, nationNode, loginNode, myPageNode, cartNode];
+    return [logo.node, shipping.node, search.node, nation.node, login.node, myPage.node, cart.node];
   }
 }
 
@@ -30,19 +31,6 @@ class Logo extends Component {
   <a href="/">
     <img class="amazon-icon" src="/src/assets/images/BI.svg" alt="amazon logo icon" />
   </a>
-    `;
-  }
-}
-
-class SearchBar extends Component {
-  constructor() {
-    super('search-bar', 'FORM');
-  }
-
-  getTemplate() {
-    return `
-<input type="search" class="input" placeholder="검색 Amazon" />
-<button type="submit" class="submit-btn"></button>
     `;
   }
 }
