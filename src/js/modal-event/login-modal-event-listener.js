@@ -1,12 +1,7 @@
 import { query, zIndex, opacity, time } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
 import { dim, undim } from "./dim.js";
-import {
-  setOpacity,
-  setSize,
-  setZindex,
-  setTransform,
-} from "../util/set-style.js";
+import { setOpacity, setSize, setZindex, setTransform } from "../util/set-style.js";
 
 async function expandLoginModalWithDelay() {
   const expandWidthSize = "150px";
@@ -66,9 +61,4 @@ function loginModalClickEventHandler() {
   query.loginArea.addEventListener("click", reOpenLoginModal);
 }
 
-export {
-  loginModalLoadEventHandler,
-  loginModalMouseenterEventHandler,
-  loginModalMouseleaveEventHandler,
-  loginModalClickEventHandler,
-};
+export { loginModalLoadEventHandler, loginModalMouseenterEventHandler, loginModalMouseleaveEventHandler, loginModalClickEventHandler };

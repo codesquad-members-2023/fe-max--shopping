@@ -33,28 +33,41 @@
       @include boldSm;
     }
     .search-bar {
+      position: relative;
       margin: 0 12px;
       flex: 1;
       height: 40px;
-    }
-    .search-input {
-      padding: 0 12px;
-      border: none;
-      width: 100%;
-      height: inherit;
-      border-radius: 4px 0 0 4px;
-      font: $font-bold-md;
-      color: $color-gray-600;
-      &:focus {
-        outline: none;
+      .search-input {
+        padding: 0 12px;
+        border: none;
+        width: 100%;
+        height: inherit;
+        border-radius: 4px 0 0 4px;
+        font: $font-bold-md;
+        color: $color-gray-600;
+        &:focus {
+          outline: none;
+        }
       }
-    }
-    .search-button {
-      border: none;
-      width: 40px;
-      height: inherit;
-      background-color: $color-primary-orange-100;
-      border-radius: 0 4px 4px 0;
+      .search-button {
+        border: none;
+        width: 40px;
+        height: inherit;
+        background-color: $color-primary-orange-100;
+        border-radius: 0 4px 4px 0;
+      }
+      .search-layer {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        transform: translateY(40px);
+        background-color: $color-white;
+        border: 1px solid $color-black;
+        border-radius: 4px;
+      }
     }
     .nation {
       gap: 4px;

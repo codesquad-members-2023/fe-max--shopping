@@ -30,12 +30,7 @@
 
 @mixin button {
   margin: 0 auto;
-  background: linear-gradient(
-    174.6deg,
-    $color-white 4.31%,
-    $color-primary-yellow-100 50.01%,
-    $color-primary-yellow-200 95.71%
-  );
+  background: linear-gradient(174.6deg, $color-white 4.31%, $color-primary-yellow-100 50.01%, $color-primary-yellow-200 95.71%);
   border: 1px solid $color-primary-yellow-300;
   border-radius: 4px;
   @include boldSm;

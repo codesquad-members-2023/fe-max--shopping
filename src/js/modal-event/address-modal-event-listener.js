@@ -26,7 +26,4 @@ function addressModalMouseleaveEventHandler() {
   query.addressModal.addEventListener("mouseleave", closeAddressModal);
 }
 
-export {
-  addressModalMouseenterEventHandler,
-  addressModalMouseleaveEventHandler,
-};
+export { addressModalMouseenterEventHandler, addressModalMouseleaveEventHandler };

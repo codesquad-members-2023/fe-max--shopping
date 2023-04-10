@@ -2,9 +2,7 @@ const query = {
   loginArea: document.querySelector(".login"),
   loginModal: document.getElementById("login-modal"),
   loginModalExpand: document.querySelector(".login-modal-expand"),
-  loginModalExpandContainer: document.querySelectorAll(
-    ".login-modal-expand-container"
-  ),
+  loginModalExpandContainer: document.querySelectorAll(".login-modal-expand-container"),
   loginModalTail: document.getElementById("login-tail"),
   addressArea: document.querySelector(".shipping-address"),
   addressModal: document.getElementById("address-modal"),
@@ -40,6 +38,6 @@ const time = {
   loginExpandDelay: 500,
   loginOpacityDelay: 1000,
   autoSlideDelay: 10000,
-}
+};
 
 export { query, zIndex, opacity, carousel, time };

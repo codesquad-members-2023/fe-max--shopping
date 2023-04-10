@@ -8,35 +8,38 @@ class Slider {
     this.transition = carousel.slideTransition;
   }
 
+  calcTransform() {
+    return `translateX(${-this.counter * this.size}px)`;
+  }
+
   initSlide() {
-    query.slideList.style.transform = `translateX(${-this.counter * this.size}px)`;
+    query.slideList.style.transform = this.calcTransform();
+  }
+
+  moveToBesideSlide(isEdgeSide, isPlus) {
+    if (isEdgeSide) {
+      return;
+    }
+    query.slideList.style.transition = this.transition;
+    isPlus ? this.counter++ : this.counter--;
+    query.slideList.style.transform = this.calcTransform();
   }
 
   moveToNextSlide() {
     const isLastSlide = this.counter >= query.slideItem.length - 1;
-    if (isLastSlide) {
-      return;
-    }
-    query.slideList.style.transition = this.transition;
-    this.counter++;
-    query.slideList.style.transform = `translateX(${-this.counter * this.size}px)`;
+    this.moveToBesideSlide(isLastSlide, true);
   }
 
   moveToPrevSlide() {
     const isFirstSlide = this.counter <= 0;
-    if (isFirstSlide) {
-      return;
-    }
-    query.slideList.style.transition = this.transition;
-    this.counter--;
-    query.slideList.style.transform = `translateX(${-this.counter * this.size}px)`;
+    this.moveToBesideSlide(isFirstSlide, false);
   }
 
   moveToOppositeSlide(fakeSlide, realSlide) {
     if (fakeSlide) {
       query.slideList.style.transition = carousel.noEffect;
       this.counter = realSlide;
-      query.slideList.style.transform = `translateX(${-this.counter * this.size}px)`;
+      query.slideList.style.transform = this.calcTransform();
     }
   }
 
@@ -96,10 +99,4 @@ function slideAutoEventHandler() {
   });
 }
 
-export {
-  slideLoadEventHandler,
-  slideNextBtnClickEventHandler,
-  slidePrevBtnClickEventHandler,
-  slideTransitionendEventHandler,
-  slideAutoEventHandler,
-};
+export { slideLoadEventHandler, slideNextBtnClickEventHandler, slidePrevBtnClickEventHandler, slideTransitionendEventHandler, slideAutoEventHandler };
