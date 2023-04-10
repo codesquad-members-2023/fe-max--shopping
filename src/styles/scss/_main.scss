@@ -8,35 +8,76 @@
     .main-banner-container {
       box-sizing: border-box;
       display: flex;
-      justify-content: space-between;
-      width: 1280px;
+      justify-content: center;
+      width: auto;
       height: 512px;
       margin: 0 auto;
-      padding: 86px 80px 0 80px;
-      background-image: url("../assets/png/main-banner.png");
-      background-repeat: no-repeat;
-      > div {
-        margin-top: -20px;
-      }
-      .main-banner-text {
-        text-align: center;
-        @include boldXl;
+      padding: 0 80px;
+      .slide-box {
+        min-width: 1280px;
+        max-width: 1280px;
+        overflow: hidden;
+        .slide-list {
+          width: 12800px;
+          display: flex;
+          .slide-item {
+            width: 1280px;
+            height: 512px;
+            background-size: 1280px 512px;
+          }
+          #first-clone,
+          #slide-1 {
+            background-image: url("../assets/png/slide-1.png");
+            .main-banner-text {
+              text-align: center;
+              transform: translateY(80px);
+              @include boldXl;
+            }
+          }
+          #slide-2 {
+            background-image: url("../assets/png/slide-2.png");
+          }
+          #slide-3 {
+            background-image: url("../assets/png/slide-3.png");
+          }
+          #slide-4 {
+            background-image: url("../assets/png/slide-4.png");
+          }
+          #slide-5 {
+            background-image: url("../assets/png/slide-5.png");
+          }
+          #last-clone,
+          #slide-6 {
+            background-image: url("../assets/png/slide-6.png");
+          }
+        }
       }
       .chevron {
+        position: relative;
         width: 24px;
         height: 40px;
+        z-index: 1;
         cursor: pointer;
+      }
+      #chevron-left {
+        transform: translate(104px, 86px);
+      }
+      #chevron-right {
+        transform: translate(-104px, 86px);
       }
     }
     .main-card-container {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+      align-items: center;
       width: 1120px;
       height: 1200px;
       margin: 0 auto;
       transform: translateY(-300px);
       .card {
+        display: flex;
+        flex-direction: column;
         width: 262px;
         margin-bottom: 24px;
         cursor: pointer;
@@ -81,6 +122,6 @@
   height: 1430px;
   opacity: -1;
   background-color: black;
-  z-index: 1;
-  transition: 1s;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }

@@ -57,11 +57,11 @@
     .login-modal-expand {
       display: flex;
       opacity: 0;
-      transition: 1s;
+      transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
       .login-modal-expand-container {
         width: 0;
         height: 0;
-        transition: 1s;
+        transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
         h2 {
           margin: 8px 0 4px;
           @include boldMd;

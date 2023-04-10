@@ -268,36 +268,78 @@ table {
 .main-container .main-content-container .main-banner-container {
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
-  width: 1280px;
+  justify-content: center;
+  width: auto;
   height: 512px;
   margin: 0 auto;
-  padding: 86px 80px 0 80px;
-  background-image: url("../assets/png/main-banner.png");
-  background-repeat: no-repeat;
+  padding: 0 80px;
 }
-.main-container .main-content-container .main-banner-container > div {
-  margin-top: -20px;
+.main-container .main-content-container .main-banner-container .slide-box {
+  min-width: 1280px;
+  max-width: 1280px;
+  overflow: hidden;
 }
-.main-container .main-content-container .main-banner-container .main-banner-text {
+.main-container .main-content-container .main-banner-container .slide-box .slide-list {
+  width: 12800px;
+  display: flex;
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list .slide-item {
+  width: 1280px;
+  height: 512px;
+  background-size: 1280px 512px;
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #first-clone,
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-1 {
+  background-image: url("../assets/png/slide-1.png");
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #first-clone .main-banner-text,
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-1 .main-banner-text {
   text-align: center;
+  transform: translateY(80px);
   font: 900 28px Pretendard;
 }
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-2 {
+  background-image: url("../assets/png/slide-2.png");
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-3 {
+  background-image: url("../assets/png/slide-3.png");
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-4 {
+  background-image: url("../assets/png/slide-4.png");
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-5 {
+  background-image: url("../assets/png/slide-5.png");
+}
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #last-clone,
+.main-container .main-content-container .main-banner-container .slide-box .slide-list #slide-6 {
+  background-image: url("../assets/png/slide-6.png");
+}
 .main-container .main-content-container .main-banner-container .chevron {
+  position: relative;
   width: 24px;
   height: 40px;
+  z-index: 1;
   cursor: pointer;
+}
+.main-container .main-content-container .main-banner-container #chevron-left {
+  transform: translate(104px, 86px);
+}
+.main-container .main-content-container .main-banner-container #chevron-right {
+  transform: translate(-104px, 86px);
 }
 .main-container .main-content-container .main-card-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  align-items: center;
   width: 1120px;
   height: 1200px;
   margin: 0 auto;
   transform: translateY(-300px);
 }
 .main-container .main-content-container .main-card-container .card {
+  display: flex;
+  flex-direction: column;
   width: 262px;
   margin-bottom: 24px;
   cursor: pointer;
@@ -347,8 +389,8 @@ table {
   height: 1430px;
   opacity: -1;
   background-color: black;
-  z-index: 1;
-  transition: 1s;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 footer {
@@ -439,7 +481,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   top: 55px;
   border-radius: 4px;
   opacity: 0;
-  transition: 1s;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 2;
   z-index: -1;
 }
@@ -449,7 +491,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   height: 19px;
   background-image: url("../assets/svg/triangle.svg");
   background-repeat: no-repeat;
-  transition: 1.5s;
+  transition: transform 1s ease-in-out;
   transform: translate(10px, -10px);
 }
 #address-modal .address-modal-container {
@@ -489,7 +531,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   top: 55px;
   border-radius: 4px;
   opacity: 0;
-  transition: 1s;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 2;
   right: 172px;
 }
@@ -499,7 +541,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   height: 19px;
   background-image: url("../assets/svg/triangle.svg");
   background-repeat: no-repeat;
-  transition: 1.5s;
+  transition: transform 1s ease-in-out;
   transform: translate(190px, -10px);
 }
 #login-modal .login-modal-container {
@@ -532,12 +574,12 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 #login-modal .login-modal-container .login-modal-expand {
   display: flex;
   opacity: 0;
-  transition: 1s;
+  transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
 }
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container {
   width: 0;
   height: 0;
-  transition: 1s;
+  transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
 }
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container h2 {
   margin: 8px 0 4px;
