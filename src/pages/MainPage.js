@@ -12,6 +12,8 @@ template.innerHTML = `
     <cards-panel data-cards='${JSON.stringify(cards)}'></cards-panel>
   </main>
 
+  <main-footer></main-footer>
+
   <link rel="stylesheet" href="src/styles/pages/MainPage.css">
 `;
 
