@@ -3,7 +3,7 @@
   min-width: 1024px;
 }
 #banner .inner {
-  padding: 8px 16px;
+  padding: 0px 16px;
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -11,7 +11,7 @@
 #banner .popover {
   box-sizing: border-box;
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
   padding: 16px;
   background: var(--color-white);
   border-radius: 4px;
@@ -38,12 +38,15 @@
 #banner .popover[open] {
   display: flex;
 }
+#banner .group {
+  padding: 8px 0;
+}
 #banner .group .popover p {
   font: var(--font-body-sm);
   letter-spacing: var(--font-body-sm);
   margin-bottom: 26px;
   color: var(--color-black);
-  margin-bottom: 8px;
+  margin: 8px 0;
 }
 #banner .group .popover hr {
   font-size: 0;
@@ -57,6 +60,9 @@
   font: var(--font-body-sm);
   letter-spacing: var(--font-body-sm);
   color: var(--color-secondary-navy);
+}
+#banner .group:hover .popover {
+  display: flex;
 }
 #banner .logo {
   display: flex;
@@ -249,6 +255,4 @@
   text-decoration: none;
   color: var(--color-white);
   font: var(--font-bold-md);
-}
-
-/*# sourceMappingURL=header.css.map */
+}/*# sourceMappingURL=header.css.map */

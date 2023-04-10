@@ -2,14 +2,15 @@
 	background-color: var(--color-black) 
 	min-width: 1024px 
 	.inner 
-		padding: 8px 16px 
+		padding: 0px 16px 
 		display: flex 
 		justify-content: space-between 
-		gap: 24px 
+		gap: 24px
+
 	.popover 
 		box-sizing: border-box 
 		position: absolute 
-		top: calc(100% + 8px) 
+		top: 100%
 		padding: 16px 
 		background: var(--color-white) 
 		border-radius: 4px 
@@ -33,15 +34,16 @@
 	.popover[open] 
 		display: flex 
 	.group 
+		padding: 8px 0
 		.popover 
 			p 
 				font: var(--font-body-sm) 
 				letter-spacing: var(--font-body-sm) 
 				margin-bottom: 26px 
 				color: var(--color-black) 
-				margin-bottom: 8px 0
+				margin: 8px 0
 			hr 
-				font-size: 0
+				font-size: 0 
 				width: 100% 
 				height: 1px 
 				margin: 8px 0 
@@ -50,7 +52,10 @@
 			a 
 				font: var(--font-body-sm) 
 				letter-spacing: var(--font-body-sm) 
-				color: var(--color-secondary-navy) 
+				color: var(--color-secondary-navy)
+		&:hover
+			.popover
+				display: flex
 	.logo 
 		display: flex 
 		align-items: center 

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>amazon</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/img/favicon-32x32.png">
     <link rel="stylesheet" href="./src/css/reset.css" />
     <link rel="stylesheet" href="./src/css/common.css" />
     <link rel="stylesheet" href="./src/css/header.css" />
@@ -37,7 +38,7 @@
               <address>대한민국</address>
             </dd>
           </dl>
-          <dialog class="popover" open>
+          <dialog class="popover">
             <p>
               KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을
               보려면 배송 주소를 변경하십시오.
@@ -66,18 +67,18 @@
             </button>
           </form>
         </section>
-        <setcion class="group nation" tabindex="0" aria-label="지역: 한국">
+        <section class="group nation" tabindex="0" aria-label="지역: 한국">
           <h2 class="blind">지역</h2>
           <figure>
             <img src="./src/img/flag/ko.png" alt="" />
             <figcaption>KO</figcaption>
           </figure>
-        </setcion>
+        </section>
         <section class="group login">
           <h2 class="blind">로그인</h2>
           <p>안녕하세요, 로그인</p>
           <a href="#">계정 및 목록</a>
-          <dialog class="popover" open>
+          <dialog class="popover">
             <button class="button button--lg">로그인</button>
             <p>
               기존 사용자가 아니십니까?
@@ -144,7 +145,7 @@
           </dialog>
         </section>
         <section class="group mypage">
-          <h2>
+          <h2 aria-hidden="true">
             반품
             <span class="blind">& 주문</span>
           </h2>

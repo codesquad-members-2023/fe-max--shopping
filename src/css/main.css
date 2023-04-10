@@ -45,8 +45,10 @@
 }
 
 #contents .contents__list {
-  column-count: 4;
-  column-gap: 1em;
+  -moz-column-count: 4;
+       column-count: 4;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
 }
 #contents .contents__item {
   background-color: var(--color-white);
@@ -83,13 +85,13 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   #contents .contents__list {
-    column-count: 2;
+    -moz-column-count: 2;
+         column-count: 2;
   }
 }
 @media (min-width: 1024px) {
   #contents .contents__list {
-    column-count: 4;
+    -moz-column-count: 4;
+         column-count: 4;
   }
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

@@ -79,7 +79,8 @@
 .blind {
   overflow: hidden;
   position: absolute;
-  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+          clip-path: polygon(0 0, 0 0, 0 0, 0 0);
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -127,6 +128,4 @@ html {
 .icon {
   font-size: 0;
   vertical-align: middle;
-}
-
-/*# sourceMappingURL=common.css.map */
+}/*# sourceMappingURL=common.css.map */
