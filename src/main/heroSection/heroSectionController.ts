@@ -1,12 +1,15 @@
-import { $$ } from "../../utils/domUtils";
+import { $, $$ } from "../../utils/domUtils";
+import { ensureHTMLElement } from "../../utils/typeCheckUtils";
+import { intervalIdState } from "./heroSectionModel";
 
-export const handleImageMove = (() => {
-  let index = 0;
+export const handleMoveImage = (() => {
+  const $imageContainer = ensureHTMLElement($(".hero-section__image-container"));
   const imageCount = $$(".hero-section__image").length;
   const isNegativeImageIndex = () => index < 0;
   const isExceededImageIndex = () => index > imageCount - 1;
 
-  return async (direction: string, $imageContainer: HTMLElement) => {
+  let index = 0;
+  return async (direction: string) => {
     index += direction === "prev" ? -1 : 1;
 
     if (isNegativeImageIndex()) {
@@ -20,7 +23,7 @@ export const handleImageMove = (() => {
     if (isExceededImageIndex()) {
       index = 1;
 
-      handleExceededImageIndex(index, $imageContainer);
+      handleExceededIndex(index, $imageContainer);
 
       return;
     }
@@ -29,8 +32,6 @@ export const handleImageMove = (() => {
     $imageContainer.style.transitionDuration = "500ms";
   };
 })();
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const handleNegativeIndex = async (
   index: number,
@@ -50,7 +51,7 @@ const handleNegativeIndex = async (
   $imageContainer.style.transform = `translateX(-${index * 100}%)`;
 };
 
-const handleExceededImageIndex = async (index: number, $imageContainer: HTMLElement) => {
+const handleExceededIndex = async (index: number, $imageContainer: HTMLElement) => {
   if ($imageContainer.lastElementChild == null) {
     throw new Error(`The image container(${$imageContainer}) is empty`);
   }
@@ -62,4 +63,19 @@ const handleExceededImageIndex = async (index: number, $imageContainer: HTMLElem
 
   $imageContainer.style.transitionDuration = "500ms";
   $imageContainer.style.transform = `translateX(-${index * 100}%)`;
+};
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const setIntervalImageMove = () => {
+  const id = setInterval(() => handleMoveImage("next"), 10000);
+
+  intervalIdState.setIntervalId(id);
+};
+
+export const resetIntervalImageMove = () => {
+  const intervalId = intervalIdState.getIntervalId();
+
+  clearInterval(intervalId);
+  setIntervalImageMove();
 };

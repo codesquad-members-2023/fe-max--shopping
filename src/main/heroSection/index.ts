@@ -1,12 +1,25 @@
 import { $ } from "../../utils/domUtils";
-import { ensureHTMLElement } from "../../utils/typeCheckUtils";
-import { handleImageMove } from "./heroSectionController";
+import {
+  handleMoveImage,
+  resetIntervalImageMove,
+  setIntervalImageMove,
+} from "./heroSectionController";
 
-export const addHeroSectionEventListeners = () => {
+export const initHeroSection = () => {
+  addHeroSectionEventListeners();
+  setIntervalImageMove();
+};
+
+const addHeroSectionEventListeners = () => {
   const $prevButton = $(".hero-section__prev-button");
   const $nextButton = $(".hero-section__next-button");
-  const $imageContainer = ensureHTMLElement($(".hero-section__image-container"));
 
-  $prevButton.addEventListener("click", () => handleImageMove("prev", $imageContainer));
-  $nextButton.addEventListener("click", () => handleImageMove("next", $imageContainer));
+  $prevButton.addEventListener("click", () => {
+    handleMoveImage("prev");
+    resetIntervalImageMove();
+  });
+  $nextButton.addEventListener("click", () => {
+    handleMoveImage("next");
+    resetIntervalImageMove();
+  });
 };

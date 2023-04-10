@@ -1,5 +1,5 @@
-import { addHeroSectionEventListeners } from "./heroSection";
+import { initHeroSection } from "./heroSection";
 
 export const initMain = () => {
-  addHeroSectionEventListeners();
+  initHeroSection();
 };
