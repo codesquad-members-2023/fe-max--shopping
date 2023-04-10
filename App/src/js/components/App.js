@@ -5,6 +5,7 @@ export class App extends Component {
     super();
     this.domNode = document.querySelector("#app");
     this.children = [];
-    this.parseJsonRecursiveAppendChild(innerData);
+    this.parseJsonRecursiveAppendChild(innerData.header);
+    this.parseJsonRecursiveAppendChild(innerData.sidebar);
   }
 }

@@ -20,6 +20,14 @@
   - [x] 점검
 - [ ] html을 js로 옮기기
   - [x] 공통 Component 만들기
+  - [ ] viewData 만들기
+    - [x] header
+    - [x] sidebar
 
 ### 체크리스트
-- [ ] html과 css로 화면설계
+- [x] html과 css로 화면설계
+- [ ] js작업
+
+### 만들다 생각난 것들
+맞는지 모르겠지만 Conponent를 공통으로 만들어서 재귀적으로 만들고 나중에 바꿔주는 방식으로 해봐야겠다.
+
