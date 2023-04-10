@@ -1,3 +1,4 @@
+import { Backdrop } from "../../Backdrop.js";
 import { Base } from "../../Base.js";
 import { accountContentsList, myList } from "./tooltipList.js";
 
@@ -7,7 +8,6 @@ export class LoginTooltip extends Base {
 
   constructor(backdrop) {
     super("div");
-    this.backdrop = backdrop;
     this.init();
   }
 
@@ -69,7 +69,8 @@ export class LoginTooltip extends Base {
 
   showTooltipHandler() {
     this.setStyle("display", "block");
-    this.backdrop.setStyle("display", "block");
+    Backdrop.show();
+
     this["tooltipDetailBox"].setStyle("display", "flex");
     this.setStyle("left", "-225px");
     this["rectangle"].setStyle("left", "250px");
@@ -78,7 +79,7 @@ export class LoginTooltip extends Base {
   }
 
   hideTooltipHandler() {
-    this.backdrop.setStyle("display", "none");
+    Backdrop.hide();
     this.setStyle("display", "none");
   }
 }

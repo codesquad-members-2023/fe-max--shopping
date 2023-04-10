@@ -10,12 +10,11 @@ import { ShippingAddress } from "./ShippingAddress.js";
 export class NavBar extends Base {
   constructor() {
     super("div");
-    this.backdrop = this.createBackdrop();
     this.logoNode = new BI();
-    this.shippingAddress = new ShippingAddress(this.backdrop);
+    this.shippingAddress = new ShippingAddress();
     this.searchBar = new SearchBar();
     this.nation = new Nation();
-    this.login = new Login(this.backdrop);
+    this.login = new Login();
     this.mypage = new Mypage();
     this.cart = new Cart();
     this.init();
@@ -32,15 +31,5 @@ export class NavBar extends Base {
       this.mypage,
       this.cart
     );
-  }
-
-  createBackdrop() {
-    const template = `
-      <div id="backdrop" data-elementname="backdrop">
-      </div>
-    `;
-    this.setTemplate(template);
-
-    return this.backdrop;
   }
 }

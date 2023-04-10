@@ -1,9 +1,9 @@
+import { Backdrop } from "../../Backdrop.js";
 import { Base } from "../../Base.js";
 
 export class ShippingTooltip extends Base {
-  constructor(backdrop) {
+  constructor() {
     super("div");
-    this.backdrop = backdrop;
     this.init();
   }
   init() {
@@ -12,12 +12,12 @@ export class ShippingTooltip extends Base {
   }
 
   showTooltipHandler() {
-    this.backdrop.setStyle("display", "block");
+    Backdrop.show();
     this.setStyle("display", "flex");
   }
 
   hideTooltipHandler() {
-    this.backdrop.setStyle("display", "none");
+    Backdrop.hide();
     this.setStyle("display", "none");
   }
 
