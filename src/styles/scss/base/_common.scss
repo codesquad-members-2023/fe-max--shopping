@@ -1,0 +1,62 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+
+@mixin bodySm {
+  font: $bodySm;
+  letter-spacing: $letter-spacing-body-md;
+}
+@mixin bodyMd {
+  font: $bodyMd;
+  letter-spacing: $letter-spacing-body-md;
+}
+@mixin boldSm {
+  font: $boldSm;
+  letter-spacing: $letter-spacing-bold-sm;
+}
+@mixin boldMd {
+  font: $boldMd;
+  letter-spacing: $letter-spacing-bold-md;
+}
+@mixin boldLg {
+  font: $boldLg;
+}
+@mixin boldXl {
+  font: $boldXl;
+}
+//font-family
+$font-family: 'Pretendard Variable', Pretendard, -apple-system,
+  BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+  'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+//font
+$bodySm: normal normal 500 11px/160% $font-family;
+$bodyMd: normal normal 500 13px/160% $font-family;
+$boldSm: normal normal 600 11px/13px $font-family;
+$boldMd: normal normal 800 13px/16px $font-family;
+$boldLg: normal normal 800 18px/21px $font-family;
+$boldXl: normal normal 800 28px/33px $font-family;
+// letter-spacing
+$letter-spacing-bold-md: -0.06em;
+$letter-spacing-bold-sm: -0.06em;
+$letter-spacing-body-md: -0.03em;
+$letter-spacing-body-sm: -0.03em;
+// color
+$color-white: #ffffff;
+$color-gray-100: #eff2f2;
+$color-gray-200: #e5e9e9;
+$color-gray-300: #dce0e0;
+$color-gray-400: #d5d5d5;
+$color-gray-500: #c1c1c1;
+$color-gray-600: #878787;
+$color-gray-700: #535353;
+$color-gray-800: #2a3648;
+$color-gray-900: #1b232f;
+$color-black: #10141a;
+$color-black-40: rgba($color-black, 0.4);
+$color-yellow-100: #fed15f;
+$color-yellow-200: #febe30;
+$color-yellow-300: #de9408;
+$color-orange-100: #fcb057;
+$color-orange-200: #ff9900;
+$color-secondary-Purple: #941387;
+$color-secondary-Navy: #074099;
+$color-secondary-Green: #0c5e72;
