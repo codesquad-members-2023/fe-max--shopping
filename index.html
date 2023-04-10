@@ -13,15 +13,15 @@
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
-    <header id="nav-bar" class="nav bg-black text-white">
-      <div id="nav-main" class="nav__main font-BoldMD">
-        <div id="nav-logo" class="nav__main--item">
+    <header class="nav bg-black text-white">
+      <nav class="nav-main font-BoldMD">
+        <div class="nav-main__item nav__logo">
           <a href="/">
             <img src="./assets/icons/logo.svg" alt="amazon logo" />
           </a>
         </div>
-        <div id="nav-shipping-address" class="nav__main--item">
-          <div id="shipping-address-label" class="font-BoldSM text-gray4">
+        <div id="nav-shipping-address" class="nav-main__item nav__address" tabindex="0">
+          <div class="nav__address-label font-BoldSM text-gray4">
             <img class="location-icon" src="./assets/icons/location.svg" alt="location icon" />
             <span>배송처</span>
           </div>
@@ -36,15 +36,15 @@
             </div>
           </div>
         </div>
-        <div id="nav-search-bar" class="bg-white">
+        <div id="nav-search-bar" class="nav__search-bar bg-white">
           <input type="text" name="search-bar" id="search-bar-input" placeholder="검색 Amazon" />
           <button class="bg-orange1">
             <img src="./assets/icons/search.svg" alt="search icon" />
           </button>
         </div>
-        <div id="nav-nation" class="nav__main--item">🇺🇸 KO</div>
-        <div id="nav-login" class="nav__main--item">
-          <div id="nav-login-text">
+        <div class="nav-main__item nav__nation" tabindex="0">🇺🇸 KO</div>
+        <div id="nav-login" class="nav-main__item nav__login" tabindex="0">
+          <div id="nav-login-text" class="nav__login-label">
             <span class="font-BoldSM text-gray4">안녕하세요,로그인</span>
             <span>계정 및 목록</span>
           </div>
@@ -89,18 +89,18 @@
             </div>
           </div>
         </div>
-        <div id="nav-mypage" class="nav__main--item">
+        <div class="nav-main__item nav__mypage" tabindex="0">
           <span class="font-BoldSM text-gray4">반품</span>
           <span>& 주문</span>
         </div>
-        <div id="nav-cart" class="nav__main--item font-BoldMD">
+        <div class="nav-main__item nav__cart font-BoldMD" tabindex="0">
           <img class="cart-icon" src="./assets/icons/cart.svg" alt="cart icon" />
           <span>장바구니</span>
         </div>
-      </div>
-      <div class="nav__sub bg-black">
-        <div class="nav-left font-BodyMD">
-          <div id="side-bar-menu" class="font-BoldMD">
+      </nav>
+      <nav class="nav-sub bg-black">
+        <div class="nav-sub--left font-BodyMD">
+          <div class="nav-sub__sidebar font-BoldMD">
             <img class="hamburger-menu-icon" src="assets/icons/menu.svg" alt="menu icon" />
             <span>메뉴</span>
           </div>
@@ -110,10 +110,10 @@
           <div>기프트 카드</div>
           <div>판매</div>
         </div>
-        <div class="nav-right font-BoldMD">
+        <div class="nav-sub--right font-BoldMD">
           <div>지금 특가 상품 쇼핑하기</div>
         </div>
-      </div>
+      </nav>
     </header>
     <div class="modal__backdrop"></div>
   </body>

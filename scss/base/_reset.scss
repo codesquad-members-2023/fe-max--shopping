@@ -1,6 +1,10 @@
 * {
   margin: 0;
   box-sizing: border-box;
+
+  &:focus {
+    outline: var(--color-primary-orange-200) solid 2px;
+  }
 }
 
 h1 {
@@ -20,7 +24,6 @@ textarea {
   border: 0;
 
   &:focus {
-    outline: none;
     box-shadow: none;
   }
 }
