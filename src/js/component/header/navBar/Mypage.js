@@ -11,18 +11,11 @@ export class Mypage extends Base {
   }
 
   addChild() {
-    this.createChild(
-      "span",
-      [{ name: "class", value: "mypage__label" }],
-      "반품",
-      "mypageLabel"
-    );
+    const template = `
+      <span class="mypage__label">반품</span>
+      <span class="mypage__text">&amp;주문</span>
+    `;
 
-    this.createChild(
-      "span",
-      [{ name: "class", value: "mypage__text" }],
-      "&주문",
-      "mypageText"
-    );
+    this.setTemplate(template);
   }
 }

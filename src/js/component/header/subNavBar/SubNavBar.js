@@ -1,17 +1,16 @@
 import { Base } from "../../Base.js";
-import { Menu } from "./Menu.js";
 
 export class SubNavBar extends Base {
   #_leftButtonsData = [
-    { text: "모두", symbol: "./src/assets/menu.svg" },
-    { text: "오늘의 딜" },
-    { text: "고객 서비스" },
-    { text: "레지스트리" },
-    { text: "기프트 카드" },
-    { text: "판매" },
+    { text: "모두", tagName: "button", symbol: "./src/assets/menu.svg" },
+    { text: "오늘의 딜", tagName: "a" },
+    { text: "고객 서비스", tagName: "a" },
+    { text: "레지스트리", tagName: "a" },
+    { text: "기프트 카드", tagName: "a" },
+    { text: "판매", tagName: "a" },
   ];
 
-  #_rightButtonsData = { text: "지금 특가 상품 쇼핑하기" };
+  #_rightButtonsData = [{ text: "지금 특가 상품 쇼핑하기", tagName: "a" }];
 
   constructor() {
     super("div");
@@ -24,32 +23,47 @@ export class SubNavBar extends Base {
   }
 
   setMenu() {
-    const leftButtons = this.setLeftButtons();
-    const rightButtons = this.setRightButtons();
-
-    this.setChildren(leftButtons, rightButtons);
+    this.setLeftButtons();
+    this.setRightButtons();
   }
 
   setLeftButtons() {
-    const leftButtons = new Base("div");
-    leftButtons.setAttribute("id", "leftButtons");
-
-    const menuNodes = [];
-    this.#_leftButtonsData.forEach((menuData) => {
-      menuNodes.push(new Menu(menuData));
-    });
-
-    leftButtons.setChildren(...menuNodes);
-
-    return leftButtons;
+    const template = `
+    <div id="leftButtons">
+      ${this.#_leftButtonsData
+        .map((data) => {
+          return `
+        <div class="subNavBar__menu">
+          <${data.tagName} ${
+            data.tagName === "button" ? "class=sideBarBtn" : ""
+          } >
+            ${data.symbol ? `<img src="${data.symbol}">` : ""}
+            <span class="menu__text">${data.text}</span>
+          </${data.tagName}>
+        </div>`;
+        })
+        .join("")}
+    </div>`;
   }
 
   setRightButtons() {
-    const rightButtons = new Base("div");
-    rightButtons.setAttribute("id", "rightButtons");
-
-    rightButtons.setChildren(new Menu(this.#_rightButtonsData));
-
-    return rightButtons;
+    const template = `
+    <div id="rightButtons">
+    ${this.#_rightButtonsData
+      .map((data) => {
+        return `
+      <div class="subNavBar__menu">
+        <${data.tagName} ${
+          data.tagName === "button" ? "class=sideBarBtn" : ""
+        } >
+          ${data.symbol ? `<img src="${data.symbol}">` : ""}
+          <span class="menu__text">${data.text}</span>
+        </${data.tagName}>
+      </div>`;
+      })
+      .join("")}
+    </div>
+    `;
+    this.setTemplate(template);
   }
 }

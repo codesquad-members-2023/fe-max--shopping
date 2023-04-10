@@ -11,21 +11,11 @@ export class SearchBar extends Base {
     this.addChild();
   }
   addChild() {
-    this.createChild(
-      "input",
-      [
-        { name: "class", value: "inputBar" },
-        { name: "placeholder", value: "검색 Amazon" },
-      ],
-      null,
-      "inputBar"
-    );
+    const template = `
+      <input class="inputBar" placeholder="검색 Amazon">
+      <button class="searchBar__btn"></button>
+    `;
 
-    this.createChild(
-      "button",
-      [{ name: "class", value: "searchBar__btn" }],
-      null,
-      "searchBtn"
-    );
+    this.setTemplate(template);
   }
 }

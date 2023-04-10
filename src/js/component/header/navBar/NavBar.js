@@ -35,12 +35,12 @@ export class NavBar extends Base {
   }
 
   createBackdrop() {
-    this.createChild(
-      "div",
-      [{ name: "id", value: "backdrop" }],
-      null,
-      "backdrop"
-    );
-    return this["backdrop"];
+    const template = `
+      <div id="backdrop" data-elementname="backdrop">
+      </div>
+    `;
+    this.setTemplate(template);
+
+    return this.backdrop;
   }
 }

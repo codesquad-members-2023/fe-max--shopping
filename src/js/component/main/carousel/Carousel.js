@@ -13,80 +13,44 @@ export class Carousel extends Base {
   init() {
     this.setAttribute("id", "carousel");
     this.addChild();
+    this.addBtnEvent();
     this.addEventTransition();
   }
 
   addChild() {
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/LeftButton.svg" }],
-      null,
-      "chevronLeftImg"
-    );
+    const template = `
+    <div id="carousel">
+      <div class="carousel__btnWrapper">
+        <button class="carousel__button prevSlide" data-elementname="prevSlideBtn">
+          <img src="./src/assets/LeftButton.svg" /></button
+        ><button class="carousel__button nextSlide" data-elementname="nextSlideBtn">
+          <img src="./src/assets/RightButton.svg" />
+        </button>
+      </div>
+      <div class="carousel__wrapper" data-elementname="wrapper">
+        ${this.carouselList
+          .map((listData) => {
+            return `<div class="carousel__item" data-num=${listData}>${listData}</div>`;
+          })
+          .join("")}
+      </div>
+    </div>`;
+    this.setTemplate(template);
 
-    this.createChild(
-      "button",
-      [{ name: "class", value: "carousel__button prevSlide" }],
-      null,
-      "prevSlideBtn",
-      ["chevronLeftImg"]
-    );
-
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/RightButton.svg" }],
-      null,
-      "chevronRightImg"
-    );
-
-    this.createChild(
-      "button",
-      [{ name: "class", value: "carousel__button nextSlide" }],
-      null,
-      "nextSlideBtn",
-      ["chevronRightImg"]
-    );
-
-    this.createChild(
-      "div",
-      [{ name: "class", value: "carousel__btnWrapper" }],
-      null,
-      "btnWrapper",
-      ["prevSlideBtn", "nextSlideBtn"]
-    );
-
-    const itemNodeList = this.carouselList.map((e) => {
-      this.createChild(
-        "div",
-        [
-          { name: "class", value: "carousel__item" },
-          { name: "data-num", value: e },
-        ],
-        e,
-        `item${e}`
-      );
-
-      return `item${e}`;
-    });
-
-    this.createChild(
-      "div",
-      [{ name: "class", value: "carousel__wrapper" }],
-      null,
-      "wrapper",
-      itemNodeList
-    );
-
-    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this), {
-      once: true,
-    });
+    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this));
     this.nextSlideBtn.setEvent("click", this.slideNext.bind(this));
 
     const wrapperNode = this.wrapper.node;
     const firstNode = wrapperNode.firstChild.cloneNode(true);
     const lastNode = wrapperNode.lastChild.cloneNode(true);
+
     wrapperNode.appendChild(firstNode);
     wrapperNode.prepend(lastNode);
+  }
+
+  addBtnEvent() {
+    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this));
+    this.nextSlideBtn.setEvent("click", this.slideNext.bind(this));
   }
 
   slideTo(direction) {
