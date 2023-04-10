@@ -7,20 +7,25 @@
   - [About](#about)
   - [Key Features](#key-features)
 - [Dev Log](#dev-log)
+  - [Web Components and SCSS](#web-components-and-scss)
+  - [SCSS Modules - `@use` vs `@import`](#scss-modules---use-vs-import)
+  - [Elements that are not Suitable for Attaching the Shadow DOM](#elements-that-are-not-suitable-for-attaching-the-shadow-dom)
+  - [Dimmed Layer](#dimmed-layer)
 
 ## Getting Started
+
 1. Clone the repository
-    ```zsh
-    git clone https://github.com/Kakamotobi/fe-max--shopping.git
-    ```
+   ```zsh
+   git clone https://github.com/Kakamotobi/fe-max--shopping.git
+   ```
 2. Install dependencies
-    ```zsh
-    npm install
-    ```
+   ```zsh
+   npm install
+   ```
 3. Run the development server
-    ```zsh
-    npm run dev
-    ```
+   ```zsh
+   npm run dev
+   ```
 
 ## Project Requirements
 
@@ -45,6 +50,7 @@
     - [ ] Dim main section.
   - [x] Navbar expands the whole width of the viewport
     - [x] Search bar grows when vw >= 1120px.
+  - []
 
 ## Dev Log
 
@@ -170,3 +176,8 @@
 
 - Elements related to headings, tables, form, img, inline elements (Ex: `a`, `span`).
 - The Shadow DOM can be attached to any HTML tag. However, attaching it to one of these elements may not make sense and lead to displacements.
+
+### Dimmed Layer
+
+- Need to dim the main portion upon hovering over certain tooltips.
+- Trigger the dimmed layer by creating and dispatching a custom event from the `tool-tip` component to the `top-header` (parent) component.

@@ -23,10 +23,27 @@ export class ToolTip extends HTMLElement {
 
   showSelf() {
     this.shadowRoot.host.classList.add("is-active");
+
+    if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
+      this.notifyParentToDim(true);
+    }
   }
 
   hideSelf() {
     this.shadowRoot.host.classList.remove("is-active");
+
+    if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
+      this.notifyParentToDim(false);
+    }
+  }
+
+  notifyParentToDim(isActive) {
+    const toolTipActive = new CustomEvent("tool-tip-active", {
+      detail: {
+        isActive: isActive,
+      },
+    });
+    this.shadowRoot.host.getRootNode().host.dispatchEvent(toolTipActive);
   }
 }
 

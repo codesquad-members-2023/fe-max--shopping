@@ -115,6 +115,8 @@ template.innerHTML = `
     </nav>
   </header>
 
+  <div class="dimmed-layer"></div>
+
   <link rel="stylesheet" href="src/styles/components/TopHeader.css"></link>
 
   <style>
@@ -202,6 +204,19 @@ class TopHeader extends HTMLElement {
         toolTipDimmedBg.hideSelf();
       });
     });
+
+    this.addEventListener("tool-tip-active", this.dimmedLayerHandler);
+  }
+
+  dimmedLayerHandler(evt) {
+    const dimmedLayer = this.shadowRoot.querySelector(".dimmed-layer");
+
+    const isActive = evt.detail.isActive;
+    if (isActive === true) {
+      dimmedLayer.classList.add("is-active");
+    } else {
+      dimmedLayer.classList.remove("is-active");
+    }
   }
 }
 
