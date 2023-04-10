@@ -103,7 +103,7 @@
   cursor: pointer;
 }
 
-@mixin modal-bg {
+@mixin dim {
   background-color: $color-black-40;
   position: absolute;
   top: 88px;
@@ -208,4 +208,6 @@
   width: 262px;
 }
 
-
+@mixin hidden {
+  display: none;
+}

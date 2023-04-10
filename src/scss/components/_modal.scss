@@ -3,11 +3,16 @@
 @import '../common/placeholders';
 @import '../base/animations';
 
-.modal-bg {
-  @include modal-bg;
+
+.dim {
+  @include dim;
   width: 100%;
   height: $vh100;
   animation: fade-in 0.5s forwards; 
+}
+
+.hidden{
+  display: none;
 }
 
 .modal {
