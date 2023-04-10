@@ -53,7 +53,7 @@
   z-index: 1;
   cursor: pointer;
 
-  &.next {
+  &[data-type="next"] {
     left: unset;
     right: 0;
   }

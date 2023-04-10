@@ -1,10 +1,10 @@
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="slide-btns__container">
-    <button class="slide-btn prev" type="button">
+    <button class="slide-btn" data-type="prev" type="button">
       <img src="src/assets/icons/btn-left.svg" alt="Previous Button" />
     </button>
-    <button class="slide-btn next" type="button">
+    <button class="slide-btn" data-type="next" type="button">
       <img src="src/assets/icons/btn-right.svg" alt="Next Button" />
     </button>
   </div>
@@ -19,6 +19,8 @@ class InfiniteCarousel extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
+    this.intervalId = null;
+    this.slideAfterMs = 10000;
   }
 
   connectedCallback() {
@@ -26,13 +28,23 @@ class InfiniteCarousel extends HTMLElement {
 
     btns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.moveSlide(btn);
+        this.moveSlide(btn.dataset.type);
+        this.automaticSlideAfter(this.slideAfterMs);
       });
     });
+
+    this.automaticSlideAfter(this.slideAfterMs);
   }
 
-  moveSlide(btn) {
-    const offset = btn.classList.contains("next") ? 1 : -1;
+  automaticSlideAfter(ms) {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(() => {
+      this.moveSlide("next");
+    }, ms);
+  }
+
+  moveSlide(btnType) {
+    const offset = btnType === "next" ? 1 : -1;
 
     const slidesUl = this.shadowRoot.querySelector("ul");
     const slideLis = [...slidesUl.children];

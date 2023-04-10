@@ -35,22 +35,23 @@
 
 ### Key Features
 
-- [ ] Top Nav Bar
-  - [ ] Login Section
+- [x] Top Nav Bar
+  - [x] Login Section
     - [x] Login "tooltip"
-      - [x] Appears after 1 second after page load
+      - [x] Appears after 1 second after page load.
     - [x] Login Section Hover
-      - [x] Login "tooltip" disappears
-      - [x] Login modal appears
+      - [x] Login "tooltip" disappears.
+      - [x] Login modal appears.
       - [x] Close modal when no longer hovering over the section or modal.
-      - [ ] Dim main section.
-  - [ ] Shipping Section Hover
-    - [x] Shipping address modal appears
+      - [x] Dim main section.
+  - [x] Shipping Section Hover
+    - [x] Shipping address modal appears.
     - [x] Close modal when no longer hovering over the section or modal.
-    - [ ] Dim main section.
-  - [x] Navbar expands the whole width of the viewport
+    - [x] Dim main section.
+  - [x] Navbar expands the whole width of the viewport.
     - [x] Search bar grows when vw >= 1120px.
-  - []
+- [x] Hero Infinite Carousel
+  - [x] Automatically move to next slide after 10s of no interaction.
 
 ## Dev Log
 
