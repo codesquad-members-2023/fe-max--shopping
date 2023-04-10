@@ -36,7 +36,6 @@ export class Base {
   }
 
   setStyle(prop, attr) {
-    console.log(this.#_node);
     this.#_node.style[prop] = attr;
   }
 
