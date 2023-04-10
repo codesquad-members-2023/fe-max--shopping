@@ -9,11 +9,14 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
+    "json-server": "^0.17.3",
     "prettier": "^2.8.7",
-    "sass": "^1.60.0"
+    "sass": "^1.60.0",
+    "live-server": "^1.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:sass": "sass -w src/scss:src/css",
+    "dev": "npm run build:sass & wait & live-server --no-css-inject & json-server --watch ./src/js/data/db.json"
   },
   "repository": {
     "type": "git",
