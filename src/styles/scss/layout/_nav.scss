@@ -141,9 +141,8 @@ nav {
       height: 90px;
       border-radius: 5px;
       border: 1px solid $color-white;
-      z-index: 1;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
+      animation: login-popup 2s ease 1s 1 normal backwards;
       .login__box__popup--loginbtn {
         position: absolute;
         top: 16px;
@@ -174,7 +173,6 @@ nav {
         }
       }
     }
-
     .login__box__popup::before {
       content: '';
       position: absolute;
@@ -311,5 +309,14 @@ nav {
     @include boldMd;
     color: $color-white;
     cursor: pointer;
+  }
+}
+
+@keyframes login-popup {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
   }
 }
