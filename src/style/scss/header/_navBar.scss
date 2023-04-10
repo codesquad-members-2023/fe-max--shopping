@@ -210,7 +210,7 @@
   width: 387px;
   height: 32px;
 
-  .menu {
+  .subNavBar__menu {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -222,23 +222,29 @@
       @include BoldMD;
     }
   }
+  .sideBarBtn {
+    width: 58px;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+  }
 }
 
 #rightButtons {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: 8px 0px;
   gap: 4px;
 
   width: 112px;
   height: 32px;
 
-  .menu {
+  .subNavBar__menu {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 8px;
     gap: 4px;
 
     .menu__text {
