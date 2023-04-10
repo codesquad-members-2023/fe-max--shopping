@@ -29,10 +29,6 @@
   --secondary-green: #0c5e72;
 }
 
-#header {
-  min-width: 1120px;
-}
-
 #navBar {
   box-sizing: border-box;
   display: flex;
@@ -304,8 +300,6 @@
   height: 32px;
 }
 #rightButtons .subNavBar__menu {
-  display: flex;
-  flex-direction: row;
   align-items: flex-start;
   gap: 4px;
 }
@@ -319,18 +313,6 @@
   font-size: 13px;
   line-height: 16px;
   letter-spacing: -0.06em;
-}
-
-#backdrop {
-  display: none;
-  min-width: 1120px;
-  width: 100%;
-  height: 100%;
-  background-color: var(--black);
-  position: absolute;
-  top: 88px;
-  left: 0;
-  opacity: 0.4;
 }
 
 #login__tooltip {
@@ -552,11 +534,6 @@
   letter-spacing: -0.06em;
 }
 
-#main {
-  display: flex;
-  justify-content: center;
-}
-
 #carousel {
   width: 1120px;
   height: 512px;
@@ -609,4 +586,24 @@
   background: none;
   position: relative;
   border: none;
+}
+
+#header {
+  min-width: 1120px;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#backdrop {
+  display: none;
+  min-width: 1120px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black40);
+  position: absolute;
+  top: 88px;
+  left: 0;
 }

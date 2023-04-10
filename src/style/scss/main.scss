@@ -3,6 +3,28 @@
 @import "./common";
 
 @import "header/navBar";
-@import "header/tooltip";
+@import "header/subNavBar";
+@import "header/tooltip/loginTooltip";
+@import "header/tooltip/shippingAddressTooltip";
 
 @import "main/carousel";
+
+#header {
+  min-width: 1120px;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#backdrop {
+  display: none;
+  min-width: 1120px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black40);
+  position: absolute;
+  top: 88px;
+  left: 0;
+}
