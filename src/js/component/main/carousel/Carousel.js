@@ -37,9 +37,6 @@ export class Carousel extends Base {
     </div>`;
     this.setTemplate(template);
 
-    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this));
-    this.nextSlideBtn.setEvent("click", this.slideNext.bind(this));
-
     const wrapperNode = this.wrapper.node;
     const firstNode = wrapperNode.firstChild.cloneNode(true);
     const lastNode = wrapperNode.lastChild.cloneNode(true);
