@@ -51,7 +51,6 @@ export class Carousel extends Base {
     if (direction === "next") {
       wrapperNode.style.transform = `translateX(-300%`;
       this.currentIndex++;
-      console.log(this.currentIndex);
     } else {
       wrapperNode.style.transform = `translateX(-100%`;
       this.currentIndex--;

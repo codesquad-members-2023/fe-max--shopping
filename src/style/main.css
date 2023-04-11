@@ -1,12 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 :root {
-  --font-family: "Pretendard Variable", Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-}
-
-:root {
+  --font-family: "Pretendard Variable";
   --white: #ffffff;
   --gray100: #eff2f2;
   --gray100: #e5e9e9;
@@ -104,6 +98,7 @@
   height: 40px;
   background: var(--white);
   border-radius: 4px;
+  position: relative;
 }
 #searchBar .inputBar {
   width: 100%;
@@ -534,6 +529,41 @@
   letter-spacing: -0.06em;
 }
 
+#SearchBarLayer {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+  width: 100%;
+  min-width: 500px;
+  left: 0px;
+  top: 40px;
+  background: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+}
+#SearchBarLayer .keywordList {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 4px;
+  height: 37px;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 160%;
+  letter-spacing: -0.03em;
+}
+#SearchBarLayer .selected {
+  background-color: var(--gray100);
+}
+
 #carousel {
   width: 1120px;
   height: 512px;
@@ -547,7 +577,7 @@
   height: 512px;
   margin: 0 auto;
   display: flex;
-  transform: translateX(-100%);
+  transform: translateX(-200%);
   transition: transform 0.5s ease-in-out;
   z-index: -1;
   position: absolute;

@@ -44,6 +44,7 @@ export class SubNavBar extends Base {
         })
         .join("")}
     </div>`;
+    this.setTemplate(template);
   }
 
   setRightButtons() {
