@@ -9,6 +9,7 @@ const dim = $('.dim');
 
 const setTime = 2000;
 let isModalOn = false;
+let isSearchLayerOn = false;
 
 export async function initModal() {
   mainSearchBar.addEventListener('click', handleModal);
@@ -86,9 +87,9 @@ function handleModal(e) {
     handleDimming();
   }
   if (e.target === mainSearchBar) {
-    console.log(searchLayer.classList);
+    isSearchLayerOn = true;
     searchLayer.classList.remove('hidden');
-    console.log(searchLayer.classList);
+    handleDimming();
   }
 }
 
@@ -104,8 +105,9 @@ function removeModal(e) {
     const shippingModal = $('.modal-temp1', e.target);
     shippingModal.remove();
   }
+
 }
 
 function handleDimming() {
-  isModalOn ? dim.classList.remove('hidden') : dim.classList.add('hidden');
+  (isModalOn || isSearchLayerOn) ? dim.classList.remove('hidden') : dim.classList.add('hidden');
 }
