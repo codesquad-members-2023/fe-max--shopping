@@ -6,9 +6,9 @@ const MODAL_OPEN_DELAY = 1000;
 function initLoginModal() {
   document.addEventListener('DOMContentLoaded', () => delay(openLoginModal, MODAL_OPEN_DELAY));
   $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
-  $('.login-container').addEventListener('mouseleave', closeAllLayers);
+  $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
   $('.address-container').addEventListener('mouseenter', openAddressModal);
-  $('.address-container').addEventListener('mouseleave', closeAllLayers);
+  $('.nav-bar__address').addEventListener('mouseleave', closeAllLayers);
 }
 
 function openLoginModal() {

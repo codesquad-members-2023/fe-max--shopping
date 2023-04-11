@@ -1,4 +1,4 @@
-import { initLoginModal } from "./loginModal.js";
+import { initLoginModal } from "./modal.js";
 import './hero.js';
 
 const init = () => {
