@@ -5,10 +5,7 @@ export default class SearchBar extends Component {
     super('search-bar', 'FORM');
   }
 
-  initEventHandlers() {
-    this.node.addEventListener('click', () => this.showRecommandWords());
-    this.node.addEventListener('input', () => this.showAutoComplete());
-  }
+  initEventHandlers() {}
 
   getTemplate() {
     return `

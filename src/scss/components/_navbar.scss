@@ -66,7 +66,6 @@
   }
 
   .search {
-    z-index: 1;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -101,6 +100,12 @@
       border-radius: 4px;
       background-color: $color-white;
       border: 1px solid $color-black;
+      visibility: hidden;
+      z-index: 3;
+
+      &.active {
+        visibility: visible;
+      }
 
       li {
         padding: 8px 12px;
