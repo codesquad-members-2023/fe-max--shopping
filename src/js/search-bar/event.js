@@ -1,33 +1,38 @@
-import { $, $All } from "../utils.js";
-import { addDimming, removeDimming } from "../utils.js";
+import {
+    $,
+    $All,
+    addDimming,
+    removeDimming,
+    showLayer,
+    hideLayer,
+} from "../utils.js";
+import { isOutsideElement } from "./search-bar.js";
 
 export const addSearchBarEventListener = () => {
     const searchBar = $(".search-bar");
-    const inputBar = $(".search-bar__input");
-    const recommendationsLayer = $(".search-bar__recs");
-    const recsItems = recommendationsLayer.children;
+    const searchInput = $(".search-bar__input");
+    const suggestedSearch = $(".search-bar__suggest");
+    const suggestItems = suggestedSearch.children;
+    const main = $(".main");
 
     const removeEvent = (e) => {
-        if (!searchBar.contains(e.target)) {
-            recommendationsLayer.classList.remove("show");
-            removeDimming(".main");
+        if (isOutsideElement(e.target, searchBar)) {
+            hideLayer(suggestedSearch);
+            removeDimming(main);
             document.removeEventListener("click", removeEvent);
         }
     };
 
     searchBar.addEventListener("click", (e) => {
-        if (e.target === inputBar) {
-            recommendationsLayer.classList.add("show");
-            addDimming(".main");
-            document.removeEventListener("click", removeEvent);
+        if (e.target === searchInput) {
+            showLayer(suggestedSearch);
+            addDimming(main);
+            document.addEventListener("click", removeEvent);
         }
     });
 
-    document.removeEventListener("click", removeEvent);
-
-    searchBar.addEventListener("click", (e) => {
-        document.addEventListener("click", removeEvent);
-    });
+    const firstItem = suggestItems[0];
+    const lastItem = suggestItems[suggestItems.length - 1];
 
     searchBar.addEventListener("keydown", (e) => {
         if (e.key === "ArrowDown" || e.key === "ArrowUp") {
@@ -35,36 +40,37 @@ export const addSearchBarEventListener = () => {
         }
         let focused = document.activeElement;
 
-        if (document.activeElement === inputBar) {
+        if (focused === searchInput) {
             if (e.key === "ArrowUp") {
-                recsItems[recsItems.length - 1].focus();
-                focused = recsItems[recsItems.length - 1];
-                return;
-            } else if (e.key === "ArrowDown") {
-                recsItems[0].focus();
-                focused = recsItems[0];
+                lastItem.focus();
+                focused = lastItem;
                 return;
             }
-        } else {
             if (e.key === "ArrowDown") {
-                if (document.activeElement.id === "last-item") {
-                    inputBar.focus();
-                    focused = inputBar;
-                    return;
-                }
-                focused = focused.nextElementSibling || recsItems[0];
-            } else if (e.key === "ArrowUp") {
-                if (document.activeElement.id === "first-item") {
-                    inputBar.focus();
-                    focused = inputBar;
-                    return;
-                }
-                focused =
-                    focused.previousElementSibling ||
-                    recsItems[recsItems.length - 1];
+                firstItem.focus();
+                focused = firstItem;
+                return;
             }
+        }
+        if (e.key === "ArrowUp") {
+            if (focused === firstItem) {
+                searchInput.focus();
+                return;
+            }
+            focused = focused.previousElementSibling;
+        }
+        if (e.key === "ArrowDown") {
+            if (focused === lastItem) {
+                searchInput.focus();
+                return;
+            }
+            focused = focused.nextElementSibling;
         }
 
         focused.focus();
+    });
+
+    searchBar.addEventListener("input", () => {
+        console.log("응");
     });
 };

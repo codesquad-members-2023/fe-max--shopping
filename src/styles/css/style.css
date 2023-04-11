@@ -905,10 +905,10 @@ body {
   right: 0;
   cursor: pointer;
 }
-.search-bar__recs.show {
+.search-bar__suggest.show {
   display: block;
 }
-.search-bar__recs {
+.search-bar__suggest {
   display: none;
   position: absolute;
   left: 0px;
@@ -920,7 +920,7 @@ body {
   z-index: 5;
   overflow: hidden;
 }
-.search-bar__recs__item {
+.search-bar__suggest__item {
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -934,7 +934,7 @@ body {
   color: var(--black);
   height: 37px;
 }
-.search-bar__recs__item:hover, .search-bar__recs__item:focus {
+.search-bar__suggest__item:hover, .search-bar__suggest__item:focus {
   background-color: var(--gray100);
 }
 .search-bar__symbol {

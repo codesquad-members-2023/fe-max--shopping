@@ -1,2 +1,6 @@
-import { $, $All } from "../utils.js";
+const isOutsideElement = (target, element) => {
+    return !element.contains(target);
+};
+
+export { isOutsideElement };
 
