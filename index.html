@@ -25,12 +25,12 @@
             </a>
           </div>
           <div class="nav-main__location">
-            <div>
+            <div class="title-small">
               <img class="location-icon" src="./src/asset/icons/location.svg" alt="" />
-              <span class="sub-title">배송처</span>
+              <span>배송처</span>
             </div>
             <div>
-              <span>대한민국</span>
+              <span class="title-large">대한민국</span>
             </div>
             <dialog open class="location-modal hidden">
               <p>KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</p>
@@ -45,6 +45,68 @@
             <button class="search-btn" type="submit">
               <img src="src/asset/icons/search.svg" alt="" />
             </button>
+            <ul class="search-info hidden">
+              <li class="search-info__recent">
+                <a href="#">신라면</a>
+                <img src="./src/asset/icons/close.svg" alt="">
+              </li>
+              <li class="search-info__recent">
+                <a href="#">새우깡</a>
+                <img src="./src/asset/icons/close.svg" alt="">
+              </li>
+              <li class="search-info__recent">
+                <a href="#">초콜릿</a>
+                <img src="./src/asset/icons/close.svg" alt="">
+              </li>
+              <li class="search-info__recent">
+                <a href="#">햄버거</a>
+                <img src="./src/asset/icons/close.svg" alt="">
+              </li>
+              <li class="search-info__recent">
+                <a href="#">피자</a>
+                <img src="./src/asset/icons/close.svg" alt="">
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+              <li class="search-info__trending">
+                <img src="./src/asset/icons/arrow-top-right.svg" alt="">
+                <a href="#">추천 검색어</a>
+              </li>
+            </ul>
           </form>
           <div class="nav-main__lang">
             <span class="lang-flag">🇺🇸</span>
@@ -52,8 +114,8 @@
           </div>
           <div class="nav-main__login">
             <div class="login-wrap">
-              <span class="sub-title">안녕하세요, 로그인</span>
-              <span>계정 및 목록</span>
+              <span class="title-small">안녕하세요, 로그인</span>
+              <span class="title-large">계정 및 목록</span>
             </div>
             <dialog open class="login-modal__small hidden">
               <button class="login-btn">로그인</button>
@@ -95,8 +157,8 @@
             </dialog>
           </div>
           <div class="nav-main__order">
-            <span class="sub-title">반품</span>
-            <span>& 주문</span>
+            <span class="title-small">반품</span>
+            <span class="title-large">& 주문</span>
           </div>
           <div class="nav-main__cart">
             <img src="./src/asset/icons/cart.svg" alt="" />
@@ -122,7 +184,17 @@
       </nav>
     </header>
     <main id="main" class="main">
-      <section class="main-section"></section>
+      <div class="hero-section">
+          <ul class="hero-slider">
+            <li><img src="./src/asset/images/img1.jpg" alt=""></li>
+            <li><img src="./src/asset/images/img2.jpg" alt=""></li>
+            <li><img src="./src/asset/images/img3.jpg" alt=""></li>
+            <li><img src="./src/asset/images/img4.jpg" alt=""></li>
+            <li><img src="./src/asset/images/img5.jpg" alt=""></li>
+          </ul>
+          <button class="hero-btn prev"><img src="./src/asset/icons/prev-image.svg" alt=""></button>
+          <button class="hero-btn next"><img src="./src/asset/icons/next-image.svg" alt=""></button>
+      </div>
     </main>
   </body>
 </html>
