@@ -1,0 +1,43 @@
+.hero-section {
+  width: 1280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider {
+  display: flex;
+  transition: 0.5s;
+  li {
+    width: 100%;
+  }
+  li > img {
+    width: 1280px;
+  }
+}
+
+.hero-btn {
+  padding: 0px;
+  width: 80px;
+  height: 250px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  top: 0px;
+  > img {
+    width: 24px;
+    height: 40px;
+  }
+}
+
+.prev {
+  margin-left: 40px;
+  left: 0px;
+}
+
+.next {
+  margin-right: 40px;
+  right: 0px;
+}
