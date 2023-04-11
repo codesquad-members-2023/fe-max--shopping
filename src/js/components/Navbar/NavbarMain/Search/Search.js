@@ -15,12 +15,6 @@ export default class Search extends Component {
     };
   }
 
-  getTemplate() {
-    const searchBar = new SearchBar();
-    const searchWord = new SearchWord();
-    return [searchBar.node, searchWord.node];
-  }
-
   initEventHandlers() {
     this.$('.search-bar').addEventListener(
       'click',
@@ -33,56 +27,74 @@ export default class Search extends Component {
   }
 
   async showRecommendWords() {
-    if (this.getInputValue()) {
-      return;
-    }
+    if (this.getInputValue()) return;
 
-    await this.loadRecommendWords();
-    this.renderRecommendWords();
+    const recommendWords = await this.loadRecommendWords();
+    this.#state.recommend = recommendWords;
 
-    this.$('.search-word').classList.add('active');
+    this.renderSearchWords(this.#state);
     Main.onDimmed();
-  }
-
-  async showAutoComplete() {
-    await this.loadAutoCompleteWords();
-    this.renderRecommendWords();
-  }
-
-  async renderRecommendWords() {
-    const recommendTemplate = this.#state.recommend.reduce((acc, cur) => {
-      return acc + SearchWord.getRecommendTemplate(cur);
-    }, '');
-    this.$('.search-word').innerHTML = '';
-    this.$('.search-word').insertAdjacentHTML('beforeend', recommendTemplate);
   }
 
   async loadRecommendWords() {
     const recommendWords = await client.fetchRecommendWords();
-    this.#state.recommend = recommendWords;
+    return recommendWords;
+  }
+
+  async showAutoComplete() {
+    if (!this.getInputValue()) return;
+
+    const autoCompleteWords = await this.loadAutoCompleteWords();
+    this.#state.recommend = autoCompleteWords;
+
+    this.renderSearchWords(this.#state);
   }
 
   async loadAutoCompleteWords() {
     const userInput = this.getInputValue();
-    if (!userInput) {
-      return;
-    }
-
     const autoCompleteWords = await client.fetchAutoCompleteWords(userInput);
-    this.#state.recommend = autoCompleteWords;
+
+    return autoCompleteWords;
+  }
+
+  renderSearchWords(state) {
+    const searchWord = new SearchWord(state);
+    this.$('.search-word').replaceWith(searchWord.node);
+    this.$('.search-word').classList.add('active');
   }
 
   getInputValue() {
     return this.$('input').value;
   }
+
+  getTemplate() {
+    const searchWord = new SearchWord({ recommend: [] });
+    const searchBar = new SearchBar();
+    return [searchBar.node, searchWord.node];
+  }
 }
 
 class SearchWord extends Component {
-  constructor() {
+  constructor({ recommend }) {
     super('search-word', 'UL');
+    this.recommend = recommend;
+    this.renderSearchWords(this.recommend);
   }
 
-  static getRecommendTemplate(word) {
+  renderSearchWords(recommend) {
+    const template = this.getAllRecommendTemplate(recommend);
+    this.node.insertAdjacentHTML('afterbegin', template);
+  }
+
+  getAllRecommendTemplate(recommend) {
+    const recommendTemplate = recommend.reduce((acc, cur) => {
+      return acc + this.getRecommendTemplate(cur);
+    }, '');
+
+    return recommendTemplate;
+  }
+
+  getRecommendTemplate(word) {
     return `
 <li class="recommend">
   <a href=""><button class="shortcut-btn"></button>${word}</a>
@@ -90,7 +102,7 @@ class SearchWord extends Component {
     `;
   }
 
-  static getHistoryTemplate(word) {
+  getHistoryTemplate(word) {
     return `
 <li class="history">
   <a href="">${word}</a><button class="delete-btn"></button>
