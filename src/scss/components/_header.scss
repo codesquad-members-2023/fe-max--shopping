@@ -34,32 +34,72 @@
       justify-content: center;
       position: relative;
     }
-    .main-search-bar,
-    form,
-    fieldset {
-      @include flex-row;
+    .main-search-bar {
+      margin-top: 8px;
+      @include flex-column;
       flex: 1;
-      #search-bar {
+      form,
+      fieldset {
+        @include flex-row;
         width: 100%;
-        height: 40px;
-        background-color: $color-white;
-        border-radius: 4px 0 0 4px;
-        padding: 9.5px 12px;
-        color: $color-black;
-        &::placeholder {
-          @include place-holder;
+        #search-bar {
+          width: 100%;
+          height: 40px;
+          background-color: $color-white;
+          border-radius: 4px 0 0 4px;
+          padding: 9.5px 12px;
+          color: $color-black;
+          &::placeholder {
+            @include place-holder;
+          }
+        }
+        .search-btn {
+          @include pointer;
         }
       }
-      .search-btn {
-        @include pointer;
+      .search-layer {
+        width: 100%;
+        border: 1px solid #10141a;
+        border-radius: 4px;
+        background-color: $color-white;
+        z-index: 50;
+        animation: fade-in 0.5s forwards; 
+        li {
+          padding: 8px 12px;
+          &:focus,
+          &:focus-within, 
+          &:focus-visible {
+            background-color: $color-gray-100;
+          }
+        }
+        span {
+          @include font-body-md;
+          color: $color-black;
+        }
+        img {
+          width: 16px;
+          height: 16px;
+        }
+        .search-result {
+          @include flex-row;
+          justify-content: space-between;
+          span {
+            color: $color-secondary-puple;
+          }
+        }
+        .recommendation {
+          @include flex-row;
+          gap: 7px;
+        }
       }
     }
+
     .main-login {
       position: relative;
-      .login-label{
+      .login-label {
         @include flex-column;
       }
-      &:hover .modal{
+      &:hover .modal {
         width: 335px;
         box-shadow: 0 3px 5px 0 $color-gray-600;
         @extend %expanded-modal;

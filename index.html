@@ -31,15 +31,28 @@
                     </div>
                 </div>
                 <div class="main-search-bar main-menu-button">
-                    <form>
+                    <form name="searchForm">
                         <fieldset>
                             <label for="search-bar"></label>
-                            <input type="text" id="search-bar" placeholder="검색 Amazon">
+                            <input type="text" name="searchBar" id="search-bar" placeholder="검색 Amazon">
                             <button type="button" class="search-btn">
                                 <img src="./src/images/search-button.svg" alt="검색버튼">
                             </button>
                         </fieldset>
                     </form>
+                    <ul class="search-layer hidden">
+                        <li class="autocomplete" tabindex="0">
+                            <span>커피</span>
+                        </li>
+                        <li class="search-result" tabindex="0">
+                            <span>산미가 있는 커피</span>
+                            <img src="./src/images/close.svg" alt="삭제">
+                        </li>
+                        <li class="recommendation" tabindex="0">
+                            <img src="./src/images/arrow-top-right.svg" alt="이동">
+                            <span>아이스로 마시면 맛있음</span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="main-nation icon-box main-menu-button">
                     <img src="./src/images/flag-usa.svg" alt="국기">
