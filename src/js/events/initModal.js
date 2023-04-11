@@ -3,12 +3,16 @@ import { $ } from '../utils/dom.js';
 
 const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
+const mainSearchBar = document.searchForm.searchBar;
+const searchLayer = document.querySelector('.search-layer');
 const dim = $('.dim');
 
 const setTime = 2000;
 let isModalOn = false;
 
 export async function initModal() {
+  mainSearchBar.addEventListener('click', handleModal);
+
   await delay(setTime);
   renderLoginModal();
   mainLogin.addEventListener('mouseenter', handleModal);
@@ -31,6 +35,8 @@ function renderLoginModal() {
 }
 
 function handleModal(e) {
+  console.log(e.target);
+
   isModalOn = true;
   const loginModal = $('.modal', e.target);
 
@@ -78,6 +84,11 @@ function handleModal(e) {
   if (e.target === mainShippingAddress) {
     e.target.insertAdjacentHTML('beforeend', shippingModalTemplate);
     handleDimming();
+  }
+  if (e.target === mainSearchBar) {
+    console.log(searchLayer.classList);
+    searchLayer.classList.remove('hidden');
+    console.log(searchLayer.classList);
   }
 }
 
