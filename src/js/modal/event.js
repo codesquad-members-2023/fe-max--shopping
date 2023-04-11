@@ -1,5 +1,6 @@
-import { fadeInModal, hideModal, addDimming, removeDimming } from "./modal.js";
+import { fadeInModal, hideModal } from "./modal.js";
 import { $, $All } from "../utils.js";
+import { addDimming, removeDimming } from "../utils.js";
 
 export const addLoginEventListeners = () => {
     const loginEvent = $(".login__event-wrap");
@@ -8,14 +9,14 @@ export const addLoginEventListeners = () => {
     loginEvent.addEventListener("mouseenter", () => {
         hideModal(".login-modal");
         fadeInModal(".login-modal-ex");
-        addDimming(".hero");
+        addDimming(".main");
         clearTimeout(timerIdForModal);
     });
 
     loginEvent.addEventListener("mouseleave", () => {
         timerIdForModal = setTimeout(() => {
             hideModal(".login-modal-ex");
-            removeDimming(".hero");
+            removeDimming(".main");
         }, 500);
     });
 };
@@ -26,15 +27,14 @@ export const addAddressEventListeners = () => {
 
     address.addEventListener("mouseenter", () => {
         fadeInModal(".address-modal");
-        addDimming(".hero");
+        addDimming(".main");
         clearTimeout(timerIdForModal);
     });
 
     address.addEventListener("mouseleave", () => {
         timerIdForModal = setTimeout(() => {
-            // 1초 후에 이벤트 발생
             hideModal(".address-modal");
-            removeDimming(".hero");
+            removeDimming(".main");
         }, 500);
     });
 };

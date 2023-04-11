@@ -19,12 +19,3 @@ export const hideModal = (modalClassName) => {
     modal.classList.remove("show");
 };
 
-export const addDimming = (className) => {
-    const elem = $(className);
-    elem.classList.add("dim");
-};
-
-export const removeDimming = (className) => {
-    const elem = $(className);
-    elem.classList.remove("dim");
-};
