@@ -8,7 +8,7 @@ export class Hero extends Component {
     super('hero');
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
-    this.currentIndex = 1;
+    this.currentIndex = 0;
     this.slider = this.$('.slider');
     this.initSlider(this.slider, this.slideCount);
   }
@@ -73,7 +73,9 @@ export class Hero extends Component {
     this.setSliderWidth(slider, slideCount);
     this.appendSlides(slider, slideCount);
     this.renderSlideClone(slider);
-    slider.style.transform = `translateX(-100vw)`;
+
+    this.currentIndex += 1;
+    slider.style.transform = `translateX(-${this.currentIndex * 100}vw)`;
   }
 
   setSliderWidth(slider, slideCount) {
