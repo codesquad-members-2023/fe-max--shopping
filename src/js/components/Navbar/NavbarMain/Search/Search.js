@@ -1,4 +1,5 @@
 import { Main } from '../../../../Main.js';
+import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
 import { client } from '/src/js/api/client.js';
@@ -21,8 +22,14 @@ export default class Search extends Component {
   }
 
   initEventHandlers() {
-    this.$('.search-bar').addEventListener('click', () => this.showRecommendWords());
-    this.$('.search-bar').addEventListener('input', () => this.showAutoComplete());
+    this.$('.search-bar').addEventListener(
+      'click',
+      debounce(() => this.showRecommendWords(), 300)
+    );
+    this.$('.search-bar').addEventListener(
+      'input',
+      debounce(() => this.showAutoComplete(), 300)
+    );
   }
 
   async showRecommendWords() {
@@ -30,9 +37,10 @@ export default class Search extends Component {
       return;
     }
 
-    this.$('.search-word').classList.add('active');
     await this.loadRecommendWords();
     this.renderRecommendWords();
+
+    this.$('.search-word').classList.add('active');
     Main.onDimmed();
   }
 
@@ -59,6 +67,7 @@ export default class Search extends Component {
     if (!userInput) {
       return;
     }
+
     const autoCompleteWords = await client.fetchAutoCompleteWords(userInput);
     this.#state.recommend = autoCompleteWords;
   }

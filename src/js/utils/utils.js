@@ -9,3 +9,11 @@ export const $ = (selector, context = document) => {
 export const $context = (context = document) => {
   return (selector) => $(selector, context);
 };
+
+export const debounce = (callback, delay) => {
+  let timerId;
+  return (event) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(callback, delay, event);
+  };
+};

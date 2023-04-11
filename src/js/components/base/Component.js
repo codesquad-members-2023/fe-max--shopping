@@ -1,4 +1,4 @@
-import { $context } from '../../utils/querySelector.js';
+import { $context } from '../../utils/utils.js';
 
 export class Component {
   #node;

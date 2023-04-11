@@ -78,9 +78,7 @@
 
       input {
         width: 100%;
-        &::placeholder {
-          padding-left: 12px;
-        }
+        padding-left: 12px;
       }
 
       .submit-btn {
