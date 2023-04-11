@@ -1,15 +1,15 @@
-import { delay } from '../utils/delay.js';
 import { $ } from '../utils/dom.js';
+import { delay } from '../utils/delay.js';
+import { handleDimming } from '../utils/dim.js';
+import { isSearchLayerOn } from './initSearchBar.js';
 
 const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
 const mainSearchBar = document.searchForm.searchBar;
 const searchLayer = document.querySelector('.search-layer');
-const dim = $('.dim');
 
 const setTime = 2000;
 let isModalOn = false;
-let isSearchLayerOn = false;
 
 export async function initModal() {
   mainSearchBar.addEventListener('click', handleModal);
@@ -79,23 +79,25 @@ function handleModal(e) {
   if (e.target === mainLogin) {
     loginModal.insertAdjacentHTML('beforeend', expandedLoginModalTemplate);
     if (loginModal) {
-      handleDimming();
+      handleDimming(isModalOn);
     }
   }
   if (e.target === mainShippingAddress) {
     e.target.insertAdjacentHTML('beforeend', shippingModalTemplate);
-    handleDimming();
+    handleDimming(isModalOn);
   }
   if (e.target === mainSearchBar) {
-    isSearchLayerOn = true;
+    isSearchLayerOn.state = true;
+    console.log(isSearchLayerOn.state);
+
     searchLayer.classList.remove('hidden');
-    handleDimming();
+    handleDimming(isSearchLayerOn.state);
   }
 }
 
 function removeModal(e) {
   isModalOn = false;
-  handleDimming();
+  handleDimming(isModalOn, isSearchLayerOn.state);
 
   if (e.target === mainLogin) {
     const loginModal = $('.modal', e.target);
@@ -105,9 +107,5 @@ function removeModal(e) {
     const shippingModal = $('.modal-temp1', e.target);
     shippingModal.remove();
   }
-
 }
 
-function handleDimming() {
-  (isModalOn || isSearchLayerOn) ? dim.classList.remove('hidden') : dim.classList.add('hidden');
-}
