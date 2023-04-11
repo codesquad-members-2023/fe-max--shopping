@@ -1,8 +1,12 @@
 const dim = document.querySelector('.dim');
 
-export function handleDimming(isModalOn, isSearchLayerOn) {
-  console.log(isModalOn, isSearchLayerOn);
-  isModalOn || isSearchLayerOn
+export const modalState = {
+  on: false,
+  searchModal: false,
+};
+
+export function handleDimming() {
+  modalState.on || modalState.searchModal
     ? dim.classList.remove('hidden')
     : dim.classList.add('hidden');
 }

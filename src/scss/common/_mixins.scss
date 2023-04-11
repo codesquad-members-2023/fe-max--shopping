@@ -106,7 +106,7 @@
 @mixin dim {
   background-color: $color-black-40;
   position: absolute;
-  top: 88px;
+  top: 88px; 
 }
 @mixin modal {
   @include flex-column;

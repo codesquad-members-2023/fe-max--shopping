@@ -1,7 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { delay } from '../utils/delay.js';
-import { handleDimming } from '../utils/dim.js';
-import { isSearchLayerOn } from './initSearchBar.js';
+import { handleDimming, modalState } from '../utils/dim.js';
+// import { isSearchLayerOn } from './initSearchBar.js';
 
 const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
@@ -12,7 +12,7 @@ const setTime = 2000;
 let isModalOn = false;
 
 export async function initModal() {
-  mainSearchBar.addEventListener('click', handleModal);
+  // mainSearchBar.addEventListener('click', handleModal);
 
   await delay(setTime);
   renderLoginModal();
@@ -79,25 +79,29 @@ function handleModal(e) {
   if (e.target === mainLogin) {
     loginModal.insertAdjacentHTML('beforeend', expandedLoginModalTemplate);
     if (loginModal) {
-      handleDimming(isModalOn);
+      modalState.on = true;
+      handleDimming();
     }
   }
   if (e.target === mainShippingAddress) {
     e.target.insertAdjacentHTML('beforeend', shippingModalTemplate);
-    handleDimming(isModalOn);
+    modalState.on = true;
+    handleDimming();
   }
-  if (e.target === mainSearchBar) {
-    isSearchLayerOn.state = true;
-    console.log(isSearchLayerOn.state);
+  // if (e.target === mainSearchBar) {
+  //   isSearchLayerOn.state = true;
+  //   console.log(isSearchLayerOn.state);
 
-    searchLayer.classList.remove('hidden');
-    handleDimming(isSearchLayerOn.state);
-  }
+  //   searchLayer.classList.remove('hidden');
+  //   handleDimming(isSearchLayerOn.state);
+  // }
 }
 
 function removeModal(e) {
-  isModalOn = false;
-  handleDimming(isModalOn, isSearchLayerOn.state);
+  // isModalOn = false;
+  modalState.on = false;
+  // handleDimming(isModalOn, isSearchLayerOn.state);
+  handleDimming();
 
   if (e.target === mainLogin) {
     const loginModal = $('.modal', e.target);
@@ -107,5 +111,6 @@ function removeModal(e) {
     const shippingModal = $('.modal-temp1', e.target);
     shippingModal.remove();
   }
+
 }
 
