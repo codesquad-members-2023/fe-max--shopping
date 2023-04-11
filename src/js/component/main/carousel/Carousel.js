@@ -44,6 +44,7 @@ export class Carousel extends Base {
   }
 
   slideTo(direction) {
+    clearInterval(this.autoCarousel);
     const wrapperNode = this.wrapper.node;
     wrapperNode.style.transition = "transform 450ms ease-in-out";
 
@@ -81,6 +82,7 @@ export class Carousel extends Base {
 
       this.currentIndex = 0;
       wrapperNode.style.transform = `translateX(-200%)`;
+      this.autoCarousel = this.setAutoCarousel();
     });
   }
 
