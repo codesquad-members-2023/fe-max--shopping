@@ -71,7 +71,6 @@ nav {
 .main__searchbar {
   display: flex;
   align-items: center;
-  padding: 0px 0px 0px 12px;
   min-width: 300px;
   width: 747px;
   height: 40px;
@@ -97,6 +96,51 @@ nav {
     padding: 0px;
     background: $color-orange-100;
     border: none;
+  }
+  ul {
+    display: none;
+  }
+  ul.searchbar__suggest {
+    position: absolute;
+    top: 49px;
+    left: 207px;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    width: calc(100% - 532px);
+    background: $color-white;
+    border: 1px solid $color-black;
+    border-radius: 4px;
+    flex-grow: 2;
+    li {
+      &:focus {
+        width: 100%;
+        background: $color-gray-100;
+        outline: none;
+      }
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 4px;
+      width: 747px;
+      height: 37px;
+      flex: none;
+      order: 5;
+      align-self: stretch;
+      flex-grow: 0;
+      span {
+        @include bodyMd;
+        color: $color-black;
+        align-items: center;
+      }
+      img {
+        padding: 0;
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 }
 .main__nation {
@@ -133,6 +177,7 @@ nav {
       flex-grow: 0;
     }
     .login__box__popup {
+      display: none;
       position: relative;
       top: 17px;
       left: -172px;
