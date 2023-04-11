@@ -40,6 +40,9 @@ body {
   background-color: var(--color-black-40);
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 88px;
+  z-index: 10;
 
   &.show {
     visibility: visible;
@@ -49,7 +52,10 @@ body {
 
 // 네비게이션바
 .nav {
-  position: relative;
+  width: 100%;
+  min-width: 1120px;
+  display: flex;
+  flex-direction: column;
 
   // 상단 메인 네비게이션
   &-main {
@@ -57,11 +63,12 @@ body {
     display: flex;
     align-items: center;
     padding: 8px 16px;
+    gap: 24px;
+    align-self: stretch;
 
     &__item {
       height: 52px;
       padding: 0 6px;
-      margin: 0 6px;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
@@ -108,7 +115,7 @@ body {
         padding: 16px;
 
         position: absolute;
-        width: 320px;
+        // width: 320px;
         height: 126px;
         left: 131px;
         top: 58px;
@@ -142,12 +149,9 @@ body {
 
     .nav__search-bar {
       height: 40px;
-      margin: 0 6px;
       border-radius: 4px;
       text-align: center;
-      flex-basis: 386px;
-      flex-grow: 1;
-      flex-shrink: 0;
+      flex: 1 0 386px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -172,7 +176,6 @@ body {
 
     .nav__nation {
       padding: 0 12px;
-      margin-right: 6px;
     }
 
     .nav__login {
