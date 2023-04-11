@@ -3,8 +3,8 @@ import { Base } from "../../Base.js";
 export class Carousel extends Base {
   constructor() {
     super("div");
-    this.carouselList = [1, 2, 3, 4, 5];
-    this.currentIndex = 1;
+    this.carouselList = [4, 5, 1, 2, 3];
+    this.currentIndex = 0;
     this.maxIndex = this.carouselList.length;
     this.autoCarousel = this.setAutoCarousel();
     this.init();
@@ -36,13 +36,6 @@ export class Carousel extends Base {
       </div>
     </div>`;
     this.setTemplate(template);
-
-    const wrapperNode = this.wrapper.node;
-    const firstNode = wrapperNode.firstChild.cloneNode(true);
-    const lastNode = wrapperNode.lastChild.cloneNode(true);
-
-    wrapperNode.appendChild(firstNode);
-    wrapperNode.prepend(lastNode);
   }
 
   addBtnEvent() {
@@ -51,21 +44,17 @@ export class Carousel extends Base {
   }
 
   slideTo(direction) {
-    clearInterval(this.autoCarousel);
     const wrapperNode = this.wrapper.node;
-
-    const isNextSlideDisabled =
-      direction === "next" && this.currentIndex > this.maxIndex;
-    const isPrevSlideDisabled = direction === "prev" && this.currentIndex === 0;
-
-    if (isNextSlideDisabled || isPrevSlideDisabled) {
-      return;
-    }
-
     wrapperNode.style.transition = "transform 450ms ease-in-out";
-    this.currentIndex += direction === "next" ? 1 : -1;
-    wrapperNode.style.transform = `translateX(-${this.currentIndex}00%)`;
-    this.autoCarousel = this.setAutoCarousel();
+
+    if (direction === "next") {
+      wrapperNode.style.transform = `translateX(-300%`;
+      this.currentIndex++;
+      console.log(this.currentIndex);
+    } else {
+      wrapperNode.style.transform = `translateX(-100%`;
+      this.currentIndex--;
+    }
   }
 
   slideNext() {
@@ -80,12 +69,18 @@ export class Carousel extends Base {
     const wrapperNode = this.wrapper.node;
 
     wrapperNode.addEventListener("transitionend", () => {
-      if (this.currentIndex > this.maxIndex || this.currentIndex < 1) {
-        this.currentIndex = Math.abs(this.currentIndex - this.maxIndex);
+      wrapperNode.style.transition = "none";
 
-        wrapperNode.style.transition = "none";
-        wrapperNode.style.transform = `translateX(-${this.currentIndex}00%)`;
+      if (this.currentIndex > 0) {
+        const firstNode = wrapperNode.firstChild;
+        wrapperNode.appendChild(firstNode);
+      } else {
+        const lastNode = wrapperNode.lastChild;
+        wrapperNode.prepend(lastNode);
       }
+
+      this.currentIndex = 0;
+      wrapperNode.style.transform = `translateX(-200%)`;
     });
   }
 
