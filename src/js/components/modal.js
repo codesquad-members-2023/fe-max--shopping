@@ -1,5 +1,5 @@
-import { $, $All, removeHiddenClass, addHiddenClassIfAbsent } from './utils/domUtils.js';
-import { delay } from './utils/timeUtils.js';
+import { $, $All, removeHiddenClass, addHiddenClassIfAbsent } from '../utils/domUtils.js';
+import { delay } from '../utils/timeUtils.js';
 
 const MODAL_OPEN_DELAY = 1000;
 
