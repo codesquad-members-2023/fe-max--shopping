@@ -1,13 +1,7 @@
-main {
-  width: 100%;
-  min-width: 1120px;
-}
 .hero {
   margin: 0 auto;
   max-width: 1500px;
-  min-width: 1000px;
-  min-height: 600px;
-  background-color: greenyellow;
+  min-width: 1120px;
   position: relative;
 
   .chevron {
@@ -23,30 +17,66 @@ main {
       right: 5%;
     }
   }
+}
 
-  .slider {
-    .img__wrapper {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transition: all 1s;
+.slider__card-container {
+  height: 600px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
 
-      &::after {
-        content: '';
-        display: block;
-        position: relative;
-        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
-        margin-top: -150px;
-        height: 150px;
-        width: 100%;
-      }
-    }
+  .slider__card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 0.4s;
 
     img {
       min-width: 1000px;
+      max-width: 1500px;
+      min-height: 600px;
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    &[data-status='unknown'] {
+      visibility: hidden;
+    }
+
+    &[data-status='show'] {
+      visibility: visible;
+    }
+
+    &[data-status='before'] {
+      transform: translateX(-100%);
+      visibility: hidden;
+    }
+
+    &[data-status='appear-from-after'] {
+      transform: translateX(100%);
+      transition: none;
+    }
+
+    &[data-status='after'] {
+      transform: translateX(100%);
+      visibility: hidden;
+    }
+
+    &[data-status='appear-from-before'] {
+      transform: translateX(-100%);
+      transition: none;
+    }
+
+    // hero img bottom gradation
+    &::after {
+      content: '';
+      display: block;
+      position: relative;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
+      margin-top: -150px;
+      height: 150px;
+      width: 100%;
     }
   }
 }
