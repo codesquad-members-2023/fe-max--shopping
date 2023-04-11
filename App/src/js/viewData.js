@@ -1162,5 +1162,1598 @@ export function viewData() {
         },
       ],
     },
+    main: {
+      tagName: "main",
+      attrs: {
+        id: "main",
+      },
+      children: [
+        {
+          tagName: "h1",
+          attrs: {
+            class: "blind",
+          },
+          textContent: "메인",
+        },
+        {
+          tagName: "div",
+          attrs: {
+            class: "dimmed",
+          },
+        },
+        {
+          tagName: "figure",
+          attrs: {
+            class: "bg",
+          },
+          children: [
+            {
+              tagName: "img",
+              attrs: {
+                src: "./src/img/Image.png",
+                alt: "배경이미지",
+              },
+            },
+            {
+              tagName: "figcaption",
+              attrs: {
+                class: "blind",
+              },
+              textContent: "배경이미지",
+            },
+          ],
+        },
+        {
+          tagName: "div",
+          attrs: {
+            class: "inner",
+          },
+          children: [
+            {
+              tagName: "section",
+              attrs: {
+                id: "hero",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  attrs: {
+                    class: "blind",
+                  },
+                  textContent: "히어로 영역",
+                },
+                {
+                  tagName: "ul",
+                  attrs: {
+                    class: "hero__wrapper wrapper",
+                  },
+                  children: [
+                    {
+                      tagName: "li",
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "hero__slide slide",
+                            tabindex: "0",
+                          },
+                          children: [
+                            {
+                              tagName: "h3",
+                              textContent:
+                                "해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  tagName: "button",
+                  attrs: {
+                    class: "hero__control hero__control--left",
+                  },
+                  children: [
+                    {
+                      tagName: "span",
+                      attrs: {
+                        class: "icon",
+                      },
+                      children: [
+                        {
+                          tagName: "img",
+                          attrs: {
+                            src: "./src/img/arrow-left.svg",
+                            alt: "이전",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  tagName: "button",
+                  attrs: {
+                    class: "hero__control hero__control--right",
+                  },
+                  children: [
+                    {
+                      tagName: "span",
+                      attrs: {
+                        class: "icon",
+                      },
+                      children: [
+                        {
+                          tagName: "img",
+                          attrs: {
+                            src: "./src/img/arrow-right.svg",
+                            alt: "다음",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tagName: "section",
+              attrs: {
+                id: "contents",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  attrs: {
+                    class: "blind",
+                  },
+                  textContent: "콘텐츠 영역",
+                },
+                {
+                  tagName: "ul",
+                  attrs: {
+                    class: "contents__list",
+                  },
+                  children: [
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "최상의 경험을 위해 로그인하세요",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                                class: "contents__login-link button button--lg",
+                              },
+                              textContent: "로그인",
+                            },
+                            {
+                              tagName: "h3",
+                              textContent: "최상의 경험을 위해 로그인하세요",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "집에서 입어보기",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/4.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "집에서 입어보기",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "특가",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/8.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "특가",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "지금 쇼핑하세요",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "피트니스용",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/12.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "피트니스용",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "Amazon Basics",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/1.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "Amazon Basics",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "건강 및 퍼스널 케어",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/5.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "건강 및 퍼스널 케어",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "가정 및 주방",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/9.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "가정 및 주방",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "Change your language preference",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/2.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent:
+                                    "Change your language preference",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "Click here to shop in English",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "드레스",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/6.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "드레스",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "활동추적기 및 스마트워치 쇼핑",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/10.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "활동추적기 및 스마트워치 쇼핑",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "노트북 및 태블릿 쇼핑",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/13.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "노트북 및 태블릿 쇼핑",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "전자기기",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/3.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "전자기기",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "Kindle E-readers",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/7.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "Kindle E-readers",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "지금 쇼핑하세요",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      tagName: "li",
+                      attrs: {
+                        class: "contents__item",
+                      },
+                      children: [
+                        {
+                          tagName: "article",
+                          attrs: {
+                            class: "contents__card",
+                            tabindex: "0",
+                            "aria-label": "반려동물용품 쇼핑",
+                          },
+                          children: [
+                            {
+                              tagName: "figure",
+                              attrs: {
+                                class: "contents__card_img",
+                              },
+                              children: [
+                                {
+                                  tagName: "img",
+                                  attrs: {
+                                    src: "./src/img/content/11.png",
+                                    alt: "",
+                                  },
+                                },
+                                {
+                                  tagName: "figcaption",
+                                  attrs: {
+                                    class: "blind",
+                                  },
+                                  textContent: "더미이미지",
+                                },
+                              ],
+                            },
+                            {
+                              tagName: "div",
+                              attrs: {
+                                class: "contents__card_text",
+                              },
+                              children: [
+                                {
+                                  tagName: "h3",
+                                  textContent: "반려동물용품 쇼핑",
+                                },
+                                {
+                                  tagName: "a",
+                                  attrs: {
+                                    class: "more",
+                                    href: "#",
+                                  },
+                                  textContent: "더보기",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    footer: {
+      tagName: "footer",
+      attrs: {
+        id: "footer",
+      },
+      children: [
+        {
+          tagName: "h1",
+          attrs: {
+            class: "blind",
+          },
+          textContent: "푸터",
+        },
+        {
+          tagName: "a",
+          attrs: {
+            href: "#banner",
+            class: "scroll-top",
+          },
+          textContent: "위로 돌아가기",
+        },
+        {
+          tagName: "div",
+          attrs: {
+            class: "footer__menu-container",
+          },
+          children: [
+            {
+              tagName: "section",
+              attrs: {
+                class: "footer__menu",
+                tabindex: "0",
+                "aria-label": "당사에 대해 알아보기",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  textContent: "당사에 대해 알아보기",
+                },
+                {
+                  tagName: "nav",
+                  children: [
+                    {
+                      tagName: "ul",
+                      attrs: {
+                        class: "footer__menu__list",
+                      },
+                      children: [
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "커리어",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "블로그",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon 소개",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "투자자 관계",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon 디바이스",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "아마존 사이언스",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tagName: "section",
+              attrs: {
+                class: "footer__menu",
+                tabindex: "0",
+                "aria-label": "당사와 함께 돈 벌기",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  textContent: "당사와 함께 돈 벌기",
+                },
+                {
+                  tagName: "nav",
+                  children: [
+                    {
+                      tagName: "ul",
+                      attrs: {
+                        class: "footer__menu__list",
+                      },
+                      children: [
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon에서 판매",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon Business에서 판매",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon에서 앱 판매",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "계열사 되기",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "제품 광고",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon에 자체 게시",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon 허브 호스팅",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent:
+                                "당사와 함게 돈 벌기에 대해 자세히 보기",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tagName: "section",
+              attrs: {
+                class: "footer__menu",
+                tabindex: "0",
+                "aria-label": "Amazon 결제 제품",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  textContent: "Amazon 결제 제품",
+                },
+                {
+                  tagName: "nav",
+                  children: [
+                    {
+                      tagName: "ul",
+                      attrs: {
+                        class: "footer__menu__list",
+                      },
+                      children: [
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "포인트로 구입",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "잔고 재로드",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon 환율 변환기",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              tagName: "section",
+              attrs: {
+                class: "footer__menu",
+                tabindex: "0",
+                "aria-label": "지원",
+              },
+              children: [
+                {
+                  tagName: "h2",
+                  textContent: "지원",
+                },
+                {
+                  tagName: "nav",
+                  children: [
+                    {
+                      tagName: "ul",
+                      attrs: {
+                        class: "footer__menu__list",
+                      },
+                      children: [
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "COVID-19 및 Amazon",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "사용자 계정",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "내 주문",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "배송 요금 및 정책",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "반품 및 교환",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "콘텐츠 및 디바이스 관리",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "Amazon Assistant",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__menu__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "도움말",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          tagName: "div",
+          attrs: {
+            class: "footer__info",
+          },
+          children: [
+            {
+              tagName: "figure",
+              attrs: {
+                class: "footer__info__logo",
+                tabindex: "0",
+              },
+              children: [
+                {
+                  tagName: "img",
+                  attrs: {
+                    src: "./src/img/logo.svg",
+                    alt: "",
+                  },
+                },
+                {
+                  tagName: "figcaption",
+                  attrs: {
+                    class: "blind",
+                  },
+                  textContent: "아마존 로고",
+                },
+              ],
+            },
+            {
+              tagName: "div",
+              attrs: {
+                class: "footer__info__inner",
+              },
+              children: [
+                {
+                  tagName: "nav",
+                  children: [
+                    {
+                      tagName: "ul",
+                      attrs: {
+                        class: "footer__info__list",
+                      },
+                      children: [
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__info__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "이용약관",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__info__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "개인정보 취급 고지",
+                            },
+                          ],
+                        },
+                        {
+                          tagName: "li",
+                          attrs: {
+                            class: "footer__info__item",
+                          },
+                          children: [
+                            {
+                              tagName: "a",
+                              attrs: {
+                                href: "#",
+                              },
+                              textContent: "광고 개인정보보호 선택 항목",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  tagName: "address",
+                  attrs: {
+                    class: "footer__info__address",
+                    tabindex: "0"
+                  },
+                  textContent: "@ 1996-2023, Amazon.com, Inc. 또는 계열사"
+                }
+              ],
+            },
+          ],
+        },
+      ],
+    },
   };
 }

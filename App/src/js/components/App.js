@@ -7,5 +7,7 @@ export class App extends Component {
     this.children = [];
     this.parseJsonRecursiveAppendChild(innerData.header);
     this.parseJsonRecursiveAppendChild(innerData.sidebar);
+    this.parseJsonRecursiveAppendChild(innerData.main);
+    this.parseJsonRecursiveAppendChild(innerData.footer);
   }
 }

@@ -4,7 +4,7 @@
   left: 0;
   height: 100%;
   z-index: 1;
-  transform: translateX(0px);
+  transform: translateX(-320px);
   animation: sidebar 1s;
 }
 #sidebar.active {
