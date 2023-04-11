@@ -1,19 +1,14 @@
 import { $ } from '../utils/dom.js';
 import { delay } from '../utils/delay.js';
 import { handleDimming, modalState } from '../utils/dim.js';
-// import { isSearchLayerOn } from './initSearchBar.js';
 
 const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
-const mainSearchBar = document.searchForm.searchBar;
-const searchLayer = document.querySelector('.search-layer');
 
 const setTime = 2000;
 let isModalOn = false;
 
 export async function initModal() {
-  // mainSearchBar.addEventListener('click', handleModal);
-
   await delay(setTime);
   renderLoginModal();
   mainLogin.addEventListener('mouseenter', handleModal);
@@ -88,19 +83,10 @@ function handleModal(e) {
     modalState.on = true;
     handleDimming();
   }
-  // if (e.target === mainSearchBar) {
-  //   isSearchLayerOn.state = true;
-  //   console.log(isSearchLayerOn.state);
-
-  //   searchLayer.classList.remove('hidden');
-  //   handleDimming(isSearchLayerOn.state);
-  // }
 }
 
 function removeModal(e) {
-  // isModalOn = false;
   modalState.on = false;
-  // handleDimming(isModalOn, isSearchLayerOn.state);
   handleDimming();
 
   if (e.target === mainLogin) {
