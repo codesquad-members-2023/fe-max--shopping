@@ -1,3 +1,5 @@
+import { findComponent } from "../utils.js";
+
 export class Component {
   constructor(tagName, attrs = false, textContent) {
     if (!tagName) return;
@@ -13,11 +15,25 @@ export class Component {
     this.children = [];
   }
 
+  ChangeSubComponent() {
+    this.children.forEach((child, index, children) => {
+      const { tagName, id, className } = child.domNode;
+      let subComponent = findComponent(tagName);
+      if (!subComponent) subComponent = findComponent(id);
+
+      if (subComponent) {
+        children[index] = new subComponent(child);
+        return;
+      }
+    });
+    this.children.forEach((child) => child.promotion);
+  }
+
   parseJsonRecursiveAppendChild(json) {
     const { tagName, attrs, textContent, children } = json;
     const childComponent = new Component(tagName, attrs, textContent);
     if (children) {
-      children.forEach((child) => {
+      children.forEach((child, index) => {
         childComponent.parseJsonRecursiveAppendChild(child);
       });
     }

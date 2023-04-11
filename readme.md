@@ -23,6 +23,8 @@
   - [ ] viewData 만들기
     - [x] header
     - [x] sidebar
+    - [x] main
+    - [x] footer
 
 ### 체크리스트
 - [x] html과 css로 화면설계

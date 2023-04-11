@@ -4,4 +4,5 @@ import { viewData } from "./viewData.js";
   const appInnerData = viewData()
   const app = new App(appInnerData);
   app.render();
+  app.onload();
 })();
