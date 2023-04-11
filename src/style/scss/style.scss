@@ -1,8 +1,9 @@
 // @import url('/src/style/css/reset.css');
 // @import url('/src/style/css/values.css');
-@import './reset';
-@import './values';
-@import './hero';
+@use 'reset';
+@use 'values';
+@use 'main';
+@use 'hero';
 
 @mixin flex-row($justify: flex-start, $align: center) {
   display: flex;
@@ -55,19 +56,14 @@ button {
   }
 }
 
-#nav-bar {
+.nav-bar {
   position: relative;
+  width: 100%;
   min-width: 1120px;
 
-  .modal-cover {
-    position: absolute;
-    width: 100%;
-    height: 1809px;
-    left: 0px;
-    top: 100%;
-    z-index: 1;
-    background: var(--color-black-40);
-    opacity: 0.4;
+  &__address, &__login {
+    height: 100%;
+    position: relative;
   }
 }
 
@@ -140,6 +136,18 @@ button {
   }
 }
 
+.address-container, .login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.btn-container {
+  @include flex-row(flex-end);
+  gap: 8px;
+}
+
 .nav-bar__sub {
   @include flex-row(space-between);
   padding: 0 16px;
@@ -180,20 +188,20 @@ button {
   flex-direction: column;
   padding: 16px;
   position: absolute;
-  top: 180%;
+  // top: 180%;
   z-index: 10;
   background: #ffffff;
   border-radius: 4px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  
+
   &-login {
     @extend .modal;
     align-items: center;
     gap: 8px;
     min-width: 235px;
+    top: 100%;
     right: 0;
-    opacity: 0;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.7s forwards;
 
     span {
       @include flex-row;
@@ -242,7 +250,7 @@ button {
     align-items: flex-end;
     gap: 26px;
     width: 320px;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.7s forwards;
 
     &::before {
       @include triangle;
@@ -254,6 +262,16 @@ button {
       @include flex-row;
       gap: 8px;
     }
+  }
+
+  &-cover {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    left: 0px;
+    top: 100%;
+    z-index: 1;
+    background: var(--color-black-40);
   }
 }
 
@@ -280,12 +298,6 @@ button {
   }
 }
 
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+.hidden {
+  display: none;
 }

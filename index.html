@@ -10,17 +10,26 @@
     <script src="/src/js/index.js" type="module"></script>
   </head>
   <body>
-    <div id="nav-bar">
+    <div class="nav-bar">
       <header class="nav-bar__main">
         <button class="nav-bar__main-logo">
           <img src="./src/asset/img/logo.svg" alt="로고" />
         </button>
-        <section class="nav-bar__main-address">
-          <div class="label">
-            <img src="./src/asset/img/marker.svg" alt="맵 마커" />
-            <span>배송지</span>
+        <section class="nav-bar__address">
+          <div class="address-container">
+            <div class="label">
+              <img src="./src/asset/img/marker.svg" alt="맵 마커" />
+              <span>배송지</span>
+            </div>
+            <p class="content">대한민국</p>
           </div>
-          <p class="content">대한민국</p>
+          <div class="modal-address layer hidden">
+            <p>KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</p>
+            <div class="btn-container">
+              <button class="check-btn">계속</button>
+              <button class="check-btn">주소변경</button>
+            </div>
+          </div>
         </section>
         <form class="nav-bar__main-search">
           <input type="text" placeholder="검색 Amazon" name="search" />
@@ -30,11 +39,43 @@
           <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기" />
           <p class="content">KO</p>
         </section>
-        <section class="nav-bar__main-login">
-          <div class="label">
-            <span>안녕하세요,로그인</span>
+        <section class="nav-bar__login">
+          <div class="login-container">
+            <div class="label">
+              <span>안녕하세요,로그인</span>
+            </div>
+            <p class="content">계정 및 목록</p>
           </div>
-          <p class="content">계정 및 목록</p>
+          <div class="modal-login layer hidden">
+            <button class="check-btn">로그인</button>
+            <span>기존 사용자가 아니십니까?<a href="">여기에서 시작합니다</a></span>
+            <div class="modal-login__details hidden">
+              <section>
+                <h3>귀하의 목록</h3>
+                <ul>
+                  <li><a href="">목록 생성</a></li>
+                  <li><a href="">목록 또는 레지스트리 찾기</a></li>
+                  <li><a href="">AmazonSmile 자선 품목 목록</a></li>
+                </ul>
+              </section>
+              <section>
+                <h3>계정</h3>
+                <ul>
+                  <li><a href="">계정</a></li>
+                  <li><a href="">주문</a></li>
+                  <li><a href="">권장 사항</a></li>
+                  <li><a href="">검색 기록</a></li>
+                  <li><a href="">위치리스트</a></li>
+                  <li><a href="">비디오 구매 및 대여</a></li>
+                  <li><a href="">Kindle 언리미티드</a></li>
+                  <li><a href="">콘텐츠 및 기기</a></li>
+                  <li><a href="">항목 구독 및 저장</a></li>
+                  <li><a href="">멤버십 및 구독</a></li>
+                  <li><a href="">음악 라이브러리</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
         </section>
         <section class="nav-bar__main-history">
           <div class="label">
@@ -87,6 +128,7 @@
           </button>
         </ul>
       </nav>
+      <div class="modal-cover layer hidden"></div>
     </div>
     <main>
       <div class="hero">
