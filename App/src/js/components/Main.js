@@ -1,3 +1,4 @@
+import { addEvent } from "../utils.js";
 import { Component } from "./Component.js";
 
 export class Main extends Component {
@@ -5,15 +6,20 @@ export class Main extends Component {
     super();
     this.domNode = domNode;
     this.children = children;
+
+    addEvent("mainDim", this.dim.bind(this))
+    addEvent("mainTurnUp", this.turnUp.bind(this))
   }
 
-  dimToggle() {
+  dim() {
     const dimmed = this.domNode.querySelector(".dimmed");
-    const hidden = dimmed.hidden;
-    dimmed.hidden = hidden ? false : true;
+    dimmed.className = "dimmed active"
   }
 
-  load() {
-    this.dimToggle()
+  turnUp() {
+    const dimmed = this.domNode.querySelector(".dimmed");
+    dimmed.className = "dimmed"
   }
+
+  load() {}
 }

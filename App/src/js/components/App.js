@@ -1,3 +1,4 @@
+import { Recipe } from "../Recipe.js";
 import { addComponent } from "../utils.js";
 import { Component } from "./Component.js";
 import { Footer } from "./Footer.js";
@@ -6,26 +7,28 @@ import { Main } from "./Main.js";
 import { Sidebar } from "./SideBar.js";
 
 export class App extends Component {
-  constructor(innerData) {
+  constructor(state) {
     super();
-    this.update(innerData);
-  }
-
-  update(innerData) {
     this.domNode = document.querySelector("#app");
-    this.children = [];
-    this.parseJsonRecursiveAppendChild(innerData.header);
-    this.parseJsonRecursiveAppendChild(innerData.sidebar);
-    this.parseJsonRecursiveAppendChild(innerData.main);
-    this.parseJsonRecursiveAppendChild(innerData.footer);
 
     addComponent("HEADER", Header);
     addComponent("MAIN", Main);
     addComponent("FOOTER", Footer);
     addComponent("sidebar", Sidebar);
 
-    this.changeSubComponent(true);
+    this.recipe = new Recipe(state);
     
+    const {header, sidebar, main, footer} = this.recipe
+
+    this.children = [];
+    
+    this.parseJsonRecursiveAppendChild(header());
+    this.parseJsonRecursiveAppendChild(sidebar());
+    this.parseJsonRecursiveAppendChild(main());
+    this.parseJsonRecursiveAppendChild(footer());
+
+    this.changeSubComponent();
+
     this.pageLayout = {
       banner: this.children[0],
       sideBar: this.children[1],

@@ -17,6 +17,7 @@ export class Component {
 
   changeSubComponent() {
     this.children.forEach((child, index, children) => {
+      console.log(child)
       const { tagName, id, className } = child.domNode;
       let subComponent = findComponent(tagName);
       if (!subComponent) subComponent = findComponent(id);
@@ -28,8 +29,8 @@ export class Component {
     });
   }
 
-  parseJsonRecursiveAppendChild(json) {
-    const { tagName, attrs, textContent, children } = json;
+  parseJsonRecursiveAppendChild(recipe) {
+    const { tagName, attrs, textContent, children } = recipe;
     const childComponent = new Component(tagName, attrs, textContent);
     if (children) {
       children.forEach((child, index) => {

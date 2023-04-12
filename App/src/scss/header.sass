@@ -93,7 +93,9 @@
 				font: var(--font-bold-md) 
 				letter-spacing: var(--letter-spacing-bold-md) 
 		.account__item 
-			margin-top: 4px 
+			margin-top: 4px
+			a
+				color: var(--color-black)
 	.search 
 		flex-grow: 1 
 		.search__form 
@@ -136,7 +138,7 @@
 		align-items: start 
 		justify-content: center 
 		flex-direction: column 
-		position: relative 
+		position: relative
 		p 
 			color: var(--color-gray-400) 
 			font: var(--font-bold-sm) 
@@ -148,11 +150,17 @@
 		.popover 
 			left: auto 
 			right: -36px 
-			width: 335px 
+			width: 335px
+			opacity: 0
+			transition: opacity 3000ms
 			&::before 
 				top: -10px 
 				left: auto 
-				right: 62px 
+				right: 62px
+			&[open]
+				.account
+					display: none
+
 	.mypage 
 		display: flex 
 		align-items: start 

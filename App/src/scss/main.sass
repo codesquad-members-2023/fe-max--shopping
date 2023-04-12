@@ -3,12 +3,15 @@
 	position: relative 
 	.bg 
 		background-color: var(--color-gray-200)
-	.dimmed 
+	.dimmed
 		position: absolute 
 		background-color: var(--color-black-40) 
 		height: 100% 
 		width: 100% 
-		left: 0 
+		left: 0
+		display: none
+		&.active
+			display: block
 #hero 
 	display: flex 
 	max-width: 728px
