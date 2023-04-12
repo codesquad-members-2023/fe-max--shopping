@@ -1,6 +1,5 @@
 import express from "express";
-
-import { data } from "./data.js";
+import { data, suggestions } from "./data.js";
 
 const app = express();
 const PORT = 3000;
@@ -14,11 +13,14 @@ app.get("/autocomplete", (req, res) => {
   const { searchTerm } = req.query;
   if (!searchTerm) return;
 
-  const autocompleteDataTopTen = data
-    .filter((d) => d.includes(searchTerm))
-    .slice(0, 10);
-
-  res.status(200).json(autocompleteDataTopTen);
+  if (searchTerm === "suggestions") {
+    res.status(200).json(suggestions);
+  } else {
+    const autocompleteDataTopTen = data
+      .filter(({ content }) => content.includes(searchTerm))
+      .slice(0, 10);
+    res.status(200).json(autocompleteDataTopTen);
+  }
 });
 
 app.get("*", (req, res) => {
