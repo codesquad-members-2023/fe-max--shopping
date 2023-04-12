@@ -107,6 +107,14 @@ ol,
 ul {
   list-style: none;
 }
+a {
+  text-decoration: none;
+  outline: none;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+}
 blockquote,
 q {
   quotes: none;
