@@ -26,12 +26,21 @@
           </div>
           <div>대한민국</div>
         </div>
-        <form class="header__search-bar">
-          <input type="text" placeholder="검색 Amazon" />
-          <button type="button">
-            <img src="./src/assets/images/icn_search.svg" alt="검색하기" />
-          </button>
-        </form>
+
+        <div class="header__search-bar">
+          <form>
+            <input type="text" placeholder="검색 Amazon" />
+            <button type="button">
+              <img src="./src/assets/images/icn_search.svg" alt="검색하기" />
+            </button>
+          </form>
+
+          <!-- search-list -->
+          <div class="header__search-bar__layer">
+            <ul class="search-lists"></ul>
+          </div>
+        </div>
+
         <div class="header__nation">
           <a href="#">
             <img src="./src/assets/images/icn_flag_america.svg" alt="" aria-hidden="true" />

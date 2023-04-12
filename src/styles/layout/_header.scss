@@ -18,12 +18,12 @@
     justify-content: space-between;
     align-items: center;
 
-    > div:hover,
-    > div:focus,
-    > div:active {
-      transition: box-shadow 0.3s ease-in-out;
-      box-shadow: 0 0 0 1px $White inset;
-    }
+    // > div:hover,
+    // > div:focus,
+    // > div:active {
+    //   transition: box-shadow 0.3s ease-in-out;
+    //   box-shadow: 0 0 0 1px $White inset;
+    // }
   }
 
   &__shipping-address {
@@ -44,22 +44,77 @@
     padding: 0 12px;
     flex-grow: 1;
     height: 40px;
-    input {
-      border: none;
-      @include typography($BodyMD, $Gray600);
-      width: 100%;
-      background-color: $White;
-      padding: 9.5px 12px;
-      border-radius: 4px 0 0 4px;
-    }
-    button {
-      background-color: $PrimaryOrange100;
-      width: 40px;
-      height: 40px;
+    //
+    flex-direction: column;
+    form {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0px 4px 4px 0;
+      flex-grow: 1;
+      input {
+        border: none;
+        @include typography($BodyMD, $Gray600);
+        width: 100%;
+        background-color: $White;
+        padding: 9.5px 12px;
+        border-radius: 4px 0 0 4px;
+      }
+      button {
+        background-color: $PrimaryOrange100;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 4px 4px 0;
+      }
+    }
+    /* search-bar 결과 */
+    &__layer {
+      position: relative;
+      z-index: 9999;
+      top: 0;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #000000;
+      border-radius: 4px;
+      ul {
+        @include typography($BodyMD, $Black);
+        li {
+          width: 100%;
+          a {
+            transition: background-color 0.3s;
+            padding: 10.5px 12px;
+            display: block;
+          }
+          :hover {
+            background-color: #eff2f2;
+          }
+          &[data-type='recommend'] {
+            a {
+              display: flex;
+              gap: 4px;
+              align-items: center;
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          &[data-type='searched'] {
+            a {
+              color: $SecondaryPurple;
+              display: flex;
+              gap: 4px;
+              justify-content: space-between;
+              align-items: center;
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -100,7 +155,7 @@
 
 .nav-sub {
   position: relative;
-  z-index: 30;
+  // z-index: 30;
   @include header-layout(32px, $BoldSM, $Gray900);
   line-height: 32px;
   min-width: 1024px;
