@@ -1,5 +1,3 @@
-import { debounce } from "../utils/index.js";
-
 const template = document.createElement("template");
 template.innerHTML = `
   <header>
@@ -27,13 +25,7 @@ template.innerHTML = `
         </tool-tip>
       </div>
       <div id="search-container">
-        <form id="search-form">
-          <input id="search-input" type="text" placeholder="검색 Amazon" autocomplete="off" />
-          <button type="submit">
-            <img src="src/assets/icons/search.svg" alt="Search"/>
-          </button>
-          <autocomplete-panel></autocomplete-panel>
-        </form>
+        <search-form></search-form>
       </div>
       <div class="nav-main__item-container">
         <a href="#" id="lang-link">
@@ -185,29 +177,11 @@ class TopHeader extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
-    this.autocompletePanel =
-      this.shadowRoot.querySelector("autocomplete-panel");
-    this.searchForm = this.shadowRoot.querySelector("#search-form");
-    this.searchInput = this.searchForm.querySelector("#search-input");
     this.dimmedLayer = this.shadowRoot.querySelector(".dimmed-layer");
     this.toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
   }
 
   connectedCallback() {
-    this.searchInput.addEventListener(
-      "focus",
-      () => {
-        this.onSearchInput();
-        // need to activate dimmed layer
-      },
-      { once: true }
-    );
-
-    this.searchInput.addEventListener(
-      "input",
-      debounce(this.onSearchInput.bind(this), 1000)
-    );
-
     this.toolTipParents.forEach((parent) => {
       const toolTipNotDimmedBg = parent.querySelector(
         "tool-tip:not(.dimmed-bg)"
@@ -228,32 +202,6 @@ class TopHeader extends HTMLElement {
     });
 
     this.addEventListener("tool-tip-active", this.dimmedLayerHandler);
-  }
-
-  async onSearchInput() {
-    const searchTerm = this.searchInput.value.trim();
-
-    if (searchTerm === "") {
-      const searchHistory = []; // get from localStorage (5 items)
-      const suggestions = await this.fetchAutocomplete("suggestions");
-      this.autocompletePanel.setResultsData(
-        JSON.stringify([...searchHistory, ...suggestions])
-      );
-      return;
-    }
-
-    const autocompleteData = await this.fetchAutocomplete(searchTerm);
-    this.autocompletePanel.setResultsData(
-      `${JSON.stringify(autocompleteData)}`
-    );
-  }
-
-  async fetchAutocomplete(searchTerm) {
-    const queryParams = new URLSearchParams({ searchTerm });
-    const res = await fetch(
-      `http://127.0.0.1:3000/autocomplete?${queryParams}`
-    );
-    return await res.json();
   }
 
   dimmedLayerHandler(evt) {
