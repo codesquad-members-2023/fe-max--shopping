@@ -1,0 +1,32 @@
+@mixin search-item-style {
+  padding: 8px 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.search-suggestion {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  border: 1px solid #10141a;
+  border-radius: 4px;
+  overflow: auto;
+  background-color: var(--white);
+  z-index: 200;
+
+  &__recommend-search-list > li {
+    @include search-item-style;
+  }
+
+  &__recent-search-list > li {
+    @include search-item-style;
+
+    justify-content: space-between;
+  }
+}
