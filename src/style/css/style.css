@@ -590,9 +590,9 @@
   color: #10141a;
 }
 .search-info__trending > img {
+  padding: 4px;
   width: 16px;
   height: 16px;
-  margin-right: 4px;
 }
 
 /* pages */
