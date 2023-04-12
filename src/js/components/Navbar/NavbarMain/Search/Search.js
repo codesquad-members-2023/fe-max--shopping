@@ -43,7 +43,10 @@ export default class Search extends Component {
   }
 
   async showAutoComplete() {
-    if (!this.getInputValue()) return;
+    if (!this.getInputValue()) {
+      this.showRecommendWords();
+      return;
+    }
 
     const autoCompleteWords = await this.loadAutoCompleteWords();
     this.#state.recommend = autoCompleteWords;
