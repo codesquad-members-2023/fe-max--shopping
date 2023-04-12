@@ -2,9 +2,9 @@ import { Base } from "../../Base.js";
 import { ShippingTooltip } from "./shippingTooltip.js";
 
 export class ShippingAddress extends Base {
-  constructor(backdrop) {
+  constructor() {
     super("a");
-    this.ShippingTooltip = new ShippingTooltip(backdrop);
+    this.ShippingTooltip = new ShippingTooltip();
 
     this.init();
   }

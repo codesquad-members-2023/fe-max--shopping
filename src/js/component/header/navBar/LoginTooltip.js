@@ -6,7 +6,7 @@ export class LoginTooltip extends Base {
   #_myList = myList;
   #_accountContentsList = accountContentsList;
 
-  constructor(backdrop) {
+  constructor() {
     super("div");
     this.init();
   }

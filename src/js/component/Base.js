@@ -70,6 +70,7 @@ export class Base {
       childNode.setTextContent(textContent);
     }
 
+    //todo: 조건이 필요할지도..?
     this[name] = childNode;
     return childNode;
   }

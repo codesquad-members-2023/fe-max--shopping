@@ -2,9 +2,9 @@ import { Base } from "../../Base.js";
 import { LoginTooltip } from "./LoginToolTip.js";
 
 export class Login extends Base {
-  constructor(backdrop) {
+  constructor() {
     super("div");
-    this.loginTooltip = new LoginTooltip(backdrop);
+    this.loginTooltip = new LoginTooltip(ㄴ);
     this.init();
   }
 
