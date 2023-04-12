@@ -43,14 +43,21 @@ header {
     flex-grow: 1;
 
     form {
+      width: 100%;
       display: flex;
-      border-radius: 4px;
-      overflow: hidden;
+      position: relative;
 
       input {
-        flex-grow: 1;
         height: 40px;
+        flex-grow: 1;
         padding-left: 12px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+
+        &:focus ~ autocomplete-panel {
+          opacity: 1;
+          visibility: visible;
+        }
       }
 
       button {
@@ -60,6 +67,8 @@ header {
         justify-content: center;
         align-items: center;
         background-color: $color-primary-orange-100;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
       }
     }
   }
