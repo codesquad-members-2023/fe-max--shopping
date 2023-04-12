@@ -48,10 +48,12 @@
 }
 #sidebar .sidebar__item--summary {
   justify-content: start;
-  border-bottom: 1px solid var(--color-gray-100);
 }
 #sidebar .sidebar__item--summary .icon {
   transition: transform 300ms;
+}
+#sidebar .sidebar__details[open] .sidebar__item--summary {
+  border-bottom: 1px solid var(--color-gray-100);
 }
 #sidebar .sidebar__details[open] .sidebar__item--summary .icon {
   transform: rotateX(-180deg);

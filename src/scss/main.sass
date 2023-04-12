@@ -2,8 +2,7 @@
 	padding: 0 80px 40px 
 	position: relative 
 	.bg 
-		background-color: var(--color-gray-200) 
-		height: 100% 
+		background-color: var(--color-gray-200)
 	.dimmed 
 		position: absolute 
 		background-color: var(--color-black-40) 
@@ -12,8 +11,10 @@
 		left: 0 
 #hero 
 	display: flex 
+	max-width: 728px
+	margin: auto
 	.hero__wrapper 
-		flex-grow: 1 
+		flex-grow: 1
 		order: 2 
 	.hero__slide 
 		text-align: center 
@@ -32,9 +33,11 @@
 	.hero__control--right 
 		order: 3 
 		text-align: right 
-#contents 
+#contents
+	max-width: 1200px
+	margin: auto
 	.contents__list 
-		column-count: 4 
+		column-count: 2
 		column-gap: 1em 
 	.contents__item 
 		background-color: var(--color-white) 
@@ -67,7 +70,7 @@ $tablet-width: 768px
 
 @media (min-width:$tablet-width) and (max-width: $desktop-width - 1px)
 	#contents .contents__list
-		column-count: 2
+		column-count: 3
 
 @media (min-width:$desktop-width)
 	#contents .contents__list

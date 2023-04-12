@@ -18,18 +18,21 @@
   - [x] css를 sass로 전처리
   - [x] 팝오버 넣기
   - [x] 점검
-- [ ] html을 js로 옮기기
-  - [x] 공통 Component 만들기
-  - [ ] viewData 만들기
-    - [x] header
-    - [x] sidebar
-    - [x] main
-    - [x] footer
 
 ### 체크리스트
 - [x] html과 css로 화면설계
-- [ ] js작업
 
 ### 만들다 생각난 것들
 맞는지 모르겠지만 Conponent를 공통으로 만들어서 재귀적으로 만들고 나중에 바꿔주는 방식으로 해봐야겠다.
+
+## 2주차  (`객체지향 검색바`, `OOP & OOP in JS`, `prototype 과 상속`)
+### 학습계획
+- 재사용성을 고려하여 객체지향을 고민해보기
+- 이벤트를 활용하여 검색을 구현한 방법을 찿기
+- 함수형 컴포넌트를 만들고 Prototype 활용해보기
+
+### 구현 계획
+- [x] js로 만들었던 html을 랜더링 시키는 구조로 만들기
+  - [x] component 구현
+  - [ ] load 이벤트 넣어주기
 

@@ -15,7 +15,7 @@ export class Component {
     this.children = [];
   }
 
-  ChangeSubComponent() {
+  changeSubComponent() {
     this.children.forEach((child, index, children) => {
       const { tagName, id, className } = child.domNode;
       let subComponent = findComponent(tagName);

@@ -3,8 +3,9 @@
 	top: 0 
 	left: 0 
 	height: 100% 
-	z-index: 1 
-	transform: translateX(-320px) 
+	z-index: 1
+	transform: translateX(-320px)
+	// transform: translateX(0px) 
 	animation: sidebar 1s 
 	&.active 
 		width: 100% 
@@ -41,11 +42,11 @@
 		box-sizing: border-box 
 	.sidebar__item--summary 
 		justify-content: start 
-		border-bottom: 1px solid var(--color-gray-100) 
 		.icon 
 			transition: transform 300ms 
 	.sidebar__details[open] 
-		.sidebar__item--summary 
+		.sidebar__item--summary
+			border-bottom: 1px solid var(--color-gray-100)
 			.icon 
 				transform: rotateX(-180deg) 
 

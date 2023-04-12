@@ -24,8 +24,8 @@ export class App extends Component {
     addComponent("FOOTER", Footer);
     addComponent("sidebar", Sidebar);
 
-    this.ChangeSubComponent(true);
-
+    this.changeSubComponent(true);
+    
     this.pageLayout = {
       banner: this.children[0],
       sideBar: this.children[1],
