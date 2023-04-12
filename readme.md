@@ -28,10 +28,10 @@
   - [x] 호버 영역 및 모달 영역 벗어날 때 모달과 딤 처리가 사라지는 기능
   - [x] 화면 크기에 맞게 검색창 사이즈 조정
 
-- [ ] 메인 화면
-  - [ ] 히어로 영역
-    - [ ] 레이아웃
-    - [ ] 이미지 슬라이더
+- [x] 메인 화면
+  - [x] 히어로 영역
+    - [x] 레이아웃
+    - [x] 이미지 슬라이더
 
 ## ⌨️ 2주차 학습 및 구현 계획
 
@@ -39,10 +39,10 @@
 못 만들었던 히어로 영역을 빠르게 완성하고 2주차 주요 개념들을 간단히만 찾아보고
 바로 객체지향 검색바 만들기를 시작해볼 예정이다.
 
-- [ ] 루카스에 나온 개념들 위주로 학습하기
-  - [ ] OOP
-  - [ ] OOP in JS
-  - [ ] prototype과 상속
+- [x] 루카스에 나온 개념들 위주로 학습하기
+  - [x] OOP
+  - [x] OOP in JS
+  - [x] prototype과 상속
 
 - [ ] 검색바 구현
   - [ ]  검색창(바) 개발
@@ -57,5 +57,45 @@
 - 검색창과 검색결과는 별도의 모듈(클래스)로 분리해서 개발한다.
 - es classes를 활용해서 객체를 표현한다.
 - 최근검색어를 어떻게 저장해야 할지 찾아본다.
+
+### 1) OOP (Object-oriented Programming)
+
+객체지향 핵심개념들
+
+- Class
+- 캡슐화(Encapsulation)
+- 상속(Inheritance)
+- 다형성(polymorphism)
+- 추상화(abstraction)
+
+### 2) OOP in JS
+
+- `Object.create(proto[, propertiesObject])`
+```jsx
+function parent() {
+	this.name = 'parent';
+}
+parent.prototype.getName = function() {
+	return this.name;
+}
+
+function child(age) {
+	this.age = age;
+}
+
+console.log(child.prototype);
+// ▼ {constructor: ƒ}
+//	 ▶︎ constructor: ƒ child(age)
+//	 ▶︎ [[Prototype]]: Object
+
+child.prototype = Object.create(parent.prototype);
+
+console.log(child.prototype);
+// ▼ parent {}
+//	 ▼ [[Prototype]]: Object
+//		 ▶︎ getName: ƒ ()
+// 		 ▶︎ constructor: ƒ parent()
+// 		 ▶︎ [[Prototype]]: Object
+```
 
 
