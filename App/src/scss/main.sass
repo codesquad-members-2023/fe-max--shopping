@@ -1,0 +1,77 @@
+#main 
+	padding: 0 80px 40px 
+	position: relative 
+	.bg 
+		background-color: var(--color-gray-200)
+	.dimmed 
+		position: absolute 
+		background-color: var(--color-black-40) 
+		height: 100% 
+		width: 100% 
+		left: 0 
+#hero 
+	display: flex 
+	max-width: 728px
+	margin: auto
+	.hero__wrapper 
+		flex-grow: 1
+		order: 2 
+	.hero__slide 
+		text-align: center 
+		padding: 75px 
+		h3 
+			font: var(--font-bold-xl) 
+			word-break: keep-all 
+	.hero__control 
+		width: 95px 
+		background-color: transparent 
+		border: 0 
+		padding: 0 
+	.hero__control--left 
+		order: 1 
+		text-align: left 
+	.hero__control--right 
+		order: 3 
+		text-align: right 
+#contents
+	max-width: 1200px
+	margin: auto
+	.contents__list 
+		column-count: 2
+		column-gap: 1em 
+	.contents__item 
+		background-color: var(--color-white) 
+		margin-bottom: 20px 
+		&:nth-child(1) 
+			padding: 16px 
+			.contents__card 
+				align-items: center 
+				gap: 16px 
+		h3 
+			font: var(--font-bold-md) 
+		a 
+			text-decoration: none 
+			font: var(--font-bold-sm) 
+			color: var(--color-secondary-green) 
+			margin-top: 8px 
+	.contents__card 
+		width: 100% 
+		display: inline-flex 
+		flex-direction: column 
+		justify-content: center 
+	.contents__card_img 
+		img 
+			width: 100% 
+	.contents__card_text 
+		padding: 16px
+
+$desktop-width: 1024px
+$tablet-width: 768px
+
+@media (min-width:$tablet-width) and (max-width: $desktop-width - 1px)
+	#contents .contents__list
+		column-count: 3
+
+@media (min-width:$desktop-width)
+	#contents .contents__list
+		column-count: 4
