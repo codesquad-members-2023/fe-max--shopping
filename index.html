@@ -12,9 +12,11 @@
   <body>
     <div class="nav-bar">
       <header class="nav-bar__main">
-        <button class="nav-bar__main-logo">
-          <img src="./src/asset/img/logo.svg" alt="로고" />
-        </button>
+        <section class="nav-bar__logo">
+          <button>
+            <img src="./src/asset/img/logo.svg" alt="로고" />
+          </button>
+        </section>
         <section class="nav-bar__address">
           <div class="address-container">
             <div class="label">
@@ -31,11 +33,11 @@
             </div>
           </div>
         </section>
-        <form class="nav-bar__main-search">
+        <form class="nav-bar__search">
           <input type="text" placeholder="검색 Amazon" name="search" />
           <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
         </form>
-        <section class="nav-bar__main-nation">
+        <section class="nav-bar__nation">
           <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기" />
           <p class="content">KO</p>
         </section>
@@ -77,13 +79,13 @@
             </div>
           </div>
         </section>
-        <section class="nav-bar__main-history">
+        <section class="nav-bar__history">
           <div class="label">
             <span>반품</span>
           </div>
           <p class="content">& 주문</p>
         </section>
-        <section class="nav-bar__main-cart">
+        <section class="nav-bar__cart">
           <img src="./src/asset/img/cart.svg" alt="카트" />
           <p class="content">장바구니</p>
         </section>
@@ -134,12 +136,12 @@
       <div class="hero">
         <ul class="hero__slide">
           <li class="hero__item" data-index="0" data-status="active"><img src="/src/asset/img/hero_1.jpg" alt="1번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="1" data-status="unknown"><img src="/src/asset/img/hero_2.jpg" alt="2번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="2" data-status="unknown"><img src="/src/asset/img/hero_3.jpg" alt="3번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="3" data-status="unknown"><img src="/src/asset/img/hero_4.jpg" alt="4번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="4" data-status="unknown"><img src="/src/asset/img/hero_5.jpg" alt="5번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="5" data-status="unknown"><img src="/src/asset/img/hero_6.jpg" alt="6번째 히어로 이미지" /></li>
-          <li class="hero__item" data-index="6" data-status="unknown"><img src="/src/asset/img/hero_7.jpg" alt="7번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="1" data-status="inactive"><img src="/src/asset/img/hero_2.jpg" alt="2번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="2" data-status="inactive"><img src="/src/asset/img/hero_3.jpg" alt="3번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="3" data-status="inactive"><img src="/src/asset/img/hero_4.jpg" alt="4번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="4" data-status="inactive"><img src="/src/asset/img/hero_5.jpg" alt="5번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="5" data-status="inactive"><img src="/src/asset/img/hero_6.jpg" alt="6번째 히어로 이미지" /></li>
+          <li class="hero__item" data-index="6" data-status="inactive"><img src="/src/asset/img/hero_7.jpg" alt="7번째 히어로 이미지" /></li>
         </ul>
         <button class="hero__btn--prev">
           <img src="/src/asset/img/LeftButton.svg" alt="이전 이미지">

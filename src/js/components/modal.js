@@ -3,7 +3,7 @@ import { delay } from '../utils/timeUtils.js';
 
 const MODAL_OPEN_DELAY = 1000;
 
-function initLoginModal() {
+export function initLoginModal() {
   document.addEventListener('DOMContentLoaded', () => delay(openLoginModal, MODAL_OPEN_DELAY));
   $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
   $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
@@ -32,5 +32,3 @@ async function closeAllLayers() {
     addHiddenClassIfAbsent(layer);
   }
 }
-
-export { initLoginModal };

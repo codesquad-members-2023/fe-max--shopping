@@ -61,33 +61,29 @@ button {
   width: 100%;
   min-width: 1120px;
 
+  &__main {
+    @include flex-row;
+    padding: 8px 16px;
+    gap: 24px;
+    height: 56px;
+    background: #10141a;
+  
+    .label {
+      @include flex-row;
+      @include bold-sm;
+    }
+  
+    .content {
+      @include bold-md;
+    }
+  }
+
   &__address, &__login {
     height: 100%;
     position: relative;
   }
-}
 
-.nav-bar__main {
-  @include flex-row;
-  padding: 8px 16px;
-  gap: 24px;
-  height: 56px;
-  background: #10141a;
-
-  .label {
-    @include flex-row;
-    @include bold-sm;
-  }
-
-  .content {
-    @include bold-md;
-  }
-
-  &-address {
-    position: relative;
-  }
-
-  &-search {
+  &__search {
     @include flex-row;
     padding-left: 12px;
     gap: 12px;
@@ -114,7 +110,7 @@ button {
     }
   }
 
-  &-nation {
+  &__nation {
     @include flex-row;
     padding: 0;
     gap: 4px;
@@ -125,11 +121,7 @@ button {
     }
   }
 
-  &-login {
-    position: relative;
-  }
-
-  &-cart {
+  &__cart {
     @include flex-row;
     padding: 0;
     gap: 4px;

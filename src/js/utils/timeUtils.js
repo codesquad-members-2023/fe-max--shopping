@@ -1,5 +1,3 @@
-const delay = (callback, ms) => {
+export const delay = (callback, ms) => {
   setTimeout(callback, ms);
 };
-
-export { delay };
