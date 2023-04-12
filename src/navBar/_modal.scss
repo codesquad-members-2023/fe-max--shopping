@@ -1,7 +1,7 @@
 @use "../style/common";
 
 @mixin modal {
-  z-index: 1000;
+  z-index: 100;
   position: absolute;
 }
 
@@ -28,7 +28,7 @@
   transition: background-color 500ms;
 
   &.dimmed {
-    z-index: 500;
+    z-index: 50;
     background-color: var(--black40);
   }
 }
