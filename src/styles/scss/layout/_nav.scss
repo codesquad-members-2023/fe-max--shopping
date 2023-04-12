@@ -96,11 +96,12 @@ nav {
     padding: 0px;
     background: $color-orange-100;
     border: none;
+    cursor: pointer;
   }
   ul {
     display: none;
   }
-  ul.searchbar__suggest {
+  .searchbar__suggest {
     position: absolute;
     top: 49px;
     left: 207px;
@@ -136,6 +137,30 @@ nav {
         padding: 0;
         width: 16px;
         height: 16px;
+      }
+    }
+  }
+  #searchbar__autocomplete {
+    // @include searchBarUl;
+    @include bodyMd;
+    color: $color-black;
+    display: none;
+    position: absolute;
+    top: 49px;
+    left: 207px;
+    // display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    width: calc(100% - 532px);
+    background: $color-white;
+    border: 1px solid $color-black;
+    border-radius: 4px;
+    flex-grow: 2;
+    z-index: 1000;
+    li {
+      @include searchBarLi;
+      span {
+        align-items: center;
       }
     }
   }
