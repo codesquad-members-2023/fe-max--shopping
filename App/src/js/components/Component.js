@@ -26,7 +26,6 @@ export class Component {
         return;
       }
     });
-    this.children.forEach((child) => child.promotion);
   }
 
   parseJsonRecursiveAppendChild(json) {

@@ -1,51 +1,31 @@
 export const $ = document.querySelector.bind(document);
 
-function generateSubComponentDict() {
+function generateDict() {
   const dict = {};
 
-  function _addComponent(name, _class) {
-    dict[name] = _class;
+  function _add(name, event) {
+    dict[name] = event;
   }
 
-  function _findComponent(name) {
+  function _find(name) {
     if (name in dict) {
       return dict[name];
     }
     return null;
   }
 
-  return {
-    _addComponent,
-    _findComponent,
-  };
+  return [
+    _add,
+    _find,
+  ]
 }
 
-const { _addComponent, _findComponent } = generateSubComponentDict();
+const [ _addComponent, _findComponent ] = generateDict();
 
 export const addComponent = _addComponent;
 export const findComponent = _findComponent;
 
-function generateEventDict() {
-  const dict = {};
-
-  function _addEvent(name, event) {
-    dict[name] = event;
-  }
-
-  function _findEvent(name) {
-    if (name in dict) {
-      return dict[name];
-    }
-    return null;
-  }
-
-  return {
-    _addEvent,
-    _findEvent,
-  };
-}
-
-const { _addEvent, _findEvent } = generateEventDict();
+const [ _addEvent, _findEvent ] = generateDict();
 
 export const addEvent = _addEvent;
 export const findEvent = _findEvent;
