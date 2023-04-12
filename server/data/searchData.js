@@ -1,4 +1,4 @@
-export const data = [
+export const searchData = [
   { content: "자동차 점프 스타터" },
   { content: "강아지 자동급식기" },
   { content: "고양이 자동급식기" },
@@ -21,7 +21,7 @@ export const data = [
   { content: "자동 분무기" },
 ];
 
-export const suggestions = [
+export const searchSuggestions = [
   { content: "추천 검색어", isSuggestion: true },
   { content: "추천 검색어", isSuggestion: true },
   { content: "추천 검색어", isSuggestion: true },

@@ -1,5 +1,6 @@
 import express from "express";
-import { data, suggestions } from "./data.js";
+import { searchData, searchSuggestions } from "./data/searchData.js";
+import { heroImgsData, cardsData } from "./data/cardsData.js";
 
 const app = express();
 const PORT = 3000;
@@ -14,13 +15,21 @@ app.get("/autocomplete", (req, res) => {
   if (!searchTerm) return;
 
   if (searchTerm === "suggestions") {
-    res.status(200).json(suggestions);
-  } else {
-    const autocompleteDataTopTen = data
-      .filter(({ content }) => content.includes(searchTerm))
-      .slice(0, 10);
-    res.status(200).json(autocompleteDataTopTen);
+    return res.status(200).json(searchSuggestions);
   }
+
+  const autocompleteDataTopTen = searchData
+    .filter(({ content }) => content.includes(searchTerm))
+    .slice(0, 10);
+  return res.status(200).json(autocompleteDataTopTen);
+});
+
+app.get("/hero-images", (req, res) => {
+  return res.status(200).json(heroImgsData);
+});
+
+app.get("/cards-panel", (req, res) => {
+  return res.status(200).json(cardsData);
 });
 
 app.get("*", (req, res) => {
