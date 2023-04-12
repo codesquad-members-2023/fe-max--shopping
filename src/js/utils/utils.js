@@ -13,7 +13,9 @@ export const $context = (context = document) => {
 export const debounce = (callback, delay) => {
   let timerId;
   return (event) => {
-    clearTimeout(timerId);
+    if (timerId) {
+      clearTimeout(timerId);
+    }
     timerId = setTimeout(callback, delay, event);
   };
 };

@@ -54,10 +54,6 @@ const searchWordMaker = {
     });
   },
 
-  getRecommendWordList() {
-    return this.makeWordData(this.recommend);
-  },
-
   makeJSON() {
     const template = {
       recommend: this.makeWordData(this.recommend),
