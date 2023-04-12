@@ -16,8 +16,8 @@
     width: 100%;
     transition: all 400ms ease;
 
-    &[data-status='unknown'] {
-      opacity: 0;
+    &[data-status='inactive'] {
+      z-index: -1;
     }
 
     &[data-status='left'] {
