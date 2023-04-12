@@ -5,8 +5,6 @@ export default class SearchBar extends Component {
     super('search-bar', 'FORM');
   }
 
-  initEventHandlers() {}
-
   getTemplate() {
     return `
 <input type="search" class="input" placeholder="검색 Amazon" />

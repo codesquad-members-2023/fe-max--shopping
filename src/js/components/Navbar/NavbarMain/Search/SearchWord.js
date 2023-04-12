@@ -1,15 +1,23 @@
 import { Component } from '../../../base/Component.js';
 
 export class SearchWord extends Component {
-  constructor() {
+  constructor({ recommend }) {
     super('search-word', 'UL');
+    this.recommendWordList = recommend;
+    this.renderSearchWords(this.recommendWordList);
   }
 
-  getTemplate() {
-    const test = this.getRecommendTemplate('추천 검색어');
-    const history = this.getHistoryTemplate('내가 검색한 단어');
+  renderSearchWords(recommendWordList) {
+    const template = this.getAllRecommendTemplate(recommendWordList);
+    this.node.insertAdjacentHTML('afterbegin', template);
+  }
 
-    return history + test;
+  getAllRecommendTemplate(recommendWordList) {
+    const recommendTemplate = recommendWordList.reduce((acc, cur) => {
+      return acc + this.getRecommendTemplate(cur);
+    }, '');
+
+    return recommendTemplate;
   }
 
   getRecommendTemplate(word) {

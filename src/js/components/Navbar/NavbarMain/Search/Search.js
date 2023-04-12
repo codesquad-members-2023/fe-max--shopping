@@ -2,6 +2,7 @@ import { Main } from '../../../../Main.js';
 import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
+import { SearchWord } from './SearchWord.js';
 import { client } from '/src/js/api/client.js';
 
 export default class Search extends Component {
@@ -71,42 +72,5 @@ export default class Search extends Component {
     const searchWord = new SearchWord({ recommend: [] });
     const searchBar = new SearchBar();
     return [searchBar.node, searchWord.node];
-  }
-}
-
-class SearchWord extends Component {
-  constructor({ recommend }) {
-    super('search-word', 'UL');
-    this.recommend = recommend;
-    this.renderSearchWords(this.recommend);
-  }
-
-  renderSearchWords(recommend) {
-    const template = this.getAllRecommendTemplate(recommend);
-    this.node.insertAdjacentHTML('afterbegin', template);
-  }
-
-  getAllRecommendTemplate(recommend) {
-    const recommendTemplate = recommend.reduce((acc, cur) => {
-      return acc + this.getRecommendTemplate(cur);
-    }, '');
-
-    return recommendTemplate;
-  }
-
-  getRecommendTemplate(word) {
-    return `
-<li class="recommend">
-  <a href=""><button class="shortcut-btn"></button>${word}</a>
-</li>
-    `;
-  }
-
-  getHistoryTemplate(word) {
-    return `
-<li class="history">
-  <a href="">${word}</a><button class="delete-btn"></button>
-</li>
-    `;
   }
 }
