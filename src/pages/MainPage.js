@@ -17,17 +17,6 @@ class MainPage extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
-    this.cardsPanel = this.shadowRoot.querySelector("cards-panel");
-  }
-
-  async connectedCallback() {
-    const cardsData = await this.fetchCards();
-    this.cardsPanel.setCards(JSON.stringify(cardsData));
-  }
-
-  async fetchCards() {
-    const res = await fetch(`http://127.0.0.1:3000/cards-panel`);
-    return await res.json();
   }
 }
 
