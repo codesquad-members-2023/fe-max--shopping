@@ -1,4 +1,10 @@
 {
+  "searchHistory": [
+    {
+      "key": "0",
+      "text": "검색 기록"
+    }
+  ],
   "recommend": [
     { "key": "0", "text": "marvel legends" },
     { "key": "1", "text": "egift cards for amazon gift card" },

@@ -4,7 +4,7 @@ import { LoginTooltip } from "./LoginToolTip.js";
 export class Login extends Base {
   constructor() {
     super("div");
-    this.loginTooltip = new LoginTooltip(ㄴ);
+    this.loginTooltip = new LoginTooltip();
     this.init();
   }
 
