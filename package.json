@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "start": "json-server --watch ./src/database/db.json --port 5000",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/jsh3418/fe-max--shopping#readme",
   "devDependencies": {
+    "json-server": "^0.17.3",
     "sass": "^1.60.0",
     "typescript": "^4.9.3",
     "vite": "^4.2.1"
