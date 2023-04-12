@@ -1,11 +1,12 @@
 import modalController from './components/modal.js';
 import heroController from './components/hero.js';
-import searchBarController from './components/search-bar.js';
+import SearchBarController from './components/search-bar.js';
 
 const app = () => {
+  const searchBarController = new SearchBarController();
   modalController();
   heroController();
-  searchBarController();
+  searchBarController.init();
 };
 
 app();
