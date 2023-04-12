@@ -32,7 +32,7 @@ export class ApiData extends DataFetcher {
   }
 
   async getDataFromApi() {
-    const todo = await this.getData();
-    return todo.suggestions.map((v) => v.value);
+    const data = await this.getData();
+    return data.suggestions.map((v) => v.value);
   }
 }
