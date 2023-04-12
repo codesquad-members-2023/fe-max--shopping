@@ -7,6 +7,9 @@ export class Component {
     this.#node = document.createElement(tagName);
     this.#node.className = className;
     this.$ = $context(this.#node);
+  }
+
+  init() {
     this.render();
     this.initEventHandlers();
   }

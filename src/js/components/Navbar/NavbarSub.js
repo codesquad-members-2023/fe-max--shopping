@@ -3,6 +3,7 @@ import { Component } from '../base/Component.js';
 export class NavbarSub extends Component {
   constructor() {
     super('navbar-sub');
+    this.init();
   }
 
   getTemplate() {

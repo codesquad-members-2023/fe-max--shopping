@@ -5,6 +5,10 @@ import { Component } from '/src/js/components/base/Component.js';
 export class Shipping extends Component {
   constructor() {
     super('shipping', 'A');
+    this.main = new Main();
+    this.shippingArea = new ShippingArea();
+    this.shippingModal = new ShippingModal();
+    this.init();
   }
 
   initEventHandlers() {
@@ -13,26 +17,24 @@ export class Shipping extends Component {
   }
 
   showShippingModal() {
-    this.$('.shipping-modal').show();
-    Main.onDimmed();
+    this.shippingModal.show();
+    this.main.onDimmed();
   }
 
   closeShippingModal() {
-    this.$('.shipping-modal').close();
-    Main.offDimmed();
+    this.shippingModal.close();
+    this.main.offDimmed();
   }
 
   getTemplate() {
-    const shippingArea = new ShippingArea();
-    const shippingModal = new ShippingModal();
-
-    return [shippingArea.node, shippingModal.node];
+    return [this.shippingArea.node, this.shippingModal.node];
   }
 }
 
 class ShippingArea extends Component {
   constructor() {
     super('shipping-area');
+    this.init();
   }
 
   getTemplate() {

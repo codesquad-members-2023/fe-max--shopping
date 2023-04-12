@@ -6,24 +6,33 @@ import { Component } from '/src/js/components/base/Component.js';
 export class NavbarMain extends Component {
   constructor() {
     super('navbar-main');
+    this.logo = new Logo();
+    this.shipping = new Shipping();
+    this.search = new Search();
+    this.nation = new Nation();
+    this.login = new Login();
+    this.myPage = new MyPage();
+    this.cart = new Cart();
+    this.init();
   }
 
   getTemplate() {
-    const logo = new Logo();
-    const shipping = new Shipping();
-    const search = new Search();
-    const nation = new Nation();
-    const login = new Login();
-    const myPage = new MyPage();
-    const cart = new Cart();
-
-    return [logo.node, shipping.node, search.node, nation.node, login.node, myPage.node, cart.node];
+    return [
+      this.logo.node,
+      this.shipping.node,
+      this.search.node,
+      this.nation.node,
+      this.login.node,
+      this.myPage.node,
+      this.cart.node,
+    ];
   }
 }
 
 class Logo extends Component {
   constructor() {
     super('logo', 'H1');
+    this.init();
   }
 
   getTemplate() {
@@ -38,6 +47,7 @@ class Logo extends Component {
 class Nation extends Component {
   constructor() {
     super('nation');
+    this.init();
   }
 
   getTemplate() {
@@ -51,6 +61,7 @@ class Nation extends Component {
 class MyPage extends Component {
   constructor() {
     super('my-page');
+    this.init();
   }
 
   getTemplate() {
@@ -64,6 +75,7 @@ class MyPage extends Component {
 class Cart extends Component {
   constructor() {
     super('cart');
+    this.init();
   }
 
   getTemplate() {

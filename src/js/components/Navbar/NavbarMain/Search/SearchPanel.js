@@ -1,19 +1,22 @@
 import { Component } from '../../../base/Component.js';
 
-export class SearchWord extends Component {
+export class SearchPanel extends Component {
   constructor({ recommend }) {
-    super('search-word', 'UL');
-    this.recommendWordList = recommend;
-    this.renderSearchWords(this.recommendWordList);
+    super('search-panel', 'UL');
+    this.recommendWords = recommend;
+    this.init();
   }
 
-  renderSearchWords(recommendWordList) {
-    const template = this.getAllRecommendTemplate(recommendWordList);
-    this.node.insertAdjacentHTML('afterbegin', template);
+  open() {
+    this.node.classList.add('active');
   }
 
-  getAllRecommendTemplate(recommendWordList) {
-    const recommendTemplate = recommendWordList.reduce((acc, cur) => {
+  getTemplate() {
+    return this.getAllRecommendTemplate(this.recommendWords);
+  }
+
+  getAllRecommendTemplate(recommendWords) {
+    const recommendTemplate = recommendWords.reduce((acc, cur) => {
       return acc + this.getRecommendTemplate(cur);
     }, '');
 

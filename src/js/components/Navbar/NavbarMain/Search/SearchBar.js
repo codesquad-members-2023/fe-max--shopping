@@ -3,6 +3,11 @@ import { Component } from '../../../base/Component.js';
 export default class SearchBar extends Component {
   constructor() {
     super('search-bar', 'FORM');
+    this.init();
+  }
+
+  getInputValue() {
+    return this.$('input').value;
   }
 
   getTemplate() {

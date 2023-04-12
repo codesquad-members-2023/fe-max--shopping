@@ -5,12 +5,12 @@ import { Component } from '../base/Component.js';
 export class Navbar extends Component {
   constructor() {
     super('navbar', 'HEADER');
+    this.navbarMain = new NavbarMain();
+    this.navbarSub = new NavbarSub();
+    this.init();
   }
 
   getTemplate() {
-    const navbarMainNode = new NavbarMain().node;
-    const navbarSubNode = new NavbarSub().node;
-
-    return [navbarMainNode, navbarSubNode];
+    return [this.navbarMain.node, this.navbarSub.node];
   }
 }

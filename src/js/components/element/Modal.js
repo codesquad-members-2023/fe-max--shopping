@@ -3,6 +3,15 @@ import { Component } from '/src/js/components/base/Component.js';
 export class LoginModal extends Component {
   constructor() {
     super('modal login-modal', 'DIALOG');
+    this.init();
+  }
+
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
   }
 
   getTemplate() {
@@ -19,6 +28,15 @@ export class LoginModal extends Component {
 export class ExtendedLoginModal extends Component {
   constructor() {
     super('modal extended-login-modal', 'DIALOG');
+    this.init();
+  }
+
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
   }
 
   getTemplate() {
@@ -63,6 +81,15 @@ export class ExtendedLoginModal extends Component {
 export class ShippingModal extends Component {
   constructor() {
     super('modal shipping-modal', 'DIALOG');
+    this.init();
+  }
+
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
   }
 
   getTemplate() {

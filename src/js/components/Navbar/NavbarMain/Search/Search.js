@@ -2,7 +2,7 @@ import { Main } from '../../../../Main.js';
 import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
-import { SearchWord } from './SearchWord.js';
+import { SearchPanel } from './SearchPanel.js';
 import { client } from '/src/js/api/client.js';
 
 export default class Search extends Component {
@@ -11,17 +11,21 @@ export default class Search extends Component {
   constructor() {
     super('search');
     this.#state = {
-      recommend: [],
       history: [],
+      recommend: [],
     };
+    this.main = new Main();
+    this.searchPanel = new SearchPanel(this.#state);
+    this.searchBar = new SearchBar();
+    this.init();
   }
 
   initEventHandlers() {
-    this.$('.search-bar').addEventListener(
+    this.searchBar.node.addEventListener(
       'click',
       debounce(() => this.showRecommendWords(), 300)
     );
-    this.$('.search-bar').addEventListener(
+    this.searchBar.node.addEventListener(
       'input',
       debounce(() => this.showAutoComplete(), 300)
     );
@@ -33,8 +37,8 @@ export default class Search extends Component {
     const recommendWords = await this.loadRecommendWords();
     this.#state.recommend = recommendWords;
 
-    this.renderSearchWords(this.#state);
-    Main.onDimmed();
+    this.main.onDimmed();
+    this.renderSearchPanel(this.#state);
   }
 
   async loadRecommendWords() {
@@ -51,7 +55,7 @@ export default class Search extends Component {
     const autoCompleteWords = await this.loadAutoCompleteWords();
     this.#state.recommend = autoCompleteWords;
 
-    this.renderSearchWords(this.#state);
+    this.renderSearchPanel(this.#state);
   }
 
   async loadAutoCompleteWords() {
@@ -61,19 +65,17 @@ export default class Search extends Component {
     return autoCompleteWords;
   }
 
-  renderSearchWords(state) {
-    const searchWord = new SearchWord(state);
-    this.$('.search-word').replaceWith(searchWord.node);
-    this.$('.search-word').classList.add('active');
+  renderSearchPanel(state) {
+    this.searchPanel = new SearchPanel(state);
+    this.$('.search-panel').replaceWith(this.searchPanel.node);
+    this.searchPanel.open();
   }
 
   getInputValue() {
-    return this.$('input').value;
+    return this.searchBar.getInputValue();
   }
 
   getTemplate() {
-    const searchWord = new SearchWord({ recommend: [] });
-    const searchBar = new SearchBar();
-    return [searchBar.node, searchWord.node];
+    return [this.searchBar.node, this.searchPanel.node];
   }
 }

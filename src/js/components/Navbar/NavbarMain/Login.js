@@ -7,11 +7,16 @@ export class Login extends Component {
 
   constructor() {
     super('login');
+    this.main = new Main();
+    this.loginArea = new LoginArea();
+    this.loginModal = new LoginModal();
+    this.extendedLoginModal = new ExtendedLoginModal();
+    this.init();
   }
 
   initEventHandlers() {
     this.showModalLater(Login.delaySecond);
-    this.$('.login-area').addEventListener('mouseenter', () => this.showExtendedLoginModal());
+    this.loginArea.node.addEventListener('mouseenter', () => this.showExtendedLoginModal());
     this.node.addEventListener('mouseleave', () => this.closeExtendedLoginModal());
   }
 
@@ -21,35 +26,32 @@ export class Login extends Component {
 
   showExtendedLoginModal() {
     this.closeLoginModal();
-    this.$('.extended-login-modal').show();
-    Main.onDimmed();
+    this.extendedLoginModal.show();
+    this.main.onDimmed();
   }
 
   closeExtendedLoginModal() {
-    this.$('.extended-login-modal').close();
-    Main.offDimmed();
+    this.extendedLoginModal.close();
+    this.main.offDimmed();
   }
 
   showLoginModal() {
-    this.$('.login-modal').show();
+    this.loginModal.show();
   }
 
   closeLoginModal() {
-    this.$('.login-modal').close();
+    this.loginModal.close();
   }
 
   getTemplate() {
-    const loginArea = new LoginArea();
-    const loginModal = new LoginModal();
-    const extendedLoginModal = new ExtendedLoginModal();
-
-    return [loginArea.node, loginModal.node, extendedLoginModal.node];
+    return [this.loginArea.node, this.loginModal.node, this.extendedLoginModal.node];
   }
 }
 
 class LoginArea extends Component {
   constructor() {
     super('login-area');
+    this.init();
   }
 
   getTemplate() {
