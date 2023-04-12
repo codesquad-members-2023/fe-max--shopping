@@ -1,0 +1,46 @@
+@import "variables", "mixin";
+
+.search-layer {
+  position: absolute;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transform: translateY(77px);
+  background-color: $color-white;
+  border: 1px solid $color-black;
+  border-radius: 4px;
+  z-index: 3;
+  > div {
+    border-collapse: collapse;
+    width: 100%;
+    > ul {
+      @include bodyMd;
+      color: $color-black;
+      :hover {
+        cursor: pointer;
+        background-color: $color-gray-100;
+      }
+      :focus {
+        background-color: $color-gray-100;
+      }
+      > li {
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        height: 37px;
+      }
+    }
+    .recent-keywords {
+      color: $color-secondary-puple;
+    }
+    // .recommend-keywords {
+    //   height: 37px;
+    // }
+    // .auto-keywords {
+    //   height: 37px;
+    // }
+  }
+  
+}

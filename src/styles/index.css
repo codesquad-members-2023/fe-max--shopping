@@ -226,7 +226,8 @@ table {
   width: 100%;
   height: inherit;
   border-radius: 4px 0 0 4px;
-  font: 900 13px Pretendard;
+  font: 500 13px/1.6 Pretendard;
+  letter-spacing: -0.03em;
   color: #878787;
 }
 .navigation-bar .navigation-main .search-bar .search-input:focus {
@@ -239,18 +240,6 @@ table {
   background-color: #fcb057;
   border-radius: 0 4px 4px 0;
 }
-.navigation-bar .navigation-main .search-bar .search-layer {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  transform: translateY(40px);
-  background-color: #ffffff;
-  border: 1px solid #10141a;
-  border-radius: 4px;
-}
 .navigation-bar .navigation-main .nation {
   gap: 4px;
 }
@@ -260,9 +249,13 @@ table {
 .navigation-bar .navigation-sub {
   height: 32px;
   background-color: #1b232f;
+  font-weight: 600;
 }
 .navigation-bar .navigation-sub .left-sub {
   display: flex;
+}
+.navigation-bar .navigation-sub .left-sub .bold {
+  font-weight: 800;
 }
 .navigation-bar .navigation-sub nav {
   margin: 8px;
@@ -601,6 +594,45 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 }
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container li {
   margin-bottom: 4px;
+}
+
+.search-layer {
+  position: absolute;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transform: translateY(77px);
+  background-color: #ffffff;
+  border: 1px solid #10141a;
+  border-radius: 4px;
+  z-index: 3;
+}
+.search-layer > div {
+  border-collapse: collapse;
+  width: 100%;
+}
+.search-layer > div > ul {
+  font: 500 13px/1.6 Pretendard;
+  letter-spacing: -0.03em;
+  color: #10141a;
+}
+.search-layer > div > ul :hover {
+  cursor: pointer;
+  background-color: #eff2f2;
+}
+.search-layer > div > ul :focus {
+  background-color: #eff2f2;
+}
+.search-layer > div > ul > li {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 37px;
+}
+.search-layer > div .recent-keywords {
+  color: #941387;
 }
 
 html {
