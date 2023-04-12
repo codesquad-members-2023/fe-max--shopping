@@ -1,6 +1,6 @@
 import { query, zIndex, opacity, time } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
-import { dim, undim } from "./dim.js";
+import { dim, undim } from "../common/dim.js";
 import { setOpacity, setSize, setZindex, setTransform } from "../util/set-style.js";
 
 async function expandLoginModalWithDelay() {
@@ -9,7 +9,7 @@ async function expandLoginModalWithDelay() {
   const moveToX = "290px";
   const moveToY = "-10px";
 
-  for (const element of query.loginModalExpandContainer) {
+  for (const element of query.loginModalExpandContainers) {
     setSize(element, expandWidthSize, expandHeightSize);
   }
   await delay(time.loginExpandDelay);
@@ -48,17 +48,22 @@ function loginModalLoadEventHandler() {
 }
 
 function loginModalMouseenterEventHandler() {
-  query.loginModal.addEventListener("mouseenter", expandLoginModal, {
+  query.loginArea.addEventListener("mouseenter", expandLoginModal, {
     once: true,
   });
 }
 
 function loginModalMouseleaveEventHandler() {
-  query.loginModal.addEventListener("mouseleave", closeLoginModal);
+  query.loginArea.addEventListener("mouseleave", closeLoginModal);
 }
 
 function loginModalClickEventHandler() {
   query.loginArea.addEventListener("click", reOpenLoginModal);
 }
 
-export { loginModalLoadEventHandler, loginModalMouseenterEventHandler, loginModalMouseleaveEventHandler, loginModalClickEventHandler };
+export {
+  loginModalLoadEventHandler,
+  loginModalMouseenterEventHandler,
+  loginModalMouseleaveEventHandler,
+  loginModalClickEventHandler,
+};

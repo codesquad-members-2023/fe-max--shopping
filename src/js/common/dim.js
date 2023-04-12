@@ -13,4 +13,10 @@ async function undim() {
   setZindex(query.mainDimmed, zIndex.lowestZ);
 }
 
-export { dim, undim };
+function undimOnblur(event) {
+  if (event.target !== event.currentTarget) {
+    undim();
+  }
+}
+
+export { dim, undim, undimOnblur };

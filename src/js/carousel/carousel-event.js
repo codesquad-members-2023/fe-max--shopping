@@ -26,12 +26,14 @@ class Slider {
   }
 
   moveToNextSlide() {
-    const isLastSlide = this.counter >= query.slideItem.length - 1;
+    const lastIndex = query.slideItems.length - 1;
+    const isLastSlide = this.counter >= lastIndex;
     this.moveToBesideSlide(isLastSlide, true);
   }
 
   moveToPrevSlide() {
-    const isFirstSlide = this.counter <= 0;
+    const firstIndex = 0;
+    const isFirstSlide = this.counter <= firstIndex;
     this.moveToBesideSlide(isFirstSlide, false);
   }
 
@@ -44,14 +46,15 @@ class Slider {
   }
 
   firstToLastSlide() {
-    const isFakeLastSlide = query.slideItem[this.counter].id === "last-clone";
-    const isRealLastSlide = query.slideItem.length - 2;
+    const lastIndexWithoutFake = 2;
+    const isFakeLastSlide = query.slideItems[this.counter].id === "last-clone";
+    const isRealLastSlide = query.slideItems.length - lastIndexWithoutFake;
     this.moveToOppositeSlide(isFakeLastSlide, isRealLastSlide);
   }
 
   lastToFirstSlide() {
-    const isFakeFirstSlide = query.slideItem[this.counter].id === "first-clone";
-    const isRealFirstSlide = query.slideItem.length - this.counter;
+    const isFakeFirstSlide = query.slideItems[this.counter].id === "first-clone";
+    const isRealFirstSlide = query.slideItems.length - this.counter;
     this.moveToOppositeSlide(isFakeFirstSlide, isRealFirstSlide);
   }
 
@@ -99,4 +102,10 @@ function slideAutoEventHandler() {
   });
 }
 
-export { slideLoadEventHandler, slideNextBtnClickEventHandler, slidePrevBtnClickEventHandler, slideTransitionendEventHandler, slideAutoEventHandler };
+export {
+  slideLoadEventHandler,
+  slideNextBtnClickEventHandler,
+  slidePrevBtnClickEventHandler,
+  slideTransitionendEventHandler,
+  slideAutoEventHandler,
+};

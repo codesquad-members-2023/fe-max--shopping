@@ -1,5 +1,5 @@
 import { query, opacity, zIndex } from "../constant.js";
-import { dim, undim } from "./dim.js";
+import { dim, undim } from "../common/dim.js";
 import { setOpacity, setZindex } from "../util/set-style.js";
 
 function hideAddressModal() {
