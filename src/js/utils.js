@@ -16,4 +16,22 @@ const removeDimmedClass = nodeID => {
   $(`#${nodeID}`).classList.remove('dimmed');
 };
 
-export { $, addHiddenClass, removeHiddenClass, addDimmedClass, removeDimmedClass };
+const saveAtLocalStorage = (key, value) => {
+  const storage = window.localStorage;
+  storage.setItem(key, value);
+};
+
+const loadAtLocalStorage = key => {
+  const storage = window.localStorage;
+  storage.getItem(key);
+};
+
+export {
+  $,
+  addHiddenClass,
+  removeHiddenClass,
+  addDimmedClass,
+  removeDimmedClass,
+  saveAtLocalStorage,
+  loadAtLocalStorage,
+};
