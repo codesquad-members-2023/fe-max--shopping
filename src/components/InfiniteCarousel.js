@@ -8,8 +8,8 @@ template.innerHTML = `
       <img src="src/assets/icons/btn-right.svg" alt="Next Button" />
     </button>
   </div>
-
-  <div class="slides-container"></div>
+  
+  <ul class="slides-container"></ul>
 
   <link rel="stylesheet" href="src/styles/components/InfiniteCarousel.css">
 `;
@@ -21,12 +21,16 @@ class InfiniteCarousel extends HTMLElement {
     shadowRoot.append(template.content.cloneNode(true));
     this.intervalId = null;
     this.slideAfterMs = 10000;
+
+    this.btns = this.shadowRoot.querySelectorAll(".slide-btn");
+    this.slidesUl = this.shadowRoot.querySelector(".slides-container");
   }
 
-  connectedCallback() {
-    const btns = this.shadowRoot.querySelectorAll(".slide-btn");
+  async connectedCallback() {
+    const heroImgsData = await this.fetchHeroImgs();
+    this.setImages(JSON.stringify(heroImgsData));
 
-    btns.forEach((btn) => {
+    this.btns.forEach((btn) => {
       btn.addEventListener("click", () => {
         this.moveSlide(btn.dataset.type);
         this.automaticSlideAfter(this.slideAfterMs);
@@ -34,6 +38,15 @@ class InfiniteCarousel extends HTMLElement {
     });
 
     this.automaticSlideAfter(this.slideAfterMs);
+  }
+
+  setImages(newVal) {
+    this.dataset.imgs = newVal;
+  }
+
+  async fetchHeroImgs() {
+    const res = await fetch(`http://127.0.0.1:3000/hero-images`);
+    return await res.json();
   }
 
   automaticSlideAfter(ms) {
@@ -46,10 +59,9 @@ class InfiniteCarousel extends HTMLElement {
   moveSlide(btnType) {
     const offset = btnType === "next" ? 1 : -1;
 
-    const slidesUl = this.shadowRoot.querySelector("ul");
-    const slideLis = [...slidesUl.children];
+    const slideLis = [...this.slidesUl.children];
 
-    const activeSlide = slidesUl.querySelector("[data-active]");
+    const activeSlide = this.slidesUl.querySelector("[data-active]");
 
     let newIdx = slideLis.indexOf(activeSlide) + offset;
     if (newIdx >= slideLis.length) newIdx = 0;
@@ -70,16 +82,13 @@ class InfiniteCarousel extends HTMLElement {
   }
 
   generateSlides(imgs) {
-    const slidesContainer = this.shadowRoot.querySelector(".slides-container");
-    const ul = document.createElement("ul");
     imgs.forEach((img, idx) => {
       const li = document.createElement("li");
       if (idx === 0) li.dataset.active = true;
 
       li.appendChild(this.generateSlide(img));
-      ul.appendChild(li);
+      this.slidesUl.appendChild(li);
     });
-    slidesContainer.appendChild(ul);
   }
 
   generateSlide({ imgSrc, imgAlt }) {

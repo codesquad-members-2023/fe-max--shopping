@@ -1,15 +1,10 @@
-import { heroImgs, cards } from "../data/index.js";
-
 const template = document.createElement("template");
 template.innerHTML = `
   <top-header></top-header>
 
   <main>
-    <infinite-carousel data-imgs='${JSON.stringify(
-      heroImgs
-    )}'></infinite-carousel>
-    
-    <cards-panel data-cards='${JSON.stringify(cards)}'></cards-panel>
+    <infinite-carousel></infinite-carousel>
+    <cards-panel></cards-panel>
   </main>
 
   <main-footer></main-footer>
@@ -22,6 +17,17 @@ class MainPage extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
+    this.cardsPanel = this.shadowRoot.querySelector("cards-panel");
+  }
+
+  async connectedCallback() {
+    const cardsData = await this.fetchCards();
+    this.cardsPanel.setCards(JSON.stringify(cardsData));
+  }
+
+  async fetchCards() {
+    const res = await fetch(`http://127.0.0.1:3000/cards-panel`);
+    return await res.json();
   }
 }
 
