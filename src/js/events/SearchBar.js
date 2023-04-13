@@ -12,19 +12,19 @@ export class SearchBar {
   constructor() {
     this.termsType = { suggest: [], history: [], auto: [] };
     this.templateGenerator = new TemplateGenerator();
-    this.searchLayer = document.querySelector('.search-layer');
+    this.searchPanel = document.querySelector('.search-panel');
   }
 
   initSearchBar() {
     searchBarInput.addEventListener('focus', () => {
-      this.showSuggestions();
+      this.renderSuggestions();
     });
     searchBarInput.addEventListener('keydown', e => {
-      this.showAutoComplete(e);
+      this.renderAutoComplete(e);
       this.storeInputTerms(e);
     });
     searchBarInput.addEventListener('blur', () => {
-      this.toggleSearchPanel(false)
+      this.toggleSearchPanel(false);
     });
   }
 
@@ -52,24 +52,26 @@ export class SearchBar {
       }
     }
   }
-  showHistoryAndSuggestions() {
-    this.termsType.history = store.getLocalStorage().reverse().slice(0, 5);
+  renderHistoryAndSuggestions() {
+    // this.termsType.history = store.getLocalStorage().reverse().slice(0, 5);
+    this.setTermsType('history', store.getLocalStorage().reverse().slice(0, 5));
     const template =
       this.templateGenerator.generateHistoryAndSuggestionsTemplate(
         this.termsType
       );
-    this.searchLayer.innerHTML = template;
+    this.searchPanel.innerHTML = template;
   }
 
-  async showSuggestions() {
-    this.termsType.suggest = await this.fetchSuggestions();
+  async renderSuggestions() {
+    // this.termsType.suggest = await this.fetchSuggestions();
+    this.setTermsType('suggest', await this.fetchSuggestions());
     if (!localStorage.length) {
       this.renderSearchBarPanel();
     } else {
-      this.showHistoryAndSuggestions();
+      this.renderHistoryAndSuggestions();
     }
     // this.handleModal();
-    this.toggleSearchPanel(true)
+    this.toggleSearchPanel(true);
   }
 
   async fetchSuggestions() {
@@ -78,56 +80,63 @@ export class SearchBar {
     return suggestedSearchTerms;
   }
 
-  async showAutoComplete(e) {
-    console.log(searchBarInput.value);
-    const input = searchBarInput.value.trim();
-    if (!input) {
+  async renderAutoComplete() {
+    if (!this.getInputValue()) {
       return;
     }
-    const apiClient = new APIClient(input);
+    const apiClient = new APIClient(this.getInputValue());
     const autoCompleteTerms = await apiClient.getApiData();
-    this.termsType.auto = autoCompleteTerms;
+    // this.termsType.auto = autoCompleteTerms;
+    this.setTermsType('auto', autoCompleteTerms);
 
     const template = this.templateGenerator.generateAutoCompleteTemplate(
       this.termsType.auto,
-      input
+      this.getInputValue()
     );
 
-    this.searchLayer.innerHTML = template;
+    this.searchPanel.innerHTML = template;
+  }
+
+  getInputValue() {
+    const input = searchBarInput.value.trim();
+    return input;
+  }
+  setTermsType(type, terms) {
+    this.termsType[type] = terms;
   }
 
   renderSearchBarPanel() {
-    this.searchLayer.innerHTML = '';
+    this.searchPanel.innerHTML = '';
     const template = this.templateGenerator.generateSuggestTemplate(
       this.termsType.suggest
     );
-    this.searchLayer.insertAdjacentHTML('beforeend', template);
+    this.searchPanel.insertAdjacentHTML('beforeend', template);
   }
 
   handleModal() {
     modalState.searchModal = true;
-    this.searchLayer.classList.remove('hidden');
+    this.searchPanel.classList.remove('hidden');
     handleDimming();
   }
   // removeModal(e) {
   //   if (!e.target.closest('.main-search-bar')) {
   //     modalState.searchModal = false;
   //     handleDimming();
-  //     this.searchLayer.classList.add('hidden');
+  //     this.searchPanel.classList.add('hidden');
   //   }
   // }
   removeModal() {
     modalState.searchModal = false;
-    this.searchLayer.classList.add('hidden');
+    this.searchPanel.classList.add('hidden');
     handleDimming();
   }
 
   toggleSearchPanel(isModalOpen) {
     modalState.searchModal = isModalOpen;
     if (isModalOpen) {
-      this.searchLayer.classList.remove('hidden');
+      this.searchPanel.classList.remove('hidden');
     } else {
-      this.searchLayer.classList.add('hidden');
+      this.searchPanel.classList.add('hidden');
     }
     handleDimming();
   }
