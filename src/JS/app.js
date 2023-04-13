@@ -1,6 +1,6 @@
-import { searchbarSuggestEvent } from './searchbar/searchbar.js';
+import { focusInputShowAndHideLayer } from './searchbar/searchbar.js';
 
 function init() {
-  searchbarSuggestEvent();
+  focusInputShowAndHideLayer();
 }
 window.addEventListener('DOMContentLoaded', init());

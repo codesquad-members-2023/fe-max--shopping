@@ -1,22 +1,6 @@
-import { $, $All, dim, dimOff, showLayer, hideLayer } from '../utils.js';
+import { selectEventShowLayer, selectEventHideLayer } from '../utils.js';
 
-export function searchbarSuggestEvent() {
-  const searchBarInput = $('.searchbar__input');
-  inputFocusEvent();
-  inputBlurEvent();
-}
-
-function inputFocusEvent() {
-  const searchBarInput = $('.searchbar__input');
-  searchBarInput.addEventListener('focus', function (e) {
-    showLayer('.searchbar__suggest');
-    dim('main');
-  });
-}
-function inputBlurEvent() {
-  const searchBarInput = $('.searchbar__input');
-  searchBarInput.addEventListener('blur', function (e) {
-    hideLayer('.searchbar__suggest');
-    dimOff('main');
-  });
+export function focusInputShowAndHideLayer() {
+  selectEventShowLayer('.searchbar__input', 'focus', '.searchbar__suggest');
+  selectEventHideLayer('click', '.searchbar__suggest');
 }
