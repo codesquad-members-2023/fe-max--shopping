@@ -61,12 +61,24 @@ function getAllSubstrings(str) {
   return substrings;
 }
 
+function mapStringify(map) {
+  return JSON.stringify([...map.entries()].map(([name, set]) => [name, [...set]]))
+}
+
+function parseMap(str) {
+  return new Map(JSON.parse(str).map(([name, setArr]) => [name, new Set(setArr)]))
+}
+
 function generateSearchHistory() {
   const MAX_KEYWORD_COUNT = 10;
-  const history = [];
-  const historyPushed = {};
-  const log = [];
-  const map = new Map();
+
+  let localData = localStorage.getItem("searchHistory");
+  if (localData) localData = JSON.parse(localData);
+
+  const history = localData ? localData.history : [];
+  const historyPushed = localData ? localData.historyPushed : {};
+  const log = localData ? localData.log : [];
+  const map = localData ? parseMap(localData.map) : new Map();
 
   function _addKeyword(keyword) {
     keyword = keyword.trim();
@@ -84,6 +96,13 @@ function generateSearchHistory() {
         ? map.get(str).add(keyword)
         : map.set(str, new Set([keyword]));
     });
+
+    localStorage.setItem("searchHistory", JSON.stringify({
+      history,
+      historyPushed,
+      log,
+      map: mapStringify(map)
+    }))
   }
 
   function _getLogKeywords() {
@@ -122,8 +141,13 @@ function generateSearchHistory() {
   };
 }
 
-const { _addKeyword, _getLogKeywords, _delLogKeyword,  _getRandomSearchKeywords, _getAutocompleteKeywords } =
-  generateSearchHistory();
+const {
+  _addKeyword,
+  _getLogKeywords,
+  _delLogKeyword,
+  _getRandomSearchKeywords,
+  _getAutocompleteKeywords,
+} = generateSearchHistory();
 
 export const addKeyword = _addKeyword;
 export const getLogKeywords = _getLogKeywords;

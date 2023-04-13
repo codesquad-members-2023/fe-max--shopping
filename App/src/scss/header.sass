@@ -133,13 +133,13 @@
 				width: 100%
 				height: calc(100% - 2px)
 				z-index: 1
+				transform: translateY(0)
+				transition: transform 300ms
 				background-color: var(--color-white)
 				position: absolute
 				top: 0
-				transform: translateY(calc(var(--y) * 100% - 6px))
-				transition: transform 300ms
-				transition-delay: calc(var(--y) * 10ms)
 				display: flex
+				transform: translateY(calc(var(--y) * 100% - 6px))
 				&:first-child
 					border-top-left-radius: 4px
 					border-top-right-radius: 4px
