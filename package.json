@@ -4,9 +4,10 @@
   "description": "Shopping site",
   "main": "index.js",
   "scripts": {
-    "build-css": "npx sass --watch src/style/scss/style.scss:src/style/css/style.css",
-    "start-server": "npx live-server",
-    "start": "npm-run-all -p build-css start-server",
+    "fake-api": "npx json-server --watch db.json",
+    "build-css": "sass --watch src/style/scss/style.scss:src/style/css/style.css",
+    "start-server": "live-server",
+    "start": "npm-run-all -p fake-api build-css start-server",
     "prestart": "npm i -D npm-run-all"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.2.1",
+    "json-server": "^0.17.3",
     "live-server": "^1.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.7",
