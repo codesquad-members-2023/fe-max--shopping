@@ -8,11 +8,55 @@ const searchBarInput = document.searchForm.searchBar;
 const searchPanel = document.querySelector('.search-panel');
 const ESC = 27;
 //
+class SearchHistoryManager {
+  constructor() {
+    this.history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  }
+
+  addSearch(value) {
+    if (!this.isDuplicate()) {
+      const newSearch = {
+        id: this.history.length,
+        value: value,
+      };
+      this.history.push(newSearch);
+      localStorage.setItem('searchHistory', JSON.stringify(this.history));
+    }
+  }
+
+  isDuplicate(value) {
+    return this.history.some(el => el.value === value);
+  }
+
+  static getHistory() {
+    return this.history;
+  }
+}
+class SearchUI {
+  constructor() {
+    this.searchHistoryManager = new SearchHistoryManager();
+  }
+
+  storeInputTerms(e) {
+
+    if (e.keyCode !== 13) return;
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      console.log("예스!");
+      const value = e.target.value.trim();
+
+      if (value) {
+        this.searchHistoryManager.addSearch(value);
+      }
+    }
+  }
+}
 
 export class SearchBar {
   constructor() {
     this.termsType = { suggest: [], history: [], auto: [] };
     this.templateGenerator = new TemplateGenerator();
+    this.searchUI = new SearchUI();
     this.searchPanel = document.querySelector('.search-panel');
   }
 
@@ -23,7 +67,8 @@ export class SearchBar {
 
     searchBarInput.addEventListener('keydown', e => {
       this.renderAutoComplete(e);
-      this.storeInputTerms(e);
+      this.searchUI.storeInputTerms(e);
+      // this.storeInputTerms(e);
     });
 
     searchBarInput.addEventListener('blur', () => {
@@ -54,38 +99,39 @@ export class SearchBar {
   //     }
   //   }
   // }
-  storeInputTerms(e) {
-    if (e.keyCode !== 13) return;
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      const value = e.target.value.trim();
+  //===============
+  // storeInputTerms(e) {
+  //   if (e.keyCode !== 13) return;
+  //   if (e.keyCode === 13) {
+  //     e.preventDefault();
+  //     const value = e.target.value.trim();
 
-      if (value) {
-        let history = this.getHistory();
-        this.termsType.history = history;
-        const newSearch = {
-          id: history.length,
-          value: value,
-        };
+  //     if (value) {
+  //       let history = this.getHistory();
+  //       this.termsType.history = history;
+  //       const newSearch = {
+  //         id: history.length,
+  //         value: value,
+  //       };
 
-        if (!this.isDuplicate(history, value)) {
-          history.push(newSearch);
-          this.storeHistory(history);
-        }
-      }
-    }
-  }
+  //       if (!this.isDuplicate(history, value)) {
+  //         history.push(newSearch);
+  //         this.storeHistory(history);
+  //       }
+  //     }
+  //   }
+  // }
 
-  getHistory() {
-    return JSON.parse(localStorage.getItem('searchHistory')) || [];
-  }
-  storeHistory(history) {
-    localStorage.setItem('searchHistory', JSON.stringify(history));
-  }
+  // getHistory() {
+  //   return JSON.parse(localStorage.getItem('searchHistory')) || [];
+  // }
+  // storeHistory(history) {
+  //   localStorage.setItem('searchHistory', JSON.stringify(history));
+  // }
 
-  isDuplicate(history, value) {
-    return history.some(el => el.value === value);
-  }
+  // isDuplicate(history, value) {
+  //   return history.some(el => el.value === value);
+  // }
 
   async fetchTerms(searchPrefix) {
     const apiClient = new APIClient(searchPrefix);
