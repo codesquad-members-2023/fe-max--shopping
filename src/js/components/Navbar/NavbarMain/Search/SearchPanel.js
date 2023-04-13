@@ -1,11 +1,27 @@
+import { model } from '../../../../domain/model.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor({ recommend }) {
+  constructor({ recommend, history }) {
     super('search-panel', 'UL');
     this.recommendWords = recommend;
+    this.history = history;
     this.init();
     this.selectedItem = this.node.firstElementChild;
+  }
+
+  initEventHandlers() {
+    this.node.addEventListener('click', ({ target }) => {
+      if (target.matches('.delete-btn')) {
+        this.deleteItem(target);
+      }
+    });
+  }
+
+  deleteItem(target) {
+    const targetItem = target.closest('li');
+    model.deleteSearchWord(targetItem.dataset.id);
+    targetItem.remove();
   }
 
   onKeyDown(key) {
@@ -38,8 +54,23 @@ export class SearchPanel extends Component {
     this.node.classList.add('active');
   }
 
+  close() {
+    this.node.classList.remove('active');
+  }
+
   getTemplate() {
-    return this.getAllRecommendTemplate(this.recommendWords);
+    const historyView = this.getAllHistoryTemplate(this.history);
+    const recommendView = this.getAllRecommendTemplate(this.recommendWords);
+    return historyView + recommendView;
+  }
+
+  getAllHistoryTemplate(history) {
+    const historyWords = Object.entries(history).slice(-5);
+    const historyTemplate = historyWords.reduce((acc, cur) => {
+      return acc + this.getHistoryTemplate(cur[0], cur[1]);
+    }, '');
+
+    return historyTemplate;
   }
 
   getAllRecommendTemplate(recommendWords) {
@@ -58,9 +89,9 @@ export class SearchPanel extends Component {
     `;
   }
 
-  getHistoryTemplate(word) {
+  getHistoryTemplate(id, word) {
     return `
-<li class="history">
+<li data-id="${id}" class="history">
   <a href="">${word}</a><button class="delete-btn"></button>
 </li>
     `;

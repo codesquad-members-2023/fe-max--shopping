@@ -6,6 +6,10 @@ export default class SearchBar extends Component {
     this.init();
   }
 
+  clearInputValue() {
+    this.$('input').value = '';
+  }
+
   setInputValue(value) {
     this.$('input').value = value;
   }
@@ -16,7 +20,7 @@ export default class SearchBar extends Component {
 
   getTemplate() {
     return `
-<input type="search" class="input" placeholder="검색 Amazon" />
+<input type="search" name="search" placeholder="검색 Amazon" />
 <button type="submit" class="submit-btn"></button>
     `;
   }
