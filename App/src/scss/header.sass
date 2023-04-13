@@ -137,6 +137,8 @@
 				position: absolute
 				top: 0
 				transform: translateY(calc(var(--y) * 100% - 6px))
+				transition: transform 300ms
+				transition-delay: calc(var(--y) * 10ms)
 				display: flex
 				&:first-child
 					border-top-left-radius: 4px
