@@ -2,14 +2,14 @@ import { SearchLayer } from './SearchLayer.js';
 import { $ } from '../../utils/domUtils.js';
 
 export class SearchBar {
-  constructor(dataManager) {
-    this.init(dataManager);
+  constructor() {
+    this.init();
     this.setEventHandlers();
   }
   
-  init(dataManager) {
+  init() {
     this.element = $('.search-bar');
-    this.dropdown = new SearchLayer(dataManager);
+    this.dropdown = new SearchLayer();
   }
 
   setEventHandlers() {

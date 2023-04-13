@@ -3,13 +3,13 @@ import { closeAllLayers, openDimmedLayer } from '../modal.js';
 import { SearchResultList } from './SearchResultList.js';
 
 export class SearchLayer {
-  constructor(dataManager) {
-    this.init(dataManager);
+  constructor() {
+    this.init();
   }
 
-  init(dataManager) {
+  init() {
     this.element = $('.search-layer');
-    this.resultList = new SearchResultList(dataManager);
+    this.resultList = new SearchResultList();
   }
 
   async open() {
