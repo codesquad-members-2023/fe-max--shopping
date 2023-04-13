@@ -19,8 +19,12 @@ export class SearchHistoryManager {
         id: this.history.length,
         value: value,
       };
-      this.history.push(newSearch);
-      localStorage.setItem('searchHistory', JSON.stringify(this.history));
+      // this.history.push(newSearch);
+
+      let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+      history.push(newSearch);
+      // localStorage.setItem('searchHistory', JSON.stringify(this.history));
+      localStorage.setItem('searchHistory', JSON.stringify(history));
     }
   }
 
@@ -28,12 +32,13 @@ export class SearchHistoryManager {
     return this.history.some(el => el.value === value);
   }
 
-  static getHistory() {
+  getHistory() {
     return this.history;
   }
 }
 export class SearchUI {
   constructor() {
+    this.activeIndex = -1;
     this.searchHistoryManager = new SearchHistoryManager();
   }
 
@@ -46,6 +51,57 @@ export class SearchUI {
       if (value) {
         this.searchHistoryManager.addSearch(value);
       }
+    }
+  }
+
+  deleteSearchTerm(e) {
+    if (e.target.nodeName === 'IMG') {
+      const searchTerm = e.target.closest('li').innerText;
+      const searchHistory =
+        JSON.parse(localStorage.getItem('searchHistory')) || [];
+      const updatedSearchHistory = searchHistory.filter(
+        item => item.value !== searchTerm
+      );
+
+      localStorage.setItem(
+        'searchHistory',
+        JSON.stringify(updatedSearchHistory)
+      );
+
+      return true;
+    }
+  }
+
+  setActiveClass() {
+    const searchResults = searchPanel.querySelectorAll('li');
+    if (this.activeIndex >= searchResults.length) {
+      this.activeIndex = 0;
+    } else if (this.activeIndex < 0) {
+      this.activeIndex = searchResults.length - 1;
+    }
+    searchResults.forEach((result, index) => {
+      if (index === this.activeIndex) {
+        result.classList.add('active');
+        result.style.backgroundColor = 'yellow'; // 배경색 변경
+      } else {
+        result.classList.remove('active');
+        result.style.backgroundColor = ''; // 배경색 초기화
+      }
+    });
+  }
+
+  keyboardNavigationHandler(e) {
+    if (e.key === 'ArrowDown') {
+      this.activeIndex++;
+      this.setActiveClass();
+    } else if (e.key === 'ArrowUp') {
+      this.activeIndex--;
+      this.setActiveClass();
+    } 
+    else {
+      // 검색어 입력 중일 때
+      this.activeIndex = -1;
+      // getResults(searchBarInput.value);
     }
   }
 }
@@ -65,36 +121,50 @@ export class SearchBar {
   }
 
   initSearchBar() {
-    searchBarInput.addEventListener('focus', () => {
-      this.renderSuggestions();
+    searchBarInput.addEventListener('click', e => {
+      this.renderSuggestions(e);
+    });
+    document.addEventListener('click', e => {
+      this.toggleSearchPanel(e, false);
     });
 
     searchBarInput.addEventListener('keydown', e => {
       this.renderAutoComplete(e);
       this.searchUI.storeInputTerms(e);
     });
-
-    searchBarInput.addEventListener('blur', () => {
-      this.toggleSearchPanel(false);
+    searchBarInput.addEventListener('keyup', e => {
+      this.searchUI.keyboardNavigationHandler(e);
+    });
+    searchPanel.addEventListener('click', e => {
+      this.searchUI.deleteSearchTerm(e);
+      e.stopPropagation();
+      this.renderHistoryAndSuggestions();
     });
   }
 
-  // async fetchTerms(searchPrefix) {
-  //   const apiClient = new APIClient(searchPrefix);
-  //   const fetchedTerms = await apiClient.getApiData();
-  //   return fetchedTerms;
-  // }
+  toggleSearchPanel(e, isPanelOpen) {
+    layerOpenState.searchPanel = isPanelOpen;
+    if (isPanelOpen) {
+      searchPanel.classList.remove('hidden');
+      handleDimming();
+    } else if (!e.target.closest('.main-search-bar')) {
+      searchPanel.classList.add('hidden');
+      handleDimming();
+    }
+  }
 
-  async renderSuggestions() {
+  async renderSuggestions(e) {
     const prefix = getRandomLetter();
-    // this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
-    this.setTermsType('suggest', await this.searchTermFetcher.fetchTerms(prefix));
+    this.setTermsType(
+      'suggest',
+      await this.searchTermFetcher.fetchTerms(prefix)
+    );
     if (!localStorage.length) {
       this.renderSuggestionsOnly();
     } else {
       this.renderHistoryAndSuggestions();
     }
-    this.toggleSearchPanel(true);
+    this.toggleSearchPanel(e, true);
   }
 
   renderHistoryAndSuggestions() {
@@ -118,8 +188,10 @@ export class SearchBar {
     if (!inputValue) {
       return;
     }
-    this.setTermsType('auto', await this.searchTermFetcher.fetchTerms(inputValue));
-    // this.setTermsType('auto', await this.fetchTerms(inputValue));
+    this.setTermsType(
+      'auto',
+      await this.searchTermFetcher.fetchTerms(inputValue)
+    );
     const template = this.templateGenerator.generateAutoComplete(
       this.termsType.auto,
       inputValue
@@ -134,16 +206,6 @@ export class SearchBar {
 
   setTermsType(type, terms) {
     this.termsType[type] = terms;
-  }
-
-  toggleSearchPanel(isPanelOpen) {
-    layerOpenState.searchPanel = isPanelOpen;
-    if (isPanelOpen) {
-      searchPanel.classList.remove('hidden');
-    } else {
-      searchPanel.classList.add('hidden');
-    }
-    handleDimming();
   }
 }
 
@@ -170,7 +232,7 @@ export class TemplateGenerator {
     return (HistoryTemplate += suggestionTemplate);
   }
   generateAutoComplete(terms, input) {
-    const AutoCompleteTemplate = terms.reduce((acc, cur) => {
+    const AutoCompleteTemplate = terms.reduce((acc, cur, i) => {
       const highlighted = new RegExp(`\\b${input}`, 'i');
       const match = highlighted.exec(cur);
       let highlightedText = cur;
