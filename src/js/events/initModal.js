@@ -1,6 +1,6 @@
 import { $ } from '../utils/dom.js';
 import { delay } from '../utils/delay.js';
-import { handleDimming, modalState } from '../utils/dim.js';
+import { handleDimming, layerOpenState } from '../utils/dim.js';
 
 const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
@@ -74,19 +74,19 @@ function handleModal(e) {
   if (e.target === mainLogin) {
     loginModal.insertAdjacentHTML('beforeend', expandedLoginModalTemplate);
     if (loginModal) {
-      modalState.on = true;
+      layerOpenState.modal = true;
       handleDimming();
     }
   }
   if (e.target === mainShippingAddress) {
     e.target.insertAdjacentHTML('beforeend', shippingModalTemplate);
-    modalState.on = true;
+    layerOpenState.modal = true;
     handleDimming();
   }
 }
 
 function removeModal(e) {
-  modalState.on = false;
+  layerOpenState.modal = false;
   handleDimming();
 
   if (e.target === mainLogin) {
