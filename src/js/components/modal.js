@@ -18,15 +18,19 @@ function openLoginModal() {
 function openExpandedLoginModal() {
   removeHiddenClass($('.modal-login'));
   removeHiddenClass($('.modal-login__details'));
-  removeHiddenClass($('.modal-cover'));
+  openDimmedCover();
 }
 
 function openAddressModal() {
   removeHiddenClass($('.modal-address'));
-  removeHiddenClass($('.modal-cover'));
+  openDimmedCover();
 }
 
-async function closeAllLayers() {
+function openDimmedCover() {
+  removeHiddenClass($('.dimmed-layer'));
+}
+
+export function closeAllLayers() {
   const layers = $All('.layer');
   for (const layer of layers) {
     addHiddenClassIfAbsent(layer);

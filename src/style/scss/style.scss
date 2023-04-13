@@ -2,7 +2,7 @@
 // @import url('/src/style/css/values.css');
 @use 'reset';
 @use 'values';
-@use 'main';
+@use 'main-content';
 @use 'hero';
 
 @mixin flex-row($justify: flex-start, $align: center) {
@@ -67,47 +67,26 @@ button {
     gap: 24px;
     height: 56px;
     background: #10141a;
-  
+
     .label {
       @include flex-row;
       @include bold-sm;
     }
-  
+
     .content {
       @include bold-md;
     }
   }
 
-  &__address, &__login {
+  &__address,
+  &__login {
     height: 100%;
     position: relative;
   }
 
   &__search {
-    @include flex-row;
-    padding-left: 12px;
-    gap: 12px;
-    height: 40px;
-    background: #ffffff;
-    border-radius: 4px;
+    position: relative;
     flex-grow: 1;
-
-    input {
-      flex-grow: 1;
-
-      &::placeholder {
-        @include body-md;
-      }
-    }
-
-    button {
-      @include flex-row(center);
-      padding: 0px;
-      width: 40px;
-      height: 40px;
-      background: #fcb057;
-      border-radius: 0px 4px 4px 0px;
-    }
   }
 
   &__nation {
@@ -128,7 +107,51 @@ button {
   }
 }
 
-.address-container, .login-container {
+.search-bar__wrapper {
+  @include flex-row;
+  padding-left: 12px;
+  gap: 12px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 4px;
+  flex-grow: 1;
+
+  button {
+    @include flex-row(center);
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    background: #fcb057;
+    border-radius: 0px 4px 4px 0px;
+  }
+}
+
+.search {
+  &-bar {
+    flex-grow: 1;
+
+    &::placeholder {
+      @include body-md;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-layer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    z-index: 10;
+  }
+}
+
+.address-container,
+.login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

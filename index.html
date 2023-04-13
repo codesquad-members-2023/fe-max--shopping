@@ -33,10 +33,13 @@
             </div>
           </div>
         </section>
-        <form class="nav-bar__search">
-          <input type="text" placeholder="검색 Amazon" name="search" />
-          <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
-        </form>
+        <section class="nav-bar__search">
+          <form class="search-bar__wrapper">
+            <input type="text" class="search-bar" placeholder="검색 Amazon" name="search" />
+            <button type="submit"><img src="./src/asset/img/search.svg" alt="돋보기" /></button>
+          </form>
+          <div class="search-layer hidden"></div>
+        </section>
         <section class="nav-bar__nation">
           <img src="./src/asset/img/flag_of_South_Korea.svg" alt="국기" />
           <p class="content">KO</p>
@@ -130,7 +133,7 @@
           </button>
         </ul>
       </nav>
-      <div class="modal-cover layer hidden"></div>
+      <div class="dimmed-layer layer hidden"></div>
     </div>
     <main>
       <div class="hero">
