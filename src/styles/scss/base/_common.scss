@@ -22,6 +22,36 @@
 @mixin boldXl {
   font: $boldXl;
 }
+@mixin searchBarUl {
+  position: absolute;
+  top: 49px;
+  left: 207px;
+  flex-direction: column;
+  min-width: 300px;
+  width: calc(100% - 532px);
+  background: $color-white;
+  border: 1px solid $color-black;
+  border-radius: 4px;
+  flex-grow: 2;
+  z-index: 100;
+}
+@mixin searchBarLi {
+  &:focus {
+    width: 100%;
+    background: $color-gray-100;
+    outline: none;
+  }
+  @include bodyMd;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 4px;
+  width: 100%;
+  height: 37px;
+  flex-grow: 1;
+  color: $color-black;
+}
 //font-family
 $font-family: 'Pretendard Variable', Pretendard, -apple-system,
   BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',

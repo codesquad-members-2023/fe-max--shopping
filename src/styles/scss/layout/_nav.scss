@@ -1,5 +1,4 @@
 @use '../base' as *;
-@use '../base/common';
 nav {
   flex-direction: column;
   width: 100%;
@@ -59,7 +58,7 @@ nav {
       height: 12px;
     }
     .address__label--text {
-      @include common.boldSm;
+      @include boldSm;
       color: $color-gray-400;
     }
   }
@@ -98,41 +97,15 @@ nav {
     border: none;
     cursor: pointer;
   }
-  ul {
-    display: none;
-  }
   .searchbar__suggest {
-    position: absolute;
-    top: 49px;
-    left: 207px;
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-    width: calc(100% - 532px);
-    background: $color-white;
-    border: 1px solid $color-black;
-    border-radius: 4px;
-    flex-grow: 2;
-    z-index: 1000;
+    display: none;
+    @include searchBarUl;
+    .searchbar__words-searched {
+      justify-content: space-between;
+      color: $color-secondary-Purple;
+    }
     li {
-      &:focus {
-        width: 100%;
-        background: $color-gray-100;
-        outline: none;
-      }
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 8px 12px;
-      gap: 4px;
-      width: 100%;
-      height: 37px;
-      flex-grow: 1;
-      span {
-        @include bodyMd;
-        color: $color-black;
-        align-items: center;
-      }
+      @include searchBarLi;
       img {
         padding: 0;
         width: 16px;
@@ -140,7 +113,7 @@ nav {
       }
     }
   }
-  #searchbar__autocomplete {
+  .searchbar__autocomplete {
     // @include searchBarUl;
     @include bodyMd;
     color: $color-black;
@@ -378,14 +351,17 @@ nav {
     cursor: pointer;
   }
 }
-.dim {
-  top: px;
+main {
   width: 100%;
-  height: calc(100%);
-  position: fixed;
+  height: 100%;
+}
+.dim {
+  width: 100%;
+  height: 100%;
+  position: absolute;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 99;
 }
 @keyframes login-popup {
   0% {
