@@ -1,7 +1,7 @@
 import { $ } from '../utils/dom.js';
 import { APIClient } from './api.js';
 import { getRandomLetter } from '../utils/pickPrefix.js';
-import { handleDimming, modalState } from '../utils/dim.js';
+import { handleDimming, layerOpenState } from '../utils/dim.js';
 import { store } from './store.js';
 
 const searchBarInput = document.searchForm.searchBar;
@@ -53,7 +53,6 @@ export class SearchBar {
     }
   }
   renderHistoryAndSuggestions() {
-    // this.termsType.history = store.getLocalStorage().reverse().slice(0, 5);
     this.setTermsType('history', store.getLocalStorage().reverse().slice(0, 5));
     const template =
       this.templateGenerator.generateHistoryAndSuggestionsTemplate(
@@ -63,31 +62,29 @@ export class SearchBar {
   }
 
   async renderSuggestions() {
-    // this.termsType.suggest = await this.fetchSuggestions();
-    this.setTermsType('suggest', await this.fetchSuggestions());
+    this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
     if (!localStorage.length) {
       this.renderSearchBarPanel();
     } else {
       this.renderHistoryAndSuggestions();
     }
-    // this.handleModal();
     this.toggleSearchPanel(true);
   }
 
-  async fetchSuggestions() {
-    const apiClient = new APIClient(getRandomLetter());
-    const suggestedSearchTerms = await apiClient.getApiData();
-    return suggestedSearchTerms;
+  async fetchTerms(searchPrefix) {
+    const apiClient = new APIClient(searchPrefix);
+    const fetchedTerms = await apiClient.getApiData();
+    return fetchedTerms;
   }
 
   async renderAutoComplete() {
     if (!this.getInputValue()) {
       return;
     }
-    const apiClient = new APIClient(this.getInputValue());
-    const autoCompleteTerms = await apiClient.getApiData();
-    // this.termsType.auto = autoCompleteTerms;
-    this.setTermsType('auto', autoCompleteTerms);
+    
+    // const apiClient = new APIClient(this.getInputValue());
+    // const autoCompleteTerms = await apiClient.getApiData();
+    this.setTermsType('auto', await this.fetchTerms(this.getInputValue()));
 
     const template = this.templateGenerator.generateAutoCompleteTemplate(
       this.termsType.auto,
@@ -113,27 +110,9 @@ export class SearchBar {
     this.searchPanel.insertAdjacentHTML('beforeend', template);
   }
 
-  handleModal() {
-    modalState.searchModal = true;
-    this.searchPanel.classList.remove('hidden');
-    handleDimming();
-  }
-  // removeModal(e) {
-  //   if (!e.target.closest('.main-search-bar')) {
-  //     modalState.searchModal = false;
-  //     handleDimming();
-  //     this.searchPanel.classList.add('hidden');
-  //   }
-  // }
-  removeModal() {
-    modalState.searchModal = false;
-    this.searchPanel.classList.add('hidden');
-    handleDimming();
-  }
-
-  toggleSearchPanel(isModalOpen) {
-    modalState.searchModal = isModalOpen;
-    if (isModalOpen) {
+  toggleSearchPanel(isPanelOpen) {
+    layerOpenState.searchPanel = isPanelOpen;
+    if (isPanelOpen) {
       this.searchPanel.classList.remove('hidden');
     } else {
       this.searchPanel.classList.add('hidden');
@@ -146,6 +125,7 @@ export class TemplateGenerator {
   constructor() {}
 
   generateSuggestTemplate(terms) {
+    console.log(terms)
     const suggestListTemplate = terms.reduce((acc, cur) => {
       return (acc += `<li class="suggestion search-list">
         <img src="./src/images/arrow-top-right.svg" alt="이동">
