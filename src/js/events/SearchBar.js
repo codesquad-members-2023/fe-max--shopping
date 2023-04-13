@@ -5,6 +5,7 @@ import { handleDimming, layerOpenState } from '../utils/dim.js';
 import { store } from './store.js';
 
 const searchBarInput = document.searchForm.searchBar;
+const searchPanel = document.querySelector('.search-panel');
 const ESC = 27;
 //
 
@@ -19,15 +20,40 @@ export class SearchBar {
     searchBarInput.addEventListener('focus', () => {
       this.renderSuggestions();
     });
+
     searchBarInput.addEventListener('keydown', e => {
       this.renderAutoComplete(e);
       this.storeInputTerms(e);
     });
+
     searchBarInput.addEventListener('blur', () => {
       this.toggleSearchPanel(false);
     });
   }
 
+  // storeInputTerms(e) {
+  //   if (e.keyCode !== 13) return;
+  //   if (e.keyCode === 13) {
+  //     e.preventDefault();
+  //     const value = e.target.value.trim();
+
+  //     if (value) {
+  //       let history = this.termsType.history;
+  //       history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  //       const newSearch = {
+  //         id: history.length,
+  //         value: value,
+  //       };
+
+  //       const isDuplicate = history.some(el => el.value === value);
+  //       if (!isDuplicate) {
+  //         history.push(newSearch);
+  //         localStorage.setItem('searchHistory', JSON.stringify(history));
+  //       }
+
+  //     }
+  //   }
+  // }
   storeInputTerms(e) {
     if (e.keyCode !== 13) return;
     if (e.keyCode === 13) {
@@ -35,23 +61,48 @@ export class SearchBar {
       const value = e.target.value.trim();
 
       if (value) {
-        let history = this.termsType.history;
-        history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        let history = this.getHistory();
+        this.termsType.history = history;
         const newSearch = {
           id: history.length,
           value: value,
         };
 
-        const isDuplicate = history.some(el => el.value === value);
-        if (!isDuplicate) {
+        if (!this.isDuplicate(history, value)) {
           history.push(newSearch);
-          localStorage.setItem('searchHistory', JSON.stringify(history));
+          this.storeHistory(history);
         }
-
-        console.log(history);
       }
     }
   }
+
+  getHistory() {
+    return JSON.parse(localStorage.getItem('searchHistory')) || [];
+  }
+  storeHistory(history) {
+    localStorage.setItem('searchHistory', JSON.stringify(history));
+  }
+
+  isDuplicate(history, value) {
+    return history.some(el => el.value === value);
+  }
+
+  async fetchTerms(searchPrefix) {
+    const apiClient = new APIClient(searchPrefix);
+    const fetchedTerms = await apiClient.getApiData();
+    return fetchedTerms;
+  }
+
+  async renderSuggestions() {
+    this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
+    if (!localStorage.length) {
+      this.renderSuggestionsOnly();
+    } else {
+      this.renderHistoryAndSuggestions();
+    }
+    this.toggleSearchPanel(true);
+  }
+
   renderHistoryAndSuggestions() {
     this.setTermsType('history', store.getLocalStorage().reverse().slice(0, 5));
     const template =
@@ -61,36 +112,24 @@ export class SearchBar {
     this.searchPanel.innerHTML = template;
   }
 
-  async renderSuggestions() {
-    this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
-    if (!localStorage.length) {
-      this.renderSearchBarPanel();
-    } else {
-      this.renderHistoryAndSuggestions();
-    }
-    this.toggleSearchPanel(true);
-  }
-
-  async fetchTerms(searchPrefix) {
-    const apiClient = new APIClient(searchPrefix);
-    const fetchedTerms = await apiClient.getApiData();
-    return fetchedTerms;
+  renderSuggestionsOnly() {
+    this.searchPanel.innerHTML = '';
+    const template = this.templateGenerator.generateSuggestTemplate(
+      this.termsType.suggest
+    );
+    this.searchPanel.insertAdjacentHTML('beforeend', template);
   }
 
   async renderAutoComplete() {
-    if (!this.getInputValue()) {
+    const inputValue = this.getInputValue();
+    if (!inputValue) {
       return;
     }
-    
-    // const apiClient = new APIClient(this.getInputValue());
-    // const autoCompleteTerms = await apiClient.getApiData();
-    this.setTermsType('auto', await this.fetchTerms(this.getInputValue()));
-
+    this.setTermsType('auto', await this.fetchTerms(inputValue));
     const template = this.templateGenerator.generateAutoCompleteTemplate(
       this.termsType.auto,
-      this.getInputValue()
+      inputValue
     );
-
     this.searchPanel.innerHTML = template;
   }
 
@@ -98,16 +137,9 @@ export class SearchBar {
     const input = searchBarInput.value.trim();
     return input;
   }
+
   setTermsType(type, terms) {
     this.termsType[type] = terms;
-  }
-
-  renderSearchBarPanel() {
-    this.searchPanel.innerHTML = '';
-    const template = this.templateGenerator.generateSuggestTemplate(
-      this.termsType.suggest
-    );
-    this.searchPanel.insertAdjacentHTML('beforeend', template);
   }
 
   toggleSearchPanel(isPanelOpen) {
@@ -122,10 +154,8 @@ export class SearchBar {
 }
 
 export class TemplateGenerator {
-  constructor() {}
-
   generateSuggestTemplate(terms) {
-    console.log(terms)
+    console.log(terms);
     const suggestListTemplate = terms.reduce((acc, cur) => {
       return (acc += `<li class="suggestion search-list">
         <img src="./src/images/arrow-top-right.svg" alt="이동">
