@@ -80,7 +80,7 @@
           width: 16px;
           height: 16px;
         }
-        .search-result {
+        .history {
           @include flex-row;
           justify-content: space-between;
           span {
@@ -90,6 +90,9 @@
         .suggestion {
           @include flex-row;
           gap: 7px;
+        }
+        mark{
+          color: $color-secondary-puple;
         }
       }
     }
