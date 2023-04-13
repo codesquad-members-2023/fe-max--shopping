@@ -21,14 +21,25 @@ export default class Search extends Component {
   }
 
   initEventHandlers() {
-    this.searchBar.node.addEventListener(
+    this.node.addEventListener(
       'click',
       debounce(() => this.showRecommendWords(), 300)
     );
-    this.searchBar.node.addEventListener(
+    this.node.addEventListener(
       'input',
       debounce(() => this.showAutoComplete(), 300)
     );
+    this.node.addEventListener('keydown', ({ key }) => this.handleKeyDown(key));
+  }
+
+  handleKeyDown(key) {
+    const isArrowDownKey = key === 'ArrowDown';
+    const isArrowUpKey = key === 'ArrowUp';
+
+    if (isArrowDownKey || isArrowUpKey) {
+      const value = this.searchPanel.onKeyDown(key);
+      this.setInputValue(value);
+    }
   }
 
   async showRecommendWords() {
@@ -69,6 +80,10 @@ export default class Search extends Component {
     this.searchPanel = new SearchPanel(state);
     this.$('.search-panel').replaceWith(this.searchPanel.node);
     this.searchPanel.open();
+  }
+
+  setInputValue(val) {
+    this.searchBar.setInputValue(val);
   }
 
   getInputValue() {

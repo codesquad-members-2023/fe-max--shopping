@@ -6,6 +6,10 @@ export default class SearchBar extends Component {
     this.init();
   }
 
+  setInputValue(value) {
+    this.$('input').value = value;
+  }
+
   getInputValue() {
     return this.$('input').value;
   }
