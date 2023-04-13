@@ -6,7 +6,6 @@ export class Sidebar extends Component {
     super();
     this.domNode = domNode;
     this.children = children;
-
   }
 
   setEvent() {
@@ -15,9 +14,9 @@ export class Sidebar extends Component {
       e.stopPropagation();
     });
 
-    sidebar.addEventListener("click", this.toggle.bind(this))
+    this.domNode.addEventListener("click", this.toggle.bind(this));
 
-    addEvent("sidebarToggle", this.toggle.bind(this))
+    addEvent("sidebarToggle", this.toggle.bind(this));
   }
 
   load() {
@@ -27,6 +26,10 @@ export class Sidebar extends Component {
     }, 1000);
 
     this.setEvent();
+
+    this.children.forEach((child) => {
+      child.load();
+    });
   }
 
   toggle() {

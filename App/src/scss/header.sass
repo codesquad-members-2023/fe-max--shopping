@@ -97,7 +97,9 @@
 			a
 				color: var(--color-black)
 	.search 
-		flex-grow: 1 
+		flex-grow: 1
+		position: relative
+		z-index: 2
 		.search__form 
 			display: flex 
 			overflow: hidden 
@@ -117,7 +119,59 @@
 			padding: 12px 
 			border: 0 
 			font-size: 0 
-			background-color: var(--color-primary-orange-100) 
+			background-color: var(--color-primary-orange-100)
+	
+	.keywords
+		display: none
+		&.active
+			display: block
+		.keywords__list
+			width: 100%
+			height: 100%
+			border-radius: 4px
+			.keywords__item
+				width: 100%
+				height: calc(100% - 2px)
+				z-index: 1
+				background-color: var(--color-white)
+				position: absolute
+				top: 0
+				transform: translateY(calc(var(--y) * 100% - 6px))
+				display: flex
+				&:first-child
+					border-top-left-radius: 4px
+					border-top-right-radius: 4px
+				&:last-child
+					border-bottom-left-radius: 4px
+					border-bottom-right-radius: 4px
+				&:hover, :focus, :active
+					background: var(--color-gray-100)
+				button
+					width: 100%
+					height: 100%
+					flex-grow: 1
+					border: 0
+					background-color: transparent
+					box-sizing: border-box
+					padding: 12px
+					text-align: left
+					font: var(--font-body-md) 
+					letter-spacing: var(--letter-spacing-body-md)
+					&.recommend::before
+						content: ""
+						display: inline-block
+						background: url(../img/icon/arrow-top-right.svg)
+						width: 24px
+						height: 24px
+						margin-right: 10px
+						vertical-align: middle
+					strong
+						color: var(--color-secondary-puple)
+				.delete
+					background: transparent
+					border: 0
+					width: 24px
+					padding: 0 16px
 	.nation 
 		display: flex 
 		align-items: center 
@@ -152,7 +206,7 @@
 			right: -36px 
 			width: 335px
 			opacity: 0
-			transition: opacity 3000ms
+			transition: opacity 300ms
 			&::before 
 				top: -10px 
 				left: auto 

@@ -96,6 +96,7 @@
 	.search
 		flex-grow: 1
 		position: relative
+		z-index: 1
 		.search__form
 			display: flex 
 			border-radius: 4px
@@ -135,6 +136,7 @@
 					position: absolute
 					top: 0
 					transform: translateY(var(--y))
+					display: flex
 
 					&:first-child
 						border-top-left-radius: 4px
@@ -145,6 +147,7 @@
 					\:hover, :focus, :active
 						background: var(--color-gray-100)
 					button
+						flex-grow: 1
 						width: 100%
 						height: 100%
 						border: 0
@@ -154,7 +157,7 @@
 						text-align: left
 						font: var(--font-body-md) 
 						letter-spacing: var(--letter-spacing-body-md)
-						&.recommed::before
+						&.recommend::before
 							content: ""
 							display: inline-block
 							background: url(../img/icon/arrow-top-right.svg)
@@ -164,7 +167,11 @@
 							vertical-align: middle
 						strong
 							color: var(--color-secondary-puple)
-			
+					.delete
+						background: transparent
+						padding: 0 12px
+						border: 0
+				
 	.nation 
 		display: flex 
 		align-items: center 

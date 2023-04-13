@@ -20,6 +20,4 @@ export class Main extends Component {
     const dimmed = this.domNode.querySelector(".dimmed");
     dimmed.className = "dimmed"
   }
-
-  load() {}
 }

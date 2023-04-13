@@ -85,6 +85,7 @@ export class Recipe {
     return {
       tagName: "section",
       attrs: {
+        id: "shipping-address",
         class: "group shipping-address",
       },
       children: [
@@ -178,9 +179,11 @@ export class Recipe {
   };
 
   search = () => {
+    const { keywordList, keywords} = this
     return {
       tagName: "section",
       attrs: {
+        id: "search",
         class: "group search",
       },
       children: [
@@ -194,7 +197,6 @@ export class Recipe {
         {
           tagName: "form",
           attrs: {
-            action: "post",
             class: "search__form",
           },
           children: [
@@ -214,6 +216,7 @@ export class Recipe {
                     autocomplete: "off",
                   },
                 },
+                keywordList()
               ],
             },
             {
@@ -241,9 +244,117 @@ export class Recipe {
             },
           ],
         },
+        keywords()
       ],
     };
   };
+
+  keywordList = () => {
+    return {
+      tagName: "datalist",
+      attrs: {
+        id: "keyword-list"
+      },
+    }
+  }
+
+  keywordListItem = (keyword) => {
+    return {
+      tagName: "option",
+      attrs: {
+        value: keyword,
+        disabled: true
+      },
+      textContent: keyword
+    }
+  }
+
+  keywords = () => {
+    return {
+      tagName: "article",
+      attrs: {
+        id: "keywords",
+        class: "keywords"
+      },
+      children: [
+        {
+          tagName: "h3",
+          attrs: {
+            class: "blind"
+          },
+          textContent: "검색어들"
+        },
+        {
+          tagName: "ul",
+          attrs: {
+            class: "keywords__list"
+          },
+        }
+      ]
+    }
+  }
+
+  keywordsItem = ({index, children}) => {
+    return {
+      tagName: "li",
+      attrs: {
+        class: "keywords__item",
+        "data-index": index,
+        style: `--y: ${index}`
+      },
+      children: [
+        {
+          tagName: "button",
+          children
+        },
+      ]
+    }
+  }
+
+  keywordsLogItem = ({index, textContent}) => {
+    return {
+      tagName: "li",
+      attrs: {
+        class: "keywords__item",
+        style: `--y: ${index}`
+      },
+      children: [
+        {
+          tagName: "button",
+          textContent
+        },
+        {
+          tagName: "input",
+          attrs: {
+            type: "image",
+            class: "delete",
+            src: "./src/img/icon/close.svg",
+            alt: "기록 삭제"            
+          },
+        },
+      ]
+    }
+  }
+  
+  keywordsRecommendItem = ({index, textContent}) => {
+    return {
+      tagName: "li",
+      attrs: {
+        class: "keywords__item",
+        "data-index": index,
+        style: `--y: ${index}`
+      },
+      children: [
+        {
+          tagName: "button",
+          attrs: {
+            class: "recommend"
+          },
+          textContent
+        }
+      ]
+    }
+  }
 
   nation = () => {
     return {
@@ -336,6 +447,7 @@ export class Recipe {
     return {
       tagName: "section",
       attrs: {
+        id: "login",
         class: "group login",
       },
       children: [
@@ -517,6 +629,7 @@ export class Recipe {
                     {
                       tagName: "button",
                       attrs: {
+                        id: "sidebar-trigger",
                         class: "sidebar-trigger",
                       },
                       children: [

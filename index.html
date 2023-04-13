@@ -61,56 +61,58 @@
                 id="keyword"
                 name="keyword"
                 placeholder="검색 Amazon"
-                autocomplete="off" />
+                autocomplete="off"
+                />
+              <datalist id="keyword-list">
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+                <option value="추천 검색어" disabled>추천 검색어</option>
+              </datalist>
             </fieldset>
             <button type="submit">
               <span class="icon">
                 <img src="./src/img/icon/search.svg" alt="검색" />
               </span>
             </button>
-            <datalist id="keyword-list">
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-              <option value="추천 검색어">추천 검색어</option>
-            </datalist>
           </form>
           <article class="keywords active">
             <ul class="keywords__list">
-              <li class="keywords__item" data-index="1" style="--y: 0%;">
-                <button><strong>추천</strong> 검색어</button>
+              <li class="keywords__item" data-index="1" style="--y: 0%">
+                <button class="select"><strong>추천</strong> 검색어</button>
+                <input type="image" src="./src/img/icon/close.svg" alt="기록 삭제" class="delete"/>
               </li>
-              <li class="keywords__item" data-index="2" style="--y: 100%;">
-                <button class="recommend">추천 검색어</button>
+              <li class="keywords__item" data-index="2" style="--y: 100%">
+                <button class="select recommend">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="3" style="--y: 200%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="3" style="--y: 200%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="4" style="--y: 300%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="4" style="--y: 300%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="5" style="--y: 400%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="5" style="--y: 400%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="6" style="--y: 500%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="6" style="--y: 500%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="7" style="--y: 600%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="7" style="--y: 600%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="8" style="--y: 700%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="8" style="--y: 700%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="9" style="--y: 800%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="9" style="--y: 800%">
+                <button class="select recommed">추천 검색어</button>
               </li>
-              <li class="keywords__item" data-index="10" style="--y: 900%;">
-                <button class="recommed">추천 검색어</button>
+              <li class="keywords__item" data-index="10" style="--y: 900%">
+                <button class="select recommed">추천 검색어</button>
               </li>
             </ul>
           </article>
@@ -714,16 +716,14 @@
         });
 
         const sidebarTrigger = document.querySelector(".sidebar-trigger");
-        
+
         const keywordInput = document.querySelector("#keyword");
 
         sidebarTrigger.addEventListener("click", sidebarToggleActive);
 
         // const recommedKeywordsItem = document.querySelectorAll(".recommed-keywords__item");
 
-        const option = document.querySelector("option")
-        
-        
+        const option = document.querySelector("option");
       })();
     </script>
   </body>

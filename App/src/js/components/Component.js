@@ -17,15 +17,13 @@ export class Component {
 
   changeSubComponent() {
     this.children.forEach((child, index, children) => {
-      console.log(child)
-      const { tagName, id, className } = child.domNode;
+      const { tagName, id } = child.domNode;
       let subComponent = findComponent(tagName);
       if (!subComponent) subComponent = findComponent(id);
-
       if (subComponent) {
         children[index] = new subComponent(child);
-        return;
       }
+      child.changeSubComponent();
     });
   }
 
@@ -52,6 +50,17 @@ export class Component {
     this.children.forEach((child) => {
       child.render();
       this.domNode.appendChild(child.domNode);
+    });
+  }
+
+  setEvent() {
+
+  }
+
+  load() {
+    this.setEvent()
+    this.children.forEach((child) => {
+      child.load();
     });
   }
 
