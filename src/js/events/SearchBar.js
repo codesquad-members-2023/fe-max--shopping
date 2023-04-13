@@ -8,7 +8,7 @@ const searchBarInput = document.searchForm.searchBar;
 const searchPanel = document.querySelector('.search-panel');
 const ESC = 27;
 //
-class SearchHistoryManager {
+export class SearchHistoryManager {
   constructor() {
     this.history = JSON.parse(localStorage.getItem('searchHistory')) || [];
   }
@@ -32,17 +32,15 @@ class SearchHistoryManager {
     return this.history;
   }
 }
-class SearchUI {
+export class SearchUI {
   constructor() {
     this.searchHistoryManager = new SearchHistoryManager();
   }
 
   storeInputTerms(e) {
-
     if (e.keyCode !== 13) return;
     if (e.keyCode === 13) {
       e.preventDefault();
-      console.log("예스!");
       const value = e.target.value.trim();
 
       if (value) {
@@ -51,13 +49,19 @@ class SearchUI {
     }
   }
 }
-
+export class SearchTermFetcher {
+  async fetchTerms(searchPrefix) {
+    const apiClient = new APIClient(searchPrefix);
+    const fetchedTerms = await apiClient.getApiData();
+    return fetchedTerms;
+  }
+}
 export class SearchBar {
   constructor() {
     this.termsType = { suggest: [], history: [], auto: [] };
     this.templateGenerator = new TemplateGenerator();
     this.searchUI = new SearchUI();
-    this.searchPanel = document.querySelector('.search-panel');
+    this.searchTermFetcher = new SearchTermFetcher();
   }
 
   initSearchBar() {
@@ -68,7 +72,6 @@ export class SearchBar {
     searchBarInput.addEventListener('keydown', e => {
       this.renderAutoComplete(e);
       this.searchUI.storeInputTerms(e);
-      // this.storeInputTerms(e);
     });
 
     searchBarInput.addEventListener('blur', () => {
@@ -76,71 +79,16 @@ export class SearchBar {
     });
   }
 
-  // storeInputTerms(e) {
-  //   if (e.keyCode !== 13) return;
-  //   if (e.keyCode === 13) {
-  //     e.preventDefault();
-  //     const value = e.target.value.trim();
-
-  //     if (value) {
-  //       let history = this.termsType.history;
-  //       history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-  //       const newSearch = {
-  //         id: history.length,
-  //         value: value,
-  //       };
-
-  //       const isDuplicate = history.some(el => el.value === value);
-  //       if (!isDuplicate) {
-  //         history.push(newSearch);
-  //         localStorage.setItem('searchHistory', JSON.stringify(history));
-  //       }
-
-  //     }
-  //   }
+  // async fetchTerms(searchPrefix) {
+  //   const apiClient = new APIClient(searchPrefix);
+  //   const fetchedTerms = await apiClient.getApiData();
+  //   return fetchedTerms;
   // }
-  //===============
-  // storeInputTerms(e) {
-  //   if (e.keyCode !== 13) return;
-  //   if (e.keyCode === 13) {
-  //     e.preventDefault();
-  //     const value = e.target.value.trim();
-
-  //     if (value) {
-  //       let history = this.getHistory();
-  //       this.termsType.history = history;
-  //       const newSearch = {
-  //         id: history.length,
-  //         value: value,
-  //       };
-
-  //       if (!this.isDuplicate(history, value)) {
-  //         history.push(newSearch);
-  //         this.storeHistory(history);
-  //       }
-  //     }
-  //   }
-  // }
-
-  // getHistory() {
-  //   return JSON.parse(localStorage.getItem('searchHistory')) || [];
-  // }
-  // storeHistory(history) {
-  //   localStorage.setItem('searchHistory', JSON.stringify(history));
-  // }
-
-  // isDuplicate(history, value) {
-  //   return history.some(el => el.value === value);
-  // }
-
-  async fetchTerms(searchPrefix) {
-    const apiClient = new APIClient(searchPrefix);
-    const fetchedTerms = await apiClient.getApiData();
-    return fetchedTerms;
-  }
 
   async renderSuggestions() {
-    this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
+    const prefix = getRandomLetter();
+    // this.setTermsType('suggest', await this.fetchTerms(getRandomLetter()));
+    this.setTermsType('suggest', await this.searchTermFetcher.fetchTerms(prefix));
     if (!localStorage.length) {
       this.renderSuggestionsOnly();
     } else {
@@ -151,19 +99,18 @@ export class SearchBar {
 
   renderHistoryAndSuggestions() {
     this.setTermsType('history', store.getLocalStorage().reverse().slice(0, 5));
-    const template =
-      this.templateGenerator.generateHistoryAndSuggestionsTemplate(
-        this.termsType
-      );
-    this.searchPanel.innerHTML = template;
+    const template = this.templateGenerator.generateHistoryAndSuggestions(
+      this.termsType
+    );
+    searchPanel.innerHTML = template;
   }
 
   renderSuggestionsOnly() {
-    this.searchPanel.innerHTML = '';
-    const template = this.templateGenerator.generateSuggestTemplate(
+    searchPanel.innerHTML = '';
+    const template = this.templateGenerator.generateSuggest(
       this.termsType.suggest
     );
-    this.searchPanel.insertAdjacentHTML('beforeend', template);
+    searchPanel.insertAdjacentHTML('beforeend', template);
   }
 
   async renderAutoComplete() {
@@ -171,12 +118,13 @@ export class SearchBar {
     if (!inputValue) {
       return;
     }
-    this.setTermsType('auto', await this.fetchTerms(inputValue));
-    const template = this.templateGenerator.generateAutoCompleteTemplate(
+    this.setTermsType('auto', await this.searchTermFetcher.fetchTerms(inputValue));
+    // this.setTermsType('auto', await this.fetchTerms(inputValue));
+    const template = this.templateGenerator.generateAutoComplete(
       this.termsType.auto,
       inputValue
     );
-    this.searchPanel.innerHTML = template;
+    searchPanel.innerHTML = template;
   }
 
   getInputValue() {
@@ -191,17 +139,16 @@ export class SearchBar {
   toggleSearchPanel(isPanelOpen) {
     layerOpenState.searchPanel = isPanelOpen;
     if (isPanelOpen) {
-      this.searchPanel.classList.remove('hidden');
+      searchPanel.classList.remove('hidden');
     } else {
-      this.searchPanel.classList.add('hidden');
+      searchPanel.classList.add('hidden');
     }
     handleDimming();
   }
 }
 
 export class TemplateGenerator {
-  generateSuggestTemplate(terms) {
-    console.log(terms);
+  generateSuggest(terms) {
     const suggestListTemplate = terms.reduce((acc, cur) => {
       return (acc += `<li class="suggestion search-list">
         <img src="./src/images/arrow-top-right.svg" alt="이동">
@@ -210,8 +157,8 @@ export class TemplateGenerator {
     }, '');
     return suggestListTemplate;
   }
-  generateHistoryAndSuggestionsTemplate(termsObj) {
-    const suggestionTemplate = this.generateSuggestTemplate(termsObj.suggest);
+  generateHistoryAndSuggestions(termsObj) {
+    const suggestionTemplate = this.generateSuggest(termsObj.suggest);
     let HistoryTemplate = termsObj.history
       .map(el => el.value)
       .reduce((acc, cur) => {
@@ -222,23 +169,30 @@ export class TemplateGenerator {
       }, '');
     return (HistoryTemplate += suggestionTemplate);
   }
-  generateAutoCompleteTemplate(terms, input) {
+  generateAutoComplete(terms, input) {
     const AutoCompleteTemplate = terms.reduce((acc, cur) => {
       const highlighted = new RegExp(`\\b${input}`, 'i');
       const match = highlighted.exec(cur);
       let highlightedText = cur;
+
       if (match) {
+        const [matchedString] = match;
         const index = match.index;
-        const matchedString = match[0];
         highlightedText =
           cur.slice(0, index) +
           `<mark>${matchedString}</mark>` +
           cur.slice(index + matchedString.length);
       }
-      return (acc += `<li class="autocomplete search-list">
-            <span>${highlightedText}</span>
-          </li>`);
+
+      const autoCompleteListItem = `
+        <li class="autocomplete search-list">
+          <span>${highlightedText}</span>
+        </li>
+      `;
+
+      return acc + autoCompleteListItem;
     }, '');
+
     return AutoCompleteTemplate;
   }
 }
