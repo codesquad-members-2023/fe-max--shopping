@@ -6,71 +6,95 @@ import {
     showLayer,
     hideLayer,
 } from "../utils.js";
-import { isOutsideElement } from "./search-bar.js";
 
-export const addSearchBarEventListener = () => {
-    const searchBar = $(".search-bar");
+async function getData() {
+    try {
+        const response = await fetch("./src/data/db.json");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getData();
+
+export const addSearchBarEventListener = async () => {
     const searchInput = $(".search-bar__input");
     const suggestedSearch = $(".search-bar__suggest");
     const suggestItems = suggestedSearch.children;
     const main = $(".main");
-
-    const removeEvent = (e) => {
-        if (isOutsideElement(e.target, searchBar)) {
-            hideLayer(suggestedSearch);
-            removeDimming(main);
-            document.removeEventListener("click", removeEvent);
-        }
-    };
-
-    searchBar.addEventListener("click", (e) => {
-        if (e.target === searchInput) {
-            showLayer(suggestedSearch);
-            addDimming(main);
-            document.addEventListener("click", removeEvent);
-        }
-    });
-
     const firstItem = suggestItems[0];
     const lastItem = suggestItems[suggestItems.length - 1];
+    // const data = await getData();
 
-    searchBar.addEventListener("keydown", (e) => {
+    searchInput.addEventListener("focus", (e) => {
+        showLayer(suggestedSearch);
+        addDimming(main);
+    });
+
+    searchInput.addEventListener("blur", () => {
+        hideLayer(suggestedSearch);
+        removeDimming(main);
+    });
+
+    let selected = "";
+
+    searchInput.addEventListener("keydown", (e) => {
         if (e.key === "ArrowDown" || e.key === "ArrowUp") {
             e.preventDefault();
         }
-        let focused = document.activeElement;
 
-        if (focused === searchInput) {
+        if (!selected) {
             if (e.key === "ArrowUp") {
-                lastItem.focus();
-                focused = lastItem;
+                selected = lastItem;
+                searchInput.value = selected.textContent.trim();
+                selected.classList.add("selected");
+                selected.previousElementSibling.classList.remove("selected");
                 return;
             }
             if (e.key === "ArrowDown") {
-                firstItem.focus();
-                focused = firstItem;
+                selected = firstItem;
+                searchInput.value = selected.textContent.trim();
+                selected.classList.add("selected");
+                selected.nextElementSibling.classList.remove("selected");
                 return;
             }
         }
         if (e.key === "ArrowUp") {
-            if (focused === firstItem) {
-                searchInput.focus();
+            if (selected === firstItem) {
+                firstItem.classList.remove("selected");
+                selected = "";
                 return;
             }
-            focused = focused.previousElementSibling;
+            selected = selected.previousElementSibling;
+            searchInput.value = selected.textContent.trim();
+            selected.nextElementSibling.classList.remove("selected");
+            selected.classList.add("selected");
+            return;
         }
         if (e.key === "ArrowDown") {
-            if (focused === lastItem) {
-                searchInput.focus();
+            if (selected === lastItem) {
+                lastItem.classList.remove("selected");
+                selected = "";
                 return;
             }
-            focused = focused.nextElementSibling;
+            selected = selected.nextElementSibling;
+            searchInput.value = selected.textContent.trim();
+            selected.previousElementSibling.classList.remove("selected");
+            selected.classList.add("selected");
+            return;
         }
-
-        focused.focus();
     });
 
-    searchBar.addEventListener("input", () => {
-        console.log("응");
-    });
+    // searchInput.addEventListener("input", async (e) => {
+    //     console.log(e.target.value);
+    //     console.log(data);
+    //     for (const suggest in Object.keys(data)) {
+    //         console.log(suggest);
+    //     }
+    //     if (e.target.value === "아그렇구나") {
+    //         console.log("좋아");
+    //     }
+    // });
 };
