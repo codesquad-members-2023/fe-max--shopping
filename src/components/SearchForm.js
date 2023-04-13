@@ -37,6 +37,14 @@ class SearchForm extends HTMLElement {
       "input",
       debounce(this.onSearchInput.bind(this), 1000)
     );
+
+    this.searchInput.addEventListener("focus", () => {
+      this.notifyParentToDim(true);
+    });
+
+    this.searchInput.addEventListener("blur", () => {
+      this.notifyParentToDim(false);
+    });
   }
 
   async onSearchInput() {
@@ -63,6 +71,15 @@ class SearchForm extends HTMLElement {
       `http://127.0.0.1:3000/autocomplete?${queryParams}`
     );
     return await res.json();
+  }
+
+  notifyParentToDim(isActive) {
+    const dimEvt = new CustomEvent("dim", {
+      detail: {
+        isActive: isActive,
+      },
+    });
+    this.shadowRoot.host.getRootNode().host.dispatchEvent(dimEvt);
   }
 }
 

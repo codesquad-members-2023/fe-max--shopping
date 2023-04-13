@@ -201,10 +201,10 @@ class TopHeader extends HTMLElement {
       });
     });
 
-    this.addEventListener("tool-tip-active", this.dimmedLayerHandler);
+    this.addEventListener("dim", this.dimLayerHandler);
   }
 
-  dimmedLayerHandler(evt) {
+  dimLayerHandler(evt) {
     const isActive = evt.detail.isActive;
     this.dimLayer(isActive);
   }

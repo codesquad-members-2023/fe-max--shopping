@@ -38,12 +38,12 @@ export class ToolTip extends HTMLElement {
   }
 
   notifyParentToDim(isActive) {
-    const toolTipActive = new CustomEvent("tool-tip-active", {
+    const dimEvt = new CustomEvent("dim", {
       detail: {
         isActive: isActive,
       },
     });
-    this.shadowRoot.host.getRootNode().host.dispatchEvent(toolTipActive);
+    this.shadowRoot.host.getRootNode().host.dispatchEvent(dimEvt);
   }
 }
 
