@@ -40,7 +40,7 @@ function slideTo(itemDirection) {
     currentItem.dataset.status = currentItemStatus;
     nextItem.dataset.status = 'active';
     activeIndex = nextIndex;
-  }, 5);
+  }, 50);
 }
 
 function getNextIndex(isPrevItem) {

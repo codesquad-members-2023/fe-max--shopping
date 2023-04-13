@@ -1,17 +1,26 @@
 import { $, removeHiddenClass } from '../../utils/domUtils.js';
-import { closeAllLayers } from '../modal.js';
+import { closeAllLayers, openDimmedLayer } from '../modal.js';
+import { SearchResultList } from './SearchResultList.js';
 
 export class SearchLayer {
-  constructor() {
-    this.init();
+  constructor(dataManager) {
+    this.init(dataManager);
   }
 
-  init() {
+  init(dataManager) {
     this.element = $('.search-layer');
+    this.resultList = new SearchResultList(dataManager);
   }
 
-  open() {
+  async open() {
+    await this.resultList.setDefaultResults();
     closeAllLayers();
+    openDimmedLayer();
     removeHiddenClass(this.element);
+  }
+
+  close() {
+    closeAllLayers();
+    this.resultList.emptyResults();
   }
 }

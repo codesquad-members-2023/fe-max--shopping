@@ -3,30 +3,38 @@ import { delay } from '../utils/timeUtils.js';
 
 const MODAL_OPEN_DELAY = 1000;
 
-export function initLoginModal() {
-  document.addEventListener('DOMContentLoaded', () => delay(openLoginModal, MODAL_OPEN_DELAY));
-  $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
-  $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
-  $('.address-container').addEventListener('mouseenter', openAddressModal);
-  $('.nav-bar__address').addEventListener('mouseleave', closeAllLayers);
-}
-
 function openLoginModal() {
+  closeAllLayers();
   removeHiddenClass($('.modal-login'));
 }
 
 function openExpandedLoginModal() {
+  closeAllLayers();
   removeHiddenClass($('.modal-login'));
   removeHiddenClass($('.modal-login__details'));
-  openDimmedCover();
+  openDimmedLayer();
 }
 
 function openAddressModal() {
+  closeAllLayers();
   removeHiddenClass($('.modal-address'));
-  openDimmedCover();
+  openDimmedLayer();
 }
 
-function openDimmedCover() {
+async function isLayerOpened() {
+  const layers = $All('.layer');
+  // return [...layers].some((layer) => {
+  //   !layer.classList.contains('hidden')});
+  for (const layer of layers) {
+    const hasHidden = await layer.classList.contains('hidden'); 
+    if (!hasHidden) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export function openDimmedLayer() {
   removeHiddenClass($('.dimmed-layer'));
 }
 
@@ -35,4 +43,17 @@ export function closeAllLayers() {
   for (const layer of layers) {
     addHiddenClassIfAbsent(layer);
   }
+}
+
+export function initLoginModal() {
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (await isLayerOpened()) {
+      return;
+    }
+    delay(openLoginModal, MODAL_OPEN_DELAY)
+  });
+  $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
+  $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
+  $('.address-container').addEventListener('mouseenter', openAddressModal);
+  $('.nav-bar__address').addEventListener('mouseleave', closeAllLayers);
 }

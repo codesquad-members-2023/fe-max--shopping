@@ -2,19 +2,22 @@ import { SearchLayer } from './SearchLayer.js';
 import { $ } from '../../utils/domUtils.js';
 
 export class SearchBar {
-  constructor() {
-    this.init();
-    this.initEventHandlers();
+  constructor(dataManager) {
+    this.init(dataManager);
+    this.setEventHandlers();
   }
   
-  init() {
+  init(dataManager) {
     this.element = $('.search-bar');
-    this.dropdown = new SearchLayer();
+    this.dropdown = new SearchLayer(dataManager);
   }
 
-  initEventHandlers() {
+  setEventHandlers() {
     this.element.addEventListener('focus', () => {
       this.dropdown.open();
+    })
+    this.element.addEventListener('blur', () => {
+      this.dropdown.close();
     })
   }
 }
