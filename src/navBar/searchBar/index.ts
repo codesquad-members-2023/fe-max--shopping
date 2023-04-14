@@ -20,6 +20,7 @@ const initSearchSuggestion = () => {
   $searchInput.addEventListener("focus", () => {
     dimMain();
     showElement($searchSuggestion);
+    searchSuggestion.initSuggestionRender();
   });
 
   $searchInput.addEventListener("blur", () => {
@@ -42,5 +43,9 @@ const initSearchSuggestion = () => {
 
   $searchBar.addEventListener("submit", (event) =>
     searchSuggestion.handleSearchBarSubmit(event, $searchInput)
+  );
+
+  $searchInput.addEventListener("input", () =>
+    searchSuggestion.handleSearchInputChange($searchInput)
   );
 };

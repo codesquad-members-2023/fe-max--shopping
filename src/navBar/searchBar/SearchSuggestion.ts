@@ -1,6 +1,6 @@
 import { BASE_URL } from "../../constants/BASE_URL";
 import { $, $$ } from "../../utils/domUtils";
-import { RecentSearch, SearchSuggestionModel } from "./SearchSuggestionModel";
+import { searchData, SearchSuggestionModel } from "./SearchSuggestionModel";
 import { SearchSuggestionView } from "./SearchSuggestionView";
 
 export class SearchSuggestion {
@@ -10,14 +10,9 @@ export class SearchSuggestion {
   constructor() {
     this.model = new SearchSuggestionModel();
     this.view = new SearchSuggestionView();
-
-    (async () => {
-      await this.fetchSearches();
-      this.renderView();
-    })();
   }
 
-  async getRecentSearches(): Promise<RecentSearch[]> {
+  async getRecentSearches(): Promise<searchData[]> {
     const RECENT_SEARCHES_LIMIT = 5;
     const response = await fetch(
       `${BASE_URL}/recent?_sort=id&_order=desc&_limit=${RECENT_SEARCHES_LIMIT}`
@@ -27,7 +22,7 @@ export class SearchSuggestion {
   }
 
   async getRecommendSearches(): Promise<string[]> {
-    const response = await fetch(`${BASE_URL}/recommend`);
+    const response = await fetch(`${BASE_URL}/recommend/`);
 
     return await response.json();
   }
@@ -42,12 +37,18 @@ export class SearchSuggestion {
     this.model.setRecommendSearches(recommendSearches);
   }
 
-  renderView() {
+  async initSuggestionRender() {
+    await this.fetchSearches();
+    this.renderView(
+      this.view.recentSearchView(this.model.getRecentSearches()) +
+        this.view.recommendSearchView(this.model.getRecommendSearches())
+    );
+  }
+
+  renderView(view: string) {
     const searchSuggestion = $(".search-suggestion");
 
-    searchSuggestion.innerHTML =
-      this.view.recentSearchView(this.model.getRecentSearches()) +
-      this.view.recommendSearchView(this.model.getRecommendSearches());
+    searchSuggestion.innerHTML = view;
   }
 
   requestDeleteRecentSearch(target: HTMLElement) {
@@ -117,7 +118,10 @@ export class SearchSuggestion {
 
     await this.requestDeleteRecentSearch(event.target);
     await this.fetchSearches();
-    this.renderView();
+    this.renderView(
+      this.view.recentSearchView(this.model.getRecentSearches()) +
+        this.view.recommendSearchView(this.model.getRecommendSearches())
+    );
   }
 
   async handleSearchBarSubmit(event: Event, $searchInput: HTMLInputElement) {
@@ -133,6 +137,24 @@ export class SearchSuggestion {
 
     $searchInput.value = "";
     await this.fetchSearches();
-    this.renderView();
+    this.renderView(
+      this.view.recentSearchView(this.model.getRecentSearches()) +
+        this.view.recommendSearchView(this.model.getRecommendSearches())
+    );
+  }
+
+  async handleSearchInputChange($searchInput: HTMLInputElement) {
+    const searchInput = $searchInput.value;
+
+    try {
+      const response = await fetch(`${BASE_URL}/keyword?q=${searchInput}`);
+      const suggestions = await response.json();
+
+      this.model.setSearchSuggestions(suggestions);
+    } catch (error) {
+      console.log("An error occurred" + error);
+    }
+
+    this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
   }
 }

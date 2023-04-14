@@ -1,12 +1,12 @@
-import { RecentSearch } from "./SearchSuggestionModel";
+import { searchData } from "./SearchSuggestionModel";
 
 export class SearchSuggestionView {
-  recentSearchView(recentSearches: RecentSearch[]) {
+  recentSearchView(recentSearches: searchData[]) {
     return `
       <ul class="search-suggestion__recent-search-list">
         ${recentSearches
           .map(
-            (list: RecentSearch) => `
+            (list: searchData) => `
             <li data-id="${list.id}">
               <a href="#">${list.text}</a>
               <button class="search-suggestion__delete-button">
@@ -34,5 +34,20 @@ export class SearchSuggestionView {
           .join("")}
       </ul> 
     `;
+  }
+
+  searchSuggestionView(searchSuggestions: searchData[]) {
+    return `
+      <ul class="search-suggestion__recent-search-list">
+        ${searchSuggestions
+          .map(
+            (list: searchData) => `
+            <li data-id="${list.id}">
+              <a href="#">${list.text}</a>
+            </li>
+            `
+          )
+          .join("")}
+      </ul>`;
   }
 }

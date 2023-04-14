@@ -1,20 +1,22 @@
-export interface RecentSearch {
+export interface searchData {
   text: string;
   id: number;
 }
 
 export class SearchSuggestionModel {
-  private recentSearches: RecentSearch[];
+  private recentSearches: searchData[];
   private recommendSearches: string[];
   private focusIndex: number;
+  private searchSuggestions: searchData[];
 
   constructor() {
     this.recentSearches = [];
     this.recommendSearches = [];
     this.focusIndex = -1;
+    this.searchSuggestions = [];
   }
 
-  setRecentSearches(data: RecentSearch[]) {
+  setRecentSearches(data: searchData[]) {
     this.recentSearches = data;
   }
 
@@ -48,5 +50,13 @@ export class SearchSuggestionModel {
     }
 
     this.focusIndex -= 1;
+  }
+
+  setSearchSuggestions(suggestions: searchData[]) {
+    this.searchSuggestions = suggestions;
+  }
+
+  getSearchSuggestions() {
+    return this.searchSuggestions;
   }
 }
