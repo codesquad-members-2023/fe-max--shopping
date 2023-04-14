@@ -39,8 +39,9 @@ class SearchForm extends HTMLElement {
       this.notifyParentToDim(false);
     });
 
-    this.searchInput.addEventListener("keyup", (evt) => {
-      evt.stopPropagation();
+    this.searchInput.addEventListener("keydown", (evt) => {
+      if (evt.isComposing) return;
+
       if (evt.code === "ArrowDown") {
         this.autocompletePanel.setFocusedListItemIdx(true);
       } else if (evt.code === "ArrowUp") {

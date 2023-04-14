@@ -26,7 +26,7 @@ class AutocompletePanel extends HTMLElement {
       : (this.focusedListItemIdx - 1 + numItems) % numItems;
 
     listItems[prevFocusedItemIdx]?.classList.remove("is-focused");
-    listItems[this.focusedListItemIdx].classList.add("is-focused");
+    listItems[this.focusedListItemIdx]?.classList.add("is-focused");
   }
 
   resetFocusedListItemIdx() {
