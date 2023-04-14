@@ -5,10 +5,12 @@
   display: flex;
   flex-direction: column;
   color: $color-white;
+
   .has-img {
     display: flex;
     align-items: center;
   }
+
   > div {
     box-sizing: border-box;
     width: 100%;
@@ -18,25 +20,31 @@
     align-items: center;
     justify-content: space-between;
     @include boldMd;
+
     label,
     nav {
       cursor: pointer;
     }
   }
+
   .navigation-main {
     height: 56px;
     background-color: $color-black;
+
     nav {
       margin: 0 12px;
     }
+
     label {
       @include boldSm;
     }
+
     .search-bar {
       position: relative;
       margin: 0 12px;
       flex: 1;
       height: 40px;
+
       .search-input {
         padding: 0 12px;
         border: none;
@@ -45,10 +53,12 @@
         border-radius: 4px 0 0 4px;
         @include bodyMd;
         color: $color-gray-600;
+
         &:focus {
           outline: none;
         }
       }
+
       .search-button {
         border: none;
         width: 40px;
@@ -57,26 +67,33 @@
         border-radius: 0 4px 4px 0;
       }
     }
+
     .nation {
       gap: 4px;
     }
+
     .cart {
       gap: 4px;
     }
   }
+
   .navigation-sub {
     height: 32px;
     background-color: $color-gray-900;
     font-weight: 600;
+
     .left-sub {
       display: flex;
+
       .bold {
         font-weight: 800;
       }
     }
+
     nav {
       margin: 8px;
     }
+
     .menu {
       gap: 4px;
     }

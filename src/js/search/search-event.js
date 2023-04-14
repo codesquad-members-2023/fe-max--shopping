@@ -1,20 +1,20 @@
-import { query } from "../constant.js";
+import { QUERY } from "../constant.js";
 import { dim, undim } from "../common/dim.js";
 
 function displayNone() {
-  query.searchLayer.style.display = "none";
+  QUERY.SEARCH_LAYER.style.display = "none";
 }
 
 function displayFlex() {
-  query.searchLayer.style.display = "flex";
+  QUERY.SEARCH_LAYER.style.display = "flex";
 }
 
 function searchFocusEventHandler() {
-  query.searchInput.addEventListener("focus", () => {
+  QUERY.SEARCH_INPUT.addEventListener("focus", () => {
     displayFlex();
     dim();
   });
-  query.searchInput.addEventListener("blur", () => {
+  QUERY.SEARCH_INPUT.addEventListener("blur", () => {
     displayNone();
     undim();
   });

@@ -1,32 +1,32 @@
-import { query, carousel, time } from "../constant.js";
+import { QUERY, CAROUSEL, TIME } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
 
 class Slider {
   constructor() {
-    this.counter = carousel.slideCounter;
-    this.size = carousel.size;
-    this.transition = carousel.slideTransition;
+    this.counter = CAROUSEL.SLIDE_COUNTER;
+    this.size = CAROUSEL.SIZE;
+    this.transition = CAROUSEL.SLIDE_TRANSITION;
   }
 
-  calcTransform() {
+  getCalcTransform() {
     return `translateX(${-this.counter * this.size}px)`;
   }
 
   initSlide() {
-    query.slideList.style.transform = this.calcTransform();
+    QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
   }
 
   moveToBesideSlide(isEdgeSide, isPlus) {
     if (isEdgeSide) {
       return;
     }
-    query.slideList.style.transition = this.transition;
-    isPlus ? this.counter++ : this.counter--;
-    query.slideList.style.transform = this.calcTransform();
+    QUERY.SLIDE_LIST.style.transition = this.transition;
+    this.counter = isPlus ? this.counter + 1 : this.counter - 1;
+    QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
   }
 
   moveToNextSlide() {
-    const lastIndex = query.slideItems.length - 1;
+    const lastIndex = QUERY.SLIDE_ITEMS.length - 1;
     const isLastSlide = this.counter >= lastIndex;
     this.moveToBesideSlide(isLastSlide, true);
   }
@@ -37,24 +37,24 @@ class Slider {
     this.moveToBesideSlide(isFirstSlide, false);
   }
 
-  moveToOppositeSlide(fakeSlide, realSlide) {
-    if (fakeSlide) {
-      query.slideList.style.transition = carousel.noEffect;
+  moveToOppositeSlide(isFakeSlide, realSlide) {
+    if (isFakeSlide) {
+      QUERY.SLIDE_LIST.style.transition = CAROUSEL.NO_EFFECT;
       this.counter = realSlide;
-      query.slideList.style.transform = this.calcTransform();
+      QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
     }
   }
 
   firstToLastSlide() {
     const lastIndexWithoutFake = 2;
-    const isFakeLastSlide = query.slideItems[this.counter].id === "last-clone";
-    const isRealLastSlide = query.slideItems.length - lastIndexWithoutFake;
+    const isFakeLastSlide = QUERY.SLIDE_ITEMS[this.counter].id === "last-clone";
+    const isRealLastSlide = QUERY.SLIDE_ITEMS.length - lastIndexWithoutFake;
     this.moveToOppositeSlide(isFakeLastSlide, isRealLastSlide);
   }
 
   lastToFirstSlide() {
-    const isFakeFirstSlide = query.slideItems[this.counter].id === "first-clone";
-    const isRealFirstSlide = query.slideItems.length - this.counter;
+    const isFakeFirstSlide = QUERY.SLIDE_ITEMS[this.counter].id === "first-clone";
+    const isRealFirstSlide = QUERY.SLIDE_ITEMS.length - this.counter;
     this.moveToOppositeSlide(isFakeFirstSlide, isRealFirstSlide);
   }
 
@@ -64,7 +64,7 @@ class Slider {
   }
 
   async autoToNextSlide() {
-    await delay(time.autoSlideDelay);
+    await delay(TIME.AUTO_SLIDE_DELAY);
     this.moveToNextSlide();
     this.autoToNextSlide();
   }
@@ -79,19 +79,18 @@ function slideLoadEventHandler() {
 }
 
 function slideNextBtnClickEventHandler() {
-  query.nextBtn.addEventListener("click", () => {
-    carouselSlide.moveToNextSlide();
-  });
+  // bind 공부하기
+  QUERY.NEXT_BTN.addEventListener("click", carouselSlide.moveToNextSlide.bind(carouselSlide));
 }
 
 function slidePrevBtnClickEventHandler() {
-  query.prevBtn.addEventListener("click", () => {
+  QUERY.PREV_BTN.addEventListener("click", () => {
     carouselSlide.moveToPrevSlide();
   });
 }
 
 function slideTransitionendEventHandler() {
-  query.slideList.addEventListener("transitionend", () => {
+  QUERY.SLIDE_LIST.addEventListener("transitionend", () => {
     carouselSlide.teleportSlide();
   });
 }

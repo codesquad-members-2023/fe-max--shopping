@@ -1,4 +1,4 @@
-import { query } from "../constant.js";
+import { QUERY } from "../constant.js";
 import { Keyword } from "../common/keyword-class.js";
 
 class Recommend extends Keyword {
@@ -8,7 +8,7 @@ class Recommend extends Keyword {
   }
 
   translateLayer() {
-    query.searchLayer.style.transform = `translateY(260px)`
+    QUERY.SEARCH_LAYER.style.transform = `translateY(260px)`;
   }
 }
 

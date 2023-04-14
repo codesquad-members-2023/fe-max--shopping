@@ -1,6 +1,6 @@
-import { keyword } from "./database.js";
+import { KEYWORDS } from "./database.js";
 import { Recommend } from "./recommend-keyword.js";
 
-const newRecommend = new Recommend(keyword.recommend);
+const newRecommend = new Recommend(KEYWORDS.RECOMMEND);
 
 export { newRecommend };

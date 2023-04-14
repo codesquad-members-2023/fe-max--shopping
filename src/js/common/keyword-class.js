@@ -1,4 +1,4 @@
-import { query } from "../constant.js";
+import { QUERY } from "../constant.js";
 
 export class Keyword {
   constructor(keywordList) {
@@ -7,7 +7,7 @@ export class Keyword {
 
   appendListToChild() {
     for (const keyword of this.keywordList) {
-      const parent = query.recommendKeywordList;
+      const parent = QUERY.RECOMMEND_KEYWORD_LIST;
       const newList = document.createElement("li");
       const insertNewList = parent.appendChild(newList);
       insertNewList.textContent = keyword;

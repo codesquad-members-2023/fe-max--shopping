@@ -1,7 +1,7 @@
-export const keyword = {
-  recent: [],
+export const KEYWORDS = {
+  RECENT: [],
 
-  recommend: [
+  RECOMMEND: [
     "egift cards for amazon gift card",
     "marvel legends",
     "gift cards",
@@ -14,7 +14,7 @@ export const keyword = {
     "balance reload",
   ],
 
-  auto: [
+  AUTO: [
     "자동차용품",
     "자동 컵세척기",
     "자동차 용품",

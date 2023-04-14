@@ -1,4 +1,4 @@
-import { query, zIndex, opacity, time } from "../constant.js";
+import { QUERY, Z_INDEX, OPACITY, TIME } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
 import { dim, undim } from "../common/dim.js";
 import { setOpacity, setSize, setZindex, setTransform } from "../util/set-style.js";
@@ -9,22 +9,22 @@ async function expandLoginModalWithDelay() {
   const moveToX = "290px";
   const moveToY = "-10px";
 
-  for (const element of query.loginModalExpandContainers) {
+  for (const element of QUERY.LOGIN_MODAL_EXPAND_CONTAINERS) {
     setSize(element, expandWidthSize, expandHeightSize);
   }
-  await delay(time.loginExpandDelay);
-  setOpacity(query.loginModalExpand, opacity.full);
-  setTransform(query.loginModalTail, moveToX, moveToY);
+  await delay(TIME.LOGIN_EXPAND_DELAY);
+  setOpacity(QUERY.LOGIN_MODAL_EXPAND, OPACITY.FULL);
+  setTransform(QUERY.LOGIN_MODAL_TAIL, moveToX, moveToY);
 }
 
 async function hideLoginModal() {
-  setZindex(query.loginModal, zIndex.lowestZ);
-  setOpacity(query.loginModal, opacity.zero);
+  setZindex(QUERY.LOGIN_MODAL, Z_INDEX.LOWEST_Z);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.ZERO);
 }
 
 async function openLoginModalWithDelay() {
-  await delay(time.loginOpacityDelay);
-  setOpacity(query.loginModal, opacity.full);
+  await delay(TIME.LOGIN_OPACITY_DELAY);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.FULL);
 }
 
 function expandLoginModal() {
@@ -38,8 +38,8 @@ function closeLoginModal() {
 }
 
 function reOpenLoginModal() {
-  setZindex(query.loginModal, zIndex.highestZ);
-  setOpacity(query.loginModal, opacity.full);
+  setZindex(QUERY.LOGIN_MODAL, Z_INDEX.HIGHEST_Z);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.FULL);
   dim();
 }
 
@@ -48,17 +48,17 @@ function loginModalLoadEventHandler() {
 }
 
 function loginModalMouseenterEventHandler() {
-  query.loginArea.addEventListener("mouseenter", expandLoginModal, {
+  QUERY.LOGIN_AREA.addEventListener("mouseenter", expandLoginModal, {
     once: true,
   });
 }
 
 function loginModalMouseleaveEventHandler() {
-  query.loginArea.addEventListener("mouseleave", closeLoginModal);
+  QUERY.LOGIN_AREA.addEventListener("mouseleave", closeLoginModal);
 }
 
 function loginModalClickEventHandler() {
-  query.loginArea.addEventListener("click", reOpenLoginModal);
+  QUERY.LOGIN_AREA.addEventListener("click", reOpenLoginModal);
 }
 
 export {
