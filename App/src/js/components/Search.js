@@ -9,6 +9,37 @@ import {
 } from "../utils.js";
 import { Component } from "./Component.js";
 
+function keywordsItemsAddKeydownEvent() {
+  const { keywords, input, ul } = this;
+
+  const buttons = ul.querySelectorAll("button");
+
+  const limit = buttons.length;
+
+  buttons.forEach((button, i) => {
+    button.addEventListener("keydown", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      console.log(e);
+      switch (e.key) {
+        case "ArrowUp":
+          buttons[(i - 1 + limit) % limit].focus();
+          return;
+        case "ArrowDown":
+          buttons[(i + 1) % limit].focus();
+          return;
+        case "Enter":
+          const temp = button.textContent;
+          input.focus();
+          input.value = temp;
+          keywords.className = "keywords";
+        default:
+          return;
+      }
+    });
+  });
+}
+
 function addLogKeywords(logKeywords) {
   const { input, keywords, keywordList, ul } = this;
   logKeywords.forEach((keyword, i) => {
@@ -63,9 +94,9 @@ function addRandomSearchKeywords() {
     ul.appendChild(keywordsLi);
 
     keywordsLi.addEventListener("click", (e) => {
-      keywords.className = "keywords";
       input.focus();
       input.value = keyword;
+      keywords.className = "keywords";
     });
   });
 }
@@ -85,6 +116,8 @@ function keywordFocusinHandler() {
 
   addLogKeywords.bind(this)(logKeywords);
   addRandomSearchKeywords.bind({ ...this, logLen })();
+
+  keywordsItemsAddKeydownEvent.bind(this)();
 }
 
 function keywordToKeywordListItemChildren(input, keyword) {
@@ -120,15 +153,16 @@ function keywordInputHandler() {
         children,
       })
     ).domNode;
-    const button = keywordsLi.querySelector("button")
+    const button = keywordsLi.querySelector("button");
     button.addEventListener("click", () => {
       input.focus();
       input.value = keyword;
       keywords.className = "keywords";
-    })
+    });
 
     ul.appendChild(keywordsLi);
   });
+  keywordsItemsAddKeydownEvent.bind(this)();
 }
 
 export class Search extends Component {
@@ -156,7 +190,12 @@ export class Search extends Component {
 
     input.addEventListener(
       "focusin",
-      keywordFocusinHandler.bind({ input, keywords, keywordList, ul })
+      keywordFocusinHandler.bind({
+        input,
+        keywords,
+        keywordList,
+        ul,
+      })
     );
 
     keywords.addEventListener("mouseleave", () => {

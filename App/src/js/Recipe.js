@@ -1,6 +1,6 @@
 export class Recipe {
   constructor(state) {
-    this.state = state
+    this.state = state;
   }
 
   app = () => {
@@ -98,9 +98,6 @@ export class Recipe {
         },
         {
           tagName: "dl",
-          attrs: {
-            tabindex: 0,
-          },
           children: [
             {
               tagName: "dt",
@@ -179,7 +176,7 @@ export class Recipe {
   };
 
   search = () => {
-    const { keywordList, keywords} = this
+    const { keywordList, keywords } = this;
     return {
       tagName: "section",
       attrs: {
@@ -216,7 +213,7 @@ export class Recipe {
                     autocomplete: "off",
                   },
                 },
-                keywordList()
+                keywordList(),
               ],
             },
             {
@@ -244,7 +241,7 @@ export class Recipe {
             },
           ],
         },
-        keywords()
+        keywords(),
       ],
     };
   };
@@ -253,75 +250,80 @@ export class Recipe {
     return {
       tagName: "datalist",
       attrs: {
-        id: "keyword-list"
+        id: "keyword-list",
       },
-    }
-  }
+    };
+  };
 
   keywordListItem = (keyword) => {
     return {
       tagName: "option",
       attrs: {
         value: keyword,
-        disabled: true
+        disabled: true,
       },
-      textContent: keyword
-    }
-  }
+      textContent: keyword,
+    };
+  };
 
   keywords = () => {
     return {
       tagName: "article",
       attrs: {
         id: "keywords",
-        class: "keywords"
+        class: "keywords",
       },
       children: [
         {
           tagName: "h3",
           attrs: {
-            class: "blind"
+            class: "blind",
           },
-          textContent: "검색어들"
+          textContent: "검색어들",
         },
         {
           tagName: "ul",
           attrs: {
-            class: "keywords__list"
+            class: "keywords__list",
           },
-        }
-      ]
-    }
-  }
+        },
+      ],
+    };
+  };
 
-  keywordsItem = ({index, children}) => {
+  keywordsItem = ({ index, children }) => {
     return {
       tagName: "li",
       attrs: {
         class: "keywords__item",
         "data-index": index,
-        style: `--y: ${index}`
+        style: `--y: ${index}`,
       },
       children: [
         {
           tagName: "button",
-          children
+          children,
         },
-      ]
-    }
-  }
+      ],
+    };
+  };
 
-  keywordsLogItem = ({index, textContent}) => {
+  keywordsLogItem = ({ index, textContent }) => {
     return {
       tagName: "li",
       attrs: {
         class: "keywords__item",
-        style: `--y: ${index}`
+        style: `--y: ${index}`,
       },
       children: [
         {
           tagName: "button",
-          textContent
+          children: [
+            {
+              tagName: "strong",
+              textContent,
+            }
+          ]          
         },
         {
           tagName: "input",
@@ -329,39 +331,39 @@ export class Recipe {
             type: "image",
             class: "delete",
             src: "./src/img/icon/close.svg",
-            alt: "기록 삭제"            
+            alt: "기록 삭제",
+            "tabindex": -1
           },
         },
-      ]
-    }
-  }
-  
-  keywordsRecommendItem = ({index, textContent}) => {
+      ],
+    };
+  };
+
+  keywordsRecommendItem = ({ index, textContent }) => {
     return {
       tagName: "li",
       attrs: {
         class: "keywords__item",
         "data-index": index,
-        style: `--y: ${index}`
+        style: `--y: ${index}`,
       },
       children: [
         {
           tagName: "button",
           attrs: {
-            class: "recommend"
+            class: "recommend",
           },
-          textContent
-        }
-      ]
-    }
-  }
+          textContent,
+        },
+      ],
+    };
+  };
 
   nation = () => {
     return {
       tagName: "section",
       attrs: {
         class: "group nation",
-        tabindex: "0",
         "aria-label": "지역: 한국",
       },
       children: [
@@ -701,15 +703,9 @@ export class Recipe {
         },
         {
           tagName: "aside",
-          attrs: {
-            tabindex: "-1",
-          },
           children: [
             {
               tagName: "h2",
-              attrs: {
-                tabindex: "-1",
-              },
               children: [
                 {
                   tagName: "span",
@@ -778,7 +774,6 @@ export class Recipe {
               tagName: "summary",
               attrs: {
                 class: "sidebar__item sidebar__item--summary",
-                tabindex: "-1",
               },
               children: [
                 {
@@ -882,31 +877,52 @@ export class Recipe {
   };
 
   mainBg = () => {
+    const { mainBgWrapper } = this;
     return {
-      tagName: "figure",
+      tagName: "article",
       attrs: {
-        class: "bg",
+        id: "background",
+      },
+      children: [mainBgWrapper()],
+    };
+  };
+
+  mainBgWrapper = () => {
+    const { mainBgSlide } = this;
+    const { mainBgSlides } = this.state;
+    return {
+      tagName: "ul",
+      attrs: {
+        id: "background",
+        class: "background__wrapper",
+        "aria-hidden": "true",
+      },
+      children: mainBgSlides.map(mainBgSlide),
+    };
+  };
+
+  mainBgSlide = ({ index, src }) => {
+    return {
+      tagName: "li",
+      attrs: {
+        class: "background__slide slide",
+        "data-index": index,
       },
       children: [
         {
           tagName: "img",
           attrs: {
-            src: "./src/img/Image.png",
+            src,
             alt: "배경이미지",
           },
-        },
-        {
-          tagName: "figcaption",
-          attrs: {
-            class: "blind",
-          },
-          textContent: "배경이미지",
         },
       ],
     };
   };
 
   mainHero = () => {
+    const { mainHeroSlide } = this;
+    const { mainHeroSlides } = this.state;
     return {
       tagName: "section",
       attrs: {
@@ -925,32 +941,12 @@ export class Recipe {
           attrs: {
             class: "hero__wrapper wrapper",
           },
-          children: [
-            {
-              tagName: "li",
-              children: [
-                {
-                  tagName: "article",
-                  attrs: {
-                    class: "hero__slide slide",
-                    tabindex: "0",
-                  },
-                  children: [
-                    {
-                      tagName: "h3",
-                      textContent:
-                        "해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          children: mainHeroSlides.map(mainHeroSlide),
         },
         {
           tagName: "button",
           attrs: {
-            class: "hero__control hero__control--left",
+            class: "control control--left",
           },
           children: [
             {
@@ -973,7 +969,7 @@ export class Recipe {
         {
           tagName: "button",
           attrs: {
-            class: "hero__control hero__control--right",
+            class: "control control--right",
           },
           children: [
             {
@@ -990,6 +986,28 @@ export class Recipe {
                   },
                 },
               ],
+            },
+          ],
+        },
+      ],
+    };
+  };
+
+  mainHeroSlide = ({ index, textContent }) => {
+    return {
+      tagName: "li",
+      attrs: {
+        class: "hero__slide",
+        "data-index": index,
+        style: `--index:${index};`,
+      },
+      children: [
+        {
+          tagName: "article",
+          children: [
+            {
+              tagName: "h3",
+              textContent,
             },
           ],
         },
@@ -1029,7 +1047,6 @@ export class Recipe {
                   tagName: "article",
                   attrs: {
                     class: "contents__card",
-                    tabindex: "0",
                     "aria-label": "최상의 경험을 위해 로그인하세요",
                   },
                   children: [
@@ -1067,7 +1084,6 @@ export class Recipe {
           tagName: "article",
           attrs: {
             class: "contents__card",
-            tabindex: "0",
             "aria-label": title,
           },
           children: [
@@ -1150,7 +1166,7 @@ export class Recipe {
           },
           children: [...footerMenus.map(footerMenu)],
         },
-        footerInfo()
+        footerInfo(),
       ],
     };
   };
@@ -1161,7 +1177,6 @@ export class Recipe {
       tagName: "section",
       attrs: {
         class: "footer__menu",
-        tabindex: "0",
         "aria-label": title,
       },
       children: [
@@ -1216,7 +1231,6 @@ export class Recipe {
           tagName: "figure",
           attrs: {
             class: "footer__info__logo",
-            tabindex: "0",
           },
           children: [
             {
@@ -1257,7 +1271,6 @@ export class Recipe {
               tagName: "address",
               attrs: {
                 class: "footer__info__address",
-                tabindex: "0",
               },
               textContent: "@ 1996-2023, Amazon.com, Inc. 또는 계열사",
             },

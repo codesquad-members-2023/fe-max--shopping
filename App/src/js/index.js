@@ -73,6 +73,22 @@ import { App } from "./components/App.js";
         ],
       },
     ],
+    mainBgSlides: [
+      {index: 0, src: "./src/img/Image.png"},
+      {index: 1, src: "./src/img/background/bg1.webp"},
+      {index: 2, src: "./src/img/background/bg2.webp"},
+      {index: 3, src: "./src/img/background/bg3.jpg"},
+      {index: 4, src: "./src/img/background/bg4.jpg"},
+      {index: 5, src: "./src/img/background/bg5.jpg"},
+    ],
+    mainHeroSlides: [
+      {index: 0, textContent: "1. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+      {index: 1, textContent: "2. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+      {index: 2, textContent: "3. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+      {index: 3, textContent: "4. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+      {index: 4, textContent: "5. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+      {index: 5, textContent: "6. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"},
+    ],
     mainContentsItems: [
       {
         title: "집에서 입어보기",
