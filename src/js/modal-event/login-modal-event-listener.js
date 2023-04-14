@@ -3,21 +3,33 @@ import { delay } from "../util/delay-promise.js";
 import { dim, undim } from "../common/dim.js";
 import { setOpacity, setSize, setZindex, setTransform, setDisplay } from "../util/set-style.js";
 
-async function expandLoginModalWithDelay() {
-  const expandWidthSize = "150px";
-  const expandHeightSize = "258px";
-  const moveToX = "290px";
-  const moveToY = "-10px";
+export class LoginArea {
+  constructor(element, { onMouseEnter }) {
+    this.element = element;
+    this.element.addEventListener("mouseenter", onMouseEnter, {
+      once: true,
+    });
+    this.element.addEventListener("mouseleave", closeLoginModal);
 
-  for (const element of QUERY.LOGIN_MODAL_EXPAND_CONTAINERS) {
-    setDisplay(element, DISPLAY.BLOCK);
-    await delay(TIME.NONE_TO_BLOCK);
-    setSize(element, expandWidthSize, expandHeightSize);
+    this.element.addEventListener("click", reOpenLoginModal);
   }
-  await delay(TIME.LOGIN_EXPAND_DELAY);
-  setOpacity(QUERY.LOGIN_MODAL_EXPAND, OPACITY.FULL);
-  setTransform(QUERY.LOGIN_MODAL_TAIL, moveToX, moveToY);
 }
+
+// async function expandLoginModalWithDelay() {
+//   const expandWidthSize = "150px";
+//   const expandHeightSize = "258px";
+//   const moveToX = "290px";
+//   const moveToY = "-10px";
+
+//   for (const element of QUERY.LOGIN_MODAL_EXPAND_CONTAINERS) {
+//     setDisplay(element, DISPLAY.BLOCK);
+//     await delay(TIME.NONE_TO_BLOCK);
+//     setSize(element, expandWidthSize, expandHeightSize);
+//   }
+//   await delay(TIME.LOGIN_EXPAND_DELAY);
+//   setOpacity(QUERY.LOGIN_MODAL_EXPAND, OPACITY.FULL);
+//   setTransform(QUERY.LOGIN_MODAL_TAIL, moveToX, moveToY);
+// }
 
 async function hideLoginModal() {
   setZindex(QUERY.LOGIN_MODAL, Z_INDEX.LOWEST_Z);
@@ -27,11 +39,6 @@ async function hideLoginModal() {
 async function openLoginModalWithDelay() {
   await delay(TIME.LOGIN_OPACITY_DELAY);
   setOpacity(QUERY.LOGIN_MODAL, OPACITY.FULL);
-}
-
-function expandLoginModal() {
-  dim();
-  expandLoginModalWithDelay();
 }
 
 function closeLoginModal() {

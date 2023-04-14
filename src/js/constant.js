@@ -1,13 +1,14 @@
+import { BaseElement } from "./BaseElement";
+import { LoginModalExpandContainers } from "./LoginModalExpandContainers";
+import { MainDimmed } from "./common/dim";
+import { expandLoginModalWithDelay } from "./expandLoginModalWithDelay";
+import { LoginArea } from "./modal-event/login-modal-event-listener";
+
 const QUERY = {
-  LOGIN_AREA: document.querySelector(".login"),
   LOGIN_MODAL: document.getElementById("login-modal"),
   LOGIN_MODAL_CONTAINER: document.querySelector(".login-modal-container"),
-  LOGIN_MODAL_EXPAND: document.querySelector(".login-modal-expand"),
-  LOGIN_MODAL_EXPAND_CONTAINERS: document.querySelectorAll(".login-modal-expand-container"),
-  LOGIN_MODAL_TAIL: document.getElementById("login-tail"),
   ADDRESS_AREA: document.querySelector(".shipping-address"),
   ADDRESS_MODAL: document.getElementById("address-modal"),
-  MAIN_DIMMED: document.querySelector(".dimmed"),
   SLIDE_LIST: document.querySelector(".slide-list"),
   SLIDE_ITEMS: document.querySelectorAll(".slide-item"),
   PREV_BTN: document.getElementById("chevron-left"),
@@ -21,6 +22,20 @@ const QUERY = {
   RECOMMEND_KEYWORD_LIST: document.querySelector(".recommend-keywords"),
   AUTO_KEYWORD_LIST: document.querySelector(".auto-keywords"),
 };
+
+export const loginModalExpand = new BaseElement(document.querySelector(".login-modal-expand"));
+export const loginModalTail = new BaseElement(document.getElementById("login-tail"));
+export const loginModalExpandContainers = new LoginModalExpandContainers(
+  document.querySelectorAll(".login-modal-expand-container")
+);
+
+export const mainDimmed = new MainDimmed(document.querySelector(".dimmed"), {});
+export const loginArea = new LoginArea(document.querySelector(".login"), {
+  onMouseEnter: () => {
+    mainDimmed.dim();
+    expandLoginModalWithDelay();
+  },
+});
 
 const Z_INDEX = {
   HIGHEST_Z: 2,

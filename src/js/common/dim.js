@@ -1,6 +1,17 @@
 import { QUERY, Z_INDEX, OPACITY, TIME } from "../constant.js";
-import { setZindex, setOpacity } from "../util/set-style.js";
+import { BaseElement } from "../BaseElement.js";
+import { setZindex, setOpacity, ElementStyler } from "../util/set-style.js";
 import { delay } from "../util/delay-promise.js";
+
+export class MainDimmed extends BaseElement {
+  constructor(element) {
+    super(element);
+  }
+  dim() {
+    this.elementStyler.setZindex(Z_INDEX.MIDDLE_Z);
+    this.elementStyler.setOpacity(OPACITY.HALF);
+  }
+}
 
 function dim() {
   setZindex(QUERY.MAIN_DIMMED, Z_INDEX.MIDDLE_Z);
