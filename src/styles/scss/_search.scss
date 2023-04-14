@@ -1,0 +1,65 @@
+@import "variables", "mixin";
+
+.search-layer {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-white;
+  border: 1px solid $color-black;
+  border-radius: 4px;
+  z-index: 3;
+
+  > div {
+    width: auto;
+
+    > ul {
+      display: none;
+      @include bodyMd;
+      color: $color-black;
+
+      :hover {
+        cursor: pointer;
+        background-color: $color-gray-100;
+        border-radius: 4px;
+      }
+
+      :focus {
+        background-color: $color-gray-100;
+        border-radius: 4px;
+      }
+
+      > li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 12px;
+        height: 37px;
+
+        img {
+          &:hover {
+            transform: scale(1.5);
+          }
+        }
+      }
+    }
+
+    .recent-keywords {
+      color: $color-secondary-puple;
+    }
+
+    .recommend-keywords {
+      li {
+        padding-left: 28px;
+        background-image: url(../assets/svg/arrow-top-right.svg);
+        background-repeat: no-repeat;
+        background-position: 12px 14px;
+      }
+    }
+
+    // .auto-keywords {
+    //   height: 37px;
+    // }
+  }
+}

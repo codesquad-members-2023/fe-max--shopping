@@ -1,40 +1,37 @@
-import { constant } from "../constant.js";
+import { QUERY, Z_INDEX, OPACITY, DISPLAY, TIME } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
-import { dim, undim } from "./dim.js";
-import {
-  setOpacity,
-  setSize,
-  setZindex,
-  setTransform,
-} from "../util/set-style.js";
+import { dim, undim } from "../common/dim.js";
+import { setOpacity, setSize, setZindex, setTransform, setDisplay } from "../util/set-style.js";
 
 async function expandLoginModalWithDelay() {
-  for (const element of constant.loginModalExpandContainer) {
-    setSize(element, "150px", "258px");
+  const expandWidthSize = "150px";
+  const expandHeightSize = "258px";
+  const moveToX = "290px";
+  const moveToY = "-10px";
+
+  for (const element of QUERY.LOGIN_MODAL_EXPAND_CONTAINERS) {
+    setDisplay(element, DISPLAY.BLOCK);
+    await delay(TIME.NONE_TO_BLOCK);
+    setSize(element, expandWidthSize, expandHeightSize);
   }
-  await delay(500);
-  setOpacity(constant.loginModalExpand, "1");
-  setTransform(constant.loginModalTail, "290px", "-10px");
+  await delay(TIME.LOGIN_EXPAND_DELAY);
+  setOpacity(QUERY.LOGIN_MODAL_EXPAND, OPACITY.FULL);
+  setTransform(QUERY.LOGIN_MODAL_TAIL, moveToX, moveToY);
 }
 
 async function hideLoginModal() {
-  setZindex(constant.loginModal, "-1");
-  setOpacity(constant.loginModal, "0");
-}
-
-function preventExpand() {
-  constant.loginModal.removeEventListener("mouseenter", expandLoginModal);
+  setZindex(QUERY.LOGIN_MODAL, Z_INDEX.LOWEST_Z);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.ZERO);
 }
 
 async function openLoginModalWithDelay() {
-  await delay(1000);
-  setOpacity(constant.loginModal, "1");
+  await delay(TIME.LOGIN_OPACITY_DELAY);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.FULL);
 }
 
 function expandLoginModal() {
   dim();
   expandLoginModalWithDelay();
-  preventExpand();
 }
 
 function closeLoginModal() {
@@ -43,8 +40,8 @@ function closeLoginModal() {
 }
 
 function reOpenLoginModal() {
-  setZindex(constant.loginModal, "2");
-  setOpacity(constant.loginModal, "1");
+  setZindex(QUERY.LOGIN_MODAL, Z_INDEX.HIGHEST_Z);
+  setOpacity(QUERY.LOGIN_MODAL, OPACITY.FULL);
   dim();
 }
 
@@ -53,15 +50,17 @@ function loginModalLoadEventHandler() {
 }
 
 function loginModalMouseenterEventHandler() {
-  constant.loginModal.addEventListener("mouseenter", expandLoginModal);
+  QUERY.LOGIN_AREA.addEventListener("mouseenter", expandLoginModal, {
+    once: true,
+  });
 }
 
 function loginModalMouseleaveEventHandler() {
-  constant.loginModal.addEventListener("mouseleave", closeLoginModal);
+  QUERY.LOGIN_AREA.addEventListener("mouseleave", closeLoginModal);
 }
 
 function loginModalClickEventHandler() {
-  constant.loginArea.addEventListener("click", reOpenLoginModal);
+  QUERY.LOGIN_AREA.addEventListener("click", reOpenLoginModal);
 }
 
 export {

@@ -1,16 +1,15 @@
-import { constant } from "../constant.js";
-import { dim, undim } from "./dim.js";
+import { QUERY, OPACITY, Z_INDEX } from "../constant.js";
+import { dim, undim } from "../common/dim.js";
 import { setOpacity, setZindex } from "../util/set-style.js";
-import { delay } from "../util/delay-promise.js";
 
 function hideAddressModal() {
-  setOpacity(constant.addressModal, "0");
-  setZindex(constant.addressModal, "-1");
+  setOpacity(QUERY.ADDRESS_MODAL, OPACITY.ZERO);
+  setZindex(QUERY.ADDRESS_MODAL, Z_INDEX.LOWEST_Z);
 }
 
 function openAddressModal() {
-  setZindex(constant.addressModal, "2");
-  setOpacity(constant.addressModal, "1");
+  setZindex(QUERY.ADDRESS_MODAL, Z_INDEX.HIGHEST_Z);
+  setOpacity(QUERY.ADDRESS_MODAL, OPACITY.FULL);
   dim();
 }
 
@@ -20,14 +19,11 @@ async function closeAddressModal() {
 }
 
 function addressModalMouseenterEventHandler() {
-  constant.addressArea.addEventListener("mouseenter", openAddressModal);
+  QUERY.ADDRESS_AREA.addEventListener("mouseenter", openAddressModal);
 }
 
 function addressModalMouseleaveEventHandler() {
-  constant.addressModal.addEventListener("mouseleave", closeAddressModal);
+  QUERY.ADDRESS_MODAL.addEventListener("mouseleave", closeAddressModal);
 }
 
-export {
-  addressModalMouseenterEventHandler,
-  addressModalMouseleaveEventHandler,
-};
+export { addressModalMouseenterEventHandler, addressModalMouseleaveEventHandler };

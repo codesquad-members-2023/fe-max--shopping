@@ -30,12 +30,7 @@
 
 @mixin button {
   margin: 0 auto;
-  background: linear-gradient(
-    174.6deg,
-    $color-white 4.31%,
-    $color-primary-yellow-100 50.01%,
-    $color-primary-yellow-200 95.71%
-  );
+  background: linear-gradient(174.6deg, $color-white 4.31%, $color-primary-yellow-100 50.01%, $color-primary-yellow-200 95.71%);
   border: 1px solid $color-primary-yellow-300;
   border-radius: 4px;
   @include boldSm;
@@ -53,7 +48,7 @@
   top: 55px;
   border-radius: 4px;
   opacity: 0;
-  transition: 1s;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, opacity 0.3s ease-in-out;
   z-index: 2;
 }
 
@@ -63,7 +58,7 @@
   height: 19px;
   background-image: url("../assets/svg/triangle.svg");
   background-repeat: no-repeat;
-  transition: 1.5s;
+  transition: transform 1s ease-in-out;
 }
 
 @mixin modalContainer {
