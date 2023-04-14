@@ -6,7 +6,7 @@ export class SearchBar {
     this.init();
     this.setEventHandlers();
   }
-  
+
   init() {
     this.element = $('.search-bar');
     this.dropdown = new SearchLayer();
@@ -15,9 +15,12 @@ export class SearchBar {
   setEventHandlers() {
     this.element.addEventListener('focus', () => {
       this.dropdown.open();
-    })
+    });
     this.element.addEventListener('blur', () => {
       this.dropdown.close();
-    })
+    });
+    this.element.addEventListener('keydown', (e) => {
+      this.dropdown.navigateByArrowKey(e.key);
+    });
   }
 }

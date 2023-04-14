@@ -1,6 +1,6 @@
 import { $, removeHiddenClass } from '../../utils/domUtils.js';
 import { closeAllLayers, openDimmedLayer } from '../modal.js';
-import { SearchResultList } from './SearchResultList.js';
+import { SearchSuggestion } from './SearchSuggestion.js';
 
 export class SearchLayer {
   constructor() {
@@ -9,11 +9,12 @@ export class SearchLayer {
 
   init() {
     this.element = $('.search-layer');
-    this.resultList = new SearchResultList();
+    this.suggestion = new SearchSuggestion();
   }
 
   async open() {
-    await this.resultList.setDefaultResults();
+    await this.suggestion.setResults();
+
     closeAllLayers();
     openDimmedLayer();
     removeHiddenClass(this.element);
@@ -21,6 +22,17 @@ export class SearchLayer {
 
   close() {
     closeAllLayers();
-    this.resultList.emptyResults();
+    this.suggestion.emptyResults();
+  }
+
+  navigateByArrowKey(key) {
+    if (key === 'ArrowUp') {
+      this.suggestion.moveToAboveSuggestion()
+      return;
+    }
+    if (key === 'ArrowDown') {
+      this.suggestion.moveToBelowSuggestion()
+      return;
+    }
   }
 }

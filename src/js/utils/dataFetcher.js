@@ -1,9 +1,9 @@
-export class DataManager {
+export class DataFetcher {
   constructor(url) {
     this.url = url;
   }
 
-  async fetchData() {
+  async getData() {
     try {
       const response = await fetch(`${this.url}`);
       const data = await response.json();
@@ -14,14 +14,14 @@ export class DataManager {
   }
 }
 
-export class HistoryManager extends DataManager {
+export class HistoryFetcher extends DataFetcher {
   constructor(url) {
     super(url);
     this.url = url + 'history?_limit=5&_sort=id&_order=desc';
   }
 }
 
-export class RecommendManager extends DataManager {
+export class RecommendFetcher extends DataFetcher {
   constructor(url) {
     super(url);
     this.url = url + 'recommend?_limit=10';
