@@ -13,6 +13,24 @@ class AutocompletePanel extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
     this.autocompleteList = this.shadowRoot.querySelector(".autocomplete-list");
+    this.focusedListItemIdx = -1;
+  }
+
+  setFocusedListItemIdx(isIncrement) {
+    const listItems = this.autocompleteList.children;
+    const numItems = listItems.length;
+    const prevFocusedItemIdx = this.focusedListItemIdx;
+
+    this.focusedListItemIdx = isIncrement
+      ? (this.focusedListItemIdx + 1) % numItems
+      : (this.focusedListItemIdx - 1 + numItems) % numItems;
+
+    listItems[prevFocusedItemIdx]?.classList.remove("is-focused");
+    listItems[this.focusedListItemIdx].classList.add("is-focused");
+  }
+
+  resetFocusedListItemIdx() {
+    this.focusedListItemIdx = -1;
   }
 
   setResultsData(newVal) {

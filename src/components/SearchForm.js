@@ -21,34 +21,41 @@ class SearchForm extends HTMLElement {
     this.searchInput = this.shadowRoot.querySelector("#search-input");
     this.autocompletePanel =
       this.shadowRoot.querySelector("autocomplete-panel");
+    this.prevSearchTerm = null;
   }
 
   connectedCallback() {
-    this.searchInput.addEventListener(
-      "focus",
-      () => {
-        this.onSearchInput();
-        // need to activate dimmed layer
-      },
-      { once: true }
-    );
-
     this.searchInput.addEventListener(
       "input",
       debounce(this.onSearchInput.bind(this), 1000)
     );
 
     this.searchInput.addEventListener("focus", () => {
+      this.onSearchInput();
       this.notifyParentToDim(true);
     });
 
     this.searchInput.addEventListener("blur", () => {
       this.notifyParentToDim(false);
     });
+
+    this.searchInput.addEventListener("keyup", (evt) => {
+      evt.stopPropagation();
+      if (evt.code === "ArrowDown") {
+        this.autocompletePanel.setFocusedListItemIdx(true);
+      } else if (evt.code === "ArrowUp") {
+        this.autocompletePanel.setFocusedListItemIdx(false);
+      }
+    });
   }
 
   async onSearchInput() {
     const searchTerm = this.searchInput.value.trim();
+
+    if (searchTerm === this.prevSearchTerm) return;
+
+    this.prevSearchTerm = searchTerm;
+    this.autocompletePanel.resetFocusedListItemIdx();
 
     if (searchTerm === "") {
       const searchHistory = []; // get from localStorage (5 items)

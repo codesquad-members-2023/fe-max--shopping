@@ -24,6 +24,11 @@
     .autocomplete-item {
       width: 100%;
 
+      &:hover,
+      &.is-focused {
+        background-color: $color-grey-100;
+      }
+
       a {
         width: 100%;
         height: 100%;
@@ -33,10 +38,6 @@
         color: $color-black;
         @include f-body-md;
         cursor: pointer;
-
-        &:hover {
-          background-color: $color-grey-100;
-        }
 
         img {
           width: 16px;
