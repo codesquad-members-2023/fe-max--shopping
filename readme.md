@@ -45,9 +45,17 @@
   - [x] prototype과 상속
 
 - [ ] 검색바 구현
-  - [ ]  검색창(바) 개발
+  - [x]  검색창(바) 개발
+    - [x] html, css로 레이아웃 잡아보기
+    - [x] Class로 구현하기 (검색창과 검색내역)
   - [ ]  추천검색어, 최근검색어 노출
+    - [x] 기본 추천 검색어 json 객체로 받아와서 렌더링
+    - [ ] 최근 검색어
+    - [ ] 입력 내용에 맞는 자동완성 기능
   - [ ]  키보드를 통한 검색결과 선택
+    - [x] 키보드 이벤트로 포커스 이동을 어떻게 구현할지
+    - [x] 아래 방향키로 이동
+    - [ ] 위 방향키로 이동
   - [ ]  기타 UX를 고려한 검색창 기능
   - [ ]  실제 검색결과를 노출하는 화면은 없다.
 
@@ -98,4 +106,18 @@ console.log(child.prototype);
 // 		 ▶︎ [[Prototype]]: Object
 ```
 
+## 🤔 생각할 거리
 
+- searchbarInput에 이벤트를 걸어줄 때 searchbarLayer를 밖에서 변수로 선언해서 불러오려면 null 값이 나와서 이벤트 핸들러 내부에서 불러와서 사용해야 한다. WHY? → searchbar가 렌더링되고 그 이후에 layer가 렌더링 되어서 뭔가 순서 문제인가?
+
+## 😵‍💫 삽질 기록
+
+- button, input, select, a 태그 외 다른 요소들은 기본적으로 focus를 지원하지 않는다… → html tag에tabindex 속성을 줘야한다!
+
+## 참고자료
+
+### OOP in JS
+
+- [https://poiemaweb.com/js-prototype](https://poiemaweb.com/js-prototype)
+- [https://velog.io/@thms200/Object.create-](https://velog.io/@thms200/Object.create-)
+- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-상태관리의-탄생](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%B4-%E1%84%90%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A2%E1%86%BC)
