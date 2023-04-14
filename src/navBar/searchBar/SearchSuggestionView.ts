@@ -1,4 +1,4 @@
-import { RecentSearch } from "./SearchSuggestion";
+import { RecentSearch } from "./SearchSuggestionModel";
 
 export class SearchSuggestionView {
   recentSearchView(recentSearches: RecentSearch[]) {
@@ -7,12 +7,13 @@ export class SearchSuggestionView {
         ${recentSearches
           .map(
             (list: RecentSearch) => `
-            <li dataset="${list.id}">
+            <li data-id="${list.id}">
               <a href="#">${list.text}</a>
-              <button>
+              <button class="search-suggestion__delete-button">
                 <img src="./src/assets/close-icon.svg" alt="삭제 버튼" />
               </button>
-            </li>`
+            </li>
+            `
           )
           .join("")}
       </ul>`;

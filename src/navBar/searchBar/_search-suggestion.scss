@@ -19,6 +19,14 @@
   overflow: auto;
   background-color: var(--white);
   z-index: 200;
+  transition: opacity 500ms;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &__recommend-search-list > li {
     @include search-item-style;
