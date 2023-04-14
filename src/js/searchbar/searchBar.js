@@ -11,6 +11,7 @@ export class SearchBar {
     this.view.inputEl.addEventListener('click', () => this.handleInputClick());
     this.handleDebouncedInputChange = debounce(() => this.handleInputChange(), 300);
     this.view.inputEl.addEventListener('input', () => this.handleDebouncedInputChange());
+    this.view.inputEl.addEventListener('keydown', (e) => this.handleKeyDown(e));
     this.view.buttonEl.addEventListener('click', () => this.handleButtonClick());
     this.view.listLayerEl.addEventListener('click', (e) => this.handleRemoveHistoryItem(e));
     document.addEventListener('click', (e) => this.handleDocumentClick(e));
@@ -53,5 +54,17 @@ export class SearchBar {
       this.view.listLayerEl.contains(e.target) || this.view.inputEl === e.target;
 
     if (!isSearchBarClicked) this.view.hideSearchList();
+  }
+
+  handleKeyDown(e) {
+    const { key } = e;
+
+    if (key === 'ArrowUp' || key === 'ArrowDown') {
+      e.preventDefault();
+      this.view.move(key === 'ArrowUp' ? 'UP' : 'DOWN');
+    } else if (key === 'Escape') {
+      e.preventDefault();
+      this.view.hideSearchList();
+    }
   }
 }

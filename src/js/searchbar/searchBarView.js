@@ -28,6 +28,25 @@ export class View {
     this.listLayerEl.classList.add('hidden');
   }
 
+  move(direction) {
+    const items = [...this.listLayerEl.querySelectorAll('.search-item')];
+    const selectedItemIndex = items.findIndex((item) => item.classList.contains('selected'));
+
+    if (direction === 'UP' && selectedItemIndex > 0) {
+      this.moveItemFocus(items[selectedItemIndex], items[selectedItemIndex - 1]);
+    } else if (direction === 'DOWN' && selectedItemIndex < items.length - 1) {
+      this.moveItemFocus(items[selectedItemIndex], items[selectedItemIndex + 1]);
+    }
+  }
+
+  moveItemFocus(currentItem, nextItem) {
+    if (currentItem) {
+      currentItem.classList.remove('selected');
+    }
+    nextItem.classList.add('selected');
+    this.inputEl.value = nextItem.innerText;
+  }
+
   clearInputField() {
     this.inputEl.value = '';
   }
