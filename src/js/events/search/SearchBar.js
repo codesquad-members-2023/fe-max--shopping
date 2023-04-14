@@ -19,7 +19,7 @@ export class SearchHistoryManager {
   }
 
   isDuplicate(value) {
-    return this.history.some(el => el.value === value);
+    return this.history.some(el => el === value);
   }
 
   getHistory() {
