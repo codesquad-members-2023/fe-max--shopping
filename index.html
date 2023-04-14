@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./src/styles/css/main.css" />
     <script src="./src/js/hero.js" defer></script>
     <script src="./src/js/layer.js" defer></script>
+    <script src="./src/js/searchbar/searchBarInit.js" type="module"></script>
   </head>
   <body>
     <header class="header">
@@ -30,15 +31,13 @@
         <div class="header__search-bar">
           <form>
             <input type="text" placeholder="검색 Amazon" />
-            <button type="button">
+            <button type="button" class="header__search-bar__button">
               <img src="./src/assets/images/icn_search.svg" alt="검색하기" />
             </button>
           </form>
 
           <!-- search-list -->
-          <div class="header__search-bar__layer">
-            <ul class="search-lists"></ul>
-          </div>
+          <div class="header__search-bar__layer hidden"></div>
         </div>
 
         <div class="header__nation">
@@ -67,7 +66,6 @@
         </div>
       </div>
       <!-- header-layer -->
-
       <div class="header-layer">
         <div class="header-layer__popup--address hidden">
           <div class="shape-triangle"></div>
