@@ -5,7 +5,7 @@ import { App } from './App.js';
 function init() {
   initHeader();
   initSlider();
-  new App();
 }
 
+new App();
 init();
