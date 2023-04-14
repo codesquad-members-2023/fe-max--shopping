@@ -73,6 +73,7 @@
       .login-modal-expand-container {
         width: 0;
         height: 0;
+        display: none;
         transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
 
         h2 {

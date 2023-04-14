@@ -1,7 +1,7 @@
-import { QUERY, Z_INDEX, OPACITY, TIME } from "../constant.js";
+import { QUERY, Z_INDEX, OPACITY, DISPLAY, TIME } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
 import { dim, undim } from "../common/dim.js";
-import { setOpacity, setSize, setZindex, setTransform } from "../util/set-style.js";
+import { setOpacity, setSize, setZindex, setTransform, setDisplay } from "../util/set-style.js";
 
 async function expandLoginModalWithDelay() {
   const expandWidthSize = "150px";
@@ -10,6 +10,8 @@ async function expandLoginModalWithDelay() {
   const moveToY = "-10px";
 
   for (const element of QUERY.LOGIN_MODAL_EXPAND_CONTAINERS) {
+    setDisplay(element, DISPLAY.BLOCK);
+    await delay(TIME.NONE_TO_BLOCK);
     setSize(element, expandWidthSize, expandHeightSize);
   }
   await delay(TIME.LOGIN_EXPAND_DELAY);

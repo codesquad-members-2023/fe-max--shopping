@@ -585,6 +585,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container {
   width: 0;
   height: 0;
+  display: none;
   transition: width 1s ease-out, height 1s ease-out, opacity 1s, transform 1s;
 }
 #login-modal .login-modal-container .login-modal-expand .login-modal-expand-container h2 {
@@ -598,12 +599,10 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 
 .search-layer {
   position: absolute;
+  top: 40px;
   width: 100%;
   display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  transform: translateY(77px);
   background-color: #ffffff;
   border: 1px solid #10141a;
   border-radius: 4px;
@@ -628,11 +627,18 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 .search-layer > div > ul > li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 12px;
   height: 37px;
 }
 .search-layer > div .recent-keywords {
   color: #941387;
+}
+.search-layer > div .recommend-keywords li {
+  padding-left: 28px;
+  background-image: url(../assets/svg/arrow-top-right.svg);
+  background-repeat: no-repeat;
+  background-position: 12px 14px;
 }
 
 html {

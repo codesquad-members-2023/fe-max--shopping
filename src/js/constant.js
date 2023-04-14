@@ -34,6 +34,12 @@ const OPACITY = {
   FULL: 1,
 };
 
+const DISPLAY = {
+  BLOCK: "block",
+  NONE: "NONE",
+  FLEX: "FLEX",
+};
+
 const CAROUSEL = {
   SLIDE_COUNTER: 1,
   SIZE: 1280,
@@ -42,10 +48,16 @@ const CAROUSEL = {
 };
 
 const TIME = {
+  NONE_TO_BLOCK: 10,
   DIM_DELAY: 300,
   LOGIN_EXPAND_DELAY: 500,
   LOGIN_OPACITY_DELAY: 1000,
   AUTO_SLIDE_DELAY: 10 * 1000,
 };
 
-export { QUERY, Z_INDEX, OPACITY, CAROUSEL, TIME };
+const KEYWORD_LAYER = {
+  CLOSE_BTN_SRC: "./src/assets/svg/close/svg",
+  ARROW_TOP_RIGHT_SRC: "./src/assets/svg/arrow-top-right.svg",
+};
+
+export { QUERY, Z_INDEX, OPACITY, DISPLAY, CAROUSEL, TIME, KEYWORD_LAYER };
