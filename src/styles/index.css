@@ -601,7 +601,7 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   position: absolute;
   top: 40px;
   width: 100%;
-  display: none;
+  display: flex;
   flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #10141a;
@@ -609,10 +609,10 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   z-index: 3;
 }
 .search-layer > div {
-  border-collapse: collapse;
-  width: 100%;
+  width: auto;
 }
 .search-layer > div > ul {
+  display: none;
   font: 500 13px/1.6 Pretendard;
   letter-spacing: -0.03em;
   color: #10141a;
@@ -620,9 +620,11 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
 .search-layer > div > ul :hover {
   cursor: pointer;
   background-color: #eff2f2;
+  border-radius: 4px;
 }
 .search-layer > div > ul :focus {
   background-color: #eff2f2;
+  border-radius: 4px;
 }
 .search-layer > div > ul > li {
   display: flex;
@@ -630,6 +632,9 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   justify-content: space-between;
   padding: 0 12px;
   height: 37px;
+}
+.search-layer > div > ul > li img:hover {
+  transform: scale(1.5);
 }
 .search-layer > div .recent-keywords {
   color: #941387;

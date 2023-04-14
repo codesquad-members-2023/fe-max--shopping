@@ -4,11 +4,7 @@ import { Keyword } from "../common/keyword-class.js";
 class Recommend extends Keyword {
   constructor(keywordList) {
     super(keywordList);
-    this.translateLayer();
-  }
-
-  translateLayer() {
-    QUERY.SEARCH_LAYER.style.transform = `translateY(260px)`;
+    this.appendListToChild(QUERY.RECOMMEND_KEYWORD_LIST);
   }
 }
 

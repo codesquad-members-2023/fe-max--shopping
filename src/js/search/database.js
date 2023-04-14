@@ -1,5 +1,5 @@
 export const KEYWORDS = {
-  RECENT: [],
+  RECENT: ["test", "test1"],
 
   RECOMMEND: [
     "egift cards for amazon gift card",
