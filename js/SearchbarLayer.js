@@ -1,24 +1,43 @@
-import { Component } from './Component.js';
+export class SearchbarLayer {
+  constructor($target) {
+    this.$target = $target;
+    this.url = '../data/searchDB.json';
+    this.searchDB = {};
+    this.setup();
+  }
 
-export class SearchbarLayer extends Component {
-  setup() {
-    this.state = { items: ['item1', 'item2'] };
+  async setup() {
+    this.searchDB = await this.getData();
+    this.render();
+    this.setEvent();
+  }
+
+  async getData() {
+    const response = await fetch(this.url);
+    const data = await response.json();
+    return data;
   }
 
   template() {
-    const { items } = this.state;
+    const { suggestions } = this.searchDB;
     return `<div class="search-bar__layer font-BodyMD text-black bg-white">
               <ul class="search-bar__result-container">
-                ${items
-                  .map(
-                    (item) =>
-                      `<li class="search-bar__suggestion">
+                 ${suggestions
+                   .map(
+                     (el, index) =>
+                       `<li class="search-bar__result" data-index="${index}">
                          <img src="./assets/icons/arrow-top-right.svg" alt="" />
-                         <a href="">${item}</a>
+                         <a href="">${el}</a>
                        </li>`,
-                  )
-                  .join('')}
+                   )
+                   .join('')}
               </ul>
             </div>`;
   }
+
+  render() {
+    this.$target.insertAdjacentHTML('beforeend', this.template());
+  }
+
+  setEvent() {}
 }
