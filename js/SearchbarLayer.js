@@ -24,8 +24,8 @@ export class SearchbarLayer {
               <ul class="search-bar__result-container">
                  ${suggestions
                    .map(
-                     (el) =>
-                       `<li class="search-bar__suggestion">
+                     (el, index) =>
+                       `<li class="search-bar__result" data-index="${index}">
                          <img src="./assets/icons/arrow-top-right.svg" alt="" />
                          <a href="">${el}</a>
                        </li>`,
@@ -39,8 +39,5 @@ export class SearchbarLayer {
     this.$target.insertAdjacentHTML('beforeend', this.template());
   }
 
-  setEvent() {
-    const ul = this.$target.querySelector('.search-bar__result-container');
-    console.log(ul);
-  }
+  setEvent() {}
 }
