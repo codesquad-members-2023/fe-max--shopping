@@ -67,32 +67,40 @@
         border-radius: 0px 4px 4px 0;
       }
     }
+
     /* search-bar 결과 */
     &__layer {
       position: relative;
       z-index: 9999;
       top: 0;
       width: 100%;
-      background-color: #fff;
-      border: 1px solid #000000;
+      background-color: $White;
+      border: 1px solid $Black;
       border-radius: 4px;
       ul {
         @include typography($BodyMD, $Black);
         li {
           width: 100%;
+          :hover {
+            background-color: $Gray100;
+          }
           a {
             transition: background-color 0.3s;
             padding: 10.5px 12px;
             display: block;
           }
-          :hover {
-            background-color: #eff2f2;
+
+          &[data-type='none'] {
+            padding: 10.5px 12px;
           }
+
           &[data-type='recommend'] {
             a {
+              @include typography($BodyMD, $Black);
               display: flex;
               gap: 4px;
               align-items: center;
+
               img {
                 width: 16px;
                 height: 16px;
@@ -100,13 +108,30 @@
             }
           }
 
-          &[data-type='searched'] {
+          &[data-type='autosearch'] {
             a {
-              color: $SecondaryPurple;
+              @include typography($BodyMD, $Black);
+              display: flex;
+              gap: 4px;
+              span {
+                color: $SecondaryPurple;
+              }
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          &[data-type='history'] {
+            a {
               display: flex;
               gap: 4px;
               justify-content: space-between;
               align-items: center;
+              p {
+                @include typography($BodyMD, $SecondaryPurple);
+              }
               img {
                 width: 16px;
                 height: 16px;
@@ -115,6 +140,12 @@
           }
         }
       }
+    }
+    &__layer.hidden {
+      display: none;
+    }
+    .selected {
+      background-color: $Gray100;
     }
   }
 
