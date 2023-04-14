@@ -44,16 +44,12 @@ export class Hero extends Component {
   }
 
   moveToNextSlide() {
-    if (!this.isValidIndex(this.currentIndex)) {
+    if (this.currentIndex >= this.lastIndex) {
       return;
     }
 
     this.currentIndex += 1;
     this.moveToSlide(this.currentIndex);
-  }
-
-  isValidIndex(slideIndex) {
-    return slideIndex >= 0 && slideIndex < this.lastIndex;
   }
 
   cycleSlides() {

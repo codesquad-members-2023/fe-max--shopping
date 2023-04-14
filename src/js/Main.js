@@ -1,6 +1,6 @@
 import { Hero } from './components/Hero/Hero.js';
 import { Component } from './components/base/Component.js';
-import { DimLayer } from './components/element/DimLayer.js';
+import { DimLayer } from './components/common/DimLayer.js';
 
 export class Main extends Component {
   static #instance;

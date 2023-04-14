@@ -3,6 +3,7 @@ import { Component } from '../../../base/Component.js';
 export default class SearchBar extends Component {
   constructor() {
     super('search-bar', 'FORM');
+    this.node.setAttribute('autocomplete', 'off');
     this.init();
   }
 
