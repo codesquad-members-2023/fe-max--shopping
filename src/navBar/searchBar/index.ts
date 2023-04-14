@@ -11,6 +11,7 @@ const initSearchSuggestion = () => {
   const searchSuggestion = new SearchSuggestion();
   const $searchInput = $(".search-bar__input");
   const $searchSuggestion = $(".search-suggestion");
+  const $searchBar = $(".search-bar");
 
   if (!($searchInput instanceof HTMLInputElement)) {
     throw new Error(`element${$searchInput} is not HTMLInputElement`);
@@ -30,9 +31,16 @@ const initSearchSuggestion = () => {
     event.preventDefault();
   });
 
-  $searchSuggestion.addEventListener("click", searchSuggestion.handleDeleteButtonClick);
+  $searchSuggestion.addEventListener(
+    "click",
+    searchSuggestion.handleDeleteButtonClick.bind(searchSuggestion)
+  );
 
   $searchInput.addEventListener("keydown", (event) =>
     searchSuggestion.handleSuggestionKeyDown(event, $searchSuggestion)
+  );
+
+  $searchBar.addEventListener("submit", (event) =>
+    searchSuggestion.handleSearchBarSubmit(event, $searchInput)
   );
 };

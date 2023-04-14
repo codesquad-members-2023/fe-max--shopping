@@ -105,12 +105,33 @@ export class SearchSuggestion {
     }
   }
 
-  async handleDeleteButtonClick({ target }: Event) {
-    if (!(target instanceof HTMLElement) || !target.closest(".search-suggestion__delete-button")) {
+  async handleDeleteButtonClick(event: Event) {
+    event.preventDefault();
+
+    if (
+      !(event.target instanceof HTMLElement) ||
+      !event.target.closest(".search-suggestion__delete-button")
+    ) {
       return;
     }
 
-    await this.requestDeleteRecentSearch(target);
+    await this.requestDeleteRecentSearch(event.target);
+    await this.fetchSearches();
+    this.renderView();
+  }
+
+  async handleSearchBarSubmit(event: Event, $searchInput: HTMLInputElement) {
+    event.preventDefault();
+
+    await fetch(`${BASE_URL}/recent`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: $searchInput.value }),
+    });
+
+    $searchInput.value = "";
     await this.fetchSearches();
     this.renderView();
   }
