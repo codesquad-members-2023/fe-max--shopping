@@ -1,7 +1,7 @@
-import { $ } from '../utils/dom.js';
+import { $ } from '../../utils/dom.js';
 import { APIClient } from './api.js';
-import { getRandomLetter } from '../utils/pickPrefix.js';
-import { handleDimming, layerOpenState } from '../utils/dim.js';
+import { getRandomLetter } from '../../utils/pickPrefix.js';
+import { handleDimming, layerOpenState } from '../../utils/dim.js';
 
 const searchBarInput = document.searchForm.searchBar;
 const searchPanel = $('.search-panel');
