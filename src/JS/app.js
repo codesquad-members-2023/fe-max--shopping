@@ -1,10 +1,10 @@
 import {
   focusInputShowAndHideLayer,
-  inputMoveFocus,
+  moveFocusInput,
 } from './searchbar/searchbar.js';
 
 function init() {
   focusInputShowAndHideLayer();
-  inputMoveFocus();
+  moveFocusInput();
 }
 window.addEventListener('DOMContentLoaded', init());

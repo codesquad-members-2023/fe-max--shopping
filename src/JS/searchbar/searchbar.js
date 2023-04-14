@@ -10,41 +10,44 @@ export function focusInputShowAndHideLayer() {
   selectEventHideLayer('click', '.searchbar__suggest');
 }
 
-export function inputMoveFocus() {
+export function moveFocusInput() {
   const input = $('.searchbar__input');
-  const suggest = $('.searchbar__suggest');
+  const suggestEl = $('.searchbar__suggest');
   input.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      suggest.lastElementChild.focus();
-      keyDownMoveFocus();
+      suggestEl.lastElementChild.focus();
     }
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      suggest.firstElementChild.focus();
-      keyDownMoveFocus();
+      suggestEl.firstElementChild.focus();
     }
+    moveFocusOnkeyDown();
   });
 }
-function keyDownMoveFocus() {
-  const focusElement = document.activeElement;
-  focusElement.addEventListener('keydown', function (e) {
+function moveFocusOnkeyDown() {
+  const focusEl = document.activeElement;
+  const input = $('.searchbar__input');
+  const suggestEl = $('.searchbar__suggest');
+  const firstEl = suggestEl.firstElementChild;
+  const lastEl = suggestEl.lastElementChild;
+  focusEl.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      if (focusElement === $('.first')) {
-        $('.searchbar__input').focus();
+      if (focusEl === firstEl) {
+        input.focus();
       } else {
-        focusElement.previousElementSibling.focus();
-        keyDownMoveFocus();
+        focusEl.previousElementSibling.focus();
+        moveFocusOnkeyDown();
       }
     }
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      if (focusElement === $('.last')) {
-        $('.searchbar__input').focus();
+      if (focusEl === lastEl) {
+        input.focus();
       } else {
-        focusElement.nextElementSibling.focus();
-        keyDownMoveFocus();
+        focusEl.nextElementSibling.focus();
+        moveFocusOnkeyDown();
       }
     }
   });
