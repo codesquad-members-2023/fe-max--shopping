@@ -66,9 +66,7 @@
         animation: fade-in 0.5s forwards; 
         li {
           padding: 8px 12px;
-          &:focus,
-          &:focus-within, 
-          &:focus-visible {
+          &:hover{
             background-color: $color-gray-100;
           }
           .active {
@@ -76,7 +74,7 @@
           }
           .highlighted{
             color: $color-secondary-puple;
-          }
+          } 
         }
         span {
           @include font-body-md;
