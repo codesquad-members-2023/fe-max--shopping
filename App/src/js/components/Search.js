@@ -12,21 +12,27 @@ import { Component } from "./Component.js";
 function keywordsItemsAddKeydownEvent() {
   const { keywords, input, ul } = this;
 
+  const items = ul.querySelectorAll("li");
   const buttons = ul.querySelectorAll("button");
 
   const limit = buttons.length;
 
   buttons.forEach((button, i) => {
     button.addEventListener("keydown", (e) => {
-      e.stopPropagation();
       e.preventDefault();
-      console.log(e);
       switch (e.key) {
         case "ArrowUp":
           buttons[(i - 1 + limit) % limit].focus();
           return;
         case "ArrowDown":
           buttons[(i + 1) % limit].focus();
+          return;
+        case "D":
+        case "d":
+          const del = items[i].querySelector(".delete");
+          if (del) {
+            del.focus();
+          }
           return;
         case "Enter":
           const temp = button.textContent;

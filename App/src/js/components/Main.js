@@ -41,7 +41,7 @@ export class Main extends Component {
 
     function addBgSlidesTransition() {
       bgSlides.forEach((li) => {
-        li.style.transition = "transform 3000ms";
+        li.style.transition = "transform 300ms";
       });
     }
 
