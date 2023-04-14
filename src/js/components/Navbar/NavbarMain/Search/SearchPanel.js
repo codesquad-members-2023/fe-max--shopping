@@ -1,12 +1,16 @@
-import { model } from '../../../../domain/model.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor({ recommend, history }) {
+  constructor(state, model) {
     super('search-panel', 'UL');
-    this.recommendWords = recommend;
-    this.history = history;
-    this.init();
+    this.model = model;
+    this.render(state);
+  }
+
+  render(state) {
+    this.recommendWords = state.recommend;
+    this.history = state.history;
+    this.init(state);
     this.selectedItem = this.node.firstElementChild;
   }
 
@@ -20,7 +24,7 @@ export class SearchPanel extends Component {
 
   deleteItem(target) {
     const targetItem = target.closest('li');
-    model.deleteSearchWord(targetItem.dataset.id);
+    this.model.deleteSearchWord(targetItem.dataset.id);
     targetItem.remove();
   }
 
@@ -58,9 +62,11 @@ export class SearchPanel extends Component {
     this.node.classList.remove('active');
   }
 
-  getTemplate() {
-    const historyView = this.getAllHistoryTemplate(this.history);
-    const recommendView = this.getAllRecommendTemplate(this.recommendWords);
+  getTemplate({
+    recommend, history
+  }) {
+    const historyView = this.getAllHistoryTemplate(history);
+    const recommendView = this.getAllRecommendTemplate(recommend);
     return historyView + recommendView;
   }
 
@@ -95,5 +101,22 @@ export class SearchPanel extends Component {
   <a href="">${word}</a><button class="delete-btn"></button>
 </li>
     `;
+  }
+}
+
+
+function test() {
+  let isDeleteSearchWordCalled = false
+  const model = {
+    deleteSearchWord: (...args) => {
+      // console.log('deleteSearchWord called!', ...args);
+      isDeleteSearchWordCalled = true;
+    }
+  }
+  const searchPanel = new SearchPanel(state, model);
+  searchPanel.deleteItem();
+
+  if (!isDeleteSearchWordCalled) {
+    throw new Error('isDeleteSearchWordCalled not called');
   }
 }

@@ -1,8 +1,9 @@
 import { Main } from '../../../../Main.js';
-import { model } from '../../../../domain/model.js';
+import { Model } from '../../../../domain/model.js';
 import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
+import { SearchController } from './SearchController.js';
 import { SearchPanel } from './SearchPanel.js';
 import { client } from '/src/js/domain/client.js';
 
@@ -14,15 +15,30 @@ export default class Search extends Component {
       recommend: [],
     };
     this.main = new Main();
-    this.searchPanel = new SearchPanel(this.state);
+    this.model = new Model();
+    this.searchPanel = new SearchPanel(this.state, this.model);
     this.searchBar = new SearchBar();
+    this.controller = new SearchController({
+      onRecommendChanged: (recommend) => {
+        this.onRecommendChanged(recommend);
+      },
+    });
     this.init();
+  }
+
+  onRecommendChanged(recommend) {
+    this.state.recommend = recommend;
+    this.main.onDimmed();
+    this.renderSearchPanel(this.state);
   }
 
   initEventHandlers() {
     this.node.addEventListener(
       'click',
-      debounce(() => this.showRecommendWords(), 300)
+      debounce(async () => {
+        if (this.getInputValue()) return;
+        this.controller.startLoadRecommend();
+      }, 300)
     );
     this.node.addEventListener(
       'input',
@@ -44,8 +60,8 @@ export default class Search extends Component {
   }
 
   saveHistory(userInput) {
-    model.addSearchWord(userInput);
-    this.state.history = model.getSearchHistory();
+    this.model.addSearchWord(userInput);
+    this.state.history = this.model.getSearchHistory();
   }
 
   handleKeyDown(key) {
@@ -62,21 +78,6 @@ export default class Search extends Component {
       this.searchPanel.close();
       this.main.offDimmed();
     }
-  }
-
-  async showRecommendWords() {
-    if (this.getInputValue()) return;
-
-    const recommendWords = await this.loadRecommendWords();
-    this.state.recommend = recommendWords;
-
-    this.main.onDimmed();
-    this.renderSearchPanel(this.state);
-  }
-
-  async loadRecommendWords() {
-    const recommendWords = await client.fetchRecommendWords();
-    return recommendWords;
   }
 
   async showAutoComplete() {
@@ -99,8 +100,7 @@ export default class Search extends Component {
   }
 
   renderSearchPanel(state) {
-    this.searchPanel = new SearchPanel(state);
-    this.$('.search-panel').replaceWith(this.searchPanel.node);
+    this.searchPanel.render(state);
     this.searchPanel.open();
   }
 

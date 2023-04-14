@@ -1,35 +1,29 @@
-const STORAGE_KEY = 'searchHistory';
-const storage = {
-  searchHistory: {},
-};
-
-export const model = {
-  initSearchWord() {
-    const store = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (!store) return;
-
-    storage.searchHistory = store;
-  },
+export class Model {
+  constructor() {
+    this.STORAGE_KEY = 'searchHistory';
+    this.storage = {
+      searchHistory: {},
+    };
+    initSearchWord();
+  }
 
   addSearchWord(value) {
     const id = Date.now();
-    storage.searchHistory[id] = value;
+    this.storage.searchHistory[id] = value;
 
     this.saveLocalStorage();
-  },
+  }
 
   deleteSearchWord(id) {
-    delete storage.searchHistory[id];
+    delete this.storage.searchHistory[id];
     this.saveLocalStorage();
-  },
+  }
 
   saveLocalStorage() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(storage.searchHistory));
-  },
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.storage.searchHistory));
+  }
 
   getSearchHistory() {
-    return storage.searchHistory;
-  },
+    return this.storage.searchHistory;
+  }
 };
-
-model.initSearchWord();
