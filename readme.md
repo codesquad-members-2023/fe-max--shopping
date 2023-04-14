@@ -180,5 +180,12 @@
 
 ### Dimmed Layer
 
-- Need to dim the main portion upon hovering over certain tooltips.
-- Trigger the dimmed layer by creating and dispatching a custom event from the `tool-tip` component to the `top-header` (parent) component.
+- Need to dim the main portion upon hovering over certain tooltips, and upon showing autocomplete panel.
+- Trigger the dimmed layer by creating and dispatching a custom event from the components to the `top-header` (parent) component.
+
+### Keyboard Event
+
+- When typing in Korean, the last character stays in "composing" state.
+- The keyboard event fires twice when `isComposing` is `true`.
+- To prevent double firing, we can ignore the first event that was fired, which is when `isComposing` is `true`.
+  - i.e. when the input is in "composing" state and the arrow key is pressed, two of the same events are fired. The first should be ignored and only the second should fall through.
