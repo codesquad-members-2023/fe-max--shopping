@@ -58,6 +58,7 @@ function initNavLayer() {
   addressLayer.addEventListener('mouseenter', handleAddressMouseEnter);
   addressLayer.addEventListener('mouseleave', handleAddressMouseLeave);
   loginArea.addEventListener('mouseenter', handleLoginMouseEnter);
+  loginArea.addEventListener('mouseleave', handleLoginMouseLeave);
   loginExpandLayer.addEventListener('mouseleave', handleLoginMouseLeave);
 }
 

@@ -642,7 +642,7 @@ html {
   flex-direction: column;
   gap: 4px;
 }
-.header-layer__popup--address.hidden {
+.header-layer__popup--address.hidden, .header-layer__popup--login-extend.hidden, .header-layer__popup--login.hidden {
   display: none;
 }
 .header-layer__popup--login-extend.hidden {
