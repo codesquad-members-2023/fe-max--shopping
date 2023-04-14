@@ -13,7 +13,7 @@ export class SearchLayer {
   }
 
   async open() {
-    await this.suggestion.setResults();
+    await this.suggestion.setSuggestion();
 
     closeAllLayers();
     openDimmedLayer();

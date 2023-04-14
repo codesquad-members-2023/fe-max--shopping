@@ -20,23 +20,20 @@ export class SearchSuggestion {
     this.element.addEventListener('mouseout', (event) => removeOverClass(event.target));
   }
 
-  async setResults() {
-    const results = await this.createResults();
-    this.renderResults(results);
+  async setSuggestion() {
+    const suggestion = await this.createSuggestion();
+    this.renderSuggestion(suggestion);
   }
 
-  async createResults() {
-    const historyListElements = await this.historyListBuilder.createTotalListElement();
-    const recommendListElements = await this.recommendListBuilder.createTotalListElement();
+  async createSuggestion() {
+    const historyLists = await this.historyListBuilder.createTotalList();
+    const recommendLists = await this.recommendListBuilder.createTotalList();
 
-    return [...historyListElements, ...recommendListElements].map((element, index) => {
-      element.dataset.index = index;
-      return element;
-    });
+    return [...historyLists, ...recommendLists].reduce((o, n) => o + n, '');
   }
 
-  renderResults(results) {
-    this.element.append(...results);
+  renderSuggestion(suggestion) {
+    this.element.insertAdjacentHTML('beforeend', suggestion);
   }
 
   async emptyResults() {
