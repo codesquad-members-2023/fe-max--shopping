@@ -13,6 +13,7 @@ export class SearchBar {
     this.view.inputEl.addEventListener('input', () => this.handleDebouncedInputChange());
     this.view.buttonEl.addEventListener('click', () => this.handleButtonClick());
     this.view.listLayerEl.addEventListener('click', (e) => this.handleRemoveHistoryItem(e));
+    document.addEventListener('click', (e) => this.handleDocumentClick(e));
   }
 
   async handleInputClick() {
@@ -45,5 +46,12 @@ export class SearchBar {
       this.model.removeHistoryData(itemValue);
       historyItemEl.remove();
     }
+  }
+
+  handleDocumentClick(e) {
+    const isSearchBarClicked =
+      this.view.listLayerEl.contains(e.target) || this.view.inputEl === e.target;
+
+    if (!isSearchBarClicked) this.view.hideSearchList();
   }
 }
