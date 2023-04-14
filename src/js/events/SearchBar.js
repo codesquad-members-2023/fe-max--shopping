@@ -2,12 +2,9 @@ import { $ } from '../utils/dom.js';
 import { APIClient } from './api.js';
 import { getRandomLetter } from '../utils/pickPrefix.js';
 import { handleDimming, layerOpenState } from '../utils/dim.js';
-import { store } from './store.js';
 
 const searchBarInput = document.searchForm.searchBar;
-const searchPanel = document.querySelector('.search-panel');
-const ESC = 27;
-//
+const searchPanel = $('.search-panel');
 export class SearchHistoryManager {
   constructor() {
     this.history = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -15,15 +12,8 @@ export class SearchHistoryManager {
 
   addSearch(value) {
     if (!this.isDuplicate()) {
-      const newSearch = {
-        id: this.history.length,
-        value: value,
-      };
-      // this.history.push(newSearch);
-
       let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-      history.push(newSearch);
-      // localStorage.setItem('searchHistory', JSON.stringify(this.history));
+      history.push(value);
       localStorage.setItem('searchHistory', JSON.stringify(history));
     }
   }
@@ -36,7 +26,7 @@ export class SearchHistoryManager {
     return this.history;
   }
 }
-export class SearchUI {
+export class SearchPanelHandler {
   constructor() {
     this.activeIndex = -1;
     this.searchHistoryManager = new SearchHistoryManager();
@@ -57,12 +47,10 @@ export class SearchUI {
   deleteSearchTerm(e) {
     if (e.target.nodeName === 'IMG') {
       const searchTerm = e.target.closest('li').innerText;
-      const searchHistory =
-        JSON.parse(localStorage.getItem('searchHistory')) || [];
+      const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
       const updatedSearchHistory = searchHistory.filter(
-        item => item.value !== searchTerm
+        item => item !== searchTerm
       );
-
       localStorage.setItem(
         'searchHistory',
         JSON.stringify(updatedSearchHistory)
@@ -73,36 +61,49 @@ export class SearchUI {
   }
 
   setActiveClass() {
-    const searchResults = searchPanel.querySelectorAll('li');
-    if (this.activeIndex >= searchResults.length) {
-      this.activeIndex = 0;
-    } else if (this.activeIndex < 0) {
-      this.activeIndex = searchResults.length - 1;
-    }
+    const searchResults = this.getSearchResultLists();
     searchResults.forEach((result, index) => {
       if (index === this.activeIndex) {
         result.classList.add('active');
-        result.style.backgroundColor = 'yellow'; // 배경색 변경
+        result.style.backgroundColor = 'yellow';
       } else {
         result.classList.remove('active');
-        result.style.backgroundColor = ''; // 배경색 초기화
+        result.style.backgroundColor = '';
       }
     });
   }
 
   keyboardNavigationHandler(e) {
-    if (e.key === 'ArrowDown') {
-      this.activeIndex++;
-      this.setActiveClass();
-    } else if (e.key === 'ArrowUp') {
-      this.activeIndex--;
-      this.setActiveClass();
-    } 
-    else {
-      // 검색어 입력 중일 때
+    if (e.key === 'ArrowDown' || e.target.nodeName === "LI") {
+      this.handleArrowDown();
+    } else if (e.key === 'ArrowUp' || e.target.nodeName === "LI") {
+      this.handleArrowUp();
+    } else {
       this.activeIndex = -1;
-      // getResults(searchBarInput.value);
     }
+  
+    this.setActiveClass();
+  }
+  
+  handleArrowDown() {
+    const searchResults = this.getSearchResultLists();
+  
+    this.activeIndex += 1;
+    if (this.activeIndex >= searchResults.length) {
+      this.activeIndex = 0;
+    }
+  }
+  
+  handleArrowUp() {
+    const searchResults = this.getSearchResultLists();
+  
+    this.activeIndex -= 1;
+    if (this.activeIndex < 0) {
+      this.activeIndex = searchResults.length - 1;
+    }
+  }
+  getSearchResultLists() {
+    return searchPanel.querySelectorAll('li');
   }
 }
 export class SearchTermFetcher {
@@ -116,7 +117,7 @@ export class SearchBar {
   constructor() {
     this.termsType = { suggest: [], history: [], auto: [] };
     this.templateGenerator = new TemplateGenerator();
-    this.searchUI = new SearchUI();
+    this.searchPanelHandler = new SearchPanelHandler();
     this.searchTermFetcher = new SearchTermFetcher();
   }
 
@@ -124,19 +125,26 @@ export class SearchBar {
     searchBarInput.addEventListener('click', e => {
       this.renderSuggestions(e);
     });
+
     document.addEventListener('click', e => {
       this.toggleSearchPanel(e, false);
     });
 
     searchBarInput.addEventListener('keydown', e => {
+      this.searchPanelHandler.storeInputTerms(e);
+    });
+
+    searchBarInput.addEventListener('input', e => {
       this.renderAutoComplete(e);
-      this.searchUI.storeInputTerms(e);
     });
+
     searchBarInput.addEventListener('keyup', e => {
-      this.searchUI.keyboardNavigationHandler(e);
+      this.searchPanelHandler.keyboardNavigationHandler(e);
     });
+
     searchPanel.addEventListener('click', e => {
-      this.searchUI.deleteSearchTerm(e);
+      this.searchPanelHandler.deleteSearchTerm(e);
+      this.searchPanelHandler.keyboardNavigationHandler(e);
       e.stopPropagation();
       this.renderHistoryAndSuggestions();
     });
@@ -167,8 +175,9 @@ export class SearchBar {
     this.toggleSearchPanel(e, true);
   }
 
-  renderHistoryAndSuggestions() {
-    this.setTermsType('history', store.getLocalStorage().reverse().slice(0, 5));
+  async renderHistoryAndSuggestions() {
+    let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    this.setTermsType('history', history.reverse().slice(0, 5));
     const template = this.templateGenerator.generateHistoryAndSuggestions(
       this.termsType
     );
@@ -222,7 +231,6 @@ export class TemplateGenerator {
   generateHistoryAndSuggestions(termsObj) {
     const suggestionTemplate = this.generateSuggest(termsObj.suggest);
     let HistoryTemplate = termsObj.history
-      .map(el => el.value)
       .reduce((acc, cur) => {
         return (acc += ` <li class="history search-list" >
         <span>${cur}</span>
@@ -231,29 +239,46 @@ export class TemplateGenerator {
       }, '');
     return (HistoryTemplate += suggestionTemplate);
   }
+
   generateAutoComplete(terms, input) {
-    const AutoCompleteTemplate = terms.reduce((acc, cur, i) => {
-      const highlighted = new RegExp(`\\b${input}`, 'i');
-      const match = highlighted.exec(cur);
-      let highlightedText = cur;
+    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    korean.test(input);
 
-      if (match) {
-        const [matchedString] = match;
-        const index = match.index;
-        highlightedText =
-          cur.slice(0, index) +
-          `<mark>${matchedString}</mark>` +
-          cur.slice(index + matchedString.length);
-      }
+    const highlighted = new RegExp(
+      `${korean ? '(?<!\\S)' : '\\b'}${input}`,
+      'i'
+    );
 
-      const autoCompleteListItem = `
-        <li class="autocomplete search-list">
-          <span>${highlightedText}</span>
-        </li>
-      `;
+    const AutoCompleteTemplate = terms
+      .map(term => {
+        const match = highlighted.exec(term);
+        const highlightedText = match
+          ? term.replace(match[0], `<mark>${match[0]}</mark>`)
+          : term;
+        return `<li class="autocomplete search-list"><span>${highlightedText}</span></li>`;
+      })
+      .join('');
 
-      return acc + autoCompleteListItem;
-    }, '');
+    const lastTerm = terms[terms.length - 1];
+    const lastTermIndex = lastTerm.toLowerCase().indexOf(input.toLowerCase());
+
+    if (
+      lastTermIndex !== -1 &&
+      lastTermIndex + input.length === lastTerm.length
+    ) {
+      const lastHighlighted = new RegExp(
+        `${korean ? '(?<!\\S)' : '\\b'}${lastTerm}`,
+        'i'
+      );
+      const lastHighlightedText = lastTerm.replace(
+        lastHighlighted,
+        `<mark>${lastTerm}</mark>`
+      );
+      return (
+        AutoCompleteTemplate.slice(0, -11) +
+        `<li class="autocomplete search-list"><span>${lastHighlightedText}</span></li>`
+      );
+    }
 
     return AutoCompleteTemplate;
   }

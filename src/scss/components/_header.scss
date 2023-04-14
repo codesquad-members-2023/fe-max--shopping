@@ -71,6 +71,12 @@
           &:focus-visible {
             background-color: $color-gray-100;
           }
+          .active {
+            background-color: $color-gray-100;
+          }
+          .highlighted{
+            color: $color-secondary-puple;
+          }
         }
         span {
           @include font-body-md;
