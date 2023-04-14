@@ -27,4 +27,8 @@ export class View {
     this.dimBackground.classList.add('hidden');
     this.listLayerEl.classList.add('hidden');
   }
+
+  clearInputField() {
+    this.inputEl.value = '';
+  }
 }
