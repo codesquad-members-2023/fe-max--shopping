@@ -7,7 +7,7 @@
 
 - CSS 전처리기를 이해하고 활용해서 개발할 수 있다. ✅
 - Modal 기능을 구현할 수 있다. ✅
-- Carousel UX를 구현할 수 있다.
+- Carousel UX를 구현할 수 있다. ✅
 - CSS3 기반 웹 애니메이션을 구현할 수 있다. ✅
 
 ## 🎯 2주차 학습 목표
@@ -108,7 +108,7 @@ console.log(child.prototype);
 
 ## 🤔 생각할 거리
 
-- searchbarInput에 이벤트를 걸어줄 때 searchbarLayer를 밖에서 변수로 선언해서 불러오려면 null 값이 나와서 이벤트 핸들러 내부에서 불러와서 사용해야 한다. WHY? → searchbar가 렌더링되고 그 이후에 layer가 렌더링 되어서 뭔가 순서 문제인가?
+- searchbarInput에 이벤트를 걸어줄 때 searchLayer를 밖에서 변수로 선언해서 불러오려면 null 값이 나와서 이벤트 핸들러 내부에서 불러와서 사용해야 한다. WHY? → searchbar가 렌더링되고 그 이후에 layer가 렌더링 되어서 뭔가 순서 문제인가?
 
 ## 😵‍💫 삽질 기록
 

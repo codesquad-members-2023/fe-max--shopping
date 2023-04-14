@@ -1,4 +1,4 @@
-export class SearchbarLayer {
+export class SearchLayer {
   constructor($target) {
     this.$target = $target;
     this.url = '../data/searchDB.json';
@@ -38,6 +38,4 @@ export class SearchbarLayer {
   render() {
     this.$target.insertAdjacentHTML('beforeend', this.template());
   }
-
-  setEvent() {}
 }
