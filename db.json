@@ -1,38 +1,156 @@
 {
   "searchHistory": [
     {
-      "key": "0",
-      "text": "검색 기록"
+      "text": "최근 검색",
+      "id": 1
+    },
+    {
+      "text": "최근 검색2",
+      "id": 2
+    },
+    {
+      "text": "최근 검색3",
+      "id": 3
+    },
+    {
+      "text": "최근 검색4",
+      "id": 4
+    },
+    {
+      "text": "최근 검색5",
+      "id": 5
+    },
+    {
+      "text": "최근 검색6",
+      "id": 6
+    },
+    {
+      "text": "최근 검색7",
+      "id": 7
     }
   ],
   "recommend": [
-    { "key": "0", "text": "marvel legends" },
-    { "key": "1", "text": "egift cards for amazon gift card" },
-    { "key": "2", "text": "gift cards" },
-    { "key": "3", "text": "기프트카드" },
-    { "key": "4", "text": "amazon reload" },
-    { "key": "5", "text": "reloadable visa gift cards" },
-    { "key": "6", "text": "scorpions cd" },
-    { "key": "7", "text": "reload gift card" },
-    { "key": "8", "text": "reload" },
-    { "key": "9", "text": " verve acoustic sounds series vinyl" }
+    {
+      "id": 0,
+      "text": "marvel legends"
+    },
+    {
+      "id": 1,
+      "text": "egift cards for amazon gift card"
+    },
+    {
+      "id": 2,
+      "text": "gift cards"
+    },
+    {
+      "id": 3,
+      "text": "기프트카드"
+    },
+    {
+      "id": 4,
+      "text": "amazon reload"
+    },
+    {
+      "id": 5,
+      "text": "reloadable visa gift cards"
+    },
+    {
+      "id": 6,
+      "text": "scorpions cd"
+    },
+    {
+      "id": 7,
+      "text": "reload gift card"
+    },
+    {
+      "id": 8,
+      "text": "reload"
+    },
+    {
+      "id": 9,
+      "text": " verve acoustic sounds series vinyl"
+    }
   ],
   "search": [
-    { "key": "0", "text": "자동차 점프 스타터" },
-    { "key": "1", "text": "강아지 자동급식기" },
-    { "key": "2", "text": "고양이 자동급식기" },
-    { "key": "3", "text": "자동차 장난감" },
-    { "key": "4", "text": "자동차 용품" },
-    { "key": "5", "text": "자동 연필깎이" },
-    { "key": "6", "text": "자동차 컴파운드 흠집 제거제" },
-    { "key": "7", "text": "두잇 자동급식기" },
-    { "key": "8", "text": "자동차 보조배터리" },
-    { "key": "9", "text": "자동차 타이어 공기주입기" },
-    { "key": "10", "text": "자동차 점프 스타터1" },
-    { "key": "11", "text": "자동차 점프 스타터2" },
-    { "key": "12", "text": "자동차 점프 스타터3" },
-    { "key": "13", "text": "자동차 점프 스타터4" },
-    { "key": "14", "text": "자동차 점프 스타터5" },
-    { "key": "15", "text": "자동차 점프 스타터6" }
+    {
+      "id": 0,
+      "text": "자동차 점프 스타터"
+    },
+    {
+      "id": 1,
+      "text": "강아지 자동급식기"
+    },
+    {
+      "id": 2,
+      "text": "고양이 자동급식기"
+    },
+    {
+      "id": 3,
+      "text": "자동차 장난감"
+    },
+    {
+      "id": 4,
+      "text": "자동차 용품"
+    },
+    {
+      "id": 5,
+      "text": "자동 연필깎이"
+    },
+    {
+      "id": 6,
+      "text": "자동차 컴파운드 흠집 제거제"
+    },
+    {
+      "id": 7,
+      "text": "두잇 자동급식기"
+    },
+    {
+      "id": 8,
+      "text": "자동차 보조배터리"
+    },
+    {
+      "id": 9,
+      "text": "자동차 타이어 공기주입기"
+    },
+    {
+      "id": 10,
+      "text": "자동차 점프 스타터1"
+    },
+    {
+      "id": 11,
+      "text": "자동차 점프 스타터2"
+    },
+    {
+      "id": 12,
+      "text": "자동차 점프 스타터3"
+    },
+    {
+      "id": 13,
+      "text": "자동차 점프 스타터4"
+    },
+    {
+      "id": 14,
+      "text": "자동차 점프 스타터5"
+    },
+    {
+      "id": 15,
+      "text": "자동차 점프 스타터6"
+    },
+    {
+      "id": 16,
+      "text": "abcdefghi"
+    },
+    {
+      "id": 17,
+      "text": "ab"
+    },
+    {
+      "id": 18,
+      "text": "abc"
+    },
+    {
+      "id": 19,
+      "text": "abcd"
+    }
   ]
 }

@@ -25,7 +25,40 @@
     @include BodyMD;
   }
 
+  .historyList {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 4px;
+    height: 37px;
+    color: var(--secondary-purple);
+    @include BodyMD;
+  }
+  .autoCompletList {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+
+    height: 37px;
+    @include BodyMD;
+  }
+
   .selected {
     background-color: var(--gray100);
+  }
+
+  .historyRemoveBtn {
+    background: none;
+    border: none;
+  }
+  .highlight {
+    color: var(--secondary-purple);
   }
 }

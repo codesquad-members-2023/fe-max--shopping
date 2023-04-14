@@ -70,9 +70,17 @@ export class Base {
       childNode.setTextContent(textContent);
     }
 
-    //todo: 조건이 필요할지도..?
-    this[name] = childNode;
+    if (name) {
+      this[name] = childNode;
+    }
+
     return childNode;
+  }
+
+  clearChild() {
+    while (this.#_node.firstChild) {
+      this.#_node.removeChild(this.#_node.firstChild);
+    }
   }
 
   isNode(node) {

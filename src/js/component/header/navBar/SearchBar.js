@@ -1,10 +1,13 @@
+import { DB } from "../../../db/db.js";
 import { Base } from "../../Base.js";
 import { SearchBarLayer } from "./SearchBarLayer.js";
 
 export class SearchBar extends Base {
   constructor() {
-    super("form");
+    super("div");
     this.layer = new SearchBarLayer();
+    this.db = new DB();
+    this.prevInputText = "";
     this.init();
   }
 
@@ -18,42 +21,83 @@ export class SearchBar extends Base {
   addChild() {
     const template = `
       <input class="inputBar" placeholder="검색 Amazon" data-elementname="inputBar">
-      <button class="searchBar__btn"></button>
+      <button class="searchBar__btn" data-elementname="searchBtn"></button>
     `;
 
     this.setTemplate(template);
   }
 
-  keydownEventHandler(e) {
-    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-      e.preventDefault();
-
-      this.setSelectList(e.key);
-    }
-  }
-
-  setSelectList(key) {
-    const layer = this.layer;
-    if (layer.selectInedx === null) {
-      layer.selectInedx = key === "ArrowUp" ? layer.maxIndex : 0;
-    } else {
-      layer.keywordNodes[layer.selectInedx].classList.remove("selected");
-      layer.selectInedx += key === "ArrowUp" ? -1 : 1;
-
-      if (layer.selectInedx < 0) {
-        layer.selectInedx = layer.maxIndex;
-      } else if (layer.selectInedx > layer.maxIndex) {
-        layer.selectInedx = 0;
-      }
-    }
-
-    layer.keywordNodes[layer.selectInedx].classList.add("selected");
-    this.inputBar.node.value = layer.keywordList[layer.selectInedx];
-  }
-
   setSearchBarEvent() {
-    this.inputBar.setEvent("focus", this.layer.show.bind(this.layer));
+    this.setEvent("mousedown", (event) => {
+      const isNotInputBar = event.target !== this.inputBar.node;
+      if (isNotInputBar) {
+        event.preventDefault();
+      }
+    });
+
+    this.inputBar.setEvent(
+      "focus",
+      this.layer.show.bind(this.layer, this.inputBar)
+    );
     this.inputBar.setEvent("blur", this.layer.hide.bind(this.layer));
-    this.inputBar.setEvent("keydown", this.keydownEventHandler.bind(this));
+    this.inputBar.setEvent("keyup", this.keydownEventHandler.bind(this));
+    this.inputBar.setEvent("input", this.inputEventHandler.bind(this));
+
+    this.searchBtn.setEvent("click", this.keywordSearch);
+    this.setLayerEvent();
+  }
+
+  layerClickEvent(event) {
+    event.preventDefault();
+
+    const isHistoryRemoveBtn = event.target.classList.contains("historyRemove");
+    if (isHistoryRemoveBtn) {
+      const id = event.target.dataset.historyid;
+      this.db.removeSearchHistory(id);
+      return;
+    }
+
+    const listItem = event.target.closest(".listItem");
+    const isListItem = listItem !== null;
+    if (isListItem) {
+      const selectIndex = listItem.dataset.layerindex;
+      this.inputBar.node.value = this.layer.keywordList[selectIndex];
+      this.keywordSearch();
+    }
+  }
+
+  setLayerEvent() {
+    this.setEvent("click", this.layerClickEvent.bind(this));
+  }
+
+  keywordSearch() {
+    const inputText = this.inputBar.node.value;
+    if (inputText !== "") {
+      this.db.savesSearchHistory(inputText);
+    }
+  }
+
+  async keydownEventHandler(event) {
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+      event.preventDefault();
+
+      this.layer.setSelectList(event.key, this.inputBar);
+      return;
+    }
+
+    if (event.key === "Enter") {
+      this.keywordSearch();
+    }
+  }
+
+  async inputEventHandler(e) {
+    const inputText = this.inputBar.node.value;
+    this.layer.selectInedx = null;
+
+    if (this.layer.selectInedx !== null) {
+      return;
+    }
+
+    this.layer.show(this.inputBar);
   }
 }
