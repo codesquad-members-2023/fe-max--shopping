@@ -58,20 +58,32 @@ export class Searchbar {
 
         firstEl.classList.add('selected');
         lastEl.classList.remove('selected');
+        searchbarInput.value = firstEl.innerText;
 
-        this.focusIndex += 1;
+        this.focusIndex = 1;
         return;
       }
 
-      if (e.key === 'ArrowDown' && this.focusIndex > 0) {
+      if (e.key === 'ArrowDown') {
         const prevFocusEl = lists[this.focusIndex - 1];
         const currentFocusEl = lists[this.focusIndex];
 
         prevFocusEl.classList.remove('selected');
         currentFocusEl.classList.add('selected');
+        searchbarInput.value = currentFocusEl.innerText;
 
         this.focusIndex = this.focusIndex + 1 <= lists.length - 1 ? this.focusIndex + 1 : 0;
       }
+
+      // if (e.key === 'ArrowUp' && this.focusIndex > 0) {
+      //   const prevFocusEl = lists[this.focusIndex - 1];
+      //   const currentFocusEl = lists[this.focusIndex];
+
+      //   prevFocusEl.classList.remove('selected');
+      //   currentFocusEl.classList.add('selected');
+
+      //   this.focusIndex = this.focusIndex - 1 >= 0 ? this.focusIndex - 1 : lists.length - 1;
+      // }
     });
   }
 }
