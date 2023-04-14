@@ -14,5 +14,9 @@ module.exports = {
     'import/extensions': ['off'],
     'linebreak-style': 0,
     'no-use-before-define': 'off',
+    'max-classes-per-file': 'off',
+    'no-param-reassign': 'off',
+    'no-useless-constructor': 'off',
+    'class-methods-use-this': 'off',
   },
 };
