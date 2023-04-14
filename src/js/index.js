@@ -3,13 +3,18 @@ import {
     addLoginEventListeners,
     addAddressEventListeners,
 } from "./modal/event.js";
-import { init } from "./hero/hero.js";
+import { addSearchBarEventListener } from "./search-bar/event.js";
 
-function initModal() {
+const initModal = () => {
     showLoginModalOnLoad();
     addLoginEventListeners();
     addAddressEventListeners();
-}
+};
 
 initModal();
-init();
+
+const initSearchBar = () => {
+    addSearchBarEventListener();
+};
+
+initSearchBar();
