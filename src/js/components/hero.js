@@ -9,7 +9,7 @@ const SPEED_TIME = 500;
 let currentIdx = 0;
 let translate = 0;
 
-const heroController = () => {
+export const heroController = () => {
   cloneSlide();
   setDefaultStyle();
   $('.prev').addEventListener('click', movePrevSlide);
@@ -59,5 +59,3 @@ const moveNextSlide = () => {
     }, SPEED_TIME);
   }
 };
-
-export default heroController;

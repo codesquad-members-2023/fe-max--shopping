@@ -1,6 +1,6 @@
-import { $, addHiddenClass, removeHiddenClass, addDimmedClass, removeDimmedClass } from '../utils.js';
+import { $, addHiddenClass, removeHiddenClass, addDimmed, removeDimmed } from '../utils.js';
 
-const modalController = () => {
+export const modalController = () => {
   document.addEventListener('DOMContentLoaded', showSmallLoginModal);
   $('.login-wrap').addEventListener('mouseenter', showLargeLoginModal);
   $('.nav-main__login').addEventListener('mouseleave', removeLargeLoginModal);
@@ -17,22 +17,22 @@ const showSmallLoginModal = () => {
 const showLargeLoginModal = () => {
   addHiddenClass('login-modal__small');
   removeHiddenClass('login-modal__large');
-  addDimmedClass('main');
+  addDimmed();
 };
 
 const removeLargeLoginModal = () => {
   addHiddenClass('login-modal__large');
-  removeDimmedClass('main');
+  removeDimmed();
 };
 
 const showLocationModal = () => {
   removeHiddenClass('location-modal');
-  addDimmedClass('main');
+  addDimmed();
 };
 
 const removeLocationModal = () => {
   addHiddenClass('location-modal');
-  removeDimmedClass('main');
+  removeDimmed();
 };
 
 export default modalController;
