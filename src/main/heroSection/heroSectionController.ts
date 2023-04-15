@@ -15,52 +15,46 @@ export const handleMoveImage = (() => {
     if (isNegativeImageIndex()) {
       index = imageCount - 2;
 
-      handleNegativeIndex(index, imageCount, $imageContainer);
-
-      return;
+      await handleIndexUnderflow(imageCount, $imageContainer);
     }
 
     if (isExceededImageIndex()) {
       index = 1;
 
-      handleExceededIndex(index, $imageContainer);
-
-      return;
+      await handleIndexOverflow($imageContainer);
     }
 
-    $imageContainer.style.transform = `translateX(-${index * 100}%)`;
-    $imageContainer.style.transitionDuration = "500ms";
+    moveImageList(index, $imageContainer);
   };
 })();
 
-const handleNegativeIndex = async (
-  index: number,
-  imageCount: number,
-  $imageContainer: HTMLElement
-) => {
+const handleIndexUnderflow = async (imageCount: number, $imageContainer: HTMLElement) => {
   if ($imageContainer.firstElementChild == null) {
     throw new Error("The image container is empty.");
   }
 
-  $imageContainer.style.transitionDuration = "";
   $imageContainer.insertAdjacentElement("beforeend", $imageContainer.firstElementChild);
-  $imageContainer.style.transform = `translateX(-${imageCount - 1}00%)`;
-  await delay(1);
 
-  $imageContainer.style.transitionDuration = "500ms";
-  $imageContainer.style.transform = `translateX(-${index * 100}%)`;
+  $imageContainer.style.transitionDuration = "";
+  $imageContainer.style.transform = `translateX(-${imageCount - 1}00%)`;
+
+  await delay(1);
 };
 
-const handleExceededIndex = async (index: number, $imageContainer: HTMLElement) => {
+const handleIndexOverflow = async ($imageContainer: HTMLElement) => {
   if ($imageContainer.lastElementChild == null) {
     throw new Error("The image container is empty.");
   }
 
-  $imageContainer.style.transitionDuration = "";
   $imageContainer.insertAdjacentElement("afterbegin", $imageContainer.lastElementChild);
-  $imageContainer.style.transform = `translateX(0%)`;
-  await delay(1);
 
+  $imageContainer.style.transitionDuration = "";
+  $imageContainer.style.transform = `translateX(0%)`;
+
+  await delay(1);
+};
+
+const moveImageList = (index: number, $imageContainer: HTMLElement) => {
   $imageContainer.style.transitionDuration = "500ms";
   $imageContainer.style.transform = `translateX(-${index * 100}%)`;
 };
