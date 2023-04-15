@@ -1,111 +1,143 @@
-import {
-  $,
-  addHiddenClass,
-  removeHiddenClass,
-  addDimmedClass,
-  removeDimmedClass,
-  saveAtLocalStorage,
-  loadAtLocalStorage,
-} from '../utils.js';
+import { $, addHiddenClass, removeHiddenClass, addDimmed, removeDimmed } from '../utils.js';
 
-export default class SearchBarController {
-  #listOfRecentKeyword = [];
-  #recommendedKeyword = [
-    'egift cards for amazon gift card',
-    'marvel legends',
-    'gift cards',
-    'reload gift card',
-    'amazon reload',
-    '기프트카드',
-    'scorpions cd',
-    'reload',
-    'blue note tone poet vinyl',
-    'balance reload',
-  ];
-  #MAX_SIZE_OF_RECENT = 5;
+let recommended = [
+  'egift cards for amazon gift card',
+  'marvel legends',
+  'gift cards',
+  'reload gift card',
+  'amazon reload',
+  '기프트카드',
+  'scorpions cd',
+  'reload',
+  'blue note tone poet vinyl',
+  'balance reload',
+];
+let history = [];
+let autoKeyword = [
+  'a34',
+  'among',
+  'ai',
+  'adhd',
+  'asl',
+  'apc',
+  'ap위성',
+  'ap alchemy',
+  'ap시스템',
+  'apc',
+  'ap투자연구소',
+  'april',
+  'apple',
+  'apply',
+  'apr',
+  'ap몰',
+];
+const MAX_SIZE_OF_RECENT = 5;
 
-  init = () => {
-    this.renderKeywordsList();
-    this.renderRecommendedList();
-    $('.search-bar').addEventListener('focus', this.focusSearchBar);
-    $('.search-bar').addEventListener('focusout', this.focusoutSearchBar);
-    $('.nav-main__search').addEventListener('submit', this.onClickSearchBtn);
-    $('.search-info').addEventListener('click', this.clickKeywordBtn);
-  };
+export const searchKeywordController = () => {
+  renderRecommendedKeywords(recommended);
+  $('.search-bar').addEventListener('focus', focusSearchBar);
+  $('.search-info').addEventListener('click', onClickEvent);
+  $('.nav-main__search').addEventListener('submit', submitSearchBar);
+  $('.nav-main__search').addEventListener('blur', focusoutSearchBar);
+  $('.search-bar').addEventListener('keyup', displayAutocomplete);
+};
 
-  focusSearchBar = () => {
-    addDimmedClass('main');
-    addHiddenClass('login-modal__small');
-    removeHiddenClass('search-info');
-  };
+const focusSearchBar = () => {
+  addDimmed();
+  addHiddenClass('login-modal__small');
+  removeHiddenClass('search-info');
+};
 
-  focusoutSearchBar = () => {
-    removeDimmedClass('main');
-    addHiddenClass('search-info');
-  };
+const focusoutSearchBar = () => {
+  removeDimmed();
+  addHiddenClass('search-info');
+};
 
-  onClickSearchBtn = event => {
-    event.preventDefault();
-    this.removeAllRecentKeywords();
-    this.saveRecentKeyword();
-    this.renderKeywordsList();
-    $('.search-bar').blur();
-  };
+const submitSearchBar = event => {
+  event.preventDefault();
+  removeAll('history');
+  saveHistory();
+  renderHistoryKeywords();
+  $('.search-bar').blur();
+};
 
-  renderKeywordsList = () => {
-    if (window.localStorage.getItem('keyword') === null) return;
-    const keywords = JSON.parse(window.localStorage.getItem('keyword'));
-    keywords.forEach(keyword => this.renderList('recent', keyword));
-  };
+const removeAll = category => {
+  const allOfList = document.querySelectorAll(`.search-info__${category}`);
+  if (allOfList !== null) {
+    allOfList.forEach(category => category.remove());
+  }
+};
 
-  renderRecommendedList = () => {
-    this.#recommendedKeyword.forEach(keyword => this.renderList('recommended', keyword));
-  };
+const saveHistory = () => {
+  const historyKeyword = $('.search-bar').value;
+  $('.search-bar').value = '';
+  if (historyKeyword === '') return;
+  if (history.includes(historyKeyword)) history = history.filter(keyword => keyword !== historyKeyword);
+  if (history.length === MAX_SIZE_OF_RECENT) history.shift();
+  history.push(historyKeyword);
+};
 
-  renderList = (category, keyword) => {
-    if (category === 'recent') {
-      const recentKeywordTemplate = `
-      <li class="search-info__recent">
+const renderHistoryKeywords = () => {
+  if (history === '[]') return;
+  history.forEach(keyword => renderKeyword('history', keyword));
+};
+
+const renderRecommendedKeywords = () => {
+  recommended.forEach(keyword => renderKeyword('recommended', keyword));
+};
+
+const renderKeyword = (category, keyword) => {
+  if (category === 'history') {
+    const historyTemplate = `
+      <li class="search-info__history">
         <a href="#">${keyword}</a>
-        <img class="remove-btn" src="./src/asset/icons/close.svg" alt="">
+        <img class="delete-btn" src="./src/asset/icons/close.svg" alt="">
       </li>`;
-      $('.search-info').insertAdjacentHTML('afterbegin', recentKeywordTemplate);
-    }
-    if (category === 'recommended') {
-      const recommendedKeywordTemplate = `
-      <li class="search-info__trending">
+    $('.search-info').insertAdjacentHTML('afterbegin', historyTemplate);
+  }
+  if (category === 'recommended') {
+    const recommendedTemplate = `
+      <li class="search-info__recommended">
         <img class="keyword-btn" src="./src/asset/icons/arrow-top-right.svg" alt="">
         <a href="#">${keyword}</a>
       </li>`;
-      $('.search-info').insertAdjacentHTML('beforeend', recommendedKeywordTemplate);
-    }
-  };
+    $('.search-info').insertAdjacentHTML('beforeend', recommendedTemplate);
+  }
+  if (category === 'autocomplete') {
+    const autocompleteTemplate = `
+      <li class="search-info__autocomplete">
+        <a href="#">${keyword}</a>
+      </li>`;
+    $('.search-info').insertAdjacentHTML('afterbegin', autocompleteTemplate);
+  }
+};
 
-  saveRecentKeyword = () => {
-    const recentKeyword = $('.search-bar').value;
-    $('.search-bar').value = '';
-    if (recentKeyword === '') return;
-    if (this.#listOfRecentKeyword.includes(recentKeyword))
-      this.#listOfRecentKeyword = this.#listOfRecentKeyword.filter(keyword => keyword !== recentKeyword);
-    if (this.#listOfRecentKeyword.length === this.#MAX_SIZE_OF_RECENT) this.#listOfRecentKeyword.shift();
-    this.#listOfRecentKeyword.push(recentKeyword);
-    saveAtLocalStorage('keyword', `${JSON.stringify(this.#listOfRecentKeyword)}`);
-  };
+const onClickEvent = event => {
+  event.preventDefault();
+  const clickedNode = event.target;
+  switch (clickedNode.className) {
+    case 'delete-btn':
+      const historyValue = clickedNode.previousElementSibling.innerText;
+      history = history.filter(keyword => keyword !== historyValue);
+      clickedNode.parentNode.remove();
+      break;
+    case 'keyword-btn':
+      const keywordValue = clickedNode.nextElementSibling.innerText;
+      $('.search-bar').value = `${keywordValue}`;
+      addHiddenClass('search-info');
+      break;
+  }
+};
 
-  removeAllRecentKeywords = () => {
-    const allRecentKeywords = document.querySelectorAll('.search-info__recent');
-    if (allRecentKeywords !== null) {
-      allRecentKeywords.forEach(keyword => keyword.remove());
-    }
-  };
+const displayAutocomplete = () => {
+  if ($('.search-bar').value === '') removeAll('autocomplete');
+  removeAll('autocomplete');
+  matchKeyword().forEach(keyword => renderKeyword('autocomplete', keyword));
+};
 
-  clickKeywordBtn = event => {
-    if (event.target.classList.contains('keyword-btn')) {
-      const sibling = event.target.nextElementSibling;
-      if (sibling.tagName === 'SPAN') {
-        const valueOfKeyword = sibling.innerHTML;
-        $('.search-bar').value = valueOfKeyword;
-      }
-    }
-  };
-}
+const matchKeyword = () => {
+  return autoKeyword.filter(keyword => {
+    const regex = new RegExp($('.search-bar').value, 'gi');
+    return keyword.match(regex);
+  });
+};
