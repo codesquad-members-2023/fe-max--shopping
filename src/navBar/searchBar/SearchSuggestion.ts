@@ -14,31 +14,52 @@ export class SearchSuggestion {
 
   async getRecentSearches(): Promise<searchData[]> {
     const RECENT_SEARCHES_LIMIT = 5;
-    const response = await fetch(
-      `${BASE_URL}/recent?_sort=id&_order=desc&_limit=${RECENT_SEARCHES_LIMIT}`
-    );
 
-    return await response.json();
+    try {
+      const response = await fetch(
+        `${BASE_URL}/recent?_sort=id&_order=desc&_limit=${RECENT_SEARCHES_LIMIT}`
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+
+      return [];
+    }
   }
 
   async getRecommendSearches(): Promise<string[]> {
-    const response = await fetch(`${BASE_URL}/recommend/`);
+    try {
+      const response = await fetch(`${BASE_URL}/recommend/`);
 
-    return await response.json();
+      if (!response.ok) {
+        throw new Error(
+          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+
+      return [];
+    }
   }
 
   async fetchSearches() {
-    try {
-      const [recentSearches, recommendSearches] = await Promise.all([
-        this.getRecentSearches(),
-        this.getRecommendSearches(),
-      ]);
+    const [recentSearches, recommendSearches] = await Promise.all([
+      this.getRecentSearches(),
+      this.getRecommendSearches(),
+    ]);
 
-      this.model.setRecentSearches(recentSearches);
-      this.model.setRecommendSearches(recommendSearches);
-    } catch (error) {
-      console.log(error);
-    }
+    this.model.setRecentSearches(recentSearches);
+    this.model.setRecommendSearches(recommendSearches);
   }
 
   async initSuggestionRender() {
@@ -55,7 +76,7 @@ export class SearchSuggestion {
     searchSuggestion.innerHTML = view;
   }
 
-  requestDeleteRecentSearch(target: HTMLElement) {
+  async requestDeleteRecentSearch(target: HTMLElement) {
     const recentSearch = target.closest("li");
 
     if (recentSearch == null) {
@@ -64,9 +85,17 @@ export class SearchSuggestion {
 
     const id = recentSearch.dataset.id;
 
-    return fetch(`${BASE_URL}/recent/${id}`, { method: "DELETE" }).catch((error) => {
-      console.log("An error occurred" + error);
-    });
+    try {
+      const response = await fetch(`${BASE_URL}/recent/${id}`, { method: "DELETE" });
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   handleSuggestionKeyDown(event: KeyboardEvent, $searchSuggestion: Element) {
@@ -124,7 +153,7 @@ export class SearchSuggestion {
       await this.requestDeleteRecentSearch(event.target);
       await this.fetchSearches();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     this.renderView(
@@ -137,7 +166,7 @@ export class SearchSuggestion {
     event.preventDefault();
 
     try {
-      await fetch(`${BASE_URL}/recent`, {
+      const response = await fetch(`${BASE_URL}/recent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,12 +174,17 @@ export class SearchSuggestion {
         body: JSON.stringify({ text: $searchInput.value }),
       });
 
-      await this.fetchSearches();
+      if (!response.ok) {
+        throw new Error(
+          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
+        );
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
     $searchInput.value = "";
+    await this.fetchSearches();
     this.renderView(
       this.view.recentSearchView(this.model.getRecentSearches()) +
         this.view.recommendSearchView(this.model.getRecommendSearches())
@@ -162,11 +196,18 @@ export class SearchSuggestion {
 
     try {
       const response = await fetch(`${BASE_URL}/keyword?q=${searchInput}`);
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
+        );
+      }
+
       const suggestions = await response.json();
 
       this.model.setSearchSuggestions(suggestions);
     } catch (error) {
-      console.log("An error occurred" + error);
+      console.error(error);
     }
 
     this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
