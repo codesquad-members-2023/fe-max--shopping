@@ -1,16 +1,9 @@
-import { handleModalMouseLeave, mainDimmed } from "../modal/modal";
-import { isShowElement, showElement } from "../utils/elementVisibility";
+import { $ } from "../utils/domUtils";
+import { dimMain, undimMain } from "../utils/dimming";
 
-export const handleShippingAddressMouseEnter = () => {
-  const $modal = document.querySelector(".shipping-address-modal");
+export const addShippingAddressEventListeners = () => {
+  const $shippingAddress = $(".shipping-address");
 
-  if (isShowElement($modal)) {
-    return;
-  }
-
-  showElement($modal);
-
-  const undimmed = mainDimmed();
-
-  $modal?.addEventListener("mouseleave", (event) => handleModalMouseLeave(event, undimmed));
+  $shippingAddress.addEventListener("mouseenter", dimMain);
+  $shippingAddress.addEventListener("mouseleave", undimMain);
 };

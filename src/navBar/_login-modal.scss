@@ -1,5 +1,5 @@
 @use "../style/common";
-@use "../modal/modal";
+@use "./modal";
 
 .login-modal {
   @include modal.modal;
@@ -7,7 +7,7 @@
   top: 100%;
   right: 0;
 
-  transition: all 500ms;
+  transition: opacity 500ms;
   opacity: 0;
   visibility: hidden;
 
@@ -20,7 +20,7 @@
     top: -12px;
     left: calc(100% - 40px);
 
-    @include modal.triangle;
+    @include modal.modal-tail;
   }
 }
 
