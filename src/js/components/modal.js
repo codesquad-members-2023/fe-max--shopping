@@ -34,6 +34,15 @@ async function isLayerOpened() {
   return false;
 }
 
+function initDimmedLayerStyle() {
+  const dimmedLayer = $('.dimmed-layer');
+  const bodyHeight = $('body').offsetHeight;
+  const navBarHeight = $('.nav-bar').offsetHeight;
+  
+  dimmedLayer.style.height = `${bodyHeight - navBarHeight}px`;
+  dimmedLayer.style.minHeight = `calc(100vh - ${navBarHeight}px)`;
+}
+
 export function openDimmedLayer() {
   removeHiddenClass($('.dimmed-layer'));
 }
@@ -52,6 +61,7 @@ export function initLoginModal() {
     }
     delay(openLoginModal, MODAL_OPEN_DELAY)
   });
+  initDimmedLayerStyle();
   $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
   $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
   $('.address-container').addEventListener('mouseenter', openAddressModal);
