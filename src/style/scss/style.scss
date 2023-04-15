@@ -44,6 +44,10 @@
   border-bottom: solid 20px #ffffff;
 }
 
+$z-index-base: 100;
+$z-index-cover: $z-index-base + 100;
+$z-index-modal: $z-index-base + 200;
+
 html {
   overflow-y: scroll;
 }
@@ -147,7 +151,7 @@ button {
     background-color: #ffffff;
     border: 1px solid #10141a;
     border-radius: 4px;
-    z-index: 10;
+    z-index: $z-index-modal;
 
     &__suggestion {
       width: 100%;
@@ -231,7 +235,7 @@ button {
   flex-direction: column;
   padding: 16px;
   position: absolute;
-  z-index: 10;
+  z-index: $z-index-modal;
   background: #ffffff;
   border-radius: 4px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -312,7 +316,7 @@ button {
   width: 100%;
   left: 0px;
   top: 100%;
-  z-index: 1;
+  z-index: $z-index-cover;
   background: var(--color-black-40);
 }
 
