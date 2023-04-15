@@ -8,7 +8,7 @@ template.innerHTML = `
     </div>
   </div>
 
-  <link rel="stylesheet" href="src/styles/components/common/CardItem.css">
+  <link rel="stylesheet" href="src/styles/components/CardItem.css">
 `;
 
 class CardItem extends HTMLElement {
