@@ -17,6 +17,17 @@ class MainPage extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.append(template.content.cloneNode(true));
+    this.infiniteCarousel = this.shadowRoot.querySelector("infinite-carousel");
+  }
+
+  async connectedCallback() {
+    const heroImgsData = await this.fetchHeroImgs();
+    this.infiniteCarousel.setImages(JSON.stringify(heroImgsData));
+  }
+
+  async fetchHeroImgs() {
+    const res = await fetch(`http://127.0.0.1:3000/hero-images`);
+    return await res.json();
   }
 }
 

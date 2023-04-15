@@ -21,15 +21,11 @@ class InfiniteCarousel extends HTMLElement {
     shadowRoot.append(template.content.cloneNode(true));
     this.intervalId = null;
     this.slideAfterMs = 10000;
-
     this.btns = this.shadowRoot.querySelectorAll(".slide-btn");
     this.slidesUl = this.shadowRoot.querySelector(".slides-container");
   }
 
-  async connectedCallback() {
-    const heroImgsData = await this.fetchHeroImgs();
-    this.setImages(JSON.stringify(heroImgsData));
-
+  connectedCallback() {
     this.btns.forEach((btn) => {
       btn.addEventListener("click", () => {
         this.moveSlide(btn.dataset.type);
@@ -42,11 +38,6 @@ class InfiniteCarousel extends HTMLElement {
 
   setImages(newVal) {
     this.dataset.imgs = newVal;
-  }
-
-  async fetchHeroImgs() {
-    const res = await fetch(`http://127.0.0.1:3000/hero-images`);
-    return await res.json();
   }
 
   automaticSlideAfter(ms) {
