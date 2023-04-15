@@ -28,13 +28,17 @@ export class SearchSuggestion {
   }
 
   async fetchSearches() {
-    const [recentSearches, recommendSearches] = await Promise.all([
-      this.getRecentSearches(),
-      this.getRecommendSearches(),
-    ]);
+    try {
+      const [recentSearches, recommendSearches] = await Promise.all([
+        this.getRecentSearches(),
+        this.getRecommendSearches(),
+      ]);
 
-    this.model.setRecentSearches(recentSearches);
-    this.model.setRecommendSearches(recommendSearches);
+      this.model.setRecentSearches(recentSearches);
+      this.model.setRecommendSearches(recommendSearches);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async initSuggestionRender() {
@@ -116,8 +120,13 @@ export class SearchSuggestion {
       return;
     }
 
-    await this.requestDeleteRecentSearch(event.target);
-    await this.fetchSearches();
+    try {
+      await this.requestDeleteRecentSearch(event.target);
+      await this.fetchSearches();
+    } catch (error) {
+      console.log(error);
+    }
+
     this.renderView(
       this.view.recentSearchView(this.model.getRecentSearches()) +
         this.view.recommendSearchView(this.model.getRecommendSearches())
@@ -127,16 +136,21 @@ export class SearchSuggestion {
   async handleSearchBarSubmit(event: Event, $searchInput: HTMLInputElement) {
     event.preventDefault();
 
-    await fetch(`${BASE_URL}/recent`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: $searchInput.value }),
-    });
+    try {
+      await fetch(`${BASE_URL}/recent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: $searchInput.value }),
+      });
+
+      await this.fetchSearches();
+    } catch (error) {
+      console.log(error);
+    }
 
     $searchInput.value = "";
-    await this.fetchSearches();
     this.renderView(
       this.view.recentSearchView(this.model.getRecentSearches()) +
         this.view.recommendSearchView(this.model.getRecommendSearches())

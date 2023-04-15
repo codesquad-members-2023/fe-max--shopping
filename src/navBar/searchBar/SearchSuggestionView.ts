@@ -42,7 +42,7 @@ export class SearchSuggestionView {
         ${searchSuggestions
           .map(
             (list: searchData) => `
-            <li data-id="${list.id}">
+            <li>
               <a href="#">${list.text}</a>
             </li>
             `
