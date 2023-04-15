@@ -109,7 +109,7 @@ header {
   background-color: $color-black-40;
   opacity: 0;
   visibility: hidden;
-  z-index: 2;
+  z-index: $z-index-lvl-2;
   transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
 
   &.is-active {

@@ -47,7 +47,7 @@
   left: 0;
   background-color: transparent;
   border: none;
-  z-index: 1;
+  z-index: $z-index-lvl-1;
   cursor: pointer;
 
   &[data-type="next"] {
