@@ -39,7 +39,7 @@ const handleNegativeIndex = async (
   $imageContainer: HTMLElement
 ) => {
   if ($imageContainer.firstElementChild == null) {
-    throw new Error(`The image container(${$imageContainer}) is empty`);
+    throw new Error("The image container is empty.");
   }
 
   $imageContainer.style.transitionDuration = "";
@@ -53,7 +53,7 @@ const handleNegativeIndex = async (
 
 const handleExceededIndex = async (index: number, $imageContainer: HTMLElement) => {
   if ($imageContainer.lastElementChild == null) {
-    throw new Error(`The image container(${$imageContainer}) is empty`);
+    throw new Error("The image container is empty.");
   }
 
   $imageContainer.style.transitionDuration = "";
