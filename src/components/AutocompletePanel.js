@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="autocomplete-container">
@@ -7,11 +9,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/AutocompletePanel.css">
 `;
 
-class AutocompletePanel extends HTMLElement {
+class AutocompletePanel extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.autocompleteList = this.shadowRoot.querySelector(".autocomplete-list");
     this.focusedListItemIdx = -1;
   }

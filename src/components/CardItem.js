@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="card-container">
@@ -11,11 +13,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/CardItem.css">
 `;
 
-class CardItem extends HTMLElement {
+class CardItem extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
   }
 
   static get observedAttributes() {

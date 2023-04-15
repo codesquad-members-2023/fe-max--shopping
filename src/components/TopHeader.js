@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <header>
@@ -172,11 +174,9 @@ template.innerHTML = `
   </style>
 `;
 
-class TopHeader extends HTMLElement {
+class TopHeader extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.dimmedLayer = this.shadowRoot.querySelector(".dimmed-layer");
     this.toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
   }

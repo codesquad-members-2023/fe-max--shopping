@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="cards-container">
@@ -10,11 +12,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/CardsPanel.css">
 `;
 
-class CardsPanel extends HTMLElement {
+class CardsPanel extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.cardsContainer = this.shadowRoot.querySelector(".cards-container");
   }
 

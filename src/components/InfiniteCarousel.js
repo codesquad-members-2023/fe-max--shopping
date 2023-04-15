@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="slide-btns__container">
@@ -14,11 +16,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/InfiniteCarousel.css">
 `;
 
-class InfiniteCarousel extends HTMLElement {
+class InfiniteCarousel extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.intervalId = null;
     this.slideAfterMs = 10000;
     this.btns = this.shadowRoot.querySelectorAll(".slide-btn");

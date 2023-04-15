@@ -1,12 +1,3 @@
-@forward "./component-reset.scss";
+@forward "./reset.scss";
 @forward "./typography.scss";
 @forward "./design-system.scss";
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button[type="submit"] {
-  cursor: pointer;
-}

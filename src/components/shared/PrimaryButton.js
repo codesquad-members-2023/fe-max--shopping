@@ -1,15 +1,15 @@
+import Component from "../common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <button type="button"></button>
 
-  <link rel="stylesheet" href="src/styles/components/common/PrimaryButton.css">
+  <link rel="stylesheet" href="src/styles/components/shared/PrimaryButton.css">
 `;
 
-class PrimaryButton extends HTMLElement {
+class PrimaryButton extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.button = this.shadowRoot.querySelector("button");
   }
 

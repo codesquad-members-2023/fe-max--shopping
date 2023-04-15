@@ -1,3 +1,5 @@
+import Component from "../components/common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <top-header></top-header>
@@ -12,11 +14,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/pages/MainPage.css">
 `;
 
-class MainPage extends HTMLElement {
+class MainPage extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.infiniteCarousel = this.shadowRoot.querySelector("infinite-carousel");
   }
 

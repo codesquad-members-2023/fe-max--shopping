@@ -1,3 +1,4 @@
+import Component from "./common/Component.js";
 import { debounce } from "../utils/index.js";
 
 const template = document.createElement("template");
@@ -13,11 +14,9 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/SearchForm.css">
 `;
 
-class SearchForm extends HTMLElement {
+class SearchForm extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
     this.searchInput = this.shadowRoot.querySelector("#search-input");
     this.autocompletePanel =
       this.shadowRoot.querySelector("autocomplete-panel");

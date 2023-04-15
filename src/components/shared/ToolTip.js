@@ -1,3 +1,5 @@
+import Component from "../common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="tool-tip-container">
@@ -5,14 +7,12 @@ template.innerHTML = `
     <slot name="tool-tip-bottom-content"></slot>
   </div>
 
-  <link rel="stylesheet" href="src/styles/components/common/ToolTip.css">
+  <link rel="stylesheet" href="src/styles/components/shared/ToolTip.css">
 `;
 
-export class ToolTip extends HTMLElement {
+export class ToolTip extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
   }
 
   connectedCallback() {

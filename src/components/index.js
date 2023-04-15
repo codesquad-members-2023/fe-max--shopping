@@ -1,4 +1,4 @@
-import "./common/index.js";
+import "./shared/index.js";
 import "./TopHeader.js";
 import "./SearchForm.js";
 import "./AutocompletePanel.js";
