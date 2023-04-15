@@ -61,7 +61,6 @@ export class SearchSuggestion {
   }
 
   moveToAboveSuggestion() {
-    console.log('above')
     const curr = this.selectedIndex;
     const next = this.selectedIndex - 1;
 

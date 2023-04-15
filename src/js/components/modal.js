@@ -23,8 +23,6 @@ function openAddressModal() {
 
 async function isLayerOpened() {
   const layers = $All('.layer');
-  // return [...layers].some((layer) => {
-  //   !layer.classList.contains('hidden')});
   for (const layer of layers) {
     const hasHidden = await layer.classList.contains('hidden'); 
     if (!hasHidden) {
@@ -38,7 +36,7 @@ function initDimmedLayerStyle() {
   const dimmedLayer = $('.dimmed-layer');
   const bodyHeight = $('body').offsetHeight;
   const navBarHeight = $('.nav-bar').offsetHeight;
-  
+
   dimmedLayer.style.height = `${bodyHeight - navBarHeight}px`;
   dimmedLayer.style.minHeight = `calc(100vh - ${navBarHeight}px)`;
 }
