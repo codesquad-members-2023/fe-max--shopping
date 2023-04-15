@@ -54,7 +54,7 @@
       background-color: $color-gray100;
     }
   }
-  &__recent {
+  &__history {
     padding: 8px 12px;
     display: flex;
     justify-content: space-between;
@@ -67,7 +67,7 @@
       height: 16px;
     }
   }
-  &__trending {
+  &__recommended {
     padding: 8px 12px;
     display: flex;
     align-items: center;
@@ -78,6 +78,14 @@
       padding: 4px;
       width: 16px;
       height: 16px;
+    }
+  }
+  &__autocomplete {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    a {
+      color: $color-black;
     }
   }
 }
