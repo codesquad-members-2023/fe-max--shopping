@@ -33,7 +33,7 @@
           </div>
           <div class="address__text">대한민국</div>
         </div>
-        <div class="main__searchbar">
+        <form class="main__searchbar">
           <input
             class="searchbar__input"
             type="text"
@@ -42,7 +42,91 @@
           <button class="searchbar__btn">
             <img src="./assets/icons/name=search.svg" alt="검색아이콘" />
           </button>
-        </div>
+          <ul class="searchbar__suggest">
+            <li tabindex="0" class="searchbar__words-searched first">
+              <span>내가 검색한 단어</span>
+              <img src="./assets/icons/name=close.svg" alt="x버튼" />
+            </li>
+            <li tabindex="0" class="searchbar__words-searched">
+              <span>내가 검색한 단어</span>
+              <img src="./assets/icons/name=close.svg" alt="x버튼" />
+            </li>
+            <li tabindex="0" class="searchbar__words-searched">
+              <span>내가 검색한 단어</span>
+              <img src="./assets/icons/name=close.svg" alt="x버튼" />
+            </li>
+            <li tabindex="0" class="searchbar__words-searched">
+              <span>내가 검색한 단어</span>
+              <img src="./assets/icons/name=close.svg" alt="x버튼" />
+            </li>
+            <li tabindex="0" class="searchbar__words-searched">
+              <span>내가 검색한 단어</span>
+              <img src="./assets/icons/name=close.svg" alt="x버튼" />
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+            <li tabindex="0" class="last">
+              <img src="./assets/icons/name=arrow-top-right.svg" alt="" /><span
+                >추천 검색어</span
+              >
+            </li>
+          </ul>
+          <ul class="searchbar__autocomplete">
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+            <li tapindex="0"><span>자동완성</span></li>
+          </ul>
+        </form>
         <div class="main__nation">
           <img src="/src/assets/icons/flag.svg" alt="국기" />
           <div class="nation__text">KO</div>
@@ -60,6 +144,7 @@
                 <a href="">여기에서 시작합니다.</a>
               </div>
             </div>
+            <div class="login__box--modal"></div>
           </div>
         </div>
         <div class="main__mypage">
@@ -71,7 +156,7 @@
           <div class="cart__text">장바구니</div>
         </div>
       </section>
-      <form action="" class="nav__sub">
+      <div action="" class="nav__sub">
         <div class="sub__left-menu">
           <a class="left-menu--menuAll">
             <img src="./assets/icons/name=menu.svg" alt="메뉴아이콘" />
@@ -86,7 +171,11 @@
         <div class="sub__rightbtn">
           <a>지금 특가 상품 쇼핑하기</a>
         </div>
-      </form>
+      </div>
     </nav>
+    <main>
+      <div id="dim"></div>
+    </main>
   </body>
+  <script src="./JS/app.js" type="module"></script>
 </html>
