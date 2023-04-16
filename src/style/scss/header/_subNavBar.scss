@@ -1,0 +1,63 @@
+#subNavBar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 16px;
+  min-width: 1120px;
+  height: 32px;
+  background: var(--gray900);
+}
+
+#leftButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 387px;
+  height: 32px;
+
+  .subNavBar__menu {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 4px;
+
+    .menu__text {
+      color: var(--white);
+      @include BoldMD;
+    }
+  }
+  .sideBarBtn {
+    width: 58px;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+  }
+}
+
+#rightButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 4px;
+  width: 112px;
+  height: 32px;
+
+  .subNavBar__menu {
+    align-items: flex-start;
+    gap: 4px;
+
+    .menu__text {
+      width: 112px;
+      height: 16px;
+      color: var(--white);
+      @include BoldMD;
+    }
+  }
+}

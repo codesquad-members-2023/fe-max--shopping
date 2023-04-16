@@ -12,13 +12,12 @@ export class BI extends Base {
   }
 
   addChild() {
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/BI.svg" }],
-      null,
-      "biImg"
-    );
+    const template = `
+      <a>
+        <img src="./src/assets/BI.svg">
+      </a>
+    `;
 
-    this.createChild("a", null, null, "anchorNode", ["biImg"]);
+    this.setTemplate(template);
   }
 }

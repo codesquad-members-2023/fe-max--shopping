@@ -11,18 +11,11 @@ export class Nation extends Base {
   }
 
   addChild() {
-    this.createChild(
-      "span",
-      [{ name: "class", value: "nation__flag" }],
-      "🇰🇷",
-      "nationFlag"
-    );
+    const template = `
+      <span class="nation__flag">🇰🇷</span>
+      <span class="nation__text">KO</span>
+    `;
 
-    this.createChild(
-      "span",
-      [{ name: "class", value: "nation__text" }],
-      "KO",
-      "nationText"
-    );
+    this.setTemplate(template);
   }
 }

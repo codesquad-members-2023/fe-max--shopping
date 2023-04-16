@@ -2,9 +2,9 @@ import { Base } from "../../Base.js";
 import { ShippingTooltip } from "./shippingTooltip.js";
 
 export class ShippingAddress extends Base {
-  constructor(backdrop) {
+  constructor() {
     super("a");
-    this.ShippingTooltip = new ShippingTooltip(backdrop);
+    this.ShippingTooltip = new ShippingTooltip();
 
     this.init();
   }
@@ -24,34 +24,14 @@ export class ShippingAddress extends Base {
   }
 
   addChild() {
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/location.svg" }],
-      null,
-      "symbols"
-    );
+    const template = `
+      <div class="address__label"><img src="./src/assets/location.svg">
+        <span class="address__labelText">배송처</span>
+      </div>
+      <span class="adddress__text">대한민국</span>
+    `;
 
-    this.createChild(
-      "span",
-      [{ name: "class", value: "address__labelText" }],
-      "배송처",
-      "addressLabelText"
-    );
-
-    this.createChild(
-      "div",
-      [{ name: "class", value: "address__label" }],
-      null,
-      "addressLabel",
-      ["symbols", "addressLabelText"]
-    );
-
-    this.createChild(
-      "span",
-      [{ name: "class", value: "adddress__text" }],
-      "대한민국",
-      "adddressText"
-    );
+    this.setTemplate(template);
     this.setChildren(this.ShippingTooltip);
   }
 }

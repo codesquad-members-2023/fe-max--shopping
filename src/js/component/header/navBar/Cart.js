@@ -12,21 +12,11 @@ export class Cart extends Base {
   }
 
   addChild() {
-    this.createChild(
-      "img",
-      [
-        { name: "class", value: "cart__symbol" },
-        { name: "src", value: "./src/assets/cart.svg" },
-      ],
-      null,
-      "cartSymbol"
-    );
+    const template = `
+      <img class="cart__symbol" src="./src/assets/cart.svg">
+      <span class="cart__text">장바구니</span>
+    `;
 
-    this.createChild(
-      "span",
-      [{ name: "class", value: "cart__text" }],
-      "장바구니",
-      "cartText"
-    );
+    this.setTemplate(template);
   }
 }

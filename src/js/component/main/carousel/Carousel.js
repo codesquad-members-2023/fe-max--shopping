@@ -3,8 +3,8 @@ import { Base } from "../../Base.js";
 export class Carousel extends Base {
   constructor() {
     super("div");
-    this.carouselList = [1, 2, 3, 4, 5];
-    this.currentIndex = 1;
+    this.carouselList = [4, 5, 1, 2, 3];
+    this.currentIndex = 0;
     this.maxIndex = this.carouselList.length;
     this.autoCarousel = this.setAutoCarousel();
     this.init();
@@ -13,98 +13,48 @@ export class Carousel extends Base {
   init() {
     this.setAttribute("id", "carousel");
     this.addChild();
+    this.addBtnEvent();
     this.addEventTransition();
   }
 
   addChild() {
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/LeftButton.svg" }],
-      null,
-      "chevronLeftImg"
-    );
+    const template = `
+    <div id="carousel">
+      <div class="carousel__btnWrapper">
+        <button class="carousel__button prevSlide" data-elementname="prevSlideBtn">
+          <img src="./src/assets/LeftButton.svg" /></button
+        ><button class="carousel__button nextSlide" data-elementname="nextSlideBtn">
+          <img src="./src/assets/RightButton.svg" />
+        </button>
+      </div>
+      <div class="carousel__wrapper" data-elementname="wrapper">
+        ${this.carouselList
+          .map((listData) => {
+            return `<div class="carousel__item" data-num=${listData}>${listData}</div>`;
+          })
+          .join("")}
+      </div>
+    </div>`;
+    this.setTemplate(template);
+  }
 
-    this.createChild(
-      "button",
-      [{ name: "class", value: "carousel__button prevSlide" }],
-      null,
-      "prevSlideBtn",
-      ["chevronLeftImg"]
-    );
-
-    this.createChild(
-      "img",
-      [{ name: "src", value: "./src/assets/RightButton.svg" }],
-      null,
-      "chevronRightImg"
-    );
-
-    this.createChild(
-      "button",
-      [{ name: "class", value: "carousel__button nextSlide" }],
-      null,
-      "nextSlideBtn",
-      ["chevronRightImg"]
-    );
-
-    this.createChild(
-      "div",
-      [{ name: "class", value: "carousel__btnWrapper" }],
-      null,
-      "btnWrapper",
-      ["prevSlideBtn", "nextSlideBtn"]
-    );
-
-    const itemNodeList = this.carouselList.map((e) => {
-      this.createChild(
-        "div",
-        [
-          { name: "class", value: "carousel__item" },
-          { name: "data-num", value: e },
-        ],
-        e,
-        `item${e}`
-      );
-
-      return `item${e}`;
-    });
-
-    this.createChild(
-      "div",
-      [{ name: "class", value: "carousel__wrapper" }],
-      null,
-      "wrapper",
-      itemNodeList
-    );
-
-    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this), {
-      once: true,
-    });
+  addBtnEvent() {
+    this.prevSlideBtn.setEvent("click", this.slidePrev.bind(this));
     this.nextSlideBtn.setEvent("click", this.slideNext.bind(this));
-
-    const wrapperNode = this.wrapper.node;
-    const firstNode = wrapperNode.firstChild.cloneNode(true);
-    const lastNode = wrapperNode.lastChild.cloneNode(true);
-    wrapperNode.appendChild(firstNode);
-    wrapperNode.prepend(lastNode);
   }
 
   slideTo(direction) {
     clearInterval(this.autoCarousel);
     const wrapperNode = this.wrapper.node;
-
-    const isNextSlideDisabled =
-      direction === "next" && this.currentIndex > this.maxIndex;
-    const isPrevSlideDisabled = direction === "prev" && this.currentIndex === 0;
-
-    if (isNextSlideDisabled || isPrevSlideDisabled) {
-      return;
-    }
-
     wrapperNode.style.transition = "transform 450ms ease-in-out";
-    this.currentIndex += direction === "next" ? 1 : -1;
-    wrapperNode.style.transform = `translateX(-${this.currentIndex}00%)`;
-    this.autoCarousel = this.setAutoCarousel();
+
+    if (direction === "next") {
+      wrapperNode.style.transform = `translateX(-300%`;
+      this.currentIndex++;
+    } else {
+      wrapperNode.style.transform = `translateX(-100%`;
+      this.currentIndex--;
+    }
   }
 
   slideNext() {
@@ -119,12 +69,19 @@ export class Carousel extends Base {
     const wrapperNode = this.wrapper.node;
 
     wrapperNode.addEventListener("transitionend", () => {
-      if (this.currentIndex > this.maxIndex || this.currentIndex < 1) {
-        this.currentIndex = Math.abs(this.currentIndex - this.maxIndex);
+      wrapperNode.style.transition = "none";
 
-        wrapperNode.style.transition = "none";
-        wrapperNode.style.transform = `translateX(-${this.currentIndex}00%)`;
+      if (this.currentIndex > 0) {
+        const firstNode = wrapperNode.firstChild;
+        wrapperNode.appendChild(firstNode);
+      } else {
+        const lastNode = wrapperNode.lastChild;
+        wrapperNode.prepend(lastNode);
       }
+
+      this.currentIndex = 0;
+      wrapperNode.style.transform = `translateX(-200%)`;
+      this.autoCarousel = this.setAutoCarousel();
     });
   }
 

@@ -1,5 +1,9 @@
+import { HtmlParser } from "../parser/HtmlParser.js";
+
 export class Base {
   #_node;
+  static htmlParser = new HtmlParser();
+
   constructor(tagName) {
     this.#_node = document.createElement(tagName);
   }
@@ -35,24 +39,48 @@ export class Base {
     this.#_node.style[prop] = attr;
   }
 
-  createChild(tagName, attribute, textContent, name, children) {
-    const child = new Base(tagName);
+  htmlParsig(htmlStrig) {
+    return Base.htmlParser.getParsedData(htmlStrig);
+  }
+
+  setTemplate(htmlStrig) {
+    const htmlArray = this.htmlParsig(htmlStrig);
+
+    htmlArray.forEach((htmlData) => {
+      this.#_node.appendChild(this.createNode(htmlData).node);
+    });
+  }
+
+  createNode({ tagName, attribute, textContent, name, children }) {
+    const childNode = new Base(tagName);
     if (attribute) {
-      attribute.forEach((attr) => {
-        child.setAttribute(attr.name, attr.value);
+      for (const key in attribute) {
+        childNode.setAttribute(key, attribute[key]);
+      }
+    }
+
+    if (children.length) {
+      const childArray = children.map((child) => {
+        return this.createNode(child);
       });
+      childNode.setChildren(...childArray);
     }
 
     if (textContent) {
-      child.setTextContent(textContent);
+      childNode.setTextContent(textContent);
     }
 
-    if (children) {
-      child.setChildren(...children.map((chilldName) => this[chilldName]));
+    if (name) {
+      this[name] = childNode;
     }
 
-    this[name] = child;
-    this.setChildren(child);
+    return childNode;
+  }
+
+  clearChild() {
+    while (this.#_node.firstChild) {
+      this.#_node.removeChild(this.#_node.firstChild);
+    }
   }
 
   isNode(node) {
