@@ -1,28 +1,24 @@
-import { JsonData, ApiData, LocalStorageData } from './dataFatcher.js';
-
 export class Model {
-  constructor() {
-    this.apiDataFetcher = new ApiData();
-    this.jsonDataFetcher = new JsonData();
-    this.localStorageFetcher = new LocalStorageData();
+  constructor(dataSrc) {
+    this.dataSrc = dataSrc;
   }
 
   async getRecommendedAndHistorySearchData() {
-    const recommendedSearchData = await this.jsonDataFetcher.getData();
-    const historySearchData = await this.localStorageFetcher.getData();
+    const recommendedSearchData = await this.dataSrc.recommend.fetchData();
+    const historySearchData = await this.dataSrc.history.getData();
 
     return { recommendedSearchData, historySearchData };
   }
 
   getAutoSearchData(prefix) {
-    return this.apiDataFetcher.getData(prefix);
+    return this.dataSrc.auto.getData(prefix);
   }
 
   updateHistoryData(itemValue) {
-    this.localStorageFetcher.updateData(itemValue);
+    this.dataSrc.history.updateData(itemValue);
   }
 
   removeHistoryData(itemValue) {
-    this.localStorageFetcher.removeData(itemValue);
+    this.dataSrc.history.removeData(itemValue);
   }
 }

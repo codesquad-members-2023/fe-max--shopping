@@ -15,12 +15,12 @@ class Renderer {
   }
 }
 
-class ListRenderer extends Renderer {
+export class RecommendAndHistoryRenderer extends Renderer {
   constructor(container, data) {
     super(container, data);
   }
 
-  getHistoryTemplate(item) {
+  #getHistoryTemplate(item) {
     return `
       <li data-type='history' class='search-item'>
         <a href="#">
@@ -31,7 +31,7 @@ class ListRenderer extends Renderer {
     `;
   }
 
-  getRecommendTemplate(item) {
+  #getRecommendTemplate(item) {
     return `
       <li data-type='recommend' class='search-item'>
         <a href="#">
@@ -41,22 +41,16 @@ class ListRenderer extends Renderer {
       </li>
     `;
   }
-}
-
-export class RecommendAndHistoryRenderer extends ListRenderer {
-  constructor(container, data) {
-    super(container, data);
-  }
 
   getTemplate() {
     const { recommendedSearchData, historySearchData } = this.data;
 
     const historySearchLists = historySearchData
-      .map((item) => this.getHistoryTemplate(item))
+      .map((item) => this.#getHistoryTemplate(item))
       .join('');
 
     const recommendSearchLists = recommendedSearchData
-      .map((item) => this.getRecommendTemplate(item))
+      .map((item) => this.#getRecommendTemplate(item))
       .join('');
 
     return historySearchLists + recommendSearchLists;

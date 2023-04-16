@@ -56,14 +56,12 @@ export class SearchBar {
     if (!isSearchBarClicked) this.view.hideSearchList();
   }
 
-  handleKeyDown(e) {
-    const { key } = e;
-
+  handleKeyDown({ key }) {
     if (key === 'ArrowUp' || key === 'ArrowDown') {
-      e.preventDefault();
+      event.preventDefault();
       this.view.move(key === 'ArrowUp' ? 'UP' : 'DOWN');
     } else if (key === 'Escape') {
-      e.preventDefault();
+      event.preventDefault();
       this.view.hideSearchList();
     }
   }
