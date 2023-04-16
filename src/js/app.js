@@ -1,7 +1,13 @@
-import modalController from './components/modal.js';
+import { Modal } from './components/modal.js';
+import { heroController } from './components/hero.js';
+import { SearchKeyword } from './components/search-bar.js';
 
 const app = () => {
-  modalController();
+  const modal = new Modal();
+  const searchKeyword = new SearchKeyword();
+  heroController();
+  modal.eventHandler();
+  searchKeyword.eventHandler();
 };
 
 app();

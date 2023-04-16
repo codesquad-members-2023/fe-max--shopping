@@ -1,19 +1,17 @@
-const $ = selector => document.querySelector(selector);
+export const $ = selector => document.querySelector(selector);
 
-const addHiddenClass = modalName => {
+export const addHiddenClass = modalName => {
   $(`.${modalName}`).classList.add('hidden');
 };
 
-const removeHiddenClass = modal => {
+export const removeHiddenClass = modal => {
   $(`.${modal}`).classList.remove('hidden');
 };
 
-const addDimmedClass = nodeID => {
-  $(`#${nodeID}`).classList.add('dimmed');
+export const addDimmed = () => {
+  $('#main').classList.add('dimmed');
 };
 
-const removeDimmedClass = nodeID => {
-  $(`#${nodeID}`).classList.remove('dimmed');
+export const removeDimmed = () => {
+  $('#main').classList.remove('dimmed');
 };
-
-export { $, addHiddenClass, removeHiddenClass, addDimmedClass, removeDimmedClass };

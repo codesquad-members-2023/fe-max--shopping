@@ -20,10 +20,18 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
-  top: 48px;
+  top: 50px;
   left: -15px;
   z-index: 100;
   animation: fadeIn 0.5s;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 61px;
+    height: 10px;
+    top: -10px;
+    left: 14px;
+  }
   &::after {
     content: '';
     position: absolute;
@@ -46,7 +54,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 48px;
+  top: 50px;
   left: -160px;
   z-index: 100;
   animation: fadeIn 0.5s;
@@ -83,10 +91,18 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  top: 48px;
+  top: 50px;
   left: -197px;
   z-index: 100;
   animation: fadeIn 0.5s;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 98px;
+    height: 10px;
+    top: -10px;
+    left: 197px;
+  }
   .login-section {
     display: flex;
     flex-direction: column;

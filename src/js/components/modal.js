@@ -1,38 +1,76 @@
-import { $, addHiddenClass, removeHiddenClass, addDimmedClass, removeDimmedClass } from '../utils.js';
+import { $, addHiddenClass, removeHiddenClass, addDimmed, removeDimmed } from '../utils.js';
 
-const modalController = () => {
-  document.addEventListener('DOMContentLoaded', showSmallLoginModal);
-  $('.login-wrap').addEventListener('mouseenter', showLargeLoginModal);
-  $('.nav-main__login').addEventListener('mouseleave', removeLargeLoginModal);
-  $('.nav-main__location').addEventListener('mouseenter', showLocationModal);
-  $('.nav-main__location').addEventListener('mouseleave', removeLocationModal);
-};
+export class Modal {
+  constructor() {
+    this.allModal = document.querySelectorAll('dialog');
+    this.smallLoginModal = new SmallLoginModal('login-modal__small');
+    this.largeLoginModal = new LargeLoginModal('login-modal__large');
+    this.locationModal = new LocationModal('location-modal');
+  }
 
-const showSmallLoginModal = () => {
-  setTimeout(() => {
-    removeHiddenClass('login-modal__small');
-  }, 1000);
-};
+  eventHandler() {
+    document.addEventListener('DOMContentLoaded', () => this.smallLoginModal.show());
+    $('.login-wrap').addEventListener('mouseenter', () => this.largeLoginModal.show());
+    $('.nav-main__login').addEventListener('mouseleave', () => this.largeLoginModal.close());
+    $('.nav-main__location').addEventListener('mouseenter', () => this.locationModal.show());
+    $('.nav-main__location').addEventListener('mouseleave', () => this.locationModal.close());
+  }
 
-const showLargeLoginModal = () => {
-  addHiddenClass('login-modal__small');
-  removeHiddenClass('login-modal__large');
-  addDimmedClass('main');
-};
+  showModal(modalClass) {
+    removeHiddenClass(modalClass);
+    addDimmed();
+  }
 
-const removeLargeLoginModal = () => {
-  addHiddenClass('login-modal__large');
-  removeDimmedClass('main');
-};
+  closeModal(modalClass) {
+    addHiddenClass(modalClass);
+    removeDimmed();
+  }
 
-const showLocationModal = () => {
-  removeHiddenClass('location-modal');
-  addDimmedClass('main');
-};
+  closeAllModal() {
+    this.allModal.forEach(modal => this.closeModal(modal.className));
+  }
+}
 
-const removeLocationModal = () => {
-  addHiddenClass('location-modal');
-  removeDimmedClass('main');
-};
+class SmallLoginModal extends Modal {
+  constructor(className) {
+    super();
+    this.className = className;
+  }
 
-export default modalController;
+  show() {
+    setTimeout(() => {
+      super.showModal(this.className);
+    }, 1000);
+  }
+}
+
+class LargeLoginModal extends Modal {
+  constructor(className) {
+    super();
+    this.className = className;
+  }
+
+  show() {
+    super.closeAllModal();
+    super.showModal(this.className);
+  }
+
+  close() {
+    super.closeModal(this.className);
+  }
+}
+
+class LocationModal extends Modal {
+  constructor(className) {
+    super();
+    this.className = className;
+  }
+
+  show() {
+    super.closeAllModal();
+    super.showModal(this.className);
+  }
+  close() {
+    super.closeModal(this.className);
+  }
+}
