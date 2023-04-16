@@ -31,15 +31,17 @@
                     </div>
                 </div>
                 <div class="main-search-bar main-menu-button">
-                    <form>
+                    <form name="searchForm">
                         <fieldset>
                             <label for="search-bar"></label>
-                            <input type="text" id="search-bar" placeholder="검색 Amazon">
+                            <input autocomplete="off" type="text" name="searchBar" id="search-bar" placeholder="검색 Amazon">
                             <button type="button" class="search-btn">
                                 <img src="./src/images/search-button.svg" alt="검색버튼">
                             </button>
                         </fieldset>
                     </form>
+                    <ul class="search-panel hidden">
+                    </ul>
                 </div>
                 <div class="main-nation icon-box main-menu-button">
                     <img src="./src/images/flag-usa.svg" alt="국기">
@@ -98,10 +100,10 @@
                     </button>
                     <button type="button" class="slide-next-button slide-button"><img
                             src="./src/images/slideRightButton.svg" class="next" alt="다음">
-                    </button> 
+                    </button>
                 </div>
             </article>
-            <article class="contents">
+            <!-- <article class="contents">
                 <ul class="contents-layout">
                     <li class="item login-block">
                         <button type="button" class="button-common">로그인</button>
@@ -159,7 +161,7 @@
                         </div>
                     </li>
                 </ul>
-            </article>
+            </article> -->
             <div class="loading"></div>
         </main>
         <aside></aside>
@@ -183,6 +185,8 @@
                 </div>
             </div>
         </footer>
+        <div class="dim hidden">
+        </div>
     </div>
 
 

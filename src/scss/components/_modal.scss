@@ -3,11 +3,16 @@
 @import '../common/placeholders';
 @import '../base/animations';
 
-.modal-bg {
-  @include modal-bg;
+
+.dim {
+  @include dim;
   width: 100%;
   height: $vh100;
   animation: fade-in 0.5s forwards; 
+}
+
+.hidden{
+  display: none;
 }
 
 .modal {
@@ -40,7 +45,7 @@
 
 }
 /* todo 모달창 템플릿을 하나만 가지고 변형이 가능한지 고민하기 */
-.modal-temp1 {
+.modal-shipping {
   @include modal;
   z-index: 100;
   align-items: flex-end;

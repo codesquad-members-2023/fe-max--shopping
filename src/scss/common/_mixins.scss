@@ -103,10 +103,10 @@
   cursor: pointer;
 }
 
-@mixin modal-bg {
+@mixin dim {
   background-color: $color-black-40;
   position: absolute;
-  top: 88px;
+  top: 88px; 
 }
 @mixin modal {
   @include flex-column;
@@ -208,4 +208,6 @@
   width: 262px;
 }
 
-
+@mixin hidden {
+  display: none;
+}

@@ -1,17 +1,11 @@
-import { initLoginModal } from '../js/events/initLoginModal.js';
-import { initShippingModal } from '../js/events/initShippingModal.js';
-import { startSlide, slideshowControls, initSlideShow } from '../js/events/initheroSlide.js';
-import { loadProducts } from '../js/events/getProducts.js';
-import { initContents } from '../js/events/initContents.js';
+import { initModal } from '../js/events/initModal.js';
+import { initHeroSlide } from '../js/events/initHeroSlide.js';
+import { SearchBar } from '../js/events/search/SearchBar.js';
 
-const init = () => {
-  initLoginModal();
-  initShippingModal();
-  startSlide();
-  initSlideShow()
-  slideshowControls()
-  
-  loadProducts();
-  initContents();
+const init = async () => {
+  initHeroSlide();
+  const searchBar = new SearchBar();
+  searchBar.initSearchBar();
+  await initModal();
 };
 init();
