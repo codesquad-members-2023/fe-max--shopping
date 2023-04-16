@@ -1,5 +1,5 @@
 import { $, highlightElement, removeHighlightFromElement } from '../../utils/domUtils.js';
-import { HistoryListBuilder, RecommendListBuilder } from './SuggestionListBuilder.js';
+import { HistoryTemplateBuilder, RecommendTemplateBuilder } from './SuggestionTemplateBuilder.js';
 
 export class SearchSuggestion {
   constructor() {
@@ -10,8 +10,8 @@ export class SearchSuggestion {
   init() {
     this.element = $('.search-layer__suggestion');
     this.children = this.element.children;
-    this.historyListBuilder = new HistoryListBuilder();
-    this.recommendListBuilder = new RecommendListBuilder();
+    this.historyTemplateBuilder = new HistoryTemplateBuilder();
+    this.recommendTemplateBuilder = new RecommendTemplateBuilder();
     this.selectedIndex = -1;
   }
 
@@ -26,10 +26,10 @@ export class SearchSuggestion {
   }
 
   async createSuggestion() {
-    const historyLists = await this.historyListBuilder.createTotalList();
-    const recommendLists = await this.recommendListBuilder.createTotalList();
+    const historyTemplates = await this.historyTemplateBuilder.createTotalList();
+    const recommendTemplates = await this.recommendTemplateBuilder.createTotalList();
 
-    return [...historyLists, ...recommendLists].reduce((o, n) => o + n, '');
+    return [...historyTemplates, ...recommendTemplates].reduce((o, n) => o + n, '');
   }
 
   renderSuggestion(suggestion) {

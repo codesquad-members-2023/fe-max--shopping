@@ -2,6 +2,7 @@ import { $, $All } from '../utils/domUtils.js';
 
 const MAX_INDEX = $All('.hero__item').length - 1;
 const AUTO_SLIDE_WAITTIME = 10000;
+const WAITTIME_FOR_NEXT_ITEM = 50;
 const PREV_ITEM = true;
 const NEXT_ITEM = false;
 
@@ -40,7 +41,7 @@ function slideTo(itemDirection) {
     currentItem.dataset.status = currentItemStatus;
     nextItem.dataset.status = 'active';
     activeIndex = nextIndex;
-  }, 50);
+  }, WAITTIME_FOR_NEXT_ITEM);
 }
 
 function getNextIndex(isPrevItem) {

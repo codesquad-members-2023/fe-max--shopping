@@ -1,8 +1,7 @@
-import { DataFetcher, HistoryFetcher, RecommendFetcher } from '../../utils/DataFetcher.js';
+import { DataFetcher } from '../../utils/DataFetcher.js';
+import { API_URL } from '../../utils/constants.js';
 
-const API_URL = 'http://localhost:3000/';
-
-class SuggestionListBuilder {
+class SuggestionTemplateBuilder {
   constructor() {
     this.dataFetcher = new DataFetcher(API_URL);
   }
@@ -21,10 +20,9 @@ class SuggestionListBuilder {
   }
 }
 
-export class HistoryListBuilder extends SuggestionListBuilder {
-  constructor() {
-    super();
-    this.dataFetcher = new HistoryFetcher(API_URL);
+export class HistoryTemplateBuilder extends SuggestionTemplateBuilder {
+  async getData() {
+    return await this.dataFetcher.getData('history?_limit=5&_sort=id&_order=desc');
   }
 
   createUnitList(text) {
@@ -32,10 +30,9 @@ export class HistoryListBuilder extends SuggestionListBuilder {
   }
 }
 
-export class RecommendListBuilder extends SuggestionListBuilder {
-  constructor() {
-    super();
-    this.dataFetcher = new RecommendFetcher(API_URL);
+export class RecommendTemplateBuilder extends SuggestionTemplateBuilder {
+  async getData() {
+    return await this.dataFetcher.getData('recommend?_limit=10');
   }
 
   createUnitList(text) {
