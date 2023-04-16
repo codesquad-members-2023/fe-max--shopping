@@ -4,18 +4,63 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style/reset.css" />
     <link rel="stylesheet" href="./src/style/style.css" />
     <title>Amazon.com. Spend less. Smile more.</title>
   </head>
   <body>
-    <header class="nav-bar">
-      <nav class="nav-bar__main">
-        <div class="logo">
-          <img src="./src/assets/logo.svg" />
-        </div>
-        <div class="" nav-bar__sub></div>
-      </nav>
-    </header>
+    <div id="nav-wrap">
+      <header class="nav-bar">
+        <nav class="nav-bar__main">
+          <div class="logo">
+            <img src="./src/assets/logo.svg" />
+          </div>
+          <div class="shipping-address">
+            <div class="shipping-address__label">
+              <img src="./src/assets/location.svg" />
+              <p>배송처</p>
+            </div>
+            <div class="shipping-address__country">
+              <p>대한민국</p>
+            </div>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="검색 Amazon" />
+            <button>
+              <img src="./src/assets/search.svg" />
+            </button>
+          </div>
+          <div class="nation">
+            <img src="./src/assets/flag.svg" />
+            <p>US</p>
+          </div>
+          <div class="login">
+            <p>안녕하세요, 로그인</p>
+            <p>계정 및 목록</p>
+          </div>
+          <div class="my-page">
+            <p>반품</p>
+            <p>&주문</p>
+          </div>
+          <div class="cart">
+            <img src="./src/assets/cart.svg" />
+            <p>장바구니</p>
+          </div>
+        </nav>
+        <nav class="nav-bar__sub">
+          <div class="sliding-drawer">
+            <img src="./src/assets/menu.svg" />
+            <p>모두</p>
+          </div>
+          <ul class="sliding-drawer__menu">
+            <li>오늘의 딜</li>
+            <li>고객 서비스</li>
+            <li>레지스트리</li>
+            <li>기프트 카드</li>
+            <li>기프트 판매</li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="content-wrap"></div>
   </body>
 </html>
