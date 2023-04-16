@@ -1,22 +1,25 @@
 import { Main } from '../../../../Main.js';
-import { model } from '../../../../domain/model.js';
 import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
+import { SearchModel } from './SearchModel.js';
 import { SearchPanel } from './SearchPanel.js';
 import { client } from '/src/js/domain/client.js';
 
 export default class Search extends Component {
   constructor() {
     super('search');
+    this.model = new SearchModel();
     this.state = {
-      history: model.getSearchHistory(),
+      history: [],
       recommend: [],
+      autoComplete: [],
     };
     this.main = new Main();
-    this.searchPanel = new SearchPanel(this.state);
+    this.searchPanel = new SearchPanel(this.state, this.model);
     this.searchBar = new SearchBar();
     this.init();
+    this.initState();
   }
 
   initEventHandlers() {
@@ -32,20 +35,15 @@ export default class Search extends Component {
     this.node.addEventListener('submit', (event) => this.handleSubmit(event));
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const { search } = event.target.elements;
-    const userInput = search.value;
-
-    this.saveHistory(userInput);
-    this.renderSearchPanel(this.state);
-    this.searchBar.clearInputValue();
+  async initState() {
+    const recommendWords = await this.loadRecommendWords();
+    this.state.recommend = recommendWords;
+    this.state.history = this.model.getSearchHistory();
   }
 
-  saveHistory(userInput) {
-    model.addSearchWord(userInput);
-    this.state.history = model.getSearchHistory();
+  async loadRecommendWords() {
+    const recommendWords = await client.fetchRecommendWords();
+    return recommendWords;
   }
 
   handleKeyDown(key) {
@@ -59,24 +57,36 @@ export default class Search extends Component {
     }
 
     if (isEscKey) {
-      this.searchPanel.close();
-      this.main.offDimmed();
+      this.closeSearchPanel();
     }
   }
 
-  async showRecommendWords() {
-    if (this.getInputValue()) return;
-
-    const recommendWords = await this.loadRecommendWords();
-    this.state.recommend = recommendWords;
-
-    this.main.onDimmed();
-    this.renderSearchPanel(this.state);
+  closeSearchPanel() {
+    this.searchPanel.close();
+    this.main.offDimmed();
   }
 
-  async loadRecommendWords() {
-    const recommendWords = await client.fetchRecommendWords();
-    return recommendWords;
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const { search } = event.target.elements;
+    const userInput = search.value;
+
+    this.saveHistory(userInput);
+    this.searchBar.clearInputValue();
+  }
+
+  saveHistory(userInput) {
+    this.model.addSearchWord(userInput);
+    this.state.history = this.model.getSearchHistory();
+  }
+
+  showRecommendWords() {
+    if (this.getInputValue()) return;
+
+    this.main.onDimmed();
+    this.searchPanel.render({ history: this.state.history, recommend: this.state.recommend });
+    this.searchPanel.open();
   }
 
   async showAutoComplete() {
@@ -86,9 +96,8 @@ export default class Search extends Component {
     }
 
     const autoCompleteWords = await this.loadAutoCompleteWords();
-    this.state.recommend = autoCompleteWords;
-
-    this.renderSearchPanel(this.state);
+    this.state.autoComplete = autoCompleteWords;
+    this.searchPanel.render({ recommend: this.state.autoComplete });
   }
 
   async loadAutoCompleteWords() {
@@ -96,12 +105,6 @@ export default class Search extends Component {
     const autoCompleteWords = await client.fetchAutoCompleteWords(userInput);
 
     return autoCompleteWords;
-  }
-
-  renderSearchPanel(state) {
-    this.searchPanel = new SearchPanel(state);
-    this.$('.search-panel').replaceWith(this.searchPanel.node);
-    this.searchPanel.open();
   }
 
   getInputValue() {

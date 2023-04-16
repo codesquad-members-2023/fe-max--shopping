@@ -1,13 +1,20 @@
-import { model } from '../../../../domain/model.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor({ recommend, history }) {
+  constructor(state, model) {
     super('search-panel', 'UL');
-    this.recommendWords = recommend;
-    this.history = history;
-    this.init();
-    this.selectedItem = this.node.firstElementChild;
+    this.model = model;
+    this.state = state;
+    this.selectedItem = null;
+    this.init(this.state);
+  }
+
+  getTemplate(state) {
+    const { history, recommend } = state;
+    const historyView = this.getAllHistoryTemplate(history);
+    const recommendView = this.getAllRecommendTemplate(recommend);
+
+    return historyView + recommendView;
   }
 
   initEventHandlers() {
@@ -20,11 +27,16 @@ export class SearchPanel extends Component {
 
   deleteItem(target) {
     const targetItem = target.closest('li');
-    model.deleteSearchWord(targetItem.dataset.id);
+    this.model.deleteSearchWord(targetItem.dataset.id);
     targetItem.remove();
   }
 
   onKeyDown(key) {
+    if (!this.selectedItem) {
+      this.selectedItem = this.node.firstElementChild;
+      return this.selectedItem.textContent.trim();
+    }
+
     this.moveToFollowingItem(key);
     return this.selectedItem.textContent.trim();
   }
@@ -58,13 +70,10 @@ export class SearchPanel extends Component {
     this.node.classList.remove('active');
   }
 
-  getTemplate() {
-    const historyView = this.getAllHistoryTemplate(this.history);
-    const recommendView = this.getAllRecommendTemplate(this.recommendWords);
-    return historyView + recommendView;
-  }
-
   getAllHistoryTemplate(history) {
+    if (!history) {
+      return '';
+    }
     const historyInfo = Object.entries(history).slice(-5);
     const historyTemplate = historyInfo.reduce((acc, cur) => {
       const historyId = cur[0];
@@ -75,8 +84,8 @@ export class SearchPanel extends Component {
     return historyTemplate;
   }
 
-  getAllRecommendTemplate(recommendWords) {
-    const recommendTemplate = recommendWords.reduce((acc, cur) => {
+  getAllRecommendTemplate(recommend) {
+    const recommendTemplate = recommend.reduce((acc, cur) => {
       return acc + this.getRecommendTemplate(cur);
     }, '');
 

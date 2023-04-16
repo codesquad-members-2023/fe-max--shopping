@@ -9,13 +9,14 @@ export class Component {
     this.$ = $context(this.#node);
   }
 
-  init() {
-    this.render();
+  init(state) {
+    this.render(state);
     this.initEventHandlers();
   }
 
-  render() {
-    const template = this.getTemplate();
+  render(state) {
+    this.dropPreviousRender();
+    const template = this.getTemplate(state);
 
     if (typeof template === 'string') {
       this.#node.insertAdjacentHTML('afterbegin', template);
@@ -25,8 +26,14 @@ export class Component {
     this.#node.append(...template);
   }
 
-  getTemplate() {
+  getTemplate(state) {
     return '';
+  }
+
+  dropPreviousRender() {
+    if (this.#node.innerHTML) {
+      this.#node.innerHTML = '';
+    }
   }
 
   initEventHandlers() {}
