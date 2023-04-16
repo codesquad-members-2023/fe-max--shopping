@@ -11,7 +11,7 @@ export class SearchBarLayer extends Base {
     this.keywordList = [];
     this.keywordNodes = [];
     this.maxIndex = 0;
-    this.selectIndex = null;
+    this.selectIndex = -1;
     this.init();
   }
 
@@ -45,7 +45,7 @@ export class SearchBarLayer extends Base {
     this.setStyle("display", "none");
     Backdrop.hide();
     this.clearChild();
-    this.selectIndex = null;
+    this.selectIndex = -1;
     if (this.selectIndex) {
       this.keywordNodes[this.selectIndex].classList.remove("selected");
     }
@@ -87,12 +87,12 @@ export class SearchBarLayer extends Base {
       node.dataset["layerindex"] = index;
     });
     this.keywordList = autoComplete.map((e) => e.text);
-    this.selectIndex = null;
+    this.selectIndex = -1;
     this.maxIndex = this.keywordNodes.length - 1;
   }
 
   setSelectList(key, inputBar) {
-    if (this.selectIndex === null) {
+    if (this.selectIndex === -1) {
       this.selectIndex = key === "ArrowUp" ? this.maxIndex : 0;
     } else {
       this.keywordNodes[this.selectIndex].classList.remove("selected");

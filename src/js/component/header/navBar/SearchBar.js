@@ -92,9 +92,9 @@ export class SearchBar extends Base {
 
   async inputEventHandler(e) {
     const inputText = this.inputBar.node.value;
-    this.layer.selectInedx = null;
+    this.layer.selectInedx = -1;
 
-    if (this.layer.selectInedx !== null) {
+    if (this.layer.selectInedx !== -1) {
       return;
     }
 
