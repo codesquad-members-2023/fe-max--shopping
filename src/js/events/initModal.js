@@ -6,7 +6,6 @@ const mainLogin = $('.main-login');
 const mainShippingAddress = $('.main-shipping-address');
 
 const setTime = 2000;
-let isModalOn = false;
 
 export async function initModal() {
   await delay(setTime);
@@ -31,9 +30,7 @@ function renderLoginModal() {
 }
 
 function handleModal(e) {
-  console.log(e.target);
 
-  isModalOn = true;
   const loginModal = $('.modal', e.target);
 
   const expandedLoginModalTemplate = `
@@ -62,7 +59,7 @@ function handleModal(e) {
   </div>`;
 
   const shippingModalTemplate = `
-  <div class="modal-temp1">
+  <div class="modal-shipping">
     <div class="modal-triangle"></div>
     <p>KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</p>
     <div>
@@ -94,7 +91,7 @@ function removeModal(e) {
     loginModal.remove();
   }
   if (e.target === mainShippingAddress) {
-    const shippingModal = $('.modal-temp1', e.target);
+    const shippingModal = $('.modal-shipping', e.target);
     shippingModal.remove();
   }
 
