@@ -5,12 +5,12 @@ import { Component } from './components/base/Component.js';
 export class App extends Component {
   constructor() {
     super('app');
+    this.header = new Navbar();
+    this.main = new Main();
+    this.init();
   }
 
-  template() {
-    const header = new Navbar();
-    const main = new Main();
-
-    return [header.node, main.node];
+  getTemplate() {
+    return [this.header.node, this.main.node];
   }
 }

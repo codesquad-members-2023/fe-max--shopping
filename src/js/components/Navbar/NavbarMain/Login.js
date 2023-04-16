@@ -1,37 +1,60 @@
 import { Main } from '../../../Main.js';
-import { ExtendedLoginModal, LoginModal } from '../../element/Modal.js';
+import { ExtendedLoginModal, LoginModal } from '../../common/Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Login extends Component {
+  static delaySecond = 1;
+
   constructor() {
     super('login');
+    this.main = new Main();
+    this.loginArea = new LoginArea();
     this.loginModal = new LoginModal();
     this.extendedLoginModal = new ExtendedLoginModal();
-    this.node.append(this.loginModal.node, this.extendedLoginModal.node);
+    this.init();
   }
 
   initEventHandlers() {
-    setTimeout(() => this.showLoginModal(), 1000);
-    this.node.addEventListener('mouseenter', () => this.showExtendedLoginModal());
+    this.showModalLater(Login.delaySecond);
+    this.loginArea.node.addEventListener('mouseenter', () => this.showExtendedLoginModal());
     this.node.addEventListener('mouseleave', () => this.closeExtendedLoginModal());
   }
 
+  showModalLater(sec) {
+    setTimeout(() => this.showLoginModal(), sec * 1000);
+  }
+
   showExtendedLoginModal() {
-    this.loginModal.node.close();
-    this.extendedLoginModal.node.show();
-    Main.onDimmed();
+    this.closeLoginModal();
+    this.extendedLoginModal.show();
+    this.main.onDimmed();
   }
 
   closeExtendedLoginModal() {
-    this.extendedLoginModal.node.close();
-    Main.offDimmed();
+    this.extendedLoginModal.close();
+    this.main.offDimmed();
   }
 
   showLoginModal() {
-    this.loginModal.node.show();
+    this.loginModal.show();
   }
 
-  template() {
+  closeLoginModal() {
+    this.loginModal.close();
+  }
+
+  getTemplate() {
+    return [this.loginArea.node, this.loginModal.node, this.extendedLoginModal.node];
+  }
+}
+
+class LoginArea extends Component {
+  constructor() {
+    super('login-area');
+    this.init();
+  }
+
+  getTemplate() {
     return `
 <span class="label-text">안녕하세요, 로그인</span>
 <span class="main-text">계정 및 목록</span>

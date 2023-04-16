@@ -3,9 +3,18 @@ import { Component } from '/src/js/components/base/Component.js';
 export class LoginModal extends Component {
   constructor() {
     super('modal login-modal', 'DIALOG');
+    this.init();
   }
 
-  template() {
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
+  }
+
+  getTemplate() {
     return `
 <button class="login-btn">로그인</button>
 <div>
@@ -19,9 +28,18 @@ export class LoginModal extends Component {
 export class ExtendedLoginModal extends Component {
   constructor() {
     super('modal extended-login-modal', 'DIALOG');
+    this.init();
   }
 
-  template() {
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
+  }
+
+  getTemplate() {
     return `
 <div class="base">
   <button class="login-btn">로그인</button>
@@ -63,9 +81,18 @@ export class ExtendedLoginModal extends Component {
 export class ShippingModal extends Component {
   constructor() {
     super('modal shipping-modal', 'DIALOG');
+    this.init();
   }
 
-  template() {
+  show() {
+    this.node.show();
+  }
+
+  close() {
+    this.node.close();
+  }
+
+  getTemplate() {
     return `
 <p>
   KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를

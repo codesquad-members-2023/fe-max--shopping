@@ -1,31 +1,41 @@
 import { Login } from './Login.js';
+import Search from './Search/Search.js';
 import { Shipping } from './Shipping.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class NavbarMain extends Component {
   constructor() {
     super('navbar-main');
+    this.logo = new Logo();
+    this.shipping = new Shipping();
+    this.search = new Search();
+    this.nation = new Nation();
+    this.login = new Login();
+    this.myPage = new MyPage();
+    this.cart = new Cart();
+    this.init();
   }
 
-  template() {
-    const logoNode = new Logo().node;
-    const shippingNode = new Shipping().node;
-    const searchBarNode = new SearchBar().node;
-    const nationNode = new Nation().node;
-    const loginNode = new Login().node;
-    const myPageNode = new MyPage().node;
-    const cartNode = new Cart().node;
-
-    return [logoNode, shippingNode, searchBarNode, nationNode, loginNode, myPageNode, cartNode];
+  getTemplate() {
+    return [
+      this.logo.node,
+      this.shipping.node,
+      this.search.node,
+      this.nation.node,
+      this.login.node,
+      this.myPage.node,
+      this.cart.node,
+    ];
   }
 }
 
 class Logo extends Component {
   constructor() {
     super('logo', 'H1');
+    this.init();
   }
 
-  template() {
+  getTemplate() {
     return `
   <a href="/">
     <img class="amazon-icon" src="/src/assets/images/BI.svg" alt="amazon logo icon" />
@@ -34,25 +44,13 @@ class Logo extends Component {
   }
 }
 
-class SearchBar extends Component {
-  constructor() {
-    super('search-bar', 'FORM');
-  }
-
-  template() {
-    return `
-<input type="search" class="input" placeholder="검색 Amazon" />
-<button type="submit" class="submit-btn"></button>
-    `;
-  }
-}
-
 class Nation extends Component {
   constructor() {
     super('nation');
+    this.init();
   }
 
-  template() {
+  getTemplate() {
     return `
 <img src="/src/assets/images/flag.svg" alt="flag icon" />
 <span class="main-text">KO</span>
@@ -63,9 +61,10 @@ class Nation extends Component {
 class MyPage extends Component {
   constructor() {
     super('my-page');
+    this.init();
   }
 
-  template() {
+  getTemplate() {
     return `
 <span class="label-text">반품</span>
 <span class="main-text">& 주문</span>
@@ -76,9 +75,10 @@ class MyPage extends Component {
 class Cart extends Component {
   constructor() {
     super('cart');
+    this.init();
   }
 
-  template() {
+  getTemplate() {
     return `
 <img src="/src/assets/symbols/cart.svg" alt="cart icon" />
 <span class="main-text">장바구니</span>

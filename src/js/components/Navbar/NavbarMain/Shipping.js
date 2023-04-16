@@ -1,12 +1,14 @@
 import { Main } from '../../../Main.js';
-import { ShippingModal } from '../../element/Modal.js';
+import { ShippingModal } from '../../common/Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Shipping extends Component {
   constructor() {
     super('shipping', 'A');
+    this.main = new Main();
+    this.shippingArea = new ShippingArea();
     this.shippingModal = new ShippingModal();
-    this.node.append(this.shippingModal.node);
+    this.init();
   }
 
   initEventHandlers() {
@@ -15,16 +17,27 @@ export class Shipping extends Component {
   }
 
   showShippingModal() {
-    this.shippingModal.node.show();
-    Main.onDimmed();
+    this.shippingModal.show();
+    this.main.onDimmed();
   }
 
   closeShippingModal() {
-    this.shippingModal.node.close();
-    Main.offDimmed();
+    this.shippingModal.close();
+    this.main.offDimmed();
   }
 
-  template() {
+  getTemplate() {
+    return [this.shippingArea.node, this.shippingModal.node];
+  }
+}
+
+class ShippingArea extends Component {
+  constructor() {
+    super('shipping-area');
+    this.init();
+  }
+
+  getTemplate() {
     return `
 <div class="top">
   <img src="/src/assets/symbols/location.svg" alt="location icon" />

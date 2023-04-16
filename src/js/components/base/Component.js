@@ -1,4 +1,4 @@
-import { $context } from '../../utils/querySelector.js';
+import { $context } from '../../utils/utils.js';
 
 export class Component {
   #node;
@@ -7,12 +7,15 @@ export class Component {
     this.#node = document.createElement(tagName);
     this.#node.className = className;
     this.$ = $context(this.#node);
+  }
+
+  init() {
     this.render();
     this.initEventHandlers();
   }
 
   render() {
-    const template = this.template();
+    const template = this.getTemplate();
 
     if (typeof template === 'string') {
       this.#node.insertAdjacentHTML('afterbegin', template);
@@ -22,7 +25,7 @@ export class Component {
     this.#node.append(...template);
   }
 
-  template() {
+  getTemplate() {
     return '';
   }
 

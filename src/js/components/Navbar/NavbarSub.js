@@ -3,9 +3,10 @@ import { Component } from '../base/Component.js';
 export class NavbarSub extends Component {
   constructor() {
     super('navbar-sub');
+    this.init();
   }
 
-  template() {
+  getTemplate() {
     return `
 <div class="left">
   <a class="menu" href=""><img src="/src/assets/symbols/menu.svg" alt="" /> 모두</a>

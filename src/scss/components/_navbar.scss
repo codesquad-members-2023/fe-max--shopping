@@ -1,58 +1,15 @@
-@use '../base';
+@use '../base' as *;
 
 .navbar {
-  width: 100%;
-  min-width: 1120px;
+  width: 100vw;
+  min-width: 1280px;
 
   &-main {
     padding: 8px 16px;
     display: flex;
     align-items: center;
-    background-color: var(--color-black);
+    background-color: $color-black;
     gap: 24px;
-
-    .shipping {
-      width: 50px;
-      height: 40px;
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .top {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      img {
-        width: 12px;
-        height: 12px;
-      }
-    }
-
-    .search-bar {
-      display: flex;
-      flex-grow: 1;
-      max-height: 40px;
-
-      input {
-        flex-grow: 1;
-        border-radius: 4px 0px 0px 4px;
-        &::placeholder {
-          padding-left: 12px;
-        }
-      }
-
-      .submit-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 0px 4px 4px 0px;
-        background-color: var(--color-primary-orange-100);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-image: url('/src/assets/symbols/search.svg');
-      }
-    }
 
     .login {
       position: relative;
@@ -80,12 +37,115 @@
     }
 
     .label-text {
-      @include base.typography('bold-sm');
-      color: var(--color-gray-400);
+      @include typography('bold-sm');
+      color: $color-gray-400;
     }
     .main-text {
-      @include base.typography('bold-md');
-      color: var(--color-white);
+      @include typography('bold-md');
+      color: $color-white;
+    }
+  }
+
+  .shipping {
+    width: 50px;
+    height: 40px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .search {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+
+    &-bar {
+      display: flex;
+      overflow: hidden;
+      border-radius: 4px;
+
+      input {
+        width: 100%;
+        padding-left: 12px;
+      }
+
+      .submit-btn {
+        width: 40px;
+        height: 40px;
+        background-color: $color-primary-orange-100;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('/src/assets/symbols/search.svg');
+      }
+    }
+
+    &-panel {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      border-radius: 4px;
+      background-color: $color-white;
+      border: 1px solid $color-black;
+      visibility: hidden;
+      z-index: 3;
+
+      &.active {
+        visibility: visible;
+      }
+
+      li {
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        @include typography('body-md');
+
+        &.selected {
+          background-color: $color-gray-100;
+        }
+      }
+
+      .history {
+        color: $color-secondary-purple;
+        justify-content: space-between;
+        a {
+          flex-grow: 1;
+        }
+      }
+
+      .recommend {
+        a {
+          display: flex;
+          width: 100%;
+          gap: 4px;
+          align-items: center;
+        }
+      }
+
+      .delete-btn {
+        width: 20px;
+        height: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('/src/assets/symbols/close.svg');
+      }
+
+      .shortcut-btn {
+        width: 16px;
+        height: 16px;
+        background-image: url('/src/assets/symbols/arrow-top-right.svg');
+      }
     }
   }
 
@@ -94,8 +154,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 16px;
-    background-color: var(--color-gray-900);
-    color: var(--color-white);
+    background-color: $color-gray-900;
+    color: $color-white;
 
     .left {
       display: flex;
@@ -115,12 +175,12 @@
 
     .menu {
       gap: 4px;
-      @include base.typography('body-md');
+      @include typography('body-md');
     }
 
     .menu:first-child,
     .menu:last-child {
-      @include base.typography('bold-md');
+      @include typography('bold-md');
       display: inline-flex;
       align-items: center;
     }

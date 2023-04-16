@@ -1,16 +1,9 @@
-import { Hero } from './components/Hero.js';
+import { Hero } from './components/Hero/Hero.js';
 import { Component } from './components/base/Component.js';
+import { DimLayer } from './components/common/DimLayer.js';
 
 export class Main extends Component {
   static #instance;
-
-  static onDimmed() {
-    Main.#instance.node.classList.add('dim');
-  }
-
-  static offDimmed() {
-    Main.#instance.node.classList.remove('dim');
-  }
 
   constructor() {
     if (Main.#instance) {
@@ -18,11 +11,21 @@ export class Main extends Component {
     }
 
     super('main', 'MAIN');
+    this.dimLayer = new DimLayer();
+    this.hero = new Hero(6);
+    this.init();
     Main.#instance = this;
   }
 
-  template() {
-    const hero = new Hero(6);
-    return [hero.node];
+  onDimmed() {
+    this.dimLayer.on();
+  }
+
+  offDimmed() {
+    this.dimLayer.off();
+  }
+
+  getTemplate() {
+    return [this.dimLayer.node, this.hero.node];
   }
 }
