@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-ExtraBold.woff2) format("woff2");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Black.woff2) format("woff2");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Bold.woff2) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-SemiBold.woff2) format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Medium.woff2) format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Regular.woff2) format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Thin.woff2) format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-Light.woff2) format("woff2");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(../fonts/Pretendard-ExtraLight.woff2) format("woff2");
+  font-weight: 100;
+}
+
+:root {
+  /* font */
+  --font-bold-xl: 900 28px "Pretendard Variable";
+  --font-bold-lg: 900 18px "Pretendard Variable";
+  --font-bold-md: 800 13px "Pretendard Variable";
+  --font-bold: 600 13px "Pretendard Variable";
+  --font-bold-sm: 600 11px "Pretendard Variable";
+  --font-body-md: 500 13px/1.6 "Pretendard Variable";
+  --font-body-sm: 500 11px/1.6 "Pretendard Variable";
+
+  /* letter spacing */
+  --letter-spacing-bold-md: -0.06em;
+  --letter-spacing-bold-sm: -0.06em;
+  --letter-spacing-body-md: -0.03em;
+  --letter-spacing-body-sm: -0.03em;
+
+  /* color */
+  --color-white: #ffffff;
+
+  --color-gray-100: #eff2f2;
+  --color-gray-200: #e5e9e9;
+  --color-gray-300: #dce0e0;
+  --color-gray-400: #d5d5d5;
+  --color-gray-500: #c1c1c1;
+  --color-gray-600: #878787;
+  --color-gray-700: #535353;
+  --color-gray-800: #2a3648;
+  --color-gray-900: #1b232f;
+
+  --color-black: #10141a;
+  --color-black-40: #10141a66;
+
+  --color-primary-yellow-100: #fed15f;
+  --color-primary-yellow-200: #febe30;
+  --color-primary-yellow-300: #de9408;
+
+  --color-primary-orange-100: #fcb057;
+  --color-primary-orange-200: #ff9900;
+
+  --color-secondary-purple: #941387;
+  --color-secondary-navy: #074099;
+  --color-secondary-green: #0c5e72;
+}
