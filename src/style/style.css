@@ -27,7 +27,8 @@
 .my-page,
 .cart,
 .sliding-drawer,
-.sliding-drawer__menu {
+.sliding-drawer__menu,
+.modal-area__btn button {
   cursor: pointer;
 }
 
@@ -64,6 +65,48 @@
 .shipping-address__country p {
   font: var(--font-bold-md), "Pretendard Variable";
   color: var(--color-white);
+}
+
+.shipping-address-modal {
+  /* display: none; */
+  width: 320px;
+  height: 126px;
+  padding: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-white);
+  z-index: 1;
+}
+
+.modal-area__msg {
+  margin-bottom: 26px;
+}
+
+.modal-area__msg p {
+  font: var(--font-body-sm), "Pretendard Variable";
+}
+
+.modal-area__btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-area__btn button {
+  border: 1px solid #de9408;
+  border-radius: 4px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  font: var(--font-bold-sm), "Pretendard Variable";
+}
+
+.modal-area__btn button:first-child {
+  width: 39px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.modal-area__btn button:last-child {
+  width: 58px;
+  height: 32px;
 }
 
 .search-bar {
