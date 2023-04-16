@@ -52,6 +52,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  position: relative;
+}
+
 button {
   &:hover {
     cursor: pointer;
@@ -315,7 +319,9 @@ button {
   position: absolute;
   width: 100%;
   left: 0px;
-  top: 100%;
+  top: 104px;
+  height: calc(100% - 104px);
+  min-height: calc(100vh - 104px);
   z-index: $z-index-cover;
   background: var(--color-black-40);
 }
