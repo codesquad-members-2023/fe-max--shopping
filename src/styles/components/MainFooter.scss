@@ -1,0 +1,73 @@
+@use "../config/design-system.scss" as *;
+
+:host {
+  width: 100%;
+  color: $color-white;
+}
+
+footer {
+  width: 100%;
+
+  a {
+    color: $color-white;
+  }
+}
+
+.back-to-top {
+  width: 100%;
+  height: 32px;
+  background-color: $color-grey-800;
+
+  #back-to-top-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include f-bold-sm;
+  }
+}
+
+.columns-container {
+  padding: 40px 0;
+  gap: 24px;
+  display: flex;
+  justify-content: center;
+  background-color: $color-grey-900;
+
+  .column {
+    width: 262px;
+
+    h4 {
+      margin-bottom: 16px;
+      @include f-bold-md;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      @include f-body-sm;
+    }
+  }
+}
+
+.copyright-container {
+  height: 88px;
+  gap: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-black;
+
+  .copyright-info {
+    * {
+      @include f-body-sm;
+    }
+
+    ul {
+      display: flex;
+      gap: 16px;
+    }
+  }
+}

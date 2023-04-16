@@ -1,4 +1,3 @@
-@use "../config/component-reset.scss";
 @use "../config/design-system.scss" as *;
 
 :host {
@@ -12,26 +11,23 @@
 .slides-container {
   width: 100%;
   height: 100%;
+  list-style: none;
 
-  ul {
-    list-style: none;
+  li {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 250ms ease-in;
 
-    li {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 250ms ease-in;
+    &[data-active] {
+      opacity: 1;
+    }
 
-      &[data-active] {
-        opacity: 1;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-        object-position: center;
-      }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      object-position: center;
     }
   }
 }
@@ -50,10 +46,10 @@
   left: 0;
   background-color: transparent;
   border: none;
-  z-index: 1;
+  z-index: $z-index-lvl-1;
   cursor: pointer;
 
-  &.next {
+  &[data-type="next"] {
     left: unset;
     right: 0;
   }

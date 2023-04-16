@@ -1,7 +1,7 @@
-@use "../../config/component-reset.scss";
 @use "../../config/design-system.scss" as *;
 
 :host {
+  padding: 16px;
   display: block;
   position: absolute;
   top: 45px;
@@ -12,7 +12,7 @@
   opacity: 0;
   visibility: hidden;
   transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
-  z-index: 9;
+  z-index: $z-index-lvl-4;
   color: $color-black;
   @include f-body-sm;
   white-space: nowrap;
@@ -37,18 +37,6 @@
   &::before {
     right: 63px;
   }
-
-  // &::after {
-  //   content: "";
-  //   width: 1000%;
-  //   height: 1000%;
-  //   display: block;
-  //   position: absolute;
-  //   top: 28px;
-  //   left: -2000px;
-  //   background-color: $color-black-40;
-  //   // z-index: 1;
-  // }
 }
 
 :host(.is-left) {

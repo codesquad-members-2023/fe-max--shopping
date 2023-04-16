@@ -1,43 +1,58 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="slide-btns__container">
-    <button class="slide-btn prev" type="button">
+    <button class="slide-btn" data-type="prev" type="button">
       <img src="src/assets/icons/btn-left.svg" alt="Previous Button" />
     </button>
-    <button class="slide-btn next" type="button">
+    <button class="slide-btn" data-type="next" type="button">
       <img src="src/assets/icons/btn-right.svg" alt="Next Button" />
     </button>
   </div>
-
-  <div class="slides-container"></div>
+  
+  <ul class="slides-container"></ul>
 
   <link rel="stylesheet" href="src/styles/components/InfiniteCarousel.css">
 `;
 
-class InfiniteCarousel extends HTMLElement {
+class InfiniteCarousel extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
+    this.intervalId = null;
+    this.slideAfterMs = 10000;
+    this.btns = this.shadowRoot.querySelectorAll(".slide-btn");
+    this.slidesUl = this.shadowRoot.querySelector(".slides-container");
   }
 
   connectedCallback() {
-    const btns = this.shadowRoot.querySelectorAll(".slide-btn");
-
-    btns.forEach((btn) => {
+    this.btns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.moveSlide(btn);
+        this.moveSlide(btn.dataset.type);
+        this.automaticSlideAfter(this.slideAfterMs);
       });
     });
+
+    this.automaticSlideAfter(this.slideAfterMs);
   }
 
-  moveSlide(btn) {
-    const offset = btn.classList.contains("next") ? 1 : -1;
+  setImages(newVal) {
+    this.dataset.imgs = newVal;
+  }
 
-    const slidesUl = this.shadowRoot.querySelector("ul");
-    const slideLis = [...slidesUl.children];
+  automaticSlideAfter(ms) {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(() => {
+      this.moveSlide("next");
+    }, ms);
+  }
 
-    const activeSlide = slidesUl.querySelector("[data-active]");
+  moveSlide(btnType) {
+    const offset = btnType === "next" ? 1 : -1;
+
+    const slideLis = [...this.slidesUl.children];
+
+    const activeSlide = this.slidesUl.querySelector("[data-active]");
 
     let newIdx = slideLis.indexOf(activeSlide) + offset;
     if (newIdx >= slideLis.length) newIdx = 0;
@@ -58,16 +73,13 @@ class InfiniteCarousel extends HTMLElement {
   }
 
   generateSlides(imgs) {
-    const slidesContainer = this.shadowRoot.querySelector(".slides-container");
-    const ul = document.createElement("ul");
     imgs.forEach((img, idx) => {
       const li = document.createElement("li");
       if (idx === 0) li.dataset.active = true;
 
       li.appendChild(this.generateSlide(img));
-      ul.appendChild(li);
+      this.slidesUl.appendChild(li);
     });
-    slidesContainer.appendChild(ul);
   }
 
   generateSlide({ imgSrc, imgAlt }) {

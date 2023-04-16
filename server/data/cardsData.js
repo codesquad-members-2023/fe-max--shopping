@@ -1,4 +1,4 @@
-export const heroImgs = [
+export const heroImgsData = [
   {
     imgSrc: "src/assets/images/hero/hero1.jpg",
     imgAlt: "Hero1",
@@ -25,7 +25,7 @@ export const heroImgs = [
   },
 ];
 
-export const cards = [
+export const cardsData = [
   {
     imgSrc: "src/assets/images/cards/card1.png",
     imgAlt: "Card 1",

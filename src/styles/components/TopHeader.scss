@@ -1,4 +1,3 @@
-@use "../config/component-reset.scss" as *;
 @use "../config/design-system.scss" as *;
 
 header {
@@ -41,27 +40,6 @@ header {
 
   #search-container {
     flex-grow: 1;
-
-    form {
-      display: flex;
-      border-radius: 4px;
-      overflow: hidden;
-
-      input {
-        flex-grow: 1;
-        height: 40px;
-        padding-left: 12px;
-      }
-
-      button {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $color-primary-orange-100;
-      }
-    }
   }
 
   #lang-link {
@@ -119,5 +97,22 @@ header {
       display: flex;
       align-items: center;
     }
+  }
+}
+
+.dimmed-layer {
+  width: 100%;
+  height: 1805px;
+  position: absolute;
+  top: 88px;
+  background-color: $color-black-40;
+  opacity: 0;
+  visibility: hidden;
+  z-index: $z-index-lvl-2;
+  transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
   }
 }

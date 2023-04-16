@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="cards-container">
@@ -10,11 +12,24 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/CardsPanel.css">
 `;
 
-class CardsPanel extends HTMLElement {
+class CardsPanel extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
+    this.cardsContainer = this.shadowRoot.querySelector(".cards-container");
+  }
+
+  async connectedCallback() {
+    const cardsData = await this.fetchCards();
+    this.setCards(JSON.stringify(cardsData));
+  }
+
+  setCards(newVal) {
+    this.dataset.cards = newVal;
+  }
+
+  async fetchCards() {
+    const res = await fetch(`http://127.0.0.1:3000/cards-panel`);
+    return await res.json();
   }
 
   static get observedAttributes() {
@@ -28,21 +43,20 @@ class CardsPanel extends HTMLElement {
   }
 
   generateCardItems(cards) {
-    const cardsContainer = this.shadowRoot.querySelector(".cards-container");
-
     const fragment = new DocumentFragment();
-
-    cards.forEach(({ imgSrc, imgAlt, title, link }) => {
-      const cardItem = document.createElement("card-item");
-      cardItem.dataset.imgSrc = imgSrc;
-      cardItem.dataset.imgAlt = imgAlt;
-      cardItem.dataset.title = title;
-      cardItem.dataset.link = link;
-
-      fragment.appendChild(cardItem);
+    cards.forEach((card) => {
+      fragment.appendChild(this.generateCardItem(card));
     });
+    this.cardsContainer.appendChild(fragment);
+  }
 
-    cardsContainer.appendChild(fragment);
+  generateCardItem({ imgSrc, imgAlt, title, link }) {
+    const cardItem = document.createElement("card-item");
+    cardItem.dataset.imgSrc = imgSrc;
+    cardItem.dataset.imgAlt = imgAlt;
+    cardItem.dataset.title = title;
+    cardItem.dataset.link = link;
+    return cardItem;
   }
 }
 

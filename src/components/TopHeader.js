@@ -1,3 +1,5 @@
+import Component from "./common/Component.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <header>
@@ -25,12 +27,7 @@ template.innerHTML = `
         </tool-tip>
       </div>
       <div id="search-container">
-        <form>
-          <input type="text" placeholder="검색 Amazon" />
-          <button type="submit">
-            <img src="src/assets/icons/search.svg" alt="Search"/>
-          </button>
-        </form>
+        <search-form></search-form>
       </div>
       <div class="nav-main__item-container">
         <a href="#" id="lang-link">
@@ -115,15 +112,17 @@ template.innerHTML = `
     </nav>
   </header>
 
+  <div class="dimmed-layer"></div>
+
   <link rel="stylesheet" href="src/styles/components/TopHeader.css"></link>
 
   <style>
-    /* tool-tip-enhanced component styles */
+    /* tool-tip component's slot's nested elements' styles */
     .shipping-tooltip {
       width: 320px;
     }
 
-    .shipping-tooltip div:last-of-type {
+    .shipping-tooltip__btns {
       width: 100%;
       gap: 8px;
       display: flex;
@@ -134,8 +133,13 @@ template.innerHTML = `
       white-space: normal;
     }
 
-    .shipping-tooltip div[slot=tool-tip-top-content] {
+    .shipping-tooltip div[slot="tool-tip-top-content"] {
       gap: 26px;
+    }
+
+    div[slot="tool-tip-top-content"] a,
+    div[slot="tool-tip-bottom-content"] a {
+      color: #074099;
     }
 
     .tool-tip-bottom-content {
@@ -170,16 +174,15 @@ template.innerHTML = `
   </style>
 `;
 
-class TopHeader extends HTMLElement {
+class TopHeader extends Component {
   constructor() {
-    super();
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.append(template.content.cloneNode(true));
+    super(template);
+    this.dimmedLayer = this.shadowRoot.querySelector(".dimmed-layer");
+    this.toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
   }
 
   connectedCallback() {
-    const toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
-    toolTipParents.forEach((parent) => {
+    this.toolTipParents.forEach((parent) => {
       const toolTipNotDimmedBg = parent.querySelector(
         "tool-tip:not(.dimmed-bg)"
       );
@@ -197,6 +200,21 @@ class TopHeader extends HTMLElement {
         toolTipDimmedBg.hideSelf();
       });
     });
+
+    this.addEventListener("dim", this.dimLayerHandler);
+  }
+
+  dimLayerHandler(evt) {
+    const isActive = evt.detail.isActive;
+    this.dimLayer(isActive);
+  }
+
+  dimLayer(isActive) {
+    if (isActive === true) {
+      this.dimmedLayer.classList.add("is-active");
+    } else {
+      this.dimmedLayer.classList.remove("is-active");
+    }
   }
 }
 

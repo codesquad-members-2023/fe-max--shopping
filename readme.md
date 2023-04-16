@@ -2,10 +2,30 @@
 
 ## Table of Contents
 
+- [Getting Started](#getting-started)
 - [Project Requirements](#project-requirements)
   - [About](#about)
   - [Key Features](#key-features)
 - [Dev Log](#dev-log)
+  - [Web Components and SCSS](#web-components-and-scss)
+  - [SCSS Modules - `@use` vs `@import`](#scss-modules---use-vs-import)
+  - [Elements that are not Suitable for Attaching the Shadow DOM](#elements-that-are-not-suitable-for-attaching-the-shadow-dom)
+  - [Dimmed Layer](#dimmed-layer)
+
+## Getting Started
+
+1. Clone the repository
+   ```zsh
+   git clone https://github.com/Kakamotobi/fe-max--shopping.git
+   ```
+2. Install dependencies
+   ```zsh
+   npm install
+   ```
+3. Run the development server
+   ```zsh
+   npm run dev
+   ```
 
 ## Project Requirements
 
@@ -15,19 +35,23 @@
 
 ### Key Features
 
-- [ ] Top Nav Bar
-  - [ ] Login Section
-    - [ ] Login "tooltip"
-      - [ ] Appears after 1 second after page load
-    - [ ] Login Section Hover
-      - [ ] Login "tooltip" disappears
-      - [ ] Login modal appears
-      - [ ] Close modal when no longer hovering over the section or modal.
-  - [ ] Shipping Section Hover
-    - [ ] Shipping address modal appears
-    - [ ] Close modal when no longer hovering over the section or modal.
-  - [ ] Navbar expands the whole width of the viewport
-    - [ ] Search bar grows when vw >= 1120px.
+- [x] Top Nav Bar
+  - [x] Login Section
+    - [x] Login "tooltip"
+      - [x] Appears after 1 second after page load.
+    - [x] Login Section Hover
+      - [x] Login "tooltip" disappears.
+      - [x] Login modal appears.
+      - [x] Close modal when no longer hovering over the section or modal.
+      - [x] Dim main section.
+  - [x] Shipping Section Hover
+    - [x] Shipping address modal appears.
+    - [x] Close modal when no longer hovering over the section or modal.
+    - [x] Dim main section.
+  - [x] Navbar expands the whole width of the viewport.
+    - [x] Search bar grows when vw >= 1120px.
+- [x] Hero Infinite Carousel
+  - [x] Automatically move to next slide after 10s of no interaction.
 
 ## Dev Log
 
@@ -153,3 +177,15 @@
 
 - Elements related to headings, tables, form, img, inline elements (Ex: `a`, `span`).
 - The Shadow DOM can be attached to any HTML tag. However, attaching it to one of these elements may not make sense and lead to displacements.
+
+### Dimmed Layer
+
+- Need to dim the main portion upon hovering over certain tooltips, and upon showing autocomplete panel.
+- Trigger the dimmed layer by creating and dispatching a custom event from the components to the `top-header` (parent) component.
+
+### Keyboard Event
+
+- When typing in Korean, the last character stays in "composing" state.
+- The keyboard event fires twice when `isComposing` is `true`.
+- To prevent double firing, we can ignore the first event that was fired, which is when `isComposing` is `true`.
+  - i.e. when the input is in "composing" state and the arrow key is pressed, two of the same events are fired. The first should be ignored and only the second should fall through.
