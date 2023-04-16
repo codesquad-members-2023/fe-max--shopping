@@ -1,30 +1,31 @@
-import { $, $All, removeHiddenClass, addHiddenClassIfAbsent } from '../utils/domUtils.js';
-import { delay } from '../utils/timeUtils.js';
+import { $, $All, showHiddenElement, closeAllLayers, openLayer } from '../utils/domUtils.js';
 
 const MODAL_OPEN_DELAY = 1000;
 
-function openLoginModal() {
+async function openLoginModal() {
+  if (await isLayerOpened()) {
+    return;
+  }
   closeAllLayers();
-  removeHiddenClass($('.modal-login'));
+  showHiddenElement($('.modal-login'));
+}
+
+async function openLoginModalWithDelay() {
+  setTimeout(openLoginModal, MODAL_OPEN_DELAY);
 }
 
 function openExpandedLoginModal() {
-  closeAllLayers();
-  removeHiddenClass($('.modal-login'));
-  removeHiddenClass($('.modal-login__details'));
-  openDimmedLayer();
+  openLayer($('.modal-login'), $('.modal-login__details'));
 }
 
 function openAddressModal() {
-  closeAllLayers();
-  removeHiddenClass($('.modal-address'));
-  openDimmedLayer();
+  openLayer($('.modal-address'));
 }
 
 async function isLayerOpened() {
   const layers = $All('.layer');
   for (const layer of layers) {
-    const hasHidden = await layer.classList.contains('hidden'); 
+    const hasHidden = await layer.classList.contains('hidden');
     if (!hasHidden) {
       return true;
     }
@@ -32,34 +33,8 @@ async function isLayerOpened() {
   return false;
 }
 
-function initDimmedLayerStyle() {
-  const dimmedLayer = $('.dimmed-layer');
-  const bodyHeight = $('body').offsetHeight;
-  const navBarHeight = $('.nav-bar').offsetHeight;
-
-  dimmedLayer.style.height = `${bodyHeight - navBarHeight}px`;
-  dimmedLayer.style.minHeight = `calc(100vh - ${navBarHeight}px)`;
-}
-
-export function openDimmedLayer() {
-  removeHiddenClass($('.dimmed-layer'));
-}
-
-export function closeAllLayers() {
-  const layers = $All('.layer');
-  for (const layer of layers) {
-    addHiddenClassIfAbsent(layer);
-  }
-}
-
 export function initLoginModal() {
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (await isLayerOpened()) {
-      return;
-    }
-    delay(openLoginModal, MODAL_OPEN_DELAY)
-  });
-  initDimmedLayerStyle();
+  document.addEventListener('DOMContentLoaded', openLoginModalWithDelay);
   $('.login-container').addEventListener('mouseenter', openExpandedLoginModal);
   $('.nav-bar__login').addEventListener('mouseleave', closeAllLayers);
   $('.address-container').addEventListener('mouseenter', openAddressModal);

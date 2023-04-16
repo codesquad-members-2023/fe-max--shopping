@@ -1,5 +1,4 @@
-import { $, removeHiddenClass } from '../../utils/domUtils.js';
-import { closeAllLayers, openDimmedLayer } from '../modal.js';
+import { $, openLayer, closeAllLayers } from '../../utils/domUtils.js';
 import { SearchSuggestion } from './SearchSuggestion.js';
 
 export class SearchLayer {
@@ -14,10 +13,7 @@ export class SearchLayer {
 
   async open() {
     await this.suggestion.setSuggestion();
-
-    closeAllLayers();
-    openDimmedLayer();
-    removeHiddenClass(this.element);
+    openLayer(this.element);
   }
 
   close() {
@@ -27,11 +23,11 @@ export class SearchLayer {
 
   navigateByArrowKey(key) {
     if (key === 'ArrowUp') {
-      this.suggestion.moveToAboveSuggestion()
+      this.suggestion.moveToAboveSuggestion();
       return;
     }
     if (key === 'ArrowDown') {
-      this.suggestion.moveToBelowSuggestion()
+      this.suggestion.moveToBelowSuggestion();
       return;
     }
   }

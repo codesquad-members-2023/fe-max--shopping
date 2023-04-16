@@ -9,18 +9,18 @@ export class SearchBar {
 
   init() {
     this.element = $('.search-bar');
-    this.dropdown = new SearchLayer();
+    this.SearchLayer = new SearchLayer();
   }
 
   setEventHandlers() {
     this.element.addEventListener('focus', () => {
-      this.dropdown.open();
+      this.SearchLayer.open();
     });
     this.element.addEventListener('blur', () => {
-      this.dropdown.close();
+      this.SearchLayer.close();
     });
     this.element.addEventListener('keydown', (e) => {
-      this.dropdown.navigateByArrowKey(e.key);
+      this.SearchLayer.navigateByArrowKey(e.key);
     });
   }
 }

@@ -2,16 +2,33 @@ export const $ = (selector) => document.querySelector(selector);
 
 export const $All = (selector) => document.querySelectorAll(selector);
 
-export const removeHiddenClass = (element) => element.classList.remove('hidden');
+export const showHiddenElement = (element) => element.classList.remove('hidden');
 
-export const addHiddenClassIfAbsent = (element) => {
+export const hideElement = (element) => {
   if (element.classList.contains('hidden')) return;
   element.classList.add('hidden');
 };
 
-export const removeOverClass = (element) => element.classList.remove('over');
+export const openLayer = (...elements) => {
+  closeAllLayers();
+  openDimmedLayer();
+  elements.forEach((element) => showHiddenElement(element));
+}
 
-export const addOverClassIfAbsent = (element) => {
+export function openDimmedLayer() {
+  showHiddenElement($('.dimmed-layer'));
+}
+
+export function closeAllLayers() {
+  const layers = $All('.layer');
+  for (const layer of layers) {
+    hideElement(layer);
+  }
+}
+
+export const removeHighlightFromElement = (element) => element.classList.remove('over');
+
+export const highlightElement = (element) => {
   if (element.classList.contains('over')) return;
   element.classList.add('over');
 };

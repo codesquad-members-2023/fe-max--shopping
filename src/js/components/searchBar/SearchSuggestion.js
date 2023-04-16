@@ -1,4 +1,4 @@
-import { $, addOverClassIfAbsent, removeOverClass } from '../../utils/domUtils.js';
+import { $, highlightElement, removeHighlightFromElement } from '../../utils/domUtils.js';
 import { HistoryListBuilder, RecommendListBuilder } from './SuggestionListBuilder.js';
 
 export class SearchSuggestion {
@@ -16,8 +16,8 @@ export class SearchSuggestion {
   }
 
   setEventHandlers() {
-    this.element.addEventListener('mouseover', (event) => addOverClassIfAbsent(event.target));
-    this.element.addEventListener('mouseout', (event) => removeOverClass(event.target));
+    this.element.addEventListener('mouseover', (event) => highlightElement(event.target));
+    this.element.addEventListener('mouseout', (event) => removeHighlightFromElement(event.target));
   }
 
   async setSuggestion() {
@@ -48,14 +48,14 @@ export class SearchSuggestion {
     const next = this.selectedIndex + 1;
 
     if (curr === -1) {
-      addOverClassIfAbsent(this.children[next]);
+      highlightElement(this.children[next]);
     } else if (curr === this.children.length - 1) {
-      removeOverClass(this.children[curr]);
+      removeHighlightFromElement(this.children[curr]);
       this.selectedIndex = -1;
       return;
     } else {
-      removeOverClass(this.children[curr]);
-      addOverClassIfAbsent(this.children[next]);
+      removeHighlightFromElement(this.children[curr]);
+      highlightElement(this.children[next]);
     }
     this.selectedIndex = next;
   }
@@ -65,16 +65,16 @@ export class SearchSuggestion {
     const next = this.selectedIndex - 1;
 
     if (curr === -1) {
-      addOverClassIfAbsent(this.children[this.children.length - 1]);
+      highlightElement(this.children[this.children.length - 1]);
       this.selectedIndex = this.children.length - 1;
       return;
     } else if (curr === 0) {
-      removeOverClass(this.children[curr]);
+      removeHighlightFromElement(this.children[curr]);
       this.selectedIndex = -1;
       return;
     } else {
-      removeOverClass(this.children[curr]);
-      addOverClassIfAbsent(this.children[next]);
+      removeHighlightFromElement(this.children[curr]);
+      highlightElement(this.children[next]);
     }
     this.selectedIndex = next;
   }
