@@ -1,6 +1,11 @@
-import { initAddressModal } from "./addressModal.js";
-import { initLoginModal } from "./loginModal.js";
-import './hero.js';
+import { SearchBar } from './components/searchBar/SearchBar.js';
+import { initLoginModal } from './components/modal.js';
+import { initHero } from './components/hero.js';
 
-initLoginModal();
-initAddressModal();
+const init = () => {
+  const searchBar = new SearchBar();
+  initLoginModal();
+  initHero();
+};
+
+init();

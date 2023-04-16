@@ -4,8 +4,11 @@
   "description": "Shopping site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass -w src/style/scss -o src/style/css"
+    "fake-api": "npx json-server --watch db.json",
+    "build-css": "npx sass --watch src/style/scss/style.scss:src/style/css/style.css",
+    "start-server": "npx live-server",
+    "start": "npm-run-all -p fake-api build-css start-server",
+    "prestart": "npm i -D npm-run-all"
   },
   "repository": {
     "type": "git",
@@ -19,13 +22,15 @@
   },
   "homepage": "https://github.com/hjsong333/fe-max--shopping#readme",
   "devDependencies": {
-    "eslint": "^8.37.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.2.1",
-    "node-sass": "^8.0.0",
-    "prettier": "^2.8.7"
-  },
-  "dependencies": {
-    "minireset.css": "^0.0.7"
+    "json-server": "^0.17.3",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.7",
+    "sass": "^1.61.0"
   }
 }

@@ -1,8 +1,7 @@
-// @import url('/src/style/css/reset.css');
-// @import url('/src/style/css/values.css');
-@import './reset';
-@import './values';
-@import './hero';
+@use 'reset';
+@use 'values';
+@use 'main-content';
+@use 'hero';
 
 @mixin flex-row($justify: flex-start, $align: center) {
   display: flex;
@@ -45,8 +44,16 @@
   border-bottom: solid 20px #ffffff;
 }
 
+$z-index-base: 100;
+$z-index-cover: $z-index-base + 100;
+$z-index-modal: $z-index-base + 200;
+
 html {
   overflow-y: scroll;
+}
+
+body {
+  position: relative;
 }
 
 button {
@@ -55,70 +62,40 @@ button {
   }
 }
 
-#nav-bar {
+.nav-bar {
   position: relative;
+  width: 100%;
   min-width: 1120px;
 
-  .modal-cover {
-    position: absolute;
-    width: 100%;
-    height: 1809px;
-    left: 0px;
-    top: 100%;
-    z-index: 1;
-    background: var(--color-black-40);
-    opacity: 0.4;
-  }
-}
-
-.nav-bar__main {
-  @include flex-row;
-  padding: 8px 16px;
-  gap: 24px;
-  height: 56px;
-  background: #10141a;
-
-  .label {
+  &__main {
     @include flex-row;
-    @include bold-sm;
+    padding: 8px 16px;
+    gap: 24px;
+    height: 56px;
+    background: #10141a;
+
+    .label {
+      @include flex-row;
+      @include bold-sm;
+    }
+
+    .content {
+      @include bold-md;
+    }
   }
 
-  .content {
-    @include bold-md;
-  }
-
-  &-address {
+  &__address,
+  &__login {
+    height: 100%;
     position: relative;
   }
 
-  &-search {
-    @include flex-row;
-    padding-left: 12px;
-    gap: 12px;
-    height: 40px;
-    background: #ffffff;
-    border-radius: 4px;
+  &__search {
+    position: relative;
     flex-grow: 1;
-
-    input {
-      flex-grow: 1;
-
-      &::placeholder {
-        @include body-md;
-      }
-    }
-
-    button {
-      @include flex-row(center);
-      padding: 0px;
-      width: 40px;
-      height: 40px;
-      background: #fcb057;
-      border-radius: 0px 4px 4px 0px;
-    }
   }
 
-  &-nation {
+  &__nation {
     @include flex-row;
     padding: 0;
     gap: 4px;
@@ -129,15 +106,98 @@ button {
     }
   }
 
-  &-login {
-    position: relative;
-  }
-
-  &-cart {
+  &__cart {
     @include flex-row;
     padding: 0;
     gap: 4px;
   }
+}
+
+.search-bar__wrapper {
+  @include flex-row;
+  padding-left: 12px;
+  gap: 12px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 4px;
+  flex-grow: 1;
+
+  button {
+    @include flex-row(center);
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    background: #fcb057;
+    border-radius: 0px 4px 4px 0px;
+  }
+}
+
+.search {
+  &-bar {
+    flex-grow: 1;
+
+    &::placeholder {
+      @include body-md;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-layer {
+    @include flex-row;
+    padding: 0px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #10141a;
+    border-radius: 4px;
+    z-index: $z-index-modal;
+
+    &__suggestion {
+      width: 100%;
+
+      > li {
+        @include flex-row(space-between);
+        flex-grow: 1;
+        padding: 8px 12px;
+        height: 37px;
+
+        &.over {
+          background: #eff2f2;
+        }
+      }
+
+      &--history {
+        @include body-md(var(--color-secondary-purple));
+      }
+
+      &--recommend {
+        @include body-md(var(--color-black));
+
+        p {
+          @include flex-row;
+          gap: 4px;
+        }
+      }
+    }
+  }
+}
+
+.address-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.btn-container {
+  @include flex-row(flex-end);
+  gap: 8px;
 }
 
 .nav-bar__sub {
@@ -174,26 +234,24 @@ button {
   }
 }
 
-// 모달
 .modal {
   display: flex;
   flex-direction: column;
   padding: 16px;
   position: absolute;
-  top: 180%;
-  z-index: 10;
+  z-index: $z-index-modal;
   background: #ffffff;
   border-radius: 4px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  
+
   &-login {
     @extend .modal;
     align-items: center;
     gap: 8px;
     min-width: 235px;
+    top: 100%;
     right: 0;
-    opacity: 0;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.7s forwards;
 
     span {
       @include flex-row;
@@ -242,7 +300,7 @@ button {
     align-items: flex-end;
     gap: 26px;
     width: 320px;
-    animation: fade-in 0.5s forwards;
+    animation: fade-in 0.7s forwards;
 
     &::before {
       @include triangle;
@@ -255,6 +313,17 @@ button {
       gap: 8px;
     }
   }
+}
+
+.dimmed-layer {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 104px;
+  height: calc(100% - 104px);
+  min-height: calc(100vh - 104px);
+  z-index: $z-index-cover;
+  background: var(--color-black-40);
 }
 
 .check-btn {
@@ -280,12 +349,6 @@ button {
   }
 }
 
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+.hidden {
+  display: none;
 }

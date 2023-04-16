@@ -1,4 +1,4 @@
 {
-  "extends": ["plugin: prettier/recommended"],
+  "extends": ["airbnb-base", "plugin: prettier/recommended"],
   "plugins": ["prettier"]
 }
