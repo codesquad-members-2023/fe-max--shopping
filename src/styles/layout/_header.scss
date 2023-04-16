@@ -18,12 +18,13 @@
     justify-content: space-between;
     align-items: center;
 
-    > div:hover,
-    > div:focus,
-    > div:active {
-      transition: box-shadow 0.3s ease-in-out;
-      box-shadow: 0 0 0 1px $White inset;
-    }
+    /* 나중에 수정할 부분 입니다 */
+    // > div:hover,
+    // > div:focus,
+    // > div:active {
+    //   transition: box-shadow 0.3s ease-in-out;
+    //   box-shadow: 0 0 0 1px $White inset;
+    // }
   }
 
   &__shipping-address {
@@ -44,22 +45,108 @@
     padding: 0 12px;
     flex-grow: 1;
     height: 40px;
-    input {
-      border: none;
-      @include typography($BodyMD, $Gray600);
+    //
+    flex-direction: column;
+    form {
+      display: flex;
+      flex-grow: 1;
+      input {
+        border: none;
+        @include typography($BodyMD, $Gray600);
+        width: 100%;
+        background-color: $White;
+        padding: 9.5px 12px;
+        border-radius: 4px 0 0 4px;
+      }
+      button {
+        background-color: $PrimaryOrange100;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 4px 4px 0;
+      }
+    }
+
+    /* search-bar 결과 */
+    &__layer {
+      position: relative;
+      z-index: 9999;
+      top: 0;
       width: 100%;
       background-color: $White;
-      padding: 9.5px 12px;
-      border-radius: 4px 0 0 4px;
+      border: 1px solid $Black;
+      border-radius: 4px;
+      ul {
+        @include typography($BodyMD, $Black);
+        li {
+          width: 100%;
+          :hover {
+            background-color: $Gray100;
+          }
+          a {
+            transition: background-color 0.3s;
+            padding: 10.5px 12px;
+            display: block;
+          }
+
+          &[data-type='none'] {
+            padding: 10.5px 12px;
+          }
+
+          &[data-type='recommend'] {
+            a {
+              @include typography($BodyMD, $Black);
+              display: flex;
+              gap: 4px;
+              align-items: center;
+
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          &[data-type='autosearch'] {
+            a {
+              @include typography($BodyMD, $Black);
+              display: flex;
+              gap: 4px;
+              span {
+                color: $SecondaryPurple;
+              }
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+
+          &[data-type='history'] {
+            a {
+              display: flex;
+              gap: 4px;
+              justify-content: space-between;
+              align-items: center;
+              p {
+                @include typography($BodyMD, $SecondaryPurple);
+              }
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+          }
+        }
+      }
     }
-    button {
-      background-color: $PrimaryOrange100;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0px 4px 4px 0;
+    &__layer.hidden {
+      display: none;
+    }
+    .selected {
+      background-color: $Gray100;
     }
   }
 
@@ -100,7 +187,7 @@
 
 .nav-sub {
   position: relative;
-  z-index: 30;
+  // z-index: 30;
   @include header-layout(32px, $BoldSM, $Gray900);
   line-height: 32px;
   min-width: 1024px;
