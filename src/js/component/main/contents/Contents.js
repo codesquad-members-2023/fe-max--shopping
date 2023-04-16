@@ -36,7 +36,6 @@ export class Contents extends Base {
     `;
 
     this.setTemplate(template);
-    console.log(cards);
   }
 
   setCards() {

@@ -635,21 +635,6 @@
   flex: 1 0 100%;
   box-sizing: border-box;
 }
-#carousel .carousel__item[data-num="1"] {
-  background-color: #ffcfcf;
-}
-#carousel .carousel__item[data-num="2"] {
-  background-color: #ffd8cf;
-}
-#carousel .carousel__item[data-num="3"] {
-  background-color: #ffdfcf;
-}
-#carousel .carousel__item[data-num="4"] {
-  background-color: #ffe8cf;
-}
-#carousel .carousel__item[data-num="5"] {
-  background-color: #ffefcf;
-}
 #carousel .carousel__button {
   cursor: pointer;
   width: 80px;

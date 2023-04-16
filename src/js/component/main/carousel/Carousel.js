@@ -3,7 +3,14 @@ import { Base } from "../../Base.js";
 export class Carousel extends Base {
   constructor() {
     super("div");
-    this.carouselList = [4, 5, 1, 2, 3];
+    this.carouselList = [
+      "./src/assets/carouselImg/carousel_5.jpg",
+      "./src/assets/carouselImg/carousel_6.jpg",
+      "./src/assets/carouselImg/carousel_1.jpg",
+      "./src/assets/carouselImg/carousel_2.jpg",
+      "./src/assets/carouselImg/carousel_3.jpg",
+      "./src/assets/carouselImg/carousel_4.jpg",
+    ];
     this.currentIndex = 0;
     this.maxIndex = this.carouselList.length;
     this.autoCarousel = this.setAutoCarousel();
@@ -29,8 +36,8 @@ export class Carousel extends Base {
       </div>
       <div class="carousel__wrapper" data-elementname="wrapper">
         ${this.carouselList
-          .map((listData) => {
-            return `<div class="carousel__item" data-num=${listData}>${listData}</div>`;
+          .map((img) => {
+            return `<img class="carousel__item" src="${img}">`;
           })
           .join("")}
       </div>
@@ -88,6 +95,6 @@ export class Carousel extends Base {
   setAutoCarousel() {
     return setInterval(() => {
       this.slideNext();
-    }, 2 * 1000);
+    }, 10 * 1000);
   }
 }

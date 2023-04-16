@@ -31,22 +31,6 @@
     box-sizing: border-box;
   }
 
-  .carousel__item[data-num="1"] {
-    background-color: #ffcfcf;
-  }
-  .carousel__item[data-num="2"] {
-    background-color: #ffd8cf;
-  }
-  .carousel__item[data-num="3"] {
-    background-color: #ffdfcf;
-  }
-  .carousel__item[data-num="4"] {
-    background-color: #ffe8cf;
-  }
-  .carousel__item[data-num="5"] {
-    background-color: #ffefcf;
-  }
-
   .carousel__button {
     cursor: pointer;
     width: 80px;
