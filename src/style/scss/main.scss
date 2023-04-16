@@ -9,7 +9,12 @@
 @import "header/searchBar";
 
 @import "main/carousel";
+@import "main/contents";
 
+body {
+  height: 1365px;
+  background: var(--gray100);
+}
 #header {
   min-width: 1120px;
 }
