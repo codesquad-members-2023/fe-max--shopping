@@ -1,0 +1,89 @@
+.hero {
+  margin: 0 auto;
+  max-width: 1500px;
+  min-width: 1120px;
+  position: relative;
+
+  // slider prev, next button
+  .chevron {
+    position: absolute;
+    top: 45%;
+    z-index: 5;
+
+    &--left {
+      left: 5%;
+    }
+
+    &--right {
+      right: 5%;
+    }
+  }
+}
+
+// hero img slider
+.slider__card-container {
+  height: 600px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  .slider__card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 0.4s;
+
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero__img-title {
+      text-align: center;
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &[data-status='unknown'] {
+      visibility: hidden;
+    }
+
+    &[data-status='show'] {
+      visibility: visible;
+    }
+
+    &[data-status='before'] {
+      visibility: hidden;
+      transform: translateX(-100%);
+    }
+
+    &[data-status='appear-from-after'] {
+      transform: translateX(100%);
+      transition: none;
+    }
+
+    &[data-status='after'] {
+      visibility: hidden;
+      transform: translateX(100%);
+    }
+
+    &[data-status='appear-from-before'] {
+      transform: translateX(-100%);
+      transition: none;
+    }
+
+    // hero img bottom gradation
+    &::after {
+      content: '';
+      display: block;
+      position: relative;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
+      margin-top: -200px;
+      height: 200px;
+      width: 100%;
+    }
+  }
+}
