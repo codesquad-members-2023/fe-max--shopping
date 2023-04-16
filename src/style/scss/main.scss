@@ -12,6 +12,8 @@
 @import "main/contents";
 
 body {
+  position: relative;
+  z-index: -1;
   height: 1365px;
   background: var(--gray100);
 }
@@ -22,6 +24,8 @@ body {
 #main {
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: -1;
 }
 
 #backdrop {
