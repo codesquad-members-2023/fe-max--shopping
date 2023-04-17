@@ -19,15 +19,13 @@ export class Component {
     const template = this.getTemplate(state);
 
     if (typeof template === 'string') {
-      this.#node.insertAdjacentHTML('afterbegin', template);
+      const templateElement = document.createElement('template');
+      templateElement.innerHTML = template;
+      this.#node.append(templateElement.content);
       return;
     }
 
     this.#node.append(...template);
-  }
-
-  getTemplate(state) {
-    return '';
   }
 
   dropPreviousRender() {
