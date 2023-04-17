@@ -46,7 +46,7 @@ export class SearchBarLayer extends Base {
     Backdrop.hide();
     this.clearChild();
     this.selectIndex = -1;
-    if (this.selectIndex) {
+    if (this.selectIndex !== -1) {
       this.keywordNodes[this.selectIndex].classList.remove("selected");
     }
   }
