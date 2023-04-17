@@ -13,6 +13,7 @@
     "integrated-code-manager": "npm run check-conflict-formatting-rules && npm run prettier:fix && npm run lint:fix",
     "dev:sass": "sass src/scss:src/css --watch --style compressed",
     "dev:client": "npx live-server",
+    "dev:prestart": "if not defined npm_config_user_agent (if not exist \"$(where yarn)\" (if not exist \"$(where json-server)\" (npm install -D json-server))) else (if not exist \"$(where json-server)\" (npm install -D json-server))",
     "dev:server": "json-server --watch ./src/data/db.json",
     "dev": "npm-run-all -p dev:*"
   },
