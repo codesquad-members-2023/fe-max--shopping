@@ -1,7 +1,8 @@
 import { $ } from '../../utils/dom.js';
-import { APIClient } from './api.js';
+import { APIClient, JSONClient } from '../api/api.js';
 import { getRandomLetter } from '../../utils/pickPrefix.js';
 import { handleDimming, layerOpenState } from '../../utils/dim.js';
+import { PATH } from '../../constants/path.js';
 
 const searchBarInput = document.searchForm.searchBar;
 const searchPanel = $('.search-panel');
@@ -47,7 +48,8 @@ export class SearchPanelHandler {
   deleteSearchTerm(e) {
     if (e.target.nodeName === 'IMG') {
       const searchTerm = e.target.closest('li').innerText;
-      const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+      const searchHistory =
+        JSON.parse(localStorage.getItem('searchHistory')) || [];
       const updatedSearchHistory = searchHistory.filter(
         item => item !== searchTerm
       );
@@ -74,29 +76,29 @@ export class SearchPanelHandler {
   }
 
   keyboardNavigationHandler(e) {
-    if (e.key === 'ArrowDown' || e.target.nodeName === "LI") {
+    if (e.key === 'ArrowDown' || e.target.nodeName === 'LI') {
       this.handleArrowDown();
-    } else if (e.key === 'ArrowUp' || e.target.nodeName === "LI") {
+    } else if (e.key === 'ArrowUp' || e.target.nodeName === 'LI') {
       this.handleArrowUp();
     } else {
       this.activeIndex = -1;
     }
-  
+
     this.setActiveClass();
   }
-  
+
   handleArrowDown() {
     const searchResults = this.getSearchResultLists();
-  
+
     this.activeIndex += 1;
     if (this.activeIndex >= searchResults.length) {
       this.activeIndex = 0;
     }
   }
-  
+
   handleArrowUp() {
     const searchResults = this.getSearchResultLists();
-  
+
     this.activeIndex -= 1;
     if (this.activeIndex < 0) {
       this.activeIndex = searchResults.length - 1;
@@ -111,6 +113,11 @@ export class SearchTermFetcher {
     const apiClient = new APIClient(searchPrefix);
     const fetchedTerms = await apiClient.getApiData();
     return fetchedTerms;
+  }
+  async fetchJsonTerms(path, prop, keyword) {
+    const jsonClient = new JSONClient(path, prop, keyword);
+    const fetchedJsonTerms = await jsonClient.getJsonData();
+    return fetchedJsonTerms;
   }
 }
 export class SearchBar {
@@ -194,12 +201,24 @@ export class SearchBar {
 
   async renderAutoComplete() {
     const inputValue = this.getInputValue();
+    console.log(inputValue);
+    let a = await this.searchTermFetcher.fetchJsonTerms(
+      PATH.auto,
+      PATH.prop,
+      inputValue
+    );
+    console.log(a);
     if (!inputValue) {
       return;
     }
     this.setTermsType(
       'auto',
-      await this.searchTermFetcher.fetchTerms(inputValue)
+      // await this.searchTermFetcher.fetchTerms(inputValue)
+      await this.searchTermFetcher.fetchJsonTerms(
+        PATH.auto,
+        PATH.prop,
+        inputValue
+      )
     );
     const template = this.templateGenerator.generateAutoComplete(
       this.termsType.auto,
@@ -230,56 +249,72 @@ export class TemplateGenerator {
   }
   generateHistoryAndSuggestions(termsObj) {
     const suggestionTemplate = this.generateSuggest(termsObj.suggest);
-    let HistoryTemplate = termsObj.history
-      .reduce((acc, cur) => {
-        return (acc += ` <li class="history search-list" >
+    let HistoryTemplate = termsObj.history.reduce((acc, cur) => {
+      return (acc += ` <li class="history search-list" >
         <span>${cur}</span>
         <img src="./src/images/close.svg" alt="삭제">
       </li>`);
-      }, '');
+    }, '');
     return (HistoryTemplate += suggestionTemplate);
   }
-
   generateAutoComplete(terms, input) {
-    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-    korean.test(input);
-
-    const highlighted = new RegExp(
-      `${korean ? '(?<!\\S)' : '\\b'}${input}`,
-      'i'
-    );
-
-    const AutoCompleteTemplate = terms
-      .map(term => {
-        const match = highlighted.exec(term);
-        const highlightedText = match
-          ? term.replace(match[0], `<mark>${match[0]}</mark>`)
-          : term;
-        return `<li class="autocomplete search-list"><span>${highlightedText}</span></li>`;
-      })
-      .join('');
-
-    const lastTerm = terms[terms.length - 1];
-    const lastTermIndex = lastTerm.toLowerCase().indexOf(input.toLowerCase());
-
-    if (
-      lastTermIndex !== -1 &&
-      lastTermIndex + input.length === lastTerm.length
-    ) {
-      const lastHighlighted = new RegExp(
-        `${korean ? '(?<!\\S)' : '\\b'}${lastTerm}`,
-        'i'
-      );
-      const lastHighlightedText = lastTerm.replace(
-        lastHighlighted,
-        `<mark>${lastTerm}</mark>`
-      );
-      return (
-        AutoCompleteTemplate.slice(0, -11) +
-        `<li class="autocomplete search-list"><span>${lastHighlightedText}</span></li>`
-      );
+    if (!input || typeof input !== 'string') {
+      throw new Error('Input is invalid.');
     }
+    
+    const inputRegex = new RegExp(input, 'gi');
+    const AutoCompleteTemplate = terms.reduce((acc, cur) => {
+      const highlighted = cur.keyword.replace(
+        inputRegex,
+        `<span class="highlighted">${input}</span>`
+      );
+      return (acc += ` <li class="autocomplete search-list" >
+        <span>${highlighted}</span>
+      </li>`);
+    }, '');
 
     return AutoCompleteTemplate;
   }
+  // generateAutoComplete(terms, input) {
+  //   const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+  //   korean.test(input);
+
+  //   const highlighted = new RegExp(
+  //     `${korean ? '(?<!\\S)' : '\\b'}${input}`,
+  //     'i'
+  //   );
+
+  //   const AutoCompleteTemplate = terms
+  //     .map(term => {
+  //       const match = highlighted.exec(term);
+  //       const highlightedText = match
+  //         ? term.replace(match[0], `<mark>${match[0]}</mark>`)
+  //         : term;
+  //       return `<li class="autocomplete search-list"><span>${highlightedText}</span></li>`;
+  //     })
+  //     .join('');
+
+  //   const lastTerm = terms[terms.length - 1];
+  //   const lastTermIndex = lastTerm.toLowerCase().indexOf(input.toLowerCase());
+
+  //   if (
+  //     lastTermIndex !== -1 &&
+  //     lastTermIndex + input.length === lastTerm.length
+  //   ) {
+  //     const lastHighlighted = new RegExp(
+  //       `${korean ? '(?<!\\S)' : '\\b'}${lastTerm}`,
+  //       'i'
+  //     );
+  //     const lastHighlightedText = lastTerm.replace(
+  //       lastHighlighted,
+  //       `<mark>${lastTerm}</mark>`
+  //     );
+  //     return (
+  //       AutoCompleteTemplate.slice(0, -11) +
+  //       `<li class="autocomplete search-list"><span>${lastHighlightedText}</span></li>`
+  //     );
+  //   }
+
+  //   return AutoCompleteTemplate;
+  // }
 }
