@@ -1,53 +1,50 @@
+import { client } from '../../domain/client.js';
 import { Component } from '../base/Component.js';
 
 export class Slider extends Component {
   constructor(slideCount) {
     super('slider', 'UL');
     this.slideCount = slideCount;
-    this.init(this.node, this.slideCount);
+    this.client = client;
+    this.init();
   }
 
-  init(node, slideCount) {
-    this.setSliderWidth(node, slideCount);
-    this.appendSlides(node, slideCount);
-    this.renderSlideClone(node);
+  async init() {
+    this.setSliderWidth();
+    await this.appendSlides();
+    this.renderSlideClone();
   }
 
-  setSliderWidth(node, slideCount) {
-    node.style.width = `${(slideCount + 2) * 100}vw`;
+  setSliderWidth() {
+    this.node.style.width = `${(this.slideCount + 2) * 100}vw`;
   }
 
-  appendSlides(node, slideCount) {
-    const slideNodes = this.makeSlideNodes(slideCount);
-    node.append(...slideNodes);
+  async appendSlides() {
+    const imgSrc = await this.client.fetchHeroImages(this.slideCount);
+    const slideNodes = imgSrc.map((src) => new Slide(src).node);
+    this.node.append(...slideNodes);
   }
 
-  makeSlideNodes(slideCount) {
-    const imageNames = this.makeImageNames(slideCount);
-    const slideNodes = imageNames.map((imageName) => new Slide(imageName).node);
-    return slideNodes;
-  }
-
-  makeImageNames(slideCount) {
-    return Array.from({ length: slideCount }).map((_, index) => `hero-${index + 1}.jpg`);
-  }
-
-  renderSlideClone(node) {
-    const firstSlide = node.firstElementChild;
-    const lastSlide = node.lastElementChild;
+  renderSlideClone() {
+    const firstSlide = this.node.firstElementChild;
+    const lastSlide = this.node.lastElementChild;
     const firstClone = firstSlide.cloneNode(true);
     const lastClone = lastSlide.cloneNode(true);
 
-    node.prepend(lastClone);
-    node.append(firstClone);
+    this.node.prepend(lastClone);
+    this.node.append(firstClone);
   }
 }
 
 class Slide extends Component {
-  static __dirname = '/src/assets/images/banner/';
-
-  constructor(imageName) {
+  constructor(src) {
     super('slide', 'LI');
-    this.node.style.backgroundImage = `url(${Slide.__dirname}${imageName})`;
+    this.init(src);
+  }
+
+  getTemplate(src) {
+    return `
+<img class="slide-image" src="${src}" alt=""></img>
+    `;
   }
 }

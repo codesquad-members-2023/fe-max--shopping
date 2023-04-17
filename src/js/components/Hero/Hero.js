@@ -25,13 +25,21 @@ export class Hero extends Component {
 
   initEventHandlers() {
     this.moveAutoInterval(Hero.autoIntervalSecs * 1000);
-    this.slider.node.addEventListener('transitionend', () => this.cycleSlides());
-    this.leftButton.node.addEventListener('click', () => this.moveToPrevSlide());
-    this.rightButton.node.addEventListener('click', () => this.moveToNextSlide());
+    this.node.addEventListener('transitionend', () => this.cycleSlides());
+    this.node.addEventListener('click', ({ target }) => this.moveSlide(target));
   }
 
   moveAutoInterval(interval) {
     setInterval(() => this.moveToNextSlide(), interval);
+  }
+
+  moveSlide(target) {
+    if (target.classList.contains('left')) {
+      this.moveToPrevSlide();
+    }
+    if (target.classList.contains('right')) {
+      this.moveToNextSlide();
+    }
   }
 
   moveToPrevSlide() {

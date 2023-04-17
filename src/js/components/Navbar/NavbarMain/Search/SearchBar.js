@@ -5,15 +5,14 @@ export default class SearchBar extends Component {
     super('search-bar', 'FORM');
     this.node.setAttribute('autocomplete', 'off');
     this.init();
-    // this.searchInput = this.$('input');
   }
 
   clearInputValue() {
-    this.searchInput.value = '';
+    this.node.search.value = '';
   }
 
   setInputValue(value) {
-    this.searchInput.value = value;
+    this.node.search.value = value;
   }
 
   getTemplate() {

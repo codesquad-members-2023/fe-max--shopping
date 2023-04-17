@@ -1,12 +1,9 @@
-import { $context } from '../../utils/utils.js';
-
 export class Component {
   #node;
 
   constructor(className = '', tagName = 'DIV') {
     this.#node = document.createElement(tagName);
     this.#node.className = className;
-    this.$ = $context(this.#node);
   }
 
   init(state) {

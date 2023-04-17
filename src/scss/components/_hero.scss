@@ -1,17 +1,16 @@
 .hero {
   width: 100%;
-  height: 100%;
   position: relative;
 
   .slider {
     display: flex;
-    height: 100%;
   }
 
-  .slide {
+  .slide-image {
     width: 100vw;
     height: 50vh;
-    background-size: cover;
+    object-position: 0 0;
+    object-fit: cover;
   }
 
   .slider-button {
