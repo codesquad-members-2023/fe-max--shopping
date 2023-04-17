@@ -10,6 +10,7 @@ export default class Search extends Component {
   constructor() {
     super('search');
     this.model = new SearchModel();
+    this.client = client;
     this.state = {
       history: [],
       recommend: [],
@@ -25,25 +26,19 @@ export default class Search extends Component {
   initEventHandlers() {
     this.node.addEventListener(
       'click',
-      debounce(() => this.showRecommendWords(), 300)
+      debounce((event) => this.showRecommendWords(event), 300)
     );
     this.node.addEventListener(
       'input',
-      debounce(() => this.showAutoComplete(), 300)
+      debounce((event) => this.showAutoComplete(event), 300)
     );
     this.node.addEventListener('keydown', ({ key }) => this.handleKeyDown(key));
     this.node.addEventListener('submit', (event) => this.handleSubmit(event));
   }
 
   async initState() {
-    const recommendWords = await this.loadRecommendWords();
-    this.state.recommend = recommendWords;
+    this.state.recommend = await this.client.fetchRecommendWords(10);
     this.state.history = this.model.getSearchHistory();
-  }
-
-  async loadRecommendWords() {
-    const recommendWords = await client.fetchRecommendWords();
-    return recommendWords;
   }
 
   handleKeyDown(key) {
@@ -81,34 +76,26 @@ export default class Search extends Component {
     this.state.history = this.model.getSearchHistory();
   }
 
-  showRecommendWords() {
-    if (this.getInputValue()) return;
+  showRecommendWords({ target }) {
+    const userInput = target.value;
+    if (userInput) return;
 
     this.main.onDimmed();
     this.searchPanel.render({ history: this.state.history, recommend: this.state.recommend });
     this.searchPanel.open();
   }
 
-  async showAutoComplete() {
-    if (!this.getInputValue()) {
-      this.showRecommendWords();
+  async showAutoComplete({ target }) {
+    const userInput = target.value;
+    if (!userInput) {
+      this.showRecommendWords({ target });
       return;
     }
 
-    const autoCompleteWords = await this.loadAutoCompleteWords();
+    const autoCompleteWords = await this.client.fetchAutoCompleteWords(userInput, 10);
     this.state.autoComplete = autoCompleteWords;
+
     this.searchPanel.render({ recommend: this.state.autoComplete });
-  }
-
-  async loadAutoCompleteWords() {
-    const userInput = this.getInputValue();
-    const autoCompleteWords = await client.fetchAutoCompleteWords(userInput);
-
-    return autoCompleteWords;
-  }
-
-  getInputValue() {
-    return this.searchBar.getInputValue();
   }
 
   getTemplate() {
