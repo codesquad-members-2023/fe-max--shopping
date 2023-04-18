@@ -99,7 +99,7 @@
       background-color: $color-white;
       border: 1px solid $color-black;
       visibility: hidden;
-      z-index: 3;
+      z-index: 1;
 
       &.active {
         visibility: visible;

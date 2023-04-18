@@ -50,8 +50,8 @@ const dataMaker = {
 
   makeImageInfo(count) {
     const heroImages = Array.from({ length: count }).map((_, index) => `hero-${index + 1}.jpg`);
-    return heroImages.map((heroImage) => {
-      return { src: `/src/assets/images/banner/${heroImage}` };
+    return heroImages.map((heroImage, index) => {
+      return { id: index + 1, src: `/src/assets/images/banner/${heroImage}` };
     });
   },
 

@@ -114,21 +114,3 @@
 .address-btn {
   @include button(58px, 32px);
 }
-
-.dim-layer {
-  position: absolute;
-  visibility: hidden;
-  z-index: 1;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  transition: visibility 200ms, opacity 200ms linear;
-
-  &.active {
-    visibility: visible;
-    opacity: 1;
-  }
-}

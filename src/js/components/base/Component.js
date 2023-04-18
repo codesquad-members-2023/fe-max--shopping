@@ -6,6 +6,15 @@ export class Component {
     this.#node.className = className;
   }
 
+  static makeElement(parentTagName, literal) {
+    const parentElement = document.createElement(parentTagName);
+    const templateElement = document.createElement('template');
+    templateElement.innerHTML = literal;
+
+    parentElement.append(templateElement.content);
+    return parentElement;
+  }
+
   init(state) {
     this.render(state);
     this.initEventHandlers();

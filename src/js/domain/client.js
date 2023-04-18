@@ -2,12 +2,20 @@ const BASE_API_DOMAIN = 'http://localhost:3000';
 const RECOMMEND_API_PATH = 'recommend';
 const AUTO_COMPLETE_API_PATH = 'autoComplete';
 const HERO_IMAGE_API_PATH = 'hero';
+const CATEGORY_API_PATH = 'category';
 const PROP = {
   word: 'word',
   src: 'src',
 };
 
 export const client = {
+  fetchCategories() {
+    const categoryURL = `${BASE_API_DOMAIN}/${CATEGORY_API_PATH}`;
+    const categories = this.fetchByPromise(categoryURL);
+
+    return categories;
+  },
+
   async fetchHeroImages(imageCount) {
     const heroURL = `${BASE_API_DOMAIN}/${HERO_IMAGE_API_PATH}?_limit=${imageCount}`;
     const heroImages = await this.fetchData(heroURL, PROP.src);

@@ -1,0 +1,85 @@
+@use '../base' as *;
+
+.sidebar {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+
+  .menu {
+    z-index: 4;
+    width: 320px;
+    background: $color-white;
+  }
+
+  .login {
+    @include typography('bold-lg');
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    gap: 8px;
+    height: 53px;
+    background: $color-black;
+  }
+
+  .close-button {
+    width: 36px;
+    height: 36px;
+    z-index: 4;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('/src/assets/symbols/close.svg');
+  }
+
+  // TODO: 반복 스타일 정리하기
+  .category {
+    border-bottom: 1px solid $color-gray-100;
+    &-title {
+      @include typography('bold-lg');
+      display: flex;
+      align-items: center;
+      padding: 0px 16px;
+      height: 53px;
+    }
+
+    &-menu {
+      @include typography('body-md');
+      display: flex;
+      align-items: center;
+      height: 40px;
+      gap: 8px;
+      padding: 0px 16px;
+    }
+
+    &-name {
+      flex-grow: 1;
+    }
+
+    .category-compressed {
+      summary {
+        @include typography('body-md');
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        list-style: none;
+        height: 40px;
+        gap: 8px;
+        padding: 0px 16px;
+      }
+    }
+  }
+
+  .detail-btn {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('/src/assets/symbols/chevron-right.svg');
+  }
+}
