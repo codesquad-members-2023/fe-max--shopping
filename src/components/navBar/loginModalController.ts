@@ -1,6 +1,6 @@
-import { $ } from "../utils/domUtils";
-import { dimMain, undimMain } from "../utils/dimming";
-import { hideElement, showElement } from "../utils/elementVisibility";
+import { $ } from "../../utils/domUtils";
+import { dimMain, undimMain } from "../../utils/dimming";
+import { hideElement, showElement } from "../../utils/elementVisibility";
 
 export const showLoginModalOnLoad = () => {
   const $modal = $("#login-modal");

@@ -1,14 +1,19 @@
-import { $ } from "../../utils/domUtils";
+import { $ } from "../../../utils/domUtils";
 import { SearchSuggestion } from "./SearchSuggestion";
-import { dimMain, undimMain } from "../../utils/dimming";
-import { hideElement, showElement } from "../../utils/elementVisibility";
+import { dimMain, undimMain } from "../../../utils/dimming";
+import { hideElement, showElement } from "../../../utils/elementVisibility";
+import { SearchSuggestionModel } from "./SearchSuggestionModel";
+import { SearchSuggestionView } from "./SearchSuggestionView";
 
 export const initSearchBar = () => {
   initSearchSuggestion();
 };
 
 const initSearchSuggestion = () => {
-  const searchSuggestion = new SearchSuggestion();
+  const searchSuggestion = new SearchSuggestion(
+    new SearchSuggestionModel(),
+    new SearchSuggestionView()
+  );
   const $searchInput = $(".search-bar__input");
   const $searchSuggestion = $(".search-suggestion");
   const $searchBar = $(".search-bar");

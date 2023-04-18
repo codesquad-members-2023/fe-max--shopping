@@ -1,4 +1,4 @@
-import { $ } from "../../utils/domUtils";
+import { $ } from "../../../utils/domUtils";
 import {
   handleMoveImage,
   resetIntervalImageMove,

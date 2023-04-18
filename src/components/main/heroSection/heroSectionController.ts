@@ -1,5 +1,5 @@
-import { $, $$ } from "../../utils/domUtils";
-import { ensureHTMLElement } from "../../utils/typeCheckUtils";
+import { $, $$ } from "../../../utils/domUtils";
+import { ensureHTMLElement } from "../../../utils/typeCheckUtils";
 import { intervalIdState } from "./heroSectionModel";
 
 export const handleMoveImage = (() => {
