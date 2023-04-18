@@ -1,0 +1,145 @@
+@import "common.scss";
+
+// .side-bar-layer.show {
+//   display: block;
+// }
+
+.side-bar-layer {
+  display: block;
+  position: absolute;
+  top: 0px;
+  width: 320px;
+  height: 1897px;
+  z-index: 100;
+  background-color: #fff;
+  transform: translate(-332px);
+  transition: transform 0.7s;
+  overflow: hidden;
+
+  &-close {
+    position: absolute;
+    left: 328px;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    background-image: url(/src/assets/img/side-bar__close.svg);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &__login {
+    display: flex;
+
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    background-color: var(--black);
+    &-img {
+      width: 18px;
+      height: 18px;
+      background-image: url(/src/assets/img/side-bar__login.svg);
+      background-repeat: no-repeat;
+    }
+  }
+  &__detail-container {
+    width: 640px;
+    display: flex;
+
+    transform: translate(0px);
+    transition: transform 0.7s;
+  }
+  &__detail {
+    width: 320px;
+    height: 100%;
+    background-color: var(--white);
+  }
+
+  &__login {
+    padding: 16px 16px 16px 32px;
+    width: 320px;
+    height: 53px;
+    @include BoldLG;
+    cursor: pointer;
+  }
+
+  .view-all {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 8px 32px;
+    gap: 8px;
+    width: 320px;
+    height: 40px;
+    @include BodyMD;
+    cursor: pointer;
+
+    &__text {
+      width: 47px;
+      height: 21px;
+    }
+
+    &__btn {
+      width: 24px;
+      height: 24px;
+      background-image: url(/src/assets/img/side-bar__view-all-btn.svg);
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+  }
+
+  &__ex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 150;
+
+    button {
+      @include BoldLG;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 320px;
+      height: 600px;
+      cursor: pointer;
+    }
+  }
+}
+
+.category {
+  border-bottom: 1px solid;
+  border-bottom-color: var(--gray100);
+  &-main {
+    padding: 16px 16px 16px 32px;
+    width: 320px;
+    height: 53px;
+    @include BoldLG;
+    cursor: pointer;
+  }
+
+  &-sub {
+    display: flex;
+    justify-content: center;
+    padding: 8px 16px 8px 32px;
+    gap: 8px;
+    width: 320px;
+    height: 40px;
+    @include BodyMD;
+    cursor: pointer;
+
+    &__text {
+      width: 240px;
+      height: 21px;
+    }
+    &__btn {
+      width: 24px;
+      height: 24px;
+      background-image: url(/src/assets/img/side-bar__sub-btn.svg);
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+  }
+}
