@@ -47,4 +47,8 @@ export class JSONClient extends DataFetcher {
     const data = await this.fetchJsonData(`?${prop}_like=${keyword}`);
     return data;
   }
+  async getMenuData() {
+    const data = await this.getData();
+    return data.map(el => el.text);
+  }
 }
