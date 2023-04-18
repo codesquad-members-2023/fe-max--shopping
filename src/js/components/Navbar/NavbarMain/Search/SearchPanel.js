@@ -1,9 +1,9 @@
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor(state, model) {
+  constructor(state, storage) {
     super('search-panel', 'UL');
-    this.model = model;
+    this.storage = storage;
     this.state = state;
     this.selectedItem = null;
     this.init(this.state);
@@ -27,13 +27,14 @@ export class SearchPanel extends Component {
 
   deleteItem(target) {
     const targetItem = target.closest('li');
-    this.model.deleteSearchWord(targetItem.dataset.id);
+    this.storage.deleteSearchWord(targetItem.dataset.id);
     targetItem.remove();
   }
 
   onKeyDown(key) {
     if (!this.selectedItem) {
       this.selectedItem = this.node.firstElementChild;
+      this.selectedItem.classList.add('selected');
       return this.selectedItem.textContent.trim();
     }
 

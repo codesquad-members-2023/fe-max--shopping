@@ -1,6 +1,6 @@
-import { NavbarMain } from '../Navbar/NavbarMain/NavbarMain.js';
-import { NavbarSub } from '../Navbar/NavbarSub.js';
 import { Component } from '../base/Component.js';
+import { NavbarMain } from './NavbarMain/NavbarMain.js';
+import { NavbarSub } from './NavbarSub/NavbarSub.js';
 
 export class Navbar extends Component {
   constructor() {

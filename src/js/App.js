@@ -1,5 +1,5 @@
 import { Navbar } from '../js/components/Navbar/Navbar.js';
-import { Main } from './Main.js';
+import { Main } from './components/Main.js';
 import { Component } from './components/base/Component.js';
 
 export class App extends Component {

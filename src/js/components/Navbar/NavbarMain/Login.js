@@ -1,5 +1,5 @@
-import { Main } from '../../../Main.js';
-import { ExtendedLoginModal, LoginModal } from '../../common/Modal.js';
+import { Main } from '../../Main.js';
+import { ExtendedLoginModal, LoginModal } from './Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Login extends Component {

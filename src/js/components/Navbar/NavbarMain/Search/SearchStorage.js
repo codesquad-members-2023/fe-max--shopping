@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'searchHistory';
 
-export class SearchModel {
+export class SearchStorage {
   #storage;
 
   constructor() {

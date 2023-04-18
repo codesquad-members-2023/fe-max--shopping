@@ -1,5 +1,5 @@
-import { Main } from '../../../Main.js';
-import { ShippingModal } from '../../common/Modal.js';
+import { Main } from '../../Main.js';
+import { ShippingModal } from './Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Shipping extends Component {
@@ -33,7 +33,8 @@ export class Shipping extends Component {
 
 class ShippingArea extends Component {
   constructor() {
-    super('shipping-area');
+    super('shipping-area', 'A');
+    this.node.setAttribute('href', '#');
     this.init();
   }
 

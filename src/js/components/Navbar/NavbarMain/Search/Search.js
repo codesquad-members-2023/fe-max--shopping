@@ -1,15 +1,15 @@
-import { Main } from '../../../../Main.js';
 import { debounce } from '../../../../utils/utils.js';
+import { Main } from '../../../Main.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
-import { SearchModel } from './SearchModel.js';
 import { SearchPanel } from './SearchPanel.js';
+import { SearchStorage } from './SearchStorage.js';
 import { client } from '/src/js/domain/client.js';
 
 export default class Search extends Component {
   constructor() {
     super('search');
-    this.model = new SearchModel();
+    this.storage = new SearchStorage();
     this.client = client;
     this.state = {
       history: [],
@@ -17,7 +17,7 @@ export default class Search extends Component {
       autoComplete: [],
     };
     this.main = new Main();
-    this.searchPanel = new SearchPanel(this.state, this.model);
+    this.searchPanel = new SearchPanel(this.state, this.storage);
     this.searchBar = new SearchBar();
     this.init();
     this.initState();
@@ -38,7 +38,7 @@ export default class Search extends Component {
 
   async initState() {
     this.state.recommend = await this.client.fetchRecommendWords(10);
-    this.state.history = this.model.getSearchHistory();
+    this.state.history = this.storage.getSearchHistory();
   }
 
   handleKeyDown(key) {
@@ -72,8 +72,8 @@ export default class Search extends Component {
   }
 
   saveHistory(userInput) {
-    this.model.addSearchWord(userInput);
-    this.state.history = this.model.getSearchHistory();
+    this.storage.addSearchWord(userInput);
+    this.state.history = this.storage.getSearchHistory();
   }
 
   showRecommendWords({ target }) {
