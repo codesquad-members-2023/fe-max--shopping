@@ -1,40 +1,58 @@
 export class DB {
-  constructor() {}
+  constructor() {
+    this.url = "http://localhost:3001";
+  }
 
-  async getSearchHistory() {
-    const url =
-      "http://localhost:3001/searchHistory?_sort=id&_order=desc&_limit=5";
+  async getRequest(query) {
+    const url = this.url + query;
     const res = await fetch(url);
     return await res.json();
+  }
+
+  async getSearchHistory() {
+    const query = `/searchHistory?_sort=id&_order=desc&_limit=5`;
+    return await this.getRequest(query);
   }
 
   async getRecommend() {
-    const url = "http://localhost:3001/recommend?_limit=10";
-    const res = await fetch(url);
-    return await res.json();
+    const query = `/recommend?_limit=10`;
+    return await this.getRequest(query);
   }
 
   async getAutoComplete(text) {
-    const url = `http://localhost:3001/search?text_like=${text}&_limit=10`;
-    const res = await fetch(url);
-    return await res.json();
+    const query = `/search?text_like=${text}&_limit=10`;
+    return await this.getRequest(query);
   }
 
-  async getAutoComplete(text) {
-    const url = `http://localhost:3001/search?text_like=${text}&_limit=10`;
-    const res = await fetch(url);
+  async getContentAndDevices() {
+    const query = "/contentAndDevices";
+    return await this.getRequest(query);
+  }
 
-    return await res.json();
+  async getShopByDepartment() {
+    const query = "/shopByDepartment";
+    return await this.getRequest(query);
+  }
+
+  async getShopByDepartmentMore() {
+    const query = "/shopByDepartmentMore";
+    return await this.getRequest(query);
+  }
+
+  async getSetSideBarDetails(title) {
+    const query = `/shopByDepartmentMore?text=${title}`;
+    const res = await this.getRequest(query);
+    return res[0].details;
   }
 
   removeSearchHistory(id) {
-    fetch(`http://localhost:3001/searchHistory/${id}`, {
+    fetch(`${this.url}/searchHistory/${id}`, {
       method: "DELETE",
     }).catch((error) => console.error(error));
   }
 
   savesSearchHistory(text) {
-    fetch("http://localhost:3001/searchHistory", {
+    fetch(`${this.url}/searchHistory`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
