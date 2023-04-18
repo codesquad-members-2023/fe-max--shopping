@@ -6,7 +6,6 @@
 .hero {
   @include flex-column;
   align-items: center;
-  border: 1px solid red;
 }
 .slide-banner {
   @include carousel;

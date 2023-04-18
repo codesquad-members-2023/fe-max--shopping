@@ -1,0 +1,79 @@
+@import '../common/mixins';
+@import '../common/variables';
+
+.side {
+  background: $color-white;
+  width: 320px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+//   > * {
+//     // padding-left: 32px;
+//     // padding-right: 16px;
+//     // padding-top: 16px;
+//     // padding-bottom: 16px;
+//   }
+  &__header {
+    @include flex-row;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    @include font-bold-lg;
+    gap: 9.5px;
+    background-color: $color-black;
+    color: $color-white;
+  }
+  &__title-text {
+    @include font-bold-lg;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  &__list {
+    @include flex-column;
+    background-color: $color-white;
+    // li {
+    //   padding-left: 32px;
+    //   padding-right: 16px;
+    //   padding-top: 8px;
+    //   padding-bottom: 8px;
+    // }
+    // li:hover {
+    // }
+    &-item {
+      @include flex-row;
+      justify-content: space-between;
+
+      padding-left: 32px;
+      padding-right: 16px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      &-name {
+        @include font-body-md;
+      }
+      &:hover{
+        background-color: $color-gray-100;
+      }
+    }
+  }
+  &__view-controll {
+    @include flex-row;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+  &__category {
+    border-bottom: 1px solid $color-gray-100;
+  }
+  &__close-btn {
+    position: absolute;
+    top: 20px;
+    left: 330px;
+    @include pointer;
+  }
+}

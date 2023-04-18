@@ -1,13 +1,13 @@
 @import '../common/mixins';
 
-// body * {
-//     @include border-common;
-// }
-
+html{
+  height: 100%;
+}
 body {
-  overflow-y: scroll;
+  // overflow-y: scroll;
   overflow-x: hidden;
   background-color: $color-gray-200;
+  height: 100%;
 }
 
 .body-layout {
