@@ -115,8 +115,8 @@ export class SearchTermFetcher {
     return fetchedTerms;
   }
   async fetchJsonTerms(path, prop, keyword) {
-    const jsonClient = new JSONClient(path, prop, keyword);
-    const fetchedJsonTerms = await jsonClient.getJsonData();
+    const jsonClient = new JSONClient(path);
+    const fetchedJsonTerms = await jsonClient.getJsonTermsData(prop, keyword);
     return fetchedJsonTerms;
   }
 }
@@ -201,19 +201,11 @@ export class SearchBar {
 
   async renderAutoComplete() {
     const inputValue = this.getInputValue();
-    console.log(inputValue);
-    let a = await this.searchTermFetcher.fetchJsonTerms(
-      PATH.auto,
-      PATH.prop,
-      inputValue
-    );
-    console.log(a);
     if (!inputValue) {
       return;
     }
     this.setTermsType(
       'auto',
-      // await this.searchTermFetcher.fetchTerms(inputValue)
       await this.searchTermFetcher.fetchJsonTerms(
         PATH.auto,
         PATH.prop,
@@ -261,7 +253,7 @@ export class TemplateGenerator {
     if (!input || typeof input !== 'string') {
       throw new Error('Input is invalid.');
     }
-    
+
     const inputRegex = new RegExp(input, 'gi');
     const AutoCompleteTemplate = terms.reduce((acc, cur) => {
       const highlighted = cur.keyword.replace(
@@ -275,46 +267,12 @@ export class TemplateGenerator {
 
     return AutoCompleteTemplate;
   }
-  // generateAutoComplete(terms, input) {
-  //   const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-  //   korean.test(input);
-
-  //   const highlighted = new RegExp(
-  //     `${korean ? '(?<!\\S)' : '\\b'}${input}`,
-  //     'i'
-  //   );
-
-  //   const AutoCompleteTemplate = terms
-  //     .map(term => {
-  //       const match = highlighted.exec(term);
-  //       const highlightedText = match
-  //         ? term.replace(match[0], `<mark>${match[0]}</mark>`)
-  //         : term;
-  //       return `<li class="autocomplete search-list"><span>${highlightedText}</span></li>`;
-  //     })
-  //     .join('');
-
-  //   const lastTerm = terms[terms.length - 1];
-  //   const lastTermIndex = lastTerm.toLowerCase().indexOf(input.toLowerCase());
-
-  //   if (
-  //     lastTermIndex !== -1 &&
-  //     lastTermIndex + input.length === lastTerm.length
-  //   ) {
-  //     const lastHighlighted = new RegExp(
-  //       `${korean ? '(?<!\\S)' : '\\b'}${lastTerm}`,
-  //       'i'
-  //     );
-  //     const lastHighlightedText = lastTerm.replace(
-  //       lastHighlighted,
-  //       `<mark>${lastTerm}</mark>`
-  //     );
-  //     return (
-  //       AutoCompleteTemplate.slice(0, -11) +
-  //       `<li class="autocomplete search-list"><span>${lastHighlightedText}</span></li>`
-  //     );
-  //   }
-
-  //   return AutoCompleteTemplate;
-  // }
+  generateSlides(slides) {
+    let slidesTemplate = slides.reduce((acc, cur, i) => {
+      return (acc += `<li class="slide-item">
+      <img src="${cur}" alt="${i}">
+  </li>`);
+    }, '');
+    return slidesTemplate;
+  }
 }
