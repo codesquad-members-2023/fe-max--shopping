@@ -1,6 +1,19 @@
 # 🌴아마존📦
 
-# 학습계획
+# 실행하기 
+1. 클론
+
+        git clone https://github.com/gunoc/fe-max--shopping.git
+
+2. npm 설치
+
+        npm install
+
+3. 실행
+
+        npm run dev
+
+# week 1 학습계획
 - [x] SCSS에 대해 공부한다
 - [] 모달영역 처리에 대해 고민한다
 - [] 무한 슬라이딩 동작 방식을 알아본다
