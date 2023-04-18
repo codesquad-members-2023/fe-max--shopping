@@ -16,8 +16,7 @@
     "sass": "^1.60.0"
   },
   "scripts": {
-    "build:sass": "sass -w src/scss:src/css",
-    "dev:client": "build:sass & wait & live-server --no-css-inject",
+    "dev:client": "sass -w src/scss:src/css & wait & live-server --no-css-inject",
     "dev:server": "json-server --watch ./src/js/data/db.json",
     "dev": "npm-run-all -p dev:*"
   },
