@@ -193,6 +193,8 @@ export class SearchSuggestion {
 
   async handleSearchInputChange($searchInput: HTMLInputElement) {
     const searchInput = $searchInput.value;
+    const SEARCHES_LIMIT = 10;
+    const url = `${BASE_URL}/keyword?q=${searchInput}&_limit=${SEARCHES_LIMIT}`;
 
     try {
       const response = await fetch(`${BASE_URL}/keyword?q=${searchInput}`);
