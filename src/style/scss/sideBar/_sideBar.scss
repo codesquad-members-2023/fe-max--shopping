@@ -1,0 +1,98 @@
+#sideBar {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  position: absolute;
+  width: 320px;
+  height: 100%;
+  top: 0px;
+  background: var(--white);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+
+  .sideBar__header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 16px 16px 32px;
+    gap: 8px;
+
+    width: 320px;
+    height: 53px;
+    background: var(--black);
+    @include BoldLG;
+    color: var(--white);
+  }
+  .sideBar__close {
+    position: absolute;
+    left: 328px;
+    top: 8px;
+  }
+
+  .sideBar__title,
+  .details__title {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 16px 16px 32px;
+    gap: 8px;
+
+    width: 320px;
+    height: 53px;
+    background: var(--white);
+    @include BoldLG;
+    color: var(--black);
+  }
+
+  .sideBar__menu,
+  .sideBar__seeMore,
+  .sideBar__closeMore,
+  .sideBar__detail__menu,
+  .goBack__contents {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px 8px 32px;
+    gap: 8px;
+
+    width: 320px;
+    height: 40px;
+    background: var(--white);
+    @include BodyMD;
+    color: var(--black);
+  }
+
+  .sideBar__moreMenus {
+    overflow: hidden;
+  }
+
+  .sideBar__moreMenus .sideBar__contents {
+    transform: translateY(-100%);
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .sideBar__menu {
+    justify-content: space-between;
+  }
+
+  .sideBar__menu:hover,
+  .sideBar__detailsTilte:hover {
+    background: var(--gray100);
+  }
+}
+.sideBar__main {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sideBar__inner__wrapper {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s ease-in-out;
+  transform: translateX(0%);
+}
