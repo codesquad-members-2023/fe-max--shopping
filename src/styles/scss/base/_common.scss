@@ -36,11 +36,6 @@
   z-index: 100;
 }
 @mixin searchBarLi {
-  &:focus {
-    width: 100%;
-    background: $color-gray-100;
-    outline: none;
-  }
   @include bodyMd;
   display: flex;
   flex-direction: row;
