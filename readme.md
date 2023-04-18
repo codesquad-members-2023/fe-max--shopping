@@ -3,6 +3,7 @@
 ## ⭐️ 1주차 학습키워드: `#html`, `#css3`, `#Sass`, `#애니메이션`
 ## ⭐️ 2주차 학습키워드: `#OOP`, `#this`, `#Class`, `#prototype`
 
+## ⭐️ 학습키워드: `#fetch`, `#비동기 네트워크 API`, `#비동기 통신`, `#Promise 패턴`, `#JSON`
 ## 🎯 1주차 학습 목표
 
 - CSS 전처리기를 이해하고 활용해서 개발할 수 있다. ✅
@@ -15,6 +16,13 @@
 - 객체지향 프로그래밍을 이해한다.
 - 웹프론트엔드에서 어떻게 객체지향 프로그래밍을 할 수 있는지 안다.
 - ES Classes 표현방식을 알고, this를 통해서 객체를 다룰 수 있다.
+
+## 🎯 3주차 학습 목표
+
+- 기존 기능에 데이터 통신을 포함한 기능을 만든다.
+- fetch API를 활용해 get/post요청을 할 수 있다.
+- Promise패턴이 어떻게 동작하는 이해하고 활용할 수 있다.
+- mock server 를 연동해서 프론트엔드와 통신하는 방법을 안다.
 
 ## ⌨️ 1주차 학습 및 구현 계획
 
@@ -55,69 +63,43 @@
   - [ ]  키보드를 통한 검색결과 선택
     - [x] 키보드 이벤트로 포커스 이동을 어떻게 구현할지
     - [x] 아래 방향키로 이동
-    - [ ] 위 방향키로 이동
+    - [x] 위 방향키로 이동
   - [ ]  기타 UX를 고려한 검색창 기능
-  - [ ]  실제 검색결과를 노출하는 화면은 없다.
+  - [x]  실제 검색결과를 노출하는 화면은 없다.
 
-### 요구사항
+## ⌨️ 3주차 학습 및 구현 계획
 
-- query에 따른 결과 데이터는 미리 생성해둔 json형태의 객체를 통해서 결과를 받아서 활용한다.
-- 검색창과 검색결과는 별도의 모듈(클래스)로 분리해서 개발한다.
-- es classes를 활용해서 객체를 표현한다.
-- 최근검색어를 어떻게 저장해야 할지 찾아본다.
+- AJAX, JSON, json-server 학습하기
+- Promise 패턴 학습하기
 
-### 1) OOP (Object-oriented Programming)
+- [ ]  json-server 연동
+- [ ]  검색창
+    - [ ]  검색창 자동완성 데이터를 json-server와 연동해서 가져오는 방식으로 개발한다.
+    - [ ]  get방식으로 query를 보내고 응답 데이터를 받아온다.
+- [ ]  슬라이더
+    - [ ]  기존 슬라이드 이미지를 json-server에 연동해서 가져오는 방식으로 구현
+- [ ]  사이드바
+    - [ ]  사이드 메뉴 기능 구현
+    - [ ]  초기 데이터와 더보기 데이터를 구분해서 서버 통신으로 가져오도록 구현한다.
 
-객체지향 핵심개념들
+## 📚 학습 정리
 
-- Class
-- 캡슐화(Encapsulation)
-- 상속(Inheritance)
-- 다형성(polymorphism)
-- 추상화(abstraction)
+### 1) AJAX(Asynchronous JavaScript and XML)
 
-### 2) OOP in JS
+- 비동기적으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식을 뜻하며, 빠르게 동작하는 동적인 웹페이지를 만들기 위한 기술이다.
+    
+    ![ajax-webpage-lifecycle.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a97d0402-56da-4217-8238-93d4bf873838/ajax-webpage-lifecycle.png)
+    
+- 페이지를 새로고침을 하지 않아도 JS를 통해서 서버에 요청을 보내고 응답받은 데이터를 이용해서 페이지의 일부분만 갱신할 수 있다! (비동기성) → 더 이상 페이지 전체를 로드해서 렌더링 할 필요가 없어짐!
+- 이 때 서버와 다양한 형태의 데이터를 주고받을 수 있다. (JSON, XML, HTML, 이미지 파일 등등)
+- 장점
+    - 웹페이지 일부분만을 갱신할 수 있다.
+    - 웹페이지가 로드된 이후에도 서버에 데이터 요청을 보내고 서버로부터 데이터를 받을 수 있다.
+    - 백그라운드에서 서버로 데이터를 보낼 수 있다.
+- 단점
+    - 클라이언트가 서버에 데이터를 요청하는 client pulling 방식을 사용하므로, 서버가 자동으로 특정 정보를 제공하는 server push 방식의 실시간 서비스를 만들 수 없다.
+    - 바이너리 데이터를 주고받을 수 없다.
+    - ajax 스크립트가 포함된 서버가 아닌 다른 서버로 ajax 요청을 보낼 수 없다.
+    - 클라이언트의 PC로 ajax 요청을 보낼 수 없다.
 
-- `Object.create(proto[, propertiesObject])`
-```jsx
-function parent() {
-	this.name = 'parent';
-}
-parent.prototype.getName = function() {
-	return this.name;
-}
-
-function child(age) {
-	this.age = age;
-}
-
-console.log(child.prototype);
-// ▼ {constructor: ƒ}
-//	 ▶︎ constructor: ƒ child(age)
-//	 ▶︎ [[Prototype]]: Object
-
-child.prototype = Object.create(parent.prototype);
-
-console.log(child.prototype);
-// ▼ parent {}
-//	 ▼ [[Prototype]]: Object
-//		 ▶︎ getName: ƒ ()
-// 		 ▶︎ constructor: ƒ parent()
-// 		 ▶︎ [[Prototype]]: Object
-```
-
-## 🤔 생각할 거리
-
-- searchbarInput에 이벤트를 걸어줄 때 searchLayer를 밖에서 변수로 선언해서 불러오려면 null 값이 나와서 이벤트 핸들러 내부에서 불러와서 사용해야 한다. WHY? → searchbar가 렌더링되고 그 이후에 layer가 렌더링 되어서 뭔가 순서 문제인가?
-
-## 😵‍💫 삽질 기록
-
-- button, input, select, a 태그 외 다른 요소들은 기본적으로 focus를 지원하지 않는다… → html tag에tabindex 속성을 줘야한다!
-
-## 참고자료
-
-### OOP in JS
-
-- [https://poiemaweb.com/js-prototype](https://poiemaweb.com/js-prototype)
-- [https://velog.io/@thms200/Object.create-](https://velog.io/@thms200/Object.create-)
-- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-상태관리의-탄생](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5%E1%84%8B%E1%85%B4-%E1%84%90%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A2%E1%86%BC)
+### 2) JSON(JavaScript Object Notation)
