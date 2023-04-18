@@ -120,5 +120,42 @@
       "id": 15,
       "text": "자동차 점프 스타터6"
     }
+  ],
+  "carouselImages": [
+    {
+      "id": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/713ViYKYWML._SX3000_.jpg",
+      "description": "해외 쇼핑을 한국 직불 카드와 한국 신용 카드로 결제하세요"
+    },
+    {
+      "id": 2,
+      "imageUrl": "https://m.media-amazon.com/images/I/61PC0+j5tsL._SX3000_.jpg",
+      "description": "게이밍 장비관"
+    },
+    {
+      "id": 3,
+      "imageUrl": "https://m.media-amazon.com/images/I/61UR2I2ZHBL._SX3000_.jpg",
+      "description": "완구 및 게임 용품관"
+    },
+    {
+      "id": 4,
+      "imageUrl": "https://m.media-amazon.com/images/I/61KoGELd+8L._SX3000_.jpg",
+      "description": "미국에서 전 세계로 4,500만개가 넘는 제품을 배송합니다"
+    },
+    {
+      "id": 5,
+      "imageUrl": "https://m.media-amazon.com/images/I/71FyTsYp1ML._SX3000_.jpg",
+      "description": "가구 및 주방 용품관"
+    },
+    {
+      "id": 6,
+      "imageUrl": "https://m.media-amazon.com/images/I/71MO+XuboXL._SX3000_.jpg",
+      "description": "뷰티 용품관"
+    },
+    {
+      "id": 7,
+      "imageUrl": "https://m.media-amazon.com/images/I/61+k2g7XKZL._SX3000_.jpg",
+      "description": "컴퓨터 용품관"
+    }
   ]
 }
