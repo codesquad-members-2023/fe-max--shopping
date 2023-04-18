@@ -1,28 +1,19 @@
-import { client } from '../../domain/client.js';
 import { Component } from '../base/Component.js';
 
 export class Slider extends Component {
-  constructor(slideCount) {
+  constructor() {
     super('slider', 'UL');
-    this.slideCount = slideCount;
-    this.client = client;
-    this.init();
   }
 
-  async init() {
-    await this.appendSlides();
-  }
-
-  async appendSlides() {
-    const imgSrc = await this.client.fetchHeroImages(this.slideCount);
+  getTemplate(imgSrc) {
     const last = imgSrc[imgSrc.length - 1];
     const first = imgSrc[0];
     const slideNodes = [last, ...imgSrc, first].map((src) => new Slide(src).node);
-    this.node.append(...slideNodes);
+    return slideNodes;
   }
 
-  initStyle(startIndex) {
-    this.node.style.width = `${(this.slideCount + 2) * 100}vw`;
+  initStyle(slideCount, startIndex) {
+    this.node.style.width = `${(slideCount + 2) * 100}vw`;
     this.node.style.transform = `translateX(-${startIndex * 100}vw)`;
   }
 
