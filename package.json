@@ -1,5 +1,9 @@
 {
+  "type": "module",
   "dependencies": {
     "node-sass": "^8.0.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.3"
   }
 }
