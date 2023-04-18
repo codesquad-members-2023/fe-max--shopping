@@ -4,13 +4,13 @@ const AUTO_COMPLETE_API_PATH = 'autoComplete';
 const HERO_IMAGE_API_PATH = 'hero';
 const PROP = {
   word: 'word',
-  imgSrc: 'src',
+  src: 'src',
 };
 
 export const client = {
   async fetchHeroImages(imageCount) {
     const heroURL = `${BASE_API_DOMAIN}/${HERO_IMAGE_API_PATH}?_limit=${imageCount}`;
-    const heroImages = await this.fetchData(heroURL, PROP.imgSrc);
+    const heroImages = await this.fetchData(heroURL, PROP.src);
 
     return heroImages;
   },
@@ -32,7 +32,7 @@ export const client = {
   async fetchData(url, propName) {
     try {
       const dataInfo = await this.fetchJSON(url);
-      const data = dataInfo.map((list) => list[`${propName}`]);
+      const data = dataInfo.map((info) => info[`${propName}`]);
 
       return data;
     } catch (err) {
@@ -48,5 +48,18 @@ export const client = {
     }
 
     return response.json();
+  },
+
+  fetchByPromise(url) {
+    return fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        throw Error(error.message);
+      });
   },
 };

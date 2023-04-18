@@ -10,29 +10,25 @@ export class Slider extends Component {
   }
 
   async init() {
-    this.setSliderWidth();
     await this.appendSlides();
-    this.renderSlideClone();
-  }
-
-  setSliderWidth() {
-    this.node.style.width = `${(this.slideCount + 2) * 100}vw`;
   }
 
   async appendSlides() {
     const imgSrc = await this.client.fetchHeroImages(this.slideCount);
-    const slideNodes = imgSrc.map((src) => new Slide(src).node);
+    const last = imgSrc[imgSrc.length - 1];
+    const first = imgSrc[0];
+    const slideNodes = [last, ...imgSrc, first].map((src) => new Slide(src).node);
     this.node.append(...slideNodes);
   }
 
-  renderSlideClone() {
-    const firstSlide = this.node.firstElementChild;
-    const lastSlide = this.node.lastElementChild;
-    const firstClone = firstSlide.cloneNode(true);
-    const lastClone = lastSlide.cloneNode(true);
+  initStyle(startIndex) {
+    this.node.style.width = `${(this.slideCount + 2) * 100}vw`;
+    this.node.style.transform = `translateX(-${startIndex * 100}vw)`;
+  }
 
-    this.node.prepend(lastClone);
-    this.node.append(firstClone);
+  moveToSlide(slideIndex, withTransition = true) {
+    this.node.style.transform = `translateX(-${slideIndex * 100}vw)`;
+    this.node.style.transition = withTransition ? `transform 0.5s ease-in-out` : 'none';
   }
 }
 
