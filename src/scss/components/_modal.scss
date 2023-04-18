@@ -42,16 +42,15 @@
     right: 14.2%;
   }
 
-
 }
-/* todo 모달창 템플릿을 하나만 가지고 변형이 가능한지 고민하기 */
+
 .modal-shipping {
   @include modal;
   z-index: 100;
   align-items: flex-end;
   position: absolute;
   white-space: normal;
-  top: 102%;
+  top: 102%; 
   left: 0;
   width: 320px;
   gap: 8px;

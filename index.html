@@ -66,7 +66,7 @@
 
             <nav class="nav-sub">
                 <div class="sub-left-buttons">
-                    <button type="button" class="side-bar sub-menu-button">
+                    <button type="button" class="side-bar sub-menu-button hamburger-btn">
                         <img src="./src/images/menu-white.svg" alt="메뉴">
                         <span>모두</span>
                     </button>
@@ -171,7 +171,7 @@
                 <img class="side__header-icon" src="./src/images/user-white.svg" alt="사용자">
                 <span class="side__header-greeting">안녕하세요, 로그인</span>
             </div>
-            <div  class="side__title-text">
+            <div class="side__title-text">
                 <span>
                     디지털 콘텐츠 및 기기
                 </span>
@@ -190,7 +190,7 @@
                     <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
                 </li>
             </ul>
-            <div  class="side__title-text">
+            <div class="side__title-text">
                 <span>
                     부서별 쇼핑
                 </span>
@@ -213,13 +213,14 @@
                     <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
                 </li>
             </ul>
-            <div class="side__category side__view-controll">
-                <div class="side__view-all ">
+            <div class="side__view-all side__view-controll ">
+                <div>
                     <span class="side__list-item-name">모두보기</span>
                 </div>
                 <img class="side__view-all-arrow" src="./src/images/chevron-down-gray.svg" alt="펼치기">
             </div>
-            <ul class="side__list">
+            <!-- 주메뉴 -->
+            <ul class="side__list side__list-main compressed">
                 <li class="side__list-item">
                     <span class="side__list-item-name">자동차 용품</span>
                 </li>
@@ -271,18 +272,19 @@
                 <li class="side__list-item">
                     <span class="side__list-item-name">비디오 게임</span>
                 </li>
-                <li class="side__list-item--simple-view side__view-controll">
+                <li class="side__view-simple side__view-controll">
                     <span class="side__list-item-name">간단히 보기</span>
                     <img src="./src/images/chevron-up-gray.svg" alt="접기">
                 </li>
             </ul>
-            <ul class="side__list">
+            <!-- 옆에 붙을 하위항목 이건 여기부터 렌더링?-->
+            <ul class="side__list side__list-sub translateX">
                 <li class="side__list-item--back side__view-controll">
                     <img src="./src/images/arrow-left-gray.svg" alt="돌아가기">
                     <span class="side__list-item-name">주메뉴</span>
                 </li>
                 <li class="side__title-text">
-                    <span >주메뉴 용품</span>
+                    <span>주메뉴 용품</span>
                 </li>
                 <li class="side__list-item">
                     <span class="side__list-item-name">주메뉴 관리</span>

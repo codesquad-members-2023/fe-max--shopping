@@ -1,19 +1,13 @@
 @import '../common/mixins';
 @import '../common/variables';
-
+@import '../base/animations';
 .side {
   background: $color-white;
-  width: 320px;
+  width: $sideBarWidth;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-//   > * {
-//     // padding-left: 32px;
-//     // padding-right: 16px;
-//     // padding-top: 16px;
-//     // padding-bottom: 16px;
-//   }
   &__header {
     @include flex-row;
     padding-left: 32px;
@@ -35,14 +29,6 @@
   &__list {
     @include flex-column;
     background-color: $color-white;
-    // li {
-    //   padding-left: 32px;
-    //   padding-right: 16px;
-    //   padding-top: 8px;
-    //   padding-bottom: 8px;
-    // }
-    // li:hover {
-    // }
     &-item {
       @include flex-row;
       justify-content: space-between;
@@ -54,7 +40,7 @@
       &-name {
         @include font-body-md;
       }
-      &:hover{
+      &:hover {
         background-color: $color-gray-100;
       }
     }
@@ -75,5 +61,22 @@
     top: 20px;
     left: 330px;
     @include pointer;
+  }
+  &.active {
+    transform: translateX(0);
+  }
+
+  transition: transform 0.3s ease-out;
+  transform: translateX(-$sideBarWidth);
+
+  &__list-main {
+    overflow: hidden;
+    max-height: 3000px;
+    transition: max-height 1.2s ease-in-out, opacity 1.2s ease-in-out;
+    &.compressed {
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 1.2s ease-in-out, opacity 1.2s ease-in-out; 
+    }
   }
 }
