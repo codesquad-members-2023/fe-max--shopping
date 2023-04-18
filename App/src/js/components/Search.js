@@ -1,12 +1,18 @@
 import {
   addKeyword,
+  checkKeyword,
+  getAutoCompletedKeywords,
+  getRandomKeywords,
+} from "../util/apiFetcher.js";
+import {
+  getLogKeywords,
   delLogKeyword,
   getAccountRecipe,
-  getAutocompleteKeywords,
-  getLogKeywords,
-  getRandomSearchKeywords,
-  recipeToComponent,
-} from "../utils.js";
+  addLogKeyword,
+} from "../util/factory.js";
+
+import { recipeToComponent } from "../util/recipeToComponent.js";
+
 import { Component } from "./Component.js";
 
 function keywordsItemsAddKeydownEvent() {
@@ -79,11 +85,12 @@ function addLogKeywords(logKeywords) {
   });
 }
 
-function addRandomSearchKeywords() {
+async function addRandomSearchKeywords() {
   const MAX_KEYWORD_COUNT = 10;
   const { input, keywords, keywordList, ul, logLen } = this;
-
-  getRandomSearchKeywords(MAX_KEYWORD_COUNT - logLen).forEach((keyword, i) => {
+  const randomKeywords = await getRandomKeywords(MAX_KEYWORD_COUNT - logLen);
+  console.log(randomKeywords);
+  randomKeywords.forEach((keyword, i) => {
     const keywordListLi = recipeToComponent(
       getAccountRecipe().keywordListItem(keyword)
     ).domNode;
@@ -107,7 +114,7 @@ function addRandomSearchKeywords() {
   });
 }
 
-function keywordFocusinHandler() {
+async function keywordFocusinHandler() {
   const { input, keywords, keywordList, ul } = this;
 
   input.value = "";
@@ -121,7 +128,7 @@ function keywordFocusinHandler() {
   const logLen = logKeywords.length;
 
   addLogKeywords.bind(this)(logKeywords);
-  addRandomSearchKeywords.bind({ ...this, logLen })();
+  await addRandomSearchKeywords.bind({ ...this, logLen })();
 
   keywordsItemsAddKeydownEvent.bind(this)();
 }
@@ -139,12 +146,13 @@ function keywordToKeywordListItemChildren(input, keyword) {
     });
 }
 
-function keywordInputHandler() {
+async function keywordInputHandler() {
   const { input, keywords, keywordList, ul } = this;
   keywords.className = "keywords active";
   keywordList.replaceChildren();
   ul.replaceChildren();
-  getAutocompleteKeywords(input.value).forEach((keyword, i) => {
+  const autoCompletedKeywords = await getAutoCompletedKeywords(input.value);
+  autoCompletedKeywords.forEach((keyword, i) => {
     const keywordListLi = recipeToComponent(
       getAccountRecipe().keywordListItem(keyword)
     ).domNode;
@@ -185,9 +193,15 @@ export class Search extends Component {
     const form = this.domNode.querySelector(".search__form");
     const input = this.domNode.querySelector("#keyword");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      addKeyword(input.value);
+      const formData = new FormData(form);
+      const keyword = formData.get("keyword");
+      const checkResult = await checkKeyword(keyword);
+      addLogKeyword(keyword);
+      if (!checkResult) {
+        await addKeyword({ body: { keyword } });
+      }
       input.value = "";
       keywords.className = "keywords";
     });

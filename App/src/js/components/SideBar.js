@@ -1,4 +1,4 @@
-import { addEvent } from "../utils.js";
+import { addEvent } from "../util/factory.js";
 import { Component } from "./Component.js";
 
 export class Sidebar extends Component {

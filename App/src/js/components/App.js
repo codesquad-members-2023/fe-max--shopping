@@ -1,5 +1,10 @@
 import { Recipe } from "../Recipe.js";
-import { addComponent, getAccountRecipe, registerRecipe } from "../utils.js";
+import {
+  addComponent,
+  getAccountRecipe,
+  registerRecipe,
+} from "../util/factory.js";
+
 import { Component } from "./Component.js";
 import { Footer } from "./Footer.js";
 import { Header } from "./Header.js";
@@ -10,36 +15,39 @@ import { ShippingAddress } from "./ShippingAddress.js";
 import { Sidebar } from "./Sidebar.js";
 import { SidebarTrigger } from "./SidebarTrigger.js";
 
+function registerComponent() {
+  const useSubComponents = [
+    ["HEADER", Header],
+    ["MAIN", Main],
+    ["FOOTER", Footer],
+    ["sidebar", Sidebar],
+    ["login", Login],
+    ["shipping-address", ShippingAddress],
+    ["sidebar-trigger", SidebarTrigger],
+    ["search", Search],
+  ];
+
+  useSubComponents.forEach(([name, subComponent]) => {
+    addComponent(name, subComponent);
+  });
+}
+
 export class App extends Component {
   constructor(state) {
     super();
     this.domNode = document.querySelector("#app");
 
-    const useSubComponents = [
-      ["HEADER", Header],
-      ["MAIN", Main],
-      ["FOOTER", Footer],
-      ["sidebar", Sidebar],
-      ["login", Login],
-      ["shipping-address", ShippingAddress],
-      ["sidebar-trigger", SidebarTrigger],
-      ["search", Search],
-    ];
-
-    useSubComponents.forEach(([name, subComponent]) => {
-      addComponent(name, subComponent);
-    });
-
+    registerComponent();
     registerRecipe(new Recipe(state));
 
     const { header, sidebar, main, footer } = getAccountRecipe();
 
     this.children = [];
 
-    this.parseJsonRecursiveAppendChild(header());
-    this.parseJsonRecursiveAppendChild(sidebar());
-    this.parseJsonRecursiveAppendChild(main());
-    this.parseJsonRecursiveAppendChild(footer());
+    this.appendChildComponent(header());
+    this.appendChildComponent(sidebar());
+    this.appendChildComponent(main());
+    this.appendChildComponent(footer());
 
     this.changeSubComponent();
 
