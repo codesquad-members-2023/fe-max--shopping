@@ -55,7 +55,7 @@
 :root {
   /* font */
   --font-bold-xl: 900 28px "Pretendard Variable";
-  --font-bold-lg: 900 18px "Pretendard Variable";
+  --font-bold-lg: 800 18px "Pretendard Variable";
   --font-bold-md: 800 13px "Pretendard Variable";
   --font-bold: 600 13px "Pretendard Variable";
   --font-bold-sm: 600 11px "Pretendard Variable";

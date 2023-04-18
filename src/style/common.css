@@ -2,15 +2,16 @@
   box-sizing: border-box;
 }
 
+a {
+  cursor: pointer;
+}
+
 button {
   border: none;
+  cursor: pointer;
 }
 
 input {
   border: none;
   outline: none;
-}
-
-dialog {
-  cursor: default;
 }
