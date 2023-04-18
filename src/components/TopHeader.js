@@ -200,21 +200,6 @@ class TopHeader extends Component {
         toolTipDimmedBg.hideSelf();
       });
     });
-
-    this.addEventListener("dim", this.dimLayerHandler);
-  }
-
-  dimLayerHandler(evt) {
-    const isActive = evt.detail.isActive;
-    this.dimLayer(isActive);
-  }
-
-  dimLayer(isActive) {
-    if (isActive === true) {
-      this.dimmedLayer.classList.add("is-active");
-    } else {
-      this.dimmedLayer.classList.remove("is-active");
-    }
   }
 }
 

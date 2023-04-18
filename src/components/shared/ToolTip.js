@@ -13,6 +13,7 @@ template.innerHTML = `
 export class ToolTip extends Component {
   constructor() {
     super(template);
+    this.backDrop = document.querySelector("back-drop");
   }
 
   connectedCallback() {
@@ -23,27 +24,14 @@ export class ToolTip extends Component {
 
   showSelf() {
     this.shadowRoot.host.classList.add("is-active");
-
     if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
-      this.notifyParentToDim(true);
+      this.backDrop.activate({ top: 88, left: 0 });
     }
   }
 
   hideSelf() {
     this.shadowRoot.host.classList.remove("is-active");
-
-    if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
-      this.notifyParentToDim(false);
-    }
-  }
-
-  notifyParentToDim(isActive) {
-    const dimEvt = new CustomEvent("dim", {
-      detail: {
-        isActive: isActive,
-      },
-    });
-    this.shadowRoot.host.getRootNode().host.dispatchEvent(dimEvt);
+    this.backDrop.deactivate();
   }
 }
 
