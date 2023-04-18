@@ -1,10 +1,7 @@
-import {
-  focusInputShowAndHideLayer,
-  moveFocusInput,
-} from './searchbar/searchbar.js';
+import { toggleSuggestLayer, moveFocusSuggest } from './searchbar/searchbar.js';
 
 function init() {
-  focusInputShowAndHideLayer();
-  moveFocusInput();
+  toggleSuggestLayer();
+  moveFocusSuggest();
 }
 window.addEventListener('DOMContentLoaded', init());
