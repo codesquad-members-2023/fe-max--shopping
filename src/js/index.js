@@ -4,6 +4,7 @@ import {
     addAddressEventListeners,
 } from "./modal/event.js";
 import { addSearchBarEventListener } from "./search-bar/event.js";
+import { HandlerSideBar } from "./sideBar/event.js";
 
 const initModal = () => {
     showLoginModalOnLoad();
@@ -18,3 +19,4 @@ const initSearchBar = () => {
 };
 
 initSearchBar();
+HandlerSideBar();
