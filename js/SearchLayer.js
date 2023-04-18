@@ -1,7 +1,7 @@
 export class SearchLayer {
   constructor($target) {
     this.$target = $target;
-    this.url = '../data/searchDB.json';
+    this.url = '../data/db.json';
     this.searchDB = {};
     this.setup();
   }
