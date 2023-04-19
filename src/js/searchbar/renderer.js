@@ -45,12 +45,14 @@ export class RecommendAndHistoryRenderer extends Renderer {
   getTemplate() {
     const { recommendedSearchData, historySearchData } = this.data;
 
-    const historySearchLists = historySearchData
-      .map((item) => this.#getHistoryTemplate(item))
-      .join('');
-
     const recommendSearchLists = recommendedSearchData
       .map((item) => this.#getRecommendTemplate(item))
+      .join('');
+
+    if (!historySearchData) return recommendSearchLists;
+
+    const historySearchLists = historySearchData
+      .map((item) => this.#getHistoryTemplate(item))
       .join('');
 
     return historySearchLists + recommendSearchLists;
