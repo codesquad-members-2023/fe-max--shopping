@@ -180,8 +180,16 @@
 
 ### Dimmed Layer
 
+#### Ver. 1
+
 - Need to dim the main portion upon hovering over certain tooltips, and upon showing autocomplete panel.
 - Trigger the dimmed layer by creating and dispatching a custom event from the components to the `top-header` (parent) component.
+
+#### Ver. 2
+
+- Declare a single `back-drop` component in the body.
+- Any component that needs a backdrop will have a reference to that `back-drop` component.
+- Set the desired position and height of the backdrop when in need.
 
 ### Keyboard Event
 
