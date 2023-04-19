@@ -1,0 +1,98 @@
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-ExtraBold.woff') format('woff');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Black.woff') format('woff');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-SemiBold.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Thin.woff') format('woff');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-Light.woff') format('woff');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/src/asset/fonts/Pretendard-ExtraLight.woff') format('woff');
+  font-weight: 100;
+}
+/* font */
+$font-bold-xl: 900 28px Pretendard;
+$font-bold-lg: 900 18px Pretendard;
+$font-bold-md: 800 13px Pretendard;
+$font-bold-sm: 600 11px Pretendard;
+$font-body-md: 500 13px/1.6 Pretendard;
+$font-body-sm: 500 11px/1.6 Pretendard;
+
+/* letter spacing */
+$letter-spacing-bold-md: -0.06em;
+$letter-spacing-bold-sm: -0.06em;
+$letter-spacing-body-md: -0.03em;
+$letter-spacing-body-sm: -0.03em;
+
+/* color */
+$color-white: #ffffff;
+
+$color-gray-100: #eff2f2;
+$color-gray-200: #e5e9e9;
+$color-gray-300: #dce0e0;
+$color-gray-400: #d5d5d5;
+$color-gray-500: #c1c1c1;
+$color-gray-600: #878787;
+$color-gray-700: #535353;
+$color-gray-800: #2a3648;
+$color-gray-900: #1b232f;
+
+$color-black: #10141a;
+$color-black-40: #10141a66;
+
+$color-primary-yellow-100: #fed15f;
+$color-primary-yellow-200: #febe30;
+$color-primary-yellow-300: #de9408;
+
+$color-primary-orange-100: #fcb057;
+$color-primary-orange-200: #ff9900;
+
+$color-secondary-purple: #941387;
+$color-secondary-navy: #074099;
+$color-secondary-green: #0c5e72;
+
+/* z-index */
+$z-index-base: 100;
+$z-index-cover: $z-index-base + 100;
+$z-index-modal: $z-index-base + 200;

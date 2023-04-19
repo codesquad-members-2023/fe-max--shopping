@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "fake-api": "npx json-server --watch db.json",
-    "build-css": "npx sass --watch src/style/scss/style.scss:src/style/css/style.css",
+    "build-css": "npx sass --watch src/style/scss/main.scss:src/style/css/main.css",
     "start-server": "npx live-server",
     "start": "npm-run-all -p fake-api build-css start-server",
     "prestart": "npm i -D npm-run-all"
