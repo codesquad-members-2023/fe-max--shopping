@@ -6,16 +6,20 @@ export class SearchLayer {
     this.setup();
   }
 
-  async setup() {
-    this.searchDB = await this.getData();
-    this.render();
-    this.setEvent();
+  setup() {
+    this.getData()
+      .then((data) => {
+        this.searchDB = data;
+        this.render();
+        this.setEvent();
+      })
+      .catch((error) => console.error(error));
   }
 
-  async getData() {
-    const response = await fetch(this.url);
-    const data = await response.json();
-    return data;
+  getData() {
+    return fetch(this.url)
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
   }
 
   template() {
