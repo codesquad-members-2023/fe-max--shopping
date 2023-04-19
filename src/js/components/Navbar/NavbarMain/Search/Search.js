@@ -1,5 +1,4 @@
 import { debounce } from '../../../../utils/utils.js';
-import { Main } from '../../../Main.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
 import { SearchPanel } from './SearchPanel.js';
@@ -7,7 +6,7 @@ import { SearchStorage } from './SearchStorage.js';
 import { client } from '/src/js/domain/client.js';
 
 export default class Search extends Component {
-  constructor() {
+  constructor(main) {
     super('search');
     this.storage = new SearchStorage();
     this.client = client;
@@ -16,7 +15,7 @@ export default class Search extends Component {
       recommend: [],
       autoComplete: [],
     };
-    this.main = new Main();
+    this.main = main;
     this.searchPanel = new SearchPanel(this.state, this.storage);
     this.searchBar = new SearchBar();
     this.init();

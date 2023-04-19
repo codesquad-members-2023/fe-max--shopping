@@ -1,13 +1,12 @@
-import { Main } from '../../Main.js';
 import { ExtendedLoginModal, LoginModal } from './Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Login extends Component {
   static delaySecond = 1;
 
-  constructor() {
+  constructor(main) {
     super('login');
-    this.main = new Main();
+    this.main = main;
     this.loginArea = new LoginArea();
     this.loginModal = new LoginModal();
     this.extendedLoginModal = new ExtendedLoginModal();

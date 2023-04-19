@@ -7,8 +7,8 @@ export class App extends Component {
   constructor() {
     super('app');
     this.sidebar = new Sidebar();
-    this.header = new Navbar(this.sidebar);
     this.main = new Main();
+    this.header = new Navbar(this.sidebar, this.main);
     this.init();
   }
 

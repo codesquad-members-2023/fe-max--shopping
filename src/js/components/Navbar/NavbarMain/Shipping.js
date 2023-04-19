@@ -1,11 +1,10 @@
-import { Main } from '../../Main.js';
 import { ShippingModal } from './Modal.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class Shipping extends Component {
-  constructor() {
+  constructor(main) {
     super('shipping', 'A');
-    this.main = new Main();
+    this.main = main;
     this.shippingArea = new ShippingArea();
     this.shippingModal = new ShippingModal();
     this.init();

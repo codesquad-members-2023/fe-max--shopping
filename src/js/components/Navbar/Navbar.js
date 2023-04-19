@@ -3,9 +3,9 @@ import { NavbarMain } from './NavbarMain/NavbarMain.js';
 import { NavbarSub } from './NavbarSub/NavbarSub.js';
 
 export class Navbar extends Component {
-  constructor(sidebar) {
+  constructor(sidebar, main) {
     super('navbar', 'HEADER');
-    this.navbarMain = new NavbarMain();
+    this.navbarMain = new NavbarMain(main);
     this.navbarSub = new NavbarSub();
     this.sidebar = sidebar;
     this.init();

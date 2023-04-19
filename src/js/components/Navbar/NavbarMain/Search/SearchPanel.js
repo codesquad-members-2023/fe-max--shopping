@@ -96,7 +96,7 @@ export class SearchPanel extends Component {
   getRecommendTemplate(word) {
     return `
 <li class="recommend">
-  <a href=""><button class="shortcut-btn"></button>${word}</a>
+  <a href="#"><button class="shortcut-btn"></button>${word}</a>
 </li>
     `;
   }
@@ -104,7 +104,7 @@ export class SearchPanel extends Component {
   getHistoryTemplate(id, word) {
     return `
 <li data-id="${id}" class="history">
-  <a href="">${word}</a><button class="delete-btn"></button>
+  <a href="#">${word}</a><button class="delete-btn"></button>
 </li>
     `;
   }
