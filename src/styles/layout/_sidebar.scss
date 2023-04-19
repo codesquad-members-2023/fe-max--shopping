@@ -1,0 +1,59 @@
+.sidebar {
+  transform: translateX(-100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 100;
+  width: 320px;
+  height: 100vh;
+  transition: transform 0.5s ease-in-out;
+  &.active {
+    transform: translateX(0%);
+  }
+
+  &__close {
+    position: absolute;
+    left: 332px;
+    top: 12px;
+    &.hidden {
+      display: none;
+    }
+  }
+  &__login {
+    background-color: $Black;
+    padding: 17.5px 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    span {
+      @include typography($BoldLG, $White);
+    }
+  }
+  &__content {
+    border-bottom: 1px solid $Gray100;
+    .title {
+      padding: 16px 16px 16px 32px;
+      @include typography($BoldLG, $Black);
+    }
+    .lists {
+      li {
+        width: 100%;
+        padding: 16px 16px 16px 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+          @include typography($BoldMD, $Black);
+        }
+        img {
+          display: block;
+        }
+      }
+    }
+    .all {
+      padding: 16px 16px 16px 32px;
+      @include typography($BoldMD, $Black);
+    }
+  }
+}
