@@ -1,6 +1,7 @@
 import express from "express";
 import { searchData, searchSuggestions } from "./data/searchData.js";
-import { heroImgsData, cardsData } from "./data/cardsData.js";
+import { heroImgsData, cardsData } from "./data/imgsData.js";
+import { sideBarData } from "./data/sideBarData.js";
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +23,10 @@ app.get("/autocomplete", (req, res) => {
     .filter(({ content }) => content.includes(searchTerm))
     .slice(0, 10);
   return res.status(200).json(autocompleteDataTopTen);
+});
+
+app.get("/side-bar", (req, res) => {
+  return res.status(200).json(sideBarData);
 });
 
 app.get("/hero-images", (req, res) => {
