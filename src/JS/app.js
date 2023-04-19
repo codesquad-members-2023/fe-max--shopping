@@ -1,7 +1,8 @@
-import { toggleSuggestLayer, moveFocusSuggest } from './searchbar/searchbar.js';
+import { inputAutocomplete } from './searchbar/autocomplete.js';
+import { searchbarInputInit } from './searchbar/searchbar.js';
 
 function init() {
-  toggleSuggestLayer();
-  moveFocusSuggest();
+  searchbarInputInit();
+  inputAutocomplete();
 }
 window.addEventListener('DOMContentLoaded', init());
