@@ -3,7 +3,7 @@ import { View } from './searchBarView.js';
 import { SearchBar } from './searchBar.js';
 import { JsonData, ApiData, LocalStorageData } from './dataFetcher.js';
 
-const SEARCH_RECOMMEND_JSON_URL = '../../src/data/search-recommend.json';
+const SEARCH_RECOMMEND_JSON_URL = 'http://localhost:4000/recommend';
 const AMAZON_COMPLETION_API_URL =
   'https://completion.amazon.com/api/2017/suggestions?mid=ATVPDKIKX0DER&alias=aps&prefix=';
 const LOCAL_STORAGE_KEY = 'searchHistory';
