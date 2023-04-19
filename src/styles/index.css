@@ -646,6 +646,53 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   background-position: 12px 14px;
 }
 
+.menu-sidebar {
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 320px;
+  height: 100%;
+  background-color: #ffffff;
+  color: #10141a;
+}
+.menu-sidebar .sidebar-close {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  transform: translateX(36px);
+}
+.menu-sidebar .sidebar-login {
+  display: flex;
+  gap: 9.5px;
+  padding: 19px 16px 19px 33.5px;
+  background-color: #10141a;
+  color: #ffffff;
+  font: 900 18px Pretendard;
+}
+.menu-sidebar .sidebar-title {
+  font: 900 18px Pretendard;
+  padding: 16px 32px;
+}
+.menu-sidebar .sidebar-list {
+  font: 500 13px/1.6 Pretendard;
+  letter-spacing: -0.03em;
+}
+.menu-sidebar .sidebar-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 16px 14px 32px;
+}
+.menu-sidebar .sidebar-unfold {
+  font: 500 13px/1.6 Pretendard;
+  letter-spacing: -0.03em;
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px 14px 32px;
+}
+
 html {
   scroll-behavior: smooth;
 }

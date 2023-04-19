@@ -62,4 +62,6 @@ const KEYWORD_LAYER = {
   ARROW_TOP_RIGHT_SRC: "./src/assets/svg/arrow-top-right.svg",
 };
 
+export const BASE_URL = "http://localhost:3000";
+
 export { QUERY, Z_INDEX, OPACITY, DISPLAY, CAROUSEL, TIME, KEYWORD_LAYER };
