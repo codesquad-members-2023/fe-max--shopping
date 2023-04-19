@@ -112,3 +112,97 @@
 - 콤마(,)나 콜론(:)을 제대로 된 위치에 사용하지 않으면 작동하지 않을 수 있으므로 주의한다.
 - `JSON.stringify()`: 객체를 매개변수로서 수용하고, JSON 문자열 형태로 변환합니다.
 - `JSON.parse()`: JSON 문자열을 매개변수로 받아서, 일치하는 자바스크립트 객체로서 변환합니다.
+
+### 3) Promise와 fetch API
+
+(1) Promise란?
+
+```jsx
+// Promise가 등장하기 이전의 비동기 처리는 콜백을 다른 함수의 인자로 넘겨서 했었다...
+findUser(1, function (user) {
+  console.log("user:", user);
+});
+
+function findUser(id, cb) {
+  setTimeout(function () {
+    console.log("waited 0.1 sec.");
+    const user = {
+      id: id,
+      name: "User" + id,
+      email: id + "@test.com",
+    };
+    cb(user);
+  }, 100);
+}
+// 결과
+// waited 0.1 sec.
+// user: {id: 1, name: "User1", email: "1@test.com"}
+```
+
+- 지금 당장 얻을 수 없지만 가까운 미래에 얻을 수 있는 어떤 데이터에 접근하기 위한 방법 → 데이터를 얻는데까지 지연(delay)가 발생한다. (대표적으로 네트워크에서 데이터를 받아올 때!)
+- 기존 콜백을 인자로 넘겨 비동기 처리하는 방식에서 콜백 지옥이 일어나는 문제점을 해결해준다.
+- 비동기 처리임에도 마치 동기적인 것 처럼 보여지게 함으로써 코드의 가독성을 높여준다!
+
+```jsx
+// 콜백 인자를 넘기는 대신 Promise 객체를 만들어 리턴해주고, 
+// 호출할 때 리턴받은 Promise 객체에 then() 메서드를 호출해서 실행로직을 넘겨준다.
+findUser(1).then(function (user) {
+  console.log("user:", user);
+});
+
+function findUser(id) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      console.log("waited 0.1 sec.");
+      const user = {
+        id: id,
+        name: "User" + id,
+        email: id + "@test.com",
+      };
+      resolve(user);
+    }, 100);
+  });
+}
+// 결과는 위와 동일!
+```
+
+(2) Promise 문법
+
+- Promise객체는 `new`키워드와 생성자를 이용해서 만들 수 있다. 이때 생성자는 함수를 인자로 받는데, 이 함수는 인자로 resolve, reject라는 2개의 매개변수를 가진다.
+
+```jsx
+function returnPromise() {
+  return new Promise((resolve, reject) => { ... } );
+}
+```
+
+- 생성자의 인자로 넘어가는 함수에서는 `resolve()`, `reject()` 함수를 적절히 호출해서 사용한다. `resolve()` 함수의 인자로는 미래 시점에 얻게될 결과를 넘겨주고, `reject()` 함수의 인자로는 미래에 발생할 예외를 넘겨준다.
+- 이후 이를 호출할 때 `then()`, `catch()` 메서드를 사용하는데, 정상적인 인자를 넘긴 경우 `then()`이 호출되고, 비정상적인 인자를 넘긴 경우 `catch()`가 호출된다.
+
+(3) fetch API
+
+- 실제 Promise를 직접 생성해서 리턴하는 경우보다 보통 라이브러리나 API로부터 얻어지는 Promise 객체를 사용하는 경우가 많은데 REST API를 호출할 때 사용되는 브라우저 내장 함수인 `fetch()`가 대표격!
+- fetch() 함수는 API의 URL을 인자로 받아서 미래 시점에 얻게 될 API 호출 결과를 Promise 객체로 리턴해준다. API 호출이 성공했을 때는 response 객체를 resolve하고, 실패하면 error 객체를 reject한다.
+- 옵션(options) 객체에는 HTTP method, headers, body 등을 설정해 줄 수 있다.
+- fetch()함수는 기본값으로 GET 방식으로 작동한다.
+
+```jsx
+fetch(url, options)
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+```
+
+- 대부분 JSON 포맷의 데이터를 응답으로 받게 되는데 이때 `json()` 메서드를 사용하면 응답 객체로부터 JSON 포맷의 응답 전문을 JS 객체로 변환해서 얻을 수 있다!
+
+## 참고자료
+
+### AJAX, JSON
+
+- [http://www.tcpschool.com/ajax/ajax_intro_basic](http://www.tcpschool.com/ajax/ajax_intro_basic)
+- [https://poiemaweb.com/js-ajax](https://poiemaweb.com/js-ajax)
+- [https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/JSON](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/JSON)
+
+### Promise, fetch API
+
+- [https://www.daleseo.com/js-async-promise/](https://www.daleseo.com/js-async-promise/)
+- [https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
