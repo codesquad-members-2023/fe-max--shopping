@@ -22,6 +22,26 @@ export class SearchLayer {
       .catch((error) => console.error(error));
   }
 
+  loadAutoData() {
+    fetch(this.url)
+      .then((response) => response.json())
+      .then((response) => this.fillLayer(response.auto))
+      .catch((error) => console.error(error));
+  }
+
+  fillLayer(autoArray) {
+    const resultList = document.querySelector('.search-bar__result-container');
+    const autoTemplate = `${autoArray
+      .map(
+        (el, index) =>
+          `<li class="search-bar__result" data-index="${index}">
+        <a href="">${el}</a>
+      </li>`,
+      )
+      .join('')}`;
+    resultList.innerHTML = autoTemplate;
+  }
+
   template() {
     const { suggestions } = this.searchDB;
     return `<div class="search-bar__layer font-BodyMD text-black bg-white">
@@ -41,5 +61,14 @@ export class SearchLayer {
 
   render() {
     this.$target.insertAdjacentHTML('beforeend', this.template());
+  }
+
+  setEvent() {
+    const searchbarInput = document.querySelector('.search-bar__input');
+
+    searchbarInput.addEventListener('keyup', () => {
+      console.log(searchbarInput.value);
+      this.loadAutoData();
+    });
   }
 }
