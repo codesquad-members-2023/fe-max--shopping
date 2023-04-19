@@ -58,7 +58,7 @@ async function generateSearchLog() {
   let log = searchLog ? searchLog : [];
 
   function _addLogKeyword(keyword) {
-    log = [...log, keyword].slice(0, MAX_KEYWORD_COUNT - 1);
+    log = [...log, keyword].slice(0, MAX_KEYWORD_COUNT);
     localStorage.setItem("searchLog", JSON.stringify(log));
   }
 
@@ -67,7 +67,7 @@ async function generateSearchLog() {
   }
 
   function _delLogKeyword(index) {
-    log = log.slice(1);
+    log.splice(index, 1);
     localStorage.setItem("searchLog", JSON.stringify(log));
   }
 

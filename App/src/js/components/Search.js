@@ -89,7 +89,6 @@ async function addRandomSearchKeywords() {
   const MAX_KEYWORD_COUNT = 10;
   const { input, keywords, keywordList, ul, logLen } = this;
   const randomKeywords = await getRandomKeywords(MAX_KEYWORD_COUNT - logLen);
-  console.log(randomKeywords);
   randomKeywords.forEach((keyword, i) => {
     const keywordListLi = recipeToComponent(
       getAccountRecipe().keywordListItem(keyword)
@@ -124,7 +123,6 @@ async function keywordFocusinHandler() {
   ul.replaceChildren();
 
   const logKeywords = getLogKeywords();
-
   const logLen = logKeywords.length;
 
   addLogKeywords.bind(this)(logKeywords);
@@ -197,6 +195,9 @@ export class Search extends Component {
       e.preventDefault();
       const formData = new FormData(form);
       const keyword = formData.get("keyword");
+      if (keyword.trim() === "") {
+        return;
+      }
       const checkResult = await checkKeyword(keyword);
       addLogKeyword(keyword);
       if (!checkResult) {

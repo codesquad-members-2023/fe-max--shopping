@@ -18,9 +18,7 @@ function _generateUrlFunc(path, option) {
       },
       redirect: "manual",
     };
-    return fetch(url, option)
-      .then((res) => res.json())
-      .then((json) => json);
+    return fetch(url, option).then((res) => res.json());
   }
 
   return func;
@@ -64,7 +62,8 @@ export async function getAutoCompletedKeywords(str, limit) {
   return find.map((v) => v.keyword).sort(keywordSortFunc.bind(str));
 }
 
-export const getRandomKeywords = async () => {
+export const getRandomKeywords = async (limit) => {
+  const FIND_LIMIT = 10;
   const last = await _generateUrlFunc("/history", {
     method: "GET",
   })({
@@ -77,8 +76,9 @@ export const getRandomKeywords = async () => {
   if (!last.length) return [];
   const { id } = last[0];
   const set = new Set();
-
-  while (set.size < (id < 10 ? id : FIND_LIMIT)) {
+  const baseLine = Math.min(id, limit, FIND_LIMIT);
+ 
+  while (set.size < baseLine) {
     set.add(random(1, id + 1));
   }
 
