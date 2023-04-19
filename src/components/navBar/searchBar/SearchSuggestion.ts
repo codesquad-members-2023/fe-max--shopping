@@ -21,7 +21,7 @@ export class SearchSuggestion {
   }
 
   async getRecommendSearches() {
-    const url = `${BASE_URL}/recommen/`;
+    const url = `${BASE_URL}/recommend/`;
 
     return await fetchData(url);
   }
@@ -39,6 +39,8 @@ export class SearchSuggestion {
 
       if (result.status === "rejected") {
         console.error(result.reason);
+
+        return [];
       }
     });
 
