@@ -6,8 +6,8 @@ import { Component } from './components/base/Component.js';
 export class App extends Component {
   constructor() {
     super('app');
-    this.header = new Navbar();
     this.sidebar = new Sidebar();
+    this.header = new Navbar(this.sidebar);
     this.main = new Main();
     this.init();
   }

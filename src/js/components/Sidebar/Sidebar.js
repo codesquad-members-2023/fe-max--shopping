@@ -8,8 +8,30 @@ export default class Sidebar extends Component {
     this.menu = new Menu();
     this.closeButton = new Component('close-button', 'BUTTON');
     this.dimLayer = new DimLayer();
-    this.dimLayer.on();
     this.init();
+  }
+
+  initEventHandlers() {
+    this.node.addEventListener('click', ({ target }) => this.handleClick(target));
+  }
+
+  handleClick(target) {
+    const isCloseBtn = target.closest('.close-button');
+    if (isCloseBtn) {
+      this.close();
+    }
+  }
+
+  close() {
+    this.node.classList.remove('active');
+    this.menu.disappear();
+    this.dimLayer.off();
+  }
+
+  open() {
+    this.node.classList.add('active');
+    this.menu.appear();
+    this.dimLayer.on();
   }
 
   getTemplate() {

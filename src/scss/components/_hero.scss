@@ -1,4 +1,5 @@
 .hero {
+  z-index: 1;
   width: 100%;
   position: relative;
 
@@ -8,7 +9,7 @@
 
   .slide-image {
     width: 100vw;
-    height: 50vh;
+    height: 512px;
     object-position: 0 0;
     object-fit: cover;
   }

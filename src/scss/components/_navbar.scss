@@ -1,6 +1,7 @@
 @use '../base' as *;
 
 .navbar {
+  z-index: 2;
   width: 100vw;
   min-width: 1280px;
 

@@ -9,7 +9,7 @@ export class NavbarSub extends Component {
   getTemplate() {
     return `
 <div class="left">
-  <a class="menu all" href="#"><img src="/src/assets/symbols/menu.svg" alt="" /> 모두</a>
+  <a class="menu hamburger-menu" role="button" href="#"><img src="/src/assets/symbols/menu.svg" alt="" /> 모두</a>
   <a class="menu" href="#">오늘의 딜</a>
   <a class="menu" href="#">고객 서비스</a>
   <a class="menu" href="#">레지스트리</a>

@@ -20,6 +20,14 @@ export default class Menu extends Component {
     });
   }
 
+  appear() {
+    this.node.classList.add('active');
+  }
+
+  disappear() {
+    this.node.classList.remove('active');
+  }
+
   getTemplate() {
     return [this.login.node, this.firstCategory.node, this.secondCategory.node];
   }
