@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:sass": "sass -w src/styles:src/styles",
+    "start:server": "json-server --watch db.json --port 4000",
+    "start:client": "npx live-server",
+    "start": "npm-run-all -p start:*"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,10 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "json-server": "^0.17.3",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.62.0"
   }
 }
