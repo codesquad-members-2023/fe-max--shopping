@@ -19,52 +19,49 @@
     <header class="header">
       <nav class="nav-bar">
         <div class="nav-main">
-          <div class="nav-main__BI">
-            <a href="./index.html">
-              <img src="./src/asset/images/BI.svg" alt="" />
-            </a>
-          </div>
-          <div class="nav-main__location">
-            <div class="title-small">
+          <a class="nav-main__BI" href="./index.html">
+            <img src="./src/asset/images/BI.svg" alt="" />
+          </a>
+          <a class="nav-main__location" href="#">
+            <div>
               <img class="location-icon" src="./src/asset/icons/location.svg" alt="" />
-              <span>배송처</span>
+              <span class="title-small">배송처</span>
             </div>
             <div>
               <span class="title-large">대한민국</span>
             </div>
-            <dialog open class="location-modal hidden">
+            <dialog class="location-modal hidden">
               <p>KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</p>
               <div>
                 <button class="continue-btn">계속</button>
                 <button class="changeAddress-btn">주소변경</button>
               </div>
             </dialog>
-          </div>
+          </a>
           <form class="nav-main__search" action="">
             <input class="search-bar" placeholder="검색 Amazon" type="text" />
             <button class="search-btn" type="submit">
               <img src="src/asset/icons/search.svg" alt="" />
             </button>
-            <ul class="search-info hidden">
-            </ul>
+            <ul class="search-info hidden"></ul>
           </form>
-          <div class="nav-main__lang">
+          <a class="nav-main__lang" href="#">
             <span class="lang-flag">🇺🇸</span>
-            <span class="lang-text">KO</span>
-          </div>
-          <div class="nav-main__login">
+            <span class="title-large">KO</span>
+          </a>
+          <div class="nav-main__login" href="#">
             <div class="login-wrap">
               <span class="title-small">안녕하세요, 로그인</span>
               <span class="title-large">계정 및 목록</span>
             </div>
-            <dialog open class="login-modal__small hidden">
+            <dialog class="login-modal__small hidden">
               <button class="login-btn">로그인</button>
               <div>
                 <span>기존 사용자가 아니십니까?</span>
                 <a href="#">여기에서 시작합니다</a>
               </div>
             </dialog>
-            <dialog open class="login-modal__large hidden">
+            <dialog class="login-modal__large hidden">
               <div class="login-section">
                 <button class="login-btn">로그인</button>
                 <div>
@@ -96,14 +93,14 @@
               </div>
             </dialog>
           </div>
-          <div class="nav-main__order">
+          <a class="nav-main__order" href="#">
             <span class="title-small">반품</span>
             <span class="title-large">& 주문</span>
-          </div>
-          <div class="nav-main__cart">
+          </a>
+          <a class="nav-main__cart" href="#">
             <img src="./src/asset/icons/cart.svg" alt="" />
-            <span>장바구니</span>
-          </div>
+            <span class="title-large">장바구니</span>
+          </a>
         </div>
         <div class="nav-sub">
           <section class="nav-sub__category">
@@ -125,16 +122,33 @@
     </header>
     <main id="main" class="main">
       <div class="hero-section">
-          <ul class="hero-slider">
-            <li><img src="./src/asset/images/img1.jpg" alt=""></li>
-            <li><img src="./src/asset/images/img2.jpg" alt=""></li>
-            <li><img src="./src/asset/images/img3.jpg" alt=""></li>
-            <li><img src="./src/asset/images/img4.jpg" alt=""></li>
-            <li><img src="./src/asset/images/img5.jpg" alt=""></li>
-          </ul>
-          <button class="hero-btn prev"><img src="./src/asset/icons/prev-img.svg" alt=""></button>
-          <button class="hero-btn next"><img src="./src/asset/icons/next-img.svg" alt=""></button>
+        <ul class="hero-slider">
+          <li><img src="./src/asset/images/img1.jpg" alt="" /></li>
+          <li><img src="./src/asset/images/img2.jpg" alt="" /></li>
+          <li><img src="./src/asset/images/img3.jpg" alt="" /></li>
+          <li><img src="./src/asset/images/img4.jpg" alt="" /></li>
+          <li><img src="./src/asset/images/img5.jpg" alt="" /></li>
+        </ul>
+        <button class="hero-btn prev"><img src="./src/asset/icons/prev-img.svg" alt="" /></button>
+        <button class="hero-btn next"><img src="./src/asset/icons/next-img.svg" alt="" /></button>
       </div>
     </main>
+    <div class="side-background">
+      <div class="side-bar">
+        <div class="side-bar__login">
+          <a class="contents-category__login" href="">
+            <img src="src/asset/icons/symbols.svg" alt="" />
+            <span>안녕하세요, 로그인</span>
+          </a>
+        </div>
+        <div class="side-bar__contents">
+          <ul class="contents-category">
+          </ul>
+        </div>
+      </div>
+      <button class="side-close">
+        <img src="src/asset/icons/close.svg" alt="" />
+      </button>
+    </div>
   </body>
 </html>
