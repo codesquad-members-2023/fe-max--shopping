@@ -11,11 +11,10 @@ export class SideBar extends Base {
 
   async init() {
     this.setAttribute("id", "sideBar");
-    await this.getSideBarData();
+    this.sideBarData = await this.db.getSideBarData();
     this.addChild();
     this.addEvent();
   }
-
   addChild() {
     const template = `
         <div class="sideBar__header">
@@ -24,69 +23,76 @@ export class SideBar extends Base {
         </div>
         <div class="sideBar__main" data-elementname="sideBarMain">
           <div class="sideBar__inner__wrapper" data-elementname="innerWrapper" >
-            ${this.setSideBarWrapper()}
-
+            <div class="sidebar__content__wrapper">
+            ${this.setSideBarWrapper(this.sideBarData)}
+            </div>
           </div>
         </div>
     `;
     this.setTemplate(template);
   }
 
-  setSideBarWrapper() {
+  setSideBarWrapper(sideBarData) {
+    return sideBarData
+      .map((obj) => {
+        return this.setSideBarContents(obj);
+      })
+      .join();
+  }
+
+  setSideBarContents({ title, menu }) {
+    const maxLength = 4;
+    const result = menu.slice(0, maxLength);
     const template = `
-        <div class="sidebar__content__wrapper">
-          <div class="sideBar__contents">
-            <div class="sideBar__title">디지털 콘텐츠 및 기기</div>
-            ${this.setSideBarMenu(this.contentAndDevices)}
-          </div>
-          <div class="sideBar__contents">
-            <div class="sideBar__title">부서별 쇼핑</div>
-            ${this.setSideBarMenu(this.ShopByDepartment)}
-          </div>
-          
-          <div class="sideBar__contents">
-            <div class="sideBar__seeMore">
-              <span>모두 보기</span>
-              <img src="./src/assets/chevron-down.svg">
-            </div>
-            <div class="sideBar__moreMenus">
-              <div class="sideBar__contents" data-elementname="sideBarMoreMenu">
-                ${this.setSideBarMenu(this.ShopByDepartmentMore)}
-                <div class="sideBar__closeMore">
-                  <span>간단히 보기</span>
-                  <img src="./src/assets/chevron-up.svg">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>`;
+      <div class="sideBar__contents">
+        <div class="sideBar__title">${title}</div>
+        ${this.setSideBarMenu(result)}
+      </div>
+    `;
+
+    if (menu.length > maxLength) {
+      const detailResult = menu.slice(maxLength, menu.length);
+      const detailTemplate = this.setSideBarDetailMenu(detailResult);
+
+      return template + detailTemplate;
+    }
     return template;
   }
 
   setSideBarMenu(menuData) {
     return menuData
       .map((menu) => {
-        return `<div class="sideBar__menu" data-menutitle="${menu.text}">
-            <span>${menu.text}</span>
-            <img src="./src/assets/chevron-right.svg">
+        return `
+        <div class="sideBar__menu" data-menutitle="${menu}">
+          <span>${menu}</span>
+          <img src="./src/assets/chevron-right.svg">
         </div>`;
       })
       .join();
   }
 
-  setSideBarDetailMenu(details) {
-    return details
-      .map((menu) => {
-        return `<div class="sideBar__detail__menu">
-        ${menu.text}
-      </div>`;
-      })
-      .join();
+  setSideBarDetailMenu(detailMenuData) {
+    return `
+    <div class="sideBar__contents">
+      <div class="sideBar__seeMore">
+        <span>모두 보기</span>
+        <img src="./src/assets/chevron-down.svg">
+      </div>
+      <div class="sideBar__moreMenus">
+        <div class="sideBar__contents" data-elementname="sideBarMoreMenu">
+          ${this.setSideBarMenu(detailMenuData)}
+          <div class="sideBar__closeMore">
+            <span>간단히 보기</span>
+            <img src="./src/assets/chevron-up.svg">
+          </div>
+        </div>
+      </div>
+    </div>`;
   }
 
   async setSideBarDetailsWrapper(title) {
-    if (this.detailsWrapper) {
-      this.detailsWrapper.node.remove();
+    if (this.innerWrapper.detailsWrapper) {
+      this.innerWrapper.detailsWrapper.node.remove();
     }
 
     const details = await this.db.getSetSideBarDetails(title);
@@ -97,15 +103,9 @@ export class SideBar extends Base {
         <span>주메뉴로</span>
       </div>
       <div class="details__title">${title}</div>
-      ${this.setSideBarDetailMenu(details)}
+      ${this.setSideBarMenu(details)}
     </div>`;
     this.innerWrapper.setTemplate(template);
-  }
-
-  async getSideBarData() {
-    this.contentAndDevices = await this.db.getContentAndDevices();
-    this.ShopByDepartment = await this.db.getShopByDepartment();
-    this.ShopByDepartmentMore = await this.db.getShopByDepartmentMore();
   }
 
   show() {
@@ -137,7 +137,7 @@ export class SideBar extends Base {
     const isCloseBtn = target.classList.contains("sideBar__close");
     const isSeeMore = target.closest(".sideBar__seeMore");
     const isCloseMore = target.closest(".sideBar__closeMore");
-    const isSideBarMenu = target.closest(".sideBar__moreMenus");
+    const isSideBarMenu = target.closest(".sideBar__menu");
     const isGoBackContents = target.closest(".goBack__contents");
 
     if (isCloseBtn) {

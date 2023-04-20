@@ -50,25 +50,15 @@ export class DB {
     return res[0].src;
   }
 
-  async getContentAndDevices() {
-    const query = "/contentAndDevices";
-    return await this.getRequest(query);
-  }
-
-  async getShopByDepartment() {
-    const query = "/shopByDepartment";
-    return await this.getRequest(query);
-  }
-
-  async getShopByDepartmentMore() {
-    const query = "/shopByDepartmentMore";
-    return await this.getRequest(query);
-  }
-
   async getSetSideBarDetails(title) {
-    const query = `/shopByDepartmentMore?text=${title}`;
+    const query = `/sideBarDetails?text=${title}`;
     const res = await this.getRequest(query);
     return res[0].details;
+  }
+
+  async getSideBarData() {
+    const query = `/sideBarData`;
+    return this.getRequest(query);
   }
 
   removeSearchHistory(id) {
