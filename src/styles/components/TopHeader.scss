@@ -79,11 +79,15 @@ header {
   align-items: center;
   background-color: $color-grey-900;
 
-  a {
+  a,
+  button {
+    height: 100%;
+    padding: 8px;
+    gap: 6px;
     display: flex;
     align-items: center;
-    gap: 4px;
     color: inherit;
+    background: transparent;
   }
 
   ul {
@@ -93,9 +97,16 @@ header {
 
     li {
       height: 100%;
-      padding: 8px;
       display: flex;
       align-items: center;
+
+      a {
+        @include f-body-md;
+      }
+
+      button {
+        @include f-bold-md;
+      }
     }
   }
 }
