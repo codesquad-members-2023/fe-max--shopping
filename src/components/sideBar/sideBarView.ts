@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../constants/BASE_URL";
 import { $ } from "../../utils/domUtils";
 import { fetchData } from "../../utils/fetchData";
+import { handleViewAllButtonClick } from "./sideBarController";
 
 interface sideBarMenu {
   title: string;
@@ -11,7 +12,7 @@ export const renderSideBar = () => {
   const $content = $(".side-bar__content");
   const url = new URL("/side_bar_menu", BASE_URL);
 
-  fetchData(url.href).then((data) => {
+  return fetchData(url.href).then((data) => {
     const [digitalContent, shopByDepartment] = data;
     const digitalComponent = menuComponent(digitalContent);
     const shopByDepartmentComponent = menuComponent(shopByDepartment);
@@ -74,4 +75,10 @@ const hiddenMenuList = ({ title, text }: sideBarMenu, MAX_LENGTH: number) => {
   </li>
 </ul>
   `;
+};
+
+export const addSideBarEvent = () => {
+  const $viewAllButton = $(".side-bar__view-all-button");
+
+  $viewAllButton.addEventListener("click", handleViewAllButtonClick);
 };

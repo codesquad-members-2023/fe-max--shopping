@@ -1,5 +1,6 @@
-import { renderSideBar } from "./sideBarView";
+import { addSideBarEvent, renderSideBar } from "./sideBarView";
 
 export const initSideBar = () => {
-  renderSideBar();
+  renderSideBar() //
+    .then(addSideBarEvent);
 };
