@@ -73,11 +73,7 @@ export class SearchSuggestion {
     const url = `${BASE_URL}/recen/${id}`;
     const options = { method: "DELETE" };
 
-    try {
-      await fetchData(url, options);
-    } catch (error) {
-      throw error;
-    }
+    await fetchData(url, options);
   }
 
   handleSuggestionKeyDown(event: KeyboardEvent, $searchSuggestion: Element) {
@@ -131,17 +127,13 @@ export class SearchSuggestion {
       return;
     }
 
-    try {
-      await this.requestDeleteRecentSearch(event.target);
-      await this.fetchSearches();
+    await this.requestDeleteRecentSearch(event.target);
+    await this.fetchSearches();
 
-      this.renderView(
-        this.view.recentSearchView(this.model.getRecentSearches()) +
-          this.view.recommendSearchView(this.model.getRecommendSearches())
-      );
-    } catch (error) {
-      console.error(error);
-    }
+    this.renderView(
+      this.view.recentSearchView(this.model.getRecentSearches()) +
+        this.view.recommendSearchView(this.model.getRecommendSearches())
+    );
   }
 
   async handleSearchBarSubmit(event: Event, $searchInput: HTMLInputElement) {
@@ -156,18 +148,14 @@ export class SearchSuggestion {
       body: JSON.stringify({ text: $searchInput.value }),
     };
 
-    try {
-      await fetchData(url, options);
-      await this.fetchSearches();
-      this.renderView(
-        this.view.recentSearchView(this.model.getRecentSearches()) +
-          this.view.recommendSearchView(this.model.getRecommendSearches())
-      );
+    await fetchData(url, options);
+    await this.fetchSearches();
+    this.renderView(
+      this.view.recentSearchView(this.model.getRecentSearches()) +
+        this.view.recommendSearchView(this.model.getRecommendSearches())
+    );
 
-      $searchInput.value = "";
-    } catch (error) {
-      console.error(error);
-    }
+    $searchInput.value = "";
   }
 
   async handleSearchInputChange($searchInput: HTMLInputElement) {
@@ -181,13 +169,9 @@ export class SearchSuggestion {
     const SEARCHES_LIMIT = 10;
     const url = `${BASE_URL}/keyword?q=${searchInput}&_limit=${SEARCHES_LIMIT}`;
 
-    try {
-      const suggestions = await fetchData(url);
+    const suggestions = await fetchData(url);
 
-      this.model.setSearchSuggestions(suggestions);
-      this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
-    } catch (error) {
-      console.error(error);
-    }
+    this.model.setSearchSuggestions(suggestions);
+    this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
   }
 }
