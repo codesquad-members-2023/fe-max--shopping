@@ -153,6 +153,14 @@
       "text": "abcd"
     }
   ],
+  "carouselImg": [
+    { "id": 0, "src": "./src/assets/carouselImg/carousel_1.jpg" },
+    { "id": 1, "src": "./src/assets/carouselImg/carousel_2.jpg" },
+    { "id": 2, "src": "./src/assets/carouselImg/carousel_3.jpg" },
+    { "id": 3, "src": "./src/assets/carouselImg/carousel_4.jpg" },
+    { "id": 4, "src": "./src/assets/carouselImg/carousel_5.jpg" },
+    { "id": 5, "src": "./src/assets/carouselImg/carousel_6.jpg" }
+  ],
   "contentAndDevices": [
     { "id": 0, "text": "Amazon Musics" },
     { "id": 1, "text": "Kindle E-Reader 및 도서" },

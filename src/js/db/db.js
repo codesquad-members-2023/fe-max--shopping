@@ -24,6 +24,32 @@ export class DB {
     return await this.getRequest(query);
   }
 
+  async getCarouselImgLastIndex() {
+    const query = "/carouselImg?_sort=id&_order=desc&_limit=1";
+    const res = await this.getRequest(query);
+    return res[0].id;
+  }
+
+  async getInitCarousselImgSrc() {
+    const query = "/carouselImg?_limit=2";
+    const res = await this.getRequest(query);
+    const initImg = res.map((obj) => obj.src);
+    const lastImg = await this.getCarouselLastImgSrc();
+    return [lastImg, ...initImg];
+  }
+
+  async getCarouselLastImgSrc() {
+    const lastIndex = await this.getCarouselImgLastIndex();
+    const res = await this.getCarouselImgSrc(lastIndex);
+    return res;
+  }
+
+  async getCarouselImgSrc(index) {
+    const query = `/carouselImg?id=${index}`;
+    const res = await this.getRequest(query);
+    return res[0].src;
+  }
+
   async getContentAndDevices() {
     const query = "/contentAndDevices";
     return await this.getRequest(query);
