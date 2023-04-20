@@ -18,4 +18,14 @@ export class Db {
     const query = "/shopByDepartment";
     return this.getResponse(query);
   }
+
+  getMoreDepartment() {
+    const query = "/moreDepartment";
+    return this.getResponse(query);
+  }
+
+  getCarSupplies() {
+    const query = "/carSupplies";
+    return this.getResponse(query);
+  }
 }

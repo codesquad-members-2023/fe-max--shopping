@@ -1,10 +1,9 @@
-import { BASE_URL } from "../constant.js";
-import { setZindex } from "../util/set-style.js";
 import { Db } from "../db/db.js";
 
-class Sidebar {
+export class Sidebar {
   constructor() {
     this.sidebar = this.setSidebar();
+    this.db = new Db();
   }
 
   setSidebar() {
@@ -25,73 +24,4 @@ class Sidebar {
   resetSidebar() {
     this.sidebar.innerHTML = "";
   }
-}
-
-class EarlySidebar extends Sidebar {
-  constructor() {
-    super();
-    this.db = new Db();
-  }
-
-  setContentAndDevice() {
-    this.db.getContentAndDevice().then((data) => {
-      const template = `
-        <h2 class="sidebar-title">${data.title}</h2>
-        <ul class="sidebar-list">
-          ${data.items
-            .map(
-              (item) =>
-                `<li>${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
-            )
-            .join("")}
-        </ul>
-      `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
-    });
-  }
-
-  setShopByDepartment() {
-    this.db.getShopByDepartment().then((data) => {
-      const template = `
-        <h2 class="sidebar-title">${data.title}</h2>
-        <ul class="sidebar-list">
-          ${data.items
-            .map(
-              (item) =>
-                `<li>${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
-            )
-            .join("")}
-        </ul>
-        <div class="sidebar-unfold">
-          모두 보기
-          <img src="src/assets/svg/chevron-down.svg" alt="unfold" />
-        </div>
-      `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
-    });
-  }
-
-  initSidebar() {
-    this.resetSidebar();
-    this.setBaseArea();
-    this.setContentAndDevice();
-    this.setShopByDepartment();
-  }
-}
-
-export function test() {
-  const sidebarEle = document.querySelector(".menu-sidebar");
-  const menuContainer = document.querySelector(".menu-container");
-
-  menuContainer.addEventListener("click", () => {
-    const earlySidebar = new EarlySidebar(sidebarEle);
-    earlySidebar.initSidebar();
-    setZindex(sidebarEle, 3);
-  });
-
-  menuContainer.addEventListener("click", (e) => {
-    if (e.target && e.target.className == "sidebar-close") {
-      setZindex(sidebarEle, -1);
-    }
-  });
 }

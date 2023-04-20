@@ -685,7 +685,9 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   justify-content: space-between;
   padding: 14px 16px 14px 32px;
 }
-.menu-sidebar .sidebar-unfold {
+.menu-sidebar .sidebar-fold,
+.menu-sidebar .sidebar-unfold,
+.menu-sidebar .sidebar-back-to-menu {
   font: 500 13px/1.6 Pretendard;
   letter-spacing: -0.03em;
   display: flex;

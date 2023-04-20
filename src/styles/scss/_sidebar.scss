@@ -40,7 +40,9 @@
       padding: 14px 16px 14px 32px;
     }
   }
-  .sidebar-unfold {
+  .sidebar-fold,
+  .sidebar-unfold,
+  .sidebar-back-to-menu {
     @include bodyMd;
     display: flex;
     gap: 14px;

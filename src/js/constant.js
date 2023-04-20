@@ -1,4 +1,4 @@
-const QUERY = {
+export const QUERY = {
   LOGIN_AREA: document.querySelector(".login"),
   LOGIN_MODAL: document.getElementById("login-modal"),
   LOGIN_MODAL_CONTAINER: document.querySelector(".login-modal-container"),
@@ -24,32 +24,33 @@ const QUERY = {
   AUTO_KEYWORD_LIST: document.querySelector(".auto-keywords"),
 };
 
-const Z_INDEX = {
+export const Z_INDEX = {
+  MAX_Z: 3,
   HIGHEST_Z: 2,
   MIDDLE_Z: 1,
   LOWEST_Z: -1,
 };
 
-const OPACITY = {
+export const OPACITY = {
   ZERO: 0,
   HALF: 0.5,
   FULL: 1,
 };
 
-const DISPLAY = {
+export const DISPLAY = {
   BLOCK: "block",
   NONE: "NONE",
   FLEX: "FLEX",
 };
 
-const CAROUSEL = {
+export const CAROUSEL = {
   SLIDE_COUNTER: 1,
   SIZE: 1280,
   SLIDE_TRANSITION: "transform 0.3s ease-in-out",
   NO_EFFECT: "none",
 };
 
-const TIME = {
+export const TIME = {
   NONE_TO_BLOCK: 10,
   DIM_DELAY: 300,
   LOGIN_EXPAND_DELAY: 500,
@@ -57,11 +58,9 @@ const TIME = {
   AUTO_SLIDE_DELAY: 10 * 1000,
 };
 
-const KEYWORD_LAYER = {
+export const KEYWORD_LAYER = {
   CLOSE_BTN_SRC: "./src/assets/svg/close/svg",
   ARROW_TOP_RIGHT_SRC: "./src/assets/svg/arrow-top-right.svg",
 };
 
 export const BASE_URL = "http://localhost:3000";
-
-export { QUERY, Z_INDEX, OPACITY, DISPLAY, CAROUSEL, TIME, KEYWORD_LAYER };
