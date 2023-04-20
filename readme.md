@@ -73,10 +73,10 @@
 - Promise 패턴 학습하기
 - fetch API 학습하기
 
-- [ ]  json-server 연동
-- [ ]  검색창
-    - [ ]  검색창 자동완성 데이터를 json-server와 연동해서 가져오는 방식으로 개발한다.
-    - [ ]  get방식으로 query를 보내고 응답 데이터를 받아온다.
+- [x]  json-server 연동
+- [x]  검색창
+    - [x]  검색창 자동완성 데이터를 json-server와 연동해서 가져오는 방식으로 개발한다.
+    - [x]  get방식으로 query를 보내고 응답 데이터를 받아온다.
 - [ ]  슬라이더
     - [ ]  기존 슬라이드 이미지를 json-server에 연동해서 가져오는 방식으로 구현
 - [ ]  사이드바
@@ -194,6 +194,9 @@ fetch(url, options)
 
 - 대부분 JSON 포맷의 데이터를 응답으로 받게 되는데 이때 `json()` 메서드를 사용하면 응답 객체로부터 JSON 포맷의 응답 전문을 JS 객체로 변환해서 얻을 수 있다!
 
+## 😵‍💫 삽질 기록
+
+- addEventListener에서 이벤트 핸들러 내부의 this는 이벤트를 바인딩한 DOM 요소를 가리킨다.
 ## 참고자료
 
 ### AJAX, JSON
@@ -206,3 +209,8 @@ fetch(url, options)
 
 - [https://www.daleseo.com/js-async-promise/](https://www.daleseo.com/js-async-promise/)
 - [https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
+
+### 자동완성
+
+- [https://velog.io/@1703979/JS-30-06](https://velog.io/@1703979/JS-30-06)
+- [https://www.freecodecamp.org/korean/news/debounce-dibaunseu-javascripteseo-hamsureul-jiyeonsikineun-bangbeob-js-es6-yeje/](https://www.freecodecamp.org/korean/news/debounce-dibaunseu-javascripteseo-hamsureul-jiyeonsikineun-bangbeob-js-es6-yeje/)
