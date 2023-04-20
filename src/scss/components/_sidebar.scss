@@ -15,7 +15,7 @@
     visibility: visible;
   }
 
-  .menu {
+  &-main {
     z-index: 4;
     width: 320px;
     height: 100%;
@@ -29,7 +29,7 @@
     }
   }
 
-  .login {
+  &-login {
     @include typography('bold-lg');
     color: $color-white;
     display: flex;
@@ -38,6 +38,15 @@
     gap: 8px;
     height: 53px;
     background: $color-black;
+  }
+
+  .category-container {
+    display: flex;
+
+    .main {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .close-button {

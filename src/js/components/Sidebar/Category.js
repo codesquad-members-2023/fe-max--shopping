@@ -1,11 +1,12 @@
 import { Component } from '../base/Component.js';
 
 export default class Category extends Component {
-  constructor() {
+  constructor(info) {
     super('category');
     this.categoryTitle = new Component('category-title', 'SPAN');
     this.categoryList = new CategoryList();
     this.compressedCategoryList = new CompressedCategoryList();
+    this.init(info);
   }
 
   getTemplate(info) {
@@ -33,15 +34,15 @@ class CategoryList extends Component {
   }
 
   getTemplate(menus) {
-    const allList = menus.reduce((acc, cur) => {
+    const allMenuTemplates = menus.reduce((acc, cur) => {
       const { id, name } = cur;
-      return acc + this.getListTemplate(id, name);
+      return acc + this.getMenuTemplate(id, name);
     }, '');
 
-    return allList;
+    return allMenuTemplates;
   }
 
-  getListTemplate(id, name) {
+  getMenuTemplate(id, name) {
     return `
 <li data-menu-id="${id}" class="category-menu">
   <a class="category-name" href="#">${name}</a><button class="detail-btn"></button>

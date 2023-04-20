@@ -3,12 +3,20 @@ const RECOMMEND_API_PATH = 'recommend';
 const AUTO_COMPLETE_API_PATH = 'autoComplete';
 const HERO_IMAGE_API_PATH = 'hero';
 const CATEGORY_API_PATH = 'category';
+const SUB_CATEGORY_API_PATH = 'subCategory';
 const PROP = {
   word: 'word',
   src: 'src',
 };
 
 export const client = {
+  fetchSubCategory() {
+    const subCategoryURL = `${BASE_API_DOMAIN}/${SUB_CATEGORY_API_PATH}`;
+    const subCategories = this.fetchByPromise(subCategoryURL);
+
+    return subCategories;
+  },
+
   fetchCategories() {
     const categoryURL = `${BASE_API_DOMAIN}/${CATEGORY_API_PATH}`;
     const categories = this.fetchByPromise(categoryURL);

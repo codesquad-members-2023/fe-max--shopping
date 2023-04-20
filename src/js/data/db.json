@@ -184,5 +184,81 @@
         { "id": 25, "name": "비디오 게임" }
       ]
     }
+  ],
+  "subCategory": [
+    {
+      "id": 1,
+      "details": [
+        {
+          "title": "Prime Video",
+          "menus": [
+            { "id": 1, "name": "Prime Video" },
+            { "id": 2, "name": "Included with Prime" },
+            { "id": 3, "name": "Prime Video Channels" },
+            { "id": 4, "name": "Rent or Buy" },
+            { "id": 5, "name": "Your Watchlist" },
+            { "id": 6, "name": "Purchases & Rentals" },
+            { "id": 7, "name": "Watch Anywhere" },
+            { "id": 8, "name": "Getting Started" }
+          ]
+        },
+        {
+          "title": "More To Explore",
+          "menus": [
+            { "id": 1, "name": "Amazon Originals" },
+            { "id": 2, "name": "Kids" },
+            { "id": 3, "name": "Coming soon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "details": [
+        {
+          "title": "Stream Music",
+          "menus": [
+            { "id": 1, "name": "Amazon Music Unlimited" },
+            { "id": 2, "name": "Amazon Music Prime" },
+            { "id": 3, "name": "Free Streaming Music" },
+            { "id": 4, "name": "Podcasts" },
+            { "id": 5, "name": "Open Web Player" }
+          ]
+        },
+        {
+          "title": "Buy Music",
+          "menus": [
+            { "id": 1, "name": "CDs & Vinyl" },
+            { "id": 2, "name": "Download Store" },
+            { "id": 3, "name": "Artist Merch Shop" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "details": [
+        {
+          "title": "자동차 용품",
+          "menus": [
+            { "id": 1, "name": "자동차 관리" },
+            { "id": 2, "name": "자동차 전자기기 및 악세서리" },
+            { "id": 3, "name": "실외용품 악세서리" },
+            { "id": 4, "name": "인테리어 악세서리" },
+            { "id": 5, "name": "램프 및 조명 악세서리" },
+            { "id": 6, "name": "오토바이 및 파워스포츠 차량 용품" },
+            { "id": 7, "name": "오일 및 유체" },
+            { "id": 8, "name": "페인트 및 도장용품" },
+            { "id": 9, "name": "퍼포먼스 부품 및 액세서리" },
+            { "id": 10, "name": "교체용 부품" },
+            { "id": 11, "name": "RV 부품 및 액세서리" },
+            { "id": 12, "name": "타이어 및 휠" },
+            { "id": 13, "name": "공구 및 장비" },
+            { "id": 14, "name": "자동차 매니아용 상품" },
+            { "id": 15, "name": "대형차 및 상용차 장비" }
+          ]
+        }
+      ]
+    }
   ]
 }
