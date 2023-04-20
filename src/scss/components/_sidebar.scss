@@ -3,7 +3,8 @@
 @import '../base/animations';
 .side {
   overflow: hidden;
-
+  overflow-y: auto;
+  
   background: $color-white;
   width: $sideBarWidth;
   height: 100%;
@@ -26,9 +27,6 @@
     }
 
     &-main {
-      width: $sideBarWidth;
-    }
-    &-sub {
       width: $sideBarWidth;
     }
   }
@@ -56,7 +54,6 @@
     &-item {
       @include flex-row;
       justify-content: space-between;
-
       padding-left: 32px;
       padding-right: 16px;
       padding-top: 8px;
@@ -93,22 +90,15 @@
   &__list-main {
     overflow: hidden;
     max-height: 3000px;
-    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out;
+    transition: max-height 0.7s ease-in-out, opacity 0.3s ease-in-out;
     &.compressed {
       max-height: 0;
       opacity: 0;
-      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      transition: max-height 0.5s ease-in-out, opacity 0.7s ease-in-out;
     }
   }
   &__list-sub {
-    // width: $sideBarWidth;
-    // position: fixed;
-    // top: 0;
-    // transform: translateX(+ $sideBarWidth);
-    // transition: transform 0.3s ease-out;
-
-    // &.translateX {
-    //   transform: translateX(0);
-    // }
+    width: $sideBarWidth;
+    
   }
 }

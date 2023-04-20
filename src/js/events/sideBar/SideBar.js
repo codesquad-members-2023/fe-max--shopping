@@ -1,40 +1,88 @@
-import { PATH } from '../../constants/path.js';
-import { JSONClient } from '../api/api.js';
+import { PATH, URL } from '../../constants/path.js';
+// import { JSONClient } from '../api/api.js';
 import { TemplateGenerator } from '../search/SearchBar.js';
 
 const sideArea = document.querySelector('.side');
+const sideBox = document.querySelector('.side__box');
 const hamburgerBtn = document.querySelector('.hamburger-btn');
 const closeBtn = document.querySelector('.side__close-btn');
 const sideViewAll = document.querySelector('.side__view-all');
-const sideViewSimple = document.querySelector('.side__view-simple');
+const sideListDigital = document.querySelector('.side__list-digital');
+const sideListShoopping = document.querySelector('.side__list-shopping');
 const sideListMain = document.querySelector('.side__list-main');
-
-// const defaultData = this.jsonFetcher.fetchJson(PATH.defaultData);
+const sideListSub = document.querySelector('.side__list-sub');
 
 export class JSONFetcher {
-  async fetchJson(key) {
-    const jSONClient = new JSONClient(key);
-    const data = await jSONClient.getMenuData();
-    console.log(data);
-    return data;
+  constructor(url) {
+    this.url = url;
+  }
+  getData() {
+    return fetch(`${this.url}/${PATH.side}`).then(response => {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.json();
+    });
+  }
+}
+export class DataConverter {
+  constructor(url) {
+    this.jsonFetcher = new JSONFetcher(url);
+  }
+  getObject(type) {
+    return this.jsonFetcher.getData().then(result => {
+      return result[type];
+    });
+  }
+  getData() {
+    return this.jsonFetcher.getData().then(result => {
+      return result;
+    });
   }
 }
 export class SideBar {
   constructor() {
-    this.jsonFetcher = new JSONFetcher();
     this.templateGenerator = new TemplateGenerator();
     this.sideBarMenuHandler = new SideBarMenuHandler();
     this.menuRenderer = new MenuRenderer();
+    this.dataConverter = new DataConverter(URL.jsonBase);
   }
-  async initSideBar() {
-    //await로 데이터 가져오기
+  initSideBar() {
     this.sideBarMenuHandler.toggleSidebar();
-    this.sideBarMenuHandler.toggleMenu();
+
+    this.dataConverter.getObject(PATH.digital).then(result => {
+      const template = this.templateGenerator.generateDigitalMenu(result);
+      this.menuRenderer.renderDigitalMenu(template);
+      this.sideBarMenuHandler.openSubMenu('.side__list-digital', result);
+      this.sideBarMenuHandler.closeSubMenu();
+    });
+
+    this.dataConverter.getObject(PATH.shopping).then(result => {
+      const template = this.templateGenerator.generateShoppingMenu(result);
+      this.menuRenderer.renderShoppingMenu(template);
+      this.sideBarMenuHandler.openSubMenu('.side__list-shopping', result);
+      this.sideBarMenuHandler.closeSubMenu();
+    });
+
+    this.dataConverter.getObject(PATH.collapsible).then(result => {
+      const template = this.templateGenerator.generateCollapsibleMenu(result);
+      this.menuRenderer.renderCollapsibleMenu(template);
+      this.sideBarMenuHandler.toggleMenu();
+      this.sideBarMenuHandler.openSubMenu('.side__list-main', result);
+      this.sideBarMenuHandler.closeSubMenu();
+    });
+  }
+
+  getObject(type) {
+    return this.jsonFetcher.getData().then(result => {
+      return result[type];
+    });
   }
 }
 
 export class SideBarMenuHandler {
-  constructor() {}
+  constructor() {
+    this.templateGenerator = new TemplateGenerator();
+    this.menuRenderer = new MenuRenderer();
+  }
   toggleSidebar() {
     hamburgerBtn.addEventListener('click', () => {
       sideArea.classList.add('active');
@@ -47,10 +95,50 @@ export class SideBarMenuHandler {
     sideViewAll.addEventListener('click', () => {
       sideListMain.classList.remove('compressed');
     });
+    const sideViewSimple = document.querySelector('.side__view-simple');
     sideViewSimple.addEventListener('click', () => {
       sideListMain.classList.add('compressed');
     });
   }
+  openSubMenu(node, menuObj) {
+    document.querySelector(node).addEventListener('click', e => {
+      if (e.target.dataset.id) {
+        return;
+      } else {
+        const keyText = e.target.innerText;
+        const subTemplate = this.templateGenerator.generateSubMenu(
+          menuObj,
+          keyText
+        );
+        this.menuRenderer.renderSubMenu(subTemplate);
+        sideBox.classList.add('translateX');
+      }
+    });
+  }
+  closeSubMenu() {
+    sideListSub.addEventListener('click', e => {
+      if (!e.target.dataset.id) {
+        return;
+      } else {
+        console.log(e.target.dataset.id);
+        sideBox.classList.remove('translateX');
+      }
+    });
+  }
 }
 
-export class MenuRenderer {}
+export class MenuRenderer {
+  constructor() {}
+  renderShoppingMenu(template) {
+    sideListShoopping.innerHTML = template;
+  }
+  renderCollapsibleMenu(template) {
+    sideListMain.innerHTML = template;
+  }
+  renderDigitalMenu(template) {
+    sideListDigital.innerHTML = template;
+  }
+  renderSubMenu(template) {
+    sideListSub.innerHTML = template;
+  }
+}
