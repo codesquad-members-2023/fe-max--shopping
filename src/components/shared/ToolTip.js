@@ -25,7 +25,7 @@ export class ToolTip extends Component {
   showSelf() {
     this.shadowRoot.host.classList.add("is-active");
     if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
-      this.backDrop.activate({ top: 88, left: 0 });
+      this.backDrop.activate({ possessor: this, top: 88, left: 0 });
     }
   }
 

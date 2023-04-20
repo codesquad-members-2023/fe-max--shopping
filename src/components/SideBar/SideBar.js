@@ -78,8 +78,7 @@ class SideBar extends Component {
 
   showSelf() {
     this.classList.add("is-active");
-    this.backDrop.activate({ top: 0, left: 0 });
-    this.backDrop.setPossessor(this);
+    this.backDrop.activate({ possessor: this, top: 0, left: 0 });
   }
 
   hideSelf() {

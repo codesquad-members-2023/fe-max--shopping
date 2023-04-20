@@ -12,23 +12,22 @@ class BackDrop extends Component {
 
   connectedCallback() {
     this.addEventListener("click", () => {
-      this.deactivate();
       this.possessor.hideSelf();
-      this.setPossessor(null);
+      this.deactivate();
     });
   }
 
-  activate({ top, left }) {
+  activate({ possessor, top, left }) {
     this.shadowRoot.host.classList.add("is-active");
+    this.possessor = possessor;
     this.setPositionAndHeight({ top, left });
+    this.updateZIndex();
   }
 
   deactivate() {
     this.shadowRoot.host.classList.remove("is-active");
-  }
-
-  setPossessor(possessor) {
-    this.possessor = possessor;
+    this.possessor = null;
+    this.resetZIndex();
   }
 
   setPositionAndHeight({ top, left }) {
@@ -37,6 +36,18 @@ class BackDrop extends Component {
     this.style.top = `${top}px`;
     this.style.left = `${left}px`;
     this.style.height = `${docHeight - top}px`;
+  }
+
+  updateZIndex() {
+    this.style.zIndex = this.getPossessorZIndex() - 1;
+  }
+
+  resetZIndex() {
+    this.style.zIndex = 2;
+  }
+
+  getPossessorZIndex() {
+    return getComputedStyle(this.possessor).zIndex;
   }
 }
 
