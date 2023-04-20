@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazon</title>
 
-    <link rel="stylesheet" href="/src/style/css/style.css" />
+    <link rel="stylesheet" href="/src/style/css/main.css" />
     <script src="/src/js/index.js" type="module"></script>
   </head>
   <body>
@@ -100,58 +100,135 @@
       </header>
       <nav class="nav-bar__sub">
         <ul class="left-menu">
-          <li>
-            <button>
+          <li class="sidebar__toggle">
+            <a src="#">
               <img src="/src/asset/img/menu.svg" alt="사이드바 메뉴" />
               <p class="action-item">모두</p>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a src="#">
               <p>오늘의 딜</p>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a src="#">
               <p>고객 서비스</p>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a src="#">
               <p>레지스트리</p>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a src="#">
               <p>기프트 카드</p>
-            </button>
+            </a>
           </li>
           <li>
-            <button>
+            <a src="#">
               <p>판매</p>
-            </button>
+            </a>
           </li>
         </ul>
         <ul class="right-menu">
-          <button>
-            <p class="action-item">지금 특가 상품 쇼핑하기</p>
-          </button>
+          <li>
+            <a src="#">
+              <p class="action-item">지금 특가 상품 쇼핑하기</p>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
     <main>
       <div class="hero">
-        <ul class="hero__slide">
-        </ul>
+        <ul class="hero__slide"></ul>
         <button class="hero__btn--prev">
-          <img src="/src/asset/img/LeftButton.svg" alt="이전 이미지로 넘기기" />
+          <img src="/src/asset/img/thin-chevron-left.svg" alt="이전 이미지로 넘기기" />
         </button>
         <button class="hero__btn--next">
-          <img src="/src/asset/img/RightButton.svg" alt="다음 이미지로 넘기기" />
+          <img src="/src/asset/img/thin-chevron-right.svg" alt="다음 이미지로 넘기기" />
         </button>
       </div>
     </main>
-    <aside></aside>
+    <aside>
+      <section class="sidebar__container">
+        <header class="sidebar__user-profile">
+          <img src="src/asset/img/user-reverse.svg" alt="사용자 프로필" />
+          <p>안녕하세요, 로그인</p>
+          <button class="sidebar__button--close">
+            <img src="src/asset/img/close.svg" alt="사이드바 닫기" />
+          </button>
+        </header>
+        <section class="sidebar__content">
+          <ul class="sidebar__menu">
+            <li>
+              <div class="menu__title">
+                <p>디지털 콘텐츠 및 기기</p>
+              </div>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>Amazon Music</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>Kindle E-Reader 및 도서</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>안드로이드 앱스토어</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li class="menu__divider"></li>
+  
+            <li>
+              <div class="menu__item menu__title">
+                <p>부서별 쇼핑</p>
+              </div>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>전자</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>컴퓨터</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>Alexa 스마트 홈</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__item">
+                <span>예술 및 공예</span>
+                <div class="menu__icon--detail"></div>
+              </a>
+            </li>
+            <li>
+              <a class="menu__toggle">
+                <span>모두 보기</span>
+                <div class="menu__icon--expand"></div>
+              </a>
+            </li>
+            <li class="menu__divider"></li>
+          </ul>
+        </section>
+      </section>
+      <div class="sidebar__backdrop"></div>
+    </aside>
     <footer></footer>
     <div class="dimmed-layer layer hidden"></div>
   </body>

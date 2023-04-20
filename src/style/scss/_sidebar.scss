@@ -1,0 +1,87 @@
+@use 'mixins';
+@use 'variables';
+
+aside {
+  position: fixed;
+}
+
+.sidebar {
+  &__container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: variables.$z-index-modal;
+    background-color: variables.$color-white;
+  }
+
+  &__user-profile {
+    @include mixins.menu-box;
+    justify-content: flex-start;
+    position: relative;
+    font: variables.$font-bold-lg;
+    color: variables.$color-white;
+    background-color: variables.$color-black;
+  }
+
+  &__button--close {
+    position: absolute;
+    right: -24px;
+    transform: translateX(8px);
+
+    img {
+      width: 24px;
+      height: 24px;
+      filter: invert(95%) sepia(85%) saturate(0%) hue-rotate(149deg) brightness(106%) contrast(100%);
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: variables.$z-index-cover;
+    background-color: variables.$color-black-40;
+  }
+}
+
+.menu {
+  &__item {
+    @include mixins.menu-box;
+    font: variables.$font-body-md;
+    color: variables.$color-black;
+  }
+
+  &__title {
+    @include mixins.menu-box;
+    font: variables.$font-bold-lg;
+    color: variables.$color-black;
+  }
+
+  &__toggle {
+    @include mixins.menu-box;
+    justify-content: flex-start;
+  }
+
+  &__divider {
+    border: 1px solid variables.$color-gray-100;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(58%) sepia(0%) saturate(0%) hue-rotate(105deg) brightness(93%) contrast(84%);
+
+    &--detail {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-right.svg') no-repeat center;
+    }
+
+    &--expand {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-down.svg') no-repeat center;
+    }
+  }
+}
