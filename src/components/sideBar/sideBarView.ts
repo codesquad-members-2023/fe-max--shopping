@@ -1,7 +1,7 @@
 import { BASE_URL } from "../../constants/BASE_URL";
 import { $ } from "../../utils/domUtils";
+import { hideElement, showElement } from "../../utils/elementVisibility";
 import { fetchData } from "../../utils/fetchData";
-import { handleViewAllButtonClick } from "./sideBarController";
 
 interface sideBarMenu {
   title: string;
@@ -79,6 +79,9 @@ const hiddenMenuList = ({ title, text }: sideBarMenu, MAX_LENGTH: number) => {
 
 export const addSideBarEvent = () => {
   const $viewAllButton = $(".side-bar__view-all-button");
+  const $hideButton = $(".side-bar__hide-button");
+  const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
 
-  $viewAllButton.addEventListener("click", handleViewAllButtonClick);
+  $viewAllButton.addEventListener("click", () => showElement($hiddenMenuContainer));
+  $hideButton.addEventListener("click", () => hideElement($hiddenMenuContainer));
 };
