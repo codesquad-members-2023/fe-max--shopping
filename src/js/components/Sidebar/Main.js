@@ -16,11 +16,11 @@ export default class Main extends Component {
   }
 
   handleClick(target) {
-    const categoryMenu = target.closest('.category-menu');
+    const mainCategoryMenu = target.closest('.category-container__main .category-menu');
     const backList = target.closest('.back');
 
-    if (categoryMenu) {
-      this.openSubCategory(categoryMenu);
+    if (mainCategoryMenu) {
+      this.openSubCategory(mainCategoryMenu);
     }
 
     if (backList) {
