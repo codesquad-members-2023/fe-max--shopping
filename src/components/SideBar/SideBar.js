@@ -22,8 +22,8 @@ class SideBar extends Component {
   constructor() {
     super(template);
     this.menuContainer = this.shadowRoot.querySelector(".menu-container");
-    this.backDrop = document.querySelector("back-drop");
     this.closeBtn = this.shadowRoot.querySelector(".close-btn");
+    this.backDrop = document.querySelector("back-drop");
   }
 
   async connectedCallback() {
@@ -79,6 +79,7 @@ class SideBar extends Component {
   showSelf() {
     this.classList.add("is-active");
     this.backDrop.activate({ top: 0, left: 0 });
+    this.backDrop.setPossessor(this);
   }
 
   hideSelf() {

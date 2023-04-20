@@ -10,6 +10,14 @@ class BackDrop extends Component {
     super(template);
   }
 
+  connectedCallback() {
+    this.addEventListener("click", () => {
+      this.deactivate();
+      this.possessor.hideSelf();
+      this.setPossessor(null);
+    });
+  }
+
   activate({ top, left }) {
     this.shadowRoot.host.classList.add("is-active");
     this.setPositionAndHeight({ top, left });
@@ -17,6 +25,10 @@ class BackDrop extends Component {
 
   deactivate() {
     this.shadowRoot.host.classList.remove("is-active");
+  }
+
+  setPossessor(possessor) {
+    this.possessor = possessor;
   }
 
   setPositionAndHeight({ top, left }) {
