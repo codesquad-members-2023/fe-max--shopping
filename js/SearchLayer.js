@@ -18,39 +18,6 @@ export class SearchLayer {
     });
   }
 
-  getData(path) {
-    return fetch(`${this.url}/${path}`).then((response) => response.json());
-  }
-
-  loadSearchHistory() {
-    if (localStorage.getItem('searchHistory') === null) {
-      localStorage.setItem('searchHistory', JSON.stringify([]));
-    }
-    this.searchDB.history = JSON.parse(localStorage.getItem('searchHistory'));
-  }
-
-  // loadAutoData() {
-  //   const url = `${this.url}/auto`;
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((response) => this.fillLayer(response));
-  // }
-
-  renderAutoSuggestion(data, prefix) {
-    const resultList = document.querySelector('.search-bar__result-container');
-    const regex = new RegExp(prefix, 'gi');
-    const matchData = data.filter((item) => item.match(regex));
-    const autoTemplate = `${matchData
-      .map(
-        (el, index) =>
-          `<li class="search-bar__result autoSuggestion" data-index="${index}">
-             <a href="#">${el}</a>
-           </li>`,
-      )
-      .join('')}`;
-    resultList.innerHTML = autoTemplate;
-  }
-
   template() {
     const { suggestions, history } = this.searchDB;
 
@@ -83,6 +50,45 @@ export class SearchLayer {
     this.$target.insertAdjacentHTML('beforeend', this.template());
   }
 
+  getData(path) {
+    return fetch(`${this.url}/${path}`).then((response) => response.json());
+  }
+
+  loadSearchHistory() {
+    if (localStorage.getItem('searchHistory') === null) {
+      localStorage.setItem('searchHistory', JSON.stringify([]));
+    }
+    this.searchDB.history = JSON.parse(localStorage.getItem('searchHistory'));
+  }
+
+  inputEventHandler = () => {
+    const $searchbarInput = document.querySelector('.search-bar__input');
+    const inputValue = $searchbarInput.value;
+
+    if (inputValue === '') {
+      this.render();
+      return;
+    }
+    this.getData('auto').then((autoSuggestionData) => {
+      this.renderAutoSuggestion(autoSuggestionData, inputValue);
+    });
+  };
+
+  renderAutoSuggestion(data, prefix) {
+    const resultList = document.querySelector('.search-bar__result-container');
+    const regex = new RegExp(prefix, 'gi');
+    const matchData = data.filter((item) => item.match(regex));
+    const autoTemplate = `${matchData
+      .map(
+        (el, index) =>
+          `<li class="search-bar__result autoSuggestion" data-index="${index}">
+             <a href="#">${el}</a>
+           </li>`,
+      )
+      .join('')}`;
+    resultList.innerHTML = autoTemplate;
+  }
+
   setEvent() {
     const $searchForm = document.querySelector('.search-bar__form');
     const $searchbarInput = document.querySelector('.search-bar__input');
@@ -100,12 +106,6 @@ export class SearchLayer {
       this.render();
     });
 
-    $searchbarInput.addEventListener('input', () => {
-      const inputValue = $searchbarInput.value;
-
-      this.getData('auto').then((autoSuggestionData) => {
-        this.renderAutoSuggestion(autoSuggestionData, inputValue);
-      });
-    });
+    $searchbarInput.addEventListener('input', debounce(this.inputEventHandler));
   }
 }

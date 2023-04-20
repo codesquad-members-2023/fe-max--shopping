@@ -44,7 +44,9 @@ export class Searchbar {
 
       this.layer.node.classList.remove('show');
       $backdrop.classList.remove('show');
-      focusEl.classList.remove('selected');
+      if (focusEl) {
+        focusEl.classList.remove('selected');
+      }
     });
 
     $searchbarInput.addEventListener('keydown', (e) => {
