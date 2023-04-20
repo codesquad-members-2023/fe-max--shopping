@@ -31,6 +31,7 @@ export class SideBar extends Base {
     `;
     this.setTemplate(template);
   }
+
   setSideBarWrapper() {
     const template = `
         <div class="sidebar__content__wrapper">
@@ -163,6 +164,7 @@ export class SideBar extends Base {
 
     if (isGoBackContents) {
       this.innerWrapper.setStyle("transform", "translateX(0%)");
+      return;
     }
   }
 }
