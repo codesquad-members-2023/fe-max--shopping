@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../../constants/BASE_URL";
 import { $ } from "../../../utils/domUtils";
 import { fetchData } from "../../../utils/fetchData";
+import { moveImageHandler, resetIntervalImageMove } from "./heroSectionController";
 
 interface heroImage {
   src: string;
@@ -25,4 +26,18 @@ const heroSectionView = (src: string) => {
   src="${src}"
   alt="캐러셀 이미지"
 />`;
+};
+
+export const addHeroSectionEventListeners = (moveImageHandler: moveImageHandler) => {
+  const $prevButton = $(".hero-section__prev-button");
+  const $nextButton = $(".hero-section__next-button");
+
+  $prevButton.addEventListener("click", () => {
+    moveImageHandler("prev");
+    resetIntervalImageMove(moveImageHandler);
+  });
+  $nextButton.addEventListener("click", () => {
+    moveImageHandler("next");
+    resetIntervalImageMove(moveImageHandler);
+  });
 };
