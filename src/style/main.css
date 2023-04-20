@@ -317,6 +317,7 @@
   position: relative;
   min-width: 235px;
   left: -160px;
+  z-index: 2;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 #login__tooltip .login__tooltip__rectangle {
@@ -449,6 +450,7 @@
   left: -10px;
   top: 0;
   border-radius: 4px;
+  z-index: 1;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 #shippingAddress__tooltip .shipping__tooltip__rectangle {
@@ -543,6 +545,7 @@
   background: var(--white);
   border: 1px solid var(--black);
   border-radius: 4px;
+  z-index: 1;
 }
 #SearchBarLayer .keywordList {
   box-sizing: border-box;
@@ -614,7 +617,6 @@
   margin: 0 auto;
   overflow: hidden;
   position: absolute;
-  z-index: -1;
 }
 #carousel .carousel__wrapper {
   width: 100%;
@@ -623,7 +625,6 @@
   display: flex;
   transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
-  z-index: -1;
   position: absolute;
 }
 #carousel .carousel__btnWrapper {
@@ -631,6 +632,7 @@
   position: absolute;
   width: 100%;
   height: 250px;
+  z-index: 1;
   justify-content: space-between;
 }
 #carousel .carousel__item {
@@ -652,7 +654,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 250px;
-  position: absolute;
+  position: relative;
 }
 #contents .cardColumn {
   display: flex;
@@ -727,6 +729,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
+  z-index: 1;
   position: absolute;
   width: 320px;
   height: 100%;
@@ -838,7 +841,6 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: -1;
 }
 
 #backdrop {
@@ -850,4 +852,5 @@ body {
   position: absolute;
   top: 88px;
   left: 0;
+  z-index: 1;
 }

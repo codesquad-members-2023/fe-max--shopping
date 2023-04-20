@@ -26,7 +26,6 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: -1;
 }
 
 #backdrop {
@@ -38,4 +37,5 @@ body {
   position: absolute;
   top: 88px;
   left: 0;
+  z-index: 1;
 }
