@@ -8,23 +8,13 @@ function hideAddressModal() {
   setZindex(querySelector.addressModal(), Z_INDEX.LOWEST_Z);
 }
 
-function openAddressModal() {
+export function openAddressModal() {
   setZindex(querySelector.addressModal(), Z_INDEX.HIGH_Z);
   setOpacity(querySelector.addressModal(), OPACITY.FULL);
   dim();
 }
 
-async function closeAddressModal() {
+export async function closeAddressModal() {
   undim();
   hideAddressModal();
 }
-
-function addressModalMouseenterEventHandler() {
-  querySelector.addressArea().addEventListener("mouseenter", openAddressModal);
-}
-
-function addressModalMouseleaveEventHandler() {
-  querySelector.addressModal().addEventListener("mouseleave", closeAddressModal);
-}
-
-export { addressModalMouseenterEventHandler, addressModalMouseleaveEventHandler };

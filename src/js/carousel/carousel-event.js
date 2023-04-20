@@ -1,112 +1,42 @@
+import { Slider } from "./Carousel.js";
 import { querySelector } from "../query.js";
-import { CAROUSEL, TIME } from "../constant.js";
-import { delay } from "../util/delay-promise.js";
 
-class Slider {
-  constructor() {
-    this.counter = CAROUSEL.SLIDE_COUNTER;
-    this.size = CAROUSEL.SIZE;
-    this.transition = CAROUSEL.SLIDE_TRANSITION;
-  }
-
-  getCalcTransform() {
-    return `translateX(${-this.counter * this.size}px)`;
-  }
-
-  initSlide() {
-    querySelector.slideList().style.transform = this.getCalcTransform();
-  }
-
-  moveToBesideSlide(isEdgeSide, isPlus) {
-    if (isEdgeSide) {
-      return;
-    }
-    querySelector.slideList().style.transition = this.transition;
-    this.counter = isPlus ? this.counter + 1 : this.counter - 1;
-    querySelector.slideList().style.transform = this.getCalcTransform();
-  }
-
-  moveToNextSlide() {
-    const lastIndex = querySelector.slideItems().length - 1;
-    const isLastSlide = this.counter >= lastIndex;
-    this.moveToBesideSlide(isLastSlide, true);
-  }
-
-  moveToPrevSlide() {
-    const firstIndex = 0;
-    const isFirstSlide = this.counter <= firstIndex;
-    this.moveToBesideSlide(isFirstSlide, false);
-  }
-
-  moveToOppositeSlide(isFakeSlide, realSlide) {
-    if (isFakeSlide) {
-      querySelector.slideList().style.transition = CAROUSEL.NO_EFFECT;
-      this.counter = realSlide;
-      querySelector.slideList().style.transform = this.getCalcTransform();
-    }
-  }
-
-  firstToLastSlide() {
-    const lastIndexWithoutFake = 2;
-    const isFakeLastSlide = querySelector.slideItems()[this.counter].id === "last-clone";
-    const isRealLastSlide = querySelector.slideItems().length - lastIndexWithoutFake;
-    this.moveToOppositeSlide(isFakeLastSlide, isRealLastSlide);
-  }
-
-  lastToFirstSlide() {
-    const isFakeFirstSlide = querySelector.slideItems()[this.counter].id === "first-clone";
-    const isRealFirstSlide = querySelector.slideItems().length - this.counter;
-    this.moveToOppositeSlide(isFakeFirstSlide, isRealFirstSlide);
-  }
-
-  teleportSlide() {
-    this.firstToLastSlide();
-    this.lastToFirstSlide();
-  }
-
-  async autoToNextSlide() {
-    await delay(TIME.AUTO_SLIDE_DELAY);
-    this.moveToNextSlide();
-    this.autoToNextSlide();
-  }
-}
-
-const carouselSlide = new Slider();
-
-function slideLoadEventHandler() {
+function initSliding(slide) {
   document.addEventListener("DOMContentLoaded", () => {
-    carouselSlide.initSlide();
+    slide.initSlide();
   });
 }
 
-function slideNextBtnClickEventHandler() {
-  querySelector
-    .nextBtn()
-    .addEventListener("click", carouselSlide.moveToNextSlide.bind(carouselSlide));
+function autoNextSlide(slide) {
+  document.addEventListener("DOMContentLoaded", () => {
+    slide.autoToNextSlide();
+  });
 }
 
-function slidePrevBtnClickEventHandler() {
+function toNextSlide(slide) {
+  querySelector.nextBtn().addEventListener("click", () => {
+    slide.moveToNextSlide();
+  });
+}
+
+function toPrevSlide(slide) {
   querySelector.prevBtn().addEventListener("click", () => {
-    carouselSlide.moveToPrevSlide();
+    slide.moveToPrevSlide();
   });
 }
 
-function slideTransitionendEventHandler() {
+function toOppositeSlide(slide) {
   querySelector.slideList().addEventListener("transitionend", () => {
-    carouselSlide.teleportSlide();
+    slide.teleportSlide();
   });
 }
 
-function slideAutoEventHandler() {
-  document.addEventListener("DOMContentLoaded", () => {
-    carouselSlide.autoToNextSlide();
-  });
-}
+export function addEventOnCarousel() {
+  const carouselSlide = new Slider();
 
-export {
-  slideLoadEventHandler,
-  slideNextBtnClickEventHandler,
-  slidePrevBtnClickEventHandler,
-  slideTransitionendEventHandler,
-  slideAutoEventHandler,
-};
+  initSliding(carouselSlide);
+  autoNextSlide(carouselSlide);
+  toNextSlide(carouselSlide);
+  toPrevSlide(carouselSlide);
+  toOppositeSlide(carouselSlide);
+}

@@ -1,7 +1,7 @@
 import { querySelector } from "../query.js";
 import { Z_INDEX, OPACITY, TIME } from "../constant.js";
 import { setZindex, setOpacity } from "../util/set-style.js";
-import { delay } from "../util/delay-promise.js";
+import { delay } from "../util/delay.js";
 
 function dim() {
   setZindex(querySelector.mainDimmed(), Z_INDEX.MIDDLE_Z);

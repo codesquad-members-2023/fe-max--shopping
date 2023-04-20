@@ -9,6 +9,7 @@ export const querySelector = {
   mainDimmed: () => document.querySelector(".dimmed"),
   slideList: () => document.querySelector(".slide-list"),
   slideItems: () => document.querySelectorAll(".slide-item"),
+  mainBannerContainer: () => document.querySelector("main-banner-container"),
   prevBtn: () => document.getElementById("chevron-left"),
   nextBtn: () => document.getElementById("chevron-right"),
   searchInput: () => document.querySelector(".search-input"),

@@ -1,5 +1,5 @@
 import { querySelector } from "../query.js";
-import { Keyword } from "../common/keyword-class.js";
+import { Keyword } from "./Keyword.js";
 
 class Recent extends Keyword {
   constructor(keywordList) {

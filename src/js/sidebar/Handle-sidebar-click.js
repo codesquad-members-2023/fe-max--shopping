@@ -15,21 +15,26 @@ export function handleSidebarMenuClick() {
       earlySidebar.addSidebarContent();
       setZindex(querySelector.sidebar(), Z_INDEX.MAX_Z);
     }
+
     if (targetClass === "sidebar-close") {
       setZindex(querySelector.sidebar(), Z_INDEX.LOWEST_Z);
     }
+
     if (targetClass === "sidebar-unfold") {
       const expandEarlySidebar = new ExpandEarlySidebar(querySelector.sidebar());
       expandEarlySidebar.addSidebarContent();
     }
+
     if (targetClass === "sidebar-fold") {
       const earlySidebar = new EarlySidebar(querySelector.sidebar());
       earlySidebar.addSidebarContent();
     }
+
     if (targetClass === "sidebar-back-to-menu") {
       const expandEarlySidebar = new ExpandEarlySidebar(querySelector.sidebar());
       expandEarlySidebar.addSidebarContent();
     }
+
     if (targetId === "car-supplies") {
       const detailSidebar = new DetailSidebar();
       detailSidebar.addSidebarContent();

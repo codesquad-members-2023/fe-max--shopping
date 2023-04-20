@@ -1,6 +1,6 @@
 import { querySelector } from "../query.js";
 import { Z_INDEX, OPACITY, DISPLAY, TIME } from "../constant.js";
-import { delay } from "../util/delay-promise.js";
+import { delay } from "../util/delay.js";
 import { dim, undim } from "../common/dim.js";
 import { setOpacity, setSize, setZindex, setTransform, setDisplay } from "../util/set-style.js";
 
@@ -25,48 +25,23 @@ async function hideLoginModal() {
   setOpacity(querySelector.loginModal(), OPACITY.ZERO);
 }
 
-async function openLoginModalWithDelay() {
+export async function openLoginModalWithDelay() {
   await delay(TIME.LOGIN_OPACITY_DELAY);
   setOpacity(querySelector.loginModal(), OPACITY.FULL);
 }
 
-function expandLoginModal() {
+export function expandLoginModal() {
   dim();
   expandLoginModalWithDelay();
 }
 
-function closeLoginModal() {
+export function closeLoginModal() {
   undim();
   hideLoginModal();
 }
 
-function reOpenLoginModal() {
+export function reopenLoginModal() {
   setZindex(querySelector.loginModal(), Z_INDEX.HIGH_Z);
   setOpacity(querySelector.loginModal(), OPACITY.FULL);
   dim();
 }
-
-function loginModalLoadEventHandler() {
-  document.addEventListener("DOMContentLoaded", openLoginModalWithDelay);
-}
-
-function loginModalMouseenterEventHandler() {
-  querySelector.loginArea().addEventListener("mouseenter", expandLoginModal, {
-    once: true,
-  });
-}
-
-function loginModalMouseleaveEventHandler() {
-  querySelector.loginArea().addEventListener("mouseleave", closeLoginModal);
-}
-
-function loginModalClickEventHandler() {
-  querySelector.loginArea().addEventListener("click", reOpenLoginModal);
-}
-
-export {
-  loginModalLoadEventHandler,
-  loginModalMouseenterEventHandler,
-  loginModalMouseleaveEventHandler,
-  loginModalClickEventHandler,
-};

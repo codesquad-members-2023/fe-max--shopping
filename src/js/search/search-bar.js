@@ -2,7 +2,7 @@ import { querySelector } from "../query.js";
 import { DISPLAY, TIME } from "../constant.js";
 import { dim, undim } from "../common/dim.js";
 import { setDisplay } from "../util/set-style.js";
-import { delay } from "../util/delay-promise.js";
+import { delay } from "../util/delay.js";
 
 function allDisplayNone() {
   setDisplay(querySelector.recommendKeywordList(), DISPLAY.NONE);
