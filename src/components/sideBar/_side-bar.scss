@@ -46,6 +46,18 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+
+    .chevron-icon {
+      filter: invert(57%) sepia(21%) saturate(0%) hue-rotate(241deg) brightness(90%) contrast(88%);
+    }
+
+    &:hover {
+      background-color: var(--gray100);
+
+      .chevron-icon {
+        filter: none;
+      }
+    }
   }
 
   &__menu-item:last-child,
