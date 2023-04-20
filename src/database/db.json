@@ -1,4 +1,30 @@
 {
+  "hero_image": [
+    {
+      "url": "https://m.media-amazon.com/images/I/713ViYKYWML._SX3000_.jpg",
+      "id": 1
+    },
+    {
+      "url": "https://m.media-amazon.com/images/I/61PC0+j5tsL._SX3000_.jpg",
+      "id": 2
+    },
+    {
+      "url": "https://m.media-amazon.com/images/I/61UR2I2ZHBL._SX3000_.jpg",
+      "id": 3
+    },
+    {
+      "url": "https://m.media-amazon.com/images/I/61KoGELd+8L._SX3000_.jpg",
+      "id": 4
+    },
+    {
+      "url": "https://m.media-amazon.com/images/I/71FyTsYp1ML._SX3000_.jpg",
+      "id": 5
+    },
+    {
+      "url": "https://m.media-amazon.com/images/I/71MO+XuboXL._SX3000_.jpg",
+      "id": 6
+    }
+  ],
   "recent": [
     {
       "text": "쿤디의 최근 검색어1",
