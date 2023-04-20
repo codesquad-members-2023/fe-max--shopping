@@ -4,19 +4,18 @@
   top: 0px;
   width: 320px;
   height: 1897px;
-  z-index: 100;
+  z-index: 110;
   transform: translate(-332px);
   transition: transform 0.7s;
-  overflow: hidden;
+  // overflow: hidden;
 
-  &-close {
+  &__close-btn {
     position: absolute;
+    z-index: 110;
     left: 328px;
     top: 8px;
     width: 24px;
     height: 24px;
-    background-image: url('/assets/icons/close.svg');
-    background-repeat: no-repeat;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -42,9 +41,13 @@
   &__detail-container {
     width: 640px;
     display: flex;
-
+    visibility: hidden;
     transform: translate(0px);
     transition: transform 0.7s;
+
+    &.show {
+      visibility: visible;
+    }
   }
 
   &__detail {
@@ -82,6 +85,7 @@
     width: 320px;
     height: 100%;
     z-index: 150;
+    visibility: hidden;
 
     button {
       @include BoldLG;
@@ -129,5 +133,21 @@
       background-repeat: no-repeat;
       cursor: pointer;
     }
+  }
+}
+
+.sidebar__backdrop {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black-40);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  z-index: 10;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
   }
 }
