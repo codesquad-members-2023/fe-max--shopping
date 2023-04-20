@@ -1,6 +1,5 @@
 import { $, $$ } from "../../../utils/domUtils";
 import { ensureHTMLElement } from "../../../utils/typeCheckUtils";
-import { intervalIdState } from "./heroSectionModel";
 
 export const handleMoveImage = (() => {
   const $imageContainer = ensureHTMLElement($(".hero-section__image-container"));
@@ -72,4 +71,16 @@ export const resetIntervalImageMove = () => {
 
   clearInterval(intervalId);
   setIntervalImageMove();
+};
+
+export const intervalIdState = {
+  intervalId: 0,
+
+  setIntervalId(id: number) {
+    this.intervalId = id;
+  },
+
+  getIntervalId() {
+    return this.intervalId;
+  },
 };
