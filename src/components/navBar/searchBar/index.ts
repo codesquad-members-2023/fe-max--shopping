@@ -1,9 +1,10 @@
 import { $ } from "../../../utils/domUtils";
 import { SearchSuggestion } from "./SearchSuggestion";
-import { dimMain, undimMain } from "../../../utils/dimming";
+import { dim, undim } from "../../../utils/dimming";
 import { hideElement, showElement } from "../../../utils/elementVisibility";
 import { SearchSuggestionModel } from "./SearchSuggestionModel";
 import { SearchSuggestionView } from "./SearchSuggestionView";
+import { Z_INDEX } from "../../../constants/Z_INDEX";
 
 export const initSearchBar = () => {
   initSearchSuggestion();
@@ -23,13 +24,13 @@ const initSearchSuggestion = () => {
   }
 
   $searchInput.addEventListener("focus", () => {
-    dimMain();
+    dim(Z_INDEX.MAIN + 50);
     showElement($searchSuggestion);
     searchSuggestion.initSuggestionRender();
   });
 
   $searchInput.addEventListener("blur", () => {
-    undimMain();
+    undim();
     hideElement($searchSuggestion);
   });
 

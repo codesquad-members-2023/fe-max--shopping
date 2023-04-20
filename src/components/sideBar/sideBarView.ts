@@ -1,4 +1,6 @@
 import { BASE_URL } from "../../constants/BASE_URL";
+import { Z_INDEX } from "../../constants/Z_INDEX";
+import { dim } from "../../utils/dimming";
 import { $ } from "../../utils/domUtils";
 import { hideElement, showElement } from "../../utils/elementVisibility";
 import { fetchData } from "../../utils/fetchData";
@@ -81,7 +83,13 @@ export const addSideBarEvent = () => {
   const $viewAllButton = $(".side-bar__view-all-button");
   const $hideButton = $(".side-bar__hide-button");
   const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+  const $sideBarButton = $(".sub__side-bar-button");
+  const $sideBar = $(".side-bar");
 
   $viewAllButton.addEventListener("click", () => showElement($hiddenMenuContainer));
   $hideButton.addEventListener("click", () => hideElement($hiddenMenuContainer));
+  $sideBarButton.addEventListener("click", () => {
+    showElement($sideBar);
+    dim(Z_INDEX.SIDE_BAR - 50);
+  });
 };

@@ -6,7 +6,9 @@
   width: 320px;
   height: 100vh;
   background-color: var(--white);
-  z-index: 300;
+  transform: translateX(-100%);
+  transition: all 0.5s;
+  z-index: 600;
 
   &__login {
     background-color: var(--black);
@@ -18,6 +20,14 @@
     gap: 8px;
   }
 
+  &.show {
+    transform: translate(0%);
+
+    .side-bar__close-button {
+      visibility: visible;
+    }
+  }
+
   &__login-text {
     @include common.bold-lg;
   }
@@ -26,6 +36,7 @@
     position: absolute;
     top: 12px;
     right: -30px;
+    visibility: hidden;
     cursor: pointer;
   }
 

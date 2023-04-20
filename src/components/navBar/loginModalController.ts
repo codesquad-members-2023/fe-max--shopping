@@ -1,6 +1,7 @@
 import { $ } from "../../utils/domUtils";
-import { dimMain, undimMain } from "../../utils/dimming";
+import { dim, undim } from "../../utils/dimming";
 import { hideElement, showElement } from "../../utils/elementVisibility";
+import { Z_INDEX } from "../../constants/Z_INDEX";
 
 export const showLoginModalOnLoad = () => {
   const $modal = $("#login-modal");
@@ -30,10 +31,10 @@ export const addLoginEventListeners = () => {
 
 const handleLoginContainerMouseEnter = ($modal: Element) => {
   showElement($modal);
-  dimMain();
+  dim(Z_INDEX.NAV_BAR - 50);
 };
 
 const handleModalMouseLeave = ($modal: Element) => {
   hideElement($modal);
-  undimMain();
+  undim();
 };
