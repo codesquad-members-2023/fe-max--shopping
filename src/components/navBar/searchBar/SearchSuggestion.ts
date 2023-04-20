@@ -70,7 +70,7 @@ export class SearchSuggestion {
     }
 
     const id = recentSearch.dataset.id;
-    const url = `${BASE_URL}/recen/${id}`;
+    const url = `${BASE_URL}/recent/${id}`;
     const options = { method: "DELETE" };
 
     await fetchData(url, options);
