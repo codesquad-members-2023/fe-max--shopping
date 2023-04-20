@@ -1,3 +1,5 @@
+import { debounce } from './utility.js';
+
 export class SearchLayer {
   constructor($target) {
     this.$target = $target;
@@ -34,18 +36,20 @@ export class SearchLayer {
   //     .then((response) => this.fillLayer(response));
   // }
 
-  // fillLayer(autoArray) {
-  //   const resultList = document.querySelector('.search-bar__result-container');
-  //   const autoTemplate = `${autoArray
-  //     .map(
-  //       (el, index) =>
-  //         `<li class="search-bar__result" data-index="${index}">
-  //            <a href="">${el}</a>
-  //          </li>`,
-  //     )
-  //     .join('')}`;
-  //   resultList.innerHTML = autoTemplate;
-  // }
+  renderAutoSuggestion(data, prefix) {
+    const resultList = document.querySelector('.search-bar__result-container');
+    const regex = new RegExp(prefix, 'gi');
+    const matchData = data.filter((item) => item.match(regex));
+    const autoTemplate = `${matchData
+      .map(
+        (el, index) =>
+          `<li class="search-bar__result autoSuggestion" data-index="${index}">
+             <a href="#">${el}</a>
+           </li>`,
+      )
+      .join('')}`;
+    resultList.innerHTML = autoTemplate;
+  }
 
   template() {
     const { suggestions, history } = this.searchDB;
@@ -55,7 +59,7 @@ export class SearchLayer {
                 .map(
                   (el, index) =>
                     `<li class="search-bar__result history" data-index="${index}">
-                      <a href="">${el}</a>
+                      <a href="#">${el}</a>
                       <button>
                         <img src="./assets/icons/close.svg" alt="" />
                       </button>  
@@ -67,7 +71,7 @@ export class SearchLayer {
                   (el, index) =>
                     `<li class="search-bar__result suggestion" data-index="${index}">
                       <img src="./assets/icons/arrow-top-right.svg" alt="" />
-                      <a href="">${el}</a>
+                      <a href="#">${el}</a>
                     </li>`,
                 )
                 .join('')}
@@ -94,6 +98,14 @@ export class SearchLayer {
       localStorage.setItem('searchHistory', JSON.stringify(this.searchDB.history));
 
       this.render();
+    });
+
+    $searchbarInput.addEventListener('input', () => {
+      const inputValue = $searchbarInput.value;
+
+      this.getData('auto').then((autoSuggestionData) => {
+        this.renderAutoSuggestion(autoSuggestionData, inputValue);
+      });
     });
   }
 }
