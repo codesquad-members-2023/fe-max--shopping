@@ -1,0 +1,87 @@
+@use "../../style/common";
+
+.side-bar {
+  position: fixed;
+  top: 0;
+  width: 320px;
+  height: 100vh;
+  background-color: var(--white);
+  z-index: 300;
+
+  &__login {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 16px 16px 16px 32px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__login-text {
+    @include common.bold-lg;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 12px;
+    right: -30px;
+    cursor: pointer;
+  }
+
+  &__menu-title {
+    @extend .side-bar__login;
+    @extend .side-bar__login-text;
+
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  &__menu-item,
+  &__view-all-button,
+  &__hide-button {
+    padding: 8px 16px 8px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  &__menu-item:last-child,
+  &__view-all-button,
+  &__hide-button {
+    border-bottom: 1px solid var(--gray100);
+  }
+
+  &__view-all-button,
+  &__hide-button {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  &__view-all-button {
+    .chevron-icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__hide-button {
+    .chevron-icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &__hidden-menu-container {
+    height: 0px;
+    opacity: 0;
+    transition: all 0.5s linear;
+    overflow: hidden;
+
+    &.show {
+      height: 300px;
+      opacity: 1;
+      overflow: hidden;
+    }
+  }
+}
