@@ -72,3 +72,21 @@
   border-width: 0 10px 20px 10px;
   border-color: $color-white transparent;
 }
+
+@mixin buttonIcon($backgroundImage) {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url($backgroundImage);
+}
+
+@mixin categoryMenu($height) {
+  display: flex;
+  align-items: center;
+  height: $height;
+  gap: 8px;
+  padding: 0px 16px;
+  list-style: none;
+}

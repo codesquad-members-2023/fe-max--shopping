@@ -4,7 +4,7 @@ import CategoryContainer from './CategoryContainer.js';
 
 export default class Main extends Component {
   constructor() {
-    super('sidebar-main');
+    super('sidebar-main translateX-left');
     this.client = client;
     this.login = new Login();
     this.categoryContainer = new CategoryContainer();
@@ -17,22 +17,35 @@ export default class Main extends Component {
 
   handleClick(target) {
     const categoryMenu = target.closest('.category-menu');
+    const backList = target.closest('.back');
+
     if (categoryMenu) {
       this.openSubCategory(categoryMenu);
     }
+
+    if (backList) {
+      this.closeSubCategory();
+    }
+  }
+
+  closeSubCategory() {
+    this.categoryContainer.translateRight();
   }
 
   openSubCategory(categoryMenu) {
     const categoryId = categoryMenu.dataset.menuId;
     this.categoryContainer.renderSubCategory(categoryId);
+    this.categoryContainer.translateLeft();
   }
 
   appear() {
-    this.node.classList.add('active');
+    this.node.classList.remove('translateX-left');
+    this.node.classList.add('translateX-right');
   }
 
   disappear() {
-    this.node.classList.remove('active');
+    this.node.classList.remove('translateX-right');
+    this.node.classList.add('translateX-left');
   }
 
   getTemplate() {

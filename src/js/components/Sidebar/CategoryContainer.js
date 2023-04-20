@@ -15,6 +15,16 @@ export default class CategoryContainer extends Component {
     this.sub.render(id);
   }
 
+  translateLeft() {
+    this.node.classList.remove('translateX-right');
+    this.node.classList.add('translateX-left-half');
+  }
+
+  translateRight() {
+    this.node.classList.remove('translateX-left-half');
+    this.node.classList.add('translateX-right');
+  }
+
   getTemplate() {
     return [this.main.node, this.sub.node];
   }
@@ -22,7 +32,7 @@ export default class CategoryContainer extends Component {
 
 class Main extends Component {
   constructor() {
-    super('main');
+    super('category-container__main');
     this.client = client;
     this.menus = [];
     this.load();
@@ -44,9 +54,11 @@ class Main extends Component {
 
 class Sub extends Component {
   constructor() {
-    super('sub');
+    super('category-container__sub');
     this.client = client;
+    this.backList = new Component('back', 'LI');
     this.categories = new Map();
+    this.setBackList();
     this.load();
   }
 
@@ -62,8 +74,15 @@ class Sub extends Component {
     this.categories[id] = subCategory;
   }
 
+  setBackList() {
+    const templateElement = document.createElement('template');
+    const literal = `<button></button><a href="#">주메뉴</a>`;
+    templateElement.innerHTML = literal;
+    this.backList.node.append(templateElement.content);
+  }
+
   getTemplate(id) {
     const targetCategory = this.categories[id];
-    return [...targetCategory];
+    return [this.backList.node, ...targetCategory];
   }
 }

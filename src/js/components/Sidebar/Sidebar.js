@@ -5,7 +5,7 @@ import Main from './Main.js';
 export default class Sidebar extends Component {
   constructor() {
     super('sidebar', 'ASIDE');
-    this.menu = new Main();
+    this.main = new Main();
     this.closeButton = new Component('close-button', 'BUTTON');
     this.dimLayer = new DimLayer();
     this.init();
@@ -23,18 +23,18 @@ export default class Sidebar extends Component {
   }
 
   close() {
-    this.node.classList.remove('active');
-    this.menu.disappear();
+    this.main.disappear();
     this.dimLayer.off();
+    setTimeout(() => this.node.classList.remove('active'), 300);
   }
 
   open() {
-    this.node.classList.add('active');
-    this.menu.appear();
+    this.main.appear();
     this.dimLayer.on();
+    this.node.classList.add('active');
   }
 
   getTemplate() {
-    return [this.menu.node, this.closeButton.node, this.dimLayer.node];
+    return [this.main.node, this.closeButton.node, this.dimLayer.node];
   }
 }
