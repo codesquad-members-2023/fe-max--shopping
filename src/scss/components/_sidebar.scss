@@ -77,6 +77,17 @@
     &-menu {
       @include typography('body-md');
       @include categoryMenu(40px);
+      .detail-btn {
+        @include buttonIcon('/src/assets/symbols/chevron-right.svg');
+        filter: $filter-button;
+      }
+
+      &:hover {
+        background-color: $color-gray-100;
+        .detail-btn {
+          filter: $filter-button-hover;
+        }
+      }
     }
 
     &-name {
@@ -89,11 +100,27 @@
         @include categoryMenu(40px);
         cursor: pointer;
       }
-    }
-  }
 
-  .detail-btn {
-    @include buttonIcon('/src/assets/symbols/chevron-right.svg');
+      ul {
+        transition: opacity 200ms 100ms linear;
+        opacity: 0;
+      }
+
+      &[open] ul {
+        opacity: 1;
+      }
+
+      &[open] .summary-btn {
+        transform: rotate(270deg);
+      }
+
+      .summary-btn {
+        @include buttonIcon('/src/assets/symbols/chevron-right.svg');
+        filter: $filter-button;
+        transform: rotate(90deg);
+        transition: transform 0.3s ease;
+      }
+    }
   }
 
   .translateX-left,

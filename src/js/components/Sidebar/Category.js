@@ -67,11 +67,11 @@ class CompressedCategoryList extends Component {
 
 class CategorySummary extends Component {
   constructor() {
-    super('summary', 'SUMMARY');
+    super('category-menu', 'SUMMARY');
     this.init();
   }
 
   getTemplate() {
-    return `<span>모두보기</span><button class="detail-btn"></button>`;
+    return `<span>모두보기</span><button class="summary-btn"></button>`;
   }
 }
