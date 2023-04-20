@@ -2,12 +2,36 @@
 @import '../common/variables';
 @import '../base/animations';
 .side {
+  overflow: hidden;
+
   background: $color-white;
   width: $sideBarWidth;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+
+  transition: transform 0.3s ease-out;
+  transform: translateX(-$sideBarWidth);
+
+  &__box {
+    @include flex-row;
+    width: $sideBarWidth * 2;
+
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
+
+    &.translateX {
+      transform: translateX(-$sideBarWidth);
+    }
+
+    &-main {
+      width: $sideBarWidth;
+    }
+    &-sub {
+      width: $sideBarWidth;
+    }
+  }
   &__header {
     @include flex-row;
     padding-left: 32px;
@@ -66,17 +90,25 @@
     transform: translateX(0);
   }
 
-  transition: transform 0.3s ease-out;
-  transform: translateX(-$sideBarWidth);
-
   &__list-main {
     overflow: hidden;
     max-height: 3000px;
-    transition: max-height 1.2s ease-in-out, opacity 1.2s ease-in-out;
+    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out;
     &.compressed {
       max-height: 0;
       opacity: 0;
-      transition: max-height 1.2s ease-in-out, opacity 1.2s ease-in-out; 
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
+  }
+  &__list-sub {
+    // width: $sideBarWidth;
+    // position: fixed;
+    // top: 0;
+    // transform: translateX(+ $sideBarWidth);
+    // transition: transform 0.3s ease-out;
+
+    // &.translateX {
+    //   transform: translateX(0);
+    // }
   }
 }
