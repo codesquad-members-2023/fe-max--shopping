@@ -1,37 +1,36 @@
 import { EarlySidebar } from "./Sidebar-early.js";
 import { ExpandEarlySidebar } from "./Sidebar-expand.js";
 import { DetailSidebar } from "./Sidebar-detail.js";
+import { querySelector } from "../query.js";
 import { setZindex } from "../util/set-style.js";
 import { Z_INDEX } from "../constant.js";
 
 export function handleSidebarMenuClick() {
-  const sidebarEle = document.querySelector(".menu-sidebar");
-  const menuContainer = document.querySelector(".menu-container");
-
-  menuContainer.addEventListener("click", (e) => {
+  querySelector.menu().addEventListener("click", (e) => {
     const targetClass = e.target.className;
+    const targetId = e.target.id;
 
     if (targetClass === "menu-container") {
-      const earlySidebar = new EarlySidebar(sidebarEle);
+      const earlySidebar = new EarlySidebar(querySelector.sidebar());
       earlySidebar.addSidebarContent();
-      setZindex(sidebarEle, Z_INDEX.MAX_Z);
+      setZindex(querySelector.sidebar(), Z_INDEX.MAX_Z);
     }
     if (targetClass === "sidebar-close") {
-      setZindex(sidebarEle, Z_INDEX.LOWEST_Z);
+      setZindex(querySelector.sidebar(), Z_INDEX.LOWEST_Z);
     }
     if (targetClass === "sidebar-unfold") {
-      const expandEarlySidebar = new ExpandEarlySidebar(sidebarEle);
+      const expandEarlySidebar = new ExpandEarlySidebar(querySelector.sidebar());
       expandEarlySidebar.addSidebarContent();
     }
     if (targetClass === "sidebar-fold") {
-      const earlySidebar = new EarlySidebar(sidebarEle);
+      const earlySidebar = new EarlySidebar(querySelector.sidebar());
       earlySidebar.addSidebarContent();
     }
     if (targetClass === "sidebar-back-to-menu") {
-      const expandEarlySidebar = new ExpandEarlySidebar(sidebarEle);
+      const expandEarlySidebar = new ExpandEarlySidebar(querySelector.sidebar());
       expandEarlySidebar.addSidebarContent();
     }
-    if (e.target.textContent === "자동차 용품") {
+    if (targetId === "car-supplies") {
       const detailSidebar = new DetailSidebar();
       detailSidebar.addSidebarContent();
     }
