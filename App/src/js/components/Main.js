@@ -115,12 +115,13 @@ export class Main extends Component {
         await delay(1);
         addBgSlidesTransition();
       }
+
       bgIndex = (bgIndex + 1) % limit;
       setBgSlidesTransformX();
 
       heroIndex = (heroIndex + 1) % limit;
-
       clearHeroSlideActive();
+      
       heroSlides[heroIndex].className = "hero__slide active";
     }
 

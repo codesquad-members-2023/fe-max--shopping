@@ -44,11 +44,10 @@ export class App extends Component {
 
     this.children = [];
 
-    this.appendChildComponent(header());
-    this.appendChildComponent(sidebar());
-    this.appendChildComponent(main());
-    this.appendChildComponent(footer());
-
+    [header, sidebar, main, footer].forEach(getRecipe => {
+      this.appendChildComponent(getRecipe());
+    })
+    
     this.changeSubComponent();
 
     this.pageLayout = {

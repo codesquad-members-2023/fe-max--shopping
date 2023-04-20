@@ -51,14 +51,13 @@ export const getAccountRecipe = _getAccountRecipe;
 
 async function generateSearchLog() {
   const MAX_KEYWORD_COUNT = 10;
+  const local = localStorage.getItem("searchLog");
 
-  let searchLog = localStorage.getItem("searchLog");
-  if (searchLog) searchLog = JSON.parse(searchLog);
-
-  let log = searchLog ? searchLog : [];
+  const log = local ? JSON.parse(local) : [];
 
   function _addLogKeyword(keyword) {
-    log = [...log, keyword].slice(0, MAX_KEYWORD_COUNT);
+    log.splice(0, 0, keyword);
+    if (log.length > MAX_KEYWORD_COUNT) log.pop();
     localStorage.setItem("searchLog", JSON.stringify(log));
   }
 
