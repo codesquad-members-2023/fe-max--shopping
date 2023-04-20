@@ -30,7 +30,7 @@ export class EarlySidebar extends Sidebar {
           ${data.items
             .map(
               (item) =>
-                `<li>${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
+                `<li id="${item.id}">${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
             )
             .join("")}
         </ul>

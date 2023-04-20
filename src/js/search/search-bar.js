@@ -1,26 +1,25 @@
-// input 이벤트 모음 (focus, input)
-
-import { QUERY, DISPLAY, TIME } from "../constant.js";
+import { querySelector } from "../query.js";
+import { DISPLAY, TIME } from "../constant.js";
 import { dim, undim } from "../common/dim.js";
 import { setDisplay } from "../util/set-style.js";
 import { delay } from "../util/delay-promise.js";
 
 function allDisplayNone() {
-  setDisplay(QUERY.RECOMMEND_KEYWORD_LIST, DISPLAY.NONE);
-  setDisplay(QUERY.RECENT_KEYWORD_LIST, DISPLAY.NONE);
-  setDisplay(QUERY.AUTO_KEYWORD_LIST, DISPLAY.NONE);
+  setDisplay(querySelector.recommendKeywordList(), DISPLAY.NONE);
+  setDisplay(querySelector.recentKeywordList(), DISPLAY.NONE);
+  setDisplay(querySelector.autoKeywordList(), DISPLAY.NONE);
 }
 
 function onClickDisplay() {
-  setDisplay(QUERY.RECOMMEND_KEYWORD_LIST, DISPLAY.BLOCK);
-  setDisplay(QUERY.RECENT_KEYWORD_LIST, DISPLAY.BLOCK);
-  setDisplay(QUERY.AUTO_KEYWORD_LIST, DISPLAY.NONE);
+  setDisplay(querySelector.recommendKeywordList(), DISPLAY.BLOCK);
+  setDisplay(querySelector.recentKeywordList(), DISPLAY.BLOCK);
+  setDisplay(querySelector.autoKeywordList(), DISPLAY.NONE);
 }
 
 function onInputDisplay() {
-  setDisplay(QUERY.RECOMMEND_KEYWORD_LIST, DISPLAY.NONE);
-  setDisplay(QUERY.RECENT_KEYWORD_LIST, DISPLAY.NONE);
-  setDisplay(QUERY.AUTO_KEYWORD_LIST, DISPLAY.BLOCK);
+  setDisplay(querySelector.recommendKeywordList(), DISPLAY.NONE);
+  setDisplay(querySelector.recentKeywordList(), DISPLAY.NONE);
+  setDisplay(querySelector.autoKeywordList(), DISPLAY.BLOCK);
 }
 
 const recentKeywords = [];
@@ -31,7 +30,7 @@ function setRecentKeyword(value) {
 }
 
 function searchBarEventHandler() {
-  QUERY.SEARCH_INPUT.addEventListener("click", (e) => {
+  querySelector.searchInput().addEventListener("click", (e) => {
     const isEmpty = e.target.value.length === 0;
     if (isEmpty) {
       onClickDisplay();
@@ -42,7 +41,7 @@ function searchBarEventHandler() {
     dim();
   });
 
-  QUERY.SEARCH_INPUT.addEventListener("input", (e) => {
+  querySelector.searchInput().addEventListener("input", (e) => {
     const isEmpty = e.target.value.length === 0;
     if (isEmpty) {
       onClickDisplay();
@@ -53,14 +52,14 @@ function searchBarEventHandler() {
     dim();
   });
 
-  QUERY.SEARCH_INPUT.addEventListener("blur", async () => {
+  querySelector.searchInput().addEventListener("blur", async () => {
     await delay(TIME.NONE_TO_BLOCK);
     allDisplayNone();
     undim();
   });
 
-  QUERY.SEARCH_BTN.addEventListener("click", () => {
-    const searchValue = QUERY.SEARCH_INPUT.value;
+  querySelector.searchBtn().addEventListener("click", () => {
+    const searchValue = querySelector.searchInput().value;
     setRecentKeyword(searchValue);
   });
 }

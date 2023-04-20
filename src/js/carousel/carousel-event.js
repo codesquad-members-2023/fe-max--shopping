@@ -1,4 +1,5 @@
-import { QUERY, CAROUSEL, TIME } from "../constant.js";
+import { querySelector } from "../query.js";
+import { CAROUSEL, TIME } from "../constant.js";
 import { delay } from "../util/delay-promise.js";
 
 class Slider {
@@ -13,20 +14,20 @@ class Slider {
   }
 
   initSlide() {
-    QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
+    querySelector.slideList().style.transform = this.getCalcTransform();
   }
 
   moveToBesideSlide(isEdgeSide, isPlus) {
     if (isEdgeSide) {
       return;
     }
-    QUERY.SLIDE_LIST.style.transition = this.transition;
+    querySelector.slideList().style.transition = this.transition;
     this.counter = isPlus ? this.counter + 1 : this.counter - 1;
-    QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
+    querySelector.slideList().style.transform = this.getCalcTransform();
   }
 
   moveToNextSlide() {
-    const lastIndex = QUERY.SLIDE_ITEMS.length - 1;
+    const lastIndex = querySelector.slideItems().length - 1;
     const isLastSlide = this.counter >= lastIndex;
     this.moveToBesideSlide(isLastSlide, true);
   }
@@ -39,22 +40,22 @@ class Slider {
 
   moveToOppositeSlide(isFakeSlide, realSlide) {
     if (isFakeSlide) {
-      QUERY.SLIDE_LIST.style.transition = CAROUSEL.NO_EFFECT;
+      querySelector.slideList().style.transition = CAROUSEL.NO_EFFECT;
       this.counter = realSlide;
-      QUERY.SLIDE_LIST.style.transform = this.getCalcTransform();
+      querySelector.slideList().style.transform = this.getCalcTransform();
     }
   }
 
   firstToLastSlide() {
     const lastIndexWithoutFake = 2;
-    const isFakeLastSlide = QUERY.SLIDE_ITEMS[this.counter].id === "last-clone";
-    const isRealLastSlide = QUERY.SLIDE_ITEMS.length - lastIndexWithoutFake;
+    const isFakeLastSlide = querySelector.slideItems()[this.counter].id === "last-clone";
+    const isRealLastSlide = querySelector.slideItems().length - lastIndexWithoutFake;
     this.moveToOppositeSlide(isFakeLastSlide, isRealLastSlide);
   }
 
   lastToFirstSlide() {
-    const isFakeFirstSlide = QUERY.SLIDE_ITEMS[this.counter].id === "first-clone";
-    const isRealFirstSlide = QUERY.SLIDE_ITEMS.length - this.counter;
+    const isFakeFirstSlide = querySelector.slideItems()[this.counter].id === "first-clone";
+    const isRealFirstSlide = querySelector.slideItems().length - this.counter;
     this.moveToOppositeSlide(isFakeFirstSlide, isRealFirstSlide);
   }
 
@@ -79,18 +80,19 @@ function slideLoadEventHandler() {
 }
 
 function slideNextBtnClickEventHandler() {
-  // bind 공부하기
-  QUERY.NEXT_BTN.addEventListener("click", carouselSlide.moveToNextSlide.bind(carouselSlide));
+  querySelector
+    .nextBtn()
+    .addEventListener("click", carouselSlide.moveToNextSlide.bind(carouselSlide));
 }
 
 function slidePrevBtnClickEventHandler() {
-  QUERY.PREV_BTN.addEventListener("click", () => {
+  querySelector.prevBtn().addEventListener("click", () => {
     carouselSlide.moveToPrevSlide();
   });
 }
 
 function slideTransitionendEventHandler() {
-  QUERY.SLIDE_LIST.addEventListener("transitionend", () => {
+  querySelector.slideList().addEventListener("transitionend", () => {
     carouselSlide.teleportSlide();
   });
 }

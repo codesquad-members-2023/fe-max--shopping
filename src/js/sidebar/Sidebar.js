@@ -1,4 +1,5 @@
 import { Db } from "../db/db.js";
+import { querySelector } from "../query.js";
 
 export class Sidebar {
   constructor() {
@@ -7,7 +8,7 @@ export class Sidebar {
   }
 
   setSidebar() {
-    return document.querySelector(".menu-sidebar");
+    return querySelector.sidebar();
   }
 
   setBaseArea() {
