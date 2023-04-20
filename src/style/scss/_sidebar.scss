@@ -5,15 +5,30 @@ aside {
   position: fixed;
 }
 
-.sidebar {
-  &__container {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: variables.$z-index-modal;
-    background-color: variables.$color-white;
+.closed {
+  .sidebar {
+    transform: translate(-100%);
+    visibility: hidden;
+    opacity: 0;
+
+    &__backdrop {
+      z-index: -1 * variables.$z-index-cover;
+      visibility: hidden;
+      opacity: 0;
+    }
   }
+}
+
+.sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: variables.$z-index-modal;
+  background-color: variables.$color-white;
+  transition: all 0.3s ease;
 
   &__user-profile {
     @include mixins.menu-box;
@@ -26,8 +41,8 @@ aside {
 
   &__button--close {
     position: absolute;
-    right: -24px;
-    transform: translateX(8px);
+    left: 328px;
+    transform: translate(8px, 8px);
 
     img {
       width: 24px;
@@ -44,18 +59,21 @@ aside {
     height: 100vh;
     z-index: variables.$z-index-cover;
     background-color: variables.$color-black-40;
+    transition: all 0.3s ease;
   }
 }
 
 .menu {
   &__item {
     @include mixins.menu-box;
+    height: 40px;
     font: variables.$font-body-md;
     color: variables.$color-black;
   }
 
   &__title {
     @include mixins.menu-box;
+    height: 53px;
     font: variables.$font-bold-lg;
     color: variables.$color-black;
   }
@@ -82,6 +100,11 @@ aside {
     &--expand {
       @extend .menu__icon;
       background: url('/src/asset/img/chevron-down.svg') no-repeat center;
+    }
+
+    &--contract {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-up.svg') no-repeat center;
     }
   }
 }
