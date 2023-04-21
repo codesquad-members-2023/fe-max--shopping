@@ -145,55 +145,52 @@
       </nav>
 
       <!-- sidebar -->
-      <div class="sidebar" >
-        <img src="./src/assets/images/icn_close.svg" alt="닫기" class="sidebar__close hidden" />
+      <div class="sidebar">
+        <button class="sidebar__close hidden">
+          <img src="./src/assets/images/icn_close.svg" alt="닫기" class="" />
+        </button>
         <div class="sidebar__login">
           <img src="./src/assets/images/icn_user.svg" alt="" />
           <span>안녕하세요, 로그인</span>
         </div>
-        <div class="sidebar__content">
-          <div class="sidebar__content">
-            <div class="title">디지털 콘텐츠 및 기기</div>
-            <ul class="lists">
-              <li>
-                <a href="#">Amazon Music</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-              <li>
-                <a href="#">Kindle E-Reader 및 도서</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-              <li>
-                <a href="#">안드로이드 앱스토어</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-            </ul>
+        <div class="sidebar__contents">
+          <div class="wrap">
+            <div class="main">
+              <div class="content">
+                <div class="title">디지털 콘텐츠 및 기기</div>
+                <ul class="lists digital"></ul>
+              </div>
+              <div class="content">
+                <div class="sidebar__content--top">
+                  <div class="title">부서별 쇼핑</div>
+                  <ul class="lists department"></ul>
+                  <button class="open-lists-btn">
+                    <div>모두보기</div>
+                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                  </button>
+                </div>
+                <div class="sidebar__content--down">
+                  <ul class="open-lists"></ul>
+                  <button class="close-lists-btn">
+                    <div>간단히보기</div>
+                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- 서브 -->
+            <div class="sub">
+              <div class="content">
+                <button class="go-main-btn">
+                  <img src="./src/assets/images/icn_arrow_left.svg" alt="" />
+                  <div>메인 메뉴</div>
+                </button>
+                <div class="sub-content"></div>
+              </div>
+            </div>
           </div>
-          <div class="sidebar__content">
-            <div class="title">부서별 쇼핑</div>
-            <ul class="lists">
-              <li>
-                <a href="#">전자</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-              <li>
-                <a href="#">컴퓨터</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-              <li>
-                <a href="#">Alexa 스마트 홈</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-              <li>
-                <a href="#">예술 및 공예</a>
-                <img src="./src/assets/images/icn_chevron_right.svg" alt="">
-              </li>
-            </ul>
-            <div class="all"><div>모두보기</div></div>
-          </div>
-          <!-- <div>모두보기 리스트</div>
-          <div>간단히보기</div> -->
         </div>
+      </div>
     </header>
     <!-- hero-slider -->
     <section class="hero">

@@ -9,7 +9,47 @@ export class SideBar {
   }
 
   init() {
+    this.initDigitalList('디지털 콘텐츠 및 기기', '.digital');
+    this.initDepartmentList('부서별 쇼핑', '.department', '.open-lists');
     this.eventListener.registerEventListeners();
+  }
+
+  initDigitalList(category, listSelector) {
+    this.data.getMainCategoryList(category).then((items) => {
+      const baseLists = $(listSelector);
+      this.renderer.renderMainList(baseLists, items);
+    });
+  }
+
+  initDepartmentList(category, baseListSelector, expendListSelector) {
+    const SLICE_IDX = 4;
+    this.data.getMainCategoryList(category).then((items) => {
+      const baseLists = $(baseListSelector);
+      const expendLists = $(expendListSelector);
+
+      const baseItems = items.slice(0, SLICE_IDX);
+      const addLists = items.slice(SLICE_IDX, items.length);
+
+      this.renderer.renderMainList(baseLists, baseItems);
+      this.renderer.renderMainList(expendLists, addLists);
+    });
+  }
+
+  fetchAndRenderSubList(mainCategoryTitle, subCategoryTitle) {
+    this.data.getSubCategoryItemList(mainCategoryTitle, subCategoryTitle).then((items) => {
+      const subLists = $('.sub-content');
+      this.renderer.renderSubList(subCategoryTitle, items, subLists);
+    });
+  }
+
+  moveSubList({ target }) {
+    if (!target.closest('li')) return;
+
+    const mainCategoryTitle = target.closest('.content').querySelector('.title').innerText;
+    const subCategoryTitle = target.closest('li').innerText;
+
+    this.fetchAndRenderSubList(mainCategoryTitle, subCategoryTitle);
+    this.handleSubToggle();
   }
 
   handleSubToggle() {

@@ -692,7 +692,6 @@ html {
   left: 0;
   background-color: #fff;
   z-index: 100;
-  width: 320px;
   height: 100vh;
   transition: transform 0.5s ease-in-out;
 }
@@ -700,9 +699,14 @@ html {
   transform: translateX(0%);
 }
 .sidebar__close {
+  width: 16px;
+  height: 16px;
   position: absolute;
   left: 332px;
   top: 12px;
+}
+.sidebar__close img {
+  display: block;
 }
 .sidebar__close.hidden {
   display: none;
@@ -722,10 +726,26 @@ html {
   letter-spacing: 0;
   color: #ffffff;
 }
-.sidebar__content {
+.sidebar__contents {
+  transition: all 0.3s;
+  width: 320px;
+  overflow: hidden;
+}
+.sidebar__contents .wrap {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  width: 640px;
+}
+.sidebar__contents .wrap.translateX {
+  transform: translateX(-50%);
+}
+.sidebar__contents .main .content,
+.sidebar__contents .sub .content {
+  width: 320px;
   border-bottom: 1px solid #eff2f2;
 }
-.sidebar__content .title {
+.sidebar__contents .main .content .title,
+.sidebar__contents .sub .content .title {
   padding: 16px 16px 16px 32px;
   font-family: "Pretendard", sans-serif;
   font-size: 1.8rem;
@@ -734,32 +754,83 @@ html {
   letter-spacing: 0;
   color: #10141a;
 }
-.sidebar__content .lists li {
+.sidebar__contents .main .content .lists .items,
+.sidebar__contents .main .content .open-lists .items,
+.sidebar__contents .sub .content .lists .items,
+.sidebar__contents .sub .content .open-lists .items {
+  transition: all 0.3s;
   width: 100%;
   padding: 16px 16px 16px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.sidebar__content .lists li a {
+.sidebar__contents .main .content .lists .items a,
+.sidebar__contents .main .content .open-lists .items a,
+.sidebar__contents .sub .content .lists .items a,
+.sidebar__contents .sub .content .open-lists .items a {
   font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
-  font-weight: 800;
-  line-height: auto;
-  letter-spacing: -0.06em;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
   color: #10141a;
 }
-.sidebar__content .lists li img {
+.sidebar__contents .main .content .lists .items img,
+.sidebar__contents .main .content .open-lists .items img,
+.sidebar__contents .sub .content .lists .items img,
+.sidebar__contents .sub .content .open-lists .items img {
   display: block;
 }
-.sidebar__content .all {
+.sidebar__contents .main .content .lists .items:hover,
+.sidebar__contents .main .content .open-lists .items:hover,
+.sidebar__contents .sub .content .lists .items:hover,
+.sidebar__contents .sub .content .open-lists .items:hover {
+  background-color: #eff2f2;
+}
+.sidebar__contents .main .content .open-lists-btn,
+.sidebar__contents .main .content .close-lists-btn,
+.sidebar__contents .main .content .go-main-btn,
+.sidebar__contents .sub .content .open-lists-btn,
+.sidebar__contents .sub .content .close-lists-btn,
+.sidebar__contents .sub .content .go-main-btn {
+  width: 100%;
   padding: 16px 16px 16px 32px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
   font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
-  font-weight: 800;
-  line-height: auto;
-  letter-spacing: -0.06em;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: -0.03em;
   color: #10141a;
+  transition: transform 0.5s ease-in-out;
+}
+.sidebar__contents .main .content .open-lists-btn:hover,
+.sidebar__contents .main .content .close-lists-btn:hover,
+.sidebar__contents .main .content .go-main-btn:hover,
+.sidebar__contents .sub .content .open-lists-btn:hover,
+.sidebar__contents .sub .content .close-lists-btn:hover,
+.sidebar__contents .sub .content .go-main-btn:hover {
+  background-color: #eff2f2;
+}
+.sidebar__contents .main .close-lists-btn img,
+.sidebar__contents .sub .close-lists-btn img {
+  display: block;
+  transform: rotate(180deg);
+}
+.sidebar__contents .main .sidebar__content--down,
+.sidebar__contents .sub .sidebar__content--down {
+  border-top: 1px solid #eff2f2;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.sidebar__contents .main .sidebar__content--down.open,
+.sidebar__contents .sub .sidebar__content--down.open {
+  max-height: 1000px;
+  transition: max-height 0.3s ease-in;
 }
 
 body {

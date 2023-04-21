@@ -5,17 +5,22 @@
   left: 0;
   background-color: #fff;
   z-index: 100;
-  width: 320px;
   height: 100vh;
   transition: transform 0.5s ease-in-out;
+
   &.active {
     transform: translateX(0%);
   }
 
   &__close {
+    width: 16px;
+    height: 16px;
     position: absolute;
     left: 332px;
     top: 12px;
+    img {
+      display: block;
+    }
     &.hidden {
       display: none;
     }
@@ -30,30 +35,77 @@
       @include typography($BoldLG, $White);
     }
   }
-  &__content {
-    border-bottom: 1px solid $Gray100;
-    .title {
-      padding: 16px 16px 16px 32px;
-      @include typography($BoldLG, $Black);
+
+  &__contents {
+    transition: all 0.3s;
+    width: 320px;
+    overflow: hidden;
+    .wrap {
+      transition: all 0.5s ease-in-out;
+      display: flex;
+      width: 640px;
     }
-    .lists {
-      li {
-        width: 100%;
-        padding: 16px 16px 16px 32px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        a {
-          @include typography($BoldMD, $Black);
+    .wrap.translateX {
+      transform: translateX(-50%);
+    }
+    .main,
+    .sub {
+      .content {
+        width: 320px;
+        border-bottom: 1px solid $Gray100;
+        .title {
+          padding: 16px 16px 16px 32px;
+          @include typography($BoldLG, $Black);
         }
-        img {
-          display: block;
+        .lists,
+        .open-lists {
+          .items {
+            transition: all 0.3s;
+            width: 100%;
+            padding: 16px 16px 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            a {
+              @include typography($BodyMD, $Black);
+            }
+            img {
+              display: block;
+            }
+            &:hover {
+              background-color: #eff2f2;
+            }
+          }
+        }
+        .open-lists-btn,
+        .close-lists-btn,
+        .go-main-btn {
+          width: 100%;
+          padding: 16px 16px 16px 32px;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          @include typography($BodyMD, $Black);
+          transition: transform 0.5s ease-in-out;
+          &:hover {
+            background-color: #eff2f2;
+          }
         }
       }
-    }
-    .all {
-      padding: 16px 16px 16px 32px;
-      @include typography($BoldMD, $Black);
+      .close-lists-btn img {
+        display: block;
+        transform: rotate(180deg);
+      }
+      .sidebar__content--down {
+        border-top: 1px solid $Gray100;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .sidebar__content--down.open {
+        max-height: 1000px;
+        transition: max-height 0.3s ease-in;
+      }
     }
   }
 }
