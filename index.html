@@ -66,9 +66,9 @@
 
             <nav class="nav-sub">
                 <div class="sub-left-buttons">
-                    <button type="button" class="side-bar sub-menu-button hamburger-btn">
-                        <img src="./src/images/menu-white.svg" alt="메뉴">
-                        <span>모두</span>
+                    <button type="button" class="side-bar sub-menu-button hamburger-btn" >
+                        <img src="./src/images/menu-white.svg" alt="메뉴" >
+                        <span >모두</span>
                     </button>
                     <button type="button" class="sub-menu-button"><span>오늘의 딜</span></button>
                     <button type="button" class="sub-menu-button"><span>고객 서비스</span></button>
@@ -176,43 +176,17 @@
                     <li class="side__title-text">
                         <span>디지털 콘텐츠 및 기기</span>
                     </li>
+                    <!-- 디지털 -->
                     <li class="side__list" data-id="digitalMenu">
                         <ul class="side__list-digital" data-id="digital">
-                            <!-- <li class="side__list-item">
-                                <span class="side__list-item-name">Amazon Music</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li>
-                            <li class="side__list-item">
-                                <span class="side__list-item-name">Kindle E-Reader 및 도서</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li>
-                            <li class="side__list-item">
-                                <span class="side__list-item-name">안드로이드 앱스토어</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li> -->
                         </ul>
                     </li>
                     <li class="side__title-text">
                         <span>부서별 쇼핑</span>
                     </li>
+                    <!-- 부서별 쇼핑 -->
                     <li data-id="shoppingMenu">
                         <ul class="side__list side__list-shopping">
-                            <!-- <li class="side__list-item">
-                                <span class="side__list-item-name">전자</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li>
-                            <li class="side__list-item">
-                                <span class="side__list-item-name">컴퓨터</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li>
-                            <li class="side__list-item">
-                                <span class="side__list-item-name">Alexa 스마트 홈</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li>
-                            <li class="side__list-item">
-                                <span class="side__list-item-name">예술 및 공예</span>
-                                <img class="side__list-item-arrow" src="./src/images/chevron-right-gray.svg" alt="더보기">
-                            </li> -->
                         </ul>
                     </li>
                     <li class="side__view-all side__view-controll ">
@@ -221,50 +195,20 @@
                         </div>
                         <img class="side__view-all-arrow" src="./src/images/chevron-down-gray.svg" alt="펼치기">
                     </li>
-                    <!-- 주메뉴 -->
+                    <!-- 모두보기 -->
                     <li data-id="collapsibleMenu">
                         <ul class="side__list side__list-main compressed" data-id="collapsible">
                         </ul>
                     </li>
                 </ul>
+                <!-- 하위메뉴 -->
                 <ul class="side__box-sub side__list side__list-sub ">
-                    <li class="side__list-item--back side__view-controll" data-id="close-sub">
-                        <img src="./src/images/arrow-left-gray.svg" alt="돌아가기" data-id="close-sub">
-                        <span class="side__list-item-name" data-id="close-sub">주메뉴</span>
-                    </li>
-                    <li class="side__title-text">
-                        <span>주메뉴 용품</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name">주메뉴 관리</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name">주메뉴 전자기기</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name">주메뉴 악세서리</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name">주메뉴 부품</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name"> 주메뉴 장비</span>
-                    </li>
-                    <li class="side__list-item">
-                        <span class="side__list-item-name">주메뉴 매니아용</span>
-                    </li>
+                
                 </ul>
-
-
-                <!-- <div class="side__dim">
-                    
-                </div> -->
             </div>
-
-
         </aside>
-        <button type="button" class="side__close-btn">
-            <img src="./src/images/close.svg" alt="닫기">
+        <button type="button" class="side__close-btn close" data-id="sideHandler">
+            <img src="./src/images/close.svg" alt="닫기" data-id="sideHandler">
         </button>
 
         <footer class="footer">

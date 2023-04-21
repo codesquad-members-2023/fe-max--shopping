@@ -83,20 +83,14 @@ export class SideBarMenuHandler {
     this.menuRenderer = new MenuRenderer();
   }
   toggleSidebar() {
-    // todo 사이드바 출현시 버튼도 fadein 추가해줘야함
-    // hamburgerBtn.addEventListener('click', () => {
-    //   sideArea.classList.add('active');
-    // });
-
-    // closeBtn.addEventListener('click', () => {
-    //   sideArea.classList.remove('active');
-    // });
     document.addEventListener('click', e => {
       console.log(e.target);
       if (e.target.closest('.hamburger-btn')) {
         sideArea.classList.add('active');
+        closeBtn.classList.remove('close');
       } else if (!e.target.closest('.side') ) {
         sideArea.classList.remove('active');
+        closeBtn.classList.add('close');
       }
     });
   }
