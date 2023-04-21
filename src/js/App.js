@@ -8,16 +8,16 @@ class App extends Base {
   constructor() {
     super("div");
     this.sideBar = new SideBar();
-    this.backdrop = new Backdrop();
     this.header = new Header(this.sideBar);
     this.main = new Main();
+    this.backdrop = new Backdrop(this.header);
 
     this.init();
   }
 
   init() {
     this.setAttribute("id", "root");
-    this.setChildren(this.backdrop, this.header, this.main, this.sideBar);
+    this.setChildren(this.header, this.main, this.sideBar, this.backdrop);
 
     document.body.appendChild(this.node);
   }

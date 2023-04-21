@@ -545,7 +545,7 @@
   background: var(--white);
   border: 1px solid var(--black);
   border-radius: 4px;
-  z-index: 1;
+  z-index: 2;
 }
 #SearchBarLayer .keywordList {
   box-sizing: border-box;
@@ -852,5 +852,4 @@ body {
   position: absolute;
   top: 88px;
   left: 0;
-  z-index: 1;
 }
