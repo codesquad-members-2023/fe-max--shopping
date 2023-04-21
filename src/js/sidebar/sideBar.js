@@ -12,6 +12,10 @@ export class SideBar {
     this.eventListener.registerEventListeners();
   }
 
+  handleSubToggle() {
+    $('.wrap').classList.toggle('translateX');
+  }
+
   handleSubListOpen() {
     $('.sidebar__content--down').classList.add('open');
   }
@@ -36,5 +40,7 @@ class EventListener {
     $('.sidebar__close').addEventListener('click', () => this.sidebar.handleSideBarToggle());
     $('.open-lists-btn').addEventListener('click', () => this.sidebar.handleSubListOpen());
     $('.close-lists-btn').addEventListener('click', () => this.sidebar.handleSubListClose());
+    $('.go-main-btn').addEventListener('click', () => this.sidebar.handleSubToggle());
+    $('.sidebar__contents .main').addEventListener('click', (e) => this.sidebar.moveSubList(e));
   }
 }
