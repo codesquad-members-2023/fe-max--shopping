@@ -179,6 +179,7 @@
         ]
       }
     ],
+
     "mainBgSlides": [
       {
         "index": 0,
@@ -448,5 +449,104 @@
       }
     ]
   },
-  "history": []
+
+  "category": [
+    {
+      "id": 1,
+      "name": "모두 보기",
+      "detail": [
+        {
+          "id": 1,
+          "name": "자동차 용품",
+          "items": [
+            {
+              "textContent": "자동차 관리",
+              "href": "#"
+            },
+            {
+              "textContent": "자동차 전자기기 및 악세서리",
+              "href": "#"
+            },
+            {
+              "textContent": "실외용품 악세서리",
+              "href": "#"
+            },
+            {
+              "textContent": "램프 및 조명 악세서리",
+              "href": "#"
+            },
+            {
+              "textContent": "오토바이 및 파워스포츠 차량 용품",
+              "href": "#"
+            },
+            {
+              "textContent": "오일 및 유체",
+              "href": "#"
+            },
+            {
+              "textContent": "페인트 및 도장용품",
+              "href": "#"
+            },
+            {
+              "textContent": "퍼포먼스 부품 및 액세서리",
+              "href": "#"
+            },
+            {
+              "textContent": "교체용 부품",
+              "href": "#"
+            },
+            {
+              "textContent": "RV 부품 및 액세서리",
+              "href": "#"
+            },
+            {
+              "textContent": "타이어 및 휠",
+              "href": "#"
+            },
+            {
+              "textContent": "공구 및 장비",
+              "href": "#"
+            },
+            {
+              "textContent": "자동차 매니아용 상품",
+              "href": "#"
+            },
+            {
+              "textContent": "대형차 및 상용차 장비",
+              "href": "#"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "디지털 콘텐츠 및 기기",
+      "detail": []
+    },
+    {
+      "id": 3,
+      "name": "부서별 쇼핑",
+      "detail": []
+    }
+  ],
+
+  "history": [
+    {
+      "keyword": "가",
+      "id": 1
+    },
+    {
+      "keyword": "나",
+      "id": 2
+    },
+    {
+      "keyword": "가나다",
+      "id": 3
+    },
+    {
+      "keyword": "fdsa",
+      "id": 4
+    }
+  ]
 }

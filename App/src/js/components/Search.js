@@ -51,7 +51,6 @@ export class Search extends Component {
   };
 
   addLogKeywords = (logKeywords) => {
-    console.log(logKeywords);
     logKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
         getAccountRecipe().keywordListItem(keyword)

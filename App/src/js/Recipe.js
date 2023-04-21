@@ -322,8 +322,8 @@ export class Recipe {
             {
               tagName: "strong",
               textContent,
-            }
-          ]          
+            },
+          ],
         },
         {
           tagName: "input",
@@ -332,7 +332,7 @@ export class Recipe {
             class: "delete",
             src: "./src/img/icon/close.svg",
             alt: "기록 삭제",
-            "tabindex": -1
+            tabindex: -1,
           },
         },
       ],
@@ -686,7 +686,7 @@ export class Recipe {
   };
 
   sidebar = () => {
-    const { sidebarSub } = this;
+    const { sidebarSub, sidebarDetail } = this;
     const { sidebarSubs } = this.state;
     return {
       tagName: "article",
@@ -728,14 +728,20 @@ export class Recipe {
                 },
               ],
             },
-            ...sidebarSubs.map(sidebarSub),
+            {
+              tagName: "div",
+              attrs: {
+                class: "inner",
+              },
+              children: [...sidebarSubs.map(sidebarSub), sidebarDetail({})],
+            },
           ],
         },
       ],
     };
   };
 
-  sidebarSub = ({ title, items, all }) => {
+  sidebarSub = ({ title, items, all }, i) => {
     const { sidebarSubItem, sidebarSubAll } = this;
     return {
       tagName: "article",
@@ -748,6 +754,7 @@ export class Recipe {
           tagName: "ul",
           attrs: {
             class: "sidebar__sub",
+            "data-category": i + 2,
           },
           children: [
             ...items.map(sidebarSubItem),
@@ -799,6 +806,10 @@ export class Recipe {
             },
             {
               tagName: "ul",
+              attrs: {
+                class: "sidebar__sub",
+                "data-category": 1,
+              },
               children: all.map(sidebarSubItem),
             },
           ],
@@ -807,7 +818,7 @@ export class Recipe {
     };
   };
 
-  sidebarSubItem = ({ textContent }) => {
+  sidebarSubItem = ({ textContent }, i) => {
     return {
       tagName: "li",
       children: [
@@ -815,6 +826,7 @@ export class Recipe {
           tagName: "button",
           attrs: {
             class: "sidebar__item",
+            "data-detail-index": i,
             tabindex: "-1",
           },
           children: [
@@ -832,12 +844,83 @@ export class Recipe {
                   tagName: "img",
                   attrs: {
                     src: "./src/img/icon/chevron-right.svg",
-                    alt: "자세히 보기",
+                    alt: `${textContent} 자세히 보기`,
                   },
                 },
               ],
             },
           ],
+        },
+      ],
+    };
+  };
+
+  sidebarDetail = ({ name, items }) => {
+    const { sidebarDetailItem } = this;
+    return {
+      tagName: "article",
+      attrs: {
+        class: "detail",
+      },
+      children: [
+        {
+          tagName: "h3",
+          attrs: {
+            class: "blind",
+          },
+          textContent: "카테고리 세부영역",
+        },
+        {
+          tagName: "button",
+          attrs: {
+            class: "back",
+            "aria-label": "주 메뉴로 돌아가기",
+          },
+          children: [
+            {
+              tagName: "img",
+              attrs: {
+                src: "./src/img/icon/arrow-left.svg",
+                alt: "왼쪽 화살표",
+              },
+            },
+            {
+              tagName: "span",
+              textContent: "주 메뉴",
+            },
+          ],
+        },
+        {
+          tagName: "article",
+          attrs: {
+            class: "inner",
+          },
+          children: [
+            {
+              tagName: "h4",
+              textContent: name || "",
+            },
+            {
+              tagName: "ul",
+              children: items ? items.map(sidebarDetailItem) : [],
+            },
+          ],
+        },
+      ],
+    };
+  };
+
+  sidebarDetailItem = ({ textContent, href }) => {
+    return {
+      tagName: "li",
+      children: [
+        {
+          tagName: "a",
+          attrs: {
+            class: "sidebar__item",
+            href,
+          },
+          textContent,
         },
       ],
     };

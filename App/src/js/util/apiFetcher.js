@@ -117,3 +117,9 @@ export const getRandomKeywords = async (limit) => {
 export const getState = async () => {
   return await generateUrlFunc("/state", { method: "GET" })({});
 };
+
+export const getCategory = async (categoryId) => {
+  return await generateUrlFunc(`/category/${categoryId}`, { method: "GET" })(
+    {}
+  );
+};

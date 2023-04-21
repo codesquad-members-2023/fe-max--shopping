@@ -3,83 +3,69 @@ export const $ = document.querySelector.bind(document);
 function generateDict() {
   const dict = {};
 
-  function _add(name, event) {
+  function add(name, event) {
     dict[name] = event;
   }
 
-  function _find(name) {
+  function find(name) {
     if (name in dict) {
       return dict[name];
     }
     return null;
   }
 
-  return [_add, _find];
+  return [add, find];
 }
 
-const [_addComponent, _findComponent] = generateDict();
-
-export const addComponent = _addComponent;
-export const findComponent = _findComponent;
-
-const [_addEvent, _findEvent] = generateDict();
-
-export const addEvent = _addEvent;
-export const findEvent = _findEvent;
+export const [addComponent, findComponent] = generateDict();
+export const [addEvent, findEvent] = generateDict();
 
 function recipeAccount() {
   let recipe = null;
 
-  function _registerRecipe(_recipe) {
+  function registerRecipe(_recipe) {
     recipe = _recipe;
   }
 
-  function _getAccountRecipe() {
+  function getAccountRecipe() {
     return recipe;
   }
 
   return {
-    _registerRecipe,
-    _getAccountRecipe,
+    registerRecipe,
+    getAccountRecipe,
   };
 }
 
-const { _registerRecipe, _getAccountRecipe } = recipeAccount();
+export const { registerRecipe, getAccountRecipe } = recipeAccount();
 
-export const registerRecipe = _registerRecipe;
-export const getAccountRecipe = _getAccountRecipe;
-
-async function generateSearchLog() {
+function generateSearchLog() {
   const MAX_KEYWORD_COUNT = 10;
   const local = localStorage.getItem("searchLog");
 
   const log = local ? JSON.parse(local) : [];
 
-  function _addLogKeyword(keyword) {
+  function addLogKeyword(keyword) {
     log.splice(0, 0, keyword);
     if (log.length > MAX_KEYWORD_COUNT) log.pop();
     localStorage.setItem("searchLog", JSON.stringify(log));
   }
 
-  function _getLogKeywords() {
+  function getLogKeywords() {
     return log;
   }
 
-  function _delLogKeyword(index) {
+  function delLogKeyword(index) {
     log.splice(index, 1);
     localStorage.setItem("searchLog", JSON.stringify(log));
   }
 
   return {
-    _addLogKeyword,
-    _getLogKeywords,
-    _delLogKeyword,
+    addLogKeyword,
+    getLogKeywords,
+    delLogKeyword,
   };
 }
 
-const { _addLogKeyword, _getLogKeywords, _delLogKeyword } =
-  await generateSearchLog();
-
-export const addLogKeyword = _addLogKeyword;
-export const getLogKeywords = _getLogKeywords;
-export const delLogKeyword = _delLogKeyword;
+export const { addLogKeyword, getLogKeywords, delLogKeyword } =
+  generateSearchLog();
