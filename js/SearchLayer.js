@@ -69,7 +69,7 @@ export class SearchLayer {
       this.render();
       return;
     }
-    this.getData('auto').then((autoSuggestionData) => {
+    this.getData('autoSuggestions').then((autoSuggestionData) => {
       this.renderAutoSuggestion(autoSuggestionData, inputValue);
     });
   };

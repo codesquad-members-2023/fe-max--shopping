@@ -13,7 +13,6 @@
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
-    <div class="sidebar__backdrop"></div>
     <header class="nav bg-black text-white">
       <nav class="nav-main font-BoldMD">
         <div class="nav-main__item nav__logo">
@@ -152,111 +151,132 @@
         </button>
       </div>
     </main>
-    <section class="side-bar bg-white">
-      <div class="side-bar__login font-BoldLG text-white bg-black">
-        <div class="side-bar__login--user-img"></div>
-        안녕하세요,로그인
-        <div class="side-bar__close-btn">
-          <img src="./assets/icons/close.svg" alt="" />
-        </div>
+    <aside>
+      <div class="side-bar__close-btn">
+        <img src="./assets/icons/close.svg" alt="" />
       </div>
-      <ul class="hmenu">
-        <li>
-          <div class="hmenu__item hmenu__item--title">디지털 콘텐츠 및 기기</div>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>Amazon Music</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>Kindle E-Reader 및 도서</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>안드로이드 앱스토어</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li class="hmenu__separator"></li>
-        <li>
-          <div class="hmenu__item hmenu__item--title">부서별 쇼핑</div>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>전자</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>컴퓨터</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>Alexa 스마트 홈</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item" href="#">
-            <p>예술 및 공예</p>
-            <button class="hmenu__arrow-right-btn"></button>
-          </a>
-        </li>
-        <li>
-          <a class="hmenu__item hmenu__expand-btn" href="#">
-            <p>모두 보기</p>
-            <button></button>
-          </a>
-        </li>
-        <li class="hmenu__separator"></li>
-        <ul class="hmenu__compress-section compressed">
+      <section class="side-bar bg-white">
+        <div class="side-bar__login font-BoldLG text-white bg-black">
+          <div class="side-bar__login--user-img"></div>
+          안녕하세요,로그인
+        </div>
+        <ul class="hmenu">
           <li>
-            <a class="hmenu__item" href="#">
-              <p>자동차 용품</p>
+            <div class="hmenu__item hmenu__item--title">디지털 콘텐츠 및 기기</div>
+          </li>
+          <li>
+            <a class="hmenu__item" data-hmenu-id="1" href="#">
+              <p>Amazon Music</p>
               <button class="hmenu__arrow-right-btn"></button>
             </a>
           </li>
           <li>
             <a class="hmenu__item" href="#">
-              <p>유아</p>
+              <p>Kindle E-Reader 및 도서</p>
               <button class="hmenu__arrow-right-btn"></button>
             </a>
           </li>
           <li>
             <a class="hmenu__item" href="#">
-              <p>뷰티 및 퍼스널케어</p>
+              <p>안드로이드 앱스토어</p>
+              <button class="hmenu__arrow-right-btn"></button>
+            </a>
+          </li>
+          <li class="hmenu__separator"></li>
+          <li>
+            <div class="hmenu__item hmenu__item--title">부서별 쇼핑</div>
+          </li>
+          <li>
+            <a class="hmenu__item" href="#">
+              <p>전자</p>
               <button class="hmenu__arrow-right-btn"></button>
             </a>
           </li>
           <li>
             <a class="hmenu__item" href="#">
-              <p>남성 패션</p>
+              <p>컴퓨터</p>
               <button class="hmenu__arrow-right-btn"></button>
             </a>
           </li>
           <li>
             <a class="hmenu__item" href="#">
-              <p>여성 패션</p>
+              <p>Alexa 스마트 홈</p>
+              <button class="hmenu__arrow-right-btn"></button>
+            </a>
+          </li>
+          <li>
+            <a class="hmenu__item" href="#">
+              <p>예술 및 공예</p>
+              <button class="hmenu__arrow-right-btn"></button>
+            </a>
+          </li>
+          <li>
+            <a class="hmenu__item hmenu__expand-btn" href="#">
+              <p>모두 보기</p>
+              <button></button>
+            </a>
+          </li>
+          <li class="hmenu__separator"></li>
+          <ul class="hmenu__compress-section compressed">
+            <li>
+              <a class="hmenu__item" href="#">
+                <p>자동차 용품</p>
+                <button class="hmenu__arrow-right-btn"></button>
+              </a>
+            </li>
+            <li>
+              <a class="hmenu__item" href="#">
+                <p>유아</p>
+                <button class="hmenu__arrow-right-btn"></button>
+              </a>
+            </li>
+            <li>
+              <a class="hmenu__item" href="#">
+                <p>뷰티 및 퍼스널케어</p>
+                <button class="hmenu__arrow-right-btn"></button>
+              </a>
+            </li>
+            <li>
+              <a class="hmenu__item" href="#">
+                <p>남성 패션</p>
+                <button class="hmenu__arrow-right-btn"></button>
+              </a>
+            </li>
+            <li>
+              <a class="hmenu__item" href="#">
+                <p>여성 패션</p>
+                <button class="hmenu__arrow-right-btn"></button>
+              </a>
+            </li>
+          </ul>
+          <li>
+            <a class="hmenu__item hmenu__compress-btn" href="#">
+              <p>간단히 보기</p>
+              <button></button>
+            </a>
+          </li>
+        </ul>
+        <ul class="hmenu hmenu__sub bg-white" data-hmenu-id="1">
+          <li>
+            <a class="hmenu__item hmenu__back-btn" href="#">
+              <button></button>
+              <p>주 메뉴</p>
+            </a>
+          </li>
+          <li class="hmenu__separator"></li>
+          <li>
+            <div class="hmenu__item hmenu__item--title">음악 스트리밍</div>
+          </li>
+          <li>
+            <a class="hmenu__item" href="#">
+              <p>Amazon Music Unlimited</p>
               <button class="hmenu__arrow-right-btn"></button>
             </a>
           </li>
         </ul>
-        <li>
-          <a class="hmenu__item hmenu__compress-btn" href="#">
-            <p>간단히 보기</p>
-            <button></button>
-          </a>
-        </li>
-      </ul>
-    </section>
+      </section>
+    </aside>
     <div class="modal__backdrop"></div>
+    <div class="sidebar__backdrop"></div>
   </body>
 </html>
