@@ -1,8 +1,13 @@
-import { $ } from "../../utils/domUtils";
-import { ensureHTMLElement } from "../../utils/typeCheckUtils";
+import { dim, undim } from "../../utils/dimming";
+import { Z_INDEX } from "../../constants/Z_INDEX";
+import { hideElement, showElement } from "../../utils/elementVisibility";
 
-export const openSideBar = () => {
-  const $sideBar = ensureHTMLElement($(".side-bar"));
+export const openSideBar = ($sideBar: Element) => {
+  showElement($sideBar);
+  dim(Z_INDEX.SIDE_BAR - 50);
+};
 
-  $sideBar.style.transform = `translateX(100%)`;
+export const closeSideBar = ($sideBar: Element) => {
+  hideElement($sideBar);
+  undim();
 };

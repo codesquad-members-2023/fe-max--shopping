@@ -1,9 +1,10 @@
 import { BASE_URL } from "../../constants/BASE_URL";
 import { Z_INDEX } from "../../constants/Z_INDEX";
-import { dim } from "../../utils/dimming";
+import { dim, undim } from "../../utils/dimming";
 import { $ } from "../../utils/domUtils";
 import { hideElement, showElement } from "../../utils/elementVisibility";
 import { fetchData } from "../../utils/fetchData";
+import { closeSideBar, openSideBar } from "./sideBarController";
 
 interface sideBarMenu {
   title: string;
@@ -85,11 +86,10 @@ export const addSideBarEvent = () => {
   const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
   const $sideBarButton = $(".sub__side-bar-button");
   const $sideBar = $(".side-bar");
+  const $closeButton = $(".side-bar__close-button");
 
   $viewAllButton.addEventListener("click", () => showElement($hiddenMenuContainer));
   $hideButton.addEventListener("click", () => hideElement($hiddenMenuContainer));
-  $sideBarButton.addEventListener("click", () => {
-    showElement($sideBar);
-    dim(Z_INDEX.SIDE_BAR - 50);
-  });
+  $sideBarButton.addEventListener("click", () => openSideBar($sideBar));
+  $closeButton.addEventListener("click", () => closeSideBar($sideBar));
 };
