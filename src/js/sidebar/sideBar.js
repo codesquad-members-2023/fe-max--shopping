@@ -12,6 +12,14 @@ export class SideBar {
     this.eventListener.registerEventListeners();
   }
 
+  handleSubListOpen() {
+    $('.sidebar__content--down').classList.add('open');
+  }
+
+  handleSubListClose() {
+    $('.sidebar__content--down').classList.remove('open');
+  }
+
   handleSideBarToggle() {
     $('.sidebar').classList.toggle('active');
     $('.sidebar__close').classList.toggle('hidden');
@@ -26,5 +34,7 @@ class EventListener {
   registerEventListeners() {
     $('.nav-sub__hmenu').addEventListener('click', () => this.sidebar.handleSideBarToggle());
     $('.sidebar__close').addEventListener('click', () => this.sidebar.handleSideBarToggle());
+    $('.open-lists-btn').addEventListener('click', () => this.sidebar.handleSubListOpen());
+    $('.close-lists-btn').addEventListener('click', () => this.sidebar.handleSubListClose());
   }
 }
