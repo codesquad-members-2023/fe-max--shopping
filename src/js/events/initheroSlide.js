@@ -2,7 +2,7 @@ import { PATH } from '../constants/path.js';
 import { $, $All } from '../utils/dom.js';
 import { shuffleArray } from '../utils/shuffleArray.js';
 import { JSONClient } from './api/api.js';
-import { TemplateGenerator } from './search/SearchBar.js';
+import { TemplateGenerator } from '../events/search/TemplateGenerator.js';
 const slideContainer = $('.hero');
 const slideButtonLayout = $('.slide-buttons-layout');
 const slide = $('.slide-banner');
@@ -11,12 +11,11 @@ const slideBanner = document.querySelector('.slide-banner');
 let index = 1;
 let slideId;
 let setTime = 10000;
-class JSONSlideFetcher {
-  async fetchJson(key) {
-    const jSONClient = new JSONClient(key);
-    const data = await jSONClient.getSlideData();
-    return data;
-  }
+
+async function fetchJson(key) {
+  const jSONClient = new JSONClient(key);
+  const data = await jSONClient.getSlideData();
+  return data;
 }
 
 function getSlides() {
@@ -24,8 +23,7 @@ function getSlides() {
 }
 
 async function selectSlides() {
-  const jsonSlideFetcher = new JSONSlideFetcher();
-  const slidesData = await jsonSlideFetcher.fetchJson(PATH.slides);
+  const slidesData = await fetchJson(PATH.slides);
   const selectedSlides = shuffleArray(slidesData).slice(0, 3);
   return selectedSlides;
 }
