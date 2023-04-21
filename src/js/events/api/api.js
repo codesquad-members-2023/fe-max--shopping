@@ -5,22 +5,14 @@ export class DataFetcher {
   }
 
   async getData() {
-    try {
-      const response = await fetch(this.url);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await fetch(this.url);
+    const data = await response.json();
+    return data;
   }
   async fetchJsonData(path) {
-    try {
-      const response = await fetch(`${this.url}${path}`);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await fetch(`${this.url}${path}`);
+    const data = await response.json();
+    return data;
   }
 }
 
