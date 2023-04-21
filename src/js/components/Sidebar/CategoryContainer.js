@@ -5,7 +5,6 @@ import Category from './Category.js';
 export default class CategoryContainer extends Component {
   constructor() {
     super('category-container');
-    this.client = client;
     this.main = new Main();
     this.sub = new Sub();
     this.init();
@@ -44,7 +43,7 @@ class Main extends Component {
       .then((categoryInfos) => {
         this.menus = categoryInfos.map((categoryInfo) => new Category(categoryInfo).node);
       })
-      .then(() => this.init());
+      .then(() => this.render());
   }
 
   getTemplate() {
