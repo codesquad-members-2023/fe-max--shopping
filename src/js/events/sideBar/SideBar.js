@@ -137,7 +137,6 @@ export class SideBarMenuHandler {
 }
 
 export class MenuRenderer {
-  constructor() {}
   renderShoppingMenu(template) {
     sideListShoopping.innerHTML = template;
   }
