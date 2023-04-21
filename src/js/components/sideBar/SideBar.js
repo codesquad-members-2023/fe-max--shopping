@@ -8,6 +8,7 @@ export class SideBar extends BaseElement {
       menu: [],
     };
     this.render();
+    this.initEventHandler();
     this.loadMenu();
   }
 
@@ -47,9 +48,9 @@ export class SideBar extends BaseElement {
 
     const menuTemplate = menu
       .map((category) => {
-        const titleTemplate = `<div class="menu__title">
+        const titleTemplate = `<h2 class="menu__title">
                               <p>${category.title}</p>
-                            </div>`;
+                            </h2>`;
         const itemsTemplate = this.createItemsTemplate(category.subMenu);
         return titleTemplate + itemsTemplate;
       })
@@ -65,7 +66,7 @@ export class SideBar extends BaseElement {
   }
 
   createItemsTemplate(menu) {
-    const templates = menu.map((item) => {
+    const templates = menu.map((item, index) => {
       return `<li>
               <a class="menu__item">
                 <span>${item.text}</span>
@@ -79,23 +80,34 @@ export class SideBar extends BaseElement {
     }
     return (
       templates.slice(0, 4) +
-      `<li>
-        <a class="menu__toggle">
+      `<li class="compressed">
+        <a class="menu__toggle--expand">
           <span>모두 보기</span>
           <div class="menu__icon--expand"></div>
         </a>
-      </li>
-      <li class="menu__divider"></li>
-      ` +
-      templates.slice(4) +
-      `<li>
-        <a class="menu__toggle">
+        <div class="menu__divider"></div>
+        <ul class="menu__nested-list">
+         ${templates.slice(4).join('')}
+        </ul>
+        <a class="menu__toggle--contract">
           <span>간단히 보기</span>
           <div class="menu__icon--contract"></div>
         </a>
-      </li>
-      <li class="menu__divider"></li>
-      `
+      </li>`
     );
+  }
+
+  initEventHandler() {
+    this.element.addEventListener('click', (e) => this.toggleCompressedMenu(e))
+  }
+
+  toggleCompressedMenu(event) {
+    const target = event.target;
+    const isToggleButton = target.classList.contains('.menu__toggle--expand') || target.classList.contains('.menu__toggle--contract');
+    
+    if (!isToggleButton) {
+      return;
+    }
+    target.closest('.compressed').classList.remove('.compressed');
   }
 }

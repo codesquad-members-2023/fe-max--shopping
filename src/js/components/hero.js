@@ -24,7 +24,6 @@ function getImageUrls() {
   const url = new URL('carouselImages', API_URL);
   return fetch(url)
     .then((res) => res.json())
-    .catch(console.error);
 }
 
 function createHeroItemsWithImage(image, index) {

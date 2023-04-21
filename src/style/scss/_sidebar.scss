@@ -7,7 +7,7 @@ aside {
 
 .closed {
   .sidebar {
-    transform: translate(-100%);
+    transform: translateX(-100%);
     visibility: hidden;
     opacity: 0;
 
@@ -78,7 +78,8 @@ aside {
     color: variables.$color-black;
   }
 
-  &__toggle {
+  &__toggle--expand,
+  &__toggle--contract {
     @include mixins.menu-box;
     justify-content: flex-start;
   }
@@ -107,4 +108,39 @@ aside {
       background: url('/src/asset/img/chevron-up.svg') no-repeat center;
     }
   }
+}
+
+.sidebar__menu > li {
+  &:not(.compressed) {
+    .menu__nested-list,
+    .menu__divider,
+    .menu__toggle--expand{
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        padding: 0;
+
+      }
+
+    .menu__toggle--contract {
+      height: auto;
+      opacity: 1;
+    }
+  }
+  &.compressed {
+    .menu__nested-list,
+    .menu__divider,
+    .menu__toggle--contract {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      padding: 0;
+    }
+
+    .menu__toggle--expand {
+      height: auto;
+      opacity: 1;
+    }
+  }
+
 }

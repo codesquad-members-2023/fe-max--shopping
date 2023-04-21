@@ -1,4 +1,4 @@
-import { $ } from '/src/js/utils/domUtils.js';
+import { $, closeAllLayers } from '/src/js/utils/domUtils.js';
 import { BaseElement } from '/src/js/utils/BaseElement.js';
 import { SideBar } from './SideBar.js';
 
@@ -31,6 +31,7 @@ export class SideBarContainer {
   }
 
   openSidebar() {
+    closeAllLayers();
     this.aside.classList.remove('closed');
   }
 
