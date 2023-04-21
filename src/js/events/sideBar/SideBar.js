@@ -4,7 +4,6 @@ import { TemplateGenerator } from '../search/TemplateGenerator.js';
 
 const sideArea = document.querySelector('.side');
 const sideBox = document.querySelector('.side__box');
-const hamburgerBtn = document.querySelector('.hamburger-btn');
 const closeBtn = document.querySelector('.side__close-btn');
 const sideViewAll = document.querySelector('.side__view-all');
 const sideListDigital = document.querySelector('.side__list-digital');
@@ -32,6 +31,7 @@ export class DataConverter {
       return result[type];
     });
   }
+  //todo: JSONFetcher와 통합하기 
   getData() {
     return this.jsonFetcher.getData().then(result => {
       return result;
