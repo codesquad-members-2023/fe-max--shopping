@@ -1,12 +1,13 @@
 import { Sidebar } from "./Sidebar.js";
+import { RES_QUERY } from "../constant.js";
 
 export class DetailSidebar extends Sidebar {
   constructor() {
     super();
   }
 
-  setDetailContent() {
-    this.db.getCarSupplies().then((data) => {
+  setDetailTemplate() {
+    this.db.getResponse(RES_QUERY.CAR).then((data) => {
       const template = `
         <div class="sidebar-back-to-menu">
           <img src="src/assets/svg/arrow-left.svg" alt="backToMenu" />
@@ -17,13 +18,12 @@ export class DetailSidebar extends Sidebar {
           ${data.items.map((item) => `<li>${item.text}</li>`).join("")}
         </ul>
       `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
+      this.template += template;
     });
   }
 
-  addSidebarContent() {
-    this.resetSidebar();
-    this.setBaseArea();
-    this.setDetailContent();
+  addTemplate() {
+    this.setBaseTemplate();
+    this.setDetailTemplate();
   }
 }

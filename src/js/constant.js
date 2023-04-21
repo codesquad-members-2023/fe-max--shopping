@@ -38,3 +38,14 @@ export const KEYWORD_LAYER = {
 };
 
 export const BASE_URL = "http://localhost:3000";
+
+export const RES_QUERY = {
+  EARLY: "/earlySetting",
+  EXPAND: "/moreDepartment",
+  CAR: "/carSupplies",
+};
+
+export const STATE = {
+  ADD: "+",
+  REMOVE: "-",
+};

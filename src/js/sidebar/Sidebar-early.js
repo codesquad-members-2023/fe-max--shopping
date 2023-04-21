@@ -1,33 +1,27 @@
 import { Sidebar } from "./Sidebar.js";
+import { RES_QUERY } from "../constant.js";
 
 export class EarlySidebar extends Sidebar {
   constructor() {
     super();
   }
 
-  setContentAndDevice() {
-    this.db.getContentAndDevice().then((data) => {
+  setEarlyTemplate() {
+    this.db.getResponse(RES_QUERY.EARLY).then((data) => {
       const template = `
-        <h2 class="sidebar-title">${data.title}</h2>
+        <h2 class="sidebar-title">${data.contentAndDevice.title}</h2>
         <ul class="sidebar-list">
-          ${data.items
+          ${data.contentAndDevice.items
             .map(
               (item) =>
                 `<li>${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
             )
             .join("")}
         </ul>
-      `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
-    });
-  }
 
-  setShopByDepartment() {
-    this.db.getShopByDepartment().then((data) => {
-      const template = `
-        <h2 class="sidebar-title">${data.title}</h2>
+        <h2 class="sidebar-title">${data.shopByDepartment.title}</h2>
         <ul class="sidebar-list">
-          ${data.items
+          ${data.shopByDepartment.items
             .map(
               (item) =>
                 `<li id="${item.id}">${item.text}<img src="src/assets/svg/sidebar-right.svg" alt="right" /></li>`
@@ -39,14 +33,12 @@ export class EarlySidebar extends Sidebar {
           <img src="src/assets/svg/chevron-down.svg" alt="unfold" />
         </div>
       `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
+      this.template += template;
     });
   }
 
-  addSidebarContent() {
-    this.resetSidebar();
-    this.setBaseArea();
-    this.setContentAndDevice();
-    this.setShopByDepartment();
+  addTemplate() {
+    this.setBaseTemplate();
+    this.setEarlyTemplate();
   }
 }

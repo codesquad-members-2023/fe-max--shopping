@@ -27,23 +27,25 @@
     "자동차 햇빛가리개"
   ],
 
-  "contentAndDevice": {
-    "title": "디지털 콘텐츠 및 기기",
-    "items": [
-      { "text": "Amazon Music" },
-      { "text": "Kindle E-Reader 및 도서" },
-      { "text": "안드로이드 앱스토어" }
-    ]
-  },
+  "earlySetting": {
+    "contentAndDevice": {
+      "title": "디지털 콘텐츠 및 기기",
+      "items": [
+        { "text": "Amazon Music" },
+        { "text": "Kindle E-Reader 및 도서" },
+        { "text": "안드로이드 앱스토어" }
+      ]
+    },
 
-  "shopByDepartment": {
-    "title": "부서별 쇼핑",
-    "items": [
-      { "text": "전자", "id": "electronics" },
-      { "text": "컴퓨터", "id": "computer" },
-      { "text": "Alexa 스마트 홈", "id": "alexa" },
-      { "text": "예술 및 공예", "id": "art" }
-    ]
+    "shopByDepartment": {
+      "title": "부서별 쇼핑",
+      "items": [
+        { "text": "전자", "id": "electronics" },
+        { "text": "컴퓨터", "id": "computer" },
+        { "text": "Alexa 스마트 홈", "id": "alexa" },
+        { "text": "예술 및 공예", "id": "art" }
+      ]
+    }
   },
 
   "moreDepartment": {

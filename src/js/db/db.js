@@ -8,24 +8,4 @@ export class Db {
   async getResponse(query) {
     return fetch(this.url + query).then((response) => response.json());
   }
-
-  getContentAndDevice() {
-    const query = "/contentAndDevice";
-    return this.getResponse(query);
-  }
-
-  getShopByDepartment() {
-    const query = "/shopByDepartment";
-    return this.getResponse(query);
-  }
-
-  getMoreDepartment() {
-    const query = "/moreDepartment";
-    return this.getResponse(query);
-  }
-
-  getCarSupplies() {
-    const query = "/carSupplies";
-    return this.getResponse(query);
-  }
 }

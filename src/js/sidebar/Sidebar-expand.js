@@ -1,12 +1,13 @@
 import { EarlySidebar } from "./Sidebar-early.js";
+import { RES_QUERY } from "../constant.js";
 
 export class ExpandEarlySidebar extends EarlySidebar {
   constructor() {
     super();
   }
 
-  setMoreDepartment() {
-    this.db.getMoreDepartment().then((data) => {
+  setMoreTemplate() {
+    this.db.getResponse(RES_QUERY.EXPAND).then((data) => {
       const template = `
         <ul class="sidebar-list">
           ${data.items
@@ -21,15 +22,13 @@ export class ExpandEarlySidebar extends EarlySidebar {
           <img src="src/assets/svg/chevron-up.svg" alt="fold" />
         </div>
       `;
-      this.sidebar.insertAdjacentHTML("beforeend", template);
+      this.template += template;
     });
   }
 
-  addSidebarContent() {
-    this.resetSidebar();
-    this.setBaseArea();
-    this.setContentAndDevice();
-    this.setShopByDepartment();
-    this.setMoreDepartment();
+  addTemplate() {
+    this.setBaseTemplate();
+    this.setEarlyTemplate();
+    this.setMoreTemplate();
   }
 }
