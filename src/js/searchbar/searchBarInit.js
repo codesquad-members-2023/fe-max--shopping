@@ -13,12 +13,10 @@ const Data = {
   recommend: new JsonData(SEARCH_RECOMMEND_JSON_URL),
   history: new LocalStorageData(LOCAL_STORAGE_KEY),
 };
-class SearchBarInit {
+export class SearchBarInit {
   constructor() {
     this.model = new Model(Data);
     this.view = new View();
     this.searchBar = new SearchBar(this.model, this.view);
   }
 }
-
-const searchBarInit = new SearchBarInit();
