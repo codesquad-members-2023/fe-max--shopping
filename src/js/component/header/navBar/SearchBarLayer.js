@@ -3,8 +3,10 @@ import { Backdrop } from "../../Backdrop.js";
 import { Base } from "../../Base.js";
 
 export class SearchBarLayer extends Base {
-  constructor() {
+  constructor(observer, inputBar) {
     super("div");
+    this.observer = observer;
+    this.inputBar = inputBar;
     this.db = new DB();
     this.recommendKeywords = [];
     this.searchHistory = [];
@@ -17,6 +19,7 @@ export class SearchBarLayer extends Base {
 
   async init() {
     this.setAttribute("id", "SearchBarLayer");
+    this.observer.register(this);
     await this.setLayerContent();
   }
 
@@ -30,6 +33,7 @@ export class SearchBarLayer extends Base {
 
     this.setStyle("display", "flex");
     Backdrop.show();
+    this.observer.notify(this);
     if (inputText === "") {
       await this.setLayerContent();
       this.setLayerContent();
@@ -37,13 +41,13 @@ export class SearchBarLayer extends Base {
       this.setNormalLayer();
       return;
     }
-
     await this.setAutoCompleteLayer(inputText);
   }
 
   hide() {
     this.setStyle("display", "none");
     Backdrop.hide();
+    this.inputBar.node.blur();
     this.clearChild();
     this.selectIndex = -1;
     if (this.selectIndex !== -1) {

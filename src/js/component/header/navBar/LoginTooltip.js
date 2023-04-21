@@ -6,8 +6,9 @@ export class LoginTooltip extends Base {
   #_myList = myList;
   #_accountContentsList = accountContentsList;
 
-  constructor() {
+  constructor(observer) {
     super("div");
+    this.observer = observer;
     this.init();
   }
 
@@ -15,6 +16,7 @@ export class LoginTooltip extends Base {
     this.setAttribute("id", "login__tooltip");
     this.addChild();
     this.showLoginTooltip();
+    this.observer.register(this);
   }
 
   showLoginTooltip() {
@@ -67,7 +69,7 @@ export class LoginTooltip extends Base {
     this.setTemplate(template);
   }
 
-  showTooltipHandler() {
+  show() {
     this.setStyle("display", "block");
     Backdrop.show();
 
@@ -76,9 +78,10 @@ export class LoginTooltip extends Base {
     this["rectangle"].setStyle("left", "250px");
 
     this["tooltipBox"].setChildren(this["tooltipDetailBox"]);
+    this.observer.notify(this);
   }
 
-  hideTooltipHandler() {
+  hide() {
     Backdrop.hide();
     this.setStyle("display", "none");
   }

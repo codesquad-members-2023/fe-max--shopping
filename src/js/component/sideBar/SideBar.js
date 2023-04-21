@@ -3,10 +3,11 @@ import { Backdrop } from "../Backdrop.js";
 import { Base } from "../Base.js";
 
 export class SideBar extends Base {
-  constructor() {
+  constructor(observer) {
     super("aside");
     this.db = new DB();
     this.init();
+    this.observer = observer;
   }
 
   async init() {
@@ -14,6 +15,7 @@ export class SideBar extends Base {
     this.sideBarData = await this.db.getSideBarData();
     this.addChild();
     this.addEvent();
+    this.observer.register(this);
   }
   addChild() {
     const template = `
@@ -110,6 +112,7 @@ export class SideBar extends Base {
 
   show() {
     this.setStyle("display", "flex");
+    this.observer.notify(this);
     setTimeout(() => {
       this.setStyle("transform", "translateX(0%)");
     }, 50);

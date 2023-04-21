@@ -2,23 +2,17 @@ import { Base } from "../../Base.js";
 import { LoginTooltip } from "./LoginToolTip.js";
 
 export class Login extends Base {
-  constructor() {
+  constructor(observer) {
     super("div");
-    this.loginTooltip = new LoginTooltip();
+    this.loginTooltip = new LoginTooltip(observer);
     this.init();
   }
 
   init() {
     this.setAttribute("id", "login");
     this.addChild();
-    this.setEvent(
-      "mouseover",
-      this.loginTooltip.showTooltipHandler.bind(this.loginTooltip)
-    );
-    this.setEvent(
-      "mouseout",
-      this.loginTooltip.hideTooltipHandler.bind(this.loginTooltip)
-    );
+    this.setEvent("mouseover", this.loginTooltip.show.bind(this.loginTooltip));
+    this.setEvent("mouseout", this.loginTooltip.hide.bind(this.loginTooltip));
   }
 
   addChild() {
