@@ -21,10 +21,12 @@ export default class Main extends Component {
 
     if (mainCategoryMenu) {
       this.openSubCategory(mainCategoryMenu);
+      return;
     }
 
     if (backList) {
       this.closeSubCategory();
+      return;
     }
   }
 
@@ -34,6 +36,9 @@ export default class Main extends Component {
 
   openSubCategory(categoryMenu) {
     const categoryId = categoryMenu.dataset.menuId;
+
+    if (!categoryId) return;
+
     this.categoryContainer.renderSubCategory(categoryId);
     this.categoryContainer.translateLeft();
   }
