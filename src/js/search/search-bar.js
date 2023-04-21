@@ -29,7 +29,7 @@ function setRecentKeyword(value) {
   localStorage.setItem("recent", recentKeywords);
 }
 
-function searchBarEventHandler() {
+export function searchBarEventHandler() {
   querySelector.searchInput().addEventListener("click", (e) => {
     const isEmpty = e.target.value.length === 0;
     if (isEmpty) {
@@ -63,9 +63,3 @@ function searchBarEventHandler() {
     setRecentKeyword(searchValue);
   });
 }
-
-class SearchBar {
-  constructor() {}
-}
-
-export { searchBarEventHandler };

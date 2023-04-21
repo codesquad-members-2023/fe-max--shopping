@@ -1,10 +1,9 @@
 import { querySelector } from "../query.js";
 import { Keyword } from "./Keyword.js";
 
-class Recent extends Keyword {
+export class Recent extends Keyword {
   constructor(keywordList) {
     super(keywordList);
-    this.appendRecentList();
   }
 
   appendDeleteBtn() {
@@ -21,5 +20,3 @@ class Recent extends Keyword {
     this.appendDeleteBtn();
   }
 }
-
-export { Recent };

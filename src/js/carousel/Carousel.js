@@ -2,7 +2,7 @@ import { querySelector } from "../query.js";
 import { CAROUSEL, TIME } from "../constant.js";
 import { delay } from "../util/delay.js";
 
-export class Slider {
+class Slider {
   constructor() {
     this.counter = CAROUSEL.SLIDE_COUNTER;
     this.size = CAROUSEL.SIZE;
@@ -11,6 +11,12 @@ export class Slider {
 
   getCalcTransform() {
     return `translateX(${-this.counter * this.size}px)`;
+  }
+}
+
+export class SliderMover extends Slider {
+  constructor() {
+    super();
   }
 
   initSlide() {

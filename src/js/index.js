@@ -1,6 +1,6 @@
-import { initModalEvent } from "./modal-event/Modal-event.js";
-import { addEventOnCarousel } from "./carousel/Carousel-event.js";
-import { initSearchEvent } from "./search/init-search-event.js";
+import { initModalEvent } from "./modal-event/index.js";
+import { addEventOnCarousel } from "./carousel/index.js";
+import { initSearchEvent } from "./search/index.js";
 import { handleSidebarMenuClick } from "./sidebar/Handle-sidebar-click.js";
 
 initModalEvent();

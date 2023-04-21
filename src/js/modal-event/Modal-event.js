@@ -33,19 +33,14 @@ function closeAddressModalLeaveMouse() {
   querySelector.addressModal().addEventListener("mouseleave", closeAddressModal);
 }
 
-function addEventOnLoginModal() {
+export function addEventOnLoginModal() {
   autoOpenLoginModal();
   expandLoginModalEnterMouse();
   closeLoginModalLeaveMouse();
   reopenLoginModalOnClick();
 }
 
-function addEventOnAddressModal() {
+export function addEventOnAddressModal() {
   openAddressModalEnterMouse();
   closeAddressModalLeaveMouse();
-}
-
-export function initModalEvent() {
-  addEventOnLoginModal();
-  addEventOnAddressModal();
 }
