@@ -42,7 +42,6 @@ export class SideBar {
   constructor() {
     this.templateGenerator = new TemplateGenerator();
     this.sideBarMenuHandler = new SideBarMenuHandler();
-    // this.menuRenderer = new MenuRenderer();
     this.dataConverter = new DataConverter(URL.jsonBase);
   }
   initSideBar() {
@@ -50,7 +49,6 @@ export class SideBar {
 
     this.dataConverter.getObject(PATH.digital).then(result => {
       const template = this.templateGenerator.generateDigitalMenu(result);
-      // this.menuRenderer.renderDigitalMenu(template);
       menuRenderer(sideListDigital,template)
       this.sideBarMenuHandler.openSubMenu('.side__list-digital', result);
       this.sideBarMenuHandler.closeSubMenu();
@@ -58,7 +56,6 @@ export class SideBar {
 
     this.dataConverter.getObject(PATH.shopping).then(result => {
       const template = this.templateGenerator.generateShoppingMenu(result);
-      // this.menuRenderer.renderShoppingMenu(template);
       menuRenderer(sideListShoopping,template)
       this.sideBarMenuHandler.openSubMenu('.side__list-shopping', result);
       this.sideBarMenuHandler.closeSubMenu();
@@ -66,7 +63,6 @@ export class SideBar {
 
     this.dataConverter.getObject(PATH.collapsible).then(result => {
       const template = this.templateGenerator.generateCollapsibleMenu(result);
-      // this.menuRenderer.renderCollapsibleMenu(template);
       menuRenderer(sideListMain,template)
 
       this.sideBarMenuHandler.toggleMenu();
@@ -85,7 +81,6 @@ export class SideBar {
 export class SideBarMenuHandler {
   constructor() {
     this.templateGenerator = new TemplateGenerator();
-    // this.menuRenderer = new MenuRenderer();
   }
   toggleSidebar() {
     document.addEventListener('click', e => {
@@ -121,7 +116,6 @@ export class SideBarMenuHandler {
           menuObj,
           keyText
         );
-        // this.menuRenderer.renderSubMenu(subTemplate);
         menuRenderer(sideListSub,subTemplate)
         sideBox.classList.add('translateX');
       }
@@ -138,21 +132,6 @@ export class SideBarMenuHandler {
     });
   }
 }
-
-// export class MenuRenderer {
-//   renderShoppingMenu(template) {
-//     sideListShoopping.innerHTML = template;
-//   }
-//   renderCollapsibleMenu(template) {
-//     sideListMain.innerHTML = template;
-//   }
-//   renderDigitalMenu(template) {
-//     sideListDigital.innerHTML = template;
-//   }
-//   renderSubMenu(template) {
-//     sideListSub.innerHTML = template;
-//   }
-// }
 
 function menuRenderer(parentNode, template) {
   parentNode.innerHTML = template;
