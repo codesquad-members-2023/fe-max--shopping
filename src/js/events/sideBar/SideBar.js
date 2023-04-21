@@ -1,4 +1,5 @@
 import { PATH, URL } from '../../constants/path.js';
+import { handleDimming, layerOpenState } from '../../utils/dim.js';
 import { TemplateGenerator } from '../search/TemplateGenerator.js';
 
 const sideArea = document.querySelector('.side');
@@ -84,13 +85,18 @@ export class SideBarMenuHandler {
   }
   toggleSidebar() {
     document.addEventListener('click', e => {
-      console.log(e.target);
       if (e.target.closest('.hamburger-btn')) {
+        layerOpenState.sidebar = true;
         sideArea.classList.add('active');
         closeBtn.classList.remove('close');
+        handleDimming()
+        
       } else if (!e.target.closest('.side') ) {
+        layerOpenState.sidebar = false;
         sideArea.classList.remove('active');
         closeBtn.classList.add('close');
+        handleDimming()
+
       }
     });
   }
