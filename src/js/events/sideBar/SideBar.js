@@ -31,7 +31,7 @@ export class DataConverter {
       return result[type];
     });
   }
-  //todo: JSONFetcher와 통합하기 
+  //todo: JSONFetcher와 통합하기
   getData() {
     return this.jsonFetcher.getData().then(result => {
       return result;
@@ -42,7 +42,7 @@ export class SideBar {
   constructor() {
     this.templateGenerator = new TemplateGenerator();
     this.sideBarMenuHandler = new SideBarMenuHandler();
-    this.menuRenderer = new MenuRenderer();
+    // this.menuRenderer = new MenuRenderer();
     this.dataConverter = new DataConverter(URL.jsonBase);
   }
   initSideBar() {
@@ -50,21 +50,25 @@ export class SideBar {
 
     this.dataConverter.getObject(PATH.digital).then(result => {
       const template = this.templateGenerator.generateDigitalMenu(result);
-      this.menuRenderer.renderDigitalMenu(template);
+      // this.menuRenderer.renderDigitalMenu(template);
+      menuRenderer(sideListDigital,template)
       this.sideBarMenuHandler.openSubMenu('.side__list-digital', result);
       this.sideBarMenuHandler.closeSubMenu();
     });
 
     this.dataConverter.getObject(PATH.shopping).then(result => {
       const template = this.templateGenerator.generateShoppingMenu(result);
-      this.menuRenderer.renderShoppingMenu(template);
+      // this.menuRenderer.renderShoppingMenu(template);
+      menuRenderer(sideListShoopping,template)
       this.sideBarMenuHandler.openSubMenu('.side__list-shopping', result);
       this.sideBarMenuHandler.closeSubMenu();
     });
 
     this.dataConverter.getObject(PATH.collapsible).then(result => {
       const template = this.templateGenerator.generateCollapsibleMenu(result);
-      this.menuRenderer.renderCollapsibleMenu(template);
+      // this.menuRenderer.renderCollapsibleMenu(template);
+      menuRenderer(sideListMain,template)
+
       this.sideBarMenuHandler.toggleMenu();
       this.sideBarMenuHandler.openSubMenu('.side__list-main', result);
       this.sideBarMenuHandler.closeSubMenu();
@@ -81,7 +85,7 @@ export class SideBar {
 export class SideBarMenuHandler {
   constructor() {
     this.templateGenerator = new TemplateGenerator();
-    this.menuRenderer = new MenuRenderer();
+    // this.menuRenderer = new MenuRenderer();
   }
   toggleSidebar() {
     document.addEventListener('click', e => {
@@ -89,14 +93,12 @@ export class SideBarMenuHandler {
         layerOpenState.sidebar = true;
         sideArea.classList.add('active');
         closeBtn.classList.remove('close');
-        handleDimming()
-        
-      } else if (!e.target.closest('.side') ) {
+        handleDimming();
+      } else if (!e.target.closest('.side')) {
         layerOpenState.sidebar = false;
         sideArea.classList.remove('active');
         closeBtn.classList.add('close');
-        handleDimming()
-
+        handleDimming();
       }
     });
   }
@@ -119,7 +121,8 @@ export class SideBarMenuHandler {
           menuObj,
           keyText
         );
-        this.menuRenderer.renderSubMenu(subTemplate);
+        // this.menuRenderer.renderSubMenu(subTemplate);
+        menuRenderer(sideListSub,subTemplate)
         sideBox.classList.add('translateX');
       }
     });
@@ -136,17 +139,21 @@ export class SideBarMenuHandler {
   }
 }
 
-export class MenuRenderer {
-  renderShoppingMenu(template) {
-    sideListShoopping.innerHTML = template;
-  }
-  renderCollapsibleMenu(template) {
-    sideListMain.innerHTML = template;
-  }
-  renderDigitalMenu(template) {
-    sideListDigital.innerHTML = template;
-  }
-  renderSubMenu(template) {
-    sideListSub.innerHTML = template;
-  }
+// export class MenuRenderer {
+//   renderShoppingMenu(template) {
+//     sideListShoopping.innerHTML = template;
+//   }
+//   renderCollapsibleMenu(template) {
+//     sideListMain.innerHTML = template;
+//   }
+//   renderDigitalMenu(template) {
+//     sideListDigital.innerHTML = template;
+//   }
+//   renderSubMenu(template) {
+//     sideListSub.innerHTML = template;
+//   }
+// }
+
+function menuRenderer(parentNode, template) {
+  parentNode.innerHTML = template;
 }
