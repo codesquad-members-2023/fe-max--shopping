@@ -85,21 +85,21 @@
 
 - 3주차
 
-  - [ ] fetch API, get/post요청
-  - [ ] Promise
-  - [ ] mock server(json-server 또는 MSW)
+  - [x] fetch API, get/post요청
+  - [x] Promise
+  - [x] mock server(json-server 또는 MSW)
 
 ## ✅ 체크리스트
 
-- [ ] mock server 연동하기
-  - [ ] `json-server` or `MSW`
+- [x] mock server 연동하기
+  - [x] `json-server` or `MSW`
 - [ ] 검색창 서버 연동
   - [ ] '검색 자동완성' 데이터 json-server와 연동
   - [ ] get방식으로 query를 보내고 응답데이터 받기
-- [ ] 슬라이딩 콘텐츠
-  - [ ] 초기데이터를 json -server와 연동해서 가져오기
+- [x] 슬라이딩 콘텐츠
+  - [x] 초기데이터를 json -server와 연동해서 가져오기
 - [ ] 좌측 메뉴 영역 개발
-  - [ ] 메뉴 구조 만들기
-  - [ ] 애니메이션 효과 부드럽게 적용
-  - [ ] 초기데이터와 더보기할때 데이터를 구분해서 서버와 통신을 통해서 가져온다.
+  - [x] 메뉴 구조 만들기
+  - [x] 애니메이션 효과 부드럽게 적용
+  - [x] 초기데이터와 더보기할때 데이터를 구분해서 서버와 통신을 통해서 가져온다.
 - [ ] Promise 패턴의 동작 원리 (resolve, reject, then 메서드등) 이해하고 짧게 정리해서 PR에 포함시키기
