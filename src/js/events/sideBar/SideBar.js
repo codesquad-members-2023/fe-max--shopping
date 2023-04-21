@@ -1,6 +1,5 @@
 import { PATH, URL } from '../../constants/path.js';
-// import { JSONClient } from '../api/api.js';
-import { TemplateGenerator } from '../search/SearchBar.js';
+import { TemplateGenerator } from '../search/TemplateGenerator.js';
 
 const sideArea = document.querySelector('.side');
 const sideBox = document.querySelector('.side__box');
@@ -84,11 +83,21 @@ export class SideBarMenuHandler {
     this.menuRenderer = new MenuRenderer();
   }
   toggleSidebar() {
-    hamburgerBtn.addEventListener('click', () => {
-      sideArea.classList.add('active');
-    });
-    closeBtn.addEventListener('click', () => {
-      sideArea.classList.remove('active');
+    // todo 사이드바 출현시 버튼도 fadein 추가해줘야함
+    // hamburgerBtn.addEventListener('click', () => {
+    //   sideArea.classList.add('active');
+    // });
+
+    // closeBtn.addEventListener('click', () => {
+    //   sideArea.classList.remove('active');
+    // });
+    document.addEventListener('click', e => {
+      console.log(e.target);
+      if (e.target.closest('.hamburger-btn')) {
+        sideArea.classList.add('active');
+      } else if (!e.target.closest('.side') ) {
+        sideArea.classList.remove('active');
+      }
     });
   }
   toggleMenu() {
