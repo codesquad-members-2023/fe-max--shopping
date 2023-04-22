@@ -24,7 +24,9 @@ export class Search extends Component {
 
   addRandomSearchKeywords = async (startIndex) => {
     const MAX_KEYWORD_COUNT = 10;
-    const randomKeywords = await getRandomKeywords(MAX_KEYWORD_COUNT - startIndex);
+    const randomKeywords = await getRandomKeywords(
+      MAX_KEYWORD_COUNT - startIndex
+    );
 
     randomKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
@@ -106,6 +108,7 @@ export class Search extends Component {
 
     buttons.forEach((button, i) => {
       button.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") return;
         e.preventDefault();
         switch (e.key) {
           case "ArrowUp":
@@ -187,6 +190,7 @@ export class Search extends Component {
     this.keywordList = this.domNode.querySelector("#keyword-list");
     this.keywords = this.domNode.querySelector("#keywords");
     this.form = this.domNode.querySelector(".search__form");
+    this.submitButton = this.form.querySelector('[type="submit"]');
     this.input = this.domNode.querySelector("#keyword");
     this.ul = this.keywords.querySelector(".keywords__list");
 
@@ -207,6 +211,14 @@ export class Search extends Component {
     });
 
     this.input.addEventListener("focusin", this.keywordFocusinHandler);
+
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const button = this.ul.querySelector(".keywords__item button");
+        if (button) button.focus();
+      }
+    });
 
     this.keywords.addEventListener("mouseleave", () => {
       this.keywords.className = "keywords";

@@ -302,6 +302,9 @@ export class Recipe {
       children: [
         {
           tagName: "button",
+          attrs: {
+            tabindex: "-1",
+          },
           children,
         },
       ],
@@ -318,6 +321,9 @@ export class Recipe {
       children: [
         {
           tagName: "button",
+          attrs: {
+            tabindex: "-1",
+          },
           children: [
             {
               tagName: "strong",
@@ -352,6 +358,7 @@ export class Recipe {
           tagName: "button",
           attrs: {
             class: "recommend",
+            tabindex: "-1",
           },
           textContent,
         },
@@ -677,6 +684,7 @@ export class Recipe {
         {
           tagName: "a",
           attrs: {
+            tabindex: "-1",
             href,
           },
           textContent,
