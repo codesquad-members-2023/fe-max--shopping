@@ -1,6 +1,11 @@
 import { $ } from "../../utils/domUtils";
 import { hideElement, showElement } from "../../utils/elementVisibility";
-import { closeSideBar, openSideBar, sideBarMenu } from "./sideBarController";
+import {
+  closeSideBar,
+  handleMenuViewButtonClick,
+  openSideBar,
+  sideBarMenu,
+} from "./sideBarController";
 
 export const menuComponent = ({ title, text }: sideBarMenu) => {
   return `
@@ -52,15 +57,12 @@ export const hiddenMenuComponent = ({ title, text }: sideBarMenu, MAX_LENGTH: nu
 };
 
 export const addSideBarEvent = () => {
-  const $viewAllButton = $(".side-bar__view-all-button");
-  const $hideButton = $(".side-bar__hide-button");
-  const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+  const $sideBarMenu = $(".side-bar__menu");
   const $sideBarButton = $(".sub__side-bar-button");
   const $sideBar = $(".side-bar");
   const $closeButton = $(".side-bar__close-button");
 
-  $viewAllButton.addEventListener("click", () => showElement($hiddenMenuContainer));
-  $hideButton.addEventListener("click", () => hideElement($hiddenMenuContainer));
+  $sideBarMenu.addEventListener("click", handleMenuViewButtonClick);
   $sideBarButton.addEventListener("click", () => openSideBar($sideBar));
   $closeButton.addEventListener("click", () => closeSideBar($sideBar));
 };

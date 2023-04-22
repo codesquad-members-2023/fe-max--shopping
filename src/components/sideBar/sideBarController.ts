@@ -37,3 +37,32 @@ export const renderSideBar = () => {
     });
   });
 };
+
+export const handleMenuViewButtonClick = ({ target }: Event) => {
+  if (target == null || !(target instanceof Element)) {
+    return;
+  }
+
+  const li = target.closest("li");
+
+  if (li == null) {
+    return;
+  }
+
+  const isViewAllButtonClick = li.classList.contains("side-bar__view-all-button");
+  const isHideButtonClick = li.classList.contains("side-bar__hide-button");
+
+  if (isViewAllButtonClick) {
+    const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+    showElement($hiddenMenuContainer);
+
+    return;
+  }
+
+  if (isHideButtonClick) {
+    const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+    hideElement($hiddenMenuContainer);
+
+    return;
+  }
+};
