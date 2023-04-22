@@ -22,7 +22,7 @@ export interface sideBarMenu {
 }
 
 export const renderSideBar = () => {
-  const $content = $(".side-bar__content");
+  const $menu = $(".side-bar__menu");
   const url = new URL("side_bar_menu", BASE_URL);
 
   return fetchData(url).then((menuList) => {
@@ -33,7 +33,7 @@ export const renderSideBar = () => {
         ? hiddenMenuComponent(menu, MAX_LENGTH)
         : menuComponent(menu);
 
-      $content.insertAdjacentHTML("beforeend", component);
+      $menu.insertAdjacentHTML("beforeend", component);
     });
   });
 };

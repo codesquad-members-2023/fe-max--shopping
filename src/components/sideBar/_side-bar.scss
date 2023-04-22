@@ -40,6 +40,21 @@
     cursor: pointer;
   }
 
+  &__menu-window {
+    position: relative;
+  }
+
+  &__menu-container {
+    position: absolute;
+    display: flex;
+  }
+
+  &__menu,
+  &__menu-detail {
+    width: 320px;
+    background-color: white;
+  }
+
   &__menu-title {
     @extend .side-bar__login;
     @extend .side-bar__login-text;
