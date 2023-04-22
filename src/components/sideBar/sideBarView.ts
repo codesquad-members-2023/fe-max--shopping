@@ -1,29 +1,8 @@
-import { BASE_URL } from "../../constants/BASE_URL";
 import { $ } from "../../utils/domUtils";
 import { hideElement, showElement } from "../../utils/elementVisibility";
-import { fetchData } from "../../utils/fetchData";
-import { closeSideBar, openSideBar } from "./sideBarController";
+import { closeSideBar, openSideBar, sideBarMenu } from "./sideBarController";
 
-interface sideBarMenu {
-  title: string;
-  text: string[];
-}
-
-export const renderSideBar = () => {
-  const $content = $(".side-bar__content");
-  const url = new URL("side_bar_menu", BASE_URL);
-
-  return fetchData(url).then((data) => {
-    const [digitalContent, shopByDepartment] = data;
-    const digitalComponent = menuComponent(digitalContent);
-    const shopByDepartmentComponent = menuComponent(shopByDepartment);
-
-    $content.insertAdjacentHTML("beforeend", digitalComponent);
-    $content.insertAdjacentHTML("beforeend", shopByDepartmentComponent);
-  });
-};
-
-const menuComponent = ({ title, text }: sideBarMenu) => {
+export const menuComponent = ({ title, text }: sideBarMenu) => {
   const MAX_LENGTH = 4;
 
   if (text.length > MAX_LENGTH) {
