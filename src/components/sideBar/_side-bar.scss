@@ -5,7 +5,6 @@
   top: 0;
   width: 320px;
   height: 100vh;
-  background-color: var(--white);
   transform: translateX(-100%);
   transition: all 0.5s;
   z-index: 600;
@@ -41,12 +40,21 @@
   }
 
   &__menu-window {
+    height: 100%;
     position: relative;
+    overflow: hidden;
   }
 
   &__menu-container {
+    height: 100vh;
     position: absolute;
+    transition: transform 1s;
+
     display: flex;
+
+    &.detail-view {
+      transform: translateX(-50%);
+    }
   }
 
   &__menu,

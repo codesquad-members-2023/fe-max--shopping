@@ -18,7 +18,7 @@ export const closeSideBar = ($sideBar: Element) => {
 
 export interface sideBarMenu {
   title: string;
-  text: string[];
+  menu: { id: number; text: string }[];
 }
 
 export const renderSideBar = () => {
@@ -28,7 +28,7 @@ export const renderSideBar = () => {
   return fetchData(url).then((menuList) => {
     menuList.forEach((menu: sideBarMenu) => {
       const MAX_LENGTH = 4;
-      const isOverMaxLength = menu.text.length > MAX_LENGTH;
+      const isOverMaxLength = menu.menu.length > MAX_LENGTH;
       const component = isOverMaxLength
         ? hiddenMenuComponent(menu, MAX_LENGTH)
         : menuComponent(menu);
@@ -38,7 +38,7 @@ export const renderSideBar = () => {
   });
 };
 
-export const handleMenuViewButtonClick = ({ target }: Event) => {
+export const handleMenuItemClick = ({ target }: Event) => {
   if (target == null || !(target instanceof Element)) {
     return;
   }
@@ -47,6 +47,17 @@ export const handleMenuViewButtonClick = ({ target }: Event) => {
 
   if (li == null) {
     return;
+  }
+
+  const isMenuItemClick = li.classList.contains("side-bar__menu-item");
+
+  if (isMenuItemClick && li.dataset.id != null) {
+    const menuId = li.dataset.id;
+
+    fetchMenuDetailData(menuId).then((data) => {
+      renderDetailView(data);
+      moveDetailView();
+    });
   }
 
   const isViewAllButtonClick = li.classList.contains("side-bar__view-all-button");
@@ -65,4 +76,27 @@ export const handleMenuViewButtonClick = ({ target }: Event) => {
 
     return;
   }
+};
+
+const fetchMenuDetailData = async (id: string) => {
+  return fetchData(`${BASE_URL}/side_bar_menu_details/${id}`);
+};
+
+const renderDetailView = (data: sideBarMenu) => {
+  const $menuDetailContainer = $(".side-bar__menu-detail-container");
+  const component = menuComponent(data);
+
+  $menuDetailContainer.innerHTML = component;
+};
+
+const moveDetailView = () => {
+  const $menuContainer = $(".side-bar__menu-container");
+
+  $menuContainer.classList.add("detail-view");
+};
+
+export const moveMenuView = () => {
+  const $menuContainer = $(".side-bar__menu-container");
+
+  $menuContainer.classList.remove("detail-view");
 };
