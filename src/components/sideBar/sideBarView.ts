@@ -3,12 +3,6 @@ import { hideElement, showElement } from "../../utils/elementVisibility";
 import { closeSideBar, openSideBar, sideBarMenu } from "./sideBarController";
 
 export const menuComponent = ({ title, text }: sideBarMenu) => {
-  const MAX_LENGTH = 4;
-
-  if (text.length > MAX_LENGTH) {
-    return hiddenMenuList({ title, text }, MAX_LENGTH);
-  }
-
   return `
 <ul>
   ${menuTitleList(title)}
@@ -34,7 +28,7 @@ const menuItemList = (text: string) => {
   `;
 };
 
-const hiddenMenuList = ({ title, text }: sideBarMenu, MAX_LENGTH: number) => {
+export const hiddenMenuComponent = ({ title, text }: sideBarMenu, MAX_LENGTH: number) => {
   const visibleText = text.slice(0, MAX_LENGTH);
   const hiddenText = text.slice(MAX_LENGTH);
 
