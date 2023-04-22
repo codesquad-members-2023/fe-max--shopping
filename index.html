@@ -159,7 +159,7 @@
         </div>
       </section>
     </main>
-    <aside class="side-bar">
+    <aside class="side-bar show">
       <div class="side-bar__login">
         <img class="side-bar__login-logo" src="./src/assets/login-logo.svg" alt="로그인 아이콘" />
         <div class="side-bar__login-text">안녕하세요, 로그인</div>
@@ -169,7 +169,21 @@
           alt="닫기 버튼 아이콘"
         />
       </div>
-      <div class="side-bar__menu"></div>
+      <div class="side-bar__menu-window">
+        <div class="side-bar__menu-container">
+          <div class="side-bar__menu"></div>
+          <div class="side-bar__menu-detail">
+            <div class="side-bar__menu-detail-back">
+              <img
+                class="side-bar__menu-detail-back-arrow-icon"
+                src="./src/assets/arrow-left-icon.svg"
+                alt="뒤로가기 아이콘"
+              />
+              <div class="side-bar__menu-detail-back-text">주메뉴</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </aside>
     <div class="dimmer"></div>
     <script type="module" src="./src/index.ts"></script>

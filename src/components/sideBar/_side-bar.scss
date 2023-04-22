@@ -66,6 +66,7 @@
   &__menu-item-text {
     @include common.body-md;
   }
+
   &__menu-item,
   &__view-all-button,
   &__hide-button {
@@ -123,6 +124,32 @@
       height: 770px;
       opacity: 1;
       overflow: hidden;
+    }
+  }
+
+  &__menu-detail-back {
+    padding: 8px 16px 8px 32px;
+    border-bottom: 1px solid var(--gray100);
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &-arrow-icon {
+      filter: invert(57%) sepia(21%) saturate(0%) hue-rotate(241deg) brightness(90%) contrast(88%);
+    }
+
+    &-text {
+      @include common.body-md;
+    }
+
+    &:hover {
+      background-color: var(--gray100);
+      cursor: pointer;
+
+      &-arrow-icon {
+        filter: none;
+      }
     }
   }
 }
