@@ -1,0 +1,51 @@
+@import "variables", "mixin";
+
+.menu-sidebar {
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 320px;
+  height: 100%;
+  background-color: $color-white;
+  color: $color-black;
+
+  .sidebar-close {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    transform: translateX(36px);
+  }
+
+  .sidebar-login {
+    display: flex;
+    gap: 9.5px;
+    padding: 19px 16px 19px 33.5px;
+    background-color: $color-black;
+    color: $color-white;
+    @include boldLg;
+  }
+
+  .sidebar-title {
+    @include boldLg;
+    padding: 16px 32px;
+  }
+  .sidebar-list {
+    @include bodyMd;
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px 14px 32px;
+    }
+  }
+  .sidebar-fold,
+  .sidebar-unfold,
+  .sidebar-back-to-menu {
+    @include bodyMd;
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px 14px 32px;
+  }
+}
