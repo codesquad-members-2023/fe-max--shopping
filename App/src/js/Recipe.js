@@ -684,7 +684,6 @@ export class Recipe {
         {
           tagName: "a",
           attrs: {
-            tabindex: "-1",
             href,
           },
           textContent,
@@ -742,6 +741,15 @@ export class Recipe {
                 class: "inner",
               },
               children: [...sidebarSubs.map(sidebarSub), sidebarDetail({})],
+            },
+            {
+              tagName: "input",
+              attrs: {
+                type: "image",
+                src: "./src/img/icon/close.svg",
+                class: "close",
+                tabindex: -1,
+              },
             },
           ],
         },
@@ -883,6 +891,7 @@ export class Recipe {
           attrs: {
             class: "back",
             "aria-label": "주 메뉴로 돌아가기",
+            tabindex: "-1",
           },
           children: [
             {
@@ -926,6 +935,7 @@ export class Recipe {
           tagName: "a",
           attrs: {
             class: "sidebar__item",
+            tabindex: "-1",
             href,
           },
           textContent,

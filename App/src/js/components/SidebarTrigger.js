@@ -1,4 +1,4 @@
-import { findEvent } from "../util/factory.js";
+import { addEvent, findEvent } from "../util/factory.js";
 import { Component } from "./Component.js";
 
 export class SidebarTrigger extends Component {
@@ -10,5 +10,8 @@ export class SidebarTrigger extends Component {
 
   setEvent() {
     this.domNode.addEventListener("click", () => findEvent("sidebarToggle")())
+    addEvent("SidebarTriggerFocus", () => {
+      this.domNode.focus()
+    })
   }
 }

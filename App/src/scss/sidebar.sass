@@ -6,18 +6,27 @@
 	z-index: 3
 	transform: translateX(-320px)
 	animation: sidebar 1s
+	.close
+		position: absolute
+		padding: 8px
+		top: 0
+		left: 0%
 	&.active 
 		width: 100% 
 		background-color: var(--color-black-40) 
 		transform: translateX(0px) 
 		animation: sidebarActive 1s 
+		.close
+			left: 100%
 	aside 
 		background: var(--color-white) 
-		overflow: hidden
 		height: 100% 
 		width: 320px
+		position: relative
 		> .inner
+			overflow: hidden
 			position: relative
+
 	h2
 		padding: 16px
 		padding-left: 32px 

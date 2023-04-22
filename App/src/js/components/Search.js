@@ -218,6 +218,11 @@ export class Search extends Component {
         const button = this.ul.querySelector(".keywords__item button");
         if (button) button.focus();
       }
+
+      if (e.key === "Tab") {
+        this.keywords.className = "keywords";
+        if (button) button.focus();
+      }
     });
 
     this.keywords.addEventListener("mouseleave", () => {

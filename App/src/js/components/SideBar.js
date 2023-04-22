@@ -1,5 +1,5 @@
 import { getCategory } from "../util/apiFetcher.js";
-import { addEvent, getAccountRecipe } from "../util/factory.js";
+import { addEvent, findEvent, getAccountRecipe } from "../util/factory.js";
 import { recipeToComponent } from "../util/recipeToComponent.js";
 import { Component } from "./Component.js";
 
@@ -77,6 +77,67 @@ export class Sidebar extends Component {
         detailsSub.style.opacity = "0";
       }, 1);
     });
+
+    const interactiveElements = this.domNode.querySelectorAll(
+      ".sidebar__sub [tabindex='-1']"
+    );
+
+    const closeButton = this.domNode.querySelector(".close");
+    closeButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.toggle();
+    });
+
+    interactiveElements.forEach((elem, i) => {
+      const prevIndex =
+        (i - 1 + interactiveElements.length) % interactiveElements.length;
+      const nextIndex = (i + 1) % interactiveElements.length;
+      elem.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case "ArrowUp":
+            e.preventDefault();
+            e.stopPropagation();
+            interactiveElements[prevIndex].focus();
+            return;
+          case "ArrowDown":
+            e.preventDefault();
+            e.stopPropagation();
+            if (elem.tagName === "DETAILS") {
+              elem.open = true;
+              setTimeout(() => {
+                detailsSub.style.opacity = "1";
+                interactiveElements[nextIndex].focus();
+              }, 1);
+              return;
+            } else {
+              interactiveElements[nextIndex].focus();
+              return;
+            }
+          case "Tab":
+            e.preventDefault();
+            e.stopPropagation();
+            closeButton.focus();
+
+            const closeButtonKeyDownHandler = (e) => {
+              e.preventDefault();
+              if (e.shiftKey && e.key === "Tab") {
+                elem.focus();
+                closeButton.removeEventHandler(closeButtonHandler);
+                return;
+              }
+              switch (e.key) {
+                case "Tab":
+                case "Enter":
+                  this.toggle();
+                  closeButton.removeEventHandler(closeButtonHandler);
+                  return;
+              }
+            };
+
+            closeButton.addEventListener("keydown", closeButtonKeyDownHandler);
+        }
+      });
+    });
   }
 
   load() {
@@ -94,5 +155,10 @@ export class Sidebar extends Component {
 
   toggle() {
     this.domNode.classList.toggle("active");
+    if (this.domNode.className === "active") {
+      this.domNode.querySelector('[tabindex="-1"]').focus();
+      return;
+    }
+    findEvent("SidebarTriggerFocus")();
   }
 }
