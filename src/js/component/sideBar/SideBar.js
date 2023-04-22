@@ -17,6 +17,7 @@ export class SideBar extends Base {
     this.addEvent();
     this.observer.register(this);
   }
+
   addChild() {
     const template = `
         <div class="sideBar__header">
@@ -61,13 +62,17 @@ export class SideBar extends Base {
     return template;
   }
 
-  setSideBarMenu(menuData) {
+  setSideBarMenu(menuData, type) {
     return menuData
       .map((menu) => {
         return `
         <div class="sideBar__menu" data-menutitle="${menu}">
-          <span>${menu}</span>
-          <img src="./src/assets/chevron-right.svg">
+         <span>${menu}</span>
+          ${
+            type === "details"
+              ? `<img src="./src/assets/chevron-right.svg">`
+              : ""
+          }
         </div>`;
       })
       .join();
@@ -82,7 +87,7 @@ export class SideBar extends Base {
       </div>
       <div class="sideBar__moreMenus">
         <div class="sideBar__contents" data-elementname="sideBarMoreMenu">
-          ${this.setSideBarMenu(detailMenuData)}
+          ${this.setSideBarMenu(detailMenuData, "details")}
           <div class="sideBar__closeMore">
             <span>간단히 보기</span>
             <img src="./src/assets/chevron-up.svg">
