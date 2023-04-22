@@ -63,6 +63,9 @@
     color: var(--black);
   }
 
+  &__menu-item-text {
+    @include common.body-md;
+  }
   &__menu-item,
   &__view-all-button,
   &__hide-button {
