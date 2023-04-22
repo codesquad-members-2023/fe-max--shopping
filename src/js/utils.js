@@ -1,11 +1,11 @@
 export const $ = selector => document.querySelector(selector);
 
-export const addHiddenClass = modalName => {
-  $(`.${modalName}`).classList.add('hidden');
+export const addHiddenClass = selector => {
+  $(`${selector}`).classList.add('hidden');
 };
 
-export const removeHiddenClass = modal => {
-  $(`.${modal}`).classList.remove('hidden');
+export const removeHiddenClass = selector => {
+  $(`${selector}`).classList.remove('hidden');
 };
 
 export const addDimmed = () => {

@@ -1,6 +1,18 @@
+body {
+  position: relative;
+}
+
 .main {
   height: 100vh;
   min-width: 1120px;
   display: flex;
   justify-content: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
 }

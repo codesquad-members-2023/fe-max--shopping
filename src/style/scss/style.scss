@@ -1,14 +1,15 @@
 /* base */
 @import './base/_color.scss';
-@import './base/_typography.scss';
 @import './base/_mixin.scss';
+@import './base/_typography.scss';
 
 /* components */
 @import './components/_button.scss';
 @import './components/_hero.scss';
-@import './components/_nav-bar.scss';
 @import './components/_modal.scss';
+@import './components/_nav-bar.scss';
 @import './components/_search-bar.scss';
+@import './components/_side-bar.scss';
 
 /* pages */
 @import './pages/_main.scss';
