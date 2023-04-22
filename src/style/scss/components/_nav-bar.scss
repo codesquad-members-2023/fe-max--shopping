@@ -2,7 +2,6 @@
   min-width: 1120px;
   width: 100%;
   height: 88px;
-  color: $color-white;
 }
 
 .nav-main {
@@ -13,9 +12,7 @@
   align-items: center;
   gap: 8px;
   background-color: $color-black;
-  > div:hover,
-  > div:focus,
-  > div:active {
+  > a:hover {
     transition: box-shadow 0.3s ease-in-out;
     box-shadow: 0 0 0 1px $color-white inset;
   }
@@ -89,6 +86,7 @@
 
 .title-large {
   line-height: 16px;
+  color: $color-white;
 }
 
 .location-icon {

@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="./src/style/css/reset.css" />
     <link rel="stylesheet" href="./src/style/css/style.css" />
-    <script defer type="module" src="./src/js/app.js"></script>
+    <script defer type="module" src="./src/js/App.js"></script>
     <title>Amazon.com</title>
   </head>
   <body>
@@ -39,11 +39,6 @@
             </dialog>
           </a>
           <form class="nav-main__search" action="">
-            <input class="search-bar" placeholder="검색 Amazon" type="text" />
-            <button class="search-btn" type="submit">
-              <img src="src/asset/icons/search.svg" alt="" />
-            </button>
-            <ul class="search-info hidden"></ul>
           </form>
           <a class="nav-main__lang" href="#">
             <span class="lang-flag">🇺🇸</span>
@@ -133,7 +128,7 @@
         <button class="hero-btn next"><img src="./src/asset/icons/next-img.svg" alt="" /></button>
       </div>
     </main>
-    <div class="side-background">
+    <div class="side-background hidden">
       <div class="side-bar">
         <div class="side-bar__login">
           <a class="contents-category__login" href="">
@@ -142,12 +137,10 @@
           </a>
         </div>
         <div class="side-bar__contents">
-          <ul class="contents-category">
-          </ul>
         </div>
       </div>
-      <button class="side-close">
-        <img src="src/asset/icons/close.svg" alt="" />
+      <button class="sidebar-close">
+        <img class="close-btn" src="src/asset/icons/close.svg" alt="" />
       </button>
     </div>
   </body>
