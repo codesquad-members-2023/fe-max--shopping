@@ -209,27 +209,27 @@
     "mainHeroSlides": [
       {
         "index": 0,
-        "textContent": "1. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
       },
       {
         "index": 1,
-        "textContent": "2. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "두번째 텍스트"
       },
       {
         "index": 2,
-        "textContent": "3. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "세번째 텍스트"
       },
       {
         "index": 3,
-        "textContent": "4. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "네번째 텍스트"
       },
       {
         "index": 4,
-        "textContent": "5. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "다섯번째 텍스트"
       },
       {
         "index": 5,
-        "textContent": "6. 해외 쇼핑을 즐기고 한국 직불 카드 또는 한국 신용카드로 결제하십시오"
+        "textContent": "여섯번째 텍스트"
       }
     ],
     "mainContentsItems": [

@@ -39,9 +39,12 @@
 		white-space: nowrap
 		overflow: hidden
 		.hero__slide 
+			vertical-align: top
+			width: 100%
+			height: 100%
+			box-sizing: border-box
 			display: inline-block
 			text-align: center 
-			transition: transform 300ms
 			padding: 75px 32%
 			transform: translateX(calc(var(--index) * -100%)) rotateX(180deg)
 			backface-visibility: hidden
