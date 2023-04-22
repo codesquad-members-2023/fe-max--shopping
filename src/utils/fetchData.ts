@@ -1,4 +1,4 @@
-export const fetchData = async (url: string, options?: RequestInit): Promise<any> => {
+export const fetchData = async (url: string | URL, options?: RequestInit): Promise<any> => {
   const response = await fetch(url, options);
 
   if (!response.ok) {

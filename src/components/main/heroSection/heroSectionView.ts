@@ -11,7 +11,7 @@ interface heroImage {
 export const renderHeroSection = () => {
   const url = new URL("/hero_image", BASE_URL);
 
-  return fetchData(url.href).then((data: heroImage[]) => {
+  return fetchData(url).then((data: heroImage[]) => {
     const $imageContainer = $(".hero-section__image-container");
     const template = data.reduce((acc, { src }) => acc + heroSectionView(src), "");
 

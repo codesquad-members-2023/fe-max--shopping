@@ -1,6 +1,4 @@
 import { BASE_URL } from "../../constants/BASE_URL";
-import { Z_INDEX } from "../../constants/Z_INDEX";
-import { dim, undim } from "../../utils/dimming";
 import { $ } from "../../utils/domUtils";
 import { hideElement, showElement } from "../../utils/elementVisibility";
 import { fetchData } from "../../utils/fetchData";
@@ -13,9 +11,9 @@ interface sideBarMenu {
 
 export const renderSideBar = () => {
   const $content = $(".side-bar__content");
-  const url = new URL("/side_bar_menu", BASE_URL);
+  const url = new URL("side_bar_menu", BASE_URL);
 
-  return fetchData(url.href).then((data) => {
+  return fetchData(url).then((data) => {
     const [digitalContent, shopByDepartment] = data;
     const digitalComponent = menuComponent(digitalContent);
     const shopByDepartmentComponent = menuComponent(shopByDepartment);
