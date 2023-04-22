@@ -17,22 +17,5 @@ export class Searchbar extends Component {
       addHiddenClass('.login-modal__small');
       removeHiddenClass('.search-layer');
     });
-
-    // $('.search-layer').addEventListener('click', event => {
-    //   event.preventDefault();
-    //   const clickedNode = event.target;
-    //   switch (clickedNode.className) {
-    //     case 'delete-btn':
-    //       const historyValue = clickedNode.previousElementSibling.innerText;
-    //       history = history.filter(keyword => keyword !== historyValue);
-    //       clickedNode.parentNode.remove();
-    //       break;
-    //     case 'keyword-btn':
-    //       const keywordValue = clickedNode.nextElementSibling.innerText;
-    //       $('.search-bar').value = `${keywordValue}`;
-    //       addHiddenClass('search-info');
-    //       break;
-    //   }
-    // });
   }
 }
