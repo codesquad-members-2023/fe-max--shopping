@@ -1,13 +1,13 @@
-export interface searchData {
+export interface SearchData {
   text: string;
   id: number;
 }
 
 export class SearchSuggestionModel {
-  private recentSearches: searchData[];
+  private recentSearches: SearchData[];
   private recommendSearches: string[];
   private focusIndex: number;
-  private searchSuggestions: searchData[];
+  private searchSuggestions: SearchData[];
 
   constructor() {
     this.recentSearches = [];
@@ -16,7 +16,7 @@ export class SearchSuggestionModel {
     this.searchSuggestions = [];
   }
 
-  setRecentSearches(data: searchData[]) {
+  setRecentSearches(data: SearchData[]) {
     this.recentSearches = data;
   }
 
@@ -52,7 +52,7 @@ export class SearchSuggestionModel {
     this.focusIndex -= 1;
   }
 
-  setSearchSuggestions(suggestions: searchData[]) {
+  setSearchSuggestions(suggestions: SearchData[]) {
     this.searchSuggestions = suggestions;
   }
 

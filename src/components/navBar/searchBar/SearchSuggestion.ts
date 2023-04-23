@@ -1,62 +1,48 @@
-import { BASE_URL } from "../../constants/BASE_URL";
-import { $, $$ } from "../../utils/domUtils";
-import { searchData, SearchSuggestionModel } from "./SearchSuggestionModel";
+import { BASE_URL } from "../../../constants/BASE_URL";
+import { $, $$ } from "../../../utils/domUtils";
+import { fetchData } from "../../../utils/fetchData";
+import { SearchSuggestionModel } from "./SearchSuggestionModel";
 import { SearchSuggestionView } from "./SearchSuggestionView";
 
 export class SearchSuggestion {
   model: SearchSuggestionModel;
   view: SearchSuggestionView;
 
-  constructor() {
-    this.model = new SearchSuggestionModel();
-    this.view = new SearchSuggestionView();
+  constructor(model: SearchSuggestionModel, view: SearchSuggestionView) {
+    this.model = model;
+    this.view = view;
   }
 
-  async getRecentSearches(): Promise<searchData[]> {
+  async getRecentSearches() {
     const RECENT_SEARCHES_LIMIT = 5;
+    const url = `${BASE_URL}/recent?_sort=id&_order=desc&_limit=${RECENT_SEARCHES_LIMIT}`;
 
-    try {
-      const response = await fetch(
-        `${BASE_URL}/recent?_sort=id&_order=desc&_limit=${RECENT_SEARCHES_LIMIT}`
-      );
-
-      if (!response.ok) {
-        throw new Error(
-          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
-        );
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error(error);
-
-      return [];
-    }
+    return await fetchData(url);
   }
 
-  async getRecommendSearches(): Promise<string[]> {
-    try {
-      const response = await fetch(`${BASE_URL}/recommend/`);
+  async getRecommendSearches() {
+    const url = `${BASE_URL}/recommend/`;
 
-      if (!response.ok) {
-        throw new Error(
-          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
-        );
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error(error);
-
-      return [];
-    }
+    return await fetchData(url);
   }
 
   async fetchSearches() {
-    const [recentSearches, recommendSearches] = await Promise.all([
+    const results = await Promise.allSettled([
       this.getRecentSearches(),
       this.getRecommendSearches(),
     ]);
+
+    const [recentSearches, recommendSearches] = results.map((result) => {
+      if (result.status === "fulfilled") {
+        return result.value;
+      }
+
+      if (result.status === "rejected") {
+        console.error(result.reason);
+
+        return [];
+      }
+    });
 
     this.model.setRecentSearches(recentSearches);
     this.model.setRecommendSearches(recommendSearches);
@@ -84,18 +70,10 @@ export class SearchSuggestion {
     }
 
     const id = recentSearch.dataset.id;
+    const url = `${BASE_URL}/recent/${id}`;
+    const options = { method: "DELETE" };
 
-    try {
-      const response = await fetch(`${BASE_URL}/recent/${id}`, { method: "DELETE" });
-
-      if (!response.ok) {
-        throw new Error(
-          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
-        );
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    await fetchData(url, options);
   }
 
   handleSuggestionKeyDown(event: KeyboardEvent, $searchSuggestion: Element) {
@@ -149,12 +127,8 @@ export class SearchSuggestion {
       return;
     }
 
-    try {
-      await this.requestDeleteRecentSearch(event.target);
-      await this.fetchSearches();
-    } catch (error) {
-      console.error(error);
-    }
+    await this.requestDeleteRecentSearch(event.target);
+    await this.fetchSearches();
 
     this.renderView(
       this.view.recentSearchView(this.model.getRecentSearches()) +
@@ -165,51 +139,39 @@ export class SearchSuggestion {
   async handleSearchBarSubmit(event: Event, $searchInput: HTMLInputElement) {
     event.preventDefault();
 
-    try {
-      const response = await fetch(`${BASE_URL}/recent`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: $searchInput.value }),
-      });
+    const url = `${BASE_URL}/recent`;
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: $searchInput.value }),
+    };
 
-      if (!response.ok) {
-        throw new Error(
-          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
-        );
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    $searchInput.value = "";
+    await fetchData(url, options);
     await this.fetchSearches();
     this.renderView(
       this.view.recentSearchView(this.model.getRecentSearches()) +
         this.view.recommendSearchView(this.model.getRecommendSearches())
     );
+
+    $searchInput.value = "";
   }
 
   async handleSearchInputChange($searchInput: HTMLInputElement) {
-    const searchInput = $searchInput.value;
+    if (!$searchInput.value) {
+      this.initSuggestionRender();
 
-    try {
-      const response = await fetch(`${BASE_URL}/keyword?q=${searchInput}`);
-
-      if (!response.ok) {
-        throw new Error(
-          `HTTP 요청이 실패했습니다. 상태 코드: ${response.status}, 상태 메시지: ${response.statusText}`
-        );
-      }
-
-      const suggestions = await response.json();
-
-      this.model.setSearchSuggestions(suggestions);
-    } catch (error) {
-      console.error(error);
+      return;
     }
 
+    const searchInput = $searchInput.value;
+    const SEARCHES_LIMIT = 10;
+    const url = `${BASE_URL}/keyword?q=${searchInput}&_limit=${SEARCHES_LIMIT}`;
+
+    const suggestions = await fetchData(url);
+
+    this.model.setSearchSuggestions(suggestions);
     this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
   }
 }

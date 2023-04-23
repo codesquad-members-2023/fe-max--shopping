@@ -1,7 +1,7 @@
-@use "../style/common";
+@use "../../style/common";
 
 @mixin modal {
-  z-index: 100;
+  z-index: 300;
   position: absolute;
 }
 
@@ -17,18 +17,17 @@
   justify-content: center;
 }
 
-.main-dimmer {
-  z-index: 0;
+.dimmer {
+  z-index: -1;
   position: absolute;
+  top: 0;
 
   width: 100vw;
   height: 100vh;
   background-color: transparent;
-
   transition: background-color 500ms;
 
   &.dimmed {
-    z-index: 50;
     background-color: var(--black40);
   }
 }

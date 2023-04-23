@@ -1,4 +1,4 @@
-@use "../style/common";
+@use "../../style/common";
 
 @mixin nav-bar__label {
   @include common.bold-sm;
@@ -120,35 +120,38 @@
     background-color: var(--primary-orange200);
   }
 }
-
-.nav-bar__nation {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nav-bar__login {
+.nav-bar {
   position: relative;
+  z-index: 400;
 
-  display: flex;
-  flex-direction: column;
+  &__nation {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__login {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__cart {
+    display: flex;
+    align-items: center;
+  }
+
+  &__sub {
+    height: 32px;
+    padding: 0px 16px;
+    background-color: var(--gray900);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
-
-.nav-bar__cart {
-  display: flex;
-  align-items: center;
-}
-
-.nav-bar__sub {
-  height: 32px;
-  padding: 0px 16px;
-  background-color: var(--gray900);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .sub__left-menus {
   display: flex;
 }
