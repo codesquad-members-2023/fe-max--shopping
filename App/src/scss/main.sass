@@ -2,6 +2,7 @@
 	padding: 0 80px 40px 
 	position: relative 
 	.background__wrapper
+		overflow: hidden
 		z-index: -1
 		background-color: var(--color-gray-200)
 		position: absolute
@@ -26,6 +27,9 @@
 		display: none
 		&.active
 			display: block
+	.inner
+		max-width: 1024px
+		margin: auto
 #hero 
 	display: flex 
 	// max-width: 728px
@@ -36,9 +40,12 @@
 		white-space: nowrap
 		overflow: hidden
 		.hero__slide 
+			vertical-align: top
+			width: 100%
+			height: 100%
+			box-sizing: border-box
 			display: inline-block
 			text-align: center 
-			transition: transform 300ms
 			padding: 75px 32%
 			transform: translateX(calc(var(--index) * -100%)) rotateX(180deg)
 			backface-visibility: hidden
@@ -50,7 +57,7 @@
 				word-break: keep-all
 				text-shadow: 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2
 	.control
-		width: 95px 
+		padding: 0
 		background-color: transparent 
 		border: 0
 	.control--left 

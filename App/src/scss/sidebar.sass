@@ -5,18 +5,30 @@
 	height: 100% 
 	z-index: 3
 	transform: translateX(-320px)
-	animation: sidebar 1s 
+	animation: sidebar 1s
+	.close
+		position: absolute
+		padding: 8px
+		top: 0
+		left: 0%
 	&.active 
 		width: 100% 
 		background-color: var(--color-black-40) 
 		transform: translateX(0px) 
 		animation: sidebarActive 1s 
+		.close
+			left: 100%
 	aside 
 		background: var(--color-white) 
 		height: 100% 
-		width: 320px 
+		width: 320px
+		position: relative
+		> .inner
+			overflow: hidden
+			position: relative
+
 	h2
-		padding: 16px 
+		padding: 16px
 		padding-left: 32px 
 		font: var(--font-bold-lg) 
 		color: var(--color-white) 
@@ -25,10 +37,11 @@
 		padding: 16px 
 		padding-left: 32px 
 		font: var(--font-bold-lg) 
-		color: var(--color-black) 
+		color: var(--color-black)
 	.sidebar__sub 
 		border-bottom: 1px solid var(--color-gray-100) 
 	.sidebar__item 
+		text-decoration: none
 		padding: 10px 
 		padding-left: 32px 
 		width: 100% 
@@ -37,17 +50,48 @@
 		display: flex 
 		justify-content: space-between 
 		font: var(--font-body-md) 
-		letter-spacing: var(--letter-spacing-body-md) 
-		box-sizing: border-box 
+		letter-spacing: var(--letter-spacing-body-md)
+		color: var(--color-black)
+		box-sizing: border-box
 	.sidebar__item--summary 
 		justify-content: start 
 		.icon 
 			transition: transform 300ms 
+	.sidebar__details
+		.sidebar__sub
+			opacity: 0
+			transition: opacity 300ms
+	
 	.sidebar__details[open] 
 		.sidebar__item--summary
 			border-bottom: 1px solid var(--color-gray-100)
 			.icon 
-				transform: rotateX(-180deg) 
+				transform: rotateX(-180deg)
+	.detail
+		position: absolute
+		top: 0
+		width: 100%
+		height: 100%
+		background: var(--color-white)
+		transform: translateX(100%)
+		transition: transform 300ms
+		&.active
+			transform: translateX(0%)
+		.back
+			padding: 8px 16px 8px 32px
+			width: 100%
+			text-align: left
+			border: 0
+			background: transparent
+			img
+				margin-right: 12px
+				vertical-align: middle
+			span
+				font: var(--font-body-md) 
+				letter-spacing: var(--letter-spacing-body-md)
+		h4
+			padding: 16px 16px 16px 32px
+			font: var(--font-bold-lg)
 
 @keyframes sidebar
 	0%

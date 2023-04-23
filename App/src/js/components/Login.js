@@ -1,4 +1,4 @@
-import { findEvent } from "../utils.js";
+import { findEvent } from "../util/factory.js";
 import { Component } from "./Component.js";
 
 export class Login extends Component {

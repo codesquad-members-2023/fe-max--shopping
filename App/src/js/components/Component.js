@@ -1,13 +1,13 @@
-import { findComponent } from "../utils.js";
+import { findComponent } from "../util/factory.js";
 
 export class Component {
   constructor(tagName, attrs = false, textContent) {
     if (!tagName) return;
     this.domNode = document.createElement(tagName);
     if (attrs) {
-      for (let [name, value] of Object.entries(attrs)) {
+      Object.entries(attrs).forEach(([name, value]) => {
         this.domNode.setAttribute(name, value);
-      }
+      });
     }
     if (textContent) {
       this.textContent = textContent;
@@ -20,6 +20,7 @@ export class Component {
       const { tagName, id } = child.domNode;
       let subComponent = findComponent(tagName);
       if (!subComponent) subComponent = findComponent(id);
+      
       if (subComponent) {
         children[index] = new subComponent(child);
       }
@@ -27,12 +28,12 @@ export class Component {
     });
   }
 
-  parseJsonRecursiveAppendChild(recipe) {
+  appendChildComponent(recipe) {
     const { tagName, attrs, textContent, children } = recipe;
     const childComponent = new Component(tagName, attrs, textContent);
     if (children) {
       children.forEach((child, index) => {
-        childComponent.parseJsonRecursiveAppendChild(child);
+        childComponent.appendChildComponent(child);
       });
     }
     this.appendChild(childComponent);
@@ -53,12 +54,10 @@ export class Component {
     });
   }
 
-  setEvent() {
-
-  }
+  setEvent() {}
 
   load() {
-    this.setEvent()
+    this.setEvent();
     this.children.forEach((child) => {
       child.load();
     });
