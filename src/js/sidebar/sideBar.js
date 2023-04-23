@@ -4,14 +4,12 @@ export class SideBar {
   constructor(data, renderer) {
     this.data = data;
     this.renderer = renderer;
-    this.eventListener = new EventListener(this);
-    this.init();
   }
 
   init() {
     this.initDigitalList('디지털 콘텐츠 및 기기', '.digital');
     this.initDepartmentList('부서별 쇼핑', '.department', '.open-lists');
-    this.eventListener.registerEventListeners();
+    this.registerEventListeners();
   }
 
   initDigitalList(category, listSelector) {
@@ -35,10 +33,19 @@ export class SideBar {
     });
   }
 
+  registerEventListeners() {
+    $('.nav-sub__hmenu').addEventListener('click', () => this.handleSideBarToggle());
+    $('.sidebar__close').addEventListener('click', () => this.handleSideBarToggle());
+    $('.open-lists-btn').addEventListener('click', () => this.handleSubListOpen());
+    $('.close-lists-btn').addEventListener('click', () => this.handleSubListClose());
+    $('.go-main-btn').addEventListener('click', () => this.handleSubToggle());
+    $('.sidebar__contents .main').addEventListener('click', (e) => this.moveSubList(e));
+  }
+
   fetchAndRenderSubList(mainCategoryTitle, subCategoryTitle) {
     this.data.getSubCategoryItemList(mainCategoryTitle, subCategoryTitle).then((items) => {
       const subLists = $('.sub-content');
-      this.renderer.renderSubList(subCategoryTitle, items, subLists);
+      this.renderer.renderSubList(subLists, items, subCategoryTitle);
     });
   }
 
@@ -67,20 +74,5 @@ export class SideBar {
   handleSideBarToggle() {
     $('.sidebar').classList.toggle('active');
     $('.sidebar__close').classList.toggle('hidden');
-  }
-}
-
-class EventListener {
-  constructor(sidebar) {
-    this.sidebar = sidebar;
-  }
-
-  registerEventListeners() {
-    $('.nav-sub__hmenu').addEventListener('click', () => this.sidebar.handleSideBarToggle());
-    $('.sidebar__close').addEventListener('click', () => this.sidebar.handleSideBarToggle());
-    $('.open-lists-btn').addEventListener('click', () => this.sidebar.handleSubListOpen());
-    $('.close-lists-btn').addEventListener('click', () => this.sidebar.handleSubListClose());
-    $('.go-main-btn').addEventListener('click', () => this.sidebar.handleSubToggle());
-    $('.sidebar__contents .main').addEventListener('click', (e) => this.sidebar.moveSubList(e));
   }
 }

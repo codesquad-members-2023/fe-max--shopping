@@ -17,7 +17,7 @@ export class Renderer {
       .join('');
   }
 
-  renderSubList(title, items, location) {
+  renderSubList(location, items, title) {
     location.innerHTML = `
     <div class="title">${title}</div>
     <ul class="lists">

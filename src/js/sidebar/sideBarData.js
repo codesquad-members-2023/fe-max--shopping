@@ -14,11 +14,28 @@ export class Data {
   getMainCategoryList(mainCategoryTitle) {
     return this.fetchData().then((data) => {
       const digitalContentsAndDevices = data[mainCategoryTitle];
+
+      if (!digitalContentsAndDevices) {
+        throw new Error('Invalid category title');
+      }
+
       return Object.keys(digitalContentsAndDevices).map((key) => key);
     });
   }
 
   getSubCategoryItemList(mainCategoryTitle, subCategoryTitle) {
-    return this.fetchData().then((data) => data[mainCategoryTitle][subCategoryTitle]);
+    return this.fetchData().then((data) => {
+      const mainCategory = data[mainCategoryTitle];
+      if (!mainCategory) {
+        throw new Error('Invalid category title');
+      }
+
+      const subCategory = mainCategory[subCategoryTitle];
+      if (!subCategory) {
+        throw new Error('Invalid sub-category title');
+      }
+
+      return subCategory;
+    });
   }
 }
