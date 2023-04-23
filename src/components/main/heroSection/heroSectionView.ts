@@ -1,7 +1,7 @@
 import { BASE_URL } from "../../../constants/BASE_URL";
 import { $ } from "../../../utils/domUtils";
 import { fetchData } from "../../../utils/fetchData";
-import { moveImageHandler, resetIntervalImageMove } from "./heroSectionController";
+import { MoveImageHandler, resetIntervalImageMove } from "./heroSectionController";
 
 interface heroImage {
   src: string;
@@ -28,7 +28,7 @@ const heroSectionView = (src: string) => {
 />`;
 };
 
-export const addHeroSectionEventListeners = (moveImageHandler: moveImageHandler) => {
+export const addHeroSectionEventListeners = (moveImageHandler: MoveImageHandler) => {
   const $prevButton = $(".hero-section__prev-button");
   const $nextButton = $(".hero-section__next-button");
 

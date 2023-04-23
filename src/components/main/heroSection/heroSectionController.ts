@@ -1,18 +1,20 @@
 import { $, $$ } from "../../../utils/domUtils";
 import { ensureHTMLElement } from "../../../utils/typeCheckUtils";
 
-export interface moveImageHandler {
-  (direction: string): Promise<void>;
+export interface MoveImageHandler {
+  (direction: Direction): Promise<void>;
 }
 
-export const createMoveImageHandler = (): moveImageHandler => {
+type Direction = "prev" | "next";
+
+export const createMoveImageHandler = (): MoveImageHandler => {
   const $imageContainer = ensureHTMLElement($(".hero-section__image-container"));
   const imageCount = $$(".hero-section__image").length;
   const isNegativeImageIndex = () => index < 0;
   const isExceededImageIndex = () => index > imageCount - 1;
 
   let index = 0;
-  return async (direction: string) => {
+  return async (direction: Direction) => {
     index += direction === "prev" ? -1 : 1;
 
     if (isNegativeImageIndex()) {
@@ -64,13 +66,13 @@ const moveImageList = (index: number, $imageContainer: HTMLElement) => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const setIntervalImageMove = (moveImageHandler: moveImageHandler) => {
+export const setIntervalImageMove = (moveImageHandler: MoveImageHandler) => {
   const id = setInterval(() => moveImageHandler("next"), 10000);
 
   intervalIdState.setIntervalId(id);
 };
 
-export const resetIntervalImageMove = (moveImageHandler: moveImageHandler) => {
+export const resetIntervalImageMove = (moveImageHandler: MoveImageHandler) => {
   const intervalId = intervalIdState.getIntervalId();
 
   clearInterval(intervalId);
