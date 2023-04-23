@@ -1,16 +1,19 @@
 import { Navbar } from '../js/components/Navbar/Navbar.js';
-import { Main } from './Main.js';
-import { Component } from './components/base/Component.js';
+import { Main } from './components/Main.js';
+import Sidebar from './components/Sidebar/Sidebar.js';
 
-export class App extends Component {
-  constructor() {
-    super('app');
-    this.header = new Navbar();
+export class App {
+  #node;
+
+  constructor(rootNode) {
+    this.#node = rootNode;
+    this.sidebar = new Sidebar();
     this.main = new Main();
-    this.init();
+    this.header = new Navbar(this.sidebar, this.main);
+    this.render();
   }
 
-  getTemplate() {
-    return [this.header.node, this.main.node];
+  render() {
+    this.#node.append(this.header.node, this.sidebar.node, this.main.node);
   }
 }

@@ -1,13 +1,26 @@
-import { NavbarMain } from '../Navbar/NavbarMain/NavbarMain.js';
-import { NavbarSub } from '../Navbar/NavbarSub.js';
 import { Component } from '../base/Component.js';
+import { NavbarMain } from './NavbarMain/NavbarMain.js';
+import { NavbarSub } from './NavbarSub/NavbarSub.js';
 
 export class Navbar extends Component {
-  constructor() {
+  constructor(sidebar, main) {
     super('navbar', 'HEADER');
-    this.navbarMain = new NavbarMain();
+    this.navbarMain = new NavbarMain(main);
     this.navbarSub = new NavbarSub();
+    this.sidebar = sidebar;
     this.init();
+  }
+
+  initEventHandlers() {
+    this.node.addEventListener('click', ({ target }) => this.handleClick(target));
+  }
+
+  handleClick(target) {
+    const isHamburgerMenu = target.closest('.hamburger-menu');
+
+    if (isHamburgerMenu) {
+      this.sidebar.open();
+    }
   }
 
   getTemplate() {

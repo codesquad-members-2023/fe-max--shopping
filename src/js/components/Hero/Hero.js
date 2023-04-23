@@ -1,37 +1,46 @@
+import { client } from '../../domain/client.js';
 import { Component } from '../base/Component.js';
 import { Slider } from './Slider.js';
 
 export class Hero extends Component {
-  static autoIntervalSecs = 10;
-  static transitionSecs = 0.5;
-  static startIndex = 1;
-
   constructor(slideCount) {
     super('hero');
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
     this.currentIndex = 0;
-    this.slider = new Slider(this.slideCount);
+    this.client = client;
+    this.slider = new Slider();
     this.leftButton = new Component('slider-button left', 'BUTTON');
     this.rightButton = new Component('slider-button right', 'BUTTON');
-    this.initSlider(Hero.startIndex);
+    this.initSlider(this.slideCount, 1);
     this.init();
   }
 
-  initSlider(startIndex) {
+  async initSlider(slideCount, startIndex) {
+    const heroImages = await this.client.fetchHeroImages(slideCount);
+    this.slider.render(heroImages);
+
     this.currentIndex += startIndex;
-    this.slider.node.style.transform = `translateX(-${this.currentIndex * 100}vw)`;
+    this.slider.initStyle(slideCount, startIndex);
   }
 
   initEventHandlers() {
-    this.moveAutoInterval(Hero.autoIntervalSecs * 1000);
-    this.slider.node.addEventListener('transitionend', () => this.cycleSlides());
-    this.leftButton.node.addEventListener('click', () => this.moveToPrevSlide());
-    this.rightButton.node.addEventListener('click', () => this.moveToNextSlide());
+    this.moveAutoInterval(10000);
+    this.node.addEventListener('transitionend', () => this.cycleSlides());
+    this.node.addEventListener('click', ({ target }) => this.moveSlide(target));
   }
 
   moveAutoInterval(interval) {
     setInterval(() => this.moveToNextSlide(), interval);
+  }
+
+  moveSlide(target) {
+    if (target.classList.contains('left')) {
+      this.moveToPrevSlide();
+    }
+    if (target.classList.contains('right')) {
+      this.moveToNextSlide();
+    }
   }
 
   moveToPrevSlide() {
@@ -40,7 +49,7 @@ export class Hero extends Component {
     }
 
     this.currentIndex -= 1;
-    this.moveToSlide(this.currentIndex);
+    this.slider.moveToSlide(this.currentIndex);
   }
 
   moveToNextSlide() {
@@ -49,7 +58,7 @@ export class Hero extends Component {
     }
 
     this.currentIndex += 1;
-    this.moveToSlide(this.currentIndex);
+    this.slider.moveToSlide(this.currentIndex);
   }
 
   cycleSlides() {
@@ -58,21 +67,14 @@ export class Hero extends Component {
 
     if (isFirstSlide) {
       this.currentIndex = this.lastIndex - 1;
-      this.moveToSlide(this.currentIndex, false);
+      this.slider.moveToSlide(this.currentIndex, false);
       return;
     }
 
     if (isLastSlide) {
       this.currentIndex = 1;
-      this.moveToSlide(this.currentIndex, false);
+      this.slider.moveToSlide(this.currentIndex, false);
     }
-  }
-
-  moveToSlide(slideIndex, withTransition = true) {
-    this.slider.node.style.transform = `translateX(-${slideIndex * 100}vw)`;
-    this.slider.node.style.transition = withTransition
-      ? `transform ${Hero.transitionSecs}s ease-in-out`
-      : 'none';
   }
 
   getTemplate() {

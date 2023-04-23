@@ -13,4 +13,8 @@ export class DimLayer extends Component {
   off() {
     this.node.classList.remove('active');
   }
+
+  getTemplate() {
+    return '';
+  }
 }

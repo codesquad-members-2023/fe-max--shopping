@@ -22,25 +22,243 @@
     { "id": 8, "word": "두잇 자동급식기" },
     { "id": 9, "word": "자동차 보조배터리" },
     { "id": 10, "word": "자동차 타이어 공기주입기" },
-    { "id": 11, "word": "빵" },
-    { "id": 12, "word": "포켓몬 빵" },
-    { "id": 13, "word": "빵가루" },
-    { "id": 14, "word": "햄버거 빵" },
-    { "id": 15, "word": "삼립 빵" },
-    { "id": 16, "word": "치아바타 빵" },
-    { "id": 17, "word": "코스트코 빵" },
-    { "id": 18, "word": "아침 식사대용 빵" },
-    { "id": 19, "word": "생크림 빵" },
-    { "id": 20, "word": "핫도그 빵" },
-    { "id": 21, "word": "바질 페스토" },
-    { "id": 22, "word": "바지걸이" },
-    { "id": 23, "word": "바지락" },
-    { "id": 24, "word": "여성 바지" },
-    { "id": 25, "word": "남자 바지" },
-    { "id": 26, "word": "바지 행거" },
-    { "id": 27, "word": "남자 바지 슬렉스바지" },
-    { "id": 28, "word": "트레이닝 바지" },
-    { "id": 29, "word": "골프 바지" },
-    { "id": 30, "word": "언더아머 바지" }
+    { "id": 11, "word": "자동차 방향제" },
+    { "id": 12, "word": "빵" },
+    { "id": 13, "word": "포켓몬 빵" },
+    { "id": 14, "word": "빵가루" },
+    { "id": 15, "word": "햄버거 빵" },
+    { "id": 16, "word": "삼립 빵" },
+    { "id": 17, "word": "치아바타 빵" },
+    { "id": 18, "word": "코스트코 빵" },
+    { "id": 19, "word": "아침 식사대용 빵" },
+    { "id": 20, "word": "생크림 빵" },
+    { "id": 21, "word": "핫도그 빵" },
+    { "id": 22, "word": "바질 페스토" },
+    { "id": 23, "word": "바지걸이" },
+    { "id": 24, "word": "바지락" },
+    { "id": 25, "word": "여성 바지" },
+    { "id": 26, "word": "남자 바지" },
+    { "id": 27, "word": "바지 행거" },
+    { "id": 28, "word": "남자 바지 슬렉스바지" },
+    { "id": 29, "word": "트레이닝 바지" },
+    { "id": 30, "word": "골프 바지" },
+    { "id": 31, "word": "언더아머 바지" }
+  ],
+  "hero": [
+    { "id": 1, "src": "/src/assets/images/banner/hero-1.jpg" },
+    { "id": 2, "src": "/src/assets/images/banner/hero-2.jpg" },
+    { "id": 3, "src": "/src/assets/images/banner/hero-3.jpg" },
+    { "id": 4, "src": "/src/assets/images/banner/hero-4.jpg" },
+    { "id": 5, "src": "/src/assets/images/banner/hero-5.jpg" },
+    { "id": 6, "src": "/src/assets/images/banner/hero-6.jpg" },
+    { "id": 7, "src": "/src/assets/images/banner/hero-7.jpg" },
+    { "id": 8, "src": "/src/assets/images/banner/hero-8.jpg" },
+    { "id": 9, "src": "/src/assets/images/banner/hero-9.jpg" },
+    { "id": 10, "src": "/src/assets/images/banner/hero-10.jpg" },
+    { "id": 11, "src": "/src/assets/images/banner/hero-11.jpg" },
+    { "id": 12, "src": "/src/assets/images/banner/hero-12.jpg" },
+    { "id": 13, "src": "/src/assets/images/banner/hero-13.jpg" },
+    { "id": 14, "src": "/src/assets/images/banner/hero-14.jpg" },
+    { "id": 15, "src": "/src/assets/images/banner/hero-15.jpg" },
+    { "id": 16, "src": "/src/assets/images/banner/hero-16.jpg" },
+    { "id": 17, "src": "/src/assets/images/banner/hero-17.jpg" },
+    { "id": 18, "src": "/src/assets/images/banner/hero-18.jpg" },
+    { "id": 19, "src": "/src/assets/images/banner/hero-19.jpg" },
+    { "id": 20, "src": "/src/assets/images/banner/hero-20.jpg" },
+    { "id": 21, "src": "/src/assets/images/banner/hero-21.jpg" },
+    { "id": 22, "src": "/src/assets/images/banner/hero-22.jpg" },
+    { "id": 23, "src": "/src/assets/images/banner/hero-23.jpg" },
+    { "id": 24, "src": "/src/assets/images/banner/hero-24.jpg" },
+    { "id": 25, "src": "/src/assets/images/banner/hero-25.jpg" },
+    { "id": 26, "src": "/src/assets/images/banner/hero-26.jpg" },
+    { "id": 27, "src": "/src/assets/images/banner/hero-27.jpg" },
+    { "id": 28, "src": "/src/assets/images/banner/hero-28.jpg" },
+    { "id": 29, "src": "/src/assets/images/banner/hero-29.jpg" },
+    { "id": 30, "src": "/src/assets/images/banner/hero-30.jpg" },
+    { "id": 31, "src": "/src/assets/images/banner/hero-31.jpg" },
+    { "id": 32, "src": "/src/assets/images/banner/hero-32.jpg" },
+    { "id": 33, "src": "/src/assets/images/banner/hero-33.jpg" },
+    { "id": 34, "src": "/src/assets/images/banner/hero-34.jpg" },
+    { "id": 35, "src": "/src/assets/images/banner/hero-35.jpg" },
+    { "id": 36, "src": "/src/assets/images/banner/hero-36.jpg" },
+    { "id": 37, "src": "/src/assets/images/banner/hero-37.jpg" },
+    { "id": 38, "src": "/src/assets/images/banner/hero-38.jpg" },
+    { "id": 39, "src": "/src/assets/images/banner/hero-39.jpg" },
+    { "id": 40, "src": "/src/assets/images/banner/hero-40.jpg" },
+    { "id": 41, "src": "/src/assets/images/banner/hero-41.jpg" },
+    { "id": 42, "src": "/src/assets/images/banner/hero-42.jpg" },
+    { "id": 43, "src": "/src/assets/images/banner/hero-43.jpg" },
+    { "id": 44, "src": "/src/assets/images/banner/hero-44.jpg" },
+    { "id": 45, "src": "/src/assets/images/banner/hero-45.jpg" },
+    { "id": 46, "src": "/src/assets/images/banner/hero-46.jpg" },
+    { "id": 47, "src": "/src/assets/images/banner/hero-47.jpg" },
+    { "id": 48, "src": "/src/assets/images/banner/hero-48.jpg" },
+    { "id": 49, "src": "/src/assets/images/banner/hero-49.jpg" },
+    { "id": 50, "src": "/src/assets/images/banner/hero-50.jpg" },
+    { "id": 51, "src": "/src/assets/images/banner/hero-51.jpg" },
+    { "id": 52, "src": "/src/assets/images/banner/hero-52.jpg" },
+    { "id": 53, "src": "/src/assets/images/banner/hero-53.jpg" },
+    { "id": 54, "src": "/src/assets/images/banner/hero-54.jpg" },
+    { "id": 55, "src": "/src/assets/images/banner/hero-55.jpg" },
+    { "id": 56, "src": "/src/assets/images/banner/hero-56.jpg" },
+    { "id": 57, "src": "/src/assets/images/banner/hero-57.jpg" },
+    { "id": 58, "src": "/src/assets/images/banner/hero-58.jpg" },
+    { "id": 59, "src": "/src/assets/images/banner/hero-59.jpg" },
+    { "id": 60, "src": "/src/assets/images/banner/hero-60.jpg" },
+    { "id": 61, "src": "/src/assets/images/banner/hero-61.jpg" },
+    { "id": 62, "src": "/src/assets/images/banner/hero-62.jpg" },
+    { "id": 63, "src": "/src/assets/images/banner/hero-63.jpg" },
+    { "id": 64, "src": "/src/assets/images/banner/hero-64.jpg" },
+    { "id": 65, "src": "/src/assets/images/banner/hero-65.jpg" },
+    { "id": 66, "src": "/src/assets/images/banner/hero-66.jpg" },
+    { "id": 67, "src": "/src/assets/images/banner/hero-67.jpg" },
+    { "id": 68, "src": "/src/assets/images/banner/hero-68.jpg" },
+    { "id": 69, "src": "/src/assets/images/banner/hero-69.jpg" },
+    { "id": 70, "src": "/src/assets/images/banner/hero-70.jpg" },
+    { "id": 71, "src": "/src/assets/images/banner/hero-71.jpg" },
+    { "id": 72, "src": "/src/assets/images/banner/hero-72.jpg" },
+    { "id": 73, "src": "/src/assets/images/banner/hero-73.jpg" },
+    { "id": 74, "src": "/src/assets/images/banner/hero-74.jpg" },
+    { "id": 75, "src": "/src/assets/images/banner/hero-75.jpg" },
+    { "id": 76, "src": "/src/assets/images/banner/hero-76.jpg" },
+    { "id": 77, "src": "/src/assets/images/banner/hero-77.jpg" },
+    { "id": 78, "src": "/src/assets/images/banner/hero-78.jpg" },
+    { "id": 79, "src": "/src/assets/images/banner/hero-79.jpg" },
+    { "id": 80, "src": "/src/assets/images/banner/hero-80.jpg" },
+    { "id": 81, "src": "/src/assets/images/banner/hero-81.jpg" },
+    { "id": 82, "src": "/src/assets/images/banner/hero-82.jpg" },
+    { "id": 83, "src": "/src/assets/images/banner/hero-83.jpg" },
+    { "id": 84, "src": "/src/assets/images/banner/hero-84.jpg" },
+    { "id": 85, "src": "/src/assets/images/banner/hero-85.jpg" },
+    { "id": 86, "src": "/src/assets/images/banner/hero-86.jpg" },
+    { "id": 87, "src": "/src/assets/images/banner/hero-87.jpg" },
+    { "id": 88, "src": "/src/assets/images/banner/hero-88.jpg" },
+    { "id": 89, "src": "/src/assets/images/banner/hero-89.jpg" },
+    { "id": 90, "src": "/src/assets/images/banner/hero-90.jpg" },
+    { "id": 91, "src": "/src/assets/images/banner/hero-91.jpg" },
+    { "id": 92, "src": "/src/assets/images/banner/hero-92.jpg" },
+    { "id": 93, "src": "/src/assets/images/banner/hero-93.jpg" },
+    { "id": 94, "src": "/src/assets/images/banner/hero-94.jpg" },
+    { "id": 95, "src": "/src/assets/images/banner/hero-95.jpg" },
+    { "id": 96, "src": "/src/assets/images/banner/hero-96.jpg" },
+    { "id": 97, "src": "/src/assets/images/banner/hero-97.jpg" },
+    { "id": 98, "src": "/src/assets/images/banner/hero-98.jpg" },
+    { "id": 99, "src": "/src/assets/images/banner/hero-99.jpg" },
+    { "id": 100, "src": "/src/assets/images/banner/hero-100.jpg" }
+  ],
+  "category": [
+    {
+      "title": "디지털 콘텐츠 및 기기",
+      "menus": [
+        { "id": 1, "name": "Amazon Music" },
+        { "id": 2, "name": "Kindle E-Reader 및 도서" },
+        { "id": 3, "name": "안드로이드 앱스토어" }
+      ]
+    },
+    {
+      "title": "부서별 쇼핑",
+      "menus": [
+        { "id": 4, "name": "전자" },
+        { "id": 5, "name": "컴퓨터" },
+        { "id": 6, "name": "Alexa 스마트 홈" },
+        { "id": 7, "name": "예술 및 공예" }
+      ],
+      "compressedMenus": [
+        { "id": 8, "name": "자동차 용품" },
+        { "id": 9, "name": "유아" },
+        { "id": 10, "name": "뷰티 및 퍼스널 케어" },
+        { "id": 11, "name": "여성 패션" },
+        { "id": 12, "name": "남성 패션" },
+        { "id": 13, "name": "여아용 의류" },
+        { "id": 14, "name": "남아용 의류" },
+        { "id": 15, "name": "건강 및 가정용품" },
+        { "id": 16, "name": "가정 및 주방" },
+        { "id": 17, "name": "산업용 및 과학용" },
+        { "id": 18, "name": "여행 가방" },
+        { "id": 19, "name": "영화 및 TV" },
+        { "id": 20, "name": "애완동물 용품" },
+        { "id": 21, "name": "소프트웨어" },
+        { "id": 22, "name": "스포츠 및 야외 활동" },
+        { "id": 23, "name": "공구 및 주택 개조" },
+        { "id": 24, "name": "장난감 및 게임" },
+        { "id": 25, "name": "비디오 게임" }
+      ]
+    }
+  ],
+  "subCategory": [
+    {
+      "id": 1,
+      "details": [
+        {
+          "title": "Prime Video",
+          "menus": [
+            { "id": 1, "name": "Prime Video" },
+            { "id": 2, "name": "Included with Prime" },
+            { "id": 3, "name": "Prime Video Channels" },
+            { "id": 4, "name": "Rent or Buy" },
+            { "id": 5, "name": "Your Watchlist" },
+            { "id": 6, "name": "Purchases & Rentals" },
+            { "id": 7, "name": "Watch Anywhere" },
+            { "id": 8, "name": "Getting Started" }
+          ]
+        },
+        {
+          "title": "More To Explore",
+          "menus": [
+            { "id": 1, "name": "Amazon Originals" },
+            { "id": 2, "name": "Kids" },
+            { "id": 3, "name": "Coming soon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "details": [
+        {
+          "title": "Stream Music",
+          "menus": [
+            { "id": 1, "name": "Amazon Music Unlimited" },
+            { "id": 2, "name": "Amazon Music Prime" },
+            { "id": 3, "name": "Free Streaming Music" },
+            { "id": 4, "name": "Podcasts" },
+            { "id": 5, "name": "Open Web Player" }
+          ]
+        },
+        {
+          "title": "Buy Music",
+          "menus": [
+            { "id": 1, "name": "CDs & Vinyl" },
+            { "id": 2, "name": "Download Store" },
+            { "id": 3, "name": "Artist Merch Shop" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "details": [
+        {
+          "title": "자동차 용품",
+          "menus": [
+            { "id": 1, "name": "자동차 관리" },
+            { "id": 2, "name": "자동차 전자기기 및 악세서리" },
+            { "id": 3, "name": "실외용품 악세서리" },
+            { "id": 4, "name": "인테리어 악세서리" },
+            { "id": 5, "name": "램프 및 조명 악세서리" },
+            { "id": 6, "name": "오토바이 및 파워스포츠 차량 용품" },
+            { "id": 7, "name": "오일 및 유체" },
+            { "id": 8, "name": "페인트 및 도장용품" },
+            { "id": 9, "name": "퍼포먼스 부품 및 액세서리" },
+            { "id": 10, "name": "교체용 부품" },
+            { "id": 11, "name": "RV 부품 및 액세서리" },
+            { "id": 12, "name": "타이어 및 휠" },
+            { "id": 13, "name": "공구 및 장비" },
+            { "id": 14, "name": "자동차 매니아용 상품" },
+            { "id": 15, "name": "대형차 및 상용차 장비" }
+          ]
+        }
+      ]
+    }
   ]
 }

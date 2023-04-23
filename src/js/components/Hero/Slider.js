@@ -1,53 +1,37 @@
 import { Component } from '../base/Component.js';
 
 export class Slider extends Component {
-  constructor(slideCount) {
+  constructor() {
     super('slider', 'UL');
-    this.slideCount = slideCount;
-    this.init(this.node, this.slideCount);
   }
 
-  init(node, slideCount) {
-    this.setSliderWidth(node, slideCount);
-    this.appendSlides(node, slideCount);
-    this.renderSlideClone(node);
-  }
-
-  setSliderWidth(node, slideCount) {
-    node.style.width = `${(slideCount + 2) * 100}vw`;
-  }
-
-  appendSlides(node, slideCount) {
-    const slideNodes = this.makeSlideNodes(slideCount);
-    node.append(...slideNodes);
-  }
-
-  makeSlideNodes(slideCount) {
-    const imageNames = this.makeImageNames(slideCount);
-    const slideNodes = imageNames.map((imageName) => new Slide(imageName).node);
+  getTemplate(imgSrc) {
+    const last = imgSrc[imgSrc.length - 1];
+    const first = imgSrc[0];
+    const slideNodes = [last, ...imgSrc, first].map((src) => new Slide(src).node);
     return slideNodes;
   }
 
-  makeImageNames(slideCount) {
-    return Array.from({ length: slideCount }).map((_, index) => `hero-${index + 1}.jpg`);
+  initStyle(slideCount, startIndex) {
+    this.node.style.width = `${(slideCount + 2) * 100}vw`;
+    this.node.style.transform = `translateX(-${startIndex * 100}vw)`;
   }
 
-  renderSlideClone(node) {
-    const firstSlide = node.firstElementChild;
-    const lastSlide = node.lastElementChild;
-    const firstClone = firstSlide.cloneNode(true);
-    const lastClone = lastSlide.cloneNode(true);
-
-    node.prepend(lastClone);
-    node.append(firstClone);
+  moveToSlide(slideIndex, withTransition = true) {
+    this.node.style.transform = `translateX(-${slideIndex * 100}vw)`;
+    this.node.style.transition = withTransition ? `transform 0.5s ease-in-out` : 'none';
   }
 }
 
 class Slide extends Component {
-  static __dirname = '/src/assets/images/banner/';
-
-  constructor(imageName) {
+  constructor(src) {
     super('slide', 'LI');
-    this.node.style.backgroundImage = `url(${Slide.__dirname}${imageName})`;
+    this.init(src);
+  }
+
+  getTemplate(src) {
+    return `
+<img class="slide-image" src="${src}" alt=""></img>
+    `;
   }
 }

@@ -1,6 +1,6 @@
 import { writeFile } from 'fs/promises';
 
-const searchWordMaker = {
+const dataMaker = {
   recommend: [
     'egift cards for amazon gift card',
     'gift cards',
@@ -48,7 +48,14 @@ const searchWordMaker = {
     '언더아머 바지',
   ],
 
-  makeWordData(words) {
+  makeImageInfo(count) {
+    const heroImages = Array.from({ length: count }).map((_, index) => `hero-${index + 1}.jpg`);
+    return heroImages.map((heroImage, index) => {
+      return { id: index + 1, src: `/src/assets/images/banner/${heroImage}` };
+    });
+  },
+
+  makeWordInfo(words) {
     return words.map((word, index) => {
       return { id: index + 1, word: word };
     });
@@ -56,8 +63,9 @@ const searchWordMaker = {
 
   makeJSON() {
     const template = {
-      recommend: this.makeWordData(this.recommend),
-      autoComplete: this.makeWordData(this.autoComplete),
+      recommend: this.makeWordInfo(this.recommend),
+      autoComplete: this.makeWordInfo(this.autoComplete),
+      hero: this.makeImageInfo(100),
     };
     const jsonData = JSON.stringify(template);
 
@@ -68,4 +76,4 @@ const searchWordMaker = {
   },
 };
 
-searchWordMaker.makeJSON();
+dataMaker.makeJSON();

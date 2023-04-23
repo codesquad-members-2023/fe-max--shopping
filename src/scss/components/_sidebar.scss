@@ -1,0 +1,140 @@
+@use '../base' as *;
+
+.sidebar {
+  z-index: 3;
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  flex-direction: row;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 200ms, opacity 200ms linear;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &-login {
+    @include typography('bold-lg');
+    @include categoryMenu(53px);
+    color: $color-white;
+    background: $color-black;
+  }
+
+  &-main {
+    z-index: 4;
+    height: 100%;
+    width: 320px;
+    background: $color-white;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .category-container {
+    display: flex;
+    width: 640px;
+
+    &__main {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__sub {
+      width: 50%;
+      .back {
+        @include typography('body-md');
+        @include categoryMenu(40px);
+        a {
+          flex-grow: 1;
+        }
+        button {
+          @include buttonIcon('/src/assets/symbols/arrow-left.svg');
+        }
+      }
+    }
+  }
+
+  .close-button {
+    z-index: 4;
+    display: flex;
+    padding: 12px 12px;
+
+    @include buttonIcon('/src/assets/symbols/close.svg');
+  }
+
+  .category {
+    border-bottom: 1px solid $color-gray-100;
+    &-title {
+      @include typography('bold-lg');
+      @include categoryMenu(53px);
+    }
+
+    &-menu {
+      @include typography('body-md');
+      @include categoryMenu(40px);
+      .detail-btn {
+        @include buttonIcon('/src/assets/symbols/chevron-right.svg');
+        filter: $filter-button;
+      }
+
+      &:hover {
+        background-color: $color-gray-100;
+        .detail-btn {
+          filter: $filter-button-hover;
+        }
+      }
+    }
+
+    &-name {
+      flex-grow: 1;
+    }
+
+    .category-compressed {
+      summary {
+        @include typography('body-md');
+        @include categoryMenu(40px);
+        cursor: pointer;
+      }
+
+      ul {
+        transition: opacity 200ms 100ms linear;
+        opacity: 0;
+      }
+
+      &[open] ul {
+        opacity: 1;
+      }
+
+      &[open] .summary-btn {
+        transform: rotate(270deg);
+      }
+
+      .summary-btn {
+        @include buttonIcon('/src/assets/symbols/chevron-right.svg');
+        filter: $filter-button;
+        transform: rotate(90deg);
+        transition: transform 0.3s ease;
+      }
+    }
+  }
+
+  .translateX-left,
+  .translateX-right,
+  .translateX-left-half {
+    transition: transform 0.3s ease-in;
+  }
+  .translateX-left {
+    transform: translateX(-100%);
+  }
+  .translateX-left-half {
+    transform: translateX(-50%);
+  }
+  .translateX-right {
+    transform: translateX(0);
+  }
+}

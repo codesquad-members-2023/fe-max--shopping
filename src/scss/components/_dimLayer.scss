@@ -1,0 +1,17 @@
+.dim-layer {
+  position: absolute;
+  visibility: hidden;
+  z-index: 3;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: visibility 200ms, opacity 200ms linear;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}

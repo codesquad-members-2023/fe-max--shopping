@@ -8,15 +8,11 @@ export default class SearchBar extends Component {
   }
 
   clearInputValue() {
-    this.$('input').value = '';
+    this.node.search.value = '';
   }
 
   setInputValue(value) {
-    this.$('input').value = value;
-  }
-
-  getInputValue() {
-    return this.$('input').value;
+    this.node.search.value = value;
   }
 
   getTemplate() {

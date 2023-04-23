@@ -4,13 +4,13 @@ import { Shipping } from './Shipping.js';
 import { Component } from '/src/js/components/base/Component.js';
 
 export class NavbarMain extends Component {
-  constructor() {
+  constructor(main) {
     super('navbar-main');
     this.logo = new Logo();
-    this.shipping = new Shipping();
-    this.search = new Search();
+    this.shipping = new Shipping(main);
+    this.search = new Search(main);
     this.nation = new Nation();
-    this.login = new Login();
+    this.login = new Login(main);
     this.myPage = new MyPage();
     this.cart = new Cart();
     this.init();
