@@ -1,12 +1,6 @@
 import { $, $$ } from "../../../utils/domUtils";
 import { ensureHTMLElement } from "../../../utils/typeCheckUtils";
-import { IntervalIdStateManager } from "./types";
-
-export interface MoveImageHandler {
-  (direction: Direction): Promise<void>;
-}
-
-type Direction = "prev" | "next";
+import { IntervalIdStateManager, MoveImageHandler } from "./types";
 
 export const createMoveImageHandler = (): MoveImageHandler => {
   const $imageContainer = ensureHTMLElement($(".hero-section__image-container"));
@@ -15,7 +9,7 @@ export const createMoveImageHandler = (): MoveImageHandler => {
   const isExceededImageIndex = () => index > imageCount - 1;
 
   let index = 0;
-  return async (direction: Direction) => {
+  return async (direction) => {
     index += direction === "prev" ? -1 : 1;
 
     if (isNegativeImageIndex()) {

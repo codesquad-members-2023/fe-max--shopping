@@ -1,8 +1,8 @@
 import { BASE_URL } from "../../../constants/BASE_URL";
 import { $ } from "../../../utils/domUtils";
 import { fetchData } from "../../../utils/fetchData";
-import { MoveImageHandler, resetIntervalImageMove } from "./heroSectionController";
-import { IntervalIdStateManager } from "./types";
+import { resetIntervalImageMove } from "./heroSectionController";
+import { IntervalIdStateManager, MoveImageHandler } from "./types";
 
 interface HeroImage {
   src: string;
