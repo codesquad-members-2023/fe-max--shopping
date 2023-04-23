@@ -31,8 +31,8 @@ export class Base {
     });
   }
 
-  setEvent(type, handler) {
-    this.#_node.addEventListener(type, handler);
+  setEvent(type, handler, option) {
+    this.#_node.addEventListener(type, handler, option);
   }
 
   setStyle(prop, attr) {

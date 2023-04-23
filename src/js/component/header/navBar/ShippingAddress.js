@@ -2,9 +2,9 @@ import { Base } from "../../Base.js";
 import { ShippingTooltip } from "./shippingTooltip.js";
 
 export class ShippingAddress extends Base {
-  constructor() {
+  constructor(observer) {
     super("a");
-    this.ShippingTooltip = new ShippingTooltip();
+    this.ShippingTooltip = new ShippingTooltip(observer);
 
     this.init();
   }
@@ -15,11 +15,11 @@ export class ShippingAddress extends Base {
 
     this.setEvent(
       "mouseover",
-      this.ShippingTooltip.showTooltipHandler.bind(this.ShippingTooltip)
+      this.ShippingTooltip.show.bind(this.ShippingTooltip)
     );
     this.setEvent(
       "mouseout",
-      this.ShippingTooltip.hideTooltipHandler.bind(this.ShippingTooltip)
+      this.ShippingTooltip.hide.bind(this.ShippingTooltip)
     );
   }
 

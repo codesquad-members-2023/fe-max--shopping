@@ -2,21 +2,24 @@ import { Backdrop } from "../../Backdrop.js";
 import { Base } from "../../Base.js";
 
 export class ShippingTooltip extends Base {
-  constructor() {
+  constructor(observer) {
     super("div");
+    this.observer = observer;
     this.init();
   }
   init() {
     this.setAttribute("id", "shippingAddress__tooltip");
     this.addchild();
+    this.observer.register(this);
   }
 
-  showTooltipHandler() {
+  show() {
     Backdrop.show();
     this.setStyle("display", "flex");
+    this.observer.notify(this);
   }
 
-  hideTooltipHandler() {
+  hide() {
     Backdrop.hide();
     this.setStyle("display", "none");
   }

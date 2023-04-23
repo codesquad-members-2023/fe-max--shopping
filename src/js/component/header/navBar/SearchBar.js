@@ -3,9 +3,9 @@ import { Base } from "../../Base.js";
 import { SearchBarLayer } from "./SearchBarLayer.js";
 
 export class SearchBar extends Base {
-  constructor() {
+  constructor(observer) {
     super("div");
-    this.layer = new SearchBarLayer();
+    this.observer = observer;
     this.db = new DB();
     this.prevInputText = "";
     this.init();
@@ -14,6 +14,7 @@ export class SearchBar extends Base {
   init() {
     this.setAttribute("id", "searchBar");
     this.addChild();
+    this.layer = new SearchBarLayer(this.observer, this.inputBar);
     this.setChildren(this.layer);
     this.setSearchBarEvent();
   }
@@ -92,9 +93,9 @@ export class SearchBar extends Base {
 
   async inputEventHandler(e) {
     const inputText = this.inputBar.node.value;
-    this.layer.selectInedx = null;
+    this.layer.selectInedx = -1;
 
-    if (this.layer.selectInedx !== null) {
+    if (this.layer.selectInedx !== -1) {
       return;
     }
 

@@ -3,20 +3,23 @@ import { Backdrop } from "../../Backdrop.js";
 import { Base } from "../../Base.js";
 
 export class SearchBarLayer extends Base {
-  constructor() {
+  constructor(observer, inputBar) {
     super("div");
+    this.observer = observer;
+    this.inputBar = inputBar;
     this.db = new DB();
     this.recommendKeywords = [];
     this.searchHistory = [];
     this.keywordList = [];
     this.keywordNodes = [];
     this.maxIndex = 0;
-    this.selectIndex = null;
+    this.selectIndex = -1;
     this.init();
   }
 
   async init() {
     this.setAttribute("id", "SearchBarLayer");
+    this.observer.register(this);
     await this.setLayerContent();
   }
 
@@ -30,6 +33,7 @@ export class SearchBarLayer extends Base {
 
     this.setStyle("display", "flex");
     Backdrop.show();
+    this.observer.notify(this);
     if (inputText === "") {
       await this.setLayerContent();
       this.setLayerContent();
@@ -37,16 +41,16 @@ export class SearchBarLayer extends Base {
       this.setNormalLayer();
       return;
     }
-
     await this.setAutoCompleteLayer(inputText);
   }
 
   hide() {
     this.setStyle("display", "none");
     Backdrop.hide();
+    this.inputBar.node.blur();
     this.clearChild();
-    this.selectIndex = null;
-    if (this.selectIndex) {
+    this.selectIndex = -1;
+    if (this.selectIndex !== -1) {
       this.keywordNodes[this.selectIndex].classList.remove("selected");
     }
   }
@@ -87,12 +91,12 @@ export class SearchBarLayer extends Base {
       node.dataset["layerindex"] = index;
     });
     this.keywordList = autoComplete.map((e) => e.text);
-    this.selectIndex = null;
+    this.selectIndex = -1;
     this.maxIndex = this.keywordNodes.length - 1;
   }
 
   setSelectList(key, inputBar) {
-    if (this.selectIndex === null) {
+    if (this.selectIndex === -1) {
       this.selectIndex = key === "ArrowUp" ? this.maxIndex : 0;
     } else {
       this.keywordNodes[this.selectIndex].classList.remove("selected");

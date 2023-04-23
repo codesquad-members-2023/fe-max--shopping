@@ -1,17 +1,21 @@
+import { DB } from "../../../db/db.js";
 import { Base } from "../../Base.js";
 
 export class Carousel extends Base {
   constructor() {
     super("div");
-    this.carouselList = [4, 5, 1, 2, 3];
+    this.slideState = "stop";
     this.currentIndex = 0;
-    this.maxIndex = this.carouselList.length;
     this.autoCarousel = this.setAutoCarousel();
+    this.db = new DB();
+
     this.init();
   }
 
-  init() {
+  async init() {
     this.setAttribute("id", "carousel");
+    this.maxIndex = await this.db.getCarouselImgLastIndex();
+    this.carouselList = await this.db.getInitCarousselImgSrc();
     this.addChild();
     this.addBtnEvent();
     this.addEventTransition();
@@ -29,8 +33,8 @@ export class Carousel extends Base {
       </div>
       <div class="carousel__wrapper" data-elementname="wrapper">
         ${this.carouselList
-          .map((listData) => {
-            return `<div class="carousel__item" data-num=${listData}>${listData}</div>`;
+          .map((img) => {
+            return `<img class="carousel__item" src="${img}">`;
           })
           .join("")}
       </div>
@@ -46,14 +50,14 @@ export class Carousel extends Base {
   slideTo(direction) {
     clearInterval(this.autoCarousel);
     const wrapperNode = this.wrapper.node;
+    const isNext = direction === "next";
     wrapperNode.style.transition = "transform 450ms ease-in-out";
+    this.slideState = direction;
 
-    if (direction === "next") {
-      wrapperNode.style.transform = `translateX(-300%`;
-      this.currentIndex++;
+    if (isNext) {
+      wrapperNode.style.transform = `translateX(-200%`;
     } else {
-      wrapperNode.style.transform = `translateX(-100%`;
-      this.currentIndex--;
+      wrapperNode.style.transform = `translateX(0%)`;
     }
   }
 
@@ -67,27 +71,48 @@ export class Carousel extends Base {
 
   addEventTransition() {
     const wrapperNode = this.wrapper.node;
+    wrapperNode.addEventListener(
+      "transitionend",
+      this.transitionHandler.bind(this)
+    );
+  }
 
-    wrapperNode.addEventListener("transitionend", () => {
-      wrapperNode.style.transition = "none";
+  async transitionHandler(event) {
+    const wrapperNode = event.currentTarget;
+    this.currentIndex = this.getIndex(this.currentIndex, this.slideState);
+    const newIndex = this.getIndex(this.currentIndex, this.slideState);
+    const newImg = await this.db.getCarouselImgSrc(newIndex);
+    wrapperNode.style.transition = "none";
+    const isNext = this.slideState === "next";
 
-      if (this.currentIndex > 0) {
-        const firstNode = wrapperNode.firstChild;
-        wrapperNode.appendChild(firstNode);
-      } else {
-        const lastNode = wrapperNode.lastChild;
-        wrapperNode.prepend(lastNode);
-      }
+    if (isNext) {
+      const firstNode = wrapperNode.firstChild;
+      wrapperNode.appendChild(firstNode);
+      firstNode.setAttribute("src", newImg);
+    } else {
+      const lastNode = wrapperNode.lastChild;
+      wrapperNode.prepend(lastNode);
+      lastNode.setAttribute("src", newImg);
+    }
 
-      this.currentIndex = 0;
-      wrapperNode.style.transform = `translateX(-200%)`;
-      this.autoCarousel = this.setAutoCarousel();
-    });
+    this.slideState = "stop";
+    wrapperNode.style.transform = `translateX(-100%)`;
+    this.autoCarousel = this.setAutoCarousel();
+  }
+
+  getIndex(index, state) {
+    const isNext = state === "next";
+
+    if (isNext) {
+      return index === this.maxIndex ? 0 : index + 1;
+    } else {
+      return index === 0 ? this.maxIndex : index - 1;
+    }
   }
 
   setAutoCarousel() {
     return setInterval(() => {
       this.slideNext();
-    }, 2 * 1000);
+    }, 10 * 1000);
   }
 }

@@ -1,19 +1,17 @@
 #carousel {
-  width: 1120px;
+  width: 1280px;
   height: 512px;
   margin: 0 auto;
   overflow: hidden;
   position: absolute;
-  z-index: -1;
 
   .carousel__wrapper {
     width: 100%;
     height: 512px;
     margin: 0 auto;
     display: flex;
-    transform: translateX(-200%);
+    transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
-    z-index: -1;
     position: absolute;
   }
   .carousel__btnWrapper {
@@ -21,6 +19,7 @@
     position: absolute;
     width: 100%;
     height: 250px;
+    z-index: 1;
     justify-content: space-between;
   }
 
@@ -29,22 +28,6 @@
     height: 100%;
     flex: 1 0 100%;
     box-sizing: border-box;
-  }
-
-  .carousel__item[data-num="1"] {
-    background-color: #ffcfcf;
-  }
-  .carousel__item[data-num="2"] {
-    background-color: #ffd8cf;
-  }
-  .carousel__item[data-num="3"] {
-    background-color: #ffdfcf;
-  }
-  .carousel__item[data-num="4"] {
-    background-color: #ffe8cf;
-  }
-  .carousel__item[data-num="5"] {
-    background-color: #ffefcf;
   }
 
   .carousel__button {

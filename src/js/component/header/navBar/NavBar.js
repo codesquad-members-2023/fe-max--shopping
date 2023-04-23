@@ -8,13 +8,13 @@ import { SearchBar } from "./SearchBar.js";
 import { ShippingAddress } from "./ShippingAddress.js";
 
 export class NavBar extends Base {
-  constructor() {
+  constructor(observer) {
     super("div");
     this.logoNode = new BI();
-    this.shippingAddress = new ShippingAddress();
-    this.searchBar = new SearchBar();
+    this.shippingAddress = new ShippingAddress(observer);
+    this.searchBar = new SearchBar(observer);
     this.nation = new Nation();
-    this.login = new Login();
+    this.login = new Login(observer);
     this.mypage = new Mypage();
     this.cart = new Cart();
     this.init();

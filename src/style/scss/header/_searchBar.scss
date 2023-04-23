@@ -12,6 +12,7 @@
   background: var(--white);
   border: 1px solid var(--black);
   border-radius: 4px;
+  z-index: 2;
 
   .keywordList {
     box-sizing: border-box;
@@ -58,6 +59,12 @@
     background: none;
     border: none;
   }
+
+  .historyRemove {
+    width: 16px;
+    height: 16px;
+  }
+
   .highlight {
     color: var(--secondary-purple);
   }
