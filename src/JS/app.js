@@ -1,10 +1,8 @@
-import {
-  focusInputShowAndHideLayer,
-  moveFocusInput,
-} from './searchbar/searchbar.js';
+import { inputAutocomplete } from './searchbar/autocomplete.js';
+import { searchbarInputInit } from './searchbar/searchbar.js';
 
 function init() {
-  focusInputShowAndHideLayer();
-  moveFocusInput();
+  searchbarInputInit();
+  inputAutocomplete();
 }
 window.addEventListener('DOMContentLoaded', init());

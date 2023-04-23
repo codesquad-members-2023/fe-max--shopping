@@ -1,53 +1,83 @@
-import {
-  $,
-  $All,
-  selectEventShowLayer,
-  selectEventHideLayer,
-} from '../utils.js';
+import { $, $All, dimAndShowLayer, dimOffAndHideLayer } from '../utils.js';
+let count = -1;
 
-export function focusInputShowAndHideLayer() {
-  selectEventShowLayer('.searchbar__input', 'focus', '.searchbar__suggest');
-  selectEventHideLayer('click', '.searchbar__suggest');
+export function searchbarInputInit() {
+  toggleSuggestLayer();
+  moveFocusSuggest();
 }
 
-export function moveFocusInput() {
-  const input = $('.searchbar__input');
-  const suggestEl = $('.searchbar__suggest');
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      suggestEl.lastElementChild.focus();
-    }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      suggestEl.firstElementChild.focus();
-    }
-    moveFocusOnkeyDown();
+function toggleSuggestLayer() {
+  suggestShowLayer('.searchbar__input', 'focus', '.searchbar__suggest');
+  suggestHideLayer('.searchbar__input', 'blur', '.searchbar__suggest');
+}
+function suggestShowLayer(target, event, showElement) {
+  $(target).addEventListener(event, function (e) {
+    dimAndShowLayer(showElement);
   });
 }
-function moveFocusOnkeyDown() {
-  const focusEl = document.activeElement;
+function suggestHideLayer(target, event, hideElement) {
+  $(target).addEventListener(event, function (e) {
+    dimOffAndHideLayer(hideElement);
+    if (count > -1) {
+      $('.focus').classList.remove('focus');
+    }
+    count = -1;
+  });
+}
+
+function moveFocusSuggest() {
+  const mainSearchbar = $('.main__searchbar');
   const input = $('.searchbar__input');
-  const suggestEl = $('.searchbar__suggest');
-  const firstEl = suggestEl.firstElementChild;
-  const lastEl = suggestEl.lastElementChild;
-  focusEl.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (focusEl === firstEl) {
-        input.focus();
-      } else {
-        focusEl.previousElementSibling.focus();
-        moveFocusOnkeyDown();
+  const suggestEls = $('.searchbar__suggest').children;
+  const minCount = 0;
+  const maxCount = suggestEls.length - 1;
+  input.addEventListener('keydown', function (e) {
+    const isArrowUp = e.key === 'ArrowUp';
+    const isArrowDown = e.key === 'ArrowDown';
+    if (isArrowDown || isArrowDown) {
+      if (isArrowUp && count === -1) {
+        count = maxCount;
+        suggestEls[count].classList.add('focus');
+      } else if (isArrowUp && count === 0) {
+        count = maxCount;
+      } else if (isArrowUp) {
+        count--;
+      } else if (isArrowDown && count === 14) {
+        count = minCount;
+      } else if (isArrowDown) {
+        count++;
       }
     }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (focusEl === lastEl) {
-        input.focus();
-      } else {
-        focusEl.nextElementSibling.focus();
-        moveFocusOnkeyDown();
+  });
+  mainSearchbar.addEventListener('keydown', function (e) {
+    const isArrowUp = e.key === 'ArrowUp';
+    const isArrowDown = e.key === 'ArrowDown';
+    if (isArrowUp || isArrowDown) {
+      switch (isArrowUp) {
+        case isArrowUp && count === 14:
+          suggestEls[0].classList.remove('focus');
+          suggestEls[count].classList.add('focus');
+          input.value = suggestEls[count].textContent.trim();
+          break;
+
+        case isArrowUp && count <= 13:
+          suggestEls[count + 1].classList.remove('focus');
+          suggestEls[count].classList.add('focus');
+          input.value = suggestEls[count].textContent.trim();
+          break;
+      }
+      switch (isArrowDown) {
+        case isArrowDown && count === 0:
+          suggestEls[14].classList.remove('focus');
+          suggestEls[count].classList.add('focus');
+          input.value = suggestEls[count].textContent.trim();
+          break;
+
+        case isArrowDown && count >= 1:
+          suggestEls[count - 1].classList.remove('focus');
+          suggestEls[count].classList.add('focus');
+          input.value = suggestEls[count].textContent.trim();
+          break;
       }
     }
   });
