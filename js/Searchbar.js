@@ -4,7 +4,7 @@ export class Searchbar {
   constructor($target) {
     this.$target = $target;
     this.render();
-    this.layer = new SearchLayer(this.$target);
+    this.layer = new SearchLayer(this.$target.lastElementChild);
     this.focusIndex = -1;
     this.setEvent();
   }
@@ -19,37 +19,37 @@ export class Searchbar {
                 placeholder="검색 Amazon"
                 autocomplete="off"
               />
-              <button class="search-bar__btn bg-orange1">
+              <button class="search-bar__btn bg-orange1" type="submit">
                 <img src="./assets/icons/search.svg" alt="search icon" />
               </button>
             </form>`;
   }
 
   render() {
-    this.$target.insertAdjacentHTML('beforeend', this.template());
+    this.$target.insertAdjacentHTML('afterbegin', this.template());
   }
 
   setEvent() {
-    const searchbarInput = this.$target.querySelector('.search-bar__input');
-    const backdrop = document.querySelector('.modal__backdrop');
+    const $searchbarInput = this.$target.querySelector('.search-bar__input');
+    const $backdrop = document.querySelector('.modal__backdrop');
 
-    searchbarInput.addEventListener('click', () => {
-      const searchLayer = document.querySelector('.search-bar__layer');
-      searchLayer.classList.add('show');
-      backdrop.classList.add('show');
+    $searchbarInput.addEventListener('click', () => {
+      this.layer.node.classList.add('show');
+      $backdrop.classList.add('show');
       this.focusIndex = -1;
     });
 
-    searchbarInput.addEventListener('blur', () => {
-      const searchLayer = document.querySelector('.search-bar__layer');
+    $searchbarInput.addEventListener('blur', () => {
       const focusEl = this.$target.querySelector(`[data-index="${this.focusIndex}"]`);
 
-      searchLayer.classList.remove('show');
-      backdrop.classList.remove('show');
-      focusEl.classList.remove('selected');
+      this.layer.node.classList.remove('show');
+      $backdrop.classList.remove('show');
+      if (focusEl) {
+        focusEl.classList.remove('selected');
+      }
     });
 
-    searchbarInput.addEventListener('keydown', (e) => {
+    $searchbarInput.addEventListener('keydown', (e) => {
       const lists = this.$target.querySelectorAll('.search-bar__result');
 
       if (e.key === 'ArrowDown') {
@@ -61,7 +61,7 @@ export class Searchbar {
 
         prevFocusEl.classList.remove('selected');
         currentFocusEl.classList.add('selected');
-        searchbarInput.value = currentFocusEl.innerText;
+        $searchbarInput.value = currentFocusEl.innerText;
       }
 
       if (e.key === 'ArrowUp') {
@@ -70,7 +70,7 @@ export class Searchbar {
 
           const currentFocusEl = lists[this.focusIndex];
           currentFocusEl.classList.add('selected');
-          searchbarInput.value = currentFocusEl.innerText;
+          $searchbarInput.value = currentFocusEl.innerText;
           return;
         }
 
@@ -82,7 +82,7 @@ export class Searchbar {
 
         prevFocusEl.classList.remove('selected');
         currentFocusEl.classList.add('selected');
-        searchbarInput.value = currentFocusEl.innerText;
+        $searchbarInput.value = currentFocusEl.innerText;
       }
     });
   }

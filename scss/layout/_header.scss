@@ -207,6 +207,11 @@ body {
         padding: 8px 12px;
         gap: 4px;
 
+        &.history {
+          color: var(--color-secondary-purple);
+          justify-content: space-between;
+        }
+
         &:hover {
           background-color: var(--color-gray-100);
         }
@@ -349,6 +354,7 @@ body {
     &__sidebar {
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       .hamburger-menu-icon {
         filter: invert(99%) sepia(9%) saturate(3%) hue-rotate(234deg) brightness(117%) contrast(100%);
