@@ -1,4 +1,4 @@
-$font-path: '../../assets/fonts/Pretendard';
+$font-path: '../assets/fonts/Pretendard';
 
 @mixin font-face($font-family, $font-path, $font-name, $font-weight: normal) {
   @font-face {

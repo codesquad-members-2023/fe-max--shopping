@@ -5,10 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazon</title>
-    <link rel="stylesheet" href="./src/styles/css/main.css" />
-    <script src="./src/js/hero.js" defer></script>
-    <script src="./src/js/layer.js" defer></script>
-    <script src="./src/js/searchbar/searchBarInit.js" type="module"></script>
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <script src="./src/js/index.js" type="module"></script>
   </head>
   <body>
     <header class="header">
@@ -143,6 +141,54 @@
           </div>
         </div>
       </nav>
+
+      <!-- sidebar -->
+      <div class="sidebar">
+        <button class="sidebar__close hidden">
+          <img src="./src/assets/images/icn_close.svg" alt="닫기" class="" />
+        </button>
+        <div class="sidebar__login">
+          <img src="./src/assets/images/icn_user.svg" alt="" />
+          <span>안녕하세요, 로그인</span>
+        </div>
+        <div class="sidebar__contents">
+          <div class="wrap">
+            <div class="main">
+              <div class="content">
+                <div class="title">디지털 콘텐츠 및 기기</div>
+                <ul class="lists digital"></ul>
+              </div>
+              <div class="content">
+                <div class="sidebar__content--top">
+                  <div class="title">부서별 쇼핑</div>
+                  <ul class="lists department"></ul>
+                  <button class="open-lists-btn">
+                    <div>모두보기</div>
+                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                  </button>
+                </div>
+                <div class="sidebar__content--down">
+                  <ul class="open-lists"></ul>
+                  <button class="close-lists-btn">
+                    <div>간단히보기</div>
+                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- 서브 -->
+            <div class="sub">
+              <div class="content">
+                <button class="go-main-btn">
+                  <img src="./src/assets/images/icn_arrow_left.svg" alt="" />
+                  <div>메인 메뉴</div>
+                </button>
+                <div class="sub-content"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
     <!-- hero-slider -->
     <section class="hero">

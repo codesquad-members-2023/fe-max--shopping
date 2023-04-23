@@ -1,7 +1,7 @@
-async function initHeroSlides() {
+export async function initHeroSlides() {
   try {
     const slides = document.querySelector('.hero-slider__slides');
-    const response = await fetch('./src/data/images.json');
+    const response = await fetch('http://localhost:4000/heroImages');
     const images = await response.json();
     const addedImages = addImageInBothEnd(images);
 
@@ -88,5 +88,3 @@ function addImageInBothEnd(imagesArray) {
 
   return [lastImage, ...imagesArray, firstImage];
 }
-
-initHeroSlides();

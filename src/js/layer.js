@@ -51,7 +51,7 @@ function closeLayer(modal, e) {
   dimBackground.classList.add('hidden');
 }
 
-function initNavLayer() {
+export function initNavLayer() {
   renderLoginLayer();
   addressArea.addEventListener('mouseenter', handleAddressMouseEnter);
   addressArea.addEventListener('mouseleave', handleAddressMouseLeave);
@@ -61,5 +61,3 @@ function initNavLayer() {
   loginArea.addEventListener('mouseleave', handleLoginMouseLeave);
   loginExpandLayer.addEventListener('mouseleave', handleLoginMouseLeave);
 }
-
-initNavLayer();
