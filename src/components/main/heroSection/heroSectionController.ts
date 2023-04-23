@@ -79,14 +79,15 @@ export const resetIntervalImageMove = (moveImageHandler: MoveImageHandler) => {
   setIntervalImageMove(moveImageHandler);
 };
 
-export const intervalIdState = {
-  intervalId: 0,
+const intervalIdState = (() => {
+  let intervalId = 0;
+  return {
+    setIntervalId(id: number) {
+      intervalId = id;
+    },
 
-  setIntervalId(id: number) {
-    this.intervalId = id;
-  },
-
-  getIntervalId() {
-    return this.intervalId;
-  },
-};
+    getIntervalId() {
+      return intervalId;
+    },
+  };
+})();
