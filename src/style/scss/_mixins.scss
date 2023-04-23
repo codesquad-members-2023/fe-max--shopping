@@ -1,0 +1,49 @@
+@use 'variables';
+
+@mixin flex-row($justify: flex-start, $align: center) {
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin bold-md($color: variables.$color-white) {
+  font: variables.$font-bold-md;
+  letter-spacing: variables.$letter-spacing-bold-md;
+  color: $color;
+}
+
+@mixin bold-sm($color: variables.$color-gray-400) {
+  font: variables.$font-bold-sm;
+  letter-spacing: variables.$letter-spacing-bold-sm;
+  color: $color;
+}
+
+@mixin body-md($color: variables.$color-gray-600) {
+  font: variables.$font-body-md;
+  letter-spacing: variables.$letter-spacing-body-md;
+  color: $color;
+}
+
+@mixin body-sm($color: variables.$color-black) {
+  font: variables.$font-body-sm;
+  letter-spacing: variables.$letter-spacing-body-sm;
+  color: $color;
+}
+
+@mixin triangle {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-right: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-bottom: solid 20px #ffffff;
+}
+
+@mixin menu-box {
+  @include flex-row(space-between);
+  padding: 16px 16px 16px 32px;
+  gap: 8px;
+  width: 312px;
+}

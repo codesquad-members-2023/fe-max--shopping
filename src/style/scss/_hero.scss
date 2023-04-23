@@ -50,12 +50,12 @@
 
     &--prev {
       @extend .hero__btn;
-      left: 80px;
+      left: 0;
     }
 
     &--next {
       @extend .hero__btn;
-      right: 80px;
+      right: 0;
     }
   }
 }

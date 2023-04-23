@@ -1,0 +1,182 @@
+@use 'mixins';
+@use 'variables';
+
+.nav-bar {
+  position: relative;
+  width: 100%;
+  min-width: 1120px;
+
+  &__main {
+    @include mixins.flex-row;
+    padding: 8px 16px;
+    gap: 24px;
+    height: 56px;
+    background: #10141a;
+
+    .label {
+      @include mixins.flex-row;
+      @include mixins.bold-sm;
+    }
+
+    .content {
+      @include mixins.bold-md;
+    }
+  }
+
+  &__address,
+  &__login {
+    height: 100%;
+    position: relative;
+  }
+
+  &__search {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  &__nation {
+    @include mixins.flex-row;
+    padding: 0;
+    gap: 4px;
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  &__cart {
+    @include mixins.flex-row;
+    padding: 0;
+    gap: 4px;
+  }
+}
+
+.search-bar__wrapper {
+  @include mixins.flex-row;
+  padding-left: 12px;
+  gap: 12px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 4px;
+  flex-grow: 1;
+
+  button {
+    @include mixins.flex-row(center);
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    background: #fcb057;
+    border-radius: 0px 4px 4px 0px;
+  }
+}
+
+.search {
+  &-bar {
+    flex-grow: 1;
+
+    &::placeholder {
+      @include mixins.body-md;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-layer {
+    @include mixins.flex-row;
+    padding: 0px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #10141a;
+    border-radius: 4px;
+    z-index: variables.$z-index-modal;
+
+    &__suggestion {
+      width: 100%;
+
+      > li {
+        @include mixins.flex-row(space-between);
+        flex-grow: 1;
+        padding: 8px 12px;
+        height: 37px;
+
+        &.over {
+          background: #eff2f2;
+        }
+      }
+
+      &--history {
+        @include mixins.body-md(variables.$color-secondary-purple);
+      }
+
+      &--recommend {
+        @include mixins.body-md(variables.$color-black);
+
+        p {
+          @include mixins.flex-row;
+          gap: 4px;
+        }
+      }
+    }
+  }
+}
+
+.address-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.btn-container {
+  @include mixins.flex-row(flex-end);
+  gap: 8px;
+}
+
+.nav-bar__sub {
+  @include mixins.flex-row(space-between);
+  padding: 0 16px;
+  background: #1b232f;
+  height: 32px;
+
+  .left-menu {
+    @include mixins.flex-row;
+
+    li {
+      @include mixins.flex-row;
+
+      a {
+        @include mixins.flex-row;
+        padding: 8px;
+        gap: 4px;
+
+        &:hover {
+          cursor: pointer;
+          border: 1px solid;
+          border-radius: 2px;
+          border-color: #fff;
+          padding: 7px;
+        }
+      }
+    }
+
+    .action-item {
+      @include mixins.bold-md;
+    }
+
+    p {
+      @include mixins.bold-sm(variables.$color-gray-400);
+      font-size: 13px;
+    }
+  }
+
+  .right-menu {
+    @extend .left-menu;
+  }
+}

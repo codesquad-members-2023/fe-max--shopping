@@ -1,0 +1,50 @@
+@use 'reset';
+@use 'mixins';
+@use 'variables';
+
+@use 'nav-bar';
+@use 'modal';
+@use 'main-content';
+@use 'hero';
+@use 'sidebar';
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  position: relative;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.check-btn {
+  @include mixins.bold-sm(variables.$color-black);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  height: 32px;
+  background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+  border: 1px solid #de9408;
+  border-radius: 4px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,146 @@
+@use 'mixins';
+@use 'variables';
+
+aside {
+  position: fixed;
+}
+
+.closed {
+  .sidebar {
+    transform: translateX(-100%);
+    visibility: hidden;
+    opacity: 0;
+
+    &__backdrop {
+      z-index: -1 * variables.$z-index-cover;
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
+
+.sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: variables.$z-index-modal;
+  background-color: variables.$color-white;
+  transition: all 0.3s ease;
+
+  &__user-profile {
+    @include mixins.menu-box;
+    justify-content: flex-start;
+    position: relative;
+    font: variables.$font-bold-lg;
+    color: variables.$color-white;
+    background-color: variables.$color-black;
+  }
+
+  &__button--close {
+    position: absolute;
+    left: 328px;
+    transform: translate(8px, 8px);
+
+    img {
+      width: 24px;
+      height: 24px;
+      filter: invert(95%) sepia(85%) saturate(0%) hue-rotate(149deg) brightness(106%) contrast(100%);
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: variables.$z-index-cover;
+    background-color: variables.$color-black-40;
+    transition: all 0.3s ease;
+  }
+}
+
+.menu {
+  &__item {
+    @include mixins.menu-box;
+    height: 40px;
+    font: variables.$font-body-md;
+    color: variables.$color-black;
+  }
+
+  &__title {
+    @include mixins.menu-box;
+    height: 53px;
+    font: variables.$font-bold-lg;
+    color: variables.$color-black;
+  }
+
+  &__toggle--expand,
+  &__toggle--contract {
+    @include mixins.menu-box;
+    justify-content: flex-start;
+  }
+
+  &__divider {
+    border: 1px solid variables.$color-gray-100;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(58%) sepia(0%) saturate(0%) hue-rotate(105deg) brightness(93%) contrast(84%);
+
+    &--detail {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-right.svg') no-repeat center;
+    }
+
+    &--expand {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-down.svg') no-repeat center;
+    }
+
+    &--contract {
+      @extend .menu__icon;
+      background: url('/src/asset/img/chevron-up.svg') no-repeat center;
+    }
+  }
+}
+
+.sidebar__menu > li {
+  &:not(.compressed) {
+    .menu__nested-list,
+    .menu__divider,
+    .menu__toggle--expand{
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        padding: 0;
+
+      }
+
+    .menu__toggle--contract {
+      height: auto;
+      opacity: 1;
+    }
+  }
+  &.compressed {
+    .menu__nested-list,
+    .menu__divider,
+    .menu__toggle--contract {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      padding: 0;
+    }
+
+    .menu__toggle--expand {
+      height: auto;
+      opacity: 1;
+    }
+  }
+
+}
