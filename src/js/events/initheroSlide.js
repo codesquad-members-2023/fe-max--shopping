@@ -1,15 +1,44 @@
+import { PATH } from '../constants/path.js';
 import { $, $All } from '../utils/dom.js';
+import { shuffleArray } from '../utils/shuffleArray.js';
+import { JSONClient } from './api/api.js';
+import { TemplateGenerator } from '../events/search/TemplateGenerator.js';
 const slideContainer = $('.hero');
 const slideButtonLayout = $('.slide-buttons-layout');
 const slide = $('.slide-banner');
+const slideBanner = document.querySelector('.slide-banner');
 
 let index = 1;
 let slideId;
+let setTime = 10000;
+
+async function fetchJson(key) {
+  const jSONClient = new JSONClient(key);
+  const data = await jSONClient.getSlideData();
+  return data;
+}
 
 function getSlides() {
   return $All('.slide-item');
 }
-export function initHeroSlide() {
+
+async function selectSlides() {
+  const slidesData = await fetchJson(PATH.slides);
+  const selectedSlides = shuffleArray(slidesData).slice(0, 3);
+  return selectedSlides;
+}
+
+async function getSlideTemplate() {
+  const templateGenerator = new TemplateGenerator();
+  const template = templateGenerator.generateSlides(await selectSlides());
+  return template;
+}
+async function slideRenderer() {
+  slideBanner.innerHTML = await getSlideTemplate();
+}
+
+export async function initHeroSlide() {
+  await slideRenderer();
   const slides = getSlides();
   const firstClone = slides[0].cloneNode(true);
   const lastClone = slides[slides.length - 1].cloneNode(true);
@@ -26,8 +55,8 @@ export function initHeroSlide() {
 }
 
 function setSlidePosition(slides) {
-  const slideWidth = slides[index].clientWidth;
-  slide.style.transform = `translateX(${-slideWidth * index}px)`;
+  const slideWidth = slides[index].scrollWidth;
+  slide.style.transform = `translateX(${-(slideWidth * index)}px)`;
 }
 
 function slideshowControls() {
@@ -46,7 +75,7 @@ function slideshowControls() {
 function startSlide() {
   slideId = setInterval(() => {
     moveToNextOrPrevSlide('next');
-  }, 3000);
+  }, setTime);
 }
 
 function pauseOnHover() {

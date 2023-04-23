@@ -5,13 +5,16 @@
   "main": ".eslintrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "check-conflict-formatting-rules": "npx eslint-config-prettier './src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx,ts,tsx}'",
     "prettier:fix": "prettier --write './src/**/*.{js,jsx,ts,tsx}'",
-    "integrated-code-manager": "npm run check-conflict-formatting-rules && npm run prettier:fix && npm run lint:fix"
+    "integrated-code-manager": "npm run check-conflict-formatting-rules && npm run prettier:fix && npm run lint:fix",
+    "dev:sass": "npx sass src/scss:src/css --watch --style compressed",
+    "dev:client": "npx live-server",
+    "dev:server": "npx json-server --watch ./src/data/db.json",
+    "dev": "npm-run-all -p dev:*"
   },
   "keywords": [],
   "author": "blueV",
@@ -24,6 +27,15 @@
     }
   },
   "devDependencies": {
-    "prettier": "^2.8.7"
-  }
+    "json-server": "^0.17.3",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.7",
+    "sass": "^1.62.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunoc/fe-max--shopping.git"
+  },
+  "homepage": "https://github.com/gunoc/fe-max--shopping#readme"
 }

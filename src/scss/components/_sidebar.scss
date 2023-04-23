@@ -1,0 +1,110 @@
+@import '../common/mixins';
+@import '../common/variables';
+@import '../base/animations';
+.side {
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 150;
+
+  background: $color-white;
+  width: $sideBarWidth;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: transform 0.3s ease-out;
+  transform: translateX(-$sideBarWidth);
+
+  &__box {
+    @include flex-row;
+    width: $sideBarWidth * 2;
+
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
+
+    &.translateX {
+      transform: translateX(-$sideBarWidth);
+    }
+
+    &-main {
+      width: $sideBarWidth;
+    }
+  }
+  &__header {
+    @include flex-row;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    @include font-bold-lg;
+    gap: 9.5px;
+    background-color: $color-black;
+    color: $color-white;
+  }
+  &__title-text {
+    @include font-bold-lg;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  &__list {
+    @include flex-column;
+    background-color: $color-white;
+    &-item {
+      @include flex-row;
+      justify-content: space-between;
+      padding-left: 32px;
+      padding-right: 16px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      &-name {
+        @include font-body-md;
+      }
+      &:hover {
+        background-color: $color-gray-100;
+      }
+    }
+  }
+  &__view-controll {
+    @include flex-row;
+    padding-left: 32px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+  &__category {
+    border-bottom: 1px solid $color-gray-100;
+  }
+  &__close-btn {
+    position: absolute;
+    top: 20px;
+    left: 330px;
+    @include pointer;
+    z-index: 150;
+    transition: opacity 0.4s ;
+    &.close{
+      opacity: 0;
+    }
+  }
+  &.active {
+    transform: translateX(0);
+  }
+
+  &__list-main {
+    overflow: hidden;
+    max-height: 3000px;
+    transition: max-height 0.7s ease-in-out, opacity 0.3s ease-in-out;
+    &.compressed {
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s ease-in-out, opacity 0.7s ease-in-out;
+    }
+  }
+  &__list-sub {
+    width: $sideBarWidth;
+    
+  }
+}

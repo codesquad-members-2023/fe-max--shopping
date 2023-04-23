@@ -1,9 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
 @import 'variables';
 
-@mixin border-common {
-  border: 1px solid red;
-}
 
 @mixin font-bold-xl {
   font: $font-bold-xl;
@@ -56,6 +53,7 @@
 
 @mixin body-layout {
   width: 100%;
+  height: 100%;
   @include flex-column;
   align-items: center;
 }
@@ -137,13 +135,11 @@
   position: relative;
   width: 1280px;
   user-select: none;
-  border: 1px solid red;
   box-sizing: border-box;
 }
 
 @mixin carousel-item {
   position: relative;
-  // left: 0px;
   width: 1280px;
   height: fit-content;
 }
@@ -152,7 +148,6 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  // top: 170px;
   width: 1120px;
   height: 211px;
   border: 1px solid red;
@@ -166,6 +161,7 @@
   height: inherit;
 }
 
+/* 본문 컨텐츠 영역 // 추후 디자인을 위해 주석처리 */
 // @mixin contents {
 //   width: 1120px;
 //   min-width: 1120px;
