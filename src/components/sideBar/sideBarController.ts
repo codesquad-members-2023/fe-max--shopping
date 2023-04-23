@@ -16,7 +16,7 @@ export const closeSideBar = ($sideBar: Element) => {
   undim();
 };
 
-export interface sideBarMenu {
+export interface SideBarMenu {
   title: string;
   menu: { id: number; text: string }[];
 }
@@ -26,7 +26,7 @@ export const renderSideBar = () => {
   const url = new URL("side_bar_menu", BASE_URL);
 
   return fetchData(url).then((menuList) => {
-    menuList.forEach((menu: sideBarMenu) => {
+    menuList.forEach((menu: SideBarMenu) => {
       const MAX_LENGTH = 4;
       const isOverMaxLength = menu.menu.length > MAX_LENGTH;
       const component = isOverMaxLength
@@ -82,7 +82,7 @@ const fetchMenuDetailData = async (id: string) => {
   return fetchData(`${BASE_URL}/side_bar_menu_details/${id}`);
 };
 
-const renderDetailView = (data: sideBarMenu) => {
+const renderDetailView = (data: SideBarMenu) => {
   const $menuDetailContainer = $(".side-bar__menu-detail-container");
   const component = menuComponent(data);
 

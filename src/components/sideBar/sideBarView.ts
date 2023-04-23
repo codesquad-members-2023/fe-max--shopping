@@ -4,10 +4,10 @@ import {
   handleMenuItemClick,
   moveMenuView,
   openSideBar,
-  sideBarMenu,
+  SideBarMenu,
 } from "./sideBarController";
 
-export const menuComponent = ({ title, menu }: sideBarMenu) => {
+export const menuComponent = ({ title, menu }: SideBarMenu) => {
   return `
 <ul>
   ${menuTitleList(title)}
@@ -33,7 +33,7 @@ const menuItemList = (id: number, text: string) => {
   `;
 };
 
-export const hiddenMenuComponent = ({ title, menu }: sideBarMenu, MAX_LENGTH: number) => {
+export const hiddenMenuComponent = ({ title, menu }: SideBarMenu, MAX_LENGTH: number) => {
   const visibleText = menu.slice(0, MAX_LENGTH);
   const hiddenText = menu.slice(MAX_LENGTH);
 
