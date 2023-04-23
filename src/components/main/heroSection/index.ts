@@ -1,12 +1,16 @@
 import { addHeroSectionEventListeners, renderHeroSection } from "./heroSectionView";
-import { createMoveImageHandler, setIntervalImageMove } from "./heroSectionController";
+import {
+  createIntervalIdStateManager,
+  createMoveImageHandler,
+  setIntervalImageMove,
+} from "./heroSectionController";
 
 export const initHeroSection = () => {
-  renderHeroSection() //
-    .then(() => {
-      const moveImageHandler = createMoveImageHandler();
+  renderHeroSection().then(() => {
+    const moveImageHandler = createMoveImageHandler();
+    const intervalIdStateManager = createIntervalIdStateManager();
 
-      addHeroSectionEventListeners(moveImageHandler);
-      setIntervalImageMove(moveImageHandler);
-    });
+    addHeroSectionEventListeners(moveImageHandler, intervalIdStateManager);
+    setIntervalImageMove(moveImageHandler, intervalIdStateManager);
+  });
 };

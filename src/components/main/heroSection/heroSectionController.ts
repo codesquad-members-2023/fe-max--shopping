@@ -1,5 +1,6 @@
 import { $, $$ } from "../../../utils/domUtils";
 import { ensureHTMLElement } from "../../../utils/typeCheckUtils";
+import { IntervalIdStateManager } from "./types";
 
 export interface MoveImageHandler {
   (direction: Direction): Promise<void>;
@@ -66,20 +67,26 @@ const moveImageList = (index: number, $imageContainer: HTMLElement) => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const setIntervalImageMove = (moveImageHandler: MoveImageHandler) => {
+export const setIntervalImageMove = (
+  moveImageHandler: MoveImageHandler,
+  intervalIdStateManager: IntervalIdStateManager
+) => {
   const id = setInterval(() => moveImageHandler("next"), 10000);
 
-  intervalIdState.setIntervalId(id);
+  intervalIdStateManager.setIntervalId(id);
 };
 
-export const resetIntervalImageMove = (moveImageHandler: MoveImageHandler) => {
-  const intervalId = intervalIdState.getIntervalId();
+export const resetIntervalImageMove = (
+  moveImageHandler: MoveImageHandler,
+  intervalIdStateManager: IntervalIdStateManager
+) => {
+  const intervalId = intervalIdStateManager.getIntervalId();
 
   clearInterval(intervalId);
-  setIntervalImageMove(moveImageHandler);
+  setIntervalImageMove(moveImageHandler, intervalIdStateManager);
 };
 
-const intervalIdState = (() => {
+export const createIntervalIdStateManager = (): IntervalIdStateManager => {
   let intervalId = 0;
   return {
     setIntervalId(id: number) {
@@ -90,4 +97,4 @@ const intervalIdState = (() => {
       return intervalId;
     },
   };
-})();
+};

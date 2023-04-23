@@ -2,6 +2,7 @@ import { BASE_URL } from "../../../constants/BASE_URL";
 import { $ } from "../../../utils/domUtils";
 import { fetchData } from "../../../utils/fetchData";
 import { MoveImageHandler, resetIntervalImageMove } from "./heroSectionController";
+import { IntervalIdStateManager } from "./types";
 
 interface HeroImage {
   src: string;
@@ -28,16 +29,19 @@ const heroSectionView = (src: string) => {
 />`;
 };
 
-export const addHeroSectionEventListeners = (moveImageHandler: MoveImageHandler) => {
+export const addHeroSectionEventListeners = (
+  moveImageHandler: MoveImageHandler,
+  intervalIdStateManager: IntervalIdStateManager
+) => {
   const $prevButton = $(".hero-section__prev-button");
   const $nextButton = $(".hero-section__next-button");
 
   $prevButton.addEventListener("click", () => {
     moveImageHandler("prev");
-    resetIntervalImageMove(moveImageHandler);
+    resetIntervalImageMove(moveImageHandler, intervalIdStateManager);
   });
   $nextButton.addEventListener("click", () => {
     moveImageHandler("next");
-    resetIntervalImageMove(moveImageHandler);
+    resetIntervalImageMove(moveImageHandler, intervalIdStateManager);
   });
 };
