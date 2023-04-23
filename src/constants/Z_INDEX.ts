@@ -1,3 +1,5 @@
+// 이 파일은 style/_z-index.scss 파일과 동기화해야 합니다.
+
 export const Z_INDEX = {
   HIDE: "-1",
   HERO_SECTION: 100,
