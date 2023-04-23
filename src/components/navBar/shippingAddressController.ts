@@ -5,6 +5,6 @@ import { Z_INDEX } from "../../constants/Z_INDEX";
 export const addShippingAddressEventListeners = () => {
   const $shippingAddress = $(".shipping-address");
 
-  $shippingAddress.addEventListener("mouseenter", () => dim(Z_INDEX.NAV_BAR - 50));
+  $shippingAddress.addEventListener("mouseenter", () => dim(Z_INDEX.NAV_BAR));
   $shippingAddress.addEventListener("mouseleave", undim);
 };

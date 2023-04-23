@@ -8,7 +8,7 @@ import { $ } from "../../utils/domUtils";
 
 export const openSideBar = ($sideBar: Element) => {
   showElement($sideBar);
-  dim(Z_INDEX.SIDE_BAR - 50);
+  dim(Z_INDEX.SIDE_BAR);
 };
 
 export const closeSideBar = ($sideBar: Element) => {

@@ -24,7 +24,7 @@ const initSearchSuggestion = () => {
   }
 
   $searchInput.addEventListener("focus", () => {
-    dim(Z_INDEX.MAIN + 50);
+    dim(Z_INDEX.NAV_BAR);
     showElement($searchSuggestion);
     searchSuggestion.initSuggestionRender();
   });
