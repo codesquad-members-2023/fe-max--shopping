@@ -1,3 +1,5 @@
+@use "../../../style/z-index";
+
 @mixin search-item-style {
   padding: 8px 12px;
 
@@ -18,7 +20,7 @@
   border-radius: 4px;
   overflow: auto;
   background-color: var(--white);
-  z-index: 500;
+  z-index: z-index.$search-suggestion;
   transition: opacity 500ms;
   opacity: 0;
   visibility: hidden;

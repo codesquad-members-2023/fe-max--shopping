@@ -1,4 +1,5 @@
 @use "../../style/common";
+@use "../../style/z-index";
 
 .side-bar {
   position: fixed;
@@ -7,7 +8,7 @@
   height: 100vh;
   transform: translateX(-100%);
   transition: all 0.5s;
-  z-index: 600;
+  z-index: z-index.$side-bar;
 
   &__login {
     background-color: var(--black);
