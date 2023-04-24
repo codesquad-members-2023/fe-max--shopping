@@ -1,7 +1,7 @@
 import { querySelector } from "../query.js";
 import { Keyword } from "./Keyword.js";
 
-export class Recent extends Keyword {
+export class RecentKeyword extends Keyword {
   constructor(keywordList) {
     super(keywordList);
   }

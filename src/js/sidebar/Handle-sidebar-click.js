@@ -3,46 +3,53 @@ import { ExpandEarlySidebar } from "./Sidebar-expand.js";
 import { DetailSidebar } from "./Sidebar-detail.js";
 import { querySelector } from "../query.js";
 import { setZindex } from "../util/set-style.js";
-import { Z_INDEX } from "../constant.js";
+import { Z_INDEX, TIME } from "../constant.js";
 import { delay } from "../util/delay.js";
 
 async function addAndRenderTemplate(sidebar) {
   sidebar.addTemplate();
-  await delay(50);
+  await delay(TIME.FETCH_FROM_DB);
   sidebar.renderTemplate();
 }
 
 export function handleSidebarMenuClick() {
-  querySelector.menu().addEventListener("click", async (e) => {
+  const subNav = document.querySelector(".navigation-sub");
+  const menu = subNav.querySelector(".menu-container");
+  menu.addEventListener("click", async (e) => {
     const targetClass = e.target.className;
     const targetId = e.target.id;
     const earlySidebar = new EarlySidebar();
     const expandEarlySidebar = new ExpandEarlySidebar();
     const detailSidebar = new DetailSidebar();
 
-    if (targetClass === "menu-container") {
-      setZindex(querySelector.sidebar(), Z_INDEX.MAX_Z);
-      addAndRenderTemplate(earlySidebar);
-    }
+    switch (true) {
+      case targetClass === "menu-container":
+        setZindex(querySelector.sidebar(), Z_INDEX.MAX_Z);
+        addAndRenderTemplate(earlySidebar);
+        break;
 
-    if (targetClass === "sidebar-close") {
-      setZindex(querySelector.sidebar(), Z_INDEX.LOWEST_Z);
-    }
+      case targetClass === "sidebar-close":
+        setZindex(querySelector.sidebar(), Z_INDEX.LOWEST_Z);
+        break;
 
-    if (targetClass === "sidebar-unfold") {
-      addAndRenderTemplate(expandEarlySidebar);
-    }
+      case targetClass === "sidebar-unfold":
+        addAndRenderTemplate(expandEarlySidebar);
+        break;
 
-    if (targetClass === "sidebar-fold") {
-      addAndRenderTemplate(earlySidebar);
-    }
+      case targetClass === "sidebar-fold":
+        addAndRenderTemplate(earlySidebar);
+        break;
 
-    if (targetClass === "sidebar-back-to-menu") {
-      addAndRenderTemplate(expandEarlySidebar);
-    }
+      case targetClass === "sidebar-back-to-menu":
+        addAndRenderTemplate(expandEarlySidebar);
+        break;
 
-    if (targetId === "car-supplies") {
-      addAndRenderTemplate(detailSidebar);
+      case targetId === "car-supplies":
+        addAndRenderTemplate(detailSidebar);
+        break;
+
+      default:
+        break;
     }
   });
 }

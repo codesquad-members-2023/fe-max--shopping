@@ -22,12 +22,12 @@ function onInputDisplay() {
   setDisplay(querySelector.autoKeywordList(), DISPLAY.BLOCK);
 }
 
-const recentKeywords = [];
+// const recentKeywords = [];
 
-function setRecentKeyword(value) {
-  recentKeywords.push(value);
-  localStorage.setItem("recent", recentKeywords);
-}
+// function setRecentKeyword(value) {
+//   recentKeywords.push(value);
+//   localStorage.setItem("recent", recentKeywords);
+// }
 
 export function searchBarEventHandler() {
   querySelector.searchInput().addEventListener("click", (e) => {
