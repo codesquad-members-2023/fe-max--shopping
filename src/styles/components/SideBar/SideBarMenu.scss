@@ -1,0 +1,70 @@
+@use "../../config/design-system.scss" as *;
+
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $color-white;
+  overflow-y: scroll;
+  transition: transform 250ms 100ms;
+
+  .list-container {
+    width: 100%;
+    height: 100%;
+
+    li {
+      &.menu-title {
+        width: 100%;
+        padding: 16px 16px 16px 32px;
+        @include f-bold-lg;
+      }
+
+      &.menu-item {
+        width: 100%;
+        height: 40px;
+        padding-inline: 32px 14px;
+        @include f-body-md;
+
+        &.go-back {
+          a {
+            justify-content: flex-start;
+            gap: 12px;
+          }
+        }
+
+        &:hover {
+          background-color: $color-grey-100;
+          cursor: pointer;
+        }
+
+        a {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: $color-black;
+        }
+      }
+
+      &.menu-separator {
+        border-bottom: 1px solid $color-grey-100;
+      }
+    }
+  }
+}
+
+:host(.translateX-left) {
+  transform: translateX(-100%);
+}
+
+:host(.translateX-right) {
+  transform: translateX(100%);
+}
+
+:host(.visible) {
+  transform: translateX(0);
+}

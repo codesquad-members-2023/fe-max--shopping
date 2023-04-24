@@ -12,7 +12,7 @@
   opacity: 0;
   visibility: hidden;
   transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
-  z-index: $z-index-lvl-4;
+  z-index: $z-index-lvl-3;
   color: $color-black;
   @include f-body-sm;
   white-space: nowrap;
@@ -27,7 +27,6 @@
     right: 18px;
     transform: translateX(-50%) rotate(45deg);
     background-color: $color-white;
-    border: 1px solid black;
   }
 }
 

@@ -79,11 +79,15 @@ header {
   align-items: center;
   background-color: $color-grey-900;
 
-  a {
+  a,
+  button {
+    height: 100%;
+    padding: 8px;
+    gap: 6px;
     display: flex;
     align-items: center;
-    gap: 4px;
     color: inherit;
+    background: transparent;
   }
 
   ul {
@@ -93,26 +97,16 @@ header {
 
     li {
       height: 100%;
-      padding: 8px;
       display: flex;
       align-items: center;
+
+      a {
+        @include f-body-md;
+      }
+
+      button {
+        @include f-bold-md;
+      }
     }
-  }
-}
-
-.dimmed-layer {
-  width: 100%;
-  height: 1805px;
-  position: absolute;
-  top: 88px;
-  background-color: $color-black-40;
-  opacity: 0;
-  visibility: hidden;
-  z-index: $z-index-lvl-2;
-  transition: visibility 250ms 100ms, opacity 300ms 100ms linear;
-
-  &.is-active {
-    opacity: 1;
-    visibility: visible;
   }
 }

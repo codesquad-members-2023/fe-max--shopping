@@ -97,10 +97,10 @@ template.innerHTML = `
     <nav class="nav-sub">
       <ul>
         <li>
-          <a href="#">
+          <button id="open-side-bar-btn" type="button">
             <img src="src/assets/icons/menu.svg" alt="Burger Button" />
             <span>모두</span>
-          </a>
+          </button>
         </li>
         <li><a href="#">오늘의 딜</a></li>
         <li><a href="#">고객 서비스</a></li>
@@ -110,9 +110,9 @@ template.innerHTML = `
       </ul>
       <a href="#">지금 특가 상품 쇼핑하기</a>
     </nav>
-  </header>
 
-  <div class="dimmed-layer"></div>
+    <side-bar></side-bar>
+  </header>
 
   <link rel="stylesheet" href="src/styles/components/TopHeader.css"></link>
 
@@ -179,6 +179,8 @@ class TopHeader extends Component {
     super(template);
     this.dimmedLayer = this.shadowRoot.querySelector(".dimmed-layer");
     this.toolTipParents = this.shadowRoot.querySelectorAll(".tool-tip-parent");
+    this.sideBar = this.shadowRoot.querySelector("side-bar");
+    this.openSideBarBtn = this.shadowRoot.querySelector("#open-side-bar-btn");
   }
 
   connectedCallback() {
@@ -201,20 +203,10 @@ class TopHeader extends Component {
       });
     });
 
-    this.addEventListener("dim", this.dimLayerHandler);
-  }
-
-  dimLayerHandler(evt) {
-    const isActive = evt.detail.isActive;
-    this.dimLayer(isActive);
-  }
-
-  dimLayer(isActive) {
-    if (isActive === true) {
-      this.dimmedLayer.classList.add("is-active");
-    } else {
-      this.dimmedLayer.classList.remove("is-active");
-    }
+    this.openSideBarBtn.addEventListener(
+      "click",
+      this.sideBar.showSelf.bind(this.sideBar)
+    );
   }
 }
 

@@ -180,8 +180,16 @@
 
 ### Dimmed Layer
 
+#### Ver. 1
+
 - Need to dim the main portion upon hovering over certain tooltips, and upon showing autocomplete panel.
 - Trigger the dimmed layer by creating and dispatching a custom event from the components to the `top-header` (parent) component.
+
+#### Ver. 2
+
+- Declare a single `back-drop` component in the body.
+- Any component that needs a backdrop will have a reference to that `back-drop` component.
+- Set the desired position and height of the backdrop when in need.
 
 ### Keyboard Event
 
@@ -189,3 +197,10 @@
 - The keyboard event fires twice when `isComposing` is `true`.
 - To prevent double firing, we can ignore the first event that was fired, which is when `isComposing` is `true`.
   - i.e. when the input is in "composing" state and the arrow key is pressed, two of the same events are fired. The first should be ignored and only the second should fall through.
+
+### Side Bar
+
+- Possible approaches to map the options in the main menu to their corresponding sub menu.
+  1. Assign ids, to begin with, in the original data.
+  2. Use indices to assign ids in the fetched data.
+- Side Bar data does not change often and the number of items is relatively small. Also, the ids are exclusively used for the UI. Therefore, there is really no other reason to assign ids in the data itself. Simply assign and use the indices once the data is fetched.

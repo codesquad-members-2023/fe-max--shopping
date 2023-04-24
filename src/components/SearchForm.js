@@ -21,6 +21,7 @@ class SearchForm extends Component {
     this.autocompletePanel =
       this.shadowRoot.querySelector("autocomplete-panel");
     this.prevSearchTerm = null;
+    this.backDrop = document.querySelector("back-drop");
   }
 
   connectedCallback() {
@@ -31,11 +32,11 @@ class SearchForm extends Component {
 
     this.searchInput.addEventListener("focus", () => {
       this.onSearchInput();
-      this.notifyParentToDim(true);
+      this.backDrop.activate({ possessor: this, top: 56, left: 0 });
     });
 
     this.searchInput.addEventListener("blur", () => {
-      this.notifyParentToDim(false);
+      this.backDrop.deactivate();
     });
 
     this.searchInput.addEventListener("keydown", (evt) => {
@@ -78,15 +79,6 @@ class SearchForm extends Component {
       `http://127.0.0.1:3000/autocomplete?${queryParams}`
     );
     return await res.json();
-  }
-
-  notifyParentToDim(isActive) {
-    const dimEvt = new CustomEvent("dim", {
-      detail: {
-        isActive: isActive,
-      },
-    });
-    this.shadowRoot.host.getRootNode().host.dispatchEvent(dimEvt);
   }
 }
 
