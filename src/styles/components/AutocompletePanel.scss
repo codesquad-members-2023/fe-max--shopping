@@ -12,6 +12,11 @@
   transition: visibility 150ms 100ms, opacity 200ms 100ms linear;
 }
 
+:host(.is-active) {
+  opacity: 1;
+  visibility: visible;
+}
+
 .autocomplete-container {
   width: 100%;
   height: 100%;

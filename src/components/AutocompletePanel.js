@@ -13,6 +13,7 @@ class AutocompletePanel extends Component {
   constructor() {
     super(template);
     this.autocompleteList = this.shadowRoot.querySelector(".autocomplete-list");
+    this.backDrop = document.querySelector("back-drop");
     this.focusedListItemIdx = -1;
   }
 
@@ -75,6 +76,16 @@ class AutocompletePanel extends Component {
 
   resetList() {
     this.autocompleteList.innerHTML = "";
+  }
+
+  showSelf() {
+    this.classList.add("is-active");
+    this.backDrop.activate({ possessor: this, top: 56, left: 0 });
+  }
+
+  hideSelf() {
+    this.classList.remove("is-active");
+    this.backDrop.deactivate();
   }
 }
 
