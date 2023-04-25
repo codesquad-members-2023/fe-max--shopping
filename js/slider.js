@@ -1,4 +1,4 @@
-import { setEvent } from './utility.js';
+import { addEvent } from './utility.js';
 
 export function initSlider() {
   const slider = document.querySelector('.slider');
@@ -7,8 +7,8 @@ export function initSlider() {
   const nextBtn = document.querySelector('.chevron--right');
   let showIndex = 0;
 
-  setEvent(nextBtn, 'click', showNextCard);
-  setEvent(prevBtn, 'click', showPrevCard);
+  addEvent(nextBtn, 'click', showNextCard);
+  addEvent(prevBtn, 'click', showPrevCard);
 
   function showNextCard() {
     const nextIndex = showIndex + 1 <= sliderCards.length - 1 ? showIndex + 1 : 0;

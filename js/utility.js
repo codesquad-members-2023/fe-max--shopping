@@ -1,4 +1,4 @@
-export function setEvent(target, event, handler) {
+export function addEvent(target, event, handler) {
   target.addEventListener(event, handler);
 }
 

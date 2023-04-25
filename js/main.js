@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { initHeader } from './modal.js';
 import { initSlider } from './slider.js';
 import { initSideBar } from './sidebar.js';
