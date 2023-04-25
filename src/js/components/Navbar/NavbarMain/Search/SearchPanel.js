@@ -1,3 +1,4 @@
+import { highlightText } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
@@ -6,12 +7,13 @@ export class SearchPanel extends Component {
     this.selectedItem = null;
   }
 
-  getTemplate(store) {
+  getTemplate(store, props) {
     const { keywords, history } = store;
+    const { value } = props;
     const historyView = this.getAllHistoryTemplate(history);
-    const keywordsView = this.getAllKeywordTemplate(keywords);
+    const keywordsView = this.getAllKeywordTemplate(keywords, value);
 
-    return historyView + keywordsView;
+    return `${historyView}${keywordsView}`;
   }
 
   onKeyDown(key) {
@@ -65,18 +67,21 @@ export class SearchPanel extends Component {
     return historyTemplate;
   }
 
-  getAllKeywordTemplate(keywords) {
+  getAllKeywordTemplate(keywords, value) {
     const keywordsTemplate = keywords.reduce((acc, cur) => {
-      return acc + this.getKeywordTemplate(cur);
+      return acc + this.getKeywordTemplate(cur, value);
     }, '');
 
     return keywordsTemplate;
   }
 
-  getKeywordTemplate(keyword) {
+  getKeywordTemplate(keyword, value) {
     return `
 <li class="keyword">
-  <a href="#"><button class="shortcut-btn"></button>${keyword}</a>
+  <a href="#"><button class="shortcut-btn"></button><span>${highlightText(
+    keyword,
+    value
+  )}</span></a>
 </li>
     `;
   }

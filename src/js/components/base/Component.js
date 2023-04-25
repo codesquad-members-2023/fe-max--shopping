@@ -11,9 +11,9 @@ export class Component {
     this.initEventHandlers();
   }
 
-  render(state) {
+  render(state, props = {}) {
     this.dropPreviousRender();
-    const template = this.getTemplate(state);
+    const template = this.getTemplate(state, props);
 
     if (typeof template === 'string') {
       const templateElement = document.createElement('template');

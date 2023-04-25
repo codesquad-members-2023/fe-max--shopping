@@ -56,7 +56,7 @@ export default class Search extends Component {
 
     await this.store.requestAutoCompleteWords(userInput, 10);
     const { autoComplete } = this.store;
-    this.searchPanel.render({ keywords: autoComplete, history: [] });
+    this.searchPanel.render({ keywords: autoComplete, history: [] }, { value: userInput });
   }
 
   handleKeyDown(key) {
