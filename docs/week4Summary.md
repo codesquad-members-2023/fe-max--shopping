@@ -45,3 +45,49 @@ HTML 페이지에 `<script>` 요소에 `type=”module”`을 포함시켜야 �
 ### 모듈의 최상위 this는 undefined이다.
 
 일반 스크립트의 this는 전역 객체인 것과 대조된다.
+
+## MVC 패턴
+
+- Model + View + Controller를 합친 용어
+  - Model: 데이터와 비즈니스 로직을 관리한다.
+  - View: UI와 관련된 로직을 처리한다.
+  - Controller: 사용자의 입력(Action)을 받고 Model과 View의 데이터를 받아 로직을 수행한다.
+
+### MVC 장점
+
+- 가장 단순한 패턴이고, 단순한만큼 보편적으로 많이 사용되는 패턴이다.
+
+### MVC 단점
+
+- 뷰와 모델이 서로 직접적으로 연결되어 View와 Model 사이의 의존성이 높다. 이러한 구조는 유지 보수의 어려움이 생긴다.
+
+## MVP 패턴
+
+- MVC 패턴의 단점을 보완하고자 나온 패턴
+- Model + View + Presenter를 합친 용어
+- Model과 View의 역할은 MVC와 동일하다.
+- Presenter: View에서 요청한 정보로 Model에게 정보를 전달, 요청하고 받은 정보를 View에 제공하는 식으로 View와 Model을 연결하는 역할을 한다.
+
+### MVP 장점
+
+- View와 Model의 의존성이 없다. Presenter를 통해서만 데이터를 전달받기 때문
+
+### MVP 단점
+
+- View와 Model의 의존성을 제거했으나, View와 Presenter 사이의 의존성이 높아졌다.
+
+## MVVM 패턴
+
+- Model + View + View Model을 합친 용어
+- Model과 View의 역할은 위의 패턴과 같다.
+- View Model: View를 위한 Model. View를 나타내기 위한 데이터 처리를 담당한다.
+- Command 패턴과 Data Binding 두 가지 패턴을 사용하여 View와 View Model 사이의 의존성을 없앴다.
+
+### MVVM 장점
+
+- View와 Model 사이의 의존성이 없으며, View와 ViewModel 사이의 의존성 또한 없앴다.
+- 각각의 부분이 독립적이기 때문에 모듈화하여 개발할 수 있다.
+
+### MVVM 단점
+
+- View Model의 설계가 쉽지 않다.
