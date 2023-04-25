@@ -10,8 +10,9 @@ export class Main extends Base {
     this.init();
   }
 
-  init() {
+  async init() {
     this.setAttribute("id", "main");
-    this.setChildren(this.carousel, this.contents);
+    await this.carousel.init();
+    this.setChildren(this.carousel.view, this.contents);
   }
 }
