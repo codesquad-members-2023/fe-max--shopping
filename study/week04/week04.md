@@ -14,7 +14,7 @@
 - 하나의 모듈이 다른 모듈에 의존하는 관계
 - parameter나 return값, 또는 지역 변수 등으로 다른 객체를 참조하는 것
 
-## 프론트엔드에서 MVC보다 더 많이 쓰이는 패턴은 ?
+## 프론트엔드에서 MVC보다 더 많이 쓰이는 패턴은?
 
 > [프론트엔드에서 MVC보다 더 많이 쓰이는 패턴은?](https://www.youtube.com/watch?v=Y5vOfv67h8A)
 
@@ -97,6 +97,39 @@
 2. MVVM 패턴 (Vue)
 3. Flux 아키텍처 (React)
 
+# 디자인 패턴
+
+## 템플릿 메서드 패턴
+
+- 객체 지향 디자인 패턴
+- 상위 클래스에서 구조를 정의하고, 하위 클래스에서 구체적인 내용을 구현하는 패턴
+
+## MVVM 패턴
+
+> [참고 자료](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Server-Side-Rendering/#_3-mvvm-pattern)
+
+### 주요 특징
+
+- Model - View - ViewModel으로 관심사를 분리한다.
+- ViewModel은 View의 모습을 본뜬 순수한 데이터 객체이다.
+- ViewModel에 변화가 생기면 View에 반영한다.
+- Model, ViewModel은 런타임에 독립적이다.
+- View는 런타임에 종속적이다. (브라우저 환경, 서버 환경, 앱 등)
+- Model과 ViewModel을 기반으로 render를 통해 런타임에 종속된 View를 만든다.
+
+### Model (domain, store)
+
+- 데이터와 데이터를 변경하거나 가져오는 함수 또는 메소드와 같은 비즈니스(service) 로직
+
+### ViewModel
+
+- View와 비슷한 구조를 가진 객체
+- 객체는 가독성이 좋지 않기 때문에, JSX와 같이 기존 HTML 구조로 작성하되 내부에서 객체로 컴파일된다.
+- 질문: JSX는 어떻게 HTML과 비슷한 구조로 Virtual DOM 객체를 만들까? [참고자료](https://react.dev/reference/react/createElement#creating-an-element-without-jsx)
+  - 내부적으로 createElement 함수로
+  - `createElement(type, props, ...children)`
+    - props: `type`, `props`, `...children`
+
 # 구조 설계
 
 - 현재 구조의 의존성 분석하기
@@ -104,8 +137,3 @@
 - 의존성 낮추기, 어떤 객체가 어떤 객체를 import해서 사용하게 할지
 - base Component 클래스 구조 수정하기
 - 웹 컴포넌트 만들기 아티클, 루카스 예제 참고해서 구조도 먼저 작성하기
-
-## 템플릿 메서드 패턴
-
-- 객체 지향 디자인 패턴
-- 상위 클래스에서 구조를 정의하고, 하위 클래스에서 구체적인 내용을 구현하는 패턴
