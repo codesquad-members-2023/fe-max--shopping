@@ -1,34 +1,17 @@
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor(state, storage) {
+  constructor() {
     super('search-panel', 'UL');
-    this.storage = storage;
-    this.state = state;
     this.selectedItem = null;
-    this.init(this.state);
   }
 
-  getTemplate(state) {
-    const { history, recommend } = state;
+  getTemplate(store) {
+    const { keywords, history } = store;
     const historyView = this.getAllHistoryTemplate(history);
-    const recommendView = this.getAllRecommendTemplate(recommend);
+    const keywordsView = this.getAllKeywordTemplate(keywords);
 
-    return historyView + recommendView;
-  }
-
-  initEventHandlers() {
-    this.node.addEventListener('click', ({ target }) => {
-      if (target.matches('.delete-btn')) {
-        this.deleteItem(target);
-      }
-    });
-  }
-
-  deleteItem(target) {
-    const targetItem = target.closest('li');
-    this.storage.deleteSearchWord(targetItem.dataset.id);
-    targetItem.remove();
+    return historyView + keywordsView;
   }
 
   onKeyDown(key) {
@@ -72,9 +55,6 @@ export class SearchPanel extends Component {
   }
 
   getAllHistoryTemplate(history) {
-    if (!history) {
-      return '';
-    }
     const historyInfo = Object.entries(history).slice(-5);
     const historyTemplate = historyInfo.reduce((acc, cur) => {
       const historyId = cur[0];
@@ -85,18 +65,18 @@ export class SearchPanel extends Component {
     return historyTemplate;
   }
 
-  getAllRecommendTemplate(recommend) {
-    const recommendTemplate = recommend.reduce((acc, cur) => {
-      return acc + this.getRecommendTemplate(cur);
+  getAllKeywordTemplate(keywords) {
+    const keywordsTemplate = keywords.reduce((acc, cur) => {
+      return acc + this.getKeywordTemplate(cur);
     }, '');
 
-    return recommendTemplate;
+    return keywordsTemplate;
   }
 
-  getRecommendTemplate(word) {
+  getKeywordTemplate(keyword) {
     return `
-<li class="recommend">
-  <a href="#"><button class="shortcut-btn"></button>${word}</a>
+<li class="keyword">
+  <a href="#"><button class="shortcut-btn"></button>${keyword}</a>
 </li>
     `;
   }
