@@ -1,10 +1,9 @@
 import { random } from "./common.js";
 
-function generateUrlFunc(endpoint, options) {
+function generateUrlFunc(endpoint, baseOptions) {
   const baseUrl = "http://localhost:3000";
 
   async function fetchJson({ body, params }) {
-    if (body) options.body = JSON.stringify(body);
 
     const url = new URL(endpoint, baseUrl);
 
@@ -14,13 +13,16 @@ function generateUrlFunc(endpoint, options) {
       }
     }
 
-    options = {
-      ...options,
+    const options = {
+      ...baseOptions,
       headers: {
         "Content-Type": "application/json",
       },
       redirect: "manual",
     };
+
+    if (body) options.body = JSON.stringify(body);
+    
     const response = await fetch(url, options);
 
     if (!response.ok) {
@@ -55,8 +57,9 @@ export async function checkKeyword(keyword) {
 }
 
 function keywordSortFunc(a, b) {
-  const lenFrontA = a.split(this)[0].length;
-  const lenFrontB = b.split(this)[0].length;
+  const { str } = this;
+  const lenFrontA = a.split(str)[0].length;
+  const lenFrontB = b.split(str)[0].length;
 
   if (lenFrontA !== lenFrontB) {
     return lenFrontA - lenFrontB;
@@ -79,7 +82,7 @@ export async function getAutoCompletedKeywords(str, limit) {
     },
   });
 
-  return find.map((v) => v.keyword).sort(keywordSortFunc.bind(str));
+  return find.map((v) => v.keyword).sort(keywordSortFunc.bind({ str }));
 }
 
 export const getRandomKeywords = async (limit) => {
