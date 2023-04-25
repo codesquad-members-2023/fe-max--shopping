@@ -2,7 +2,7 @@ import { debounce } from '../../../../utils/utils.js';
 import { Component } from '../../../base/Component.js';
 import SearchBar from './SearchBar.js';
 import { SearchPanel } from './SearchPanel.js';
-import SearchStore from './SearchStore.js';
+import { SearchStore } from '/src/js/domain/Store.js';
 
 export default class Search extends Component {
   constructor(main) {

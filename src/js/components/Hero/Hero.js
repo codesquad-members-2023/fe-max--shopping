@@ -1,4 +1,4 @@
-import { client } from '../../domain/client.js';
+import { sliderStore } from '../../domain/Store.js';
 import { Component } from '../base/Component.js';
 import { Slider } from './Slider.js';
 
@@ -8,7 +8,7 @@ export class Hero extends Component {
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
     this.currentIndex = 0;
-    this.client = client;
+    this.store = sliderStore;
     this.slider = new Slider();
     this.leftButton = new Component('slider-button left', 'BUTTON');
     this.rightButton = new Component('slider-button right', 'BUTTON');
@@ -17,8 +17,9 @@ export class Hero extends Component {
   }
 
   async initSlider(slideCount, startIndex) {
-    const heroImages = await this.client.fetchHeroImages(slideCount);
-    this.slider.render(heroImages);
+    await this.store.requestImages(slideCount);
+    const { images } = this.store;
+    this.slider.render(images);
 
     this.currentIndex += startIndex;
     this.slider.initStyle(slideCount, startIndex);

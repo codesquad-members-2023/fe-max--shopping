@@ -1,8 +1,6 @@
-import { client } from '../../../../domain/client.js';
+import { client } from './client.js';
 
-const STORAGE_KEY = 'searchHistory';
-
-export default class SearchStore {
+export class SearchStore {
   constructor() {
     this.client = client;
     this.history = {};
@@ -14,7 +12,7 @@ export default class SearchStore {
   async initStore() {
     this.recommend = await this.requestRecommendWords(10);
 
-    const store = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const store = JSON.parse(localStorage.getItem('searchHistory'));
     if (!store) return;
     this.history = store;
   }
@@ -41,6 +39,32 @@ export default class SearchStore {
   }
 
   saveLocalStorage() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.history));
+    localStorage.setItem('searchHistory', JSON.stringify(this.history));
   }
 }
+
+export const categoryStore = {
+  mainCategories: [],
+  subCategories: new Map(),
+
+  async requestMainCategories() {
+    this.mainCategories = await client.fetchCategories();
+  },
+
+  async requestSubCategories() {
+    const subCategoryInfos = await client.fetchSubCategory();
+
+    subCategoryInfos.forEach((info) => {
+      const { id, details } = info;
+      this.subCategories[id] = details;
+    });
+  },
+};
+
+export const sliderStore = {
+  images: [],
+
+  async requestImages(slideCount) {
+    this.images = await client.fetchHeroImages(slideCount);
+  },
+};
