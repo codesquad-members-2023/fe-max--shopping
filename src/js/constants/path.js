@@ -5,14 +5,11 @@ export const URL = {
 };
 export const PATH = {
   auto: 'auto',
+  prop: 'keyword',
   slides: 'slides',
   side: 'side',
   digital: 'digital',
   shopping: 'shopping',
   collapsible : 'collapsible',
 
-  defaultData: 'default',
-  additionalData: 'additional',
-  shoppingData: 'shopping',
-  prop: 'keyword',
 };
