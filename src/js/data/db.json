@@ -150,8 +150,57 @@
     {
       "title": "디지털 콘텐츠 및 기기",
       "menus": [
-        { "id": 1, "name": "Amazon Music" },
-        { "id": 2, "name": "Kindle E-Reader 및 도서" },
+        {
+          "id": 1,
+          "name": "Amazon Music",
+          "subCategory": [
+            {
+              "title": "Prime Video",
+              "menus": [
+                { "name": "Prime Video" },
+                { "name": "Included with Prime" },
+                { "name": "Prime Video Channels" },
+                { "name": "Rent or Buy" },
+                { "name": "Your Watchlist" },
+                { "name": "Purchases & Rentals" },
+                { "name": "Watch Anywhere" },
+                { "name": "Getting Started" }
+              ]
+            },
+            {
+              "title": "More To Explore",
+              "menus": [
+                { "name": "Amazon Originals" },
+                { "name": "Kids" },
+                { "name": "Coming soon" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Kindle E-Reader 및 도서",
+          "subCategory": [
+            {
+              "title": "Stream Music",
+              "menus": [
+                { "name": "Amazon Music Unlimited" },
+                { "name": "Amazon Music Prime" },
+                { "name": "Free Streaming Music" },
+                { "name": "Podcasts" },
+                { "name": "Open Web Player" }
+              ]
+            },
+            {
+              "title": "Buy Music",
+              "menus": [
+                { "name": "CDs & Vinyl" },
+                { "name": "Download Store" },
+                { "name": "Artist Merch Shop" }
+              ]
+            }
+          ]
+        },
         { "id": 3, "name": "안드로이드 앱스토어" }
       ]
     },
@@ -164,7 +213,32 @@
         { "id": 7, "name": "예술 및 공예" }
       ],
       "compressedMenus": [
-        { "id": 8, "name": "자동차 용품" },
+        {
+          "id": 8,
+          "name": "자동차 용품",
+          "subCategory": [
+            {
+              "title": "자동차 용품",
+              "menus": [
+                { "name": "자동차 관리" },
+                { "name": "자동차 전자기기 및 악세서리" },
+                { "name": "실외용품 악세서리" },
+                { "name": "인테리어 악세서리" },
+                { "name": "램프 및 조명 악세서리" },
+                { "name": "오토바이 및 파워스포츠 차량 용품" },
+                { "name": "오일 및 유체" },
+                { "name": "페인트 및 도장용품" },
+                { "name": "퍼포먼스 부품 및 액세서리" },
+                { "name": "교체용 부품" },
+                { "name": "RV 부품 및 액세서리" },
+                { "name": "타이어 및 휠" },
+                { "name": "공구 및 장비" },
+                { "name": "자동차 매니아용 상품" },
+                { "name": "대형차 및 상용차 장비" }
+              ]
+            }
+          ]
+        },
         { "id": 9, "name": "유아" },
         { "id": 10, "name": "뷰티 및 퍼스널 케어" },
         { "id": 11, "name": "여성 패션" },

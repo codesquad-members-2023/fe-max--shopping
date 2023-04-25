@@ -35,17 +35,19 @@ class CategoryList extends Component {
 
   getTemplate(menus) {
     const allMenuTemplates = menus.reduce((acc, cur) => {
-      const { id, name } = cur;
-      return acc + this.getMenuTemplate(id, name);
+      const { id, name, subCategory } = cur;
+      return acc + this.getMenuTemplate(id, name, subCategory);
     }, '');
 
     return allMenuTemplates;
   }
 
-  getMenuTemplate(id, name) {
+  getMenuTemplate(id, name, subCategory) {
     return `
 <li data-menu-id="${id}" class="category-menu">
-  <a class="category-name" href="#">${name}</a><button class="detail-btn"></button>
+  <a class="category-name" href="#">${name}</a>${
+      subCategory ? `<button class="detail-btn"></button>` : ''
+    }
 </li>
 `;
   }
