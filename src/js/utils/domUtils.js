@@ -32,3 +32,11 @@ export const highlightElement = (element) => {
   if (element.classList.contains('over')) return;
   element.classList.add('over');
 };
+
+export const createElement = (tagName, props) => {
+  const el = document.createElement(tagName);
+  for (const prop in props) {
+    el.setAttribute(prop, props[prop]);
+  }
+  return el;
+}
