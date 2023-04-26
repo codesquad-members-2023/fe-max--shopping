@@ -4,6 +4,8 @@ import { getRandomLetter } from '../../utils/pickPrefix.js';
 import { PATH } from '../../constants/path.js';
 import { SearchHistoryManager } from './SearchHistoryManagerTemp.js';
 import { handleDimming, layerOpenState } from '../../utils/dim.js';
+import { getInputValue } from '../../utils/getInputValue.js';
+import { NUMBER } from '../../constants/number.js';
 
 const searchPanel = $('.search-panel');
 const searchBarInput = document.searchForm.searchBar;
@@ -17,7 +19,7 @@ export class SearchBarView {
     } else {
       this.renderHistoryAndSuggestions(historyTemplate);
     }
-    // this.searchPanelHandler.toggleSearchPanel(e, true);
+    // this.searchPanelView.toggleSearchPanel(e, true);
   }
 
   async renderHistoryAndSuggestions(historyTemplate) {
@@ -80,71 +82,113 @@ export class SearchBarView {
 
 // 컨트롤러 역할
 export class SearchBar {
-  constructor(model, view) {
-      // 키보드 이벤트 관련/뷰에 두어야 하는가..?
-    this.searchPanelHandler = new SearchPanelHandler();
-
+  constructor(model, searchBarView, searchPanelView) {
     this.model = model;
-    this.view = view;
+    this.searchBarView = searchBarView;
+    this.searchPanelView = searchPanelView;
   }
 
   init() {
     searchBarInput.addEventListener('click', e => {
-      this.view.decideSuggestionsRendering(
+      this.searchBarView.decideSuggestionsRendering(
         this.getSuggestionTemplate(),
-        this.getHistoryAndSuggestionTemplate()
+        this.getHistoryAndSuggestionTemplate(),
       );
-      this.searchPanelHandler.toggleSearchPanel(e, true);
+      this.searchPanelView.toggleSearchPanel(e, true)
     });
 
     document.addEventListener('click', e => {
-      this.searchPanelHandler.toggleSearchPanel(e, false);
+      this.searchPanelView.toggleSearchPanel(e, false);
     });
 
     searchBarInput.addEventListener('keydown', e => {
-      this.searchPanelHandler.storeInputTerms(e);
+      this.searchPanelView.storeInputTerms(e);
     });
 
-    searchBarInput.addEventListener('input', e => {
-      this.view.renderAutoComplete(this.getAutoCompleteTemplate());
+    searchBarInput.addEventListener('input', () => {
+      this.searchBarView.renderAutoComplete(this.getAutoCompleteTemplate());
     });
 
     searchBarInput.addEventListener('keyup', e => {
-      this.searchPanelHandler.keyboardNavigationHandler(e);
+      this.searchPanelView.keyboardNavigationHandler(e);
     });
 
     searchPanel.addEventListener('click', e => {
-      this.searchPanelHandler.deleteSearchTerm(e);
-      this.searchPanelHandler.keyboardNavigationHandler(e);
+      this.searchPanelView.deleteSearchTerm(e);
+      this.searchPanelView.keyboardNavigationHandler(e);
       e.stopPropagation();
-      this.view.renderHistoryAndSuggestions(this.getHistoryAndSuggestionTemplate());
+      this.searchBarView.renderHistoryAndSuggestions(
+        this.getHistoryAndSuggestionTemplate()
+      );
     });
   }
 
+  async fetchApiTerms(searchPrefix) {
+    const apiClient = new APIClient(searchPrefix);
+    const fetchedTerms = await apiClient.getApiData();
+    return fetchedTerms;
+  }
+
+  async fetchJsonTerms(path, prop, input) {
+    const jsonClient = new JSONClient(path);
+    const fetchedJsonTerms = await jsonClient.getJsonTermsData(prop, input);
+    return fetchedJsonTerms;
+  }
+
+  setTerms(type) {
+    switch (type) {
+      case 'suggest':
+        const prefix = getRandomLetter();
+        this.model.setSuggestion(this.fetchApiTerms(prefix));
+        break;
+
+      case 'history':
+        let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        this.model.setHistory(history);
+        break;
+
+      case 'auto':
+        const inputValue = getInputValue(searchBarInput);
+        if (!inputValue) {
+          this.searchBarView.decideSuggestionsRendering(
+            this.getSuggestionTemplate(),
+            this.getHistoryAndSuggestionTemplate()
+          );
+          return;
+        }
+        this.model.setAuto(
+          this.fetchJsonTerms(PATH.auto, PATH.prop, inputValue)
+        );
+        break;
+    }
+  }
+
   getSuggestionTemplate() {
-    this.model.setSuggestion();
-    const template = this.view.generateSuggest(this.model.getSuggestion());
+    this.setTerms('suggest');
+    const template = this.searchBarView.generateSuggest(
+      this.model.getSuggestion()
+    );
     return template;
   }
   getHistoryAndSuggestionTemplate() {
-    this.model.setHistory();
-    const template = this.view.generateHistoryAndSuggestions(
+    this.setTerms('history');
+    const template = this.searchBarView.generateHistoryAndSuggestions(
       this.model.getHistory(),
       this.model.getSuggestion()
     );
     return template;
   }
   getAutoCompleteTemplate() {
-    this.model.setAuto();
-    const template = this.view.generateAutoComplete(
+    this.setTerms('auto');
+    const template = this.searchBarView.generateAutoComplete(
       this.model.getAuto(),
-      this.model.getInputValue()
+      getInputValue(searchBarInput)
     );
     return template;
   }
 }
 
-export class SearchPanelHandler {
+export class SearchPanelView {
   constructor() {
     this.activeIndex = -1;
     //아래 로컬스토리지 접근 객체와 엮여있어 모델로의 분리를 더 고민해봐야함
@@ -152,8 +196,8 @@ export class SearchPanelHandler {
   }
 
   storeInputTerms(e) {
-    if (e.keyCode !== 13) return;
-    if (e.keyCode === 13) {
+    if (e.keyCode !== NUMBER.enterKeyCode) return;
+    if (e.keyCode === NUMBER.enterKeyCode) {
       e.preventDefault();
       const value = e.target.value.trim();
 
@@ -201,14 +245,19 @@ export class SearchPanelHandler {
     } else {
       this.activeIndex = -1;
     }
-
     this.setActiveClass();
+    this.setInputValue();
+  }
+
+  setInputValue(){
+    const searchResults = this.getSearchResultLists();
+    searchBarInput.value = searchResults[this.activeIndex].innerText
   }
 
   handleArrowDown() {
     const searchResults = this.getSearchResultLists();
-
     this.activeIndex += 1;
+
     if (this.activeIndex >= searchResults.length) {
       this.activeIndex = 0;
     }
@@ -222,11 +271,13 @@ export class SearchPanelHandler {
       this.activeIndex = searchResults.length - 1;
     }
   }
+
   getSearchResultLists() {
     return searchPanel.querySelectorAll('li');
   }
 
   toggleSearchPanel(e, isPanelOpen) {
+    console.log("불렷음");
     layerOpenState.searchPanel = isPanelOpen;
     if (isPanelOpen) {
       searchPanel.classList.remove('hidden');
@@ -235,66 +286,5 @@ export class SearchPanelHandler {
       searchPanel.classList.add('hidden');
       handleDimming();
     }
-  }
-}
-
-
-export class SearchBarModel {
-  constructor() {
-    this.termsType = { suggest: [], history: [], auto: [] };
-  }
-
-  async fetchApiTerms(searchPrefix) {
-    const apiClient = new APIClient(searchPrefix);
-    const fetchedTerms = await apiClient.getApiData();
-    return fetchedTerms;
-  }
-
-  async fetchJsonTerms(path, prop, input) {
-    const jsonClient = new JSONClient(path);
-    const fetchedJsonTerms = await jsonClient.getJsonTermsData(prop, input);
-    return fetchedJsonTerms;
-  }
-
-  setTermsType(type, terms) {
-    this.termsType[type] = terms;
-  }
-
-  setSuggestion() {
-    const prefix = getRandomLetter();
-    this.setTermsType('suggest', this.fetchApiTerms(prefix));
-  }
-
-  getSuggestion() {
-    return this.termsType.suggest;
-  }
-
-  setHistory() {
-    let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    this.setTermsType('history', history.reverse().slice(0, 5));
-  }
-
-  getHistory() {
-    return this.termsType.history;
-  }
-
-  setAuto() {
-    const inputValue = this.getInputValue();
-    if (!inputValue) {
-      return;
-    }
-    this.setTermsType(
-      'auto',
-      this.fetchJsonTerms(PATH.auto, PATH.prop, inputValue)
-    );
-  }
-
-  getAuto() {
-    return this.termsType.auto;
-  }
-
-  getInputValue() {
-    const input = searchBarInput.value.trim();
-    return input;
   }
 }

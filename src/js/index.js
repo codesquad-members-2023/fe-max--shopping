@@ -5,8 +5,8 @@ import { SideBar } from '../js/events/sideBar/SideBar.js';
 
 
 // import { TSearchBar,Model } from './events/searchBarTemp/TSearchBar.js';
-import { SearchBarView,SearchBarModel, SearchBar} from "./events/searchBarTemp/SearchBarTemp.js";
-
+import { SearchBarView, SearchBar, SearchPanelView} from "./events/searchBarTemp/SearchBarTemp.js";
+import { SearchBarModel } from "../js/events/searchBarTemp/SearchBarModel.js";
 // import {
 //   TSideBar,
 //   Model,
@@ -20,8 +20,9 @@ const init = async () => {
   // searchBar.initSearchBar();
 
   const model = new SearchBarModel();
-  const view = new SearchBarView();
-  const searchBar = new SearchBar(model, view);
+  const searchBarView = new SearchBarView();
+  const searchPanelView = new SearchPanelView();
+  const searchBar = new SearchBar(model, searchBarView, searchPanelView);
   searchBar.init()
 
 
