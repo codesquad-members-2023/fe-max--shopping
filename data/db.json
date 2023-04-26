@@ -1,32 +1,117 @@
 {
-  "searchDB": {
-    "suggestions": [
-      { "id": 1, "content": "드라이기" },
-      { "id": 2, "content": "에어프라이어" },
-      { "id": 3, "content": "블루투스 이어폰" },
-      { "id": 4, "content": "와이파이 라우터" },
-      { "id": 5, "content": "전자책 리더" },
-      { "id": 6, "content": "인덕션 레인지" },
-      { "id": 7, "content": "로봇청소기" },
-      { "id": 8, "content": "블루투스 스피커" },
-      { "id": 9, "content": "종이호일" },
-      { "id": 10, "content": "전기면도기" }
-    ],
-    "autoSuggestions": [
-      { "id": 1, "content": "강아지 자동 급식기" },
-      { "id": 2, "content": "고양이 장난감" },
-      { "id": 3, "content": "자동 연필깎이" },
-      { "id": 4, "content": "두잇 자동급식기" },
-      { "id": 5, "content": "자동차 휴대폰 거치대" },
-      { "id": 6, "content": "차량 점프 스타터" },
-      { "id": 7, "content": "자동차 배터리 충전기" },
-      { "id": 8, "content": "차량용 보조배터리" },
-      { "id": 9, "content": "자동차 청소도구" },
-      { "id": 10, "content": "자동차 보조 사이드미러" }
-    ],
-    "history": []
-  },
-
+  "searchDB": [
+    {
+      "id": "searchHistory",
+      "body": [
+        {
+          "id": 0,
+          "content": "hello"
+        },
+        {
+          "id": 0,
+          "content": "hi"
+        },
+        {
+          "id": 0,
+          "content": "no"
+        },
+        {
+          "id": 0,
+          "content": "test"
+        }
+      ]
+    },
+    {
+      "id": "suggestion",
+      "body": [
+        {
+          "id": 1,
+          "content": "드라이기"
+        },
+        {
+          "id": 2,
+          "content": "에어프라이어"
+        },
+        {
+          "id": 3,
+          "content": "블루투스 이어폰"
+        },
+        {
+          "id": 4,
+          "content": "와이파이 라우터"
+        },
+        {
+          "id": 5,
+          "content": "전자책 리더"
+        },
+        {
+          "id": 6,
+          "content": "인덕션 레인지"
+        },
+        {
+          "id": 7,
+          "content": "로봇청소기"
+        },
+        {
+          "id": 8,
+          "content": "블루투스 스피커"
+        },
+        {
+          "id": 9,
+          "content": "종이호일"
+        },
+        {
+          "id": 10,
+          "content": "전기면도기"
+        }
+      ]
+    },
+    {
+      "id": "autoSuggestion",
+      "body": [
+        {
+          "id": 1,
+          "content": "강아지 자동 급식기"
+        },
+        {
+          "id": 2,
+          "content": "고양이 장난감"
+        },
+        {
+          "id": 3,
+          "content": "자동 연필깎이"
+        },
+        {
+          "id": 4,
+          "content": "두잇 자동급식기"
+        },
+        {
+          "id": 5,
+          "content": "자동차 휴대폰 거치대"
+        },
+        {
+          "id": 6,
+          "content": "차량 점프 스타터"
+        },
+        {
+          "id": 7,
+          "content": "자동차 배터리 충전기"
+        },
+        {
+          "id": 8,
+          "content": "차량용 보조배터리"
+        },
+        {
+          "id": 9,
+          "content": "자동차 청소도구"
+        },
+        {
+          "id": 10,
+          "content": "자동차 보조 사이드미러"
+        }
+      ]
+    }
+  ],
   "hmenu": [
     {
       "id": 1,

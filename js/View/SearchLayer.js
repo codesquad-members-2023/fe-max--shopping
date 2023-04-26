@@ -12,10 +12,10 @@ export class SearchLayer extends Component {
   }
 
   template() {
-    const { history, suggestions } = this.state;
+    const { searchHistory, suggestion } = this.state;
 
     return `<ul class="search-bar__result-container">
-              ${history
+              ${searchHistory
                 .map(
                   (item) =>
                     `<li class="search-bar__result history" data-index="${item.id}">
@@ -26,7 +26,7 @@ export class SearchLayer extends Component {
                     </li>`,
                 )
                 .join('')} 
-              ${suggestions
+              ${suggestion
                 .map(
                   (item) =>
                     `<li class="search-bar__result suggestion" data-index="${item.id}">
@@ -38,25 +38,18 @@ export class SearchLayer extends Component {
             </ul>`;
   }
 
-  // loadSearchHistory() {
-  //   if (localStorage.getItem('searchHistory') === null) {
-  //     localStorage.setItem('searchHistory', JSON.stringify([]));
-  //   }
-  //   this.searchDB.history = JSON.parse(localStorage.getItem('searchHistory'));
-  // }
+  inputEventHandler = () => {
+    const $searchbarInput = document.querySelector('.search-bar__input');
+    const inputValue = $searchbarInput.value;
 
-  // inputEventHandler = () => {
-  //   const $searchbarInput = document.querySelector('.search-bar__input');
-  //   const inputValue = $searchbarInput.value;
-
-  //   if (inputValue === '') {
-  //     this.render();
-  //     return;
-  //   }
-  //   this.getData('autoSuggestions').then((autoSuggestionData) => {
-  //     this.renderAutoSuggestion(autoSuggestionData, inputValue);
-  //   });
-  // };
+    if (inputValue === '') {
+      this.render();
+      return;
+    }
+    this.getData('autoSuggestions').then((autoSuggestionData) => {
+      this.renderAutoSuggestion(autoSuggestionData, inputValue);
+    });
+  };
 
   // renderAutoSuggestion(data, prefix) {
   //   const resultList = document.querySelector('.search-bar__result-container');
@@ -73,23 +66,25 @@ export class SearchLayer extends Component {
   //   resultList.innerHTML = autoTemplate;
   // }
 
-  // setEvent() {
-  //   const $searchForm = document.querySelector('.search-bar__form');
-  //   const $searchbarInput = document.querySelector('.search-bar__input');
+  setEvent() {
+    const $searchForm = document.querySelector('.search-bar__form');
+    // const $searchbarInput = document.querySelector('.search-bar__input');
 
-  //   $searchForm.addEventListener('submit', (e) => {
-  //     e.preventDefault();
+    $searchForm.addEventListener('submit', this.controller.submitHandler);
 
-  //     const { history } = this.searchDB;
-  //     const recentSearchWord = $searchbarInput.value;
-  //     history.unshift(recentSearchWord);
-  //     this.searchDB.history = history.slice(0, 5);
+    // $searchbarInput.addEventListener('input', debounce(this.inputEventHandler));
+  }
 
-  //     localStorage.setItem('searchHistory', JSON.stringify(this.searchDB.history));
+  // submitHandler(e) {
+  //   e.preventDefault();
 
-  //     this.render();
-  //   });
+  //   const { history } = this.searchDB;
+  //   const recentSearchWord = $searchbarInput.value;
+  //   history.unshift(recentSearchWord);
+  //   this.searchDB.history = history.slice(0, 5);
 
-  //   $searchbarInput.addEventListener('input', debounce(this.inputEventHandler));
+  //   localStorage.setItem('searchHistory', JSON.stringify(this.searchDB.history));
+
+  //   this.render();
   // }
 }

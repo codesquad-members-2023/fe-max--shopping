@@ -10,6 +10,23 @@ export class SearchController {
       .then((data) => this.store.saveServerData(data));
   }
 
+  putData(path, updatedData) {
+    return fetch(`${this.API_KEY}/${path}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: 'searchHistory',
+        body: updatedData,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
   keyboardHandler(e) {
     const $searchbarInput = this;
     const lists = document.querySelectorAll('.search-bar__result');
@@ -47,4 +64,19 @@ export class SearchController {
       $searchbarInput.value = currentFocusEl.innerText;
     }
   }
+
+  submitHandler = (e) => {
+    e.preventDefault();
+
+    const recentSearchWord = e.target.searchbar.value;
+    const newData = {
+      id: 0,
+      content: recentSearchWord,
+    };
+
+    const currentHistory = this.store.searchData.searchHistory;
+    currentHistory.push(newData);
+
+    this.putData('searchDB/searchHistory', currentHistory);
+  };
 }
