@@ -10,7 +10,6 @@ export class KeywordView {
 
   addKeywordEventListner() {
     this.searchBar.addEventListener("input", this.getAutoKeyword);
-    this.searchBar.addEventListener("click", this.searchBarClickHandler);
-    this.searchBar.addEventListener("blur", this.searchBarBlurHandler);
+    this.searchBar.addEventListener("click", this.showRecentAndRecommendKeyword);
   }
 }
