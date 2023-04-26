@@ -31,31 +31,15 @@ export class SearchForm extends Component {
     new SearchLayer($searchLayer, this.controller);
   }
 
-  update(data) {
+  updateInputBar(data) {
     this.inputBar.value = data.inputBarValue;
   }
 
   setEvent() {
-    const $searchbarInput = document.querySelector('.search-bar__input');
-    const $searchLayer = this.$target.querySelector('.search-bar__layer');
-    const $backdrop = document.querySelector('.modal__backdrop');
+    const $searchbarInput = this.$target.querySelector('.search-bar__input');
 
-    $searchbarInput.addEventListener('click', () => {
-      $searchLayer.classList.add('show');
-      $backdrop.classList.add('show');
-      this.focusIndex = -1;
-    });
-
-    $searchbarInput.addEventListener('blur', () => {
-      const focusEl = document.querySelector(`[data-index="${this.focusIndex}"]`);
-
-      $searchLayer.classList.remove('show');
-      $backdrop.classList.remove('show');
-      if (focusEl) {
-        focusEl.classList.remove('selected');
-      }
-    });
-
+    $searchbarInput.addEventListener('click', this.controller);
+    $searchbarInput.addEventListener('blur', this.controller);
     $searchbarInput.addEventListener('keydown', this.controller);
   }
 }

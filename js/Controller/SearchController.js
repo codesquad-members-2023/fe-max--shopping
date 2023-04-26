@@ -31,14 +31,45 @@ export class SearchController {
     e.stopPropagation();
 
     switch (e.type) {
+      case 'click':
+        this.clickHandler();
+        break;
+
+      case 'blur':
+        this.blurHandler();
+        break;
+
       case 'keydown':
         this.keydownHandler(e);
         break;
+
       case 'submit':
         this.submitHandler(e);
         break;
+
       default:
         console.log(e.target);
+    }
+  }
+
+  clickHandler() {
+    const $searchLayer = document.querySelector('.search-bar__layer');
+    const $backdrop = document.querySelector('.modal__backdrop');
+
+    $searchLayer.classList.add('show');
+    $backdrop.classList.add('show');
+    this.model.focusIndex = -1;
+  }
+
+  blurHandler() {
+    const $searchLayer = document.querySelector('.search-bar__layer');
+    const $backdrop = document.querySelector('.modal__backdrop');
+    const focusEl = document.querySelector(`[data-index="${this.model.focusIndex}"]`);
+
+    $searchLayer.classList.remove('show');
+    $backdrop.classList.remove('show');
+    if (focusEl) {
+      focusEl.classList.remove('selected');
     }
   }
 
@@ -46,11 +77,11 @@ export class SearchController {
     const lists = document.querySelectorAll('.search-bar__result');
 
     if (e.key === 'ArrowDown') {
-      this.focusIndex = this.focusIndex + 1 <= lists.length - 1 ? this.focusIndex + 1 : 0;
-      const prevIndex = this.focusIndex - 1 < 0 ? lists.length - 1 : this.focusIndex - 1;
+      this.model.focusIndex = this.model.focusIndex + 1 <= lists.length - 1 ? this.model.focusIndex + 1 : 0;
+      const prevIndex = this.model.focusIndex - 1 < 0 ? lists.length - 1 : this.model.focusIndex - 1;
 
       const prevFocusEl = lists[prevIndex];
-      const currentFocusEl = lists[this.focusIndex];
+      const currentFocusEl = lists[this.model.focusIndex];
 
       prevFocusEl.classList.remove('selected');
       currentFocusEl.classList.add('selected');
@@ -60,10 +91,10 @@ export class SearchController {
     }
 
     if (e.key === 'ArrowUp') {
-      if (this.focusIndex === -1) {
-        this.focusIndex = lists.length - 1;
+      if (this.model.focusIndex === -1) {
+        this.model.focusIndex = lists.length - 1;
 
-        const currentFocusEl = lists[this.focusIndex];
+        const currentFocusEl = lists[this.model.focusIndex];
         currentFocusEl.classList.add('selected');
 
         this.model.inputBarValue = currentFocusEl.innerText;
@@ -71,11 +102,11 @@ export class SearchController {
         return;
       }
 
-      this.focusIndex = this.focusIndex - 1 >= 0 ? this.focusIndex - 1 : lists.length - 1;
-      const prevIndex = this.focusIndex + 1 > lists.length - 1 ? 0 : this.focusIndex + 1;
+      this.model.focusIndex = this.model.focusIndex - 1 >= 0 ? this.model.focusIndex - 1 : lists.length - 1;
+      const prevIndex = this.model.focusIndex + 1 > lists.length - 1 ? 0 : this.model.focusIndex + 1;
 
       const prevFocusEl = lists[prevIndex];
-      const currentFocusEl = lists[this.focusIndex];
+      const currentFocusEl = lists[this.model.focusIndex];
 
       prevFocusEl.classList.remove('selected');
       currentFocusEl.classList.add('selected');

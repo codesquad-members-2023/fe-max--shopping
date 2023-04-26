@@ -18,7 +18,7 @@ export class SearchLayer extends Component {
               ${searchHistory
                 .map(
                   (item) =>
-                    `<li class="search-bar__result history" data-index="${item.id}">
+                    `<li class="search-bar__result history" data-index="${item.id - 1}">
                       <a href="#">${item.content}</a>
                       <button>
                         <img src="./assets/icons/close.svg" alt="" />
@@ -29,7 +29,7 @@ export class SearchLayer extends Component {
               ${suggestion
                 .map(
                   (item) =>
-                    `<li class="search-bar__result suggestion" data-index="${item.id}">
+                    `<li class="search-bar__result suggestion" data-index="${item.id - 1}">
                       <img src="./assets/icons/arrow-top-right.svg" alt="" />
                       <a href="#">${item.content}</a>
                     </li>`,

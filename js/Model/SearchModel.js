@@ -2,6 +2,7 @@ export class SearchModel {
   constructor() {
     this.observers = [];
     this.inputBarValue = '';
+    this.focusIndex = -1;
     this.searchData = {};
     this.sliderImgDate = {};
     this.sideBarDate = {};
@@ -13,7 +14,7 @@ export class SearchModel {
 
   notifyAll() {
     this.observers.forEach((observer) => {
-      observer.update(this);
+      observer.updateInputBar(this);
     });
   }
 
