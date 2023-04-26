@@ -1,18 +1,18 @@
 export class SearchHistoryManager {
   constructor() {
-    this.history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    this.searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
   }
 
   addSearch(value) {
     if (this.isDuplicate(value)) {
       return;
     } else {
-      this.history.push(value);
-      localStorage.setItem('searchHistory', JSON.stringify(this.history));
+      this.searchHistory.push(value);
+      localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
     }
   }
 
   isDuplicate(value) {
-    return this.history.some(el => el === value);
+    return this.searchHistory.some(el => el === value);
   }
 }

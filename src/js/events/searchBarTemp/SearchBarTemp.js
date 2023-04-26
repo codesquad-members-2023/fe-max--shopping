@@ -80,7 +80,6 @@ export class SearchBarView {
   }
 }
 
-// 컨트롤러 역할
 export class SearchBar {
   constructor(model, searchBarView, searchPanelView) {
     this.model = model;
@@ -143,7 +142,7 @@ export class SearchBar {
         break;
 
       case 'history':
-        let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
         this.model.setHistory(history);
         break;
 
@@ -192,6 +191,8 @@ export class SearchPanelView {
   constructor() {
     this.activeIndex = -1;
     //아래 로컬스토리지 접근 객체와 엮여있어 모델로의 분리를 더 고민해봐야함
+    //LocalStorage 객체는 JavaScript에서 직접 접근할 수 있으므로, 특정 역할에만 위치할 필요는 없지않을까? 그냥 유틸같은 느낌 아닌가?? 
+    //어케분리함..
     this.searchHistoryManager = new SearchHistoryManager();
   }
 
