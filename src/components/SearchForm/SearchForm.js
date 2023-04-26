@@ -22,7 +22,10 @@ class SearchForm extends Component {
     this.autocompletePanel =
       this.shadowRoot.querySelector("autocomplete-panel");
 
-    this.searchFormService = new SearchFormService();
+    this.searchFormService = new SearchFormService({
+      endpoint: "/autocomplete",
+      defaultSearchTerm: "suggestions",
+    });
   }
 
   connectedCallback() {
@@ -30,7 +33,7 @@ class SearchForm extends Component {
 
     searchInput.addEventListener(
       "input",
-      debounce(this.searchInputHandler.bind(this), 1000)
+      debounce(this.searchInputHandler.bind(this), 300)
     );
 
     searchInput.addEventListener(

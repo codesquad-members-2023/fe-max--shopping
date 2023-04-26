@@ -1,7 +1,6 @@
 import "./shared/index.js";
 import "./TopHeader.js";
-import "./SearchForm/SearchForm.js";
-import "./AutocompletePanel.js";
+import "./SearchForm/index.js";
 import "./SideBar/index.js";
 import "./InfiniteCarousel.js";
 import "./CardsPanel.js";

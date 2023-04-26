@@ -1,4 +1,4 @@
-import Component from "./common/Component.js";
+import Component from "../common/Component.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -63,7 +63,7 @@ class AutocompletePanel extends Component {
         link.appendChild(suggestionIcon);
       }
       contentSpan.innerText = content;
-      // link.href = `/search/${content}`; // Link to search page
+      // link.href = `/search?q=${content}`; // link to search page
       autocompleteItem.classList.add("autocomplete-item");
 
       link.appendChild(contentSpan);
