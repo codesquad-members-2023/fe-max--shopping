@@ -6,9 +6,10 @@ export class Store {
   }
 
   saveServerData(data) {
-    this.searchData.history = data.history;
-    this.searchData.suggestions = data.suggestions;
-    this.searchData.autoSuggestions = data.autoSuggestions;
+    this.searchData.searchHistory = data[0].body;
+    this.searchData.suggestion = data[1].body;
+    this.searchData.autoSuggestion = data[2].body;
+
     return this.searchData;
   }
 }
