@@ -1,8 +1,8 @@
-import { debounce } from '../../../../utils/utils.js';
+import { debounce } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
+import { SearchStore } from '../Search/SearchStore.js';
 import SearchBar from './SearchBar.js';
 import { SearchPanel } from './SearchPanel.js';
-import { SearchStore } from '/src/js/domain/Store.js';
 
 export default class Search extends Component {
   constructor(main) {
@@ -41,7 +41,7 @@ export default class Search extends Component {
     const userInput = target.value;
     if (userInput) return;
 
-    const { history, recommend } = this.store;
+    const { history, recommend } = this.store.getRecommend();
     this.searchPanel.render({ history: history, keywords: recommend });
     this.searchPanel.open();
     this.main.onDimmed();
@@ -55,7 +55,8 @@ export default class Search extends Component {
     }
 
     await this.store.requestAutoCompleteWords(userInput, 10);
-    const { autoComplete } = this.store;
+    const { autoComplete } = this.store.getAutoComplete();
+
     this.searchPanel.render({ keywords: autoComplete, history: [] }, { value: userInput });
   }
 
@@ -86,7 +87,7 @@ export default class Search extends Component {
     const userInput = search.value;
     this.store.addSearchWord(userInput);
 
-    const { history, recommend } = this.store;
+    const { history, recommend } = this.store.getRecommend();
     this.searchPanel.render({ history: history, keywords: recommend });
     this.searchBar.clearInputValue();
   }

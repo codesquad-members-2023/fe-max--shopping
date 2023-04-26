@@ -1,6 +1,6 @@
-import { categoryStore } from '../../domain/Store.js';
 import { Component } from '../base/Component.js';
 import Category from './Category.js';
+import { categoryStore } from './categoryStore.js';
 
 export default class CategoryContainer extends Component {
   constructor() {
@@ -42,7 +42,7 @@ class Main extends Component {
   }
 
   getTemplate() {
-    const { mainCategories } = this.store;
+    const mainCategories = this.store.getMainCategory();
     const categoryNodes = mainCategories.map((category) => new Category(category).node);
     return [...categoryNodes];
   }
@@ -69,7 +69,7 @@ class Sub extends Component {
   }
 
   getTemplate(id) {
-    const { subCategories } = this.store;
+    const subCategories = this.store.getSubCategory();
     const details = subCategories[id];
     const categoryNodes = details.map((detail) => new Category(detail).node);
 

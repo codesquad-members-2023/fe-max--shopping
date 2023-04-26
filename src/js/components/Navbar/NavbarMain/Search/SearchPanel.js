@@ -1,4 +1,4 @@
-import { highlightText } from '../../../../utils/utils.js';
+import { highlightText } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
