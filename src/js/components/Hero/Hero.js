@@ -1,4 +1,4 @@
-import { sliderStore } from '../../domain/Store.js';
+import { sliderStore } from '../Hero/sliderStore.js';
 import { Component } from '../base/Component.js';
 import { Slider } from './Slider.js';
 
@@ -18,7 +18,8 @@ export class Hero extends Component {
 
   async initSlider(slideCount, startIndex) {
     await this.store.requestImages(slideCount);
-    const { images } = this.store;
+
+    const images = this.store.getImages();
     this.slider.render(images);
 
     this.currentIndex += startIndex;

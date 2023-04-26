@@ -1,4 +1,4 @@
-import { client } from './client.js';
+import { client } from '/src/js/domain/client.js';
 
 export class SearchStore {
   constructor() {
@@ -41,30 +41,12 @@ export class SearchStore {
   saveLocalStorage() {
     localStorage.setItem('searchHistory', JSON.stringify(this.history));
   }
+
+  getRecommend() {
+    return { history: this.history, recommend: this.recommend };
+  }
+
+  getAutoComplete() {
+    return { autoComplete: this.autoComplete };
+  }
 }
-
-export const categoryStore = {
-  mainCategories: [],
-  subCategories: new Map(),
-
-  async requestMainCategories() {
-    this.mainCategories = await client.fetchCategories();
-  },
-
-  async requestSubCategories() {
-    const subCategoryInfos = await client.fetchSubCategory();
-
-    subCategoryInfos.forEach((info) => {
-      const { id, details } = info;
-      this.subCategories[id] = details;
-    });
-  },
-};
-
-export const sliderStore = {
-  images: [],
-
-  async requestImages(slideCount) {
-    this.images = await client.fetchHeroImages(slideCount);
-  },
-};
