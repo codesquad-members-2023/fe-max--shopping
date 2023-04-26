@@ -108,7 +108,10 @@ export class Search extends Component {
 
     buttons.forEach((button, i) => {
       button.addEventListener("keydown", (e) => {
-        if (e.key === "Tab") return;
+        if (e.key === "Tab") {
+          this.keywords.className = "keywords";
+          return;
+        }
         e.preventDefault();
         switch (e.key) {
           case "ArrowUp":
@@ -221,7 +224,6 @@ export class Search extends Component {
 
       if (e.key === "Tab") {
         this.keywords.className = "keywords";
-        if (button) button.focus();
       }
     });
 

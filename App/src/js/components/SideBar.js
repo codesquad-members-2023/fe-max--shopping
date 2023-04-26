@@ -26,13 +26,22 @@ export class Sidebar extends Component {
       e.stopPropagation();
     });
 
+    const closeButton = this.domNode.querySelector(".close");
+
+    closeButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.toggle();
+    });
+
     const detailNode = this.domNode.querySelector(".detail");
 
     sidebarSubs.forEach((sidebarSub) => {
       sidebarSub.addEventListener("click", async (e) => {
         e.stopPropagation();
+
         const button = e.target.closest("button");
         if (!button) return;
+
         const categoryId = sidebarSub.dataset.category;
         const category = await getCategory(categoryId);
         const details = category["detail"];
@@ -55,6 +64,90 @@ export class Sidebar extends Component {
         });
 
         detailNode.className = "detail active";
+
+        const sideBarItems = inner.querySelectorAll('[tabindex="-1"]');
+        const backButton = detailNode.querySelector(".back");
+
+        sideBarItems.forEach((sideBarItem, i) => {
+          const limit = sideBarItems.length;
+          const prev = sideBarItems[(i + sideBarItems.length - 1) % limit];
+          const next = sideBarItems[(i + 1) % limit];
+
+          sideBarItem.addEventListener("keydown", (e) => {
+            e.preventDefault();
+            if (e.shiftKey && e.key === "Tab") {
+              backButton.focus();
+
+              const backButtonKeydownHandler = (e) => {
+                switch (e.key) {
+                  case "Tab":
+                    e.preventDefault()
+                    sideBarItem.focus();
+                    backButton.removeEventListener(
+                      "keydown",
+                      backButtonKeydownHandler
+                    );
+                    return;
+                  case "Enter":
+                    detailNode.className = "detail";
+                    setTimeout(() => {
+                      button.focus();
+                    }, 300);
+                    backButton.removeEventListener(
+                      "keydown",
+                      backButtonKeydownHandler
+                    );
+                    return;
+                }
+              };
+
+              backButton.addEventListener("keydown", backButtonKeydownHandler);
+
+              return;
+            }
+            switch (e.key) {
+              case "ArrowUp":
+                prev.focus();
+                break;
+              case "ArrowDown":
+                next.focus();
+                break;
+              case "Tab":
+                closeButton.focus();
+                const closeButtonKeydownHandler = (e) => {
+                  e.preventDefault();
+                  if (e.shiftKey && e.key === "Tab") {
+                    sideBarItem.focus();
+                    closeButton.removeEventListener(
+                      "keydown",
+                      closeButtonKeydownHandler
+                    );
+                    return;
+                  }
+                  switch (e.key) {
+                    case "Tab":
+                    case "Enter":
+                      detailsTag.open = false;
+                      this.toggle();
+                      detailNode.className = "detail";
+                      closeButton.removeEventListener(
+                        "keydown",
+                        closeButtonKeydownHandler
+                      );
+                      return;
+                  }
+                };
+
+                closeButton.addEventListener(
+                  "keydown",
+                  closeButtonKeydownHandler
+                );
+            }
+          });
+        });
+        setTimeout(() => {
+          sideBarItems[0].focus();
+        }, 300);
       });
     });
 
@@ -64,10 +157,11 @@ export class Sidebar extends Component {
       detailNode.className = "detail";
     });
 
-    const details = this.domNode.querySelector("details");
-    const detailsSub = details.querySelector(".sidebar__sub");
-    details.addEventListener("click", () => {
-      if (!details.open) {
+    const detailsTag = this.domNode.querySelector("details");
+    const detailsSub = detailsTag.querySelector(".sidebar__sub");
+
+    detailsTag.addEventListener("click", () => {
+      if (!detailsTag.open) {
         setTimeout(() => {
           detailsSub.style.opacity = "1";
         }, 1);
@@ -82,12 +176,6 @@ export class Sidebar extends Component {
       ".sidebar__sub [tabindex='-1']"
     );
 
-    const closeButton = this.domNode.querySelector(".close");
-    closeButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      this.toggle();
-    });
-
     interactiveElements.forEach((elem, i) => {
       const prevIndex =
         (i - 1 + interactiveElements.length) % interactiveElements.length;
@@ -97,8 +185,17 @@ export class Sidebar extends Component {
           case "ArrowUp":
             e.preventDefault();
             e.stopPropagation();
-            interactiveElements[prevIndex].focus();
-            return;
+            if (elem.tagName === "DETAILS") {
+              elem.open = false;
+              setTimeout(() => {
+                detailsSub.style.opacity = "1";
+                interactiveElements[prevIndex].focus();
+              }, 1);
+              return;
+            } else {
+              interactiveElements[prevIndex].focus();
+              return;
+            }
           case "ArrowDown":
             e.preventDefault();
             e.stopPropagation();
@@ -122,14 +219,20 @@ export class Sidebar extends Component {
               e.preventDefault();
               if (e.shiftKey && e.key === "Tab") {
                 elem.focus();
-                closeButton.removeEventHandler(closeButtonHandler);
+                closeButton.removeEventListener(
+                  "keydown",
+                  closeButtonKeyDownHandler
+                );
                 return;
               }
               switch (e.key) {
                 case "Tab":
                 case "Enter":
                   this.toggle();
-                  closeButton.removeEventHandler(closeButtonHandler);
+                  closeButton.removeEventListener(
+                    "keydown",
+                    closeButtonKeyDownHandler
+                  );
                   return;
               }
             };
