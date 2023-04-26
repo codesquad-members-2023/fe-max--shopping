@@ -7,7 +7,7 @@ export const fetchData = async (url, propName) => {
   return data;
 };
 
-const fetchJSON = async (url) => {
+export const fetchJSON = async (url) => {
   const response = await fetch(url);
 
   if (!response.ok) {
