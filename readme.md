@@ -11,6 +11,10 @@
   - [SCSS Modules - `@use` vs `@import`](#scss-modules---use-vs-import)
   - [Elements that are not Suitable for Attaching the Shadow DOM](#elements-that-are-not-suitable-for-attaching-the-shadow-dom)
   - [Dimmed Layer](#dimmed-layer)
+  - [Keyboard Event](#keyboard-event)
+  - [Side Bar](#side-bar)
+  - [SoC](#soc)
+    - [`SearchForm`, `AutocompletePanel`](#searchform-autocompletepanel)
 
 ## Getting Started
 
@@ -204,3 +208,22 @@
   1. Assign ids, to begin with, in the original data.
   2. Use indices to assign ids in the fetched data.
 - Side Bar data does not change often and the number of items is relatively small. Also, the ids are exclusively used for the UI. Therefore, there is really no other reason to assign ids in the data itself. Simply assign and use the indices once the data is fetched.
+
+### SoC
+
+- To what extent, by what standard should components and/or logic be separated?
+- Is it ideal to separate things that, when alteration is needed, alter together at the same time?
+- Am I separating things that only really make sense to be used together?
+- _Think about the use cases of said components and logic rather than trying to separate everything just for the sake of separating or trying to blindly follow an architecture/pattern._
+
+#### `SearchForm`, `AutocompletePanel`
+
+- `AutocompletePanel` requires some sort of input/form from the user that it will base its contents on.
+  - This is provided by `SearchForm` and hence, `AutocompletePanel` if needed, will be solely used for `SearchForm`.
+- Therefore, consider `AutocompletePanel` an inherent part of `SearchForm` and focus on making `SearchForm` as reusable as possible.
+
+##### Implementation
+
+- `SearchFormService` receives an endpoint and a default search term to handle the business logic (fetching, serialize/deserialize, current/previous search term comparison).
+- `AutocompletePanel` State
+  - Search results - handled through `attributeChangedCallback` lifecycle.
