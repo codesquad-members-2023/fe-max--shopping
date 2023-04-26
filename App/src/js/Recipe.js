@@ -206,6 +206,7 @@ export class Recipe {
                 {
                   tagName: "input",
                   attrs: {
+                    list: "keyword-list",
                     type: "text",
                     id: "keyword",
                     name: "keyword",
