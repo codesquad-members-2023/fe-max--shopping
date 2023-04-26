@@ -70,7 +70,7 @@ export class SearchLayer extends Component {
     const $searchForm = document.querySelector('.search-bar__form');
     // const $searchbarInput = document.querySelector('.search-bar__input');
 
-    $searchForm.addEventListener('submit', this.controller.submitHandler);
+    $searchForm.addEventListener('submit', this.controller);
 
     // $searchbarInput.addEventListener('input', debounce(this.inputEventHandler));
   }

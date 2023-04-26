@@ -1,8 +1,20 @@
-export class Store {
+export class SearchModel {
   constructor() {
+    this.observers = [];
+    this.inputBarValue = '';
     this.searchData = {};
     this.sliderImgDate = {};
     this.sideBarDate = {};
+  }
+
+  registerObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  notifyAll() {
+    this.observers.forEach((observer) => {
+      observer.update(this);
+    });
   }
 
   saveServerData(data) {

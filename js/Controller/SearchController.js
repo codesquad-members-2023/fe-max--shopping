@@ -1,13 +1,13 @@
 export class SearchController {
-  constructor(store) {
-    this.store = store;
+  constructor(model) {
+    this.model = model;
     this.API_KEY = 'http://localhost:5050';
   }
 
   fetchData(path) {
     return fetch(`${this.API_KEY}/${path}`) //
       .then((response) => response.json())
-      .then((data) => this.store.saveServerData(data));
+      .then((data) => this.model.saveServerData(data));
   }
 
   putData(path, updatedData) {
@@ -27,8 +27,22 @@ export class SearchController {
       });
   }
 
-  keyboardHandler(e) {
-    const $searchbarInput = this;
+  handleEvent(e) {
+    e.stopPropagation();
+
+    switch (e.type) {
+      case 'keydown':
+        this.keydownHandler(e);
+        break;
+      case 'submit':
+        this.submitHandler(e);
+        break;
+      default:
+        console.log(e.target);
+    }
+  }
+
+  keydownHandler(e) {
     const lists = document.querySelectorAll('.search-bar__result');
 
     if (e.key === 'ArrowDown') {
@@ -40,7 +54,9 @@ export class SearchController {
 
       prevFocusEl.classList.remove('selected');
       currentFocusEl.classList.add('selected');
-      $searchbarInput.value = currentFocusEl.innerText;
+
+      this.model.inputBarValue = currentFocusEl.innerText;
+      this.model.notifyAll();
     }
 
     if (e.key === 'ArrowUp') {
@@ -49,7 +65,9 @@ export class SearchController {
 
         const currentFocusEl = lists[this.focusIndex];
         currentFocusEl.classList.add('selected');
-        $searchbarInput.value = currentFocusEl.innerText;
+
+        this.model.inputBarValue = currentFocusEl.innerText;
+        this.model.notifyAll();
         return;
       }
 
@@ -61,7 +79,9 @@ export class SearchController {
 
       prevFocusEl.classList.remove('selected');
       currentFocusEl.classList.add('selected');
-      $searchbarInput.value = currentFocusEl.innerText;
+
+      this.model.inputBarValue = currentFocusEl.innerText;
+      this.model.notifyAll();
     }
   }
 

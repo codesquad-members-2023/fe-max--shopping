@@ -2,6 +2,12 @@ import { Component } from '../Core/Component.js';
 import { SearchLayer } from './SearchLayer.js';
 
 export class SearchForm extends Component {
+  constructor($target, controller) {
+    super($target, controller);
+    this.inputBar = document.querySelector('.search-bar__input');
+    this.controller.model.registerObserver(this);
+  }
+
   template() {
     return `<form class="search-bar__form" action="">
               <input
@@ -25,6 +31,10 @@ export class SearchForm extends Component {
     new SearchLayer($searchLayer, this.controller);
   }
 
+  update(data) {
+    this.inputBar.value = data.inputBarValue;
+  }
+
   setEvent() {
     const $searchbarInput = document.querySelector('.search-bar__input');
     const $searchLayer = this.$target.querySelector('.search-bar__layer');
@@ -46,6 +56,6 @@ export class SearchForm extends Component {
       }
     });
 
-    $searchbarInput.addEventListener('keydown', this.controller.keyboardHandler);
+    $searchbarInput.addEventListener('keydown', this.controller);
   }
 }

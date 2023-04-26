@@ -2,36 +2,7 @@
   "searchDB": [
     {
       "id": "searchHistory",
-      "body": [
-        {
-          "id": 0,
-          "content": "hello"
-        },
-        {
-          "id": 0,
-          "content": "hi"
-        },
-        {
-          "id": 0,
-          "content": "why"
-        },
-        {
-          "id": 0,
-          "content": "test"
-        },
-        {
-          "id": 0,
-          "content": "안해"
-        },
-        {
-          "id": 0,
-          "content": "putput"
-        },
-        {
-          "id": 0,
-          "content": "ㅗㅈㅁㅁㅁ"
-        }
-      ]
+      "body": []
     },
     {
       "id": "suggestion",
