@@ -4,15 +4,14 @@ import { Component } from '../Core/Component.js';
 export class SearchLayer extends Component {
   init() {
     this.controller
-      .fetchData('searchDB') //
+      .loadInitialData() //
       .then((searchData) => {
-        this.state = searchData;
-        this.render();
+        this.render(searchData);
       });
   }
 
-  template() {
-    const { searchHistory, suggestion } = this.state;
+  template(searchData) {
+    const { searchHistory, suggestion } = searchData;
 
     return `<ul class="search-bar__result-container">
               ${searchHistory

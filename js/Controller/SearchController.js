@@ -2,16 +2,14 @@ export class SearchController {
   constructor(model, fetcher) {
     this.model = model;
     this.fetcher = fetcher;
-    this.API_KEY = 'http://localhost:5050';
     this.HOST_KEY = 'localhost:5050';
+    this.domElements = {};
   }
 
-  // loadSuggestionData(path) {}
-
-  fetchData(path) {
-    return fetch(`${this.API_KEY}/${path}`) //
-      .then((response) => response.json())
-      .then((data) => this.model.saveServerData(data));
+  loadInitialData() {
+    return this.fetcher //
+      .get(this.HOST_KEY, 'searchDB')
+      .then((data) => this.model.saveInitialData(data));
   }
 
   handleEvent(e) {
@@ -40,21 +38,16 @@ export class SearchController {
   }
 
   clickHandler() {
-    const $searchLayer = document.querySelector('.search-bar__layer');
-    const $backdrop = document.querySelector('.modal__backdrop');
-
-    $searchLayer.classList.add('show');
-    $backdrop.classList.add('show');
+    this.domElements.searchLayer.classList.add('show');
+    this.domElements.navBackdrop.classList.add('show');
     this.model.focusIndex = -1;
   }
 
   blurHandler() {
-    const $searchLayer = document.querySelector('.search-bar__layer');
-    const $backdrop = document.querySelector('.modal__backdrop');
     const focusEl = document.querySelector(`[data-index="${this.model.focusIndex}"]`);
 
-    $searchLayer.classList.remove('show');
-    $backdrop.classList.remove('show');
+    this.domElements.searchLayer.classList.remove('show');
+    this.domElements.navBackdrop.classList.remove('show');
     if (focusEl) {
       focusEl.classList.remove('selected');
     }

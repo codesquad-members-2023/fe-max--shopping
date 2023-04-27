@@ -1,8 +1,6 @@
 export class Component {
   $target;
 
-  state;
-
   constructor($target, controller) {
     this.$target = $target;
     this.controller = controller;
@@ -18,11 +16,8 @@ export class Component {
     return ``;
   }
 
-  mount() {}
-
-  render() {
-    this.$target.innerHTML = this.template();
-    this.mount();
+  render(data) {
+    this.$target.innerHTML = this.template(data);
   }
 
   setEvent() {}

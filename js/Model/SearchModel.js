@@ -16,7 +16,7 @@ export class SearchModel {
     });
   }
 
-  saveServerData(data) {
+  saveInitialData(data) {
     this.searchData.searchHistory = data[0].content;
     this.searchData.suggestion = data[1].content;
     this.searchData.autoSuggestion = data[2].content;
