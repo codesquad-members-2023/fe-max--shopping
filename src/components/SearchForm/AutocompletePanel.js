@@ -1,4 +1,4 @@
-import Component from "../common/Component.js";
+import ComponentWithBackDrop from "../common/ComponentWithBackDrop.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -9,12 +9,16 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/AutocompletePanel.css">
 `;
 
-class AutocompletePanel extends Component {
+class AutocompletePanel extends ComponentWithBackDrop {
   constructor() {
     super(template);
     this.autocompleteList = this.shadowRoot.querySelector(".autocomplete-list");
-    this.backDrop = document.querySelector("back-drop");
     this.focusedListItemIdx = -1;
+
+    this.registerCustomEvent("showSelf", {
+      detail: { position: "MAIN" },
+    });
+    this.backDrop.registerListenable(this);
   }
 
   setFocusedListItemIdx(isIncrement) {
@@ -76,16 +80,6 @@ class AutocompletePanel extends Component {
 
   resetList() {
     this.autocompleteList.innerHTML = "";
-  }
-
-  showSelf() {
-    this.classList.add("is-active");
-    this.backDrop.activate({ possessor: this, top: 56, left: 0 });
-  }
-
-  hideSelf() {
-    this.classList.remove("is-active");
-    this.backDrop.deactivate();
   }
 }
 

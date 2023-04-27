@@ -42,6 +42,11 @@ class SearchForm extends Component {
     );
 
     searchInput.addEventListener(
+      "blur",
+      this.searchInputBlurHandler.bind(this)
+    );
+
+    searchInput.addEventListener(
       "keydown",
       this.searchInputKeydownHandler.bind(this)
     );
@@ -69,9 +74,13 @@ class SearchForm extends Component {
       searchTerm !== "" ? searchTerm : ""
     );
 
-    autocompletePanel.showSelf();
+    autocompletePanel.dispatchCustomEvent("showSelf");
     autocompletePanel.setResultsData(autocompleteData);
     autocompletePanel.resetFocusedListItemIdx();
+  }
+
+  searchInputBlurHandler() {
+    this.autocompletePanel.dispatchCustomEvent("hideSelf");
   }
 
   searchInputKeydownHandler(evt) {

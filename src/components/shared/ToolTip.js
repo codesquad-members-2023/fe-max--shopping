@@ -1,4 +1,4 @@
-import Component from "../common/Component.js";
+import ComponentWithBackDrop from "../common/ComponentWithBackDrop.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -10,28 +10,21 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/shared/ToolTip.css">
 `;
 
-export class ToolTip extends Component {
+export class ToolTip extends ComponentWithBackDrop {
   constructor() {
     super(template);
-    this.backDrop = document.querySelector("back-drop");
+
+    const requiresBackDrop = this.classList.contains("dimmed-backdrop");
+    this.registerCustomEvent("showSelf", {
+      detail: { position: "MAIN", noBackDrop: !requiresBackDrop },
+    });
+    this.backDrop.registerListenable(this);
   }
 
   connectedCallback() {
-    if (!this.shadowRoot.host.classList.contains("dimmed-bg")) {
-      setTimeout(this.showSelf.bind(this), 1000);
+    if (!this.classList.contains("dimmed-backdrop")) {
+      setTimeout(() => this.dispatchCustomEvent("showSelf"), 1000);
     }
-  }
-
-  showSelf() {
-    this.shadowRoot.host.classList.add("is-active");
-    if (this.shadowRoot.host.classList.contains("dimmed-bg")) {
-      this.backDrop.activate({ possessor: this, top: 88, left: 0 });
-    }
-  }
-
-  hideSelf() {
-    this.shadowRoot.host.classList.remove("is-active");
-    this.backDrop.deactivate();
   }
 }
 

@@ -1,4 +1,5 @@
-import Component from "../common/Component.js";
+import ComponentWithBackDrop from "../common/ComponentWithBackDrop.js";
+import { BASE_URL } from "../../api/index.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -18,12 +19,16 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/SideBar/SideBar.css"></link>
 `;
 
-class SideBar extends Component {
+class SideBar extends ComponentWithBackDrop {
   constructor() {
     super(template);
     this.menuContainer = this.shadowRoot.querySelector(".menu-container");
     this.closeBtn = this.shadowRoot.querySelector(".close-btn");
-    this.backDrop = document.querySelector("back-drop");
+
+    this.registerCustomEvent("showSelf", {
+      detail: { position: "ENTIRE" },
+    });
+    this.backDrop.registerListenable(this);
   }
 
   async connectedCallback() {
@@ -31,11 +36,13 @@ class SideBar extends Component {
     const parsedMenuData = this.parseMenuData(menuData);
     this.generateMenus(parsedMenuData);
 
-    this.closeBtn.addEventListener("click", this.hideSelf.bind(this));
+    this.closeBtn.addEventListener("click", () => {
+      this.dispatchCustomEvent("hideSelf");
+    });
   }
 
   async fetchMenuData() {
-    const res = await fetch(`http://127.0.0.1:3000/side-bar`);
+    const res = await fetch(`${BASE_URL}/side-bar`);
     return await res.json();
   }
 
@@ -74,16 +81,6 @@ class SideBar extends Component {
     });
 
     return fragment;
-  }
-
-  showSelf() {
-    this.classList.add("is-active");
-    this.backDrop.activate({ possessor: this, top: 0, left: 0 });
-  }
-
-  hideSelf() {
-    this.classList.remove("is-active");
-    this.backDrop.deactivate();
   }
 }
 
