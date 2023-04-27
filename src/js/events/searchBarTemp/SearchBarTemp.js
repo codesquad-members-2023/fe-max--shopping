@@ -7,12 +7,11 @@ import { handleDimming, layerOpenState } from '../../utils/dim.js';
 import { getInputValue } from '../../utils/getInputValue.js';
 import { NUMBER } from '../../constants/number.js';
 
+
 const searchPanel = $('.search-panel');
 const searchBarInput = document.searchForm.searchBar;
 
 export class SearchBarView {
-  constructor() {}
-
   decideSuggestionsRendering(suggestionTemplate, historyTemplate) {
     if (!localStorage.length) {
       this.renderSuggestionsOnly(suggestionTemplate);
@@ -114,7 +113,6 @@ export class SearchBar {
 
     searchPanel.addEventListener('click', e => {
       this.searchPanelView.deleteSearchTerm(e);
-      // this.searchPanelView.keyboardNavigationHandler(e);
       e.stopPropagation();
       this.searchBarView.renderHistoryAndSuggestions(
         this.getHistoryAndSuggestionTemplate()
@@ -190,32 +188,31 @@ export class SearchBar {
 export class SearchPanelView {
   constructor() {
     this.activeIndex = -1;
-    //아래 로컬스토리지 접근 객체와 엮여있어 모델로의 분리를 더 고민해봐야함
-    //LocalStorage 객체는 JavaScript에서 직접 접근할 수 있으므로, 특정 역할에만 위치할 필요는 없지않을까? 그냥 유틸같은 느낌 아닌가??
-    //어케분리함..
+
     this.searchHistoryManager = new SearchHistoryManager();
   }
 
   storeInputTerms(e) {
-    if (e.keyCode !== NUMBER.enterKeyCode) return;
+    if (e.keyCode !== NUMBER.enterKeyCode) {
+      return;
+    }
 
     e.preventDefault();
     const value = e.target.value.trim();
 
-    if (value) {
-      this.searchHistoryManager.addSearch(value);
+    if (!value) {
+      return;
     }
+
+    this.searchHistoryManager.addSearch(value);
   }
 
   deleteSearchTerm(e) {
-    if (e.target.nodeName === 'IMG') {
-      const searchTerm = e.target.closest('li').innerText;
-      // const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-      // const updatedSearchHistory = searchHistory.filter( item => item !== searchTerm );
-      // localStorage.setItem('searchHistory',JSON.stringify(updatedSearchHistory));
-      this.searchHistoryManager.deleteSearch(searchTerm)
-      return true;
+    if (e.target.nodeName !== 'IMG') {
+      return;
     }
+    const searchTerm = e.target.closest('li').innerText;
+    this.searchHistoryManager.deleteSearch(searchTerm);
   }
 
   setActiveClass() {
@@ -244,6 +241,9 @@ export class SearchPanelView {
   }
 
   setInputValue() {
+    if (this.activeIndex === -1) {
+      return;
+    }
     const searchResults = this.getSearchResultLists();
     searchBarInput.value = searchResults[this.activeIndex].innerText;
   }
