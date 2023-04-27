@@ -67,7 +67,7 @@ export class SearchController {
       currentFocusEl.classList.add('selected');
 
       this.model.inputBarValue = currentFocusEl.innerText;
-      this.model.notifyAll();
+      this.model.notifySearchBar();
     }
 
     if (e.key === 'ArrowUp') {
@@ -78,7 +78,7 @@ export class SearchController {
         currentFocusEl.classList.add('selected');
 
         this.model.inputBarValue = currentFocusEl.innerText;
-        this.model.notifyAll();
+        this.model.notifySearchBar();
         return;
       }
 
@@ -92,7 +92,7 @@ export class SearchController {
       currentFocusEl.classList.add('selected');
 
       this.model.inputBarValue = currentFocusEl.innerText;
-      this.model.notifyAll();
+      this.model.notifySearchBar();
     }
   }
 
@@ -105,9 +105,11 @@ export class SearchController {
       content: recentSearchWord,
     };
 
-    const currentHistory = this.model.searchData.searchHistory;
-    currentHistory.push(newData);
-    const reqBody = { id: 'searchHistory', content: currentHistory };
-    this.fetcher.put(this.HOST_KEY, 'searchDB/searchHistory', reqBody);
+    const searchHistoryData = this.model.searchData.searchHistory;
+    searchHistoryData.push(newData);
+    this.model.notifySearchLayer();
+    const reqBody = { id: 'searchHistory', content: searchHistoryData };
+    this.fetcher //
+      .put(this.HOST_KEY, 'searchDB/searchHistory', reqBody);
   };
 }

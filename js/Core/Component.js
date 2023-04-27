@@ -21,4 +21,10 @@ export class Component {
   }
 
   setEvent() {}
+
+  passDomElements(...args) {
+    args.map((el) => {
+      this.controller.domElements[el.id] = el;
+    });
+  }
 }

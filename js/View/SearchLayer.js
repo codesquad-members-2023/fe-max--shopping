@@ -2,6 +2,11 @@ import { Component } from '../Core/Component.js';
 // import { debounce } from './utility.js';
 
 export class SearchLayer extends Component {
+  constructor($target, controller) {
+    super($target, controller);
+    this.controller.model.registerObserver(this);
+  }
+
   init() {
     this.controller
       .loadInitialData() //
@@ -12,29 +17,43 @@ export class SearchLayer extends Component {
 
   template(searchData) {
     const { searchHistory, suggestion } = searchData;
-
     return `<ul class="search-bar__result-container">
-              ${searchHistory
-                .map(
-                  (item) =>
-                    `<li class="search-bar__result history" data-index="${item.id - 1}">
-                      <a href="#">${item.content}</a>
-                      <button>
-                        <img src="./assets/icons/close.svg" alt="" />
-                      </button>  
-                    </li>`,
-                )
-                .join('')} 
-              ${suggestion
-                .map(
-                  (item) =>
-                    `<li class="search-bar__result suggestion" data-index="${item.id - 1}">
-                      <img src="./assets/icons/arrow-top-right.svg" alt="" />
-                      <a href="#">${item.content}</a>
-                    </li>`,
-                )
-                .join('')}
+              ${this.makeRecentHistoryTemplate(searchHistory)}
+              ${this.makeTrendingSuggestionTemplate(suggestion)}
             </ul>`;
+  }
+
+  makeRecentHistoryTemplate(data) {
+    return `${data
+      .map(
+        (item) =>
+          `<li class="search-bar__result recentSearch">
+            <a href="#">${item.content}</a>
+            <button>
+              <img src="./assets/icons/close.svg" alt="" />
+            </button>  
+          </li>`,
+      )
+      .join('')}`;
+  }
+
+  makeTrendingSuggestionTemplate(data) {
+    return `${data
+      .map(
+        (item) =>
+          `<li class="search-bar__result suggestion">
+            <img src="./assets/icons/arrow-top-right.svg" alt="" />
+            <a href="#">${item.content}</a>
+          </li>`,
+      )
+      .join('')}`;
+  }
+
+  makeAutoSuggestionTemplate() {}
+
+  updateLayer(model) {
+    const { searchData } = model;
+    this.render(searchData);
   }
 
   // inputEventHandler = () => {

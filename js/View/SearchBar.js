@@ -24,8 +24,8 @@ export class SearchBar extends Component {
             <div class="search-bar__layer font-BodyMD text-black bg-white" id="searchLayer"></div>`;
   }
 
-  updateInputBar(data) {
-    this.inputBar.value = data.inputBarValue;
+  updateInputBar(model) {
+    this.inputBar.value = model.inputBarValue;
   }
 
   setEvent() {
@@ -38,11 +38,5 @@ export class SearchBar extends Component {
     $searchbarInput.addEventListener('click', this.controller);
     $searchbarInput.addEventListener('blur', this.controller);
     $searchbarInput.addEventListener('keydown', this.controller);
-  }
-
-  passDomElements(...args) {
-    args.map((el) => {
-      this.controller.domElements[el.id] = el;
-    });
   }
 }

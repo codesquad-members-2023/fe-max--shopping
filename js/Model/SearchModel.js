@@ -10,10 +10,12 @@ export class SearchModel {
     this.observers.push(observer);
   }
 
-  notifyAll() {
-    this.observers.forEach((observer) => {
-      observer.updateInputBar(this);
-    });
+  notifySearchBar() {
+    this.observers[0].updateInputBar(this);
+  }
+
+  notifySearchLayer() {
+    this.observers[1].updateLayer(this);
   }
 
   saveInitialData(data) {
