@@ -1,11 +1,11 @@
 import { initMain } from "./components/main";
 import { initNavBar } from "./components/navBar";
-import { initSideBar } from "./components/sideBar";
+import { initSidebar } from "./components/sidebar";
 
 const init = () => {
   initNavBar();
   initMain();
-  initSideBar();
+  initSidebar();
 };
 
 document.addEventListener("DOMContentLoaded", init);

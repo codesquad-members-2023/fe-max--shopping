@@ -1,6 +1,6 @@
-import { SidebarController } from "./sideBarController";
-import { SidebarView } from "./sideBarView";
+import { SidebarController } from "./sidebarController";
+import { SidebarView } from "./sidebarView";
 
-export const initSideBar = () => {
+export const initSidebar = () => {
   new SidebarController(new SidebarView());
 };

@@ -1,9 +1,9 @@
 import { hideElement, showElement } from "../../utils/elementVisibility";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { fetchData } from "../../utils/fetchData";
-import { SidebarView } from "./sideBarView";
 import { $ } from "../../utils/domUtils";
 import { SidebarMenu } from "./types";
+import { SidebarView } from "./sidebarView";
 
 export class SidebarController {
   private view: SidebarView;
@@ -17,7 +17,7 @@ export class SidebarController {
   }
 
   private fetchSidebarMenu(): Promise<SidebarMenu[]> {
-    const url = new URL("side_bar_menu", BASE_URL);
+    const url = new URL("sidebar_menu", BASE_URL);
 
     return fetchData(url);
   }
@@ -33,7 +33,7 @@ export class SidebarController {
       return;
     }
 
-    const isMenuItemClick = li.classList.contains("side-bar__menu-item");
+    const isMenuItemClick = li.classList.contains("sidebar__menu-item");
 
     if (isMenuItemClick && li.dataset.id != null) {
       const menuId = li.dataset.id;
@@ -44,18 +44,18 @@ export class SidebarController {
       });
     }
 
-    const isViewAllButtonClick = li.classList.contains("side-bar__view-all-button");
-    const isHideButtonClick = li.classList.contains("side-bar__hide-button");
+    const isViewAllButtonClick = li.classList.contains("sidebar__view-all-button");
+    const isHideButtonClick = li.classList.contains("sidebar__hide-button");
 
     if (isViewAllButtonClick) {
-      const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+      const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       showElement($hiddenMenuContainer);
 
       return;
     }
 
     if (isHideButtonClick) {
-      const $hiddenMenuContainer = $(".side-bar__hidden-menu-container");
+      const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       hideElement($hiddenMenuContainer);
 
       return;
@@ -63,24 +63,24 @@ export class SidebarController {
   }
 
   private async fetchMenuDetailData(id: string) {
-    return fetchData(`${BASE_URL}/side_bar_menu_details/${id}`);
+    return fetchData(`${BASE_URL}/sidebar_menu_details/${id}`);
   }
 
   private renderDetailView(data: SidebarMenu) {
-    const $menuDetailContainer = $(".side-bar__menu-detail-container");
+    const $menuDetailContainer = $(".sidebar__menu-detail-container");
     const component = this.view.createMenuComponent(data);
 
     $menuDetailContainer.innerHTML = component;
   }
 
   private moveDetailView() {
-    const $menuContainer = $(".side-bar__menu-container");
+    const $menuContainer = $(".sidebar__menu-container");
 
     $menuContainer.classList.add("detail-view");
   }
 
   private moveMenuView() {
-    const $menuContainer = $(".side-bar__menu-container");
+    const $menuContainer = $(".sidebar__menu-container");
 
     $menuContainer.classList.remove("detail-view");
   }

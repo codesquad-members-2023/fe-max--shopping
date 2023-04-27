@@ -1,5 +1,5 @@
 {
-  "side_bar_menu": [
+  "sidebar_menu": [
     {
       "title": "디지털 콘텐츠 및 기기",
       "menu": [
@@ -37,7 +37,7 @@
     }
   ],
 
-  "side_bar_menu_details": [
+  "sidebar_menu_details": [
     { "id": 1, "title": "Amazon Musics", "menu": [] },
     { "id": 2, "title": "Kindle E-Reader 및 도서", "menu": [] },
     { "id": 3, "title": "안드로이드 앱스토어", "menu": [] },

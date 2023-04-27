@@ -7,5 +7,5 @@ export const Z_INDEX = {
   MODAL: 300,
   NAV_BAR: 400,
   SEARCH_SUGGESTION: 500,
-  SIDE_BAR: 600,
+  SIDEBAR: 600,
 };
