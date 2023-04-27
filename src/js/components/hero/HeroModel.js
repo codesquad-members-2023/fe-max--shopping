@@ -1,4 +1,4 @@
-import { API_URL } from '../../utils/constants.js';
+import { fetchData } from '../../utils/dataUtils.js';
 
 export class HeroModel {
   constructor() {
@@ -7,8 +7,7 @@ export class HeroModel {
   }
 
   fetchImages(callback) {
-    fetch(`${API_URL}carouselImages`)
-      .then((res) => res.json())
+    fetchData('carouselImages')
       .then((items) => {
         this.getValidIndex(items.length);
         this.updateImages(items);
