@@ -1,7 +1,6 @@
-import { renderSideBar } from "./sideBarController";
-import { addSideBarEvent } from "./sideBarView";
+import { SidebarController } from "./sideBarController";
+import { SidebarView } from "./sideBarView";
 
 export const initSideBar = () => {
-  renderSideBar() //
-    .then(addSideBarEvent);
+  new SidebarController(new SidebarView());
 };
