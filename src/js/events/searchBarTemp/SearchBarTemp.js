@@ -91,9 +91,9 @@ export class SearchBar {
     searchBarInput.addEventListener('click', e => {
       this.searchBarView.decideSuggestionsRendering(
         this.getSuggestionTemplate(),
-        this.getHistoryAndSuggestionTemplate(),
+        this.getHistoryAndSuggestionTemplate()
       );
-      this.searchPanelView.toggleSearchPanel(e, true)
+      this.searchPanelView.toggleSearchPanel(e, true);
     });
 
     document.addEventListener('click', e => {
@@ -114,7 +114,7 @@ export class SearchBar {
 
     searchPanel.addEventListener('click', e => {
       this.searchPanelView.deleteSearchTerm(e);
-      this.searchPanelView.keyboardNavigationHandler(e);
+      // this.searchPanelView.keyboardNavigationHandler(e);
       e.stopPropagation();
       this.searchBarView.renderHistoryAndSuggestions(
         this.getHistoryAndSuggestionTemplate()
@@ -191,36 +191,29 @@ export class SearchPanelView {
   constructor() {
     this.activeIndex = -1;
     //아래 로컬스토리지 접근 객체와 엮여있어 모델로의 분리를 더 고민해봐야함
-    //LocalStorage 객체는 JavaScript에서 직접 접근할 수 있으므로, 특정 역할에만 위치할 필요는 없지않을까? 그냥 유틸같은 느낌 아닌가?? 
+    //LocalStorage 객체는 JavaScript에서 직접 접근할 수 있으므로, 특정 역할에만 위치할 필요는 없지않을까? 그냥 유틸같은 느낌 아닌가??
     //어케분리함..
     this.searchHistoryManager = new SearchHistoryManager();
   }
 
   storeInputTerms(e) {
     if (e.keyCode !== NUMBER.enterKeyCode) return;
-    if (e.keyCode === NUMBER.enterKeyCode) {
-      e.preventDefault();
-      const value = e.target.value.trim();
 
-      if (value) {
-        this.searchHistoryManager.addSearch(value);
-      }
+    e.preventDefault();
+    const value = e.target.value.trim();
+
+    if (value) {
+      this.searchHistoryManager.addSearch(value);
     }
   }
 
   deleteSearchTerm(e) {
     if (e.target.nodeName === 'IMG') {
       const searchTerm = e.target.closest('li').innerText;
-      const searchHistory =
-        JSON.parse(localStorage.getItem('searchHistory')) || [];
-      const updatedSearchHistory = searchHistory.filter(
-        item => item !== searchTerm
-      );
-      localStorage.setItem(
-        'searchHistory',
-        JSON.stringify(updatedSearchHistory)
-      );
-
+      // const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+      // const updatedSearchHistory = searchHistory.filter( item => item !== searchTerm );
+      // localStorage.setItem('searchHistory',JSON.stringify(updatedSearchHistory));
+      this.searchHistoryManager.deleteSearch(searchTerm)
       return true;
     }
   }
@@ -250,9 +243,9 @@ export class SearchPanelView {
     this.setInputValue();
   }
 
-  setInputValue(){
+  setInputValue() {
     const searchResults = this.getSearchResultLists();
-    searchBarInput.value = searchResults[this.activeIndex].innerText
+    searchBarInput.value = searchResults[this.activeIndex].innerText;
   }
 
   handleArrowDown() {
@@ -266,8 +259,8 @@ export class SearchPanelView {
 
   handleArrowUp() {
     const searchResults = this.getSearchResultLists();
-
     this.activeIndex -= 1;
+
     if (this.activeIndex < 0) {
       this.activeIndex = searchResults.length - 1;
     }
@@ -278,8 +271,8 @@ export class SearchPanelView {
   }
 
   toggleSearchPanel(e, isPanelOpen) {
-    console.log("불렷음");
     layerOpenState.searchPanel = isPanelOpen;
+
     if (isPanelOpen) {
       searchPanel.classList.remove('hidden');
       handleDimming();
