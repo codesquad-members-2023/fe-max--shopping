@@ -56,6 +56,23 @@
     - [x] Search bar grows when vw >= 1120px.
 - [x] Hero Infinite Carousel
   - [x] Automatically move to next slide after 10s of no interaction.
+- [x] Search Form
+  - [x] Fetch autocomplete data
+  - [x] Autocomplete Panel
+    - [x] Use up/down arrows to navigate autocomplete options.
+- [ ] Side Bar
+  - [x] Open when burger button on sub nav is clicked.
+  - [x] Fetch contents from server.
+  - [ ] Main Menu
+    - [x] Map main menu contents to corresponding sub menus.
+    - [ ] Compressed portion of contents
+  - [x] Sub Menus
+- [x] Back Drop (dimmed layer)
+- [ ] Server
+  - [x] Hero images endpoint
+  - [x] Card images endpoint
+  - [x] Search autocomplete endpoint
+  - [x] Side bar contents endpoint
 
 ## Dev Log
 
@@ -195,6 +212,21 @@
 - Any component that needs a backdrop will have a reference to that `back-drop` component.
 - Set the desired position and height of the backdrop when in need.
 
+#### Ver. 3
+
+- **Approach**
+  - Make `back-drop` reactive instead of passive.
+    - i.e. `back-drop` activates/deactivates based on external events in components that use `back-drop` but those components are unaware of `back-drop`.
+- **Steps**
+  - Register custom events (`"showSelf"`, `"hideSelf"`).
+  - In `BackDrop`, loop through its _listenables_ and for each listenable, add event listeners to those custom events (and while doing so, include its backdrop logic - activate/deactivate).
+  - A `ComponentWithBackDrop` component dispatches the custom event to itself when needed --> `BackDrop` activates/deactivates based on the custom event that occured in itself.
+    - `ComponentWithBackDrop` components are unaware of `BackDrop`.
+- **Save all instances of `ComponentWithBackDrop` in a static property.**
+  - Use this static property to close all instances that are not currently being activated.
+  - Hence, at any point in time, there can only be one `ComponentWithBackDrop` that is showing.
+  - No need to handle z-index anymore.
+
 ### Keyboard Event
 
 - When typing in Korean, the last character stays in "composing" state.
@@ -211,7 +243,7 @@
 
 ### SoC
 
-- To what extent, by what standard should components and/or logic be separated?
+- To what extent and by what standard should components and/or logic be separated?
 - Is it ideal to separate things that, when alteration is needed, alter together at the same time?
 - Am I separating things that only really make sense to be used together?
 - _Think about the use cases of said components and logic rather than trying to separate everything just for the sake of separating or trying to blindly follow an architecture/pattern._
