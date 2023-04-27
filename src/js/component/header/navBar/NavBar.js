@@ -4,8 +4,8 @@ import { Cart } from "./Cart.js";
 import { Login } from "./Login.js";
 import { Mypage } from "./Mypage.js";
 import { Nation } from "./Nation.js";
-import { SearchBar } from "./SearchBar.js";
 import { ShippingAddress } from "./ShippingAddress.js";
+import { SearchBar } from "./searchBar/SearchBar.js";
 
 export class NavBar extends Base {
   constructor(observer) {
@@ -25,7 +25,7 @@ export class NavBar extends Base {
     this.setChildren(
       this.logoNode,
       this.shippingAddress,
-      this.searchBar,
+      this.searchBar.view,
       this.nation,
       this.login,
       this.mypage,

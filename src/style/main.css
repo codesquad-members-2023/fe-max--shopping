@@ -531,7 +531,7 @@
   letter-spacing: -0.06em;
 }
 
-#SearchBarLayer {
+#searchBarLayer {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -547,7 +547,7 @@
   border-radius: 4px;
   z-index: 2;
 }
-#SearchBarLayer .keywordList {
+#searchBarLayer .keywordList {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -563,7 +563,7 @@
   line-height: 160%;
   letter-spacing: -0.03em;
 }
-#SearchBarLayer .historyList {
+#searchBarLayer .historyList {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -581,7 +581,7 @@
   line-height: 160%;
   letter-spacing: -0.03em;
 }
-#SearchBarLayer .autoCompletList {
+#searchBarLayer .autoCompletList {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -596,18 +596,18 @@
   line-height: 160%;
   letter-spacing: -0.03em;
 }
-#SearchBarLayer .selected {
+#searchBarLayer .selected {
   background-color: var(--gray100);
 }
-#SearchBarLayer .historyRemoveBtn {
+#searchBarLayer .historyRemoveBtn {
   background: none;
   border: none;
 }
-#SearchBarLayer .historyRemove {
+#searchBarLayer .historyRemove {
   width: 16px;
   height: 16px;
 }
-#SearchBarLayer .highlight {
+#searchBarLayer .highlight {
   color: var(--secondary-purple);
 }
 
