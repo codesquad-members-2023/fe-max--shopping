@@ -106,9 +106,7 @@ export class Search extends Component {
   keywordsItemsAddKeydownEvent = async () => {
     const items = this.ul.querySelectorAll("li");
     const buttons = this.ul.querySelectorAll("button");
-
     const limit = buttons.length;
-
     buttons.forEach((button, i) => {
       button.addEventListener("keydown", (e) => {
         if (e.key === "Tab") {

@@ -16,6 +16,7 @@ export class Main extends Component {
 
     addEvent("mainDim", this.dim.bind(this));
     addEvent("mainTurnUp", this.turnUp.bind(this));
+
   }
 
   dim() {
