@@ -17,4 +17,8 @@ export class SearchBoxView {
   getElement() {
     return this.wrapper;
   }
+
+  getInputBox() {
+    return this.inputBox;
+  }
 }
