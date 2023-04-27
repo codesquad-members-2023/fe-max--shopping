@@ -33,7 +33,7 @@ export class SideBarModel {
     this.data.digital = obj.digital
     this.data.shopping = obj.shopping
     this.data.collapsible = obj.collapsible
-    return this.data 
+    // return this.data 
   }
 
   getJsonData() {

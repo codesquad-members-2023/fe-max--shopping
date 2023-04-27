@@ -50,7 +50,7 @@ export class SideBar {
   init() {
     this.view.toggleSidebar();
 
-    const jsonData = this.model.getJsonData();
+    const jsonData = this.model.getJsonData()
     this.view.renderInitialMenu(jsonData);
 
     sideViewAll.addEventListener('click', () => {
@@ -63,21 +63,26 @@ export class SideBar {
     });
   }
 
-  async fetchJson() {
-    const response = await fetch(`${URL.jsonBase}/${PATH.side}`);
-    const fetchedJson = await response.json();
-    return fetchedJson;
+  fetchJson() {
+    return fetch(`${URL.jsonBase}/${PATH.side}`).then(response => {
+      if (!response.ok) throw new Error(response.statusText);
+      return response.json();
+    });
   }
 
-  async setObj() {
-    this.model.setJsonData(await this.fetchJson());
+  setObj() {
+    return this.fetchJson().then(result => {
+      return this.model.setJsonData(result);
+    });
   }
-
+  
   getObject(type) {
     return this.fetchJson().then(result => {
       return result[type];
     });
   }
+
+
 
   // getObject(type) {
   //   return this.jsonFetcher.getData().then(result => {
@@ -110,10 +115,11 @@ export class SideBarView {
     parentNode.innerHTML = template;
   }
 
-  renderInitialMenu(jsonData) {
-    const { digital, shopping } = jsonData;
-    console.log(digital);
-    console.log(shopping);
+  async renderInitialMenu(jsonData){
+    console.log(jsonData);
+    console.log(await jsonData);
+    const a = await jsonData;
+    console.log(a.digital);
   }
 
   expandMenu() {
