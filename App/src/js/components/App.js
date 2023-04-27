@@ -1,9 +1,7 @@
-import { Recipe } from "../Recipe.js";
+import { AppRecipe } from "../recipes/AppRecipe.js";
 import {
   addComponent,
-  getAccountRecipe,
-  registerRecipe,
-} from "../util/factory.js";
+} from "../utils/factory.js";
 
 import { Component } from "./Component.js";
 import { Footer } from "./Footer.js";
@@ -38,29 +36,20 @@ export class App extends Component {
     this.domNode = document.querySelector("#app");
 
     registerComponent();
-    registerRecipe(new Recipe(state));
 
-    const { header, sidebar, main, footer } = getAccountRecipe();
-
+    this.recipe = AppRecipe(state);
     this.children = [];
 
-    [header, sidebar, main, footer].forEach(getRecipe => {
-      this.appendChildComponent(getRecipe());
-    })
-    
-    this.changeSubComponent();
+    Object.values(this.recipe).forEach((recipe) => {
+      this.appendChildComponent(recipe);
+    });
 
-    this.pageLayout = {
-      banner: this.children[0],
-      sideBar: this.children[1],
-      main: this.children[2],
-      footer: this.children[3],
-    };
+    this.changeSubComponent();
   }
 
   onload() {
-    for (const [name, page] of Object.entries(this.pageLayout)) {
-      page.load();
-    }
+    this.children.forEach((child) => {
+      child.load();
+    });
   }
 }

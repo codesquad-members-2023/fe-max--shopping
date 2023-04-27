@@ -1,13 +1,13 @@
-import { getCategory } from "../util/apiFetcher.js";
-import { addEvent, findEvent, getAccountRecipe } from "../util/factory.js";
-import { recipeToComponent } from "../util/recipeToComponent.js";
+import { SidebarDetailRecipe } from "../recipes/sidebar/SidebarDetailRecipe.js";
+import { getCategory } from "../utils/apiFetcher.js";
+import { addEvent, findEvent } from "../utils/factory.js";
+import { recipeToComponent } from "../utils/recipeToComponent.js";
 import { Component } from "./Component.js";
 
 export class Sidebar extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
   }
 
   setEvent() {
@@ -51,7 +51,7 @@ export class Sidebar extends Component {
         if (!detail) return;
 
         const temp = recipeToComponent(
-          getAccountRecipe().sidebarDetail(detail)
+          SidebarDetailRecipe(detail)
         ).domNode;
 
         const tempInner = temp.querySelector(".inner");
@@ -81,7 +81,7 @@ export class Sidebar extends Component {
               const backButtonKeydownHandler = (e) => {
                 switch (e.key) {
                   case "Tab":
-                    e.preventDefault()
+                    e.preventDefault();
                     sideBarItem.focus();
                     backButton.removeEventListener(
                       "keydown",

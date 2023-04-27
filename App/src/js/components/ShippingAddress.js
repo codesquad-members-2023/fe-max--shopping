@@ -1,11 +1,10 @@
-import { findEvent } from "../util/factory.js";
+import { findEvent } from "../utils/factory.js";
 import { Component } from "./Component.js";
 
 export class ShippingAddress extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
   }
 
   setEvent() {

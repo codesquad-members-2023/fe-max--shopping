@@ -1,25 +1,27 @@
+import { KeywordListItemRecipe } from "../recipes/header/KeywordListItemRecipe.js";
+import { KeywordsItemRecipe } from "../recipes/header/KeywordsItemRecipe.js";
+import { KeywordsLogItemRecipe } from "../recipes/header/KeywordsLogItemRecipe.js";
+import { KeywordsRecommendItemRecipe } from "../recipes/header/KeywordsRecommendItemRecipe.js";
 import {
   addKeyword,
   checkKeyword,
   getAutoCompletedKeywords,
   getRandomKeywords,
-} from "../util/apiFetcher.js";
+} from "../utils/apiFetcher.js";
 
 import {
   getLogKeywords,
   delLogKeyword,
-  getAccountRecipe,
   addLogKeyword,
-} from "../util/factory.js";
+} from "../utils/factory.js";
 
-import { recipeToComponent } from "../util/recipeToComponent.js";
+import { recipeToComponent } from "../utils/recipeToComponent.js";
 import { Component } from "./Component.js";
 
 export class Search extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
   }
 
   addRandomSearchKeywords = async (startIndex) => {
@@ -28,15 +30,16 @@ export class Search extends Component {
       MAX_KEYWORD_COUNT - startIndex
     );
 
+
     randomKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       this.keywordList.appendChild(keywordListLi);
 
       const keywordsLi = recipeToComponent(
-        getAccountRecipe().keywordsRecommendItem({
+        KeywordsRecommendItemRecipe({
           index: startIndex + i + 1,
           textContent: keyword,
         })
@@ -55,11 +58,11 @@ export class Search extends Component {
   addLogKeywords = (logKeywords) => {
     logKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       const keywordsLogItem = recipeToComponent(
-        getAccountRecipe().keywordsLogItem({
+        KeywordsLogItemRecipe({
           index: i + 1,
           textContent: keyword,
         })
@@ -163,7 +166,7 @@ export class Search extends Component {
     );
     autoCompletedKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       this.keywordList.appendChild(keywordListLi);
@@ -171,7 +174,7 @@ export class Search extends Component {
       const children = this.keywordToKeywordListItemChildren(keyword);
 
       const keywordsLi = recipeToComponent(
-        getAccountRecipe().keywordsItem({
+        KeywordsItemRecipe({
           index: i + 1,
           children,
         })
