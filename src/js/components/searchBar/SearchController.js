@@ -8,14 +8,12 @@ export class SearchController {
   }
 
   init() {
-    this.updateView();
+    this.view.render();
   }
 
   setEvent() {
-
-  }
-
-  updateView() {
-    this.view.render();
+    this.view.inputBox.addEventListener('focus', () => {
+      this.model.fetchDefaultData((...suggestions) => {this.view.updateView(...suggestions)});
+    });
   }
 }
