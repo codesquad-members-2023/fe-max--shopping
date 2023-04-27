@@ -1,30 +1,17 @@
 export class SearchController {
-  constructor(model) {
+  constructor(model, fetcher) {
     this.model = model;
+    this.fetcher = fetcher;
     this.API_KEY = 'http://localhost:5050';
+    this.HOST_KEY = 'localhost:5050';
   }
+
+  // loadSuggestionData(path) {}
 
   fetchData(path) {
     return fetch(`${this.API_KEY}/${path}`) //
       .then((response) => response.json())
       .then((data) => this.model.saveServerData(data));
-  }
-
-  putData(path, updatedData) {
-    return fetch(`${this.API_KEY}/${path}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: 'searchHistory',
-        body: updatedData,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
   }
 
   handleEvent(e) {
@@ -125,9 +112,9 @@ export class SearchController {
       content: recentSearchWord,
     };
 
-    const currentHistory = this.store.searchData.searchHistory;
+    const currentHistory = this.model.searchData.searchHistory;
     currentHistory.push(newData);
-
-    this.putData('searchDB/searchHistory', currentHistory);
+    const reqBody = { id: 'searchHistory', content: currentHistory };
+    this.fetcher.put(this.HOST_KEY, 'searchDB/searchHistory', reqBody);
   };
 }

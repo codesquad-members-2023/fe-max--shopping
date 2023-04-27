@@ -38,18 +38,18 @@ export class SearchLayer extends Component {
             </ul>`;
   }
 
-  inputEventHandler = () => {
-    const $searchbarInput = document.querySelector('.search-bar__input');
-    const inputValue = $searchbarInput.value;
+  // inputEventHandler = () => {
+  //   const $searchbarInput = document.querySelector('.search-bar__input');
+  //   const inputValue = $searchbarInput.value;
 
-    if (inputValue === '') {
-      this.render();
-      return;
-    }
-    this.getData('autoSuggestions').then((autoSuggestionData) => {
-      this.renderAutoSuggestion(autoSuggestionData, inputValue);
-    });
-  };
+  //   if (inputValue === '') {
+  //     this.render();
+  //     return;
+  //   }
+  //   this.getData('autoSuggestions').then((autoSuggestionData) => {
+  //     this.renderAutoSuggestion(autoSuggestionData, inputValue);
+  //   });
+  // };
 
   // renderAutoSuggestion(data, prefix) {
   //   const resultList = document.querySelector('.search-bar__result-container');

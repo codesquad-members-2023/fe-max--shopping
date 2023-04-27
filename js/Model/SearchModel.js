@@ -4,8 +4,6 @@ export class SearchModel {
     this.inputBarValue = '';
     this.focusIndex = -1;
     this.searchData = {};
-    this.sliderImgDate = {};
-    this.sideBarDate = {};
   }
 
   registerObserver(observer) {
@@ -19,9 +17,9 @@ export class SearchModel {
   }
 
   saveServerData(data) {
-    this.searchData.searchHistory = data[0].body;
-    this.searchData.suggestion = data[1].body;
-    this.searchData.autoSuggestion = data[2].body;
+    this.searchData.searchHistory = data[0].content;
+    this.searchData.suggestion = data[1].content;
+    this.searchData.autoSuggestion = data[2].content;
 
     return this.searchData;
   }

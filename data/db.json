@@ -2,11 +2,11 @@
   "searchDB": [
     {
       "id": "searchHistory",
-      "body": []
+      "content": []
     },
     {
       "id": "suggestion",
-      "body": [
+      "content": [
         {
           "id": 1,
           "content": "드라이기"
@@ -51,7 +51,7 @@
     },
     {
       "id": "autoSuggestion",
-      "body": [
+      "content": [
         {
           "id": 1,
           "content": "강아지 자동 급식기"
