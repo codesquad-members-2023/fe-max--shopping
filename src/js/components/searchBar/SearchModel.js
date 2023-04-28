@@ -1,25 +1,33 @@
-import { fetchDataAll } from '../../utils/dataUtils.js';
-
 export class SearchModel {
   constructor() {
     this.searchText = '';
     this.recentSearches = [];
     this.recommendSearches = [];
+    this.autoCompleteSearches = [];
+    this.onChangedCallbacks = {};
   }
 
-  get SearchText() {
-    return this.searchText;
+  getRecentSearches() {
+    return [...this.recentSearches];
   }
 
-  set SearchText(value) {
-    this.searchKeyword = value;
+  getRecommendSearches() {
+    return [...this.recommendSearches];
   }
 
-  fetchDefaultData(updateView) {
-    fetchDataAll('recentSearches', 'recommends')
+  getAutoCompleteSearches() {
+    return [...this.autoCompleteSearches];
+  }
+
+  onChanged(name, callback) {
+    this.onChangedCallbacks[name] = callback;
+  }
+
+  updateData(callback) {
+    this.onChangedCallbacks.defaultSuggestions()
     .then((data) => {
       [this.recentSearches, this.recommendSearches] = data;
-      updateView(this.recentSearches, this.recommendSearches);
     })
+    .then(callback);
   }
 }
