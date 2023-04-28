@@ -10,11 +10,12 @@
   - [Web Components and SCSS](#web-components-and-scss)
   - [SCSS Modules - `@use` vs `@import`](#scss-modules---use-vs-import)
   - [Elements that are not Suitable for Attaching the Shadow DOM](#elements-that-are-not-suitable-for-attaching-the-shadow-dom)
-  - [Dimmed Layer](#dimmed-layer)
+  - [Dimmed Layer/Backdrop](#dimmed-layerbackdrop)
   - [Keyboard Event](#keyboard-event)
   - [Side Bar](#side-bar)
   - [SoC](#soc)
     - [`SearchForm`, `AutocompletePanel`](#searchform-autocompletepanel)
+  - [Reactive Programming](#reactive-programming)
 
 ## Getting Started
 
@@ -199,7 +200,7 @@
 - Elements related to headings, tables, form, img, inline elements (Ex: `a`, `span`).
 - The Shadow DOM can be attached to any HTML tag. However, attaching it to one of these elements may not make sense and lead to displacements.
 
-### Dimmed Layer
+### Dimmed Layer/Backdrop
 
 #### Ver. 1
 
@@ -259,3 +260,11 @@
 - `SearchFormService` receives an endpoint and a default search term to handle the business logic (fetching, serialize/deserialize, current/previous search term comparison).
 - `AutocompletePanel` State
   - Search results - handled through `attributeChangedCallback` lifecycle.
+
+### Reactive Programming
+
+- **Objective:** build self-responsible modules that are focused on their own functionality rather than changing external state. —> Separation of Concerns
+- Ex: whenever a `ComponentWithBackDrop` shows itself, activate the BackDrop component.
+  - The position of the arrow’s tail represents the place of invocation.
+  - Traditionally, the arrow’s tail is directly at the source itself. However, in reactive programming, the arrow's tail is not directly at the source. The source is unaware that it is triggering the arrow, and hence, also unaware of the arrow's target.
+  - [`BackDrop`](#ver-3).
