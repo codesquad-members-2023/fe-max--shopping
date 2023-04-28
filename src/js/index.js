@@ -1,40 +1,28 @@
 import { initModal } from '../js/events/initModal.js';
 import { initHeroSlide } from '../js/events/initHeroSlide.js';
-// import { SearchBar } from '../js/events/search/SearchBar.js';
-import { SideBar } from '../js/events/sideBar/SideBar.js';
 
 
-// import { TSearchBar,Model } from './events/searchBarTemp/TSearchBar.js';
-import { SearchBarView, SearchBar, SearchPanelView} from "./events/searchBarTemp/SearchBarTemp.js";
-import { SearchBarModel } from "../js/events/searchBarTemp/SearchBarModel.js";
-// import {
-//   TSideBar,
-//   Model,
-//   View,
-// } from '../js/events/sideBarViewStoreTemp/TView1.js';
-import { URL } from './constants/path.js';
+import { SearchBar } from "../js/events/searchBarTemp/SearchBarTemp.js";
+import { SearchPanelView } from "./events/searchBarTemp/SearchPanelView.js";
+import { SearchBarView } from "../js/events/searchBarTemp/SearchBarView.js";
+import { SearchBarModel } from "./events/searchBarTemp/SearchBarModel.js";
+
+import { SideBar, SideBarView } from "../js/events/sideBarTemp/SideBarTemp.js";
+import { SideBarModel } from "../js/events/sideBarTemp/SideBarModel.js";
 
 const init = async () => {
   initHeroSlide();
-  // const searchBar = new SearchBar();
-  // searchBar.initSearchBar();
 
-  const model = new SearchBarModel();
+  const searchBarModel = new SearchBarModel();
   const searchBarView = new SearchBarView();
   const searchPanelView = new SearchPanelView();
-  const searchBar = new SearchBar(model, searchBarView, searchPanelView);
+  const searchBar = new SearchBar(searchBarModel, searchBarView, searchPanelView);
   searchBar.init()
 
-
-  const sideBar = new SideBar();
-  sideBar.initSideBar();
-
-
-  /* 추후 개발을 위해 주석 */
-  // const model = new Model(URL.jsonBase);
-  // const view = new View();
-  // const tsideBar = new TSideBar(model, view);
-  // tsideBar.init()
+  const sideBarModel = new SideBarModel();
+  const sideBarview = new SideBarView();
+  const sideBar = new SideBar(sideBarModel, sideBarview);
+  sideBar.init()
 
   await initModal();
 };
