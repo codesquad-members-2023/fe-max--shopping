@@ -56,8 +56,7 @@ export class SearchPanel extends Component {
   }
 
   getAllHistoryTemplate(history) {
-    const historyInfo = Object.entries(history).slice(-5);
-    const historyTemplate = historyInfo.reduce((acc, cur) => {
+    const historyTemplate = history.reduce((acc, cur) => {
       const historyId = cur[0];
       const historyWord = cur[1];
       return acc + this.getHistoryTemplate(historyId, historyWord);

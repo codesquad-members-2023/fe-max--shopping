@@ -49,7 +49,10 @@ export default class SearchModel {
   }
 
   getRecommend() {
-    return { history: this.history, recommend: this.recommend };
+    return {
+      history: Object.entries(this.history).slice(-5).toReversed(),
+      recommend: this.recommend,
+    };
   }
 
   getAutoComplete() {
