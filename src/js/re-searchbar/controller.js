@@ -5,7 +5,8 @@ export const controller = {
   async init() {
     await this.fetchData();
     view.handleToggleSidebar = this.handleToggleSidebar.bind(this);
-
+    view.handleMoveSubSidebar = this.handleMoveSubSidebar.bind(this);
+    view.handleMoveMainSidebar = this.handleMoveMainSidebar.bind(this);
     view.on();
   },
 
@@ -19,5 +20,24 @@ export const controller = {
   handleToggleSidebar() {
     view.toggleSidebar(store.isSidebarOpen);
     store.toggleSidebar();
+  },
+
+  handleMoveSubSidebar(e) {
+    const selectedItemInfo = view.getSelectedItemInfo(e);
+    if (!selectedItemInfo) return;
+
+    store.setSelectedCategory(selectedItemInfo);
+    view.renderSubSideBar({
+      title: selectedItemInfo.category,
+      category: store.getSeletedCategory(),
+    });
+
+    view.toggleSubSidebar(store.isSubSidebarOpen);
+    store.toggleSubSidebar();
+  },
+
+  handleMoveMainSidebar() {
+    view.toggleSubSidebar(store.isSubSidebarOpen);
+    store.toggleSubSidebar();
   },
 };

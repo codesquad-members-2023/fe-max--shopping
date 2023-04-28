@@ -46,10 +46,15 @@
       transition: all 0.5s ease-in-out;
       display: flex;
       width: 640px;
+
+      &[data-state='open'] {
+        transform: translateX(-50%);
+      }
     }
     .wrap.translateX {
       transform: translateX(-50%);
     }
+
     .main,
     .sub {
       .content {
@@ -59,9 +64,9 @@
           padding: 16px 16px 16px 32px;
           @include typography($BoldLG, $Black);
         }
-        .lists,
-        .open-lists {
-          .items {
+        .lists {
+          .item {
+            cursor: pointer;
             transition: all 0.3s;
             width: 100%;
             padding: 16px 16px 16px 32px;
@@ -79,21 +84,10 @@
             }
           }
         }
-        .open-lists-btn,
-        .close-lists-btn,
-        .go-main-btn {
-          width: 100%;
-          padding: 16px 16px 16px 32px;
-          display: flex;
-          gap: 8px;
-          align-items: center;
-          @include typography($BodyMD, $Black);
-          transition: transform 0.5s ease-in-out;
-          &:hover {
-            background-color: #eff2f2;
-          }
-        }
       }
+    }
+  }
+}
       .close-lists-btn img {
         display: block;
         transform: rotate(180deg);
@@ -109,5 +103,18 @@
         transition: max-height 0.3s ease-in;
       }
     }
+.open-lists-btn,
+.close-lists-btn,
+.go-main-btn {
+  width: 100%;
+  padding: 16px 16px 16px 32px;
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  align-items: center;
+  @include typography($BodyMD, $Black);
+  transition: transform 0.5s ease-in-out;
+  &:hover {
+    background-color: #eff2f2;
   }
 }

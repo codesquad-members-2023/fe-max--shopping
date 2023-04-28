@@ -6,6 +6,7 @@ export const store = {
   selectedCategory: null,
 
   isSidebarOpen: false,
+  isSubSidebarOpen: false,
 
   saveData(data) {
     this.data = data;
@@ -33,5 +34,8 @@ export const store = {
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
+  },
+  toggleSubSidebar() {
+    this.isSubSidebarOpen = !this.isSubSidebarOpen;
   },
 };

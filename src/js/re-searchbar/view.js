@@ -14,6 +14,8 @@ export const view = {
   on() {
     this.$openSidebarButton.addEventListener('click', this.handleToggleSidebar);
     this.$closeSidebarButton.addEventListener('click', this.handleToggleSidebar);
+    this.$sidebarContents.addEventListener('click', this.handleMoveSubSidebar);
+    this.$moveMainButton.addEventListener('click', this.handleMoveMainSidebar);
   },
 
   renderSidebar(data) {
@@ -31,6 +33,11 @@ export const view = {
     });
   },
 
+  renderSubSideBar({ title, category }) {
+    this.$subSidebarContents.innerHTML =
+      this.createMainTitle(title) + this.createMainCategoryList(category);
+  },
+
   createMainTitle(title) {
     return template.mainTitle(title);
   },
@@ -43,6 +50,27 @@ export const view = {
     return template.mainExtendCategoryList(items);
   },
 
+  getSelectedItemInfo({ target }) {
+    if (!target.closest('li')) return;
+
+    const title = this.selectedTitle({ target });
+    const category = this.selectedCategory({ target });
+
+    return { title, category };
+  },
+
+  selectedTitle({ target }) {
+    return target.closest('.content').querySelector('.title').innerText;
+  },
+
+  selectedCategory({ target }) {
+    let category = null;
+    if (target.closest('li')) {
+      category = target.closest('li').innerText;
+    }
+    return category;
+  },
+
   toggleSidebar(isOpen) {
     if (!isOpen) {
       this.$sidebar.dataset.state = 'open';
@@ -50,6 +78,14 @@ export const view = {
     } else {
       this.$sidebar.dataset.state = 'close';
       this.$closeSidebarButton.dataset.state = 'hidden';
+    }
+  },
+
+  toggleSubSidebar(isOpen) {
+    if (!isOpen) {
+      this.$subsidebar.dataset.state = 'open';
+    } else {
+      this.$subsidebar.dataset.state = 'close';
     }
   },
 };
