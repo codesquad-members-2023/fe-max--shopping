@@ -1,12 +1,12 @@
-import Component from "./common/Component.js";
+import Component from "../common/Component.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
   <div class="card-container">
-    <img src="" alt="" />
+    <img class="card-img" src="" alt="" />
     <div class="card-content">
-      <h3 class="title"></h3>
-      <span class="link">더보기</span>
+      <h3 class="card-title"></h3>
+      <span class="card-link">더보기</span>
     </div>
   </div>
 
@@ -23,18 +23,18 @@ class CardItem extends Component {
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
-    const title = this.shadowRoot.querySelector(".title");
-    const link = this.shadowRoot.querySelector(".link");
-    const img = this.shadowRoot.querySelector("img");
+    const cardTitle = this.shadowRoot.querySelector(".card-title");
+    const cardLink = this.shadowRoot.querySelector(".card-link");
+    const cardImg = this.shadowRoot.querySelector(".card-img");
 
     if (name === "data-title") {
-      title.textContent = newVal;
+      cardTitle.textContent = newVal;
     } else if (name === "data-link") {
-      link.textContent = newVal;
+      cardLink.textContent = newVal;
     } else if (name === "data-img-src") {
-      img.src = newVal;
+      cardImg.src = newVal;
     } else if (name === "data-img-alt") {
-      img.alt = newVal;
+      cardImg.alt = newVal;
     }
   }
 }
