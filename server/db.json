@@ -528,34 +528,5 @@
       "detail": []
     }
   ],
-  "history": [
-    {
-      "keyword": "가",
-      "id": 1
-    },
-    {
-      "keyword": "나",
-      "id": 2
-    },
-    {
-      "keyword": "가나다",
-      "id": 3
-    },
-    {
-      "keyword": "fdsa",
-      "id": 4
-    },
-    {
-      "keyword": "바보",
-      "id": 5
-    },
-    {
-      "keyword": "다다다",
-      "id": 6
-    },
-    {
-      "keyword": "가나다라마",
-      "id": 7
-    }
-  ]
+  "history": []
 }

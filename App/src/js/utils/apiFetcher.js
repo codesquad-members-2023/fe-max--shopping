@@ -56,8 +56,7 @@ export async function checkKeyword(keyword) {
   return !!find.length;
 }
 
-function keywordSortFunc(a, b) {
-  const { str } = this;
+function keywordSortFunc(str, a, b) {
   const lenFrontA = a.split(str)[0].length;
   const lenFrontB = b.split(str)[0].length;
 
@@ -82,7 +81,7 @@ export async function getAutoCompletedKeywords(str, limit) {
     },
   });
 
-  return find.map((v) => v.keyword).sort(keywordSortFunc.bind({ str }));
+  return find.map((v) => v.keyword).sort((a, b) => keywordSortFunc(str, a, b));
 }
 
 export const getRandomKeywords = async (limit) => {
