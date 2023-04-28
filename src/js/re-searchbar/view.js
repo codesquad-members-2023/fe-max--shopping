@@ -1,6 +1,5 @@
 import { template } from './template.js';
-
-const $ = (selector, doc = document) => doc.querySelector(selector);
+import { $ } from '../util.js';
 
 export const view = {
   $sidebar: $('.sidebar'),
