@@ -19,18 +19,15 @@
 
 - [ ]  코드리뷰 받았던 부분 위주로 리팩터링
     - [ ]  `.env`파일로 환경변수 관리하기 ⚠️
-    - [ ]  서버통신으로 데이터 요청을 처리하는 코드를 재사용 가능하게 분리해보기
-    - [ ]  최근검색어 저장 시 로컬스토리지가 아닌 서버에 post/put 요청으로 처리해보기
+    - [x]  서버통신으로 데이터 요청을 처리하는 코드를 재사용 가능하게 분리해보기
+    - [x]  최근검색어 저장 시 로컬스토리지가 아닌 서버에 post/put 요청으로 처리해보기
     - [x]  받아온 데이터로 렌더링 할 때 어떻게 사용할지 생각해보기
-    - [ ]  unshift() 말고 다른 방법 고민하기
+    - [x]  unshift() 말고 다른 방법 고민하기
     - [x]  검색바에서 결합도 낮출 방법 찾아서 적용하기
 
 - [x] ES Module에 대해서 학습한다. 
-- [ ] MVC 패턴에 대해서 학습하고 store와 view 분리하기
-    - [x] 검색바 영역
-    - [ ] 히어로 영역
-    - [ ] 사이드바 영역
-- [ ] 모듈간 의존성 낮출 방법 고민하기
+- [x] MVC 패턴에 대해서 학습하고 검색바 store와 view 분리하기
+- [x] 모듈간 의존성 낮출 방법 고민하기
 ## 📚 4주차 학습 정리
 ### 1) ES Modules
 
@@ -94,8 +91,28 @@
 
 - 브라우저 기반의 바닐라 JS로 구현하는 경우 HTML과 DOM을 고려해야 한다. 따라서 View는 html 자체와 DOM 요소들을 캡슐화하는 View 클래스로 구성된다.
 - 요소들에 이벤트를 걸어준다. (addEventListener로 걸어만 주고 실제 이벤트 핸들러는 컨트롤러에 두기)
-## 참고자료
 
+## 🤔 고민했던 점
+
+- .env파일에서 환경 변수로 API_KEY 등을 저장하고 import 하려고 dotenv라는 모듈을 패키지로 설치해서 사용해보려는데 브라우저에서 주소를 읽어오지 못하는 문제 발생 → node JS에서만 가능한건가?
+
+- new로 Model, View, Controller를 처음 만들때 Controller가 model, view 둘 다 인자로 받게할 방법은 없을까? 이벤트가 발생해서 데이터를 받아오거나 변경될때 view의 렌더링을 변경해 주려면 어떻게 해야할까
+    
+    → 옵저버 패턴 적용해서 model에 view를 옵저버로 저장해두고, 이벤트가 발생해서 model이 변하면 이를 옵저버인 view에 알려주고 그에 맞게 다시 렌더링되도록
+    
+- submit 이벤트에서 최근검색어를 db.json에 PUT으로 저장할 때 e.preventDefault()를 해도 자꾸 새로고침이 된다… 왜 자꾸 페이지가 새로고침될까?
+    
+    → live-server에서 db.json의 변경사항을 자동으로 감지해서 자동으로 페이지를 리로드하는게 원인이었다. live-server를 실행할 때 특정파일만 무시하도록 설정함. (`live-server --ignore=data/db.json`) → 안 먹힘… → vscode live-server를 쓰니까 settings.json 파일에 설정을 추가해 해결할 수 있었음
+    
+- fetch로 put 하는 함수를 클래스의 메소드로 따로 분리해서 쓰려고 하는데 fetch가 정상적으로 작동하지 않는 오류가 발생 (Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR)
+    
+    → GPT에게 물어보니 url 경로 지정할 때 http가 아닌 https를 사용해서 발생하는 인증 문제였음.
+    
+- 이벤트 등록은 View 클래스에서 담당하도록 하고 싶고, 이벤트 핸들러는 Controller 클래스에서 담당하게 하고싶은데. 그런데 이 경우에 이벤트핸들러 내부에서 조작하는 DOM 요소들을 어디에 담고있어야 할지 고민… → 이벤트 핸들러에는 이벤트객체(e) 이외에 다른 인자는 전달할 수가 없음… controller에서 생성자로 그냥 querySelector로 찾아올까? DOM은 view에서 담당하는게 맞을것 같은데 view가 controller보다 나중에 생성되니까 view의 프로퍼티로는 인자로 넘겨 줄 수가 없음.
+
+- `reverse()`를 쓰면 원본 배열을 변화시키지만 `toReversed()`를 사용하면 순서만 뒤집은 새 배열을 반환하고 원본 배열은 유지된다.
+
+## 참고자료
 ### ES Module
 
 - [https://ui.toast.com/weekly-pick/ko_20180402](https://ui.toast.com/weekly-pick/ko_20180402)
@@ -111,3 +128,8 @@
 - [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-컴포넌트와-상태관리](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%82%E1%85%A5%E1%86%AB%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5)
 - [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-중앙-집중식-상태관리](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-%E1%84%8C%E1%85%AE%E1%86%BC%E1%84%8B%E1%85%A1%E1%86%BC-%E1%84%8C%E1%85%B5%E1%86%B8%E1%84%8C%E1%85%AE%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5)
 - [https://youtu.be/o4meZ7MRd5o](https://youtu.be/o4meZ7MRd5o)
+
+### Observer Pattern
+
+- [https://medium.com/@patrickackerman/the-observer-pattern-with-vanilla-javascript-8f85ea05eaa8](https://medium.com/@patrickackerman/the-observer-pattern-with-vanilla-javascript-8f85ea05eaa8)
+- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-object-defineproperty-이해하기](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-object-defineproperty-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5)
