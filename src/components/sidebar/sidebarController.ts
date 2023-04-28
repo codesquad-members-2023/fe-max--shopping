@@ -4,16 +4,16 @@ import { fetchData } from "../../utils/fetchData";
 import { $ } from "../../utils/domUtils";
 import { SidebarMenu } from "./types";
 import { SidebarView } from "./sidebarView";
+import { dim, undim } from "../../utils/dimming";
+import { Z_INDEX } from "../../constants/Z_INDEX";
 
 export class SidebarController {
   private view: SidebarView;
 
   constructor(view: SidebarView) {
     this.view = view;
-
-    this.view.bindSidebarMenuClickHandler(this.handleMenuItemClick.bind(this));
-    this.view.bindMenuDetailBackClickHandler(this.moveMenuView.bind(this));
     this.view.render(this.fetchSidebarMenu());
+    this.addEventListeners();
   }
 
   private fetchSidebarMenu(): Promise<SidebarMenu[]> {
@@ -39,8 +39,8 @@ export class SidebarController {
       const menuId = li.dataset.id;
 
       this.fetchMenuDetailData(menuId).then((data) => {
-        this.renderDetailView(data);
-        this.moveDetailView();
+        this.view.renderDetailView(data);
+        this.moveDetailView(this.view.$menuContainer);
       });
     }
 
@@ -66,22 +66,30 @@ export class SidebarController {
     return fetchData(`${BASE_URL}/sidebar_menu_details/${id}`);
   }
 
-  private renderDetailView(data: SidebarMenu) {
-    const $menuDetailContainer = $(".sidebar__menu-detail-container");
-    const component = this.view.createMenuComponent(data);
-
-    $menuDetailContainer.innerHTML = component;
-  }
-
-  private moveDetailView() {
-    const $menuContainer = $(".sidebar__menu-container");
-
+  private moveDetailView($menuContainer: Element) {
     $menuContainer.classList.add("detail-view");
   }
 
-  private moveMenuView() {
-    const $menuContainer = $(".sidebar__menu-container");
-
+  private moveMenuView($menuContainer: Element) {
     $menuContainer.classList.remove("detail-view");
+  }
+
+  private openSidebar() {
+    showElement(this.view.$sidebar);
+    dim(Z_INDEX.SIDEBAR);
+  }
+
+  private closeSideBar() {
+    hideElement(this.view.$sidebar);
+    undim();
+  }
+
+  addEventListeners() {
+    this.view.$sidebarButton.addEventListener("click", () => this.openSidebar());
+    this.view.$closeButton.addEventListener("click", () => this.closeSideBar());
+    this.view.$sidebarMenu.addEventListener("click", (event) => this.handleMenuItemClick(event));
+    this.view.$menuDetailBack.addEventListener("click", () =>
+      this.moveMenuView(this.view.$menuContainer)
+    );
   }
 }

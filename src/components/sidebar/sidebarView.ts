@@ -1,16 +1,15 @@
-import { Z_INDEX } from "../../constants/Z_INDEX";
-import { dim, undim } from "../../utils/dimming";
 import { $ } from "../../utils/domUtils";
-import { hideElement, showElement } from "../../utils/elementVisibility";
 import { SidebarMenu } from "./types";
 
 export class SidebarView {
-  private $sidebar: Element;
-  private $sidebarMenu: Element;
-  private $closeButton: Element;
-  private $sidebarButton: Element;
-  private $menuDetailBack: Element;
-  private $menu: Element;
+  $sidebar: Element;
+  $closeButton: Element;
+  $sidebarButton: Element;
+  $sidebarMenu: Element;
+  $menuDetailBack: Element;
+  $menu: Element;
+  $menuContainer: Element;
+  $menuDetailContainer: Element;
 
   constructor() {
     this.$sidebar = $(".sidebar");
@@ -19,21 +18,25 @@ export class SidebarView {
     this.$sidebarButton = $(".sub__sidebar-button");
     this.$menuDetailBack = $(".sidebar__menu-detail-back");
     this.$menu = $(".sidebar__menu");
-
-    this.bindSidebarEvents();
+    this.$menuContainer = $(".sidebar__menu-container");
+    this.$menuDetailContainer = $(".sidebar__menu-detail-container");
   }
 
   render(menu: Promise<SidebarMenu[]>) {
     menu.then((menuList) => {
-      menuList.forEach((menu: SidebarMenu) => {
-        const MAX_LENGTH = 4;
-        const isOverMaxLength = menu.menu.length > MAX_LENGTH;
-        const component = isOverMaxLength
-          ? this.hiddenMenuComponent(menu, MAX_LENGTH)
-          : this.createMenuComponent(menu);
+      const component = menuList
+        .map((menu) => {
+          const MAX_LENGTH = 4;
+          const isOverMaxLength = menu.menu.length > MAX_LENGTH;
+          const component = isOverMaxLength
+            ? this.hiddenMenuComponent(menu, MAX_LENGTH)
+            : this.createMenuComponent(menu);
 
-        this.$menu.insertAdjacentHTML("beforeend", component);
-      });
+          return component;
+        })
+        .join("");
+
+      this.$menu.insertAdjacentHTML("beforeend", component);
     });
   }
 
@@ -94,26 +97,7 @@ export class SidebarView {
       </ul>`;
   }
 
-  private openSidebar() {
-    showElement(this.$sidebar);
-    dim(Z_INDEX.SIDEBAR);
-  }
-
-  private closeSideBar() {
-    hideElement(this.$sidebar);
-    undim();
-  }
-
-  bindSidebarMenuClickHandler(handler: (event: Event) => void) {
-    this.$sidebarMenu.addEventListener("click", handler);
-  }
-
-  bindMenuDetailBackClickHandler(handler: (event: Event) => void) {
-    this.$menuDetailBack.addEventListener("click", handler);
-  }
-
-  bindSidebarEvents() {
-    this.$sidebarButton.addEventListener("click", this.openSidebar.bind(this));
-    this.$closeButton.addEventListener("click", this.closeSideBar.bind(this));
+  renderDetailView(data: SidebarMenu) {
+    this.$menuDetailContainer.innerHTML = this.createMenuComponent(data);
   }
 }
