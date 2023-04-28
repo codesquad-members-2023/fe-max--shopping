@@ -24,8 +24,8 @@ export class SearchBarView {
     searchPanel.innerHTML = await autoTemplate;
   }
 
-  async generateSuggest(terms) {
-    const suggestions = await terms;
+  generateSuggest(terms) {
+    const suggestions = terms;
     const suggestListTemplate = suggestions.reduce((acc, cur) => {
       return (acc += `<li class="suggestion search-list">
               <img src="./src/images/arrow-top-right.svg" alt="이동">
@@ -35,25 +35,25 @@ export class SearchBarView {
     return suggestListTemplate;
   }
 
-  async generateHistoryAndSuggestions(historyTerms, suggestionTerms) {
-    const history = await historyTerms;
-    const suggestion = await suggestionTerms;
+  generateHistoryAndSuggestions(historyTerms, suggestionTerms) {
+    const history = historyTerms;
+    const suggestion = suggestionTerms;
     const historyAndSuggestionsTemplate =
       history.reduce((acc, cur) => {
         return (acc += ` <li class="history search-list" >
               <span>${cur}</span>
               <img src="./src/images/close.svg" alt="삭제">
             </li>`);
-      }, '') + (await this.generateSuggest(suggestion));
+      }, '') + this.generateSuggest(suggestion);
 
     return historyAndSuggestionsTemplate;
   }
 
-  async generateAutoComplete(autoTerms, input) {
+  generateAutoComplete(autoTerms, input) {
     if (!input || typeof input !== 'string') {
       throw new Error('Input is invalid.');
     }
-    const autoComplete = await autoTerms;
+    const autoComplete = autoTerms;
     const inputRegex = new RegExp(input, 'gi');
     const AutoCompleteTemplate = autoComplete.reduce((acc, cur) => {
       const highlighted = cur.keyword.replace(

@@ -92,25 +92,25 @@ export class SearchBar {
     }
   }
 
-  getSuggestionTemplate() {
+  async getSuggestionTemplate() {
     this.setTerms('suggest');
     const template = this.searchBarView.generateSuggest(
-      this.model.getSuggestion()
+      await this.model.getSuggestion()
     );
     return template;
   }
-  getHistoryAndSuggestionTemplate() {
+  async getHistoryAndSuggestionTemplate() {
     this.setTerms('history');
     const template = this.searchBarView.generateHistoryAndSuggestions(
-      this.model.getHistory(),
-      this.model.getSuggestion()
+      await this.model.getHistory(),
+      await this.model.getSuggestion()
     );
     return template;
   }
-  getAutoCompleteTemplate() {
+  async getAutoCompleteTemplate() {
     this.setTerms('auto');
     const template = this.searchBarView.generateAutoComplete(
-      this.model.getAuto(),
+      await this.model.getAuto(),
       getInputValue(searchBarInput)
     );
     return template;
