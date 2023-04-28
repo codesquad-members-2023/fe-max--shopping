@@ -213,7 +213,7 @@
 - Any component that needs a backdrop will have a reference to that `back-drop` component.
 - Set the desired position and height of the backdrop when in need.
 
-#### Ver. 3
+#### [Ver. 3](#passive-vs-reactive-backdrop)
 
 - **Approach**
   - Make `back-drop` reactive instead of passive.
@@ -268,3 +268,8 @@
   - The position of the arrow’s tail represents the place of invocation.
   - Traditionally, the arrow’s tail is directly at the source itself. However, in reactive programming, the arrow's tail is not directly at the source. The source is unaware that it is triggering the arrow, and hence, also unaware of the arrow's target.
   - [`BackDrop`](#ver-3).
+
+#### Passive vs Reactive BackDrop
+
+<img src="docs/refImg/backdrop-passive.png" alt="Passive BackDrop" />
+<img src="docs/refImg/backdrop-reactive.png" alt="Reactive BackDrop" />
