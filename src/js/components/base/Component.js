@@ -6,14 +6,14 @@ export class Component {
     this.#node.className = className;
   }
 
-  init(state) {
-    this.render(state);
+  init(info) {
+    this.render(info);
     this.initEventHandlers();
   }
 
-  render(state) {
+  render(info) {
     this.dropPreviousRender();
-    const template = this.getTemplate(state);
+    const template = this.getTemplate(info);
 
     if (typeof template === 'string') {
       const templateElement = document.createElement('template');

@@ -7,8 +7,8 @@ export class SearchPanel extends Component {
     this.selectedItem = null;
   }
 
-  getTemplate(state) {
-    const { keywords, history, value } = state;
+  getTemplate(info) {
+    const { keywords, history, value } = info;
     const historyView = this.getAllHistoryTemplate(history);
     const keywordsView = this.getAllKeywordTemplate(keywords, value);
 

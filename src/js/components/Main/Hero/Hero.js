@@ -1,6 +1,6 @@
-import { Component } from '../base/Component.js';
+import { Component } from '../../base/Component.js';
 import { Slider } from './Slider.js';
-import { heroStore } from './heroStore.js';
+import { heroModel } from './heroModel.js';
 
 export class Hero extends Component {
   constructor(slideCount) {
@@ -8,7 +8,7 @@ export class Hero extends Component {
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;
     this.currentIndex = 0;
-    this.store = heroStore;
+    this.model = heroModel;
     this.slider = new Slider();
     this.leftButton = new Component('slider-button left', 'BUTTON');
     this.rightButton = new Component('slider-button right', 'BUTTON');
@@ -17,9 +17,9 @@ export class Hero extends Component {
   }
 
   async initSlider(slideCount, startIndex) {
-    await this.store.requestImages(slideCount);
+    await this.model.requestImages(slideCount);
 
-    const images = this.store.getImages();
+    const images = this.model.getImages();
     this.slider.render(images);
 
     this.currentIndex += startIndex;

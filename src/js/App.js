@@ -1,5 +1,5 @@
 import { Navbar } from '../js/components/Navbar/Navbar.js';
-import { Main } from './components/Main.js';
+import { Main } from './components/Main/Main.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
 
 export class App {

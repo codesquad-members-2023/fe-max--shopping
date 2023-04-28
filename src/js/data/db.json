@@ -54,97 +54,7 @@
     { "id": 7, "src": "/src/assets/images/banner/hero-7.jpg" },
     { "id": 8, "src": "/src/assets/images/banner/hero-8.jpg" },
     { "id": 9, "src": "/src/assets/images/banner/hero-9.jpg" },
-    { "id": 10, "src": "/src/assets/images/banner/hero-10.jpg" },
-    { "id": 11, "src": "/src/assets/images/banner/hero-11.jpg" },
-    { "id": 12, "src": "/src/assets/images/banner/hero-12.jpg" },
-    { "id": 13, "src": "/src/assets/images/banner/hero-13.jpg" },
-    { "id": 14, "src": "/src/assets/images/banner/hero-14.jpg" },
-    { "id": 15, "src": "/src/assets/images/banner/hero-15.jpg" },
-    { "id": 16, "src": "/src/assets/images/banner/hero-16.jpg" },
-    { "id": 17, "src": "/src/assets/images/banner/hero-17.jpg" },
-    { "id": 18, "src": "/src/assets/images/banner/hero-18.jpg" },
-    { "id": 19, "src": "/src/assets/images/banner/hero-19.jpg" },
-    { "id": 20, "src": "/src/assets/images/banner/hero-20.jpg" },
-    { "id": 21, "src": "/src/assets/images/banner/hero-21.jpg" },
-    { "id": 22, "src": "/src/assets/images/banner/hero-22.jpg" },
-    { "id": 23, "src": "/src/assets/images/banner/hero-23.jpg" },
-    { "id": 24, "src": "/src/assets/images/banner/hero-24.jpg" },
-    { "id": 25, "src": "/src/assets/images/banner/hero-25.jpg" },
-    { "id": 26, "src": "/src/assets/images/banner/hero-26.jpg" },
-    { "id": 27, "src": "/src/assets/images/banner/hero-27.jpg" },
-    { "id": 28, "src": "/src/assets/images/banner/hero-28.jpg" },
-    { "id": 29, "src": "/src/assets/images/banner/hero-29.jpg" },
-    { "id": 30, "src": "/src/assets/images/banner/hero-30.jpg" },
-    { "id": 31, "src": "/src/assets/images/banner/hero-31.jpg" },
-    { "id": 32, "src": "/src/assets/images/banner/hero-32.jpg" },
-    { "id": 33, "src": "/src/assets/images/banner/hero-33.jpg" },
-    { "id": 34, "src": "/src/assets/images/banner/hero-34.jpg" },
-    { "id": 35, "src": "/src/assets/images/banner/hero-35.jpg" },
-    { "id": 36, "src": "/src/assets/images/banner/hero-36.jpg" },
-    { "id": 37, "src": "/src/assets/images/banner/hero-37.jpg" },
-    { "id": 38, "src": "/src/assets/images/banner/hero-38.jpg" },
-    { "id": 39, "src": "/src/assets/images/banner/hero-39.jpg" },
-    { "id": 40, "src": "/src/assets/images/banner/hero-40.jpg" },
-    { "id": 41, "src": "/src/assets/images/banner/hero-41.jpg" },
-    { "id": 42, "src": "/src/assets/images/banner/hero-42.jpg" },
-    { "id": 43, "src": "/src/assets/images/banner/hero-43.jpg" },
-    { "id": 44, "src": "/src/assets/images/banner/hero-44.jpg" },
-    { "id": 45, "src": "/src/assets/images/banner/hero-45.jpg" },
-    { "id": 46, "src": "/src/assets/images/banner/hero-46.jpg" },
-    { "id": 47, "src": "/src/assets/images/banner/hero-47.jpg" },
-    { "id": 48, "src": "/src/assets/images/banner/hero-48.jpg" },
-    { "id": 49, "src": "/src/assets/images/banner/hero-49.jpg" },
-    { "id": 50, "src": "/src/assets/images/banner/hero-50.jpg" },
-    { "id": 51, "src": "/src/assets/images/banner/hero-51.jpg" },
-    { "id": 52, "src": "/src/assets/images/banner/hero-52.jpg" },
-    { "id": 53, "src": "/src/assets/images/banner/hero-53.jpg" },
-    { "id": 54, "src": "/src/assets/images/banner/hero-54.jpg" },
-    { "id": 55, "src": "/src/assets/images/banner/hero-55.jpg" },
-    { "id": 56, "src": "/src/assets/images/banner/hero-56.jpg" },
-    { "id": 57, "src": "/src/assets/images/banner/hero-57.jpg" },
-    { "id": 58, "src": "/src/assets/images/banner/hero-58.jpg" },
-    { "id": 59, "src": "/src/assets/images/banner/hero-59.jpg" },
-    { "id": 60, "src": "/src/assets/images/banner/hero-60.jpg" },
-    { "id": 61, "src": "/src/assets/images/banner/hero-61.jpg" },
-    { "id": 62, "src": "/src/assets/images/banner/hero-62.jpg" },
-    { "id": 63, "src": "/src/assets/images/banner/hero-63.jpg" },
-    { "id": 64, "src": "/src/assets/images/banner/hero-64.jpg" },
-    { "id": 65, "src": "/src/assets/images/banner/hero-65.jpg" },
-    { "id": 66, "src": "/src/assets/images/banner/hero-66.jpg" },
-    { "id": 67, "src": "/src/assets/images/banner/hero-67.jpg" },
-    { "id": 68, "src": "/src/assets/images/banner/hero-68.jpg" },
-    { "id": 69, "src": "/src/assets/images/banner/hero-69.jpg" },
-    { "id": 70, "src": "/src/assets/images/banner/hero-70.jpg" },
-    { "id": 71, "src": "/src/assets/images/banner/hero-71.jpg" },
-    { "id": 72, "src": "/src/assets/images/banner/hero-72.jpg" },
-    { "id": 73, "src": "/src/assets/images/banner/hero-73.jpg" },
-    { "id": 74, "src": "/src/assets/images/banner/hero-74.jpg" },
-    { "id": 75, "src": "/src/assets/images/banner/hero-75.jpg" },
-    { "id": 76, "src": "/src/assets/images/banner/hero-76.jpg" },
-    { "id": 77, "src": "/src/assets/images/banner/hero-77.jpg" },
-    { "id": 78, "src": "/src/assets/images/banner/hero-78.jpg" },
-    { "id": 79, "src": "/src/assets/images/banner/hero-79.jpg" },
-    { "id": 80, "src": "/src/assets/images/banner/hero-80.jpg" },
-    { "id": 81, "src": "/src/assets/images/banner/hero-81.jpg" },
-    { "id": 82, "src": "/src/assets/images/banner/hero-82.jpg" },
-    { "id": 83, "src": "/src/assets/images/banner/hero-83.jpg" },
-    { "id": 84, "src": "/src/assets/images/banner/hero-84.jpg" },
-    { "id": 85, "src": "/src/assets/images/banner/hero-85.jpg" },
-    { "id": 86, "src": "/src/assets/images/banner/hero-86.jpg" },
-    { "id": 87, "src": "/src/assets/images/banner/hero-87.jpg" },
-    { "id": 88, "src": "/src/assets/images/banner/hero-88.jpg" },
-    { "id": 89, "src": "/src/assets/images/banner/hero-89.jpg" },
-    { "id": 90, "src": "/src/assets/images/banner/hero-90.jpg" },
-    { "id": 91, "src": "/src/assets/images/banner/hero-91.jpg" },
-    { "id": 92, "src": "/src/assets/images/banner/hero-92.jpg" },
-    { "id": 93, "src": "/src/assets/images/banner/hero-93.jpg" },
-    { "id": 94, "src": "/src/assets/images/banner/hero-94.jpg" },
-    { "id": 95, "src": "/src/assets/images/banner/hero-95.jpg" },
-    { "id": 96, "src": "/src/assets/images/banner/hero-96.jpg" },
-    { "id": 97, "src": "/src/assets/images/banner/hero-97.jpg" },
-    { "id": 98, "src": "/src/assets/images/banner/hero-98.jpg" },
-    { "id": 99, "src": "/src/assets/images/banner/hero-99.jpg" },
-    { "id": 100, "src": "/src/assets/images/banner/hero-100.jpg" }
+    { "id": 10, "src": "/src/assets/images/banner/hero-10.jpg" }
   ],
   "category": [
     {
@@ -333,6 +243,86 @@
           ]
         }
       ]
+    }
+  ],
+  "cards": [
+    {
+      "src": "src/assets/images/cards/card1.png",
+      "alt": "Card 1",
+      "title": "집에서 입어보기",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card2.png",
+      "alt": "Card 2",
+      "title": "특가",
+      "link": "지금 쇼핑하세요"
+    },
+    {
+      "src": "src/assets/images/cards/card3.png",
+      "alt": "Card 3",
+      "title": "피트니스용",
+      "link": "지금 쇼핑하세요"
+    },
+    {
+      "src": "src/assets/images/cards/card4.png",
+      "alt": "Card 4",
+      "title": "Amazon Basics",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card5.png",
+      "alt": "Card 5",
+      "title": "건강 및 퍼스널 케어",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card6.png",
+      "alt": "Card 6",
+      "title": "가정 및 주방",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card7.png",
+      "alt": "Card 7",
+      "title": "Click here to shop in English",
+      "link": "Change your language preference"
+    },
+    {
+      "src": "src/assets/images/cards/card8.png",
+      "alt": "Card 8",
+      "title": "드레스",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card9.png",
+      "alt": "Card 9",
+      "title": "활동 추적기 및 스마트워치 쇼핑",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card10.png",
+      "alt": "Card 10",
+      "title": "노트북 및 태블릿 쇼핑",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card11.png",
+      "alt": "Card 11",
+      "title": "전자기기",
+      "link": "더보기"
+    },
+    {
+      "src": "src/assets/images/cards/card12.png",
+      "alt": "Card 12",
+      "title": "Kindle E-readers",
+      "link": "지금 쇼핑하세요"
+    },
+    {
+      "src": "src/assets/images/cards/card13.png",
+      "alt": "Card 13",
+      "title": "반려동물용품 쇼핑",
+      "link": "더보기"
     }
   ]
 }
