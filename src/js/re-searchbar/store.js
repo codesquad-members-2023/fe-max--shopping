@@ -7,6 +7,7 @@ export const store = {
 
   isSidebarOpen: false,
   isSubSidebarOpen: false,
+  isExtendAreaOpen: false,
 
   saveData(data) {
     this.data = data;
@@ -37,5 +38,8 @@ export const store = {
   },
   toggleSubSidebar() {
     this.isSubSidebarOpen = !this.isSubSidebarOpen;
+  },
+  toggleExtendArea() {
+    this.isExtendAreaOpen = !this.isExtendAreaOpen;
   },
 };

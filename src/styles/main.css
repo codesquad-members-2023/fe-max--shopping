@@ -792,6 +792,18 @@ html {
   transform: rotate(180deg);
 }
 
+.sidebar__content--extend {
+  border-top: 1px solid #eff2f2;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.sidebar__content--extend[data-state=open] {
+  max-height: 1000px;
+  transition: max-height 0.3s ease-in;
+}
+.sidebar__content--extend .open-lists .item {
+  cursor: pointer;
   transition: all 0.3s;
   width: 100%;
   padding: 16px 16px 16px 32px;
@@ -799,10 +811,7 @@ html {
   justify-content: space-between;
   align-items: center;
 }
-.sidebar__contents .main .content .lists .items a,
-.sidebar__contents .main .content .open-lists .items a,
-.sidebar__contents .sub .content .lists .items a,
-.sidebar__contents .sub .content .open-lists .items a {
+.sidebar__content--extend .open-lists .item a {
   font-family: "Pretendard", sans-serif;
   font-size: 1.3rem;
   font-weight: 500;
@@ -810,16 +819,10 @@ html {
   letter-spacing: -0.03em;
   color: #10141a;
 }
-.sidebar__contents .main .content .lists .items img,
-.sidebar__contents .main .content .open-lists .items img,
-.sidebar__contents .sub .content .lists .items img,
-.sidebar__contents .sub .content .open-lists .items img {
+.sidebar__content--extend .open-lists .item img {
   display: block;
 }
-.sidebar__contents .main .content .lists .items:hover,
-.sidebar__contents .main .content .open-lists .items:hover,
-.sidebar__contents .sub .content .lists .items:hover,
-.sidebar__contents .sub .content .open-lists .items:hover {
+.sidebar__content--extend .open-lists .item:hover {
   background-color: #eff2f2;
 }
 

@@ -88,4 +88,12 @@ export const view = {
       this.$subsidebar.dataset.state = 'close';
     }
   },
+
+  toggleExtendArea(isOpen) {
+    if (!isOpen) {
+      this.$extendArea.dataset.state = 'open';
+    } else {
+      this.$extendArea.dataset.state = 'close';
+    }
+  },
 };

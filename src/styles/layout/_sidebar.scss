@@ -88,21 +88,44 @@
     }
   }
 }
-      .close-lists-btn img {
+
+.close-lists-btn img {
+  display: block;
+  transform: rotate(180deg);
+}
+.sidebar__content--extend {
+  border-top: 1px solid $Gray100;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+
+  &[data-state='open'] {
+    max-height: 1000px;
+    transition: max-height 0.3s ease-in;
+  }
+
+  .open-lists {
+    .item {
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      padding: 16px 16px 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      a {
+        @include typography($BodyMD, $Black);
+      }
+      img {
         display: block;
-        transform: rotate(180deg);
       }
-      .sidebar__content--down {
-        border-top: 1px solid $Gray100;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-      }
-      .sidebar__content--down.open {
-        max-height: 1000px;
-        transition: max-height 0.3s ease-in;
+      &:hover {
+        background-color: #eff2f2;
       }
     }
+  }
+}
+
 .open-lists-btn,
 .close-lists-btn,
 .go-main-btn {

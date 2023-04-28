@@ -7,6 +7,7 @@ export const controller = {
     view.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     view.handleMoveSubSidebar = this.handleMoveSubSidebar.bind(this);
     view.handleMoveMainSidebar = this.handleMoveMainSidebar.bind(this);
+    view.handleExtendArea = this.handleExtendArea.bind(this);
     view.on();
   },
 
@@ -39,5 +40,10 @@ export const controller = {
   handleMoveMainSidebar() {
     view.toggleSubSidebar(store.isSubSidebarOpen);
     store.toggleSubSidebar();
+  },
+
+  handleExtendArea() {
+    view.toggleExtendArea(store.isExtendAreaOpen);
+    store.toggleExtendArea();
   },
 };
