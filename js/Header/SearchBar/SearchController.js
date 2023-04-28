@@ -99,13 +99,15 @@ export class SearchController {
   submitHandler = (e) => {
     e.preventDefault();
 
+    const searchHistoryData = this.model.searchData.searchHistory;
     const recentSearchWord = e.target.searchbar.value;
+    const newId = searchHistoryData.length ? searchHistoryData[searchHistoryData.length - 1].id + 1 : 1;
+
     const newData = {
-      id: 0,
+      id: newId,
       content: recentSearchWord,
     };
 
-    const searchHistoryData = this.model.searchData.searchHistory;
     searchHistoryData.push(newData);
     this.model.notifySearchLayer();
     const reqBody = { id: 'searchHistory', content: searchHistoryData };

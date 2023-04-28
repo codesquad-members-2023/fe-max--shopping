@@ -1,4 +1,4 @@
-import { addEvent } from './utility.js';
+import { addEvent } from '../utility.js';
 
 export function initSlider() {
   const slider = document.querySelector('.slider');

@@ -1,4 +1,4 @@
-import { addEvent } from './utility.js';
+import { addEvent } from '../utility.js';
 
 const loginArea = document.querySelector('#nav-login');
 const loginTextArea = document.querySelector('#nav-login-text');

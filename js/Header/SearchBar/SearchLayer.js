@@ -1,4 +1,4 @@
-import { Component } from '../Core/Component.js';
+import { Component } from '../../Core/Component.js';
 // import { debounce } from './utility.js';
 
 export class SearchLayer extends Component {
@@ -24,7 +24,8 @@ export class SearchLayer extends Component {
   }
 
   makeRecentHistoryTemplate(data) {
-    return `${data
+    const historyData = data.toReversed().slice(0, 5);
+    return `${historyData
       .map(
         (item) =>
           `<li class="search-bar__result recentSearch">

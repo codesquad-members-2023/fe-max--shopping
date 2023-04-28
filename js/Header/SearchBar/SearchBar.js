@@ -1,4 +1,4 @@
-import { Component } from '../Core/Component.js';
+import { Component } from '../../Core/Component.js';
 
 export class SearchBar extends Component {
   constructor($target, controller) {

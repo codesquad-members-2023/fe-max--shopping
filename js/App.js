@@ -1,8 +1,8 @@
 import { Fetcher } from './Core/Fetcher.js';
-import { SearchModel } from './Model/SearchModel.js';
-import { SearchController } from './Controller/SearchController.js';
-import { SearchBar } from './View/SearchBar.js';
-import { SearchLayer } from './View/SearchLayer.js';
+import { SearchModel } from './Header/SearchBar/SearchModel.js';
+import { SearchController } from './Header/SearchBar/SearchController.js';
+import { SearchBar } from './Header/SearchBar/SearchBar.js';
+import { SearchLayer } from './Header/SearchBar/SearchLayer.js';
 
 export class App {
   constructor() {
