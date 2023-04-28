@@ -11,7 +11,10 @@ export class SearchController {
     this.layerView = view2;
 
     this.layerView.render(this.loadInitialData());
-    this.setEvent();
+    this.barView.onEvent((e) => {
+      this.handleEvent(e);
+    });
+    this.setDOMElements();
     this.model.registerObserver(this.barView);
     this.model.registerObserver(this.layerView);
   }
@@ -28,19 +31,13 @@ export class SearchController {
     });
   }
 
-  setEvent() {
+  setDOMElements() {
     const $searchForm = document.querySelector('.search-bar__form');
     const $searchBarInput = document.querySelector('.search-bar__input');
     const $searchLayer = document.querySelector('.search-bar__layer');
     const $backdrop = document.querySelector('.modal__backdrop');
 
     this.passDomElements($searchForm, $searchBarInput, $searchLayer, $backdrop);
-
-    $searchBarInput.addEventListener('click', this);
-    $searchBarInput.addEventListener('blur', this);
-    $searchBarInput.addEventListener('keydown', this);
-    $searchForm.addEventListener('submit', this);
-    $searchBarInput.addEventListener('input', this);
   }
 
   handleEvent(e) {

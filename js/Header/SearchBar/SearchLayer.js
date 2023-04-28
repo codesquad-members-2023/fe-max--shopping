@@ -43,7 +43,9 @@ export class SearchLayer {
       .join('')}`;
   }
 
-  // makeAutoSuggestionTemplate() {}
+  // makeAutoSuggestionTemplate() {
+  // 아직 구현중...
+  // }
 
   updateLayer(model) {
     const { searchData } = model;

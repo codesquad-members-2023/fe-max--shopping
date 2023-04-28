@@ -1,7 +1,10 @@
 export class SearchBar {
   constructor($target) {
     this.$target = $target;
+    this.onEventCallback = null;
+
     this.render();
+    this.addEvent();
     this.inputBar = document.querySelector('.search-bar__input');
   }
 
@@ -24,6 +27,31 @@ export class SearchBar {
               </button>
             </form>
             <div class="search-bar__layer font-BodyMD text-black bg-white" id="searchLayer"></div>`;
+  }
+
+  onEvent(callback) {
+    this.onEventCallback = callback;
+  }
+
+  addEvent() {
+    const $searchForm = document.querySelector('.search-bar__form');
+    const $searchBarInput = document.querySelector('.search-bar__input');
+
+    $searchBarInput.addEventListener('blur', (e) => {
+      this.onEventCallback(e);
+    });
+    $searchForm.addEventListener('click', (e) => {
+      this.onEventCallback(e);
+    });
+    $searchForm.addEventListener('keydown', (e) => {
+      this.onEventCallback(e);
+    });
+    $searchForm.addEventListener('submit', (e) => {
+      this.onEventCallback(e);
+    });
+    $searchForm.addEventListener('input', (e) => {
+      this.onEventCallback(e);
+    });
   }
 
   updateInputBar(model) {
