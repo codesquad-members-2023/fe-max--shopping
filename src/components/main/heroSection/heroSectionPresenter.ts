@@ -100,17 +100,4 @@ export class HeroSectionPresenter {
     clearInterval(intervalId);
     this.setIntervalImageMove($imageContainer);
   }
-
-  createIntervalIdStateManager = (): IntervalIdStateManager => {
-    let intervalId = 0;
-    return {
-      setIntervalId(id: number) {
-        intervalId = id;
-      },
-
-      getIntervalId() {
-        return intervalId;
-      },
-    };
-  };
 }
