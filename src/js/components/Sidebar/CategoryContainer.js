@@ -1,6 +1,6 @@
 import { Component } from '../base/Component.js';
 import Category from './Category.js';
-import { categoryStore } from './categoryStore.js';
+import { categoryModel } from './categoryModel.js';
 
 export default class CategoryContainer extends Component {
   constructor() {
@@ -32,17 +32,17 @@ export default class CategoryContainer extends Component {
 class Main extends Component {
   constructor() {
     super('category-container__main');
-    this.store = categoryStore;
+    this.model = categoryModel;
     this.loadCategory();
   }
 
   async loadCategory() {
-    await this.store.requestMainCategories();
+    await this.model.requestMainCategories();
     this.render();
   }
 
   getTemplate() {
-    const mainCategories = this.store.getMainCategory();
+    const mainCategories = this.model.getMainCategory();
     const categoryNodes = mainCategories.map((category) => new Category(category).node);
     return [...categoryNodes];
   }
@@ -51,14 +51,14 @@ class Main extends Component {
 class Sub extends Component {
   constructor() {
     super('category-container__sub');
-    this.store = categoryStore;
+    this.model = categoryModel;
     this.backList = new Component('back', 'LI');
     this.setBackList();
     this.loadCategory();
   }
 
   async loadCategory() {
-    await this.store.requestSubCategories();
+    await this.model.requestSubCategories();
   }
 
   setBackList() {
@@ -69,7 +69,7 @@ class Sub extends Component {
   }
 
   getTemplate(id) {
-    const subCategories = this.store.getSubCategory();
+    const subCategories = this.model.getSubCategory();
     const details = subCategories[id];
     const categoryNodes = details.map((detail) => new Category(detail).node);
 

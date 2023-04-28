@@ -1,6 +1,6 @@
 import { BASE_API_DOMAIN, fetchJSON } from '../../utils/api.js';
 
-export const categoryStore = {
+export const categoryModel = {
   mainCategories: [],
   subCategories: new Map(),
 

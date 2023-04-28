@@ -1,14 +1,14 @@
 import { BASE_API_DOMAIN, fetchData } from '../../../../utils/api.js';
 
-export class SearchStore {
+export default class SearchModel {
   constructor() {
     this.history = {};
     this.autoComplete = [];
     this.recommend = [];
-    this.initStore();
+    this.init();
   }
 
-  async initStore() {
+  async init() {
     await this.requestRecommendWords(10);
 
     const store = JSON.parse(localStorage.getItem('searchHistory'));
@@ -32,11 +32,12 @@ export class SearchStore {
     this.autoComplete = autoCompleteWords;
   }
 
-  addSearchWord(value) {
+  addSearchWord(value, renderer) {
     const id = Date.now();
     this.history[id] = value;
 
     this.saveLocalStorage();
+    renderer.render({ history: this.history, keywords: this.recommend });
   }
 
   deleteSearchWord(id) {

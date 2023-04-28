@@ -1,6 +1,6 @@
 import { debounce } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
-import { SearchStore } from '../Search/SearchStore.js';
+import SearchModel from '../Search/SearchModel.js';
 import SearchBar from './SearchBar.js';
 import { SearchPanel } from './SearchPanel.js';
 
@@ -8,7 +8,7 @@ export default class Search extends Component {
   constructor(main) {
     super('search');
     this.main = main;
-    this.store = new SearchStore();
+    this.model = new SearchModel();
     this.searchPanel = new SearchPanel();
     this.searchBar = new SearchBar();
     this.init();
@@ -34,14 +34,14 @@ export default class Search extends Component {
 
   deleteItem(target) {
     const targetItem = target.closest('li');
-    this.store.deleteSearchWord(targetItem.dataset.id);
+    this.model.deleteSearchWord(targetItem.dataset.id);
   }
 
   async showRecommendWords({ target }) {
     const userInput = target.value;
     if (userInput) return;
 
-    const { history, recommend } = this.store.getRecommend();
+    const { history, recommend } = this.model.getRecommend();
     this.searchPanel.render({ history: history, keywords: recommend });
     this.searchPanel.open();
     this.main.onDimmed();
@@ -54,10 +54,10 @@ export default class Search extends Component {
       return;
     }
 
-    await this.store.requestAutoCompleteWords(userInput, 10);
-    const { autoComplete } = this.store.getAutoComplete();
+    await this.model.requestAutoCompleteWords(userInput, 10);
+    const { autoComplete } = this.model.getAutoComplete();
 
-    this.searchPanel.render({ keywords: autoComplete, history: [] }, { value: userInput });
+    this.searchPanel.render({ keywords: autoComplete, history: [], value: userInput });
   }
 
   handleKeyDown(key) {
@@ -85,9 +85,9 @@ export default class Search extends Component {
 
     const { search } = event.target.elements;
     const userInput = search.value;
-    this.store.addSearchWord(userInput);
+    this.model.addSearchWord(userInput);
 
-    const { history, recommend } = this.store.getRecommend();
+    const { history, recommend } = this.model.getRecommend();
     this.searchPanel.render({ history: history, keywords: recommend });
     this.searchBar.clearInputValue();
   }
