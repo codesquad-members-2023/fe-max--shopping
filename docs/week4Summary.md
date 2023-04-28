@@ -53,6 +53,8 @@ HTML 페이지에 `<script>` 요소에 `type=”module”`을 포함시켜야 �
   - View: UI와 관련된 로직을 처리한다.
   - Controller: 사용자의 입력(Action)을 받고 Model과 View의 데이터를 받아 로직을 수행한다.
 
+![image](https://user-images.githubusercontent.com/57666791/235055347-4288238f-9ed4-4cd6-82c1-49d57365002d.png)
+
 Model, View, Controller 간의 관심사를 분리하고, 각각이 독립적으로 동작하고 유지 관리가 쉬워지도록 하는 것이다. 이를 통해 시스템이 확장성 있고, 테스트하기 쉽고, 유지 관리가 용이한 구조를 가질 수 있다.
 
 ### MVC 장점
@@ -70,6 +72,8 @@ Model, View, Controller 간의 관심사를 분리하고, 각각이 독립적으
 - Model과 View의 역할은 MVC와 동일하다.
 - Presenter: View에서 요청한 정보로 Model에게 정보를 전달, 요청하고 받은 정보를 View에 제공하는 식으로 View와 Model을 연결하는 역할을 한다.
 
+![image](https://user-images.githubusercontent.com/57666791/235055362-fd8cf50e-3522-475d-b32f-298feb8ba94a.png)
+
 ### MVP 장점
 
 - View와 Model의 의존성이 없다. Presenter를 통해서만 데이터를 전달받기 때문
@@ -84,6 +88,8 @@ Model, View, Controller 간의 관심사를 분리하고, 각각이 독립적으
 - Model과 View의 역할은 위의 패턴과 같다.
 - View Model: View를 위한 Model. View를 나타내기 위한 데이터 처리를 담당한다.
 - Command 패턴과 Data Binding 두 가지 패턴을 사용하여 View와 View Model 사이의 의존성을 없앴다.
+
+![image](https://user-images.githubusercontent.com/57666791/235055406-4e0c46bd-2a4e-43d6-9b5c-fa8d523274db.png)
 
 ### MVVM 장점
 
