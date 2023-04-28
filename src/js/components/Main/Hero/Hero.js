@@ -3,7 +3,7 @@ import { Slider } from './Slider.js';
 import { heroModel } from './heroModel.js';
 
 export class Hero extends Component {
-  constructor(slideCount) {
+  constructor({ slideCount }) {
     super('hero');
     this.slideCount = slideCount;
     this.lastIndex = this.slideCount + 1;

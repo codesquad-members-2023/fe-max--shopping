@@ -7,7 +7,7 @@ export class Main extends Component {
   constructor() {
     super('main', 'MAIN');
     this.dimLayer = new DimLayer();
-    this.hero = new Hero(6);
+    this.hero = new Hero({ slideCount: 6 });
     this.content = new Content();
     this.init();
   }
