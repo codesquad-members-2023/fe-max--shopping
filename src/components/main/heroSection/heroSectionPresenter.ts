@@ -52,7 +52,7 @@ export class HeroSectionPresenter {
     this.resetIntervalImageMove($imageContainer);
   }
 
-  async handleIndexUnderflow($imageContainer: HTMLElement) {
+  private async handleIndexUnderflow($imageContainer: HTMLElement) {
     if ($imageContainer.firstElementChild == null) {
       throw new Error("The image container is empty.");
     }
@@ -66,7 +66,7 @@ export class HeroSectionPresenter {
     await this.delay(1);
   }
 
-  async handleIndexOverflow($imageContainer: HTMLElement) {
+  private async handleIndexOverflow($imageContainer: HTMLElement) {
     if ($imageContainer.lastElementChild == null) {
       throw new Error("The image container is empty.");
     }
@@ -79,12 +79,12 @@ export class HeroSectionPresenter {
     await this.delay(1);
   }
 
-  moveImageList(index: number, $imageContainer: HTMLElement) {
+  private moveImageList(index: number, $imageContainer: HTMLElement) {
     $imageContainer.style.transitionDuration = "500ms";
     $imageContainer.style.transform = `translateX(-${index * 100}%)`;
   }
 
-  delay(ms: number) {
+  private delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
@@ -94,7 +94,7 @@ export class HeroSectionPresenter {
     this.model.setIntervalId(id);
   }
 
-  resetIntervalImageMove($imageContainer: HTMLElement) {
+  private resetIntervalImageMove($imageContainer: HTMLElement) {
     const intervalId = this.model.getIntervalId();
 
     clearInterval(intervalId);

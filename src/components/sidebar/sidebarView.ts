@@ -23,7 +23,7 @@ export class SidebarView {
     this.bindSidebarEvents();
   }
 
-  public render(menu: Promise<SidebarMenu[]>) {
+  render(menu: Promise<SidebarMenu[]>) {
     menu.then((menuList) => {
       menuList.forEach((menu: SidebarMenu) => {
         const MAX_LENGTH = 4;
@@ -37,7 +37,7 @@ export class SidebarView {
     });
   }
 
-  public createMenuComponent({ title, menu }: SidebarMenu) {
+  createMenuComponent({ title, menu }: SidebarMenu) {
     return `
       <ul>
         ${this.createMenuTitleList(title)}
@@ -104,15 +104,15 @@ export class SidebarView {
     undim();
   }
 
-  public bindSidebarMenuClickHandler(handler: (event: Event) => void) {
+  bindSidebarMenuClickHandler(handler: (event: Event) => void) {
     this.$sidebarMenu.addEventListener("click", handler);
   }
 
-  public bindMenuDetailBackClickHandler(handler: (event: Event) => void) {
+  bindMenuDetailBackClickHandler(handler: (event: Event) => void) {
     this.$menuDetailBack.addEventListener("click", handler);
   }
 
-  public bindSidebarEvents() {
+  bindSidebarEvents() {
     this.$sidebarButton.addEventListener("click", this.openSidebar.bind(this));
     this.$closeButton.addEventListener("click", this.closeSideBar.bind(this));
   }
