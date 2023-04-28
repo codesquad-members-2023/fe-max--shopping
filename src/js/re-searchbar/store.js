@@ -5,6 +5,8 @@ export const store = {
   categories: {},
   selectedCategory: null,
 
+  isSidebarOpen: false,
+
   saveData(data) {
     this.data = data;
     this.setCategories();
@@ -27,5 +29,9 @@ export const store = {
 
   getSeletedCategory() {
     return this.selectedCategory;
+  },
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
   },
 };

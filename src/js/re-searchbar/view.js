@@ -11,6 +11,11 @@ export const view = {
   $closeSidebarButton: $('.sidebar__close'),
   $moveMainButton: $('.go-main-btn'),
 
+  on() {
+    this.$openSidebarButton.addEventListener('click', this.handleToggleSidebar);
+    this.$closeSidebarButton.addEventListener('click', this.handleToggleSidebar);
+  },
+
   renderSidebar(data) {
     const MAX_SLICE = 4;
 
@@ -36,5 +41,15 @@ export const view = {
 
   createMainExtendCategoryList(items) {
     return template.mainExtendCategoryList(items);
+  },
+
+  toggleSidebar(isOpen) {
+    if (!isOpen) {
+      this.$sidebar.dataset.state = 'open';
+      this.$closeSidebarButton.dataset.state = 'visible';
+    } else {
+      this.$sidebar.dataset.state = 'close';
+      this.$closeSidebarButton.dataset.state = 'hidden';
+    }
   },
 };

@@ -5,10 +5,10 @@
   left: 0;
   background-color: #fff;
   z-index: 100;
-  height: 100vh;
+  height: 100%;
   transition: transform 0.5s ease-in-out;
 
-  &.active {
+  &[data-state='open'] {
     transform: translateX(0%);
   }
 
@@ -18,11 +18,13 @@
     position: absolute;
     left: 332px;
     top: 12px;
+    display: none;
     img {
+      width: 100%;
       display: block;
     }
-    &.hidden {
-      display: none;
+    &[data-state='visible'] {
+      display: block;
     }
   }
   &__login {

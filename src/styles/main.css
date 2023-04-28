@@ -692,10 +692,10 @@ html {
   left: 0;
   background-color: #fff;
   z-index: 100;
-  height: 100vh;
+  height: 100%;
   transition: transform 0.5s ease-in-out;
 }
-.sidebar.active {
+.sidebar[data-state=open] {
   transform: translateX(0%);
 }
 .sidebar__close {
@@ -704,12 +704,14 @@ html {
   position: absolute;
   left: 332px;
   top: 12px;
+  display: none;
 }
 .sidebar__close img {
+  width: 100%;
   display: block;
 }
-.sidebar__close.hidden {
-  display: none;
+.sidebar__close[data-state=visible] {
+  display: block;
 }
 .sidebar__login {
   background-color: #10141a;
