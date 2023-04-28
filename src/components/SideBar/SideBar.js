@@ -1,5 +1,5 @@
 import ComponentWithBackDrop from "../common/ComponentWithBackDrop.js";
-import { BASE_URL } from "../../api/index.js";
+import SideBarService from "./SideBarService.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -25,6 +25,10 @@ class SideBar extends ComponentWithBackDrop {
     this.menuContainer = this.shadowRoot.querySelector(".menu-container");
     this.closeBtn = this.shadowRoot.querySelector(".close-btn");
 
+    this.searchFormService = new SideBarService({
+      endpoint: "/side-bar",
+    });
+
     this.registerCustomEvent("showSelf", {
       detail: { position: "ENTIRE" },
     });
@@ -32,35 +36,16 @@ class SideBar extends ComponentWithBackDrop {
   }
 
   async connectedCallback() {
-    const menuData = await this.fetchMenuData();
-    const parsedMenuData = this.parseMenuData(menuData);
+    const { searchFormService } = this;
+
+    const menuData = await searchFormService.fetchMenuData();
+    const parsedMenuData = searchFormService.parseMenuData(menuData);
+
     this.generateMenus(parsedMenuData);
 
     this.closeBtn.addEventListener("click", () => {
       this.dispatchCustomEvent("hideSelf");
     });
-  }
-
-  async fetchMenuData() {
-    const res = await fetch(`${BASE_URL}/side-bar`);
-    return await res.json();
-  }
-
-  parseMenuData(menuData) {
-    const mainMenuOptions = menuData
-      .map(({ sectionTitle, categories }) => {
-        return [{ sectionTitle }, ...categories];
-      })
-      .flat()
-      .map((item, idx) => {
-        return { ...item, id: idx };
-      });
-
-    const subMenuContents = mainMenuOptions.filter((category) => {
-      return category.subcategories;
-    });
-
-    return { mainMenuOptions, subMenuContents };
   }
 
   generateMenus({ mainMenuOptions, subMenuContents }) {
