@@ -9,8 +9,8 @@ export default class Search extends Component {
     super('search');
     this.main = main;
     this.model = new SearchModel();
-    this.searchPanel = new SearchPanel();
-    this.searchBar = new SearchBar();
+    this.searchPanel = new SearchPanel({ deleteItem: (target) => this.deleteItem(target) });
+    this.searchBar = new SearchBar({ closeSearchPanel: () => this.closeSearchPanel() });
     this.init();
   }
 
@@ -25,11 +25,6 @@ export default class Search extends Component {
     );
     this.node.addEventListener('keydown', ({ key }) => this.handleKeyDown(key));
     this.node.addEventListener('submit', (event) => this.handleSubmit(event));
-    this.node.addEventListener('click', ({ target }) => {
-      if (target.matches('.delete-btn')) {
-        this.deleteItem(target);
-      }
-    });
   }
 
   deleteItem(target) {
@@ -56,7 +51,6 @@ export default class Search extends Component {
 
     await this.model.requestAutoCompleteWords(userInput, 10);
     const { autoComplete } = this.model.getAutoComplete();
-
     this.searchPanel.render({ keywords: autoComplete, history: [], value: userInput });
   }
 

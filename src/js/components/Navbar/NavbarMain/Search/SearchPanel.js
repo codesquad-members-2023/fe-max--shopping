@@ -2,9 +2,18 @@ import { highlightText } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor() {
+  constructor(props) {
     super('search-panel', 'UL');
+    this.props = props;
     this.selectedItem = null;
+    this.initEventHandlers();
+  }
+
+  initEventHandlers() {
+    const { deleteItem } = this.props;
+
+    this.node.addEventListener('mousedown', (event) => event.preventDefault());
+    this.node.addEventListener('click', ({ target }) => deleteItem(target));
   }
 
   getTemplate(info) {
