@@ -3,11 +3,8 @@ export class KeywordStore {
     this.keywords = [];
   }
 
-  setKeywords(keywords, callback) {
-    keywords.map((keyword) => this.keywords.push(keyword));
-    if (callback) {
-      callback(this.keywords);
-    }
+  setKeywords(keywords) {
+    keywords.forEach((keyword) => this.keywords.push(keyword));
   }
 
   getKeywords() {
