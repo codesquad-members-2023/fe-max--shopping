@@ -30,7 +30,6 @@ export class Search extends Component {
       MAX_KEYWORD_COUNT - startIndex
     );
 
-
     randomKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
         KeywordListItemRecipe(keyword)
@@ -190,14 +189,7 @@ export class Search extends Component {
     this.keywordsItemsAddKeydownEvent();
   };
 
-  setEvent() {
-    this.keywordList = this.domNode.querySelector("#keyword-list");
-    this.keywords = this.domNode.querySelector("#keywords");
-    this.form = this.domNode.querySelector(".search__form");
-    this.submitButton = this.form.querySelector('[type="submit"]');
-    this.input = this.domNode.querySelector("#keyword");
-    this.ul = this.keywords.querySelector(".keywords__list");
-
+  setFormEvent() {
     this.form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(this.form);
@@ -213,9 +205,10 @@ export class Search extends Component {
       this.input.value = "";
       this.keywords.className = "keywords";
     });
+  }
 
+  setInputEvent() {
     this.input.addEventListener("focusin", this.keywordFocusinHandler);
-
     this.input.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -227,11 +220,25 @@ export class Search extends Component {
         this.keywords.className = "keywords";
       }
     });
+    this.input.addEventListener("input", this.keywordInputHandler);
+  }
 
+  setKeywordsEvent() {
     this.keywords.addEventListener("mouseleave", () => {
       this.keywords.className = "keywords";
     });
+  }
 
-    this.input.addEventListener("input", this.keywordInputHandler);
+  setEvent() {
+    this.keywordList = this.domNode.querySelector("#keyword-list");
+    this.keywords = this.domNode.querySelector("#keywords");
+    this.form = this.domNode.querySelector(".search__form");
+    this.submitButton = this.form.querySelector('[type="submit"]');
+    this.input = this.domNode.querySelector("#keyword");
+    this.ul = this.keywords.querySelector(".keywords__list");
+
+    this.setFormEvent();
+    this.setInputEvent();
+    this.setKeywordsEvent();
   }
 }

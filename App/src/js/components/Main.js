@@ -16,7 +16,6 @@ export class Main extends Component {
 
     addEvent("mainDim", this.dim.bind(this));
     addEvent("mainTurnUp", this.turnUp.bind(this));
-
   }
 
   dim() {
@@ -29,7 +28,7 @@ export class Main extends Component {
     dimmed.className = "dimmed";
   }
 
-  setEvent() {
+  setHeroEvent() {
     let bgIndex = 0;
     let heroIndex = 0;
     let time = 0;
@@ -58,7 +57,6 @@ export class Main extends Component {
     }
 
     const limit = bgSlides.length;
-
     const hero = this.domNode.querySelector("#hero");
     const heroUl = hero.querySelector(".hero__wrapper");
     const heroSlides = heroUl.querySelectorAll(".hero__slide");
@@ -136,5 +134,9 @@ export class Main extends Component {
       }
       if (!heroMouseOver) time += 1;
     }, 1000);
+  }
+
+  setEvent() {
+    this.setHeroEvent();
   }
 }

@@ -127,7 +127,6 @@ export class Sidebar extends Component {
     const sideBarItems = inner.querySelectorAll('[tabindex="-1"]');
 
     sidebar.backButton = sidebar.detail.querySelector(".back");
-
     sideBarItems.forEach(sidebar.sideBarItemEventHandler);
     setTimeout(() => {
       sideBarItems[0].focus();
