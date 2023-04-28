@@ -32,12 +32,11 @@ export default class SearchModel {
     this.autoComplete = autoCompleteWords;
   }
 
-  addSearchWord(value, renderer) {
+  addSearchWord(value) {
     const id = Date.now();
     this.history[id] = value;
 
     this.saveLocalStorage();
-    renderer.render({ history: this.history, keywords: this.recommend });
   }
 
   deleteSearchWord(id) {
