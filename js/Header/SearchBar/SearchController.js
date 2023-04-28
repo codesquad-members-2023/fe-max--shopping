@@ -1,15 +1,46 @@
+import { debounce } from '../../util/utility.js';
+
 export class SearchController {
-  constructor(model, fetcher) {
-    this.model = model;
-    this.fetcher = fetcher;
+  constructor(model, view1, view2, fetcher) {
     this.HOST_KEY = 'localhost:5050';
     this.domElements = {};
+
+    this.model = model;
+    this.fetcher = fetcher;
+    this.barView = view1;
+    this.layerView = view2;
+
+    this.layerView.render(this.loadInitialData());
+    this.setEvent();
+    this.model.registerObserver(this.barView);
+    this.model.registerObserver(this.layerView);
   }
 
   loadInitialData() {
     return this.fetcher //
       .get(this.HOST_KEY, 'searchDB')
       .then((data) => this.model.saveInitialData(data));
+  }
+
+  passDomElements(...args) {
+    args.map((el) => {
+      this.domElements[el.id] = el;
+    });
+  }
+
+  setEvent() {
+    const $searchForm = document.querySelector('.search-bar__form');
+    const $searchBarInput = document.querySelector('.search-bar__input');
+    const $searchLayer = document.querySelector('.search-bar__layer');
+    const $backdrop = document.querySelector('.modal__backdrop');
+
+    this.passDomElements($searchForm, $searchBarInput, $searchLayer, $backdrop);
+
+    $searchBarInput.addEventListener('click', this);
+    $searchBarInput.addEventListener('blur', this);
+    $searchBarInput.addEventListener('keydown', this);
+    $searchForm.addEventListener('submit', this);
+    $searchBarInput.addEventListener('input', this);
   }
 
   handleEvent(e) {
@@ -30,6 +61,10 @@ export class SearchController {
 
       case 'submit':
         this.submitHandler(e);
+        break;
+
+      case 'input':
+        debounce(this.inputHandler(e));
         break;
 
       default:
@@ -113,5 +148,19 @@ export class SearchController {
     const reqBody = { id: 'searchHistory', content: searchHistoryData };
     this.fetcher //
       .put(this.HOST_KEY, 'searchDB/searchHistory', reqBody);
+  };
+
+  inputHandler = (e) => {
+    const inputValue = e.target.value;
+
+    if (inputValue === '') {
+      this.layerView.render(this.model.searchData);
+      return;
+    }
+    this.fetcher //
+      .get(this.HOST_KEY, 'searchDB/autoSuggestion')
+      .then((autoSuggestionData) => {
+        this.layerView.renderAutoSuggestion(autoSuggestionData, inputValue);
+      });
   };
 }

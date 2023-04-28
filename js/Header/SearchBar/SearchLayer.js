@@ -1,18 +1,11 @@
-import { Component } from '../../Core/Component.js';
-// import { debounce } from './utility.js';
-
-export class SearchLayer extends Component {
-  constructor($target, controller) {
-    super($target, controller);
-    this.controller.model.registerObserver(this);
+export class SearchLayer {
+  constructor($target) {
+    this.$target = $target;
   }
 
-  init() {
-    this.controller
-      .loadInitialData() //
-      .then((searchData) => {
-        this.render(searchData);
-      });
+  async render(data) {
+    const renderData = await data;
+    this.$target.innerHTML = this.template(renderData);
   }
 
   template(searchData) {
@@ -50,60 +43,25 @@ export class SearchLayer extends Component {
       .join('')}`;
   }
 
-  makeAutoSuggestionTemplate() {}
+  // makeAutoSuggestionTemplate() {}
 
   updateLayer(model) {
     const { searchData } = model;
     this.render(searchData);
   }
 
-  // inputEventHandler = () => {
-  //   const $searchbarInput = document.querySelector('.search-bar__input');
-  //   const inputValue = $searchbarInput.value;
-
-  //   if (inputValue === '') {
-  //     this.render();
-  //     return;
-  //   }
-  //   this.getData('autoSuggestions').then((autoSuggestionData) => {
-  //     this.renderAutoSuggestion(autoSuggestionData, inputValue);
-  //   });
-  // };
-
-  // renderAutoSuggestion(data, prefix) {
-  //   const resultList = document.querySelector('.search-bar__result-container');
-  //   const regex = new RegExp(prefix, 'gi');
-  //   const matchData = data.filter((item) => item.match(regex));
-  //   const autoTemplate = `${matchData
-  //     .map(
-  //       (el, index) =>
-  //         `<li class="search-bar__result autoSuggestion" data-index="${index}">
-  //            <a href="#">${el}</a>
-  //          </li>`,
-  //     )
-  //     .join('')}`;
-  //   resultList.innerHTML = autoTemplate;
-  // }
-
-  setEvent() {
-    const $searchForm = document.querySelector('.search-bar__form');
-    // const $searchbarInput = document.querySelector('.search-bar__input');
-
-    $searchForm.addEventListener('submit', this.controller);
-
-    // $searchbarInput.addEventListener('input', debounce(this.inputEventHandler));
+  renderAutoSuggestion({ content }, prefix) {
+    const resultList = document.querySelector('.search-bar__result-container');
+    const regex = new RegExp(prefix, 'gi');
+    const matchData = content.filter((item) => item.content.match(regex));
+    const autoTemplate = `${matchData
+      .map(
+        (el, index) =>
+          `<li class="search-bar__result autoSuggestion" data-index="${index}">
+             <a href="#">${el.content}</a>
+           </li>`,
+      )
+      .join('')}`;
+    resultList.innerHTML = autoTemplate;
   }
-
-  // submitHandler(e) {
-  //   e.preventDefault();
-
-  //   const { history } = this.searchDB;
-  //   const recentSearchWord = $searchbarInput.value;
-  //   history.unshift(recentSearchWord);
-  //   this.searchDB.history = history.slice(0, 5);
-
-  //   localStorage.setItem('searchHistory', JSON.stringify(this.searchDB.history));
-
-  //   this.render();
-  // }
 }

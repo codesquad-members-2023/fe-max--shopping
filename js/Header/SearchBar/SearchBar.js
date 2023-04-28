@@ -1,10 +1,12 @@
-import { Component } from '../../Core/Component.js';
-
-export class SearchBar extends Component {
-  constructor($target, controller) {
-    super($target, controller);
+export class SearchBar {
+  constructor($target) {
+    this.$target = $target;
+    this.render();
     this.inputBar = document.querySelector('.search-bar__input');
-    this.controller.model.registerObserver(this);
+  }
+
+  render() {
+    this.$target.innerHTML = this.template();
   }
 
   template() {
@@ -26,17 +28,5 @@ export class SearchBar extends Component {
 
   updateInputBar(model) {
     this.inputBar.value = model.inputBarValue;
-  }
-
-  setEvent() {
-    const $searchbarInput = this.$target.querySelector('.search-bar__input');
-    const $searchLayer = document.querySelector('.search-bar__layer');
-    const $backdrop = document.querySelector('.modal__backdrop');
-
-    this.passDomElements($searchbarInput, $searchLayer, $backdrop);
-
-    $searchbarInput.addEventListener('click', this.controller);
-    $searchbarInput.addEventListener('blur', this.controller);
-    $searchbarInput.addEventListener('keydown', this.controller);
   }
 }
