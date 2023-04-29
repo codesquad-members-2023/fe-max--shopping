@@ -1,6 +1,6 @@
+import { Model } from "./Model.js";
 import { View } from "./View.js";
-import { Model } from "./model.js";
-import { ViewModel } from "./viewModel.js";
+import { ViewModel } from "./ViewModel.js";
 
 export class Carousel {
   constructor() {}
