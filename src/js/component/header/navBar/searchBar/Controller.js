@@ -1,5 +1,3 @@
-import { Backdrop } from "../../../Backdrop.js";
-
 export class Controller {
   constructor(model, view, observer) {
     this.model = model;
@@ -30,50 +28,70 @@ export class Controller {
     const model = this.model;
     const inputText = view.inputBar.node.value;
 
-    view.layer.setStyle("display", "flex");
-    Backdrop.show();
     this.observer.notify(this);
 
     if (inputText === "") {
       await model.setLayerContent();
-      const searchHistory = model.searchHistory;
-      const recommendKeywords = model.recommendKeywords;
-      view.layer.clearChild();
-      this.setNormalLayer(searchHistory, recommendKeywords);
+      this.setNormalLayer();
       return;
     }
 
-    await this.setAutoCompleteLayer(inputText);
+    this.setAutoCompleteLayer(inputText);
   }
 
   hide() {
     const view = this.view;
     const model = this.model;
-
-    view.layer.setStyle("display", "none");
-    Backdrop.hide();
-    view.inputBar.node.blur();
-    view.layer.clearChild();
+    view.closeLayer();
     model.selectIndex = -1;
     if (model.selectIndex !== -1) {
       model.keywordNodes[model.selectIndex].classList.remove("selected");
     }
   }
 
-  setNormalLayer(searchHistory, recommendKeywords) {
+  setNormalLayer() {
     const view = this.view;
     const model = this.model;
+    const searchHistory = model.searchHistory;
+    const recommendKeywords = model.recommendKeywords;
 
-    view.setSearchHistoryNode(searchHistory);
-    view.setRecommendKeywordsNode(recommendKeywords);
+    view.render({
+      type: "normal",
+      searchHistory: searchHistory,
+      recommendKeywords: recommendKeywords,
+    });
+
+    this.updateModelState([searchHistory, recommendKeywords]);
+  }
+
+  async setAutoCompleteLayer(inputText) {
+    const view = this.view;
+    const autoComplete = await this.model.getAutoComplete(inputText);
+
+    if (autoComplete === []) {
+      return;
+    }
+
+    view.render({
+      type: "autoComplet",
+      inputText: inputText,
+      autoComplete: autoComplete,
+    });
+
+    this.updateModelState(autoComplete);
+  }
+
+  updateModelState(keywordListData) {
+    const model = this.model;
+    const view = this.view;
 
     model.keywordNodes = view.layer.node.childNodes;
     model.keywordNodes.forEach((node, index) => {
       node.dataset["layerindex"] = index;
     });
-    model.keywordList = searchHistory
-      .map((history) => history.text)
-      .concat(recommendKeywords.map((keyword) => keyword.text));
+    model.keywordList = keywordListData.flat();
+
+    model.selectIndex = -1;
     model.maxIndex = model.keywordList.length - 1;
   }
 
@@ -118,35 +136,6 @@ export class Controller {
     this.hide();
   }
 
-  async setAutoCompleteLayer(inputText) {
-    const view = this.view;
-    const model = this.model;
-    const autoComplete = await this.model.getAutoComplete(inputText);
-
-    if (autoComplete === []) {
-      return;
-    }
-
-    const autoCompletTemplate = autoComplete
-      .map((keywordObj) => {
-        return `
-          <div class="listItem autoCompletList">
-            ${highlightText(keywordObj.text, inputText)}
-          </div>`;
-      })
-      .join();
-
-    view.layer.clearChild();
-    view.layer.setTemplate(autoCompletTemplate);
-    model.keywordNodes = view.layer.node.childNodes;
-    model.keywordNodes.forEach((node, index) => {
-      node.dataset["layerindex"] = index;
-    });
-    model.keywordList = autoComplete.map((e) => e.text);
-    model.selectIndex = -1;
-    model.maxIndex = model.keywordNodes.length - 1;
-  }
-
   inputEventHandler() {
     const model = this.model;
     model.selectInedx = -1;
@@ -178,32 +167,4 @@ export class Controller {
       this.keywordSearch();
     }
   }
-}
-
-function highlightText(str, keyword) {
-  const regex = new RegExp(`(${keyword})+`, "g");
-  const matches = str.match(regex);
-  if (!matches) {
-    return str;
-  }
-
-  let highlightedStr = "";
-  let lastIndex = 0;
-
-  for (const match of matches) {
-    const index = str.indexOf(match, lastIndex);
-    const nonMatchStr = str.slice(lastIndex, index);
-    if (nonMatchStr) {
-      highlightedStr += `<span>${nonMatchStr}</span>`;
-    }
-    highlightedStr += `<span class="highlight">${match}</span>`;
-    lastIndex = index + match.length;
-  }
-
-  const remainingStr = str.slice(lastIndex);
-  if (remainingStr) {
-    highlightedStr += `<span>${remainingStr}</span>`;
-  }
-
-  return highlightedStr;
 }

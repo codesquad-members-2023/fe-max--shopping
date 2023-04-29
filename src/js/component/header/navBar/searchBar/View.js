@@ -1,3 +1,4 @@
+import { Backdrop } from "../../../Backdrop.js";
 import { Base } from "../../../Base.js";
 
 export class View extends Base {
@@ -22,7 +23,43 @@ export class View extends Base {
     this.setTemplate(template);
   }
 
+  render(rendData) {
+    this.layer.setStyle("display", "flex");
+    Backdrop.show();
+    switch (rendData.type) {
+      case "normal":
+        this.setSearchHistoryNode(rendData.searchHistory);
+        this.setRecommendKeywordsNode(rendData.recommendKeywords);
+        break;
+      case "autoComplet":
+        this.setAutoCompletNode(rendData.autoComplete, rendData.inputText);
+        break;
+    }
+  }
+
+  closeLayer() {
+    this.layer.setStyle("display", "none");
+    Backdrop.hide();
+    this.inputBar.node.blur();
+    this.layer.clearChild();
+  }
+
+  setAutoCompletNode(autoComplete, inputText) {
+    const autoCompletTemplate = autoComplete
+      .map((keywordObj) => {
+        return `
+          <div class="listItem autoCompletList">
+            ${highlightText(keywordObj.text, inputText)}
+          </div>`;
+      })
+      .join();
+
+    this.layer.clearChild();
+    this.layer.setTemplate(autoCompletTemplate);
+  }
+
   setSearchHistoryNode(searchHistory) {
+    this.layer.clearChild();
     const searchHistoryTemplate = searchHistory
       .map((history) => {
         return `
@@ -48,4 +85,32 @@ export class View extends Base {
       .join();
     this.layer.setTemplate(keywordTemplate);
   }
+}
+
+function highlightText(str, keyword) {
+  const regex = new RegExp(`(${keyword})+`, "g");
+  const matches = str.match(regex);
+  if (!matches) {
+    return str;
+  }
+
+  let highlightedStr = "";
+  let lastIndex = 0;
+
+  for (const match of matches) {
+    const index = str.indexOf(match, lastIndex);
+    const nonMatchStr = str.slice(lastIndex, index);
+    if (nonMatchStr) {
+      highlightedStr += `<span>${nonMatchStr}</span>`;
+    }
+    highlightedStr += `<span class="highlight">${match}</span>`;
+    lastIndex = index + match.length;
+  }
+
+  const remainingStr = str.slice(lastIndex);
+  if (remainingStr) {
+    highlightedStr += `<span>${remainingStr}</span>`;
+  }
+
+  return highlightedStr;
 }
