@@ -1,5 +1,4 @@
 export class Component {
-  target;
   constructor(target) {
     this.target = target;
     this.render();
@@ -11,8 +10,5 @@ export class Component {
 
   render() {
     this.target.insertAdjacentHTML('beforeend', this.getTemplate());
-    this.setEvent();
   }
-
-  setEvent() {}
 }
