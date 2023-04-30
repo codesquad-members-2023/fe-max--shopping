@@ -1,111 +1,111 @@
 #main 
-	padding: 0 80px 40px 
-	position: relative 
-	.background__wrapper
-		overflow: hidden
-		z-index: -1
-		background-color: var(--color-gray-200)
-		position: absolute
-		left: 0
-		width: 100%
-		height: 100%
-		white-space: nowrap
-		.background__slide
-			transition: transform 300ms
-			vertical-align: top
-			font-size: 0
-			display: inline-block
-			width: 100%
-			img
-				width: 100%
-	.dimmed
-		position: absolute 
-		background-color: var(--color-black-40) 
-		height: 100% 
-		width: 100% 
-		left: 0
-		display: none
-		&.active
-			display: block
-	.inner
-		max-width: 1024px
-		margin: auto
+  padding: 0 80px 40px 
+  position: relative 
+  .background__wrapper
+    overflow: hidden
+    z-index: -1
+    background-color: var(--color-gray-200)
+    position: absolute
+    left: 0
+    width: 100%
+    height: 100%
+    white-space: nowrap
+    .background__slide
+      transition: transform 300ms
+      vertical-align: top
+      font-size: 0
+      display: inline-block
+      width: 100%
+      img
+        width: 100%
+  .dimmed
+    position: absolute 
+    background-color: var(--color-black-40) 
+    height: 100% 
+    width: 100% 
+    left: 0
+    display: none
+    &.active
+      display: block
+  .inner
+    max-width: 1024px
+    margin: auto
 #hero 
-	display: flex 
-	// max-width: 728px
-	margin: auto
-	.hero__wrapper 
-		flex-grow: 1
-		order: 2
-		white-space: nowrap
-		overflow: hidden
-		.hero__slide 
-			vertical-align: top
-			width: 100%
-			height: 100%
-			box-sizing: border-box
-			display: inline-block
-			text-align: center 
-			padding: 75px 32%
-			transform: translateX(calc(var(--index) * -100%)) rotateX(180deg)
-			backface-visibility: hidden
-			&.active
-				transform: translateX(calc(var(--index) * -100%)) rotateX(0deg)
-			h3 
-				white-space: normal
-				font: var(--font-bold-xl) 
-				word-break: keep-all
-				text-shadow: 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2
-	.control
-		padding: 0
-		background-color: transparent 
-		border: 0
-	.control--left 
-		order: 1 
-		text-align: left 
-	.control--right
-		order: 3 
-		text-align: right 
+  display: flex 
+  // max-width: 728px
+  margin: auto
+  .hero__wrapper 
+    flex-grow: 1
+    order: 2
+    white-space: nowrap
+    overflow: hidden
+    .hero__slide 
+      vertical-align: top
+      width: 100%
+      height: 100%
+      box-sizing: border-box
+      display: inline-block
+      text-align: center 
+      padding: 75px 32%
+      transform: translateX(calc(var(--index) * -100%)) rotateX(180deg)
+      backface-visibility: hidden
+      &.active
+        transform: translateX(calc(var(--index) * -100%)) rotateX(0deg)
+      h3 
+        white-space: normal
+        font: var(--font-bold-xl) 
+        word-break: keep-all
+        text-shadow: 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2, 0px 0px 1px #EFF2F2
+  .control
+    padding: 0
+    background-color: transparent 
+    border: 0
+  .control--left 
+    order: 1 
+    text-align: left 
+  .control--right
+    order: 3 
+    text-align: right 
 #contents
-	margin: auto
-	.contents__list 
-		column-count: 2
-		column-gap: 1em 
-	.contents__item 
-		background-color: var(--color-white) 
-		margin-bottom: 20px 
-		&:nth-child(1) 
-			padding: 16px 
-			.contents__card 
-				align-items: center 
-				gap: 16px 
-		h3 
-			font: var(--font-bold-md) 
-		a 
-			text-decoration: none 
-			font: var(--font-bold-sm) 
-			color: var(--color-secondary-green) 
-			margin-top: 8px 
-	.contents__card 
-		width: 100% 
-		display: inline-flex 
-		flex-direction: column 
-		justify-content: center 
-	.contents__card_img 
-		img 
-			width: 100%
-			text-shadow: 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2
-	.contents__card_text 
-		padding: 16px
+  margin: auto
+  .contents__list 
+    column-count: 2
+    column-gap: 1em 
+  .contents__item 
+    background-color: var(--color-white) 
+    margin-bottom: 20px 
+    &:nth-child(1) 
+      padding: 16px 
+      .contents__card 
+        align-items: center 
+        gap: 16px 
+    h3 
+      font: var(--font-bold-md) 
+    a 
+      text-decoration: none 
+      font: var(--font-bold-sm) 
+      color: var(--color-secondary-green) 
+      margin-top: 8px 
+  .contents__card 
+    width: 100% 
+    display: inline-flex 
+    flex-direction: column 
+    justify-content: center 
+  .contents__card_img 
+    img 
+      width: 100%
+      text-shadow: 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2, 0px 0px 3px #EFF2F2
+  .contents__card_text 
+    padding: 16px
 
 $desktop-width: 1024px
 $tablet-width: 768px
 
 @media (min-width:$tablet-width) and (max-width: $desktop-width - 1px)
-	#contents .contents__list
-		column-count: 3
+  #contents .contents__list
+    column-count: 3
 
 @media (min-width:$desktop-width)
 
-	#contents .contents__list
-		column-count: 4
+  #contents .contents__list
+    column-count: 4

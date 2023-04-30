@@ -1,9 +1,8 @@
 import { Component } from "./Component.js";
 
 export class Footer extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
   }
 }

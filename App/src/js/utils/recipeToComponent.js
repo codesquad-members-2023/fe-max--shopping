@@ -5,6 +5,7 @@ export function recipeToComponent(recipe) {
 
   component.appendChildComponent(recipe);
   component.render();
-  
+
+  component.children[0].recipe = recipe;
   return component.children[0];
 }

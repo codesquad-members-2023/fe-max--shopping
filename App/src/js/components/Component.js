@@ -1,4 +1,4 @@
-import { findComponent } from "../util/factory.js";
+import { findComponent } from "../utils/factory.js";
 
 export class Component {
   constructor(tagName, attrs = false, textContent) {
@@ -15,12 +15,18 @@ export class Component {
     this.children = [];
   }
 
+  restructure({ domNode, children, recipe }) {
+    this.domNode = domNode;
+    this.children = children;
+    this.recipe = recipe
+  }
+
   changeSubComponent() {
     this.children.forEach((child, index, children) => {
       const { tagName, id } = child.domNode;
       let subComponent = findComponent(tagName);
       if (!subComponent) subComponent = findComponent(id);
-      
+
       if (subComponent) {
         children[index] = new subComponent(child);
       }
@@ -31,8 +37,9 @@ export class Component {
   appendChildComponent(recipe) {
     const { tagName, attrs, textContent, children } = recipe;
     const childComponent = new Component(tagName, attrs, textContent);
+    childComponent.recipe = recipe;
     if (children) {
-      children.forEach((child, index) => {
+      children.forEach((child) => {
         childComponent.appendChildComponent(child);
       });
     }

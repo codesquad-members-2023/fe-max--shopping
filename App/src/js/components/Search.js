@@ -1,25 +1,27 @@
+import { KeywordListItemRecipe } from "../recipes/header/KeywordListItemRecipe.js";
+import { KeywordsItemRecipe } from "../recipes/header/KeywordsItemRecipe.js";
+import { KeywordsLogItemRecipe } from "../recipes/header/KeywordsLogItemRecipe.js";
+import { KeywordsRecommendItemRecipe } from "../recipes/header/KeywordsRecommendItemRecipe.js";
 import {
   addKeyword,
   checkKeyword,
   getAutoCompletedKeywords,
   getRandomKeywords,
-} from "../util/apiFetcher.js";
+} from "../utils/apiFetcher.js";
 
 import {
   getLogKeywords,
   delLogKeyword,
-  getAccountRecipe,
   addLogKeyword,
-} from "../util/factory.js";
+} from "../utils/factory.js";
 
-import { recipeToComponent } from "../util/recipeToComponent.js";
+import { recipeToComponent } from "../utils/recipeToComponent.js";
 import { Component } from "./Component.js";
 
 export class Search extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
   }
 
   addRandomSearchKeywords = async (startIndex) => {
@@ -30,13 +32,13 @@ export class Search extends Component {
 
     randomKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       this.keywordList.appendChild(keywordListLi);
 
       const keywordsLi = recipeToComponent(
-        getAccountRecipe().keywordsRecommendItem({
+        KeywordsRecommendItemRecipe({
           index: startIndex + i + 1,
           textContent: keyword,
         })
@@ -55,11 +57,11 @@ export class Search extends Component {
   addLogKeywords = (logKeywords) => {
     logKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       const keywordsLogItem = recipeToComponent(
-        getAccountRecipe().keywordsLogItem({
+        KeywordsLogItemRecipe({
           index: i + 1,
           textContent: keyword,
         })
@@ -103,12 +105,13 @@ export class Search extends Component {
   keywordsItemsAddKeydownEvent = async () => {
     const items = this.ul.querySelectorAll("li");
     const buttons = this.ul.querySelectorAll("button");
-
     const limit = buttons.length;
-
     buttons.forEach((button, i) => {
       button.addEventListener("keydown", (e) => {
-        if (e.key === "Tab") return;
+        if (e.key === "Tab") {
+          this.keywords.className = "keywords";
+          return;
+        }
         e.preventDefault();
         switch (e.key) {
           case "ArrowUp":
@@ -160,7 +163,7 @@ export class Search extends Component {
     );
     autoCompletedKeywords.forEach((keyword, i) => {
       const keywordListLi = recipeToComponent(
-        getAccountRecipe().keywordListItem(keyword)
+        KeywordListItemRecipe(keyword)
       ).domNode;
 
       this.keywordList.appendChild(keywordListLi);
@@ -168,7 +171,7 @@ export class Search extends Component {
       const children = this.keywordToKeywordListItemChildren(keyword);
 
       const keywordsLi = recipeToComponent(
-        getAccountRecipe().keywordsItem({
+        KeywordsItemRecipe({
           index: i + 1,
           children,
         })
@@ -186,14 +189,7 @@ export class Search extends Component {
     this.keywordsItemsAddKeydownEvent();
   };
 
-  setEvent() {
-    this.keywordList = this.domNode.querySelector("#keyword-list");
-    this.keywords = this.domNode.querySelector("#keywords");
-    this.form = this.domNode.querySelector(".search__form");
-    this.submitButton = this.form.querySelector('[type="submit"]');
-    this.input = this.domNode.querySelector("#keyword");
-    this.ul = this.keywords.querySelector(".keywords__list");
-
+  setFormEvent() {
     this.form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(this.form);
@@ -209,9 +205,10 @@ export class Search extends Component {
       this.input.value = "";
       this.keywords.className = "keywords";
     });
+  }
 
+  setInputEvent() {
     this.input.addEventListener("focusin", this.keywordFocusinHandler);
-
     this.input.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -221,14 +218,27 @@ export class Search extends Component {
 
       if (e.key === "Tab") {
         this.keywords.className = "keywords";
-        if (button) button.focus();
       }
     });
+    this.input.addEventListener("input", this.keywordInputHandler);
+  }
 
+  setKeywordsEvent() {
     this.keywords.addEventListener("mouseleave", () => {
       this.keywords.className = "keywords";
     });
+  }
 
-    this.input.addEventListener("input", this.keywordInputHandler);
+  setEvent() {
+    this.keywordList = this.domNode.querySelector("#keyword-list");
+    this.keywords = this.domNode.querySelector("#keywords");
+    this.form = this.domNode.querySelector(".search__form");
+    this.submitButton = this.form.querySelector('[type="submit"]');
+    this.input = this.domNode.querySelector("#keyword");
+    this.ul = this.keywords.querySelector(".keywords__list");
+
+    this.setFormEvent();
+    this.setInputEvent();
+    this.setKeywordsEvent();
   }
 }

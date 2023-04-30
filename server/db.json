@@ -179,7 +179,6 @@
         ]
       }
     ],
-
     "mainBgSlides": [
       {
         "index": 0,
@@ -449,7 +448,6 @@
       }
     ]
   },
-
   "category": [
     {
       "id": 1,
@@ -530,23 +528,5 @@
       "detail": []
     }
   ],
-
-  "history": [
-    {
-      "keyword": "가",
-      "id": 1
-    },
-    {
-      "keyword": "나",
-      "id": 2
-    },
-    {
-      "keyword": "가나다",
-      "id": 3
-    },
-    {
-      "keyword": "fdsa",
-      "id": 4
-    }
-  ]
+  "history": []
 }

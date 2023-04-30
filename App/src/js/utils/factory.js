@@ -20,24 +20,6 @@ function generateDict() {
 export const [addComponent, findComponent] = generateDict();
 export const [addEvent, findEvent] = generateDict();
 
-function recipeAccount() {
-  let recipe = null;
-
-  function registerRecipe(_recipe) {
-    recipe = _recipe;
-  }
-
-  function getAccountRecipe() {
-    return recipe;
-  }
-
-  return {
-    registerRecipe,
-    getAccountRecipe,
-  };
-}
-
-export const { registerRecipe, getAccountRecipe } = recipeAccount();
 
 function generateSearchLog() {
   const MAX_KEYWORD_COUNT = 10;

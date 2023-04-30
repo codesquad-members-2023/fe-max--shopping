@@ -1,4 +1,4 @@
-import { addEvent } from "../util/factory.js";
+import { addEvent } from "../utils/factory.js";
 import { Component } from "./Component.js";
 
 function delay(ms) {
@@ -10,10 +10,9 @@ function delay(ms) {
 }
 
 export class Main extends Component {
-  constructor({ domNode, children }) {
+  constructor(component) {
     super();
-    this.domNode = domNode;
-    this.children = children;
+    this.restructure(component);
 
     addEvent("mainDim", this.dim.bind(this));
     addEvent("mainTurnUp", this.turnUp.bind(this));
@@ -29,7 +28,7 @@ export class Main extends Component {
     dimmed.className = "dimmed";
   }
 
-  setEvent() {
+  setHeroEvent() {
     let bgIndex = 0;
     let heroIndex = 0;
     let time = 0;
@@ -58,7 +57,6 @@ export class Main extends Component {
     }
 
     const limit = bgSlides.length;
-
     const hero = this.domNode.querySelector("#hero");
     const heroUl = hero.querySelector(".hero__wrapper");
     const heroSlides = heroUl.querySelectorAll(".hero__slide");
@@ -121,7 +119,7 @@ export class Main extends Component {
 
       heroIndex = (heroIndex + 1) % limit;
       clearHeroSlideActive();
-      
+
       heroSlides[heroIndex].className = "hero__slide active";
     }
 
@@ -134,7 +132,11 @@ export class Main extends Component {
         time = 0;
         return;
       }
-      if(!heroMouseOver)time += 1;
+      if (!heroMouseOver) time += 1;
     }, 1000);
+  }
+
+  setEvent() {
+    this.setHeroEvent();
   }
 }
