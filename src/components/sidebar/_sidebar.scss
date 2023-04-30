@@ -1,13 +1,14 @@
 @use "../../style/common";
+@use "../../style/z-index";
 
-.side-bar {
+.sidebar {
   position: fixed;
   top: 0;
   width: 320px;
   height: 100vh;
   transform: translateX(-100%);
   transition: all 0.5s;
-  z-index: 600;
+  z-index: z-index.$sidebar;
 
   &__login {
     background-color: var(--black);
@@ -22,7 +23,7 @@
   &.show {
     transform: translate(0%);
 
-    .side-bar__close-button {
+    .sidebar__close-button {
       visibility: visible;
     }
   }
@@ -64,8 +65,8 @@
   }
 
   &__menu-title {
-    @extend .side-bar__login;
-    @extend .side-bar__login-text;
+    @extend .sidebar__login;
+    @extend .sidebar__login-text;
 
     background-color: var(--white);
     color: var(--black);

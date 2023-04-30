@@ -1,4 +1,5 @@
 @use "../../style/common";
+@use "../../style/z-index";
 
 @mixin nav-bar__label {
   @include common.bold-sm;
@@ -25,7 +26,7 @@
 .nav-bar__login-text,
 .nav-bar__my-page-text,
 .nav-bar__cart-text,
-.sub__side-bar-buttton-text,
+.sub__sidebar-buttton-text,
 .sub-right-menu {
   @include nav-bar__text;
 }
@@ -122,7 +123,7 @@
 }
 .nav-bar {
   position: relative;
-  z-index: 400;
+  z-index: z-index.$nav-bar;
 
   &__nation {
     display: flex;
@@ -156,7 +157,7 @@
   display: flex;
 }
 
-.sub__side-bar-button {
+.sub__sidebar-button {
   padding: 8px;
 
   display: flex;
@@ -164,7 +165,7 @@
   gap: 4px;
 }
 
-.sub__side-bar-button-icon {
+.sub__sidebar-button-icon {
   width: 16px;
   height: 16px;
 }

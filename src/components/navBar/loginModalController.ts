@@ -31,7 +31,7 @@ export const addLoginEventListeners = () => {
 
 const handleLoginContainerMouseEnter = ($modal: Element) => {
   showElement($modal);
-  dim(Z_INDEX.NAV_BAR - 50);
+  dim(Z_INDEX.NAV_BAR);
 };
 
 const handleModalMouseLeave = ($modal: Element) => {

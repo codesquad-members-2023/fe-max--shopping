@@ -6,7 +6,7 @@ export const dim = (zIndex: number) => {
   const $dimmer = ensureHTMLElement($(".dimmer"));
 
   $dimmer.classList.add("dimmed");
-  $dimmer.style.zIndex = zIndex.toString();
+  $dimmer.style.zIndex = (zIndex - 50).toString();
 };
 
 export const undim = () => {
