@@ -1,10 +1,13 @@
-import { Component } from '../../core/Component.js';
-import { $, addHiddenClass, removeHiddenClass } from '../../utils.js';
+import { $ } from '../../utils.js';
 
-export class Sidebar extends Component {
-  getTemplate() {
+export class SidebarView {
+  constructor() {
+    this.sidebarContents = document.querySelector('.side-bar__contents');
+  }
+
+  getTemplate(state) {
     const template = [];
-    for (const menu of this.state) {
+    for (const menu of state) {
       const categoryContents = [
         `<ul class="contents-category ${menu.isActive ? '' : 'hidden'}">
         ${this.getTitleTemplate(menu.title)}
@@ -53,21 +56,20 @@ export class Sidebar extends Component {
         </li>`;
   }
 
-  setEvent() {
+  render(state) {
+    const template = this.getTemplate(state);
+    this.sidebarContents.innerHTML = template;
+  }
+
+  setEvent(handler) {
     $('.close-btn').addEventListener('click', () => {
-      addHiddenClass('.side-background');
+      handler('closeSidebar');
     });
-
     $('.showAllBtn').addEventListener('click', () => {
-      const hiddenCategory = document.querySelector('.side-bar__contents').lastChild;
-      $('.showAllBtn').classList.add('none');
-      hiddenCategory.classList.remove('hidden');
+      handler('showAllCategories');
     });
-
     $('.showShortlyBtn').addEventListener('click', () => {
-      const hiddenCategory = document.querySelector('.side-bar__contents').lastChild;
-      $('.showAllBtn').classList.remove('none');
-      hiddenCategory.classList.add('hidden');
+      handler('showShortCategories');
     });
   }
 }

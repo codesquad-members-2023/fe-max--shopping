@@ -1,30 +1,14 @@
 export class Component {
-  target;
-  state;
-  constructor(target, url) {
+  constructor(target) {
     this.target = target;
-    this.url = url;
-    this.fetchData();
+    this.render();
   }
 
-  fetchData() {
-    fetch(this.url)
-      .then(response => response.json())
-      .then(data => {
-        this.state = data;
-        this.render();
-      });
-  }
   getTemplate() {
     return '';
   }
+
   render() {
     this.target.insertAdjacentHTML('beforeend', this.getTemplate());
-    this.setEvent();
-  }
-  setEvent() {}
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-    this.render();
   }
 }

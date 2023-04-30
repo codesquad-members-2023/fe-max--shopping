@@ -1,0 +1,39 @@
+.contents-card {
+  width: 262px;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    @include typo('boldLG');
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    background-color: $color-white;
+    > a {
+      @include typo('bodySM');
+      color: $color-secondaryGreen;
+    }
+  }
+}
+
+.contents-login {
+  height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: $color-white;
+  &__btn {
+    @include typo('boldSM');
+    width: 160px;
+    height: 32px;
+    background: linear-gradient(174.6deg, #ffffff 4.31%, #fed15f 50.01%, #febe30 95.71%);
+    border: 1px solid #de9408;
+    border-radius: 4px;
+  }
+  &__title {
+    @include typo('boldMD');
+  }
+}
