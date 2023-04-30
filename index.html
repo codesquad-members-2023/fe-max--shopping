@@ -143,8 +143,8 @@
       </nav>
 
       <!-- sidebar -->
-      <div class="sidebar">
-        <button class="sidebar__close hidden">
+      <div class="sidebar" data-state="closed">
+        <button class="sidebar__close" data-state="hidden">
           <img src="./src/assets/images/icn_close.svg" alt="닫기" class="" />
         </button>
         <div class="sidebar__login">
@@ -152,29 +152,26 @@
           <span>안녕하세요, 로그인</span>
         </div>
         <div class="sidebar__contents">
-          <div class="wrap">
+          <div class="wrap" data-state="close">
             <div class="main">
-              <div class="content">
-                <div class="title">디지털 콘텐츠 및 기기</div>
-                <ul class="lists digital"></ul>
-              </div>
-              <div class="content">
-                <div class="sidebar__content--top">
-                  <div class="title">부서별 쇼핑</div>
-                  <ul class="lists department"></ul>
-                  <button class="open-lists-btn">
-                    <div>모두보기</div>
-                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
-                  </button>
-                </div>
-                <div class="sidebar__content--down">
-                  <ul class="open-lists"></ul>
-                  <button class="close-lists-btn">
-                    <div>간단히보기</div>
-                    <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
-                  </button>
-                </div>
-              </div>
+              <!-- 수정중입니다. -->
+              <!-- <button class="open-lists-btn">
+                <div>모두보기</div>
+                <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+              </button>
+              <div class="sidebar__content--extend" data-state="close">
+                <ul class="open-lists"></ul>
+                <button class="close-lists-btn">
+                  <div>간단히보기</div>
+                  <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                </button>
+              </div> -->
+              <!-- <div class="sidebar__content--extend">
+                <button class="close-lists-btn">
+                  <div>간단히보기</div>
+                  <img src="./src/assets/images/icn_chevron_down.svg" alt="" />
+                </button>
+              </div> -->
             </div>
             <!-- 서브 -->
             <div class="sub">
