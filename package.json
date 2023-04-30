@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "아마존 웹사이트 구현하기",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:sass": "npx sass --watch scss:css",
-    "dev:client": "npx live-server",
     "dev:server": "npx json-server --watch ./data/db.json --port 5050",
     "dev": "npm-run-all -p dev:*"
   },

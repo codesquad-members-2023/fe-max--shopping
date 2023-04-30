@@ -1,6 +1,7 @@
-import { initHeader } from './modal.js';
-import { initSlider } from './slider.js';
-import { initSideBar } from './sidebar.js';
+/* eslint-disable no-new */
+import { initHeader } from './Header/modal.js';
+import { initSlider } from './Hero/slider.js';
+import { initSideBar } from './SideBar/sidebar.js';
 import { App } from './App.js';
 
 function init() {

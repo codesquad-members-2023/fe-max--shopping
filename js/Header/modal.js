@@ -1,4 +1,4 @@
-import { setEvent } from './utility.js';
+import { addEvent } from '../util/utility.js';
 
 const loginArea = document.querySelector('#nav-login');
 const loginTextArea = document.querySelector('#nav-login-text');
@@ -9,11 +9,11 @@ const addressModal = document.querySelector('#nav-address-modal');
 const backdrop = document.querySelector('.modal__backdrop');
 
 export function initHeader() {
-  setEvent(window, 'DOMContentLoaded', fadeInLoginPopover);
-  setEvent(loginTextArea, 'mouseenter', showLoginModal);
-  setEvent(loginArea, 'mouseleave', hideLoginModal);
-  setEvent(addressArea, 'mouseenter', showAddressModal);
-  setEvent(addressArea, 'mouseleave', hideAddressModal);
+  addEvent(window, 'DOMContentLoaded', fadeInLoginPopover);
+  addEvent(loginTextArea, 'mouseenter', showLoginModal);
+  addEvent(loginArea, 'mouseleave', hideLoginModal);
+  addEvent(addressArea, 'mouseenter', showAddressModal);
+  addEvent(addressArea, 'mouseleave', hideAddressModal);
 }
 
 function fadeInLoginPopover() {
