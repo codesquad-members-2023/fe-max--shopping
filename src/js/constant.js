@@ -26,6 +26,7 @@ export const CAROUSEL = {
 
 export const TIME = {
   NONE_TO_BLOCK: 10,
+  FETCH_FROM_DB: 50,
   DIM_DELAY: 300,
   LOGIN_EXPAND_DELAY: 500,
   LOGIN_OPACITY_DELAY: 1000,

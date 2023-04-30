@@ -608,42 +608,33 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   border-radius: 4px;
   z-index: 3;
 }
-.search-layer > div {
-  width: auto;
-}
-.search-layer > div > ul {
-  display: none;
+.search-layer ul {
   font: 500 13px/1.6 Pretendard;
   letter-spacing: -0.03em;
   color: #10141a;
 }
-.search-layer > div > ul :hover {
+.search-layer ul :hover,
+.search-layer ul :focus {
   cursor: pointer;
   background-color: #eff2f2;
   border-radius: 4px;
 }
-.search-layer > div > ul :focus {
-  background-color: #eff2f2;
-  border-radius: 4px;
-}
-.search-layer > div > ul > li {
+.search-layer ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 12px;
   height: 37px;
 }
-.search-layer > div > ul > li img:hover {
-  transform: scale(1.5);
-}
-.search-layer > div .recent-keywords {
+.search-layer ul .recent-keyword {
   color: #941387;
 }
-.search-layer > div .recommend-keywords li {
-  padding-left: 28px;
-  background-image: url(../assets/svg/arrow-top-right.svg);
-  background-repeat: no-repeat;
-  background-position: 12px 14px;
+.search-layer ul .recent-keyword .delete-btn:hover {
+  transform: scale(1.5);
+}
+.search-layer ul .recommend-keyword {
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .menu-sidebar {

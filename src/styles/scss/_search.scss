@@ -11,55 +11,38 @@
   border-radius: 4px;
   z-index: 3;
 
-  > div {
-    width: auto;
+  ul {
+    @include bodyMd;
+    color: $color-black;
 
-    > ul {
-      display: none;
-      @include bodyMd;
-      color: $color-black;
+    :hover,
+    :focus {
+      cursor: pointer;
+      background-color: $color-gray-100;
+      border-radius: 4px;
+    }
 
-      :hover {
-        cursor: pointer;
-        background-color: $color-gray-100;
-        border-radius: 4px;
-      }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      height: 37px;
+    }
 
-      :focus {
-        background-color: $color-gray-100;
-        border-radius: 4px;
-      }
+    .recent-keyword {
+      color: $color-secondary-puple;
 
-      > li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 12px;
-        height: 37px;
-
-        img {
-          &:hover {
-            transform: scale(1.5);
-          }
+      .delete-btn {
+        &:hover {
+          transform: scale(1.5);
         }
       }
     }
 
-    .recent-keywords {
-      color: $color-secondary-puple;
+    .recommend-keyword {
+      justify-content: flex-start;
+      gap: 10px;
     }
-
-    .recommend-keywords {
-      li {
-        padding-left: 28px;
-        background-image: url(../assets/svg/arrow-top-right.svg);
-        background-repeat: no-repeat;
-        background-position: 12px 14px;
-      }
-    }
-
-    // .auto-keywords {
-    //   height: 37px;
-    // }
   }
 }
