@@ -6,19 +6,19 @@ export class Component {
     this.#node.className = className;
   }
 
-  init(state) {
-    this.render(state);
+  init(info) {
+    this.render(info);
     this.initEventHandlers();
   }
 
-  render(state) {
+  render(info) {
     this.dropPreviousRender();
-    const template = this.getTemplate(state);
+    const template = this.getTemplate(info);
 
     if (typeof template === 'string') {
       const templateElement = document.createElement('template');
       templateElement.innerHTML = template;
-      this.#node.append(templateElement.content);
+      this.#node.append(templateElement.content.cloneNode(true));
       return;
     }
 
@@ -31,16 +31,11 @@ export class Component {
     }
   }
 
-  initEventHandlers() {}
-
-  static makeElement(parentTagName, literal) {
-    const parentElement = document.createElement(parentTagName);
-    const templateElement = document.createElement('template');
-    templateElement.innerHTML = literal;
-
-    parentElement.append(templateElement.content);
-    return parentElement;
+  getTemplate() {
+    return '';
   }
+
+  initEventHandlers() {}
 
   get node() {
     return this.#node;

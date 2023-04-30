@@ -1,11 +1,9 @@
-import { client } from '../../domain/client.js';
 import { Component } from '../base/Component.js';
 import CategoryContainer from './CategoryContainer.js';
 
 export default class Main extends Component {
   constructor() {
     super('sidebar-main translateX-left');
-    this.client = client;
     this.login = new Login();
     this.categoryContainer = new CategoryContainer();
     this.init();

@@ -1,25 +1,17 @@
-import { debounce } from '../../../../utils/utils.js';
+import { debounce } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
+import SearchModel from '../Search/SearchModel.js';
 import SearchBar from './SearchBar.js';
 import { SearchPanel } from './SearchPanel.js';
-import { SearchStorage } from './SearchStorage.js';
-import { client } from '/src/js/domain/client.js';
 
 export default class Search extends Component {
   constructor(main) {
     super('search');
-    this.storage = new SearchStorage();
-    this.client = client;
-    this.state = {
-      history: [],
-      recommend: [],
-      autoComplete: [],
-    };
     this.main = main;
-    this.searchPanel = new SearchPanel(this.state, this.storage);
-    this.searchBar = new SearchBar();
+    this.model = new SearchModel();
+    this.searchPanel = new SearchPanel({ deleteItem: (target) => this.deleteItem(target) });
+    this.searchBar = new SearchBar({ closeSearchPanel: () => this.closeSearchPanel() });
     this.init();
-    this.initState();
   }
 
   initEventHandlers() {
@@ -35,9 +27,31 @@ export default class Search extends Component {
     this.node.addEventListener('submit', (event) => this.handleSubmit(event));
   }
 
-  async initState() {
-    this.state.recommend = await this.client.fetchRecommendWords(10);
-    this.state.history = this.storage.getSearchHistory();
+  deleteItem(target) {
+    const targetItem = target.closest('li');
+    this.model.deleteSearchWord(targetItem.dataset.id);
+  }
+
+  async showRecommendWords({ target }) {
+    const userInput = target.value;
+    if (userInput) return;
+
+    const { history, recommend } = this.model.getRecommend();
+    this.searchPanel.render({ history: history, keywords: recommend });
+    this.searchPanel.open();
+    this.main.onDimmed();
+  }
+
+  async showAutoComplete({ target }) {
+    const userInput = target.value;
+    if (!userInput) {
+      this.showRecommendWords({ target });
+      return;
+    }
+
+    await this.model.requestAutoCompleteWords(userInput, 10);
+    const { autoComplete } = this.model.getAutoComplete();
+    this.searchPanel.render({ keywords: autoComplete, history: [], value: userInput });
   }
 
   handleKeyDown(key) {
@@ -65,36 +79,11 @@ export default class Search extends Component {
 
     const { search } = event.target.elements;
     const userInput = search.value;
+    this.model.addSearchWord(userInput);
 
-    this.saveHistory(userInput);
+    const { history, recommend } = this.model.getRecommend();
+    this.searchPanel.render({ history: history, keywords: recommend });
     this.searchBar.clearInputValue();
-  }
-
-  saveHistory(userInput) {
-    this.storage.addSearchWord(userInput);
-    this.state.history = this.storage.getSearchHistory();
-  }
-
-  showRecommendWords({ target }) {
-    const userInput = target.value;
-    if (userInput) return;
-
-    this.main.onDimmed();
-    this.searchPanel.render({ history: this.state.history, recommend: this.state.recommend });
-    this.searchPanel.open();
-  }
-
-  async showAutoComplete({ target }) {
-    const userInput = target.value;
-    if (!userInput) {
-      this.showRecommendWords({ target });
-      return;
-    }
-
-    const autoCompleteWords = await this.client.fetchAutoCompleteWords(userInput, 10);
-    this.state.autoComplete = autoCompleteWords;
-
-    this.searchPanel.render({ recommend: this.state.autoComplete });
   }
 
   getTemplate() {

@@ -1,4 +1,4 @@
-import { Component } from '../base/Component.js';
+import { Component } from '../../base/Component.js';
 
 export class Slider extends Component {
   constructor() {
@@ -26,7 +26,7 @@ export class Slider extends Component {
 class Slide extends Component {
   constructor(src) {
     super('slide', 'LI');
-    this.init(src);
+    this.render(src);
   }
 
   getTemplate(src) {

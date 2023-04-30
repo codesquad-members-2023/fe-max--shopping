@@ -1,6 +1,6 @@
-import { client } from '../../domain/client.js';
 import { Component } from '../base/Component.js';
 import Category from './Category.js';
+import { categoryModel } from './categoryModel.js';
 
 export default class CategoryContainer extends Component {
   constructor() {
@@ -32,56 +32,47 @@ export default class CategoryContainer extends Component {
 class Main extends Component {
   constructor() {
     super('category-container__main');
-    this.client = client;
-    this.menus = [];
-    this.load();
+    this.model = categoryModel;
+    this.loadCategory();
   }
 
-  load() {
-    this.client
-      .fetchCategories()
-      .then((categoryInfos) => {
-        this.menus = categoryInfos.map((categoryInfo) => new Category(categoryInfo).node);
-      })
-      .then(() => this.render());
+  async loadCategory() {
+    await this.model.requestMainCategories();
+    this.render();
   }
 
   getTemplate() {
-    return [...this.menus];
+    const mainCategories = this.model.getMainCategory();
+    const categoryNodes = mainCategories.map((category) => new Category(category).node);
+    return [...categoryNodes];
   }
 }
 
 class Sub extends Component {
   constructor() {
     super('category-container__sub');
-    this.client = client;
+    this.model = categoryModel;
     this.backList = new Component('back', 'LI');
-    this.categories = new Map();
     this.setBackList();
-    this.load();
+    this.loadCategory();
   }
 
-  load() {
-    this.client.fetchSubCategory().then((subCategoryInfos) => {
-      subCategoryInfos.forEach((subCategoryInfo) => this.saveSubCategory(subCategoryInfo));
-    });
-  }
-
-  saveSubCategory(subCategoryInfo) {
-    const { id, details } = subCategoryInfo;
-    const subCategory = details.map((detail) => new Category(detail).node);
-    this.categories[id] = subCategory;
+  async loadCategory() {
+    await this.model.requestSubCategories();
   }
 
   setBackList() {
     const templateElement = document.createElement('template');
     const literal = `<button></button><a href="#">주메뉴</a>`;
     templateElement.innerHTML = literal;
-    this.backList.node.append(templateElement.content);
+    this.backList.node.append(templateElement.content.cloneNode(true));
   }
 
   getTemplate(id) {
-    const targetCategory = this.categories[id];
-    return [this.backList.node, ...targetCategory];
+    const subCategories = this.model.getSubCategory();
+    const details = subCategories[id];
+    const categoryNodes = details.map((detail) => new Category(detail).node);
+
+    return [this.backList.node, ...categoryNodes];
   }
 }

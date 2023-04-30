@@ -1,34 +1,27 @@
+import { highlightText } from '../../../../utils/index.js';
 import { Component } from '../../../base/Component.js';
 
 export class SearchPanel extends Component {
-  constructor(state, storage) {
+  constructor(props) {
     super('search-panel', 'UL');
-    this.storage = storage;
-    this.state = state;
+    this.props = props;
     this.selectedItem = null;
-    this.init(this.state);
-  }
-
-  getTemplate(state) {
-    const { history, recommend } = state;
-    const historyView = this.getAllHistoryTemplate(history);
-    const recommendView = this.getAllRecommendTemplate(recommend);
-
-    return historyView + recommendView;
+    this.initEventHandlers();
   }
 
   initEventHandlers() {
-    this.node.addEventListener('click', ({ target }) => {
-      if (target.matches('.delete-btn')) {
-        this.deleteItem(target);
-      }
-    });
+    const { deleteItem } = this.props;
+
+    this.node.addEventListener('mousedown', (event) => event.preventDefault());
+    this.node.addEventListener('click', ({ target }) => deleteItem(target));
   }
 
-  deleteItem(target) {
-    const targetItem = target.closest('li');
-    this.storage.deleteSearchWord(targetItem.dataset.id);
-    targetItem.remove();
+  getTemplate(info) {
+    const { keywords, history, value } = info;
+    const historyView = this.getAllHistoryTemplate(history);
+    const keywordsView = this.getAllKeywordTemplate(keywords, value);
+
+    return `${historyView}${keywordsView}`;
   }
 
   onKeyDown(key) {
@@ -72,11 +65,7 @@ export class SearchPanel extends Component {
   }
 
   getAllHistoryTemplate(history) {
-    if (!history) {
-      return '';
-    }
-    const historyInfo = Object.entries(history).slice(-5);
-    const historyTemplate = historyInfo.reduce((acc, cur) => {
+    const historyTemplate = history.reduce((acc, cur) => {
       const historyId = cur[0];
       const historyWord = cur[1];
       return acc + this.getHistoryTemplate(historyId, historyWord);
@@ -85,18 +74,21 @@ export class SearchPanel extends Component {
     return historyTemplate;
   }
 
-  getAllRecommendTemplate(recommend) {
-    const recommendTemplate = recommend.reduce((acc, cur) => {
-      return acc + this.getRecommendTemplate(cur);
+  getAllKeywordTemplate(keywords, value) {
+    const keywordsTemplate = keywords.reduce((acc, cur) => {
+      return acc + this.getKeywordTemplate(cur, value);
     }, '');
 
-    return recommendTemplate;
+    return keywordsTemplate;
   }
 
-  getRecommendTemplate(word) {
+  getKeywordTemplate(keyword, value) {
     return `
-<li class="recommend">
-  <a href="#"><button class="shortcut-btn"></button>${word}</a>
+<li class="keyword">
+  <a href="#"><button class="shortcut-btn"></button><span>${highlightText(
+    keyword,
+    value
+  )}</span></a>
 </li>
     `;
   }

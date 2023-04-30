@@ -1,10 +1,19 @@
 import { Component } from '../../../base/Component.js';
 
 export default class SearchBar extends Component {
-  constructor() {
+  constructor(props) {
     super('search-bar', 'FORM');
+    this.props = props;
     this.node.setAttribute('autocomplete', 'off');
     this.init();
+  }
+
+  initEventHandlers() {
+    const { closeSearchPanel } = this.props;
+
+    this.node.search.addEventListener('blur', () => {
+      closeSearchPanel();
+    });
   }
 
   clearInputValue() {
