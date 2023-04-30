@@ -128,6 +128,9 @@
   &__event {
     padding: 8px;
     height: 16px;
+    > a {
+      color: $color-white;
+    }
   }
 }
 

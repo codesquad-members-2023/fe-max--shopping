@@ -1,0 +1,65 @@
+.footer {
+  margin-top: 890px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-btn {
+  @include typo('boldSM');
+  width: 100%;
+  height: 32px;
+  color: $color-white;
+  background-color: $color-gray800;
+  border: none;
+}
+
+.footer-sitelink {
+  padding: 40px 80px;
+  display: flex;
+  justify-content: center;
+  background-color: $color-gray900;
+  gap: 24px;
+}
+
+.sitelink-group {
+  width: 262px;
+  &__title {
+    @include typo('boldMD');
+    color: $color-white;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    gap: 4px;
+    a {
+      @include typo('bodySM');
+      color: $color-white;
+    }
+  }
+}
+
+.footer-info {
+  padding: 24px 0px;
+  display: flex;
+  justify-content: center;
+  background-color: $color-black;
+  gap: 46px;
+}
+
+.info-contents {
+  @include typo('bodySM');
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  &__links {
+    display: flex;
+    gap: 16px;
+    a {
+      color: $color-white;
+    }
+  }
+  &__sign {
+    color: $color-white;
+  }
+}
