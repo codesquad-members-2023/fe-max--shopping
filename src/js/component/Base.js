@@ -87,38 +87,6 @@ export class Base {
     return childNode;
   }
 
-  // createNode({ type, text, tagName, attribute, textContent, name, children }) {
-  //   if (type === "text") {
-  //     console.log(1);
-  //     const textNode = document.createTextNode(text);
-  //     return { node: textNode };
-  //   }
-
-  //   const childNode = new Base(tagName);
-  //   if (attribute) {
-  //     for (const key in attribute) {
-  //       childNode.setAttribute(key, attribute[key]);
-  //     }
-  //   }
-
-  //   if (children.length) {
-  //     const childArray = children.map((child) => {
-  //       return this.createNode(child);
-  //     });
-  //     childNode.setChildren(...childArray);
-  //   }
-
-  //   if (textContent) {
-  //     childNode.setTextContent(textContent);
-  //   }
-
-  //   if (name) {
-  //     this[name] = childNode;
-  //   }
-
-  //   return childNode;
-  // }
-
   clearChild() {
     while (this.#_node.firstChild) {
       this.#_node.removeChild(this.#_node.firstChild);
