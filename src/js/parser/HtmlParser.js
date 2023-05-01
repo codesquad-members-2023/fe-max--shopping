@@ -38,11 +38,10 @@ export class HtmlParser {
         if (child.nodeType === Node.ELEMENT_NODE) {
           obj.children.push(this.traverse(child));
         } else if (child.nodeType === Node.TEXT_NODE) {
-          const text = child.textContent.replace(/\n|\s/g, "");
           if (text) {
             const textObj = {
               type: "text",
-              text: text,
+              text: child.textContent,
             };
             obj.children.push(textObj);
           }
