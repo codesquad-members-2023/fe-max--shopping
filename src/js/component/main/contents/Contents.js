@@ -51,9 +51,10 @@ export class Contents extends Base {
             </div>
           </div>`;
         })
-        .join();
+        .join("");
     });
 
     return cards;
   }
 }
+

@@ -99,7 +99,6 @@ export class View extends Base {
     if (isNext) {
       const firstNode = wrapperNode.children[0];
 
-      console.log(firstNode);
       wrapperNode.appendChild(firstNode);
       firstNode.setAttribute("src", newImg);
     } else {

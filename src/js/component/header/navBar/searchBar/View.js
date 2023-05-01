@@ -55,7 +55,7 @@ export class View extends Base {
             )}
           </div>`;
       })
-      .join();
+      .join("");
 
     this.layer.clearChild();
     this.layer.setTemplate(autoCompleteTemplate);
@@ -72,7 +72,7 @@ export class View extends Base {
             </div>
         `;
       })
-      .join();
+      .join("");
     this.layer.setTemplate(searchHistoryTemplate);
   }
 
@@ -85,7 +85,7 @@ export class View extends Base {
                 <span>${keywordObj.text}</span>
             </div>`;
       })
-      .join();
+      .join("");
     this.layer.setTemplate(keywordTemplate);
   }
 }

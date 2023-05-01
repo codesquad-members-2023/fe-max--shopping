@@ -39,12 +39,13 @@ export class HtmlParser {
           obj.children.push(this.traverse(child));
         } else if (child.nodeType === Node.TEXT_NODE) {
           const text = child.textContent.replace(/\n|\s/g, "");
-          const textObj = {
-            type: "text",
-            text: text,
-          };
-          obj.children.push(textObj);
-          // obj.textContent = text || "";
+          if (text) {
+            const textObj = {
+              type: "text",
+              text: text,
+            };
+            obj.children.push(textObj);
+          }
         }
       }
     }

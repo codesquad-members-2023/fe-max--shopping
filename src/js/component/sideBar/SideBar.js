@@ -40,7 +40,7 @@ export class SideBar extends Base {
       .map((obj) => {
         return this.setSideBarContents(obj);
       })
-      .join();
+      .join("");
   }
 
   setSideBarContents({ title, menu }) {
@@ -75,7 +75,7 @@ export class SideBar extends Base {
           }
         </div>`;
       })
-      .join();
+      .join("");
   }
 
   setSideBarDetailMenu(detailMenuData) {
@@ -176,3 +176,4 @@ export class SideBar extends Base {
     }
   }
 }
+
