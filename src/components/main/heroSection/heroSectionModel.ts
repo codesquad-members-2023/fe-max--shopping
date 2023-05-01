@@ -17,7 +17,7 @@ export class HeroSectionModel {
     this.viewIndex -= 1;
   }
 
-  setFisrtViewIndex() {
+  setFirstViewIndex() {
     this.viewIndex = 1;
   }
 

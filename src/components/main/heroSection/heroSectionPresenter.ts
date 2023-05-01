@@ -42,7 +42,7 @@ export class HeroSectionPresenter {
     this.model.increaseViewIndex();
 
     if (this.model.isOverflowImageIndex()) {
-      this.model.setFisrtViewIndex();
+      this.model.setFirstViewIndex();
       await this.handleIndexOverflow($imageContainer);
     }
 
