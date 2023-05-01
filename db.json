@@ -1,9 +1,5 @@
 {
-  "history": [
-    {
-      "id": 0,
-      "text": "history0"
-    },
+  "recentSearches": [
     {
       "id": 1,
       "text": "history1"
@@ -11,9 +7,13 @@
     {
       "id": 2,
       "text": "history2"
+    },
+    {
+      "id": 3,
+      "text": "history3"
     }
   ],
-  "recommend": [
+  "recommends": [
     {
       "id": 0,
       "text": "marvel legends"

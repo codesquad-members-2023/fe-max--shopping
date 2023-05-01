@@ -86,9 +86,9 @@
   position: absolute;
   width: 100%;
   left: 0px;
-  top: 104px;
-  height: calc(100% - 104px);
-  min-height: calc(100vh - 104px);
+  top: 88px;
+  height: calc(100% - 88px);
+  min-height: calc(100vh - 88px);
   z-index: variables.$z-index-cover;
   background: variables.$color-black-40;
 }
