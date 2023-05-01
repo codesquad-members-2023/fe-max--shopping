@@ -1,4 +1,5 @@
-import Component from "../common/Component.js";
+import ComponentWithBackDrop from "../common/ComponentWithBackDrop.js";
+import SideBarService from "./SideBarService.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -18,42 +19,33 @@ template.innerHTML = `
   <link rel="stylesheet" href="src/styles/components/SideBar/SideBar.css"></link>
 `;
 
-class SideBar extends Component {
+class SideBar extends ComponentWithBackDrop {
   constructor() {
     super(template);
     this.menuContainer = this.shadowRoot.querySelector(".menu-container");
     this.closeBtn = this.shadowRoot.querySelector(".close-btn");
-    this.backDrop = document.querySelector("back-drop");
+
+    this.searchFormService = new SideBarService({
+      endpoint: "/side-bar",
+    });
+
+    this.registerCustomEvent("showSelf", {
+      detail: { position: "ENTIRE" },
+    });
+    this.backDrop.registerListenable(this);
   }
 
   async connectedCallback() {
-    const menuData = await this.fetchMenuData();
-    const parsedMenuData = this.parseMenuData(menuData);
+    const { searchFormService } = this;
+
+    const menuData = await searchFormService.fetchMenuData();
+    const parsedMenuData = searchFormService.parseMenuData(menuData);
+
     this.generateMenus(parsedMenuData);
 
-    this.closeBtn.addEventListener("click", this.hideSelf.bind(this));
-  }
-
-  async fetchMenuData() {
-    const res = await fetch(`http://127.0.0.1:3000/side-bar`);
-    return await res.json();
-  }
-
-  parseMenuData(menuData) {
-    const mainMenuOptions = menuData
-      .map(({ sectionTitle, categories }) => {
-        return [{ sectionTitle }, ...categories];
-      })
-      .flat()
-      .map((item, idx) => {
-        return { ...item, id: idx };
-      });
-
-    const subMenuContents = mainMenuOptions.filter((category) => {
-      return category.subcategories;
+    this.closeBtn.addEventListener("click", () => {
+      this.dispatchCustomEvent("hideSelf");
     });
-
-    return { mainMenuOptions, subMenuContents };
   }
 
   generateMenus({ mainMenuOptions, subMenuContents }) {
@@ -74,16 +66,6 @@ class SideBar extends Component {
     });
 
     return fragment;
-  }
-
-  showSelf() {
-    this.classList.add("is-active");
-    this.backDrop.activate({ possessor: this, top: 0, left: 0 });
-  }
-
-  hideSelf() {
-    this.classList.remove("is-active");
-    this.backDrop.deactivate();
   }
 }
 

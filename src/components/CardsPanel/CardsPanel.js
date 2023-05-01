@@ -1,4 +1,5 @@
-import Component from "./common/Component.js";
+import Component from "../common/Component.js";
+import CardsPanelService from "./CardsPanelService.js";
 
 const template = document.createElement("template");
 template.innerHTML = `
@@ -16,41 +17,26 @@ class CardsPanel extends Component {
   constructor() {
     super(template);
     this.cardsContainer = this.shadowRoot.querySelector(".cards-container");
+
+    this.cardsPanelService = new CardsPanelService({
+      endpoint: "/cards-panel",
+    });
   }
 
   async connectedCallback() {
-    const cardsData = await this.fetchCards();
-    this.setCards(JSON.stringify(cardsData));
-  }
-
-  setCards(newVal) {
-    this.dataset.cards = newVal;
-  }
-
-  async fetchCards() {
-    const res = await fetch(`http://127.0.0.1:3000/cards-panel`);
-    return await res.json();
-  }
-
-  static get observedAttributes() {
-    return ["data-cards"];
-  }
-
-  attributeChangedCallback(name, oldVal, newVal) {
-    if (name === "data-cards") {
-      this.generateCardItems(JSON.parse(newVal));
-    }
+    const cardsData = await this.cardsPanelService.fetchCards();
+    this.generateCardItems(cardsData);
   }
 
   generateCardItems(cards) {
     const fragment = new DocumentFragment();
     cards.forEach((card) => {
-      fragment.appendChild(this.generateCardItem(card));
+      fragment.appendChild(this.createCardItem(card));
     });
     this.cardsContainer.appendChild(fragment);
   }
 
-  generateCardItem({ imgSrc, imgAlt, title, link }) {
+  createCardItem({ imgSrc, imgAlt, title, link }) {
     const cardItem = document.createElement("card-item");
     cardItem.dataset.imgSrc = imgSrc;
     cardItem.dataset.imgAlt = imgAlt;

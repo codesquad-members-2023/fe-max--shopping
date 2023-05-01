@@ -16,7 +16,7 @@ template.innerHTML = `
           <span>대한민국</span>
         </a>
 
-        <tool-tip class="shipping-tooltip is-left dimmed-bg">
+        <tool-tip class="shipping-tooltip is-left dimmed-backdrop">
           <div slot="tool-tip-top-content">
             <div class="shipping-tooltip__desc">KR으로 배송할 품목을 표시하겠습니다. 다른 국가로 배송되는 품목을 보려면 배송 주소를 변경하십시오.</div>
             <div class="shipping-tooltip__btns">
@@ -47,7 +47,7 @@ template.innerHTML = `
             <div>기존사용자가 아니십니까? <a href="#">여기에서 시작합니다.</a></div>
           </div>
         </tool-tip>
-        <tool-tip class="dimmed-bg">
+        <tool-tip class="dimmed-backdrop">
           <div slot="tool-tip-top-content">
             <primary-button data-content="로그인" data-width="160px"></primary-button>
             <div>기존사용자가 아니십니까? <a href="#">여기에서 시작합니다.</a></div>
@@ -184,28 +184,30 @@ class TopHeader extends Component {
   }
 
   connectedCallback() {
-    this.toolTipParents.forEach((parent) => {
-      const toolTipNotDimmedBg = parent.querySelector(
-        "tool-tip:not(.dimmed-bg)"
+    const { toolTipParents, openSideBarBtn, sideBar } = this;
+
+    toolTipParents.forEach((parent) => {
+      const toolTipNotDimmedBackDrop = parent.querySelector(
+        "tool-tip:not(.dimmed-backdrop)"
       );
-      const toolTipDimmedBg = parent.querySelector("tool-tip.dimmed-bg");
+      const toolTipDimmedBackDrop = parent.querySelector(
+        "tool-tip.dimmed-backdrop"
+      );
 
       parent.addEventListener("mouseover", (evt) => {
-        if (!toolTipNotDimmedBg?.contains(evt.target)) {
-          toolTipNotDimmedBg?.hideSelf();
-          toolTipDimmedBg.showSelf();
+        if (!toolTipNotDimmedBackDrop?.contains(evt.target)) {
+          toolTipNotDimmedBackDrop?.dispatchCustomEvent("hideSelf");
+          toolTipDimmedBackDrop.dispatchCustomEvent("showSelf");
         }
       });
 
       parent.addEventListener("mouseleave", () => {
-        toolTipNotDimmedBg?.hideSelf();
-        toolTipDimmedBg.hideSelf();
+        toolTipDimmedBackDrop.dispatchCustomEvent("hideSelf");
       });
     });
 
-    this.openSideBarBtn.addEventListener(
-      "click",
-      this.sideBar.showSelf.bind(this.sideBar)
+    openSideBarBtn.addEventListener("click", () =>
+      sideBar.dispatchCustomEvent("showSelf")
     );
   }
 }

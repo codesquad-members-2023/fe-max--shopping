@@ -14,13 +14,13 @@
     flex-direction: column;
     background-color: $color-white;
 
-    .title {
+    .card-title {
       margin: 0;
       color: $color-black;
       @include f-bold-lg;
     }
 
-    .link {
+    .card-link {
       color: $color-secondary-green;
       @include f-body-sm;
     }

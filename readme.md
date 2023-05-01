@@ -10,7 +10,12 @@
   - [Web Components and SCSS](#web-components-and-scss)
   - [SCSS Modules - `@use` vs `@import`](#scss-modules---use-vs-import)
   - [Elements that are not Suitable for Attaching the Shadow DOM](#elements-that-are-not-suitable-for-attaching-the-shadow-dom)
-  - [Dimmed Layer](#dimmed-layer)
+  - [Dimmed Layer/Backdrop](#dimmed-layerbackdrop)
+  - [Keyboard Event](#keyboard-event)
+  - [Side Bar](#side-bar)
+  - [SoC](#soc)
+    - [`SearchForm`, `AutocompletePanel`](#searchform-autocompletepanel)
+  - [Reactive Programming](#reactive-programming)
 
 ## Getting Started
 
@@ -52,6 +57,23 @@
     - [x] Search bar grows when vw >= 1120px.
 - [x] Hero Infinite Carousel
   - [x] Automatically move to next slide after 10s of no interaction.
+- [x] Search Form
+  - [x] Fetch autocomplete data
+  - [x] Autocomplete Panel
+    - [x] Use up/down arrows to navigate autocomplete options.
+- [ ] Side Bar
+  - [x] Open when burger button on sub nav is clicked.
+  - [x] Fetch contents from server.
+  - [ ] Main Menu
+    - [x] Map main menu contents to corresponding sub menus.
+    - [ ] Compressed portion of contents
+  - [x] Sub Menus
+- [x] Back Drop (dimmed layer)
+- [ ] Server
+  - [x] Hero images endpoint
+  - [x] Card images endpoint
+  - [x] Search autocomplete endpoint
+  - [x] Side bar contents endpoint
 
 ## Dev Log
 
@@ -178,7 +200,7 @@
 - Elements related to headings, tables, form, img, inline elements (Ex: `a`, `span`).
 - The Shadow DOM can be attached to any HTML tag. However, attaching it to one of these elements may not make sense and lead to displacements.
 
-### Dimmed Layer
+### Dimmed Layer/Backdrop
 
 #### Ver. 1
 
@@ -190,6 +212,21 @@
 - Declare a single `back-drop` component in the body.
 - Any component that needs a backdrop will have a reference to that `back-drop` component.
 - Set the desired position and height of the backdrop when in need.
+
+#### [Ver. 3](#passive-vs-reactive-backdrop)
+
+- **Approach**
+  - Make `back-drop` reactive instead of passive.
+    - i.e. `back-drop` activates/deactivates based on external events in components that use `back-drop` but those components are unaware of `back-drop`.
+- **Steps**
+  - Register custom events (`"showSelf"`, `"hideSelf"`).
+  - In `BackDrop`, loop through its _listenables_ and for each listenable, add event listeners to those custom events (and while doing so, include its backdrop logic - activate/deactivate).
+  - A `ComponentWithBackDrop` component dispatches the custom event to itself when needed --> `BackDrop` activates/deactivates based on the custom event that occured in itself.
+    - `ComponentWithBackDrop` components are unaware of `BackDrop`.
+- **Save all instances of `ComponentWithBackDrop` in a static property.**
+  - Use this static property to close all instances that are not currently being activated.
+  - Hence, at any point in time, there can only be one `ComponentWithBackDrop` that is showing.
+  - No need to handle z-index anymore.
 
 ### Keyboard Event
 
@@ -204,3 +241,35 @@
   1. Assign ids, to begin with, in the original data.
   2. Use indices to assign ids in the fetched data.
 - Side Bar data does not change often and the number of items is relatively small. Also, the ids are exclusively used for the UI. Therefore, there is really no other reason to assign ids in the data itself. Simply assign and use the indices once the data is fetched.
+
+### SoC
+
+- To what extent and by what standard should components and/or logic be separated?
+- Is it ideal to separate things that, when alteration is needed, alter together at the same time?
+- Am I separating things that only really make sense to be used together?
+- _Think about the use cases of said components and logic rather than trying to separate everything just for the sake of separating or trying to blindly follow an architecture/pattern._
+
+#### `SearchForm`, `AutocompletePanel`
+
+- `AutocompletePanel` requires some sort of input/form from the user that it will base its contents on.
+  - This is provided by `SearchForm` and hence, `AutocompletePanel` if needed, will be solely used for `SearchForm`.
+- Therefore, consider `AutocompletePanel` an inherent part of `SearchForm` and focus on making `SearchForm` as reusable as possible.
+
+##### Implementation
+
+- `SearchFormService` receives an endpoint and a default search term to handle the business logic (fetching, serialize/deserialize, current/previous search term comparison).
+- `AutocompletePanel` State
+  - Search results - handled through `attributeChangedCallback` lifecycle.
+
+### Reactive Programming
+
+- **Objective:** build self-responsible modules that are focused on their own functionality rather than changing external state. —> Separation of Concerns
+- Ex: whenever a `ComponentWithBackDrop` shows itself, activate the BackDrop component.
+  - The position of the arrow’s tail represents the place of invocation.
+  - Traditionally, the arrow’s tail is directly at the source itself. However, in reactive programming, the arrow's tail is not directly at the source. The source is unaware that it is triggering the arrow, and hence, also unaware of the arrow's target.
+  - [`BackDrop`](#ver-3).
+
+#### Passive vs Reactive BackDrop
+
+<img src="docs/refImg/backdrop-passive.png" alt="Passive BackDrop" />
+<img src="docs/refImg/backdrop-reactive.png" alt="Reactive BackDrop" />
