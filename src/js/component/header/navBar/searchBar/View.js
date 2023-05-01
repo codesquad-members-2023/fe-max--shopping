@@ -31,8 +31,8 @@ export class View extends Base {
         this.setSearchHistoryNode(rendData.searchHistory);
         this.setRecommendKeywordsNode(rendData.recommendKeywords);
         break;
-      case "autoComplet":
-        this.setAutoCompletNode(rendData.autoComplete, rendData.inputText);
+      case "autoComplete":
+        this.setAutocompleteNode(rendData.autoComplete, rendData.inputText);
         break;
     }
   }
@@ -44,18 +44,18 @@ export class View extends Base {
     this.layer.clearChild();
   }
 
-  setAutoCompletNode(autoComplete, inputText) {
-    const autoCompletTemplate = autoComplete
+  setAutocompleteNode(autoComplete, inputText) {
+    const autoCompleteTemplate = autoComplete
       .map((keywordObj) => {
         return `
-          <div class="listItem autoCompletList">
+          <div class="listItem autoCompleteList">
             ${highlightText(keywordObj.text, inputText)}
           </div>`;
       })
       .join();
 
     this.layer.clearChild();
-    this.layer.setTemplate(autoCompletTemplate);
+    this.layer.setTemplate(autoCompleteTemplate);
   }
 
   setSearchHistoryNode(searchHistory) {
@@ -114,3 +114,4 @@ function highlightText(str, keyword) {
 
   return highlightedStr;
 }
+

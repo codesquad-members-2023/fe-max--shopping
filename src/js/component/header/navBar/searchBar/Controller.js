@@ -73,7 +73,7 @@ export class Controller {
     }
 
     view.render({
-      type: "autoComplet",
+      type: "autoComplete",
       inputText: inputText,
       autoComplete: autoComplete,
     });
@@ -168,3 +168,4 @@ export class Controller {
     }
   }
 }
+
