@@ -49,7 +49,10 @@ export class View extends Base {
       .map((keywordObj) => {
         return `
           <div class="listItem autoCompleteList">
-            ${highlightText(keywordObj.text, inputText)}
+            ${keywordObj.text.replaceAll(
+              inputText,
+              `<span class="highlight">${inputText}</span>`
+            )}
           </div>`;
       })
       .join();
@@ -85,33 +88,5 @@ export class View extends Base {
       .join();
     this.layer.setTemplate(keywordTemplate);
   }
-}
-
-function highlightText(str, keyword) {
-  const regex = new RegExp(`(${keyword})+`, "g");
-  const matches = str.match(regex);
-  if (!matches) {
-    return str;
-  }
-
-  let highlightedStr = "";
-  let lastIndex = 0;
-
-  for (const match of matches) {
-    const index = str.indexOf(match, lastIndex);
-    const nonMatchStr = str.slice(lastIndex, index);
-    if (nonMatchStr) {
-      highlightedStr += `<span>${nonMatchStr}</span>`;
-    }
-    highlightedStr += `<span class="highlight">${match}</span>`;
-    lastIndex = index + match.length;
-  }
-
-  const remainingStr = str.slice(lastIndex);
-  if (remainingStr) {
-    highlightedStr += `<span>${remainingStr}</span>`;
-  }
-
-  return highlightedStr;
 }
 
