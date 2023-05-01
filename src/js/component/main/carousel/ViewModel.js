@@ -29,7 +29,7 @@ export class ViewModel {
     }
   }
 
-  updeateCurrentIndex(currentIndex) {
+  updateCurrentIndex(currentIndex) {
     this.model.currentIndex = currentIndex;
   }
 
@@ -37,3 +37,4 @@ export class ViewModel {
     this.model.SlideState = state;
   }
 }
+
