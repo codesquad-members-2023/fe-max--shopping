@@ -14,6 +14,7 @@ export class HtmlParser {
 
   traverse(parsedElement) {
     const obj = {
+      type: "node",
       tagName: parsedElement.tagName,
       attribute: {},
       textContent: "",
@@ -38,7 +39,12 @@ export class HtmlParser {
           obj.children.push(this.traverse(child));
         } else if (child.nodeType === Node.TEXT_NODE) {
           const text = child.textContent.replace(/\n|\s/g, "");
-          obj.textContent = text || "";
+          const textObj = {
+            type: "text",
+            text: text,
+          };
+          obj.children.push(textObj);
+          // obj.textContent = text || "";
         }
       }
     }
@@ -46,3 +52,4 @@ export class HtmlParser {
     return obj;
   }
 }
+

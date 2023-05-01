@@ -13,7 +13,8 @@ export class Base {
   }
 
   setTextContent(content) {
-    this.#_node.textContent = content;
+    const textContent = document.createTextNode(content);
+    this.#_node.appendChild(textContent);
   }
 
   setAttribute(attName, attValue) {
@@ -39,19 +40,28 @@ export class Base {
     this.#_node.style[prop] = attr;
   }
 
-  htmlParsig(htmlStrig) {
-    return Base.htmlParser.getParsedData(htmlStrig);
+  htmlParsing(htmlString) {
+    return Base.htmlParser.getParsedData(htmlString);
   }
 
-  setTemplate(htmlStrig) {
-    const htmlArray = this.htmlParsig(htmlStrig);
-
+  setTemplate(htmlString) {
+    const htmlArray = this.htmlParsing(htmlString);
     htmlArray.forEach((htmlData) => {
       this.#_node.appendChild(this.createNode(htmlData).node);
     });
   }
 
-  createNode({ tagName, attribute, textContent, name, children }) {
+  createNode(htmlData) {
+    const isText = htmlData.type === "text";
+    if (isText) {
+      const textNode = document.createTextNode(htmlData.text);
+      return { node: textNode };
+    }
+
+    return this.createElementNode(htmlData);
+  }
+
+  createElementNode({ tagName, attribute, textContent, name, children }) {
     const childNode = new Base(tagName);
     if (attribute) {
       for (const key in attribute) {
@@ -77,6 +87,38 @@ export class Base {
     return childNode;
   }
 
+  // createNode({ type, text, tagName, attribute, textContent, name, children }) {
+  //   if (type === "text") {
+  //     console.log(1);
+  //     const textNode = document.createTextNode(text);
+  //     return { node: textNode };
+  //   }
+
+  //   const childNode = new Base(tagName);
+  //   if (attribute) {
+  //     for (const key in attribute) {
+  //       childNode.setAttribute(key, attribute[key]);
+  //     }
+  //   }
+
+  //   if (children.length) {
+  //     const childArray = children.map((child) => {
+  //       return this.createNode(child);
+  //     });
+  //     childNode.setChildren(...childArray);
+  //   }
+
+  //   if (textContent) {
+  //     childNode.setTextContent(textContent);
+  //   }
+
+  //   if (name) {
+  //     this[name] = childNode;
+  //   }
+
+  //   return childNode;
+  // }
+
   clearChild() {
     while (this.#_node.firstChild) {
       this.#_node.removeChild(this.#_node.firstChild);
@@ -87,3 +129,4 @@ export class Base {
     return node instanceof Node;
   }
 }
+
