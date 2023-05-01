@@ -17,7 +17,6 @@ export class HtmlParser {
       type: "node",
       tagName: parsedElement.tagName,
       attribute: {},
-      textContent: "",
       name: "",
       children: [],
     };

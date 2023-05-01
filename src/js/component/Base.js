@@ -12,11 +12,6 @@ export class Base {
     return this.#_node;
   }
 
-  setTextContent(content) {
-    const textContent = document.createTextNode(content);
-    this.#_node.appendChild(textContent);
-  }
-
   setAttribute(attName, attValue) {
     this.#_node.setAttribute(attName, attValue);
   }
@@ -61,7 +56,7 @@ export class Base {
     return this.createElementNode(htmlData);
   }
 
-  createElementNode({ tagName, attribute, textContent, name, children }) {
+  createElementNode({ tagName, attribute, name, children }) {
     const childNode = new Base(tagName);
     if (attribute) {
       for (const key in attribute) {
@@ -74,10 +69,6 @@ export class Base {
         return this.createNode(child);
       });
       childNode.setChildren(...childArray);
-    }
-
-    if (textContent) {
-      childNode.setTextContent(textContent);
     }
 
     if (name) {
