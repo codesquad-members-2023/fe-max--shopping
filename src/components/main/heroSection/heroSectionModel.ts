@@ -1,9 +1,31 @@
+import { BASE_URL } from "../../../constants/BASE_URL";
+import { fetchData } from "../../../utils/fetchData";
 import { HeroImage } from "./types";
 
 export class HeroSectionModel {
-  private viewIndex: number = 0;
   private images: HeroImage[] = [];
+  private viewIndex: number = 0;
   private intervalId: number | undefined = undefined;
+
+  fetchImages() {
+    const url = new URL("/hero_image", BASE_URL);
+
+    return fetchData(url).then((data) => {
+      this.setImages(data);
+    });
+  }
+
+  setImages(data: HeroImage[]) {
+    this.images = data;
+  }
+
+  getImages() {
+    return this.images;
+  }
+
+  getImageCount() {
+    return this.images.length;
+  }
 
   increaseViewIndex() {
     this.viewIndex += 1;
@@ -39,18 +61,6 @@ export class HeroSectionModel {
 
   isOverflowImageIndex() {
     return this.viewIndex > this.images.length - 1;
-  }
-
-  setImages(data: HeroImage[]) {
-    this.images = data;
-  }
-
-  getImages() {
-    return this.images;
-  }
-
-  getImageCount() {
-    return this.images.length;
   }
 
   setIntervalId(intervalId: number) {

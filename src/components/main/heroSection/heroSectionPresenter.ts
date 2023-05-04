@@ -1,7 +1,4 @@
-import { BASE_URL } from "../../../constants/BASE_URL";
-import { fetchData } from "../../../utils/fetchData";
 import { HeroSectionModel } from "./heroSectionModel";
-import { IntervalIdStateManager } from "./types";
 
 export class HeroSectionPresenter {
   private model: HeroSectionModel;
@@ -11,17 +8,9 @@ export class HeroSectionPresenter {
   }
 
   fetchImages() {
-    const url = new URL("/hero_image", BASE_URL);
-
-    return fetchData(url).then((images) => {
-      this.model.setImages(images);
-
-      return images;
+    return this.model.fetchImages().then(() => {
+      return this.model.getImages();
     });
-  }
-
-  getImages() {
-    return this.model.getImages();
   }
 
   async moveToPrevImage($imageContainer: HTMLElement) {
