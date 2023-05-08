@@ -1,52 +1,61 @@
 export class KeywordView {
-  constructor(layer, searchBar) {
+  constructor(layer, searchBar, searchInput, searchBtn) {
     this.layer = layer;
     this.searchBar = searchBar;
+    this.searchInput = searchInput;
+    this.searchBtn = searchBtn;
+    this.template = "";
   }
 
-  renderAutoKeywords(keywords) {
-    keywords.map((keyword) => (this.layer.innerHTML += this.getAutoTemplate(keyword)));
+  render() {
+    this.layer.innerHTML = this.template;
   }
 
-  renderRecentKeywords(keywords) {
-    keywords.map((keyword) => (this.layer.innerHTML += this.getRecentTemplate(keyword)));
+  resetTemplate() {
+    this.template = "";
   }
 
-  renderRecommendKeywords(keywords) {
-    keywords.map((keyword) => (this.layer.innerHTML += this.getRecommendTemplate(keyword.text)));
+  generateAutoTemplate(keywords) {
+    return keywords
+      .map(
+        (keyword) =>
+          `<li class="auto-keyword">
+            ${keyword}
+          </li>`
+      )
+      .join("");
   }
 
-  getAutoTemplate(keyword) {
-    return `
-      <li class="auto-keyword">
-        ${keyword}
-      </li>
-    `;
+  generateRecentTemplate(keywords) {
+    return keywords
+      .map(
+        (keyword) =>
+          `<li class="recent-keyword">
+            ${keyword}
+            <img src="./src/assets/svg/close.svg" class="delete-btn">
+          </li>`
+      )
+      .join("");
   }
 
-  getRecentTemplate(keyword) {
-    return `
-      <li class="recent-keyword">
-        ${keyword}
-        <img src="./src/assets/svg/close.svg" class="delete-btn">
-      </li>
-    `;
-  }
-
-  getRecommendTemplate(keyword) {
-    return `
-      <li class="recommend-keyword">
-        <img src="./src/assets/svg/arrow-top-right.svg">
-        ${keyword}
-      </li>
-    `;
+  generateRecommendTemplate(keywords) {
+    return keywords
+      .map(
+        (keyword) =>
+          `<li class="recommend-keyword">
+            <img src="./src/assets/svg/arrow-top-right.svg">
+            ${keyword.text}
+          </li>`
+      )
+      .join("");
   }
 
   addKeywordEventListner() {
-    this.searchBar.addEventListener("input", (e) => {
-      const userInput = e.target.value;
-      this.showAutoKeyword(userInput);
+    this.searchBtn.addEventListener("click", () => {
+      const userInput = this.searchInput.value;
+      this.setRecentKeywords(userInput);
     });
-    this.searchBar.addEventListener("click", this.showRecentAndRecommendKeyword, { once: true });
+    // this.searchBar.addEventListener("input", this.showAutoKeyword);
+    this.searchBar.addEventListener("click", this.showRecentAndRecommendKeyword);
   }
 }
