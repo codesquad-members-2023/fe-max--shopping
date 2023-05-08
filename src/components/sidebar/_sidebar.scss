@@ -47,10 +47,11 @@
   }
 
   &__menu-container {
-    height: 100vh;
+    height: calc(100vh - 21px);
     position: absolute;
     transition: transform 1s;
-
+    background-color: white;
+    overflow: scroll;
     display: flex;
 
     &.detail-view {
@@ -61,7 +62,6 @@
   &__menu,
   &__menu-detail {
     width: 320px;
-    background-color: white;
   }
 
   &__menu-title {
@@ -159,6 +159,13 @@
       &-arrow-icon {
         filter: none;
       }
+    }
+  }
+
+  
+  &__menu-detail-container {
+    .chevron-icon {
+      display: none;
     }
   }
 }
