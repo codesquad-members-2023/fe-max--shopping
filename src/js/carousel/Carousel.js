@@ -1,5 +1,5 @@
 import { querySelector } from "../query.js";
-import { CAROUSEL, TIME } from "../constant.js";
+import { CAROUSEL, DELAY_TIME } from "../constant.js";
 import { delay } from "../util/delay.js";
 
 class Slider {
@@ -71,7 +71,7 @@ export class SliderMover extends Slider {
   }
 
   async autoToNextSlide() {
-    await delay(TIME.AUTO_SLIDE_DELAY);
+    await delay(DELAY_TIME.AUTO_SLIDE_DELAY);
     this.moveToNextSlide();
     this.autoToNextSlide();
   }

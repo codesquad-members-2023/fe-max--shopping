@@ -3,12 +3,12 @@ import { ExpandEarlySidebar } from "./Sidebar-expand.js";
 import { DetailSidebar } from "./Sidebar-detail.js";
 import { querySelector } from "../query.js";
 import { setZindex } from "../util/set-style.js";
-import { Z_INDEX, TIME } from "../constant.js";
+import { Z_INDEX, DELAY_TIME } from "../constant.js";
 import { delay } from "../util/delay.js";
 
 async function addAndRenderTemplate(sidebar) {
   sidebar.addTemplate();
-  await delay(TIME.FETCH_FROM_DB);
+  await delay(DELAY_TIME.FETCH_FROM_DB);
   sidebar.renderTemplate();
 }
 

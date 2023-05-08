@@ -1,5 +1,5 @@
 import { querySelector } from "../query.js";
-import { DISPLAY, TIME } from "../constant.js";
+import { DISPLAY, DELAY_TIME } from "../constant.js";
 import { dim, undim } from "../common/dim.js";
 import { setDisplay } from "../util/set-style.js";
 import { delay } from "../util/delay.js";
@@ -16,7 +16,7 @@ export function searchBarEventHandler() {
   });
 
   querySelector.searchInput().addEventListener("blur", async () => {
-    await delay(TIME.NONE_TO_BLOCK);
+    await delay(DELAY_TIME.NONE_TO_BLOCK);
     setSearchLayerDisplay(DISPLAY.NONE);
     undim();
   });
