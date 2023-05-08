@@ -1,5 +1,10 @@
 # 아마존 #5: store와 view의 이별
 
+## 시작하기
+
+`npm install` 후에 `npm run dev`로 css파일과 json-server를 실행시킬 수 있습니다. npm live-server도 포함되어 있었는데 자꾸 최근검색어를 submit 이벤트로 db.json에 추가할 때 파일의 변화를 감지해서 페이지가 새로고침되는 문제가 발생해서 vscode의 extension으로 live-server를 따로 설치해서 실행해 주었네요.
+
+그리고 vscode settings.json 파일에 `"liveServer.settings.ignoreFiles": [ "**/db.json" ],`를 추가해서 새로고침되는 문제를 해결하였습니다.
 ## 현재 진행상황
 
 - 검색바
