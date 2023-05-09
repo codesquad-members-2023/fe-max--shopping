@@ -23,23 +23,29 @@ export const [addEvent, findEvent] = generateDict();
 
 function generateSearchLog() {
   const MAX_KEYWORD_COUNT = 10;
-  const local = localStorage.getItem("searchLog");
+  const STORAGE_KEY = "searchLog";
 
-  const log = local ? JSON.parse(local) : [];
+  const localData = localStorage.getItem(STORAGE_KEY);
+  let logs = localData ? JSON.parse(localData) : [];
 
   function addLogKeyword(keyword) {
-    log.splice(0, 0, keyword);
-    if (log.length > MAX_KEYWORD_COUNT) log.pop();
-    localStorage.setItem("searchLog", JSON.stringify(log));
+    logs = [keyword, ...logs];
+
+    if (logs.length > MAX_KEYWORD_COUNT) {
+      logs = logs.slice(0, MAX_KEYWORD_COUNT);
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
   }
 
   function getLogKeywords() {
-    return log;
+    return logs;
   }
 
-  function delLogKeyword(index) {
-    log.splice(index, 1);
-    localStorage.setItem("searchLog", JSON.stringify(log));
+  function delLogKeyword(indexToDelete) {
+    logs = logs.filter((_, index) => indexToDelete !== index);
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
   }
 
   return {
