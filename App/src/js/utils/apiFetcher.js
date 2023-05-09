@@ -18,9 +18,8 @@ function generateUrlFunc(endpoint, baseOptions) {
         "Content-Type": "application/json",
       },
       redirect: "manual",
+      body: body ? JSON.stringify(body) : undefined,
     };
-
-    if (body) options.body = JSON.stringify(body);
 
     const response = await fetch(url, options);
 
