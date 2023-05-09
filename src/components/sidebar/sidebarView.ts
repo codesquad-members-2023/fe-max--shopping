@@ -22,22 +22,21 @@ export class SidebarView {
     this.$menuDetailContainer = $(".sidebar__menu-detail-container");
   }
 
-  render(menu: Promise<SidebarMenu[]>) {
-    menu.then((menuList) => {
-      const component = menuList
-        .map((menu) => {
-          const MAX_LENGTH = 4;
-          const isOverMaxLength = menu.menu.length > MAX_LENGTH;
-          const component = isOverMaxLength
-            ? this.hiddenMenuComponent(menu, MAX_LENGTH)
-            : this.createMenuComponent(menu);
+  async render(menu: Promise<SidebarMenu[]>) {
+    const menuList = await menu;
+    const component = menuList
+      .map((menu) => {
+        const MAX_LENGTH = 4;
+        const isOverMaxLength = menu.menu.length > MAX_LENGTH;
+        const component = isOverMaxLength
+          ? this.hiddenMenuComponent(menu, MAX_LENGTH)
+          : this.createMenuComponent(menu);
 
-          return component;
-        })
-        .join("");
+        return component;
+      })
+      .join("");
 
-      this.$menu.insertAdjacentHTML("beforeend", component);
-    });
+    this.$menu.insertAdjacentHTML("beforeend", component);
   }
 
   createMenuComponent({ title, menu }: SidebarMenu, isDetail: boolean = false) {
@@ -60,7 +59,7 @@ export class SidebarView {
       </li>`;
   }
 
-  private createMenuItemList(id: number, text: string, isDetail: boolean) {
+  private createMenuItemList(id: number, text: string, isDetail: boolean = false) {
     return `
       <li class="sidebar__menu-item" data-id="${id}">
         <div class="sidebar__menu-item-text">${text}</div>

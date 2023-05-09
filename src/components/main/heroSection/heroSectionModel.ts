@@ -7,12 +7,10 @@ export class HeroSectionModel {
   private viewIndex: number = 0;
   private intervalId: number | undefined = undefined;
 
-  fetchImages() {
+  async fetchImages() {
     const url = new URL("/hero_image", BASE_URL);
-
-    return fetchData(url).then((data) => {
-      this.setImages(data);
-    });
+    const data = await fetchData(url);
+    return this.setImages(data);
   }
 
   setImages(data: HeroImage[]) {

@@ -7,10 +7,9 @@ export class HeroSectionPresenter {
     this.model = model;
   }
 
-  fetchImages() {
-    return this.model.fetchImages().then(() => {
-      return this.model.getImages();
-    });
+  async fetchImages() {
+    await this.model.fetchImages();
+    return this.model.getImages();
   }
 
   async moveToPrevImage($imageContainer: HTMLElement) {
