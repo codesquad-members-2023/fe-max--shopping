@@ -1,4 +1,4 @@
-import { $ } from '../../Utils.js';
+import { $ } from '../../utils.js';
 
 export class RecommendView {
   constructor(data) {

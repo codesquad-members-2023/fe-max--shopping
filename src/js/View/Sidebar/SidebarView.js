@@ -58,6 +58,7 @@ export class SidebarView {
 
   render(state) {
     const template = this.getTemplate(state);
+    // @ts-ignore
     this.sidebarContents.innerHTML = template;
   }
 
