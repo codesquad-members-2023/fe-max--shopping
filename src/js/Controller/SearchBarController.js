@@ -1,4 +1,4 @@
-import { $ } from '../Utils.js';
+import { $ } from '../utils.js';
 import { HistoryView } from '../View/SearchBar/HistoryView.js';
 import { RecommendView } from '../View/SearchBar/RecommendView.js';
 
