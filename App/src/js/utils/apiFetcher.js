@@ -3,7 +3,7 @@ import { random } from "./common.js";
 function generateUrlFunc(endpoint, baseOptions) {
   const baseUrl = "http://localhost:3000";
 
-  async function fetchJson({ body, params }) {
+  return async function fetchJson({ body, params }) {
     const url = new URL(endpoint, baseUrl);
 
     if (params) {
@@ -36,9 +36,7 @@ function generateUrlFunc(endpoint, baseOptions) {
     const json = await response.json();
 
     return json;
-  }
-
-  return fetchJson;
+  };
 }
 
 export const addKeyword = generateUrlFunc("/history", {
