@@ -26,10 +26,13 @@
   border: none;
   background: none;
   top: 0px;
-  > img {
-    width: 24px;
-    height: 40px;
-  }
+}
+
+.hero-btn:hover {
+    border-radius: 5px;
+    border: 1px solid $color-black;
+    box-shadow: 0 0 0 1px $color-white inset;
+    cursor: pointer;
 }
 
 .prev {
