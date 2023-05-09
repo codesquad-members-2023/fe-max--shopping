@@ -1,4 +1,4 @@
-export class Fetcher {
+export default Object.freeze({
   async get(host, path) {
     const url = `http://${host}/${path}`;
     const res = await fetch(url);
@@ -7,7 +7,7 @@ export class Fetcher {
       return data;
     }
     throw Error(data);
-  }
+  },
 
   async post(host, path, body, headers = {}) {
     const url = `http://${host}/${path}`;
@@ -25,7 +25,7 @@ export class Fetcher {
       return data;
     }
     throw Error(data);
-  }
+  },
 
   async put(host, path, body, headers = {}) {
     const url = `http://${host}/${path}`;
@@ -43,7 +43,7 @@ export class Fetcher {
       return data;
     }
     throw Error(data);
-  }
+  },
 
   async delete(host, path) {
     const url = `http://${host}/${path}`;
@@ -54,5 +54,5 @@ export class Fetcher {
       return data;
     }
     throw Error(data);
-  }
-}
+  },
+});
