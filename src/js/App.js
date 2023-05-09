@@ -4,13 +4,15 @@ import { Base } from "./component/Base.js";
 import { Header } from "./component/header/Header.js";
 import { Main } from "./component/main/Main.js";
 import { SideBar } from "./component/sideBar/SideBar.js";
+import { NewSideBar} from './component/sideBar/NewSideBar.js';
 
 class App extends Base {
   constructor() {
     super("div");
     this.observer = new Observer();
-    this.sideBar = new SideBar(this.observer);
-    this.header = new Header(this.sideBar, this.observer);
+    // this.sideBar = new SideBar(this.observer);
+    this.sidebar = new NewSideBar(this.observer);
+    this.header = new Header(this.sidebar.controller, this.observer);
     this.main = new Main();
     this.backdrop = new Backdrop(this.header);
 
@@ -19,7 +21,7 @@ class App extends Base {
 
   init() {
     this.setAttribute("id", "root");
-    this.setChildren(this.header, this.main, this.sideBar, this.backdrop);
+    this.setChildren(this.header, this.main, this.sidebar.view, this.backdrop);
 
     document.body.appendChild(this.node);
   }
