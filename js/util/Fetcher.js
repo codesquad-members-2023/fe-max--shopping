@@ -1,6 +1,4 @@
 export class Fetcher {
-  constructor() {}
-
   async get(host, path) {
     const url = `http://${host}/${path}`;
     const res = await fetch(url);
