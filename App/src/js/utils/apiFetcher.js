@@ -4,13 +4,12 @@ function generateUrlFunc(endpoint, baseOptions) {
   const baseUrl = "http://localhost:3000";
 
   async function fetchJson({ body, params }) {
-
     const url = new URL(endpoint, baseUrl);
 
     if (params) {
-      for (const [name, value] of Object.entries(params)) {
+      Object.entries(params).forEach(([name, value]) => {
         url.searchParams.set(name, value);
-      }
+      });
     }
 
     const options = {
@@ -22,7 +21,7 @@ function generateUrlFunc(endpoint, baseOptions) {
     };
 
     if (body) options.body = JSON.stringify(body);
-    
+
     const response = await fetch(url, options);
 
     if (!response.ok) {
