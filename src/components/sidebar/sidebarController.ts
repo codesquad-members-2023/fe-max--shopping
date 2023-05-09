@@ -50,14 +50,19 @@ export class SidebarController {
     if (isViewAllButtonClick) {
       const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       showElement($hiddenMenuContainer);
-
+      if ($hiddenMenuContainer instanceof HTMLElement) {
+        const listItems = $hiddenMenuContainer.querySelectorAll("LI");
+        $hiddenMenuContainer.style.height = `${listItems.length * 40}px`;
+      }
       return;
     }
 
     if (isHideButtonClick) {
       const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       hideElement($hiddenMenuContainer);
-
+      if ($hiddenMenuContainer instanceof HTMLElement) {
+        $hiddenMenuContainer.style.height = "0";
+      }
       return;
     }
   }
