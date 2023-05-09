@@ -8,4 +8,10 @@ export class Data {
     const data = await response.json();
     return data;
   }
+
+  async getHeroImgs() {
+    const response = await fetch(this.url + 'HeroImgs');
+    const data = await response.json();
+    return data;
+  }
 }
