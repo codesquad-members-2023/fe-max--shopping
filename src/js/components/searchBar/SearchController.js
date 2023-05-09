@@ -1,4 +1,4 @@
-import { fetchData, fetchDataAll } from '../../utils/dataUtils.js';
+import { fetchDataAll } from '../../utils/dataUtils.js';
 import { closeAllLayers } from '../../utils/domUtils.js';
 export class SearchController {
   constructor(model, view) {
@@ -7,10 +7,6 @@ export class SearchController {
 
     model.onChanged('defaultSuggestions', () => {
       return fetchDataAll('recentSearches', 'recommends') //
-        // .finally(() => {
-        //   render();
-        //   view.openDropdown();
-        // });
     });
 
     view.onEvent('inputBox', (event) => {

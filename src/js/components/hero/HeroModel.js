@@ -6,15 +6,11 @@ export class HeroModel {
     this.currentIndex = 0;
   }
 
-  fetchImages(callback) {
-    fetchData('carouselImages')
-      .then((items) => {
-        this.getValidIndex(items.length);
-        this.updateImages(items);
-      })
-      .then(() => {
-        callback(this.images)
-      });
+  async fetchImages(callback) {
+    const items = await fetchData('carouselImages');
+    this.getValidIndex(items.length);
+    this.updateImages(items);
+    callback(this.images);
   }
 
   updateImages(items) {
