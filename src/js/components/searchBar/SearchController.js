@@ -5,9 +5,7 @@ export class SearchController {
     this.model = model;
     this.view = view;
 
-    model.onChanged('defaultSuggestions', () => {
-      return fetchDataAll('recentSearches', 'recommends') //
-    });
+   model.onChanged('defaultSuggestions', this.setDefaultSuggestions.bind(this));
 
     view.onEvent('inputBox', (event) => {
       this.handleInputBoxEvent(event);
@@ -27,17 +25,21 @@ export class SearchController {
     });
   };
 
+  async setDefaultSuggestions() {
+    [this.model.recentSearches, this.model.recommendSearches] = await fetchDataAll('recentSearches', 'recommends')
+  }
+
   handleInputBoxEvent(event) {
     switch (event.type) {
       case 'openDropdownWithDefault':
-        this.model.updateData(() => {
+        this.model.updateData("defaultSuggestions", () => {
           this.render();
           this.view.openDropdown();
         });
-        return;
+        break;
       case 'closeDropdown':
         closeAllLayers();
-        return;
+        break;
     }
   }
 

@@ -23,11 +23,8 @@ export class SearchModel {
     this.onChangedCallbacks[name] = callback;
   }
 
-  updateData(callback) {
-    this.onChangedCallbacks.defaultSuggestions()
-    .then((data) => {
-      [this.recentSearches, this.recommendSearches] = data;
-    })
-    .then(callback);
+  async updateData(name, callback) {
+    await this.onChangedCallbacks[name]()
+    callback();
   }
 }
