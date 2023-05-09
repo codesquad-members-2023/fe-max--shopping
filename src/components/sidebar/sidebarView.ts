@@ -40,13 +40,14 @@ export class SidebarView {
     });
   }
 
-  createMenuComponent({ title, menu }: SidebarMenu) {
+  createMenuComponent({ title, menu }: SidebarMenu, isDetail: boolean = false) {
     return `
       <ul>
         ${this.createMenuTitleList(title)}
         ${menu
           .map(
-            ({ id, text }: { id: number; text: string }) => `${this.createMenuItemList(id, text)}`
+            ({ id, text }: { id: number; text: string }) =>
+              `${this.createMenuItemList(id, text, isDetail)}`
           )
           .join("")}
       </ul>`;
@@ -59,11 +60,16 @@ export class SidebarView {
       </li>`;
   }
 
-  private createMenuItemList(id: number, text: string) {
+  private createMenuItemList(id: number, text: string, isDetail: boolean) {
     return `
       <li class="sidebar__menu-item" data-id="${id}">
         <div class="sidebar__menu-item-text">${text}</div>
-        <img src="./src/assets/chevron-right.svg" alt="화살표 아이콘" class="chevron-icon" />
+        ${
+          isDetail
+            ? ""
+            : '<img src="./src/assets/chevron-right.svg" alt="화살표 아이콘" class="chevron-icon" />'
+        }
+        
       </li>`;
   }
 
@@ -98,6 +104,6 @@ export class SidebarView {
   }
 
   renderDetailView(data: SidebarMenu) {
-    this.$menuDetailContainer.innerHTML = this.createMenuComponent(data);
+    this.$menuDetailContainer.innerHTML = this.createMenuComponent(data, true);
   }
 }
