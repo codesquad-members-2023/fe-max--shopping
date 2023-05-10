@@ -50,12 +50,16 @@ export class KeywordView {
       .join("");
   }
 
-  addKeywordEventListner() {
+  addKeywordEventListener() {
     this.searchBtn.addEventListener("click", () => {
       const userInput = this.searchInput.value;
       this.setRecentKeywords(userInput);
     });
+    const deleteBtn = document.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", (event) => {
+      event.target.parentNode.remove();
+    });
     // this.searchBar.addEventListener("input", this.showAutoKeyword);
-    this.searchBar.addEventListener("click", this.showRecentAndRecommendKeyword);
+    // this.searchBar.addEventListener("click", this.showRecentAndRecommendKeyword);
   }
 }

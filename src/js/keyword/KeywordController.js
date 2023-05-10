@@ -12,7 +12,7 @@ export class KeywordController {
   // KeywordController의 인스턴스가 생성되고 init을 호출하는 타이밍은 언제??
   init() {
     this.bindControllerThis();
-    this.view.addKeywordEventListner();
+    this.view.addKeywordEventListener();
   }
 
   bindControllerThis() {
