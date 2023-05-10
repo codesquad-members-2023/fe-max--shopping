@@ -1,5 +1,5 @@
 import { querySelector } from "../query.js";
-import { Z_INDEX, OPACITY, DISPLAY, TIME } from "../constant.js";
+import { Z_INDEX, OPACITY, DISPLAY, DELAY_TIME } from "../constant.js";
 import { delay } from "../util/delay.js";
 import { dim, undim } from "../common/dim.js";
 import { setOpacity, setSize, setZindex, setTransform, setDisplay } from "../util/set-style.js";
@@ -12,10 +12,10 @@ async function expandLoginModalWithDelay() {
 
   for (const element of querySelector.loginModalExpandContainer()) {
     setDisplay(element, DISPLAY.BLOCK);
-    await delay(TIME.NONE_TO_BLOCK);
+    await delay(DELAY_TIME.NONE_TO_BLOCK);
     setSize(element, expandWidthSize, expandHeightSize);
   }
-  await delay(TIME.LOGIN_EXPAND_DELAY);
+  await delay(DELAY_TIME.LOGIN_EXPAND_DELAY);
   setOpacity(querySelector.loginModalExpand(), OPACITY.FULL);
   setTransform(querySelector.loginModalTail(), moveToX, moveToY);
 }
@@ -26,7 +26,7 @@ async function hideLoginModal() {
 }
 
 export async function openLoginModalWithDelay() {
-  await delay(TIME.LOGIN_OPACITY_DELAY);
+  await delay(DELAY_TIME.LOGIN_OPACITY_DELAY);
   setOpacity(querySelector.loginModal(), OPACITY.FULL);
 }
 

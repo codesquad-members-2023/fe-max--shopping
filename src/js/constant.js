@@ -24,7 +24,7 @@ export const CAROUSEL = {
   NO_EFFECT: "none",
 };
 
-export const TIME = {
+export const DELAY_TIME = {
   NONE_TO_BLOCK: 10,
   FETCH_FROM_DB: 50,
   DIM_DELAY: 300,
@@ -44,6 +44,8 @@ export const RES_QUERY = {
   EARLY: "/earlySetting",
   EXPAND: "/moreDepartment",
   CAR: "/carSupplies",
+  AUTO: "/autoKeyword",
+  RECOMMEND: "/recommendKeyword",
 };
 
 export const STATE = {

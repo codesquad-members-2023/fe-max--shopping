@@ -49,6 +49,13 @@
   }
   .login-modal-container {
     @include modalContainer;
+    ::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      width: 300px;
+      height: 15px;
+    }
 
     .login-button {
       width: 160px;

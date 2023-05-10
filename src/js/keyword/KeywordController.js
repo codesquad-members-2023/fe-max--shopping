@@ -1,4 +1,6 @@
-import { BASE_URL } from "../constant.js";
+import { BASE_URL, RES_QUERY } from "../constant.js";
+import { delay } from "../util/delay.js";
+import { DELAY_TIME } from "../constant.js";
 
 export class KeywordController {
   constructor(view, store) {
@@ -10,43 +12,48 @@ export class KeywordController {
   // KeywordController의 인스턴스가 생성되고 init을 호출하는 타이밍은 언제??
   init() {
     this.bindControllerThis();
-    this.view.addKeywordEventListner();
+    this.view.addKeywordEventListener();
   }
 
   bindControllerThis() {
+    this.view.setRecentKeywords = this.setRecentKeywords.bind(this);
     this.view.showRecentAndRecommendKeyword = this.showRecentAndRecommendKeyword.bind(this);
     this.view.showAutoKeyword = this.showAutoKeyword.bind(this);
   }
 
-  // 작동하지 않는 코드
-  setRecentKeywordStorage(userInput) {
-    const rawKeywords = localStorage.getItem("recent");
-    if (rawKeywords) {
-      const keywordsList = JSON.parse(rawKeywords);
-      const newRecentList = keywordsList.concat(userInput);
-      const isFull = newRecentList.length === 6;
+  setRecentKeywords(userInput) {
+    this.store.resetKeywords();
+    const recentKeywords = JSON.parse(localStorage.getItem("recent"));
 
-      if (isFull) {
-        newRecentList.shift();
-      }
-      this.store.setKeywords(newRecentList);
+    if (!recentKeywords) {
+      this.store.keywords.push(userInput);
+      localStorage.setItem("recent", JSON.stringify(this.store.keywords));
+      return;
     }
+
+    recentKeywords.push(userInput);
+    const isFull = recentKeywords.length === 6;
+
+    if (isFull) {
+      recentKeywords.shift();
+    }
+
+    localStorage.setItem("recent", JSON.stringify(recentKeywords));
   }
 
-  // 작동하지 않는 코드
-  setRecentList(userInput) {
-    this.setRecentKeywordStorage(userInput);
-    localStorage.setItem("recent", JSON.stringify(this.store.getKeywords()));
-    const rawRecentKeywords = localStorage.getItem("recent");
-    const recentKeywordsList = JSON.parse(rawRecentKeywords);
-    this.store.resetKeywords();
-    this.view.renderRecentKeywords(recentKeywordsList);
+  setRecentList() {
+    const recentKeywords = JSON.parse(localStorage.getItem("recent"));
+
+    if (!recentKeywords) {
+      return;
+    }
+
+    this.view.template += this.view.generateRecentTemplate(recentKeywords);
   }
 
   // 미완성 코드
   setAutoList() {
-    const query = "/autoKeyword";
-    fetch(this.url + query)
+    fetch(`${this.url}${RES_QUERY.AUTO}`)
       .then((response) => response.json())
       .then((autoKeyword) => {
         this.store.resetKeywords();
@@ -55,22 +62,26 @@ export class KeywordController {
   }
 
   setRecommendList() {
-    const query = "/recommendKeyword";
-    fetch(this.url + query) // new URL() 알아보기
+    fetch(`${this.url}${RES_QUERY.RECOMMEND}`) // new URL() 알아보기
       .then((response) => response.json())
       .then((recommendKeyword) => {
         this.store.resetKeywords();
         this.store.setKeywords(recommendKeyword);
-        this.view.renderRecommendKeywords(this.store.getKeywords());
+        this.view.template += this.view.generateRecommendTemplate(this.store.getKeywords());
       });
   }
 
-  showRecentAndRecommendKeyword() {
+  async showRecentAndRecommendKeyword() {
     this.setRecentList();
     this.setRecommendList();
+    await delay(DELAY_TIME.FETCH_FROM_DB);
+    this.view.render();
+    this.view.resetTemplate();
   }
 
   showAutoKeyword() {
     this.setAutoList();
+    this.view.render();
+    this.view.resetTemplate();
   }
 }

@@ -558,6 +558,13 @@ footer .info .footer-info-container .footer-info .footer-info-link div {
   letter-spacing: -0.03em;
   color: #10141a;
 }
+#login-modal .login-modal-container ::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  width: 300px;
+  height: 15px;
+}
 #login-modal .login-modal-container .login-button {
   width: 160px;
   height: 32px;
@@ -695,3 +702,5 @@ html a {
 html button {
   cursor: pointer;
 }
+
+/*# sourceMappingURL=index.css.map */
