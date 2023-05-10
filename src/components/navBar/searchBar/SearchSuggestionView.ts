@@ -51,3 +51,4 @@ export class SearchSuggestionView {
       </ul>`;
   }
 }
+
