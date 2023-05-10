@@ -56,6 +56,31 @@
     }
   ],
 
+  "HeroImgs": 
+    {
+      "slider": [
+        "./src/asset/images/hero/img1.jpg",
+        "./src/asset/images/hero/img2.jpg",
+        "./src/asset/images/hero/img3.jpg",
+        "./src/asset/images/hero/img4.jpg",
+        "./src/asset/images/hero/img5.jpg",
+        "./src/asset/images/hero/img6.jpg"
+      ],
+      "btn" : [
+        {
+          "class": "hero-btn prev",
+          "id": "hero-prev-btn",
+          "src": "./src/asset/icons/prev-img.svg"
+        },
+        {
+          "class": "hero-btn next",
+          "id": "hero-next-btn",
+          "src": "./src/asset/icons/next-img.svg"
+        }
+      ]
+    }
+  ,
+
   "MainContents": [
     {
       "type": "login",

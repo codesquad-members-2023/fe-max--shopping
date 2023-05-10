@@ -1,5 +1,5 @@
 import { Component } from '../../Core/Component.js';
-import { $, addDimmed, removeDimmed, addHiddenClass, removeHiddenClass } from '../../Utils.js';
+import { $, addDimmed, removeDimmed, addHiddenClass, removeHiddenClass } from '../../utils.js';
 
 export class SearchBarView extends Component {
   getTemplate() {

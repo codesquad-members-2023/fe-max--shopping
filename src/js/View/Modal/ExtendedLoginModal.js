@@ -1,4 +1,4 @@
-import { $ } from '../../Utils.js';
+import { $ } from '../../utils.js';
 import { Component } from '../../Core/Component.js';
 
 export class ExtendedLoginModalView extends Component {

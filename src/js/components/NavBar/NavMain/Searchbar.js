@@ -1,4 +1,4 @@
-import { Component } from '../../../core/Component.js';
+import { Component } from '../../../Core/Component.js';
 import { $, addDimmed, addHiddenClass, removeHiddenClass } from '../../../utils.js';
 
 export class Searchbar extends Component {

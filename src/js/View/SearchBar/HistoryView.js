@@ -1,4 +1,4 @@
-import { $ } from '../../Utils.js';
+import { $ } from '../../utils.js';
 
 export class HistoryView {
   constructor(data) {
@@ -7,7 +7,7 @@ export class HistoryView {
   }
 
   getTemplate(history) {
-    if (history === []) return;
+    if (history.length > 0) return;
     return `
       ${history
         .map(

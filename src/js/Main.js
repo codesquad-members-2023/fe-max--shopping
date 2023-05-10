@@ -1,4 +1,4 @@
-import { $ } from './Utils.js';
+import { $ } from './utils.js';
 import { Data } from './Data.js';
 import { App } from './App.js';
 import { NavbarMainView } from './View/NavBar/NavbarMain.js';
@@ -15,6 +15,9 @@ import { ExtendedLoginModalController } from './Controller/ExtendedLoginModalCon
 import { LocationModalView } from './View/Modal/LocationModal.js';
 import { LocationModalModel } from './Model/LocationModalModel.js';
 import { LocationModalController } from './Controller/LocationModalController.js';
+import { HeroSectionView } from './View/Hero/HeroSectionView.js';
+import { HeroSectionModel } from './Model/HeroSectionModel.js';
+import { HeroSectionController } from './Controller/HeroSectionController.js';
 
 class Main {
   constructor() {
@@ -42,6 +45,10 @@ class Main {
     this.LocationModal = new LocationModalView($('.nav-main__location'));
     this.LocationModalModel = new LocationModalModel();
     this.LocationModalController = new LocationModalController(this.LocationModalModel, this.LocationModal);
+
+    this.HeroSection = new HeroSectionView($('main'));
+    this.HeroSectionModel = new HeroSectionModel(this.data.getHeroImgs());
+    this.HeroSectionController = new HeroSectionController(this.HeroSectionModel, this.HeroSection)
   }
 }
 
