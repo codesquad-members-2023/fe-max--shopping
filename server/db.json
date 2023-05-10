@@ -69,10 +69,12 @@
       "btn" : [
         {
           "class": "hero-btn prev",
+          "id": "hero-prev-btn",
           "src": "./src/asset/icons/prev-img.svg"
         },
         {
           "class": "hero-btn next",
+          "id": "hero-next-btn",
           "src": "./src/asset/icons/next-img.svg"
         }
       ]

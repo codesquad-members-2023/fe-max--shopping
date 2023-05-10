@@ -9,7 +9,7 @@ export class HeroBtnView {
   getTemplate(heroImgs) {
     return heroImgs.btn.map(
       btn => `
-        <button class="${btn.class}"><img src="${btn.src}" alt=""></button>
+        <button class="${btn.class}"><img id="${btn.id}" src="${btn.src}" alt=""></button>
       `
     )
     .join('');
