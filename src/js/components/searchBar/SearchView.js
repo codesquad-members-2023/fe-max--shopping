@@ -1,4 +1,4 @@
-import { closeAllLayers, createElement, openLayer } from '../../utils/domUtils.js';
+import { createElement, openLayer } from '../../utils/domUtils.js';
 
 export class SearchView {
   constructor(parent) {
@@ -11,6 +11,7 @@ export class SearchView {
       class: 'search-box__input',
       placeholder: '검색 amazon',
       name: 'search',
+      autocomplete:"off"
     });
     this.submitButton = createElement('button', { type: 'submit', class: 'search-box__button' });
     this.submitButton.innerHTML = `<img src="./src/asset/img/search.svg" alt="" />`;
@@ -20,25 +21,23 @@ export class SearchView {
 
     this.searchBox.append(this.inputBox, this.submitButton);
     this.dropdown.append(this.suggestion);
-
-    this.inputBox.addEventListener('focus', () => {
-      this.eventCallbacks.inputBox({ type: 'openDropdownWithDefault' });
-    });
-    this.inputBox.addEventListener('blur', (event) => {
-      this.eventCallbacks.inputBox({ type: 'closeDropdown' });
-    });
   }
 
-  render({ recentSearches, recommendSearches, autoCompleteSearches }) {
+  render() {
+    this.parent.append(this.searchBox, this.dropdown);
+  }
+
+  layerRender({ recentSearches, recommendSearches, autoCompleteSearches }) {
     const recents = recentSearches ? recentSearches.map(this.createRecentTemplate) : [];
     const recommends = recommendSearches ? recommendSearches.map(this.createRecommendTemplate) : [];
     const autoCompletes = autoCompleteSearches
       ? autoCompleteSearches.map(this.createAutoCompleteTemplate)
       : [];
-    this.suggestion.innerHTML = [...recents, ...recommends, autoCompletes].join('');
+    this.suggestion.innerHTML = [...recents, ...recommends, ...autoCompletes].join('');
+  }
 
-    this.parent.innerHTML = '';
-    this.parent.append(this.searchBox, this.dropdown);
+  setInputBoxValue(textContent) {
+    this.inputBox.value = textContent;
   }
 
   createRecentTemplate(search) {
@@ -53,8 +52,8 @@ export class SearchView {
     return `<li class="search-layer__suggestion--auto-complete"><p>${search.text}</p></li>`;
   }
 
-  onEvent(element, callback) {
-    this.eventCallbacks[element] = callback;
+  onEvent(element, eventType, callback) {
+    this[element].addEventListener(eventType, callback);
   }
 
   openDropdown() {

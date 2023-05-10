@@ -5,6 +5,7 @@ export class SearchModel {
     this.recommendSearches = [];
     this.autoCompleteSearches = [];
     this.onChangedCallbacks = {};
+    this.selectSuggestionIndex = -1;
   }
 
   getRecentSearches() {
@@ -19,12 +20,20 @@ export class SearchModel {
     return [...this.autoCompleteSearches];
   }
 
+  getSelectSuggestionIndex() {
+    return this.selectSuggestionIndex;
+  }
+
+  setSelectSuggestionIndex(index) {
+    this.selectSuggestionIndex = index;
+  }
+
   onChanged(name, callback) {
     this.onChangedCallbacks[name] = callback;
   }
 
   async updateData(name, callback) {
-    await this.onChangedCallbacks[name]()
+    await this.onChangedCallbacks[name]();
     callback();
   }
 }
