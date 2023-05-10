@@ -5,7 +5,7 @@ export class Model {
     this.db = new DB();
   }
 
-  async getSideBarData() {
-    return await this.db.getSideBarData();
+  async setMainCategories() {
+    this.mainCategories = await this.db.getSideBarData();
   }
 }
