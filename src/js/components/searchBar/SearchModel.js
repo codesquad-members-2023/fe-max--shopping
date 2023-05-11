@@ -9,15 +9,15 @@ export class SearchModel {
   }
 
   getRecentSearches() {
-    return [...this.recentSearches];
+    return this.recentSearches;
   }
 
   getRecommendSearches() {
-    return [...this.recommendSearches];
+    return this.recommendSearches;
   }
 
   getAutoCompleteSearches() {
-    return [...this.autoCompleteSearches];
+    return this.autoCompleteSearches;
   }
 
   getSelectSuggestionIndex() {
