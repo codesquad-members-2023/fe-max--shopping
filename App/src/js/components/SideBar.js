@@ -28,29 +28,30 @@ export class Sidebar extends Component {
 
     sideBarItem.addEventListener("keydown", (e) => {
       e.preventDefault();
+
       if (e.shiftKey && e.key === "Tab") {
         this.backButton.focus();
 
-        const backButtonKeydownHandler = (e) => {
-          switch (e.key) {
-            case "Tab":
-              e.preventDefault();
+        const actions = {
+          Tab: () => {
               sideBarItem.focus();
-              this.backButton.removeEventListener(
-                "keydown",
-                backButtonKeydownHandler
-              );
-              return;
-            case "Enter":
+          },
+
+          Enter: () => {
               this.detail.className = "detail";
+
               setTimeout(() => {
                 button.focus();
               }, 300);
-              this.backButton.removeEventListener(
-                "keydown",
-                backButtonKeydownHandler
-              );
-              return;
+          },
+        };
+
+        const backButtonKeydownHandler = (e) => {
+          const action = actions[e.key];
+
+          if (action) {
+            action();
+            this.backButton.removeEventListener("keydown", backButtonKeydownHandler);
           }
         };
 
