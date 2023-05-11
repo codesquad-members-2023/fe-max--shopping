@@ -8,8 +8,8 @@ export default class SearchFormService {
   }
 
   async getAutocompleteData(searchTerm) {
-    if (searchTerm === "") {
-      const searchHistory = []; //- get from localStorage (5 items)
+    if (searchTerm === "" || searchTerm === "\u{1C}") {
+      const searchHistory = []; // - get from localStorage (5 items) or express server?
       const defaultResults = await this.fetchAutocompleteData(
         this.defaultSearchTerm
       );
