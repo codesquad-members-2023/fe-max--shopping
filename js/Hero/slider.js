@@ -1,44 +1,67 @@
-import { addEvent } from '../util/utility.js';
-
-export function initSlider() {
-  const slider = document.querySelector('.slider');
-  const sliderCards = document.querySelectorAll('.slider__card');
-  const prevBtn = document.querySelector('.chevron--left');
-  const nextBtn = document.querySelector('.chevron--right');
-  let showIndex = 0;
-
-  addEvent(nextBtn, 'click', showNextCard);
-  addEvent(prevBtn, 'click', showPrevCard);
-
-  function showNextCard() {
-    const nextIndex = showIndex + 1 <= sliderCards.length - 1 ? showIndex + 1 : 0;
-
-    const currentSlide = slider.querySelector(`[data-index="${showIndex}"]`);
-    const nextSlide = slider.querySelector(`[data-index="${nextIndex}"]`);
-
-    currentSlide.dataset.status = 'before';
-
-    nextSlide.dataset.status = 'appear-from-after';
-
-    setTimeout(() => {
-      nextSlide.dataset.status = 'show';
-      showIndex = nextIndex;
-    });
+export default class Slider {
+  constructor($target) {
+    this.$target = $target;
+    this.onEventCallback = null;
+    this.init();
   }
 
-  function showPrevCard() {
-    const prevIndex = showIndex - 1 >= 0 ? showIndex - 1 : sliderCards.length - 1;
+  init() {
+    this.$target.innerHTML = this.template();
+    this.$slider = this.$target.querySelector('.slider');
+    this.$nextBtn = this.$target.querySelector('.chevron--right');
+    this.$prevBtn = this.$target.querySelector('.chevron--left');
+    this.addEvents();
+  }
 
-    const currentSlide = slider.querySelector(`[data-index="${showIndex}"]`);
-    const prevSlide = slider.querySelector(`[data-index="${prevIndex}"]`);
+  template() {
+    return `
+      <button class="chevron chevron--left" type="button">
+        <img class="icon" src="./assets/icons/left-btn.svg" alt="chevron-left-icon" />
+      </button>
 
-    currentSlide.dataset.status = 'after';
+      <section class="slider"></section>
 
-    prevSlide.dataset.status = 'appear-from-before';
+      <button class="chevron chevron--right" type="button">
+        <img class="icon" src="./assets/icons/right-btn.svg" alt="chevron-right-icon" />
+      </button>
+    `;
+  }
 
-    setTimeout(() => {
-      prevSlide.dataset.status = 'show';
-      showIndex = prevIndex;
+  slidesTemplate(heroData) {
+    return `
+      <ul class="slider__card-container">
+        ${heroData.reduce(
+          (acc, curr, idx) => `
+            ${acc} <li class="slider__card" data-index=${idx} data-status=${idx === 0 ? 'show' : 'unknown'}>
+              ${
+                idx === 0
+                  ? "<div class='hero__img-title font-BoldXL'>해외 쇼핑을 즐기고 한국 직불 카드 또는<br />한국 신용카드로 결제하십시오</div>"
+                  : ''
+              }
+              <img class="hero__img" src="${curr.src}" alt="${curr.alt}" />
+            </li>
+          `,
+          '',
+        )}
+      </ul>
+    `;
+  }
+
+  renderSlides(heroData = []) {
+    this.$slider.innerHTML = this.slidesTemplate(heroData);
+  }
+
+  onEvent(callback) {
+    this.onEventCallback = callback;
+  }
+
+  addEvents() {
+    this.$nextBtn.addEventListener('click', (e) => {
+      this.onEventCallback(e);
+    });
+
+    this.$prevBtn.addEventListener('click', (e) => {
+      this.onEventCallback(e);
     });
   }
 }
