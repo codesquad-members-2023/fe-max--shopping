@@ -107,6 +107,9 @@
       &.over {
         background: #eff2f2;
       }
+      &.select {
+        background-color: variables.$color-gray-100;
+      }
     }
 
     &--recent {

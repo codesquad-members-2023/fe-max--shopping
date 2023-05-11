@@ -5,29 +5,35 @@ export class SearchModel {
     this.recommendSearches = [];
     this.autoCompleteSearches = [];
     this.onChangedCallbacks = {};
+    this.selectSuggestionIndex = -1;
   }
 
   getRecentSearches() {
-    return [...this.recentSearches];
+    return this.recentSearches;
   }
 
   getRecommendSearches() {
-    return [...this.recommendSearches];
+    return this.recommendSearches;
   }
 
   getAutoCompleteSearches() {
-    return [...this.autoCompleteSearches];
+    return this.autoCompleteSearches;
+  }
+
+  getSelectSuggestionIndex() {
+    return this.selectSuggestionIndex;
+  }
+
+  setSelectSuggestionIndex(index) {
+    this.selectSuggestionIndex = index;
   }
 
   onChanged(name, callback) {
     this.onChangedCallbacks[name] = callback;
   }
 
-  updateData(callback) {
-    this.onChangedCallbacks.defaultSuggestions()
-    .then((data) => {
-      [this.recentSearches, this.recommendSearches] = data;
-    })
-    .then(callback);
+  async updateData(name, callback) {
+    await this.onChangedCallbacks[name]();
+    callback();
   }
 }
