@@ -19,7 +19,9 @@ export class View extends Base {
             <span>안녕하세요, 로그인</span>
         </div>
         <div class="sideBar__main" data-elementname="sideBarMain">
-          <div class="sideBar__inner__wrapper" data-elementname="innerWrapper" >
+          <div class="sideBar__inner__wrapper" data-elementname="innerWrapper">
+            <div class="sidebar__content__wrapper" data-elementname="contentWrapper">
+            </div>
           </div>
         </div>
     `;
@@ -37,7 +39,7 @@ export class View extends Base {
     this.setStyle("visibility", "hidden");
     this.setStyle("transform", "translateX(-100%)");
     Backdrop.hide();
-    this.innerWrapper.clearChild();
+    this.contentWrapper.clearChild();
   }
 
   setMainCategoriesNode(categories) {
@@ -47,8 +49,8 @@ export class View extends Base {
       })
       .join("");
 
-    this.innerWrapper.clearChild();
-    this.innerWrapper.setTemplate(mainCategoriesTemplate);
+    this.contentWrapper.clearChild();
+    this.contentWrapper.setTemplate(mainCategoriesTemplate);
   }
 
   setSideBarContents({ title, menu }) {

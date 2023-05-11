@@ -28,7 +28,6 @@ export class Controller {
   }
 
   setSideBarContents() {
-    console.log(this.model.mainCategories);
     this.view.render(this.model.mainCategories);
   }
 }
