@@ -21,23 +21,67 @@ export class SearchView {
 
     this.searchBox.append(this.inputBox, this.submitButton);
     this.dropdown.append(this.suggestion);
-  }
-
-  render() {
     this.parent.append(this.searchBox, this.dropdown);
   }
 
-  layerRender({ recentSearches, recommendSearches, autoCompleteSearches }) {
+  render({ state, recentSearches, recommendSearches, autoCompleteSearches, selectSuggestionIndex }) {
+    const isDefault = state === "default";
+    if(isDefault) {
+      this.setDefaultDropdown(recentSearches, recommendSearches);
+    } else {
+      this.SetAutocompleteDropdown(autoCompleteSearches);
+    }
+    this.removeSelect();
+    this.setSelect(selectSuggestionIndex);
+  }
+
+  setDefaultDropdown(recentSearches, recommendSearches) {
     const recents = recentSearches ? recentSearches.map(this.createRecentTemplate) : [];
     const recommends = recommendSearches ? recommendSearches.map(this.createRecommendTemplate) : [];
+    this.suggestion.innerHTML = [...recents, ...recommends].join('');
+  }
+
+  SetAutocompleteDropdown(autoCompleteSearches) {
     const autoCompletes = autoCompleteSearches
       ? autoCompleteSearches.map(this.createAutoCompleteTemplate)
       : [];
-    this.suggestion.innerHTML = [...recents, ...recommends, ...autoCompletes].join('');
+    this.suggestion.innerHTML = [...autoCompletes].join('');
   }
 
   setInputBoxValue(textContent) {
     this.inputBox.value = textContent;
+  }
+
+  isRemoveButton(target) {
+    return target.closest(".search-layer__remove-button");
+  }
+
+  getTextContentFromSuggestion(target) {
+    return target.closest("li").querySelector("p").textContent;
+  }
+
+  getSuggestionMaxIndex() {
+    const suggestion = Array.from(this.suggestion.children);
+    return suggestion.length - 1
+  }
+
+  setSelect(newIndex) {
+    if(newIndex === -1) {
+      return ;
+    }
+    this.removeSelect();
+    const suggestion = Array.from(this.suggestion.children);
+    suggestion[newIndex].classList.add("select");
+    this.setInputBoxValue(this.getTextContentFromSuggestion(suggestion[newIndex]));
+  }
+
+  removeSelect() {
+    const suggestion = Array.from(this.suggestion.children);
+    suggestion.forEach((child) => {
+      if (child.classList.contains("select")) {
+        child.classList.remove("select");
+      }
+    })
   }
 
   createRecentTemplate(search) {
