@@ -14,7 +14,6 @@ export class SearchSuggestion {
   constructor(model: SearchSuggestionModel, view: SearchSuggestionView) {
     this.model = model;
     this.view = view;
-    this.setEvent();
   }
 
   async getRecentSearches() {

@@ -7,4 +7,5 @@ export const initSearchBar = () => {
     new SearchSuggestionModel(),
     new SearchSuggestionView()
   );
+  searchSuggestion.setEvent();
 };
