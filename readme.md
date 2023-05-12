@@ -1,135 +1,49 @@
-# 아마존 #4: store와 view의 이별
+# 아마존 #5: store와 view의 이별
 
-## ⭐️ 4주차 학습키워드: `#MVC`, `#상태관리`, `#ES Module`, `#결합도`
+## 시작하기
 
-## 🎯 4주차 학습 목표
+`npm install` 후에 `npm run dev`로 css파일과 json-server를 실행시킬 수 있습니다. npm live-server도 포함되어 있었는데 자꾸 최근검색어를 submit 이벤트로 db.json에 추가할 때 파일의 변화를 감지해서 페이지가 새로고침되는 문제가 발생해서 vscode의 extension으로 live-server를 따로 설치해서 실행해 주었네요.
 
-- Store와 View를 분리해서 모듈을 만들고 이들을 연결할 수 있다.
-- ES Modules를 활용한 모듈개발을 할 수 있다.
+그리고 vscode settings.json 파일에 `"liveServer.settings.ignoreFiles": [ "**/db.json" ],`를 추가해서 새로고침되는 문제를 해결하였습니다.
+## 현재 진행상황
 
-## ⌨️ 4주차 학습 및 구현 계획
+- 검색바
 
-- [ ]  기존 기능들 중 구현 못한 부분을 완성한다.
-    - [ ]  히어로 영역
-        - [ ]  이미지 받아오는 부분 json-server에서 받아오도록 변경하기
-    - [ ]  검색바 영역
-        - [ ]  최근검색어 삭제 기능 추가하기
-    - [ ]  사이드바 영역
-        - [ ]  초기 데이터와 더보기 데이터를 서버통신으로 가져오도록 구현하기
-
-- [ ]  코드리뷰 받았던 부분 위주로 리팩터링
-    - [ ]  `.env`파일로 환경변수 관리하기 ⚠️
-    - [x]  서버통신으로 데이터 요청을 처리하는 코드를 재사용 가능하게 분리해보기
-    - [x]  최근검색어 저장 시 로컬스토리지가 아닌 서버에 post/put 요청으로 처리해보기
-    - [x]  받아온 데이터로 렌더링 할 때 어떻게 사용할지 생각해보기
-    - [x]  unshift() 말고 다른 방법 고민하기
-    - [x]  검색바에서 결합도 낮출 방법 찾아서 적용하기
-
-- [x] ES Module에 대해서 학습한다. 
-- [x] MVC 패턴에 대해서 학습하고 검색바 store와 view 분리하기
-- [x] 모듈간 의존성 낮출 방법 고민하기
-## 📚 4주차 학습 정리
-### 1) ES Modules
-
-(1) 모듈 방식 프로그래밍이 필요한 이유?
-
-- 복잡한 애플리케이션을 모듈 단위로 만들어서 의존성을 관리하는 프로그래밍 방법
-- 이전에는 웹사이트 개발에 사용되는 많은 JS파일들을 다 script 태그로 넣어주었다…
-- 웹FE에서 SPA(Single Page Application)의 등장으로 필요성이 커졌다.
-
-(2) 어떤 원리로 작동하는가?
-
-브라우저에서 script 태그로 js파일을 읽어올 때 `type="module"`이 있으면 모듈로 인식하고, 이 파일을 진입점으로 해서 import문을 따라 나머지 연결된 파일들을 읽어온다. (Node에서는 `.mjs`확장자로 알릴 수 있다.)
-
-- Construction(구성 단계): 브라우저의 로더(loader)가 모든 파일들을 찾아서 다운로드하고 파싱해서 모듈 레코드(Module Records)라고 하는 데이터 구조로 변환하는 과정, 다음과 같은 일들이 일어난다.
-    - 모듈이 포함된 파일을 어디에서 다운로드할지 파악(aka module resolution)
-    - 파일을 fetch 해온다.(URL에서 다운로드하거나 파일 시스템에서 로드)
-    - 받아온 파일을 모듈 레코드로 파싱
-- Instantiation(인스턴스화): 모듈 레코드를 모듈 인스턴스로 인스턴스화 하는 과정, export된 값들을 넣을 메모리 공간을 할당한다.(단, 아직 값으로 채워지지 않은 빈 공간임.) 그리고 exports와 imports 둘 다 메모리에 있는 같은 공간을 가르키도록 해서 연결한다.
-- Evaluation(평가 단계): 코드를 실행해서 메모리 공간에 할당된 함수와 변수에 실제 값을 채우는 과정
-
-![ES_Modules](https://user-images.githubusercontent.com/76121068/233927543-1f71b1ab-77c0-4a95-95a0-8d347588c6c9.png)
-
-- 이러한 모듈화의 세 단계의 과정은 독립적으로 수행될 수 있다. (비동기적으로 이루어 질 수 있으나 반드시 비동기는 아니고 무엇을 불러오냐에 따라 동기적으로 일어날 수도 있다. 기존 Common JS와의 차이점)
-
-> 모듈 인스턴스란?
->
-> 코드(Code)와 상태(State)의 결합을 의미한다. 코드가 설명서나 레시피라면, 상태는 무언가를 만들기 위해 사용하는 원재료를 의미한다. 즉 상태는 변수의 실제 값을 의미한다.
-
-### 2) MVC 패턴
-
-(1) MVC란 무엇인가?
-
-백엔드 애플리케이션에 주로 적용되는 전통적인 아키텍쳐로, 프로그램을 짤 때 데이터를 ****정의하는 **모델(model)**, 보여지는 화면을 처리하는 **뷰(view)**, 그리고 모델과 뷰 중간에서 중재하는 역할을 하는 **컨트롤러(controller)**로 이렇게 세 부분으로 분리해서 개발하고 관리하는 소프트웨어 디자인 패턴을 의미한다.
-
-![m-v-c](https://user-images.githubusercontent.com/76121068/234317366-589e02e0-5bf8-45ac-b9af-9788fd019e20.png)
-
-뷰와 모델간에 의존성을 낮추기 위해서 보통 컨트롤러에서 모델로부터 데이터를 가져와서 뷰에 가져온 데이터를 제공하면 뷰는 화면에 이를 렌더링한다.
-
-(2) FE에서의 MVC 패턴
-
-그럼 FE에서도 전통적인 MVC 패턴을 적용할까? 우선 FE에서는 다음과 같은 문제점들이 있다.
-
-- view가 많고 여기서 온갖 이벤트가 발생한다.
-- view와 model 간 양방향 처리가 필요하다.
-- 이를 중재하기 위해서는 슈퍼 울트라 컨트롤러가 필요하고 복잡해진다.
-- 리렌더링을 최소화하기 위해서 view 간의 계층 처리가 필요하다.
-
-따라서 요새는 데이터 바인딩, MVVM 패턴, Flux 아키텍쳐 등과 상태관리를 이용해서 이를 해결하고 있다.
-
-(3) Model
-
-- 상태(state)를 담는 컨테이너
-- 비즈니스/도메인 로직을 수행한다.
-- 서버로부터 받아온 데이터를 가공하는 역할을 수행한다.
-
-(4) View
-
-- 화면의 렌더링을 담당한다.
-
-![view](https://user-images.githubusercontent.com/76121068/234317445-4c3856f4-fdb3-4627-91bc-9e1fbe725dcf.png)
-
-- 브라우저 기반의 바닐라 JS로 구현하는 경우 HTML과 DOM을 고려해야 한다. 따라서 View는 html 자체와 DOM 요소들을 캡슐화하는 View 클래스로 구성된다.
-- 요소들에 이벤트를 걸어준다. (addEventListener로 걸어만 주고 실제 이벤트 핸들러는 컨트롤러에 두기)
-
-## 🤔 고민했던 점
-
-- .env파일에서 환경 변수로 API_KEY 등을 저장하고 import 하려고 dotenv라는 모듈을 패키지로 설치해서 사용해보려는데 브라우저에서 주소를 읽어오지 못하는 문제 발생 → node JS에서만 가능한건가?
-
-- new로 Model, View, Controller를 처음 만들때 Controller가 model, view 둘 다 인자로 받게할 방법은 없을까? 이벤트가 발생해서 데이터를 받아오거나 변경될때 view의 렌더링을 변경해 주려면 어떻게 해야할까
+    4주차 미션을 진행하면서 기존에 두 개의 클래스로 작성했던 코드들을 MVC 패턴에 맞춰 Model, Controller, 그리고 두 개의 View로 나눠둔 상태입니다. 그리고 View에서 이벤트가 일어났을 때 Model의 변화가 생기면 View가 update되는 간단한 Observer 패턴이 적용되어 있습니다.
     
-    → 옵저버 패턴 적용해서 model에 view를 옵저버로 저장해두고, 이벤트가 발생해서 model이 변하면 이를 옵저버인 view에 알려주고 그에 맞게 다시 렌더링되도록
+    View는 검색폼이 있는 검색바 영역과 검색내역들이 렌더링되는 검색 레이어 부분 두 부분으로 나누어져 있고, model의 데이터를 사용해서 화면에 렌더링되는 템플릿을 만들고 이를 화면에 보여줍니다. 또한 View에서 화면에서 발생하는 이벤트들을 등록해주고 있습니다.
+
+    Controller는 model과 view를 인자로 받아서 서로 상호작용할 수 있도록 하고있습니다. 대부분의 비즈니스 로직들과 view에서 등록한 이벤트에 대한 핸들러들이 있습니다. db.json에서 데이터를 fetch 해오는 부분은 별도의 Fetcher라는 클래스로 분리해서 사용중입니다.
+
+    Model은 서버와 통신해서 fetch 해 온 데이터를 담아두거나 view에서 일어나는 이벤트에서 필요한 정보들을 저장해두는 역할을 하고있습니다.
+
+    제가 MVC 패턴을 설계하고 옵저버 패턴을 적용해볼 때 참고했던 글을 아래와 같습니다!
+
+    https://medium.com/@patrickackerman/classic-front-end-mvc-with-vanilla-javascript-7eee550bc702
+
+    https://medium.com/@patrickackerman/the-observer-pattern-with-vanilla-javascript-8f85ea05eaa8
+
     
-- submit 이벤트에서 최근검색어를 db.json에 PUT으로 저장할 때 e.preventDefault()를 해도 자꾸 새로고침이 된다… 왜 자꾸 페이지가 새로고침될까?
-    
-    → live-server에서 db.json의 변경사항을 자동으로 감지해서 자동으로 페이지를 리로드하는게 원인이었다. live-server를 실행할 때 특정파일만 무시하도록 설정함. (`live-server --ignore=data/db.json`) → 안 먹힘… → vscode live-server를 쓰니까 settings.json 파일에 설정을 추가해 해결할 수 있었음
-    
-- fetch로 put 하는 함수를 클래스의 메소드로 따로 분리해서 쓰려고 하는데 fetch가 정상적으로 작동하지 않는 오류가 발생 (Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR)
-    
-    → GPT에게 물어보니 url 경로 지정할 때 http가 아닌 https를 사용해서 발생하는 인증 문제였음.
-    
-- 이벤트 등록은 View 클래스에서 담당하도록 하고 싶고, 이벤트 핸들러는 Controller 클래스에서 담당하게 하고싶은데. 그런데 이 경우에 이벤트핸들러 내부에서 조작하는 DOM 요소들을 어디에 담고있어야 할지 고민… → 이벤트 핸들러에는 이벤트객체(e) 이외에 다른 인자는 전달할 수가 없음… controller에서 생성자로 그냥 querySelector로 찾아올까? DOM은 view에서 담당하는게 맞을것 같은데 view가 controller보다 나중에 생성되니까 view의 프로퍼티로는 인자로 넘겨 줄 수가 없음.
+- 히어로 영역
 
-- `reverse()`를 쓰면 원본 배열을 변화시키지만 `toReversed()`를 사용하면 순서만 뒤집은 새 배열을 반환하고 원본 배열은 유지된다.
+    무한 슬라이드 기능만 구현되도록 해놓은 상태이고 시간마다 자동으로 넘어가는 기능은 아직 추가하지 못했고 MVC로 나누지 못했네요. 일반적인 슬라이더의 로직을 사용하진 않았고 급하게 구현하느라 다른 코드를 이용했습니다. 그래서 좀 특이할 수도 있네요.
 
-## 참고자료
-### ES Module
+    만약 제가 참고했던 영상이 궁금하시면 이 영상을 잠깐 참고하셔도 좋을 것 같습니다. https://youtu.be/6TYkDy54q4E?t=470 7분 50초 부터만 보시면 될 것 같아요!
 
-- [https://ui.toast.com/weekly-pick/ko_20180402](https://ui.toast.com/weekly-pick/ko_20180402)
+- 사이드바
 
-### MVC
+    사이드바는 html, css로 레이아웃이랑 단순한 애니메이션만 구현해 둔 상태라 뭐 많이 완성하지 못했네요. 😢
 
-- [https://www.youtube.com/watch?v=Y5vOfv67h8A](https://www.youtube.com/watch?v=Y5vOfv67h8A)
-- [https://medium.com/@patrickackerman/classic-front-end-mvc-with-vanilla-javascript-7eee550bc702](https://medium.com/@patrickackerman/classic-front-end-mvc-with-vanilla-javascript-7eee550bc702)
-- [https://velog.io/@teo/프론트엔드에서-MV-아키텍쳐란-무엇인가요](https://velog.io/@teo/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-MV-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94)
+## 코드리뷰로 피드백 받은 부분과 리팩터링 하려 했던 부분
 
-### 상태관리
+- 기존에 구현했던 히어로 영역을 MVC 패턴을 적용해서 리팩터링
 
-- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-컴포넌트와-상태관리](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Component/#_1-%E1%84%8F%E1%85%A5%E1%86%B7%E1%84%91%E1%85%A9%E1%84%82%E1%85%A5%E1%86%AB%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5)
-- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-중앙-집중식-상태관리](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-%E1%84%8C%E1%85%AE%E1%86%BC%E1%84%8B%E1%85%A1%E1%86%BC-%E1%84%8C%E1%85%B5%E1%86%B8%E1%84%8C%E1%85%AE%E1%86%BC%E1%84%89%E1%85%B5%E1%86%A8-%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5)
-- [https://youtu.be/o4meZ7MRd5o](https://youtu.be/o4meZ7MRd5o)
+- 나누어져 있는 이벤트의 등록과 핸들러를 View나 Controller 한 곳에 뭉쳐놓고 관리하기 (Colocation이라는 개념에 대해서 알려주셔서 이에 대해 공부해 보려고 했음. https://kentcdodds.com/blog/colocation)
 
-### Observer Pattern
+- 검색내역을 새로 렌더링 할 때 전체 데이터들을 받아와서 innerHTML로 템플릿을 통째로 갈아끼우는 방식을 사용하고 있는데 이를 기본 추천검색어, 최근검색어, 자동완성 검색어 들을 각각의 템플릿만 만들어 변경 필요한 부분만 재렌더링 해주는 방식으로 변경해보려 했습니다.
 
-- [https://medium.com/@patrickackerman/the-observer-pattern-with-vanilla-javascript-8f85ea05eaa8](https://medium.com/@patrickackerman/the-observer-pattern-with-vanilla-javascript-8f85ea05eaa8)
-- [https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-object-defineproperty-이해하기](https://junilhwang.github.io/TIL/Javascript/Design/Vanilla-JS-Store/#_1-object-defineproperty-%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5)
+- 적용된 옵저버 패턴을 재사용 가능한 방식으로 리팩터링. Model이 변경될 때 각각의 옵저버에 선택적으로 notify 하는 방식이 아니라 우선 모델에 등록된 모든 obeserver들에게 한번에 notify를 해주고 변경이 필요한 view만 재렌더링 하는 방식으로 수정해보려 했습니다. (https://blog.bitsrc.io/the-observer-pattern-in-javascript-the-key-to-a-reactive-behavior-f28236e50e10)
+
+- 서버와 통신할 때 사용하는 url과 같은 환경 변수들을 .env 파일로 따로 분리해서 사용하기 (브라우저에서 .env와 같은 파일에 담겨있는 환경변수에 접근하려면 Vite나 Webpack과 같은 번들러를 이용해야 한다고 하시네요? 저도 이건 안 써봐서 잘 모르겠습니다... 지금 당장 중요한 건 아닌것 같아요.)
+
+- fetch할 url을 넣어줄 때 뒤에 path부분에 limit과 같은 쿼리를 사용해서 원하는 개수만큼의 데이터를 받아올 수 있다고 해서 이에 대해서 찾아보고 적용해보려 했습니다.

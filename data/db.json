@@ -221,5 +221,13 @@
         }
       ]
     }
+  ],
+  "heroImages": [
+    { "src": "assets/images/slide1.png", "alt": "Pay with your Korean credit or debit card" },
+    { "src": "assets/images/slide2.png", "alt": "Gamer Essentials" },
+    { "src": "assets/images/slide3.png", "alt": "Shop toys and game supplies" },
+    { "src": "assets/images/slide4.png", "alt": "We ship over 45 million products around the world" },
+    { "src": "assets/images/slide5.png", "alt": "Shop the home store" },
+    { "src": "assets/images/slide6.png", "alt": "Shop our Beauty selection" }
   ]
 }

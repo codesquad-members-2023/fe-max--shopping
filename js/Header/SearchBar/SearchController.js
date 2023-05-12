@@ -26,7 +26,7 @@ export class SearchController {
   }
 
   passDomElements(...args) {
-    args.map((el) => {
+    args.forEach((el) => {
       this.domElements[el.id] = el;
     });
   }
@@ -65,7 +65,7 @@ export class SearchController {
         break;
 
       default:
-        console.log(e.target);
+        break;
     }
   }
 
