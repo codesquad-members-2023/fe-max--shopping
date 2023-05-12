@@ -8,11 +8,13 @@ export default class SearchFormService {
   }
 
   async getAutocompleteData(searchTerm) {
-    if (searchTerm === "") {
-      const searchHistory = []; //- get from localStorage (5 items)
+    if (searchTerm === "" || searchTerm === "\u{1C}") {
+      const searchHistory = this.getLocalStorageData();
+
       const defaultResults = await this.fetchAutocompleteData(
         this.defaultSearchTerm
       );
+
       return JSON.stringify([...searchHistory, ...defaultResults]);
     }
 
@@ -29,5 +31,27 @@ export default class SearchFormService {
 
   isSameSearch(searchTerm) {
     return searchTerm === this.prevSearchTerm;
+  }
+
+  saveSearchHistory(searchTerm) {
+    const searchHistoryData = JSON.parse(localStorage.getItem("searchHistory"));
+    searchHistoryData.push({ content: searchTerm, isSearchHistory: true });
+    localStorage.setItem(
+      "searchHistory",
+      JSON.stringify(searchHistoryData.slice(-10))
+    );
+  }
+
+  getLocalStorageData() {
+    const searchHistoryData = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistoryData) {
+      localStorage.setItem("searchHistory", JSON.stringify([]));
+    }
+
+    const searchHistory = JSON.parse(localStorage.getItem("searchHistory"))
+      .toReversed()
+      .slice(0, 5);
+
+    return searchHistory;
   }
 }

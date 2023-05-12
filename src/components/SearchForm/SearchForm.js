@@ -19,6 +19,7 @@ class SearchForm extends Component {
   constructor() {
     super(template);
     this.searchInput = this.shadowRoot.querySelector("#search-input");
+    this.searchForm = this.shadowRoot.querySelector("#search-form");
     this.autocompletePanel =
       this.shadowRoot.querySelector("autocomplete-panel");
 
@@ -29,7 +30,7 @@ class SearchForm extends Component {
   }
 
   connectedCallback() {
-    const { searchInput } = this;
+    const { searchInput, searchForm } = this;
 
     searchInput.addEventListener(
       "input",
@@ -50,6 +51,11 @@ class SearchForm extends Component {
       "keydown",
       this.searchInputKeydownHandler.bind(this)
     );
+
+    searchForm.addEventListener(
+      "submit",
+      this.searchInputSubmitHandler.bind(this)
+    );
   }
 
   async searchInputHandler() {
@@ -62,6 +68,7 @@ class SearchForm extends Component {
       searchTerm
     );
 
+    autocompletePanel.searchTerm = searchTerm;
     autocompletePanel.setResultsData(autocompleteData);
     autocompletePanel.resetFocusedListItemIdx();
   }
@@ -93,6 +100,15 @@ class SearchForm extends Component {
     } else if (evt.code === "ArrowUp") {
       autocompletePanel.setFocusedListItemIdx(false);
     }
+  }
+
+  searchInputSubmitHandler(evt) {
+    evt.preventDefault();
+
+    const { searchInput, searchFormService } = this;
+    const searchTerm = searchInput.value.trim();
+
+    searchFormService.saveSearchHistory(searchTerm);
   }
 }
 

@@ -16,6 +16,7 @@
   - [SoC](#soc)
     - [`SearchForm`, `AutocompletePanel`](#searchform-autocompletepanel)
   - [Reactive Programming](#reactive-programming)
+- [Current Status](#current-status)
 
 ## Getting Started
 
@@ -69,7 +70,7 @@
     - [ ] Compressed portion of contents
   - [x] Sub Menus
 - [x] Back Drop (dimmed layer)
-- [ ] Server
+- [x] Server
   - [x] Hero images endpoint
   - [x] Card images endpoint
   - [x] Search autocomplete endpoint
@@ -273,3 +274,35 @@
 
 <img src="docs/refImg/backdrop-passive.png" alt="Passive BackDrop" />
 <img src="docs/refImg/backdrop-reactive.png" alt="Reactive BackDrop" />
+
+## Current Status
+
+### Search Form
+
+- **미완성**
+  - 자동완성 패널에 검색 단어 하이라이트.
+  - 최근 검색어 저장.
+- **Bug**
+  - Search input에 있는 값을 전체 highlight(Ex: ctrl + a)을 해서 바로 새로운 값을 입력한 후 화살표를 누르면 입력값이 공백으로 대체됨.
+    - Backspace으로 지우면 정상 작동함.
+  - Search input에 focus를 해서 자동완성 패널이 열린 상태에서 "배송처" 또는 "로그인" 섹션을 hover 했다가 풀면 search input에 focus는 유지되지만 자동완성 패널이 닫힘.
+    - 사용자가 직접 다른데를 클릭하고 다시 focus해야 자동완성 패널이 다시 열림.
+
+### Side Bar
+
+- **미완성**
+  - "부서별 쇼핑"에서 첫 4개 옵션을 제외한 나머지 옵션들 압축.
+  - 메뉴 내용 fetch시 loading indicator.
+
+### Back Drop
+
+- **미완성**
+  - `BackDrop` component을 "reactive"하게 만드려고 했음.
+    - 현재 상황
+      - `ComponentWithBackDrop`에서 `this.backDrop`을 갖고 있음.
+        - 즉, `ComponentWithBackDrop`을 상속받고 있는 View 컴포넌트들이 `this.backDrop`에 대해 알고 있고 직접 자기 자신을 `BackDrop`에 등록을 하고 있음.
+    - 목표
+      - View 컴포넌트에서 Back Drop을 몰라야 (즉, `this.backDrop`이 없어야 됨) 원하던대로 BackDrop이 온전히 reactive할 수 있음.
+      - i.e. Back Drop의 사용자 view들은 Back Drop을 모르고, Back Drop은 view들을 알고 있는 구조.
+    - [더 구체적인 의도 및 내용](https://github.com/codesquad-members-2023/fe-max--shopping/pull/98)
+    - ["Reactive BackDrop" 참고](#passive-vs-reactive-backdrop)

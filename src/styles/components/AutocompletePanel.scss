@@ -43,6 +43,15 @@
         @include f-body-md;
         cursor: pointer;
 
+        &.search-history {
+          justify-content: space-between;
+          color: $color-secondary-purple;
+        }
+
+        .highlighted {
+          color: $color-secondary-purple;
+        }
+
         img {
           width: 16px;
           height: 16px;
