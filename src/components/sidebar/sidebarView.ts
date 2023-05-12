@@ -68,7 +68,6 @@ export class SidebarView {
             ? ""
             : '<img src="./src/assets/chevron-right.svg" alt="화살표 아이콘" class="chevron-icon" />'
         }
-        
       </li>`;
   }
 
