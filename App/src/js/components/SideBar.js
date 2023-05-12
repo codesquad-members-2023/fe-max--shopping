@@ -8,11 +8,11 @@ export class Sidebar extends Component {
   constructor(component) {
     super();
     this.restructure(component);
-    addEvent("sidebarToggle", this.toggle);
+    addEvent("sidebarToggle", this.toggleSidebarState);
   }
 
-  setThisEvent() {
-    this.domNode.addEventListener("click", this.toggle);
+  setSidebarEvent() {
+    this.domNode.addEventListener("click", this.toggleSidebarState);
   }
 
   setAsideEvent() {
@@ -28,29 +28,30 @@ export class Sidebar extends Component {
 
     sideBarItem.addEventListener("keydown", (e) => {
       e.preventDefault();
+
       if (e.shiftKey && e.key === "Tab") {
         this.backButton.focus();
 
-        const backButtonKeydownHandler = (e) => {
-          switch (e.key) {
-            case "Tab":
-              e.preventDefault();
+        const actions = {
+          Tab: () => {
               sideBarItem.focus();
-              this.backButton.removeEventListener(
-                "keydown",
-                backButtonKeydownHandler
-              );
-              return;
-            case "Enter":
+          },
+
+          Enter: () => {
               this.detail.className = "detail";
+
               setTimeout(() => {
                 button.focus();
               }, 300);
-              this.backButton.removeEventListener(
-                "keydown",
-                backButtonKeydownHandler
-              );
-              return;
+          },
+        };
+
+        const backButtonKeydownHandler = (e) => {
+          const action = actions[e.key];
+
+          if (action) {
+            action();
+            this.backButton.removeEventListener("keydown", backButtonKeydownHandler);
           }
         };
 
@@ -81,7 +82,7 @@ export class Sidebar extends Component {
               case "Tab":
               case "Enter":
                 this.details.open = false;
-                this.toggle();
+                this.toggleSidebarState();
                 this.detail.className = "detail";
                 this.closeButton.removeEventListener(
                   "keydown",
@@ -224,7 +225,7 @@ export class Sidebar extends Component {
                 case "Tab":
                 case "Enter":
                   sidebar.details.open = false;
-                  sidebar.toggle();
+                  sidebar.toggleSidebarState();
                   sidebar.detail.className = "detail";
                   sidebar.closeButton.removeEventListener(
                     "keydown",
@@ -270,7 +271,7 @@ export class Sidebar extends Component {
   setCloseButtonEvent() {
     this.closeButton.addEventListener("click", (e) => {
       e.preventDefault();
-      this.toggle();
+      this.toggleSidebarState();
       this.detail.className = "detail";
     });
   }
@@ -344,11 +345,7 @@ export class Sidebar extends Component {
           switch (e.key) {
             case "Tab":
             case "Enter":
-              sidebar.toggle();
-              sidebar.closeButton.removeEventListener(
-                "keydown",
-                closeButtonKeyDownHandler
-              );
+              sidebar.toggleSidebarState();
               return;
           }
         };
@@ -391,7 +388,7 @@ export class Sidebar extends Component {
       ".sidebar__sub [tabindex='-1']"
     );
 
-    this.setThisEvent();
+    this.setSidebarEvent();
     this.setAsideEvent();
     this.setSidebarSubsEvent();
     this.setSidebarDetailsEvent();
@@ -414,7 +411,7 @@ export class Sidebar extends Component {
     });
   }
 
-  toggle = () => {
+  toggleSidebarState = () => {
     this.domNode.classList.toggle("active");
     if (this.domNode.className === "active") {
       this.domNode.querySelector('[tabindex="-1"]').focus();
