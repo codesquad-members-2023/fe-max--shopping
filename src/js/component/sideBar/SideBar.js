@@ -7,5 +7,12 @@ export class SideBar {
     this.model = new Model();
     this.view = new View();
     this.controller = new Controller(this.model, this.view, observer);
+
+    this.init();
+  }
+
+  async init() {
+    await this.model.init();
+    this.controller.init();
   }
 }

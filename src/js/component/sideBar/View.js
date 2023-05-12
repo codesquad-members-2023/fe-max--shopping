@@ -5,11 +5,12 @@ export class View extends Base {
   constructor() {
     super("aside");
     this.setAttribute("id", "sideBar");
-    this.init();
   }
 
-  init() {
+  init(categories) {
     this.addChild();
+    this.setMainCategoriesNode(categories);
+    this.setMainCategoriesEvent();
   }
 
   addChild() {
@@ -28,9 +29,12 @@ export class View extends Base {
     this.setTemplate(template);
   }
 
-  render(categories) {
-    this.setMainCategoriesNode(categories);
-    this.setMainCategoriesEvent();
+  toggleSideBar(isSideBarOpen) {
+    if (isSideBarOpen) {
+      this.open();
+      return;
+    }
+    this.close();
   }
 
   open() {
@@ -107,12 +111,12 @@ export class View extends Base {
   }
 
   setMainCategoriesEvent() {
-    this.closeBtn.setEvent("click", this.close.bind(this));
+    this.closeBtn.setEvent("click", this.closeSideBar.bind(this));
     this.contentWrapper.seeMoreBtns.forEach((seeMoreBtn, index) => {
-      seeMoreBtn.setEvent("click", this.showMoreMenu.bind(this, index));
+      seeMoreBtn.setEvent("click", this.setMoreMenuCompressed.bind(this, index, false));
     });
     this.contentWrapper.closeMoreBtns.forEach((closeMoreBtn, index) => {
-      closeMoreBtn.setEvent("click", this.hideMoreMenu.bind(this, index));
+      closeMoreBtn.setEvent("click", this.setMoreMenuCompressed.bind(this, index, true));
     });
     this.contentWrapper.sideBarMenus.forEach((sideBarMenu) => {
       const title = sideBarMenu.node.dataset.menutitle;
@@ -121,17 +125,21 @@ export class View extends Base {
   }
 
   async showDetailCategories(title) {
-    await this.onClickMenuHandler(title);
+    await this.setDetailCategories(title);
     this.setDetailCategoriesEvent();
     this.moveToDetailCategories();
   }
 
-  async setDetailCategoriesNode(title, detailCategories) {
+  renderDetailCategories(title, detailCategories) {
     if (this.innerWrapper.detailsWrapper) {
       this.innerWrapper.detailsWrapper.node.remove();
     }
+    const detailCategoreiesTemplate = this.getDetailCategoriesTemplate(title, detailCategories);
+    this.innerWrapper.setTemplate(detailCategoreiesTemplate);
+  }
 
-    const template = `
+  getDetailCategoriesTemplate(title, detailCategories) {
+    return `
     <div class="sideBar__details__wrapper" data-elementname="detailsWrapper">
       <div class="goBack__contents" data-elementname="backToMainBtn">
         <img src="./src/assets/arrow-left.svg">
@@ -140,7 +148,14 @@ export class View extends Base {
       <div class="details__title">${title}</div>
       ${this.setSideBarMenu(detailCategories)}
     </div>`;
-    this.innerWrapper.setTemplate(template);
+  }
+
+  compressMenu(index, isCompressed) {
+    if (isCompressed) {
+      this.hideMoreMenu(index);
+      return;
+    }
+    this.showMoreMenu(index);
   }
 
   showMoreMenu(index) {
