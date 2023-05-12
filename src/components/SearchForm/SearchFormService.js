@@ -5,18 +5,11 @@ export default class SearchFormService {
     this.endpoint = endpoint;
     this.defaultSearchTerm = defaultSearchTerm;
     this.prevSearchTerm;
-    this.searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
   }
 
   async getAutocompleteData(searchTerm) {
     if (searchTerm === "" || searchTerm === "\u{1C}") {
-      if (!this.searchHistory) {
-        localStorage.setItem("searchHistory", JSON.stringify([]));
-        this.searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
-      }
-      const searchHistory = JSON.parse(localStorage.getItem("searchHistory"))
-        .toReversed()
-        .slice(0, 5); // - get from localStorage (5 items)
+      const searchHistory = this.getLocalStorageData();
 
       const defaultResults = await this.fetchAutocompleteData(
         this.defaultSearchTerm
@@ -41,8 +34,24 @@ export default class SearchFormService {
   }
 
   saveSearchHistory(searchTerm) {
-    this.searchHistory.push({ content: searchTerm, isSearchHistory: true });
-    localStorage.setItem("searchHistory", JSON.stringify(this.searchHistory));
-    console.log(JSON.parse(localStorage.getItem("searchHistory")));
+    const searchHistoryData = JSON.parse(localStorage.getItem("searchHistory"));
+    searchHistoryData.push({ content: searchTerm, isSearchHistory: true });
+    localStorage.setItem(
+      "searchHistory",
+      JSON.stringify(searchHistoryData.slice(-10))
+    );
+  }
+
+  getLocalStorageData() {
+    const searchHistoryData = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistoryData) {
+      localStorage.setItem("searchHistory", JSON.stringify([]));
+    }
+
+    const searchHistory = JSON.parse(localStorage.getItem("searchHistory"))
+      .toReversed()
+      .slice(0, 5);
+
+    return searchHistory;
   }
 }
