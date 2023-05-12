@@ -27,10 +27,10 @@ export default class Slider {
     `;
   }
 
-  slidesTemplate(heroData) {
+  slidesTemplate(slidesData) {
     return `
       <ul class="slider__card-container">
-        ${heroData.reduce(
+        ${slidesData.reduce(
           (acc, curr, idx) => `
             ${acc} <li class="slider__card" data-index=${idx} data-status=${idx === 0 ? 'show' : 'unknown'}>
               ${
@@ -47,8 +47,8 @@ export default class Slider {
     `;
   }
 
-  renderSlides(heroData = []) {
-    this.$slider.innerHTML = this.slidesTemplate(heroData);
+  renderSlides(slidesData = []) {
+    this.$slider.innerHTML = this.slidesTemplate(slidesData);
   }
 
   onEvent(callback) {
