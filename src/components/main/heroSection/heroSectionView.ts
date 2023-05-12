@@ -17,10 +17,13 @@ export class HeroSectionView {
     this.$prevButton = $(".hero-section__prev-button");
     this.$nextButton = $(".hero-section__next-button");
 
-    this.presenter.fetchImages().then((images) => {
-      this.render(images);
-      this.presenter.setIntervalImageMove(this.$imageContainer);
-    });
+    this.render();
+  }
+
+  private async render() {
+    const images = await this.presenter.fetchImages();
+    this.imageRender(images);
+    this.presenter.setIntervalImageMove(this.$imageContainer);
 
     this.$prevButton.addEventListener("click", () =>
       this.presenter.moveToPrevImage(this.$imageContainer)
@@ -30,7 +33,7 @@ export class HeroSectionView {
     );
   }
 
-  private render(data: HeroImage[]) {
+  private imageRender(data: HeroImage[]) {
     const imageViews = data.reduce((acc, { src }) => acc + this.createImageView(src), "");
 
     this.$imageContainer.insertAdjacentHTML("beforeend", imageViews);

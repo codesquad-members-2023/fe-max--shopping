@@ -3,6 +3,9 @@ import { $, $$ } from "../../../utils/domUtils";
 import { fetchData } from "../../../utils/fetchData";
 import { SearchSuggestionModel } from "./SearchSuggestionModel";
 import { SearchSuggestionView } from "./SearchSuggestionView";
+import { dim, undim } from "../../../utils/dimming";
+import { hideElement, showElement } from "../../../utils/elementVisibility";
+import { Z_INDEX } from "../../../constants/Z_INDEX";
 
 export class SearchSuggestion {
   model: SearchSuggestionModel;
@@ -173,5 +176,42 @@ export class SearchSuggestion {
 
     this.model.setSearchSuggestions(suggestions);
     this.renderView(this.view.searchSuggestionView(this.model.getSearchSuggestions()));
+  }
+
+  setEvent() {
+    const $searchInput = $(".search-bar__input");
+    const $searchSuggestion = $(".search-suggestion");
+    const $searchBar = $(".search-bar");
+
+    if (!($searchInput instanceof HTMLInputElement)) {
+      throw new Error(`element${$searchInput} is not HTMLInputElement`);
+    }
+
+    $searchInput.addEventListener("focus", () => {
+      dim(Z_INDEX.NAV_BAR);
+      showElement($searchSuggestion);
+      this.initSuggestionRender();
+    });
+
+    $searchInput.addEventListener("blur", () => {
+      undim();
+      hideElement($searchSuggestion);
+    });
+
+    $searchSuggestion.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+    });
+
+    $searchSuggestion.addEventListener("click", (e) => this.handleDeleteButtonClick(e));
+
+    $searchInput.addEventListener("keydown", (event) =>
+      this.handleSuggestionKeyDown(event, $searchSuggestion)
+    );
+
+    $searchBar.addEventListener("submit", (event) =>
+      this.handleSearchBarSubmit(event, $searchInput)
+    );
+
+    $searchInput.addEventListener("input", () => this.handleSearchInputChange($searchInput));
   }
 }

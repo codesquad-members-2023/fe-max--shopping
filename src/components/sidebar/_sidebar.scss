@@ -47,21 +47,20 @@
   }
 
   &__menu-container {
-    height: 100vh;
+    height: calc(100vh - 53px);
     position: absolute;
     transition: transform 1s;
-
+    background-color: white;
     display: flex;
 
     &.detail-view {
       transform: translateX(-50%);
     }
   }
-
   &__menu,
   &__menu-detail {
+    overflow: auto;
     width: 320px;
-    background-color: white;
   }
 
   &__menu-title {
@@ -161,4 +160,5 @@
       }
     }
   }
+
 }

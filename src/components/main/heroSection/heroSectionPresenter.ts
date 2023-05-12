@@ -1,7 +1,4 @@
-import { BASE_URL } from "../../../constants/BASE_URL";
-import { fetchData } from "../../../utils/fetchData";
 import { HeroSectionModel } from "./heroSectionModel";
-import { IntervalIdStateManager } from "./types";
 
 export class HeroSectionPresenter {
   private model: HeroSectionModel;
@@ -10,17 +7,8 @@ export class HeroSectionPresenter {
     this.model = model;
   }
 
-  fetchImages() {
-    const url = new URL("/hero_image", BASE_URL);
-
-    return fetchData(url).then((images) => {
-      this.model.setImages(images);
-
-      return images;
-    });
-  }
-
-  getImages() {
+  async fetchImages() {
+    await this.model.fetchImages();
     return this.model.getImages();
   }
 
@@ -42,7 +30,7 @@ export class HeroSectionPresenter {
     this.model.increaseViewIndex();
 
     if (this.model.isOverflowImageIndex()) {
-      this.model.setFisrtViewIndex();
+      this.model.setFirstViewIndex();
       await this.handleIndexOverflow($imageContainer);
     }
 

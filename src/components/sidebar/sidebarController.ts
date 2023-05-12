@@ -22,7 +22,7 @@ export class SidebarController {
     return fetchData(url);
   }
 
-  private handleMenuItemClick({ target }: Event) {
+  private async handleMenuItemClick({ target }: Event) {
     if (target == null || !(target instanceof Element)) {
       return;
     }
@@ -37,11 +37,9 @@ export class SidebarController {
 
     if (isMenuItemClick && li.dataset.id != null) {
       const menuId = li.dataset.id;
-
-      this.fetchMenuDetailData(menuId).then((data) => {
-        this.view.renderDetailView(data);
-        this.moveDetailView(this.view.$menuContainer);
-      });
+      const data = await this.fetchMenuDetailData(menuId);
+      this.view.renderDetailView(data);
+      this.moveDetailView(this.view.$menuContainer);
     }
 
     const isViewAllButtonClick = li.classList.contains("sidebar__view-all-button");
@@ -50,14 +48,19 @@ export class SidebarController {
     if (isViewAllButtonClick) {
       const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       showElement($hiddenMenuContainer);
-
+      if ($hiddenMenuContainer instanceof HTMLElement) {
+        const listItems = $hiddenMenuContainer.querySelectorAll("LI");
+        $hiddenMenuContainer.style.height = `${listItems.length * 40}px`;
+      }
       return;
     }
 
     if (isHideButtonClick) {
       const $hiddenMenuContainer = $(".sidebar__hidden-menu-container");
       hideElement($hiddenMenuContainer);
-
+      if ($hiddenMenuContainer instanceof HTMLElement) {
+        $hiddenMenuContainer.style.height = "0";
+      }
       return;
     }
   }
