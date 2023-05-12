@@ -29,9 +29,13 @@ export class View extends Base {
   }
 
   render(categories) {
+    this.setMainCategoriesNode(categories);
+    this.setMainCategoriesEvent();
+  }
+
+  open() {
     this.setStyle("visibility", "visible");
     this.setStyle("transform", "translateX(0%)");
-    this.setMainCategoriesNode(categories);
     Backdrop.show();
   }
 
@@ -39,7 +43,6 @@ export class View extends Base {
     this.setStyle("visibility", "hidden");
     this.setStyle("transform", "translateX(-100%)");
     Backdrop.hide();
-    this.contentWrapper.clearChild();
   }
 
   setMainCategoriesNode(categories) {
@@ -76,13 +79,9 @@ export class View extends Base {
     return menuData
       .map((menu) => {
         return `
-        <div class="sideBar__menu" data-menutitle="${menu}">
+        <div class="sideBar__menu" data-menutitle="${menu}" data-elementname="sideBarMenu">
          <span>${menu}</span>
-          ${
-            type === "details"
-              ? `<img src="./src/assets/chevron-right.svg">`
-              : ""
-          }
+          ${type === "details" ? `<img src="./src/assets/chevron-right.svg">` : ""}
         </div>`;
       })
       .join("");
@@ -91,19 +90,78 @@ export class View extends Base {
   setSideBarDetailMenu(detailMenuData) {
     return `
     <div class="sideBar__contents">
-      <div class="sideBar__seeMore">
+      <div class="sideBar__seeMore" data-elementname="seeMoreBtn">
         <span>모두 보기</span>
         <img src="./src/assets/chevron-down.svg">
       </div>
       <div class="sideBar__moreMenus">
         <div class="sideBar__contents" data-elementname="sideBarMoreMenu">
           ${this.setSideBarMenu(detailMenuData, "details")}
-          <div class="sideBar__closeMore">
+          <div class="sideBar__closeMore" data-elementname="closeMoreBtn">
             <span>간단히 보기</span>
             <img src="./src/assets/chevron-up.svg">
           </div>
         </div>
       </div>
     </div>`;
+  }
+
+  setMainCategoriesEvent() {
+    this.closeBtn.setEvent("click", this.close.bind(this));
+    this.contentWrapper.seeMoreBtns.forEach((seeMoreBtn, index) => {
+      seeMoreBtn.setEvent("click", this.showMoreMenu.bind(this, index));
+    });
+    this.contentWrapper.closeMoreBtns.forEach((closeMoreBtn, index) => {
+      closeMoreBtn.setEvent("click", this.hideMoreMenu.bind(this, index));
+    });
+    this.contentWrapper.sideBarMenus.forEach((sideBarMenu) => {
+      const title = sideBarMenu.node.dataset.menutitle;
+      sideBarMenu.setEvent("click", this.showDetailCategories.bind(this, title));
+    });
+  }
+
+  async showDetailCategories(title) {
+    await this.onClickMenuHandler(title);
+    this.setDetailCategoriesEvent();
+    this.moveToDetailCategories();
+  }
+
+  async setDetailCategoriesNode(title, detailCategories) {
+    if (this.innerWrapper.detailsWrapper) {
+      this.innerWrapper.detailsWrapper.node.remove();
+    }
+
+    const template = `
+    <div class="sideBar__details__wrapper" data-elementname="detailsWrapper">
+      <div class="goBack__contents" data-elementname="backToMainBtn">
+        <img src="./src/assets/arrow-left.svg">
+        <span>주메뉴로</span>
+      </div>
+      <div class="details__title">${title}</div>
+      ${this.setSideBarMenu(detailCategories)}
+    </div>`;
+    this.innerWrapper.setTemplate(template);
+  }
+
+  showMoreMenu(index) {
+    const menuHeight = 40;
+    const height = this.contentWrapper.sideBarMoreMenus[index].node.children.length * menuHeight;
+    this.contentWrapper.sideBarMoreMenus[index].setStyle("maxHeight", `${height}px`);
+  }
+
+  hideMoreMenu(index) {
+    this.contentWrapper.sideBarMoreMenus[index].setStyle("maxHeight", "0");
+  }
+
+  setDetailCategoriesEvent() {
+    this.innerWrapper.backToMainBtn.setEvent("click", this.moveToMainCategories.bind(this));
+  }
+
+  moveToDetailCategories() {
+    this.innerWrapper.setStyle("transform", "translateX(-100%)");
+  }
+
+  moveToMainCategories() {
+    this.innerWrapper.setStyle("transform", "translateX(0%)");
   }
 }

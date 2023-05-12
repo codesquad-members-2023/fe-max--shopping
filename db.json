@@ -164,11 +164,7 @@
   "sideBarData": [
     {
       "title": "디지털콘텐츠및기기",
-      "menu": [
-        "Amazon Musics",
-        "Kindle E-Reader 및 도서",
-        "안드로이드 앱스토어"
-      ]
+      "menu": ["Amazon Musics", "Kindle E-Reader 및 도서", "안드로이드 앱스토어"]
     },
     {
       "title": "부서별 쇼핑",
@@ -196,6 +192,10 @@
         "장난감 및 게임",
         "비디오 게임"
       ]
+    },
+    {
+      "title": "프로그램 및 기능",
+      "menu": ["기트프카드", "관심 분야별 쇼핑하기", "Amazon Live", "해외쇼핑", "Amazon Second Chance"]
     }
   ],
   "contentAndDevices": [

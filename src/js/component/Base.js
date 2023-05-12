@@ -72,6 +72,10 @@ export class Base {
     }
 
     if (name) {
+      if (this.hasOwnProperty(name)) {
+        const names = name + 's';
+        this[names] = this[names] ? [...this[names], childNode] : [this[name], childNode];
+      }
       this[name] = childNode;
     }
 

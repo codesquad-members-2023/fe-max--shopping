@@ -7,27 +7,23 @@ export class Controller {
     this.init();
   }
 
-  init() {
-    this.model.setMainCategories();
-    this.setSideBarEvent();
+  async init() {
+    await this.model.setMainCategories();
+    this.view.onClickMenuHandler = async (title) => {
+      const detailCategories = await this.model.getDetailCategories(title);
+      this.view.setDetailCategoriesNode(title, detailCategories);
+    };
     this.observer.register(this);
-  }
-
-  setSideBarEvent() {
-    this.view.closeBtn.setEvent('click', this.hide.bind(this))
   }
 
   show() {
     this.observer.notify(this);
 
-    this.setSideBarContents();
-  } 
+    this.view.render(this.model.mainCategories);
+    this.view.open();
+  }
 
   hide() {
     this.view.close();
-  }
-
-  setSideBarContents() {
-    this.view.render(this.model.mainCategories);
   }
 }

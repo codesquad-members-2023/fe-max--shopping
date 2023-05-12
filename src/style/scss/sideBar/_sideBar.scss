@@ -74,8 +74,8 @@
   }
 
   .sideBar__moreMenus .sideBar__contents {
-    transform: translateY(-100%);
-    transition: transform 0.4s ease-in-out;
+    max-height: 0;
+    transition: max-height 0.4s ease-in-out;
   }
 
   .sideBar__menu {

@@ -8,4 +8,8 @@ export class Model {
   async setMainCategories() {
     this.mainCategories = await this.db.getSideBarData();
   }
+
+  async getDetailCategories(title) {
+    return await this.db.getSetSideBarDetails(title);
+  }
 }
