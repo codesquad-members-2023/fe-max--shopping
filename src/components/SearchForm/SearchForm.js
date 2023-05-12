@@ -68,6 +68,7 @@ class SearchForm extends Component {
       searchTerm
     );
 
+    autocompletePanel.searchTerm = searchTerm;
     autocompletePanel.setResultsData(autocompleteData);
     autocompletePanel.resetFocusedListItemIdx();
   }
