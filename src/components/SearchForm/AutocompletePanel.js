@@ -47,16 +47,19 @@ class AutocompletePanel extends ComponentWithBackDrop {
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
-    if (name === "data-results") {
-      this.resetList();
-      this.generateList(JSON.parse(newVal));
-    }
+    this.resetList();
+    this.generateList(JSON.parse(newVal));
+    // why if?
+    // if (name === "data-results") {
+    //   this.resetList();
+    //   this.generateList(JSON.parse(newVal));
+    // }
   }
 
   generateList(results) {
     const fragment = new DocumentFragment();
 
-    results.forEach(({ content, isSuggestion }) => {
+    results.forEach(({ content, isSuggestion, isSearchHistory }) => {
       const autocompleteItem = document.createElement("li");
       const link = document.createElement("a");
       const contentSpan = document.createElement("span");
@@ -66,11 +69,20 @@ class AutocompletePanel extends ComponentWithBackDrop {
         suggestionIcon.src = "src/assets/icons/arrow-top-right.svg";
         link.appendChild(suggestionIcon);
       }
+
       contentSpan.innerText = content;
       // link.href = `/search?q=${content}`; // link to search page
       autocompleteItem.classList.add("autocomplete-item");
-
       link.appendChild(contentSpan);
+
+      if (isSearchHistory) {
+        link.classList.add("search-history");
+        const deleteIcon = document.createElement("img");
+        deleteIcon.classList.add("btn-close");
+        deleteIcon.src = "src/assets/icons/close.svg";
+        link.appendChild(deleteIcon);
+      }
+
       autocompleteItem.appendChild(link);
       fragment.appendChild(autocompleteItem);
     });
