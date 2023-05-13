@@ -40,16 +40,20 @@ export class SearchModel {
   }
 
   setSearchBarState(state,text="") {
-    const isDefault = state === "default";
-    const isAutocomplete = state === "autoComplete"
-    if(isDefault) {
-      this.suggestion = [...this.recentSearches, ...this.recommendSearches];
-    }
-    if(isAutocomplete){
-      this.suggestion = [...this.autoCompleteSearches];
-    }
+    this.setSuggestion(state);
     this.setAutoCompleteText(text);
     this.searchBarState = state;
+  }
+
+  setSuggestion(state) {
+    switch (state) {
+      case "default":
+        this.suggestion = [...this.recentSearches, ...this.recommendSearches];
+        break;
+      case  "autoComplete":
+        this.suggestion = [...this.autoCompleteSearches];
+        break;
+    }
   }
 
   setSelectSuggestionIndex(index) {
