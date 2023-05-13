@@ -12,10 +12,6 @@ export class Base {
     return this.#_node;
   }
 
-  setTextContent(content) {
-    this.#_node.textContent = content;
-  }
-
   setAttribute(attName, attValue) {
     this.#_node.setAttribute(attName, attValue);
   }
@@ -39,19 +35,28 @@ export class Base {
     this.#_node.style[prop] = attr;
   }
 
-  htmlParsig(htmlStrig) {
-    return Base.htmlParser.getParsedData(htmlStrig);
+  htmlParsing(htmlString) {
+    return Base.htmlParser.getParsedData(htmlString);
   }
 
-  setTemplate(htmlStrig) {
-    const htmlArray = this.htmlParsig(htmlStrig);
-
+  setTemplate(htmlString) {
+    const htmlArray = this.htmlParsing(htmlString);
     htmlArray.forEach((htmlData) => {
       this.#_node.appendChild(this.createNode(htmlData).node);
     });
   }
 
-  createNode({ tagName, attribute, textContent, name, children }) {
+  createNode(htmlData) {
+    const isText = htmlData.type === "text";
+    if (isText) {
+      const textNode = document.createTextNode(htmlData.text);
+      return { node: textNode };
+    }
+
+    return this.createElementNode(htmlData);
+  }
+
+  createElementNode({ tagName, attribute, name, children }) {
     const childNode = new Base(tagName);
     if (attribute) {
       for (const key in attribute) {
@@ -66,11 +71,11 @@ export class Base {
       childNode.setChildren(...childArray);
     }
 
-    if (textContent) {
-      childNode.setTextContent(textContent);
-    }
-
     if (name) {
+      if (this.hasOwnProperty(name)) {
+        const names = name + 's';
+        this[names] = this[names] ? [...this[names], childNode] : [this[name], childNode];
+      }
       this[name] = childNode;
     }
 
@@ -87,3 +92,4 @@ export class Base {
     return node instanceof Node;
   }
 }
+

@@ -14,9 +14,9 @@ export class HtmlParser {
 
   traverse(parsedElement) {
     const obj = {
+      type: "node",
       tagName: parsedElement.tagName,
       attribute: {},
-      textContent: "",
       name: "",
       children: [],
     };
@@ -37,8 +37,14 @@ export class HtmlParser {
         if (child.nodeType === Node.ELEMENT_NODE) {
           obj.children.push(this.traverse(child));
         } else if (child.nodeType === Node.TEXT_NODE) {
-          const text = child.textContent.replace(/\n|\s/g, "");
-          obj.textContent = text || "";
+          const text = child.textContent;
+          if (text) {
+            const textObj = {
+              type: "text",
+              text: text,
+            };
+            obj.children.push(textObj);
+          }
         }
       }
     }
@@ -46,3 +52,4 @@ export class HtmlParser {
     return obj;
   }
 }
+

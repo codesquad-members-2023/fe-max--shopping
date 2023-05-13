@@ -85,7 +85,7 @@ export class View extends Base {
       this.viewModel.getCurrentIndex(),
       slideState
     );
-    this.viewModel.updeateCurrentIndex(currentIndex);
+    this.viewModel.updateCurrentIndex(currentIndex);
 
     const newIndex = this.viewModel.getIndex(
       this.viewModel.getCurrentIndex(),
@@ -97,7 +97,8 @@ export class View extends Base {
     const isNext = slideState === "next";
 
     if (isNext) {
-      const firstNode = wrapperNode.firstChild;
+      const firstNode = wrapperNode.children[0];
+
       wrapperNode.appendChild(firstNode);
       firstNode.setAttribute("src", newImg);
     } else {
@@ -117,3 +118,4 @@ export class View extends Base {
     }, 10 * 1000);
   }
 }
+

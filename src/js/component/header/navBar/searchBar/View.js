@@ -31,8 +31,8 @@ export class View extends Base {
         this.setSearchHistoryNode(rendData.searchHistory);
         this.setRecommendKeywordsNode(rendData.recommendKeywords);
         break;
-      case "autoComplet":
-        this.setAutoCompletNode(rendData.autoComplete, rendData.inputText);
+      case "autoComplete":
+        this.setAutocompleteNode(rendData.autoComplete, rendData.inputText);
         break;
     }
   }
@@ -44,18 +44,21 @@ export class View extends Base {
     this.layer.clearChild();
   }
 
-  setAutoCompletNode(autoComplete, inputText) {
-    const autoCompletTemplate = autoComplete
+  setAutocompleteNode(autoComplete, inputText) {
+    const autoCompleteTemplate = autoComplete
       .map((keywordObj) => {
         return `
-          <div class="listItem autoCompletList">
-            ${highlightText(keywordObj.text, inputText)}
+          <div class="listItem autoCompleteList">
+            ${keywordObj.text.replaceAll(
+              inputText,
+              `<span class="highlight">${inputText}</span>`
+            )}
           </div>`;
       })
-      .join();
+      .join("");
 
     this.layer.clearChild();
-    this.layer.setTemplate(autoCompletTemplate);
+    this.layer.setTemplate(autoCompleteTemplate);
   }
 
   setSearchHistoryNode(searchHistory) {
@@ -69,7 +72,7 @@ export class View extends Base {
             </div>
         `;
       })
-      .join();
+      .join("");
     this.layer.setTemplate(searchHistoryTemplate);
   }
 
@@ -82,35 +85,8 @@ export class View extends Base {
                 <span>${keywordObj.text}</span>
             </div>`;
       })
-      .join();
+      .join("");
     this.layer.setTemplate(keywordTemplate);
   }
 }
 
-function highlightText(str, keyword) {
-  const regex = new RegExp(`(${keyword})+`, "g");
-  const matches = str.match(regex);
-  if (!matches) {
-    return str;
-  }
-
-  let highlightedStr = "";
-  let lastIndex = 0;
-
-  for (const match of matches) {
-    const index = str.indexOf(match, lastIndex);
-    const nonMatchStr = str.slice(lastIndex, index);
-    if (nonMatchStr) {
-      highlightedStr += `<span>${nonMatchStr}</span>`;
-    }
-    highlightedStr += `<span class="highlight">${match}</span>`;
-    lastIndex = index + match.length;
-  }
-
-  const remainingStr = str.slice(lastIndex);
-  if (remainingStr) {
-    highlightedStr += `<span>${remainingStr}</span>`;
-  }
-
-  return highlightedStr;
-}
