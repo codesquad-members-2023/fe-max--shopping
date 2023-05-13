@@ -6,14 +6,21 @@ export class SearchController {
     this.view = view;
 
     model.onChanged('defaultSuggestions', this.setDefaultSuggestions.bind(this));
+    model.onChanged('autocompleteSuggestions', this.setAutocompleteSuggestions.bind(this));
+    model.onChanged('ArrowUpEvent', this.setNewSelectIndex.bind(this,'ArrowUp'));
+    model.onChanged('ArrowDownEvent', this.setNewSelectIndex.bind(this,'ArrowDown'));
+
     view.onEvent('inputBox', 'focus', () => {
-      this.handleInputBoxEvent('openDropdownWithDefault');
+      this.handleInputBoxEvent({type : 'openDropdownWithDefault' });
     });
-    view.onEvent('inputBox','blur' , () => {
-      this.handleInputBoxEvent('closeDropdown');
+    view.onEvent('inputBox', 'blur' , () => {
+      this.handleInputBoxEvent({ type : 'closeDropdown' });
     });
-    view.onEvent('inputBox','keyup' , (event) => {
-      this.handleKeyupEvent(event)
+    view.onEvent('inputBox', 'input' , () => {
+      this.handleInputBoxEvent({ type :'openDropdownWithAutocomplete' });
+    });
+    view.onEvent('inputBox', 'keyup' , (event) => {
+      this.handleKeyupEvent(event);
     });
     view.onEvent('dropdown', 'mousedown',(event) => {
       this.handleSuggestionEvent(event);
@@ -21,86 +28,115 @@ export class SearchController {
     view.onEvent('submitButton', 'click',() => {
       this.search();
     })
-
-    this.view.render();
   }
 
-  layerRender() {
-    this.view.layerRender({
-      recentSearches: this.model.getRecentSearches(),
-      recommendSearches: this.model.getRecommendSearches(),
-      autoCompleteSearches: this.model.getAutoCompleteSearches(),
-    });
+  render() {
+    this.model.clearIndex();
+    this.view.render({
+        state : this.model.getSearchBarState(),
+        suggestion : this.model.getSuggestion(),
+        selectSuggestionIndex : this.model.getSelectSuggestionIndex(),
+        autocompleteText : this.model.getAutoCompleteText()
+      });
   }
 
   async setDefaultSuggestions() {
-    [this.model.recentSearches, this.model.recommendSearches] = await fetchDataAll("recentSearches?_sort=id&_order=desc&_limit=5", "recommends");
+    const fetchData = await fetchDataAll("recentSearches?_sort=id&_order=desc&_limit=5", "recommends");
+
+    this.model.setDefaultSearches(fetchData);
+    this.model.setSearchBarState("default");
+    this.render();
+    this.view.openDropdown();
   }
 
-  handleInputBoxEvent(type) {
-    switch (type) {
+  async setAutocompleteSuggestions() {
+    const searchBarState = this.model.getSearchBarState();
+
+    if(searchBarState === "select") {
+      return ;
+    }
+
+    const inputBoxValue = this.view.getInputBoxValue();
+    const searchData = await fetchData(`search?text_like=${inputBoxValue}&_limit=10`);   
+    this.model.setAutoSearches(searchData);
+    this.model.setSearchBarState("autoComplete",inputBoxValue);
+    this.render();
+  }
+
+  setNewSelectIndex(key) {
+    this.model.setSearchBarState("select");
+    this.model.updateSelectedIndex(key);
+
+    const currentIndex = this.model.getSelectSuggestionIndex();
+    this.view.setSelect(currentIndex);
+  }
+
+  handleInputBoxEvent(event) {
+    const inputBoxValue =  this.view.getInputBoxValue();
+    switch (event.type) {
       case 'openDropdownWithDefault':
-        this.model.updateData("defaultSuggestions", () => {
-          this.layerRender();
-          this.view.openDropdown();
-        });
+        if(inputBoxValue === "") {
+        this.model.setSearchBarState("default");
+          this.model.updateData("defaultSuggestions");
+          return ;
+        }
+        this.model.setSearchBarState("autoComplete",inputBoxValue);
+        this.setAutocompleteSuggestions();
+        this.view.openDropdown();
+        break;
+      case 'openDropdownWithAutocomplete':
+        if(inputBoxValue.trim() === "") {
+          this.model.setSearchBarState("default");
+          this.model.updateData("defaultSuggestions");
+          this.setDefaultSuggestions();
+
+          return ;
+        }
+        this.model.setSearchBarState("autoComplete",inputBoxValue);
+        this.model.updateData("autocompleteSuggestions");
         break;
       case 'closeDropdown':
         closeAllLayers();
+        this.model.clearIndex();
         break;
     }
   }
 
   handleSuggestionEvent(event) {
     event.preventDefault();
-    const isRemoveBtn = event.target.closest(".search-layer__remove-button");
-    const textContent = event.target.closest("li").querySelector("p").textContent;
+    const isRemoveBtn = this.view.isRemoveButton(event.target);
+    const textContent = this.view.getTextContentFromSuggestion(event.target);
 
-    if(isRemoveBtn) {
+    if (isRemoveBtn) {
       this.removeRecentSearches(textContent);
-      return ;
+      return;
     }
+
     this.view.setInputBoxValue(textContent);
-    this.search()
+    this.search();
   }
 
   handleKeyupEvent(event) {
+    const suggestionLength = this.model.getSuggestion().length;
+    if(!suggestionLength) {
+      return ;
+    }
+    if (this.isComposing) {
+      return;
+    }
     const key = event.key;
     if(key === "ArrowUp" || key === "ArrowDown") {
       event.preventDefault();
-      this.suggestionSelect(key);
-    } else if(key === "Enter") {
+      this.model.updateData(key+"Event");
+      return ;
+    } 
+
+    if(key === "Enter") {
       this.search();
-    }
-  }
-
-  suggestionSelect(key) {
-    const currentIndex = this.model.getSelectSuggestionIndex();
-    const suggestion = Array.from(this.view.suggestion.children);
-    const suggestionMaxIndex = suggestion.length - 1;
-    
-    if(currentIndex === -1) {
-      const index = key === "ArrowUp" ? suggestionMaxIndex : 0;
-      this.model.setSelectSuggestionIndex(index);
-    } else {
-      suggestion.forEach((child) => {
-        if (child.classList.contains("select")) {
-          child.classList.remove("select");
-        }
-      })
-      const nextIndex = currentIndex + (key === "ArrowUp" ? -1 : 1);
-      if(nextIndex < 0) {
-        this.model.setSelectSuggestionIndex(suggestionMaxIndex);
-      } else if(nextIndex > suggestionMaxIndex) {
-        this.model.setSelectSuggestionIndex(0);
-      } else {
-        this.model.setSelectSuggestionIndex(nextIndex);
-      }
-    }
-
-    const newIndex = this.model.getSelectSuggestionIndex();
-    suggestion[newIndex].classList.add("select");
-    this.view.setInputBoxValue(suggestion[newIndex].querySelector("p").textContent);
+      return ;
+    }   
+    const inputBoxValue = this.view.getInputBoxValue();
+    this.model.setSearchBarState("autoComplete",inputBoxValue);  
   }
 
   async removeRecentSearches(removeText) {
