@@ -107,6 +107,14 @@
       &.over {
         background: #eff2f2;
       }
+      
+      &.select {
+        background-color: variables.$color-gray-100;
+      }
+
+      .highLight {
+        color: variables.$color-secondary-purple;
+      }
     }
 
     &--recent {

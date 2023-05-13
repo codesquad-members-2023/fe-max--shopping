@@ -1,5 +1,5 @@
 import { BaseElement } from '../../utils/BaseElement.js';
-import { API_URL } from '../../utils/constants.js';
+import { fetchData } from '../../utils/dataUtils.js';
 
 export class SideBar extends BaseElement {
   constructor(className, tag) {
@@ -12,11 +12,9 @@ export class SideBar extends BaseElement {
     this.loadMenu();
   }
 
-  loadMenu() {
-    const url = new URL('sidebarMenu', API_URL);
-    fetch(url)
-      .then((res) => res.json())
-      .then((menu) => this.setState({ menu }));
+  async loadMenu() {
+    const menu = await fetchData('sidebarMenu');
+    this.setState({ menu });
   }
 
   createMenuTitle(title) {
