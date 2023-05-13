@@ -11,13 +11,16 @@ export class SearchController {
     model.onChanged('ArrowDownEvent', this.setNewSelectIndex.bind(this,'ArrowDown'));
 
     view.onEvent('inputBox', 'focus', () => {
-      this.handleInputBoxEvent('openDropdownWithDefault');
+      this.handleInputBoxEvent({type : 'openDropdownWithDefault' });
     });
-    view.onEvent('inputBox','blur' , () => {
-      this.handleInputBoxEvent('closeDropdown');
+    view.onEvent('inputBox', 'blur' , () => {
+      this.handleInputBoxEvent({ type : 'closeDropdown' });
     });
-    view.onEvent('inputBox','keyup' , (event) => {
-      this.handleKeyupEvent(event)
+    view.onEvent('inputBox', 'input' , () => {
+      this.handleInputBoxEvent({ type :'openDropdownWithAutocomplete' });
+    });
+    view.onEvent('inputBox', 'keyup' , (event) => {
+      this.handleKeyupEvent(event);
     });
     view.onEvent('dropdown', 'mousedown',(event) => {
       this.handleSuggestionEvent(event);
@@ -28,41 +31,73 @@ export class SearchController {
   }
 
   render() {
+    this.model.clearIndex();
     this.view.render({
-      state : this.model.getSearchBarState(),
-      recentSearches: this.model.getRecentSearches(),
-      recommendSearches: this.model.getRecommendSearches(),
-      autoCompleteSearches: this.model.getAutoCompleteSearches(),
-      selectSuggestionIndex : this.model.getSelectSuggestionIndex()
-    });
+        state : this.model.getSearchBarState(),
+        suggestion : this.model.getSuggestion(),
+        selectSuggestionIndex : this.model.getSelectSuggestionIndex(),
+        autocompleteText : this.model.getAutoCompleteText()
+      });
   }
 
   async setDefaultSuggestions() {
-    this.model.setDefaultSearches(await fetchDataAll("recentSearches?_sort=id&_order=desc&_limit=5", "recommends"));
+    const fetchData = await fetchDataAll("recentSearches?_sort=id&_order=desc&_limit=5", "recommends");
+
+    this.model.setDefaultSearches(fetchData);
+    this.model.setSearchBarState("default");
     this.render();
     this.view.openDropdown();
   }
 
-  setAutocompleteSuggestions() {
+  async setAutocompleteSuggestions() {
+    const searchBarState = this.model.getSearchBarState();
+
+    if(searchBarState === "select") {
+      return ;
+    }
+
+    const inputBoxValue = this.view.getInputBoxValue();
+    const searchData = await fetchData(`search?text_like=${inputBoxValue}&_limit=10`);   
+    this.model.setAutoSearches(searchData);
+    this.model.setSearchBarState("autoComplete",inputBoxValue);
     this.render();
   }
 
   setNewSelectIndex(key) {
+    this.model.setSearchBarState("select");
     this.model.updateSelectedIndex(key);
+
     const currentIndex = this.model.getSelectSuggestionIndex();
     this.view.setSelect(currentIndex);
   }
 
-  handleInputBoxEvent(type) {
-    switch (type) {
+  handleInputBoxEvent(event) {
+    const inputBoxValue =  this.view.getInputBoxValue();
+    switch (event.type) {
       case 'openDropdownWithDefault':
-        this.model.updateData("defaultSuggestions");
+        if(inputBoxValue === "") {
+        this.model.setSearchBarState("default");
+          this.model.updateData("defaultSuggestions");
+          return ;
+        }
+        this.model.setSearchBarState("autoComplete",inputBoxValue);
+        this.setAutocompleteSuggestions();
+        this.view.openDropdown();
         break;
       case 'openDropdownWithAutocomplete':
-        this.model.updateData("autocompleteSuggestions")
+        if(inputBoxValue.trim() === "") {
+          this.model.setSearchBarState("default");
+          this.model.updateData("defaultSuggestions");
+          this.setDefaultSuggestions();
+
+          return ;
+        }
+        this.model.setSearchBarState("autoComplete",inputBoxValue);
+        this.model.updateData("autocompleteSuggestions");
         break;
       case 'closeDropdown':
         closeAllLayers();
+        this.model.clearIndex();
         break;
     }
   }
@@ -76,18 +111,32 @@ export class SearchController {
       this.removeRecentSearches(textContent);
       return;
     }
+
     this.view.setInputBoxValue(textContent);
     this.search();
   }
 
   handleKeyupEvent(event) {
+    const suggestionLength = this.model.getSuggestion().length;
+    if(!suggestionLength) {
+      return ;
+    }
+    if (this.isComposing) {
+      return;
+    }
     const key = event.key;
     if(key === "ArrowUp" || key === "ArrowDown") {
       event.preventDefault();
       this.model.updateData(key+"Event");
-    } else if(key === "Enter") {
+      return ;
+    } 
+
+    if(key === "Enter") {
       this.search();
-    }
+      return ;
+    }   
+    const inputBoxValue = this.view.getInputBoxValue();
+    this.model.setSearchBarState("autoComplete",inputBoxValue);  
   }
 
   async removeRecentSearches(removeText) {

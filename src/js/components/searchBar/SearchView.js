@@ -24,26 +24,31 @@ export class SearchView {
     this.parent.append(this.searchBox, this.dropdown);
   }
 
-  render({ state, recentSearches, recommendSearches, autoCompleteSearches, selectSuggestionIndex }) {
+  render({ state, suggestion, selectSuggestionIndex, autocompleteText }) {
     const isDefault = state === "default";
+    const isAutocomplete = state === "autoComplete"
     if(isDefault) {
-      this.setDefaultDropdown(recentSearches, recommendSearches);
-    } else {
-      this.SetAutocompleteDropdown(autoCompleteSearches);
+      this.setDefaultDropdown(suggestion);
+    } 
+    if(isAutocomplete) {
+      this.setAutocompleteDropdown(suggestion, autocompleteText);
     }
+
     this.removeSelect();
     this.setSelect(selectSuggestionIndex);
   }
 
-  setDefaultDropdown(recentSearches, recommendSearches) {
+  setDefaultDropdown(suggestion) {
+    const recentSearches = suggestion.slice(0,suggestion.length - 10);
+    const recommendSearches = suggestion.slice(suggestion.length - 10);
     const recents = recentSearches ? recentSearches.map(this.createRecentTemplate) : [];
     const recommends = recommendSearches ? recommendSearches.map(this.createRecommendTemplate) : [];
     this.suggestion.innerHTML = [...recents, ...recommends].join('');
   }
 
-  SetAutocompleteDropdown(autoCompleteSearches) {
-    const autoCompletes = autoCompleteSearches
-      ? autoCompleteSearches.map(this.createAutoCompleteTemplate)
+  setAutocompleteDropdown(suggestion, autocompleteTexts) {
+    const autoCompletes = suggestion
+      ? suggestion.map((search) => this.createAutoCompleteTemplate(search,autocompleteTexts))
       : [];
     this.suggestion.innerHTML = [...autoCompletes].join('');
   }
@@ -63,6 +68,10 @@ export class SearchView {
   getSuggestionMaxIndex() {
     const suggestion = Array.from(this.suggestion.children);
     return suggestion.length - 1
+  }
+
+  getInputBoxValue() {
+    return this.inputBox.value;
   }
 
   setSelect(newIndex) {
@@ -92,8 +101,9 @@ export class SearchView {
     return `<li class="search-layer__suggestion--recommend"><p><a src=""><img src="src/asset/img/arrow-top-right.svg" alt="공유"></a>${search.text}</p></li>`;
   }
 
-  createAutoCompleteTemplate(search) {
-    return `<li class="search-layer__suggestion--auto-complete"><p>${search.text}</p></li>`;
+  createAutoCompleteTemplate(search,autocompleteTexts) {
+    const highLight = search.text.replaceAll(autocompleteTexts,`<span class="highLight">${autocompleteTexts}</span>`)
+    return `<li class="search-layer__suggestion--auto-complete"><p>${highLight}</p></li>`;
   }
 
   onEvent(element, eventType, callback) {

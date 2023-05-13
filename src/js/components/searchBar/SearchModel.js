@@ -2,6 +2,7 @@ export class SearchModel {
   constructor() {
     this.searchText = '';
     this.searchBarState = "default";
+    this.autoCompleteText = "";
     this.recentSearches = [];
     this.recommendSearches = [];
     this.autoCompleteSearches = [];
@@ -26,20 +27,50 @@ export class SearchModel {
     return this.autoCompleteSearches;
   }
 
+  getSuggestion() {
+    return this.suggestion;
+  }
+
   getSelectSuggestionIndex() {
     return this.selectSuggestionIndex;
+  }
+  
+  getAutoCompleteText(){
+    return this.autoCompleteText;
+  }
+
+  setSearchBarState(state,text="") {
+    const isDefault = state === "default";
+    const isAutocomplete = state === "autoComplete"
+    if(isDefault) {
+      this.suggestion = [...this.recentSearches, ...this.recommendSearches];
+    }
+    if(isAutocomplete){
+      this.suggestion = [...this.autoCompleteSearches];
+    }
+    this.setAutoCompleteText(text);
+    this.searchBarState = state;
   }
 
   setSelectSuggestionIndex(index) {
     this.selectSuggestionIndex = index;
   }
 
+  setDefaultSearches(fetchData) {
+    [this.recentSearches, this.recommendSearches] = fetchData;
+  }
+
+  setAutoSearches(fetchData) {
+    this.autoCompleteSearches = fetchData;
+  }
+
+  setAutoCompleteText(text) {
+    this.autoCompleteText = text;
+  }
+
   updateSelectedIndex(key) {
     const currentIndex = this.getSelectSuggestionIndex();
-    const suggestionMaxIndex = this.searchBarState === "default" 
-        ? this.recentSearches.length - 1 + this.recommendSearches.length - 1 
-        : this.autoCompleteSearches.length - 1
-
+    const suggestionMaxIndex = this.suggestion.length - 1;
     const nextIndex = this.calculateNextIndex(key, currentIndex, suggestionMaxIndex);
     this.selectSuggestionIndex = nextIndex;
   }
@@ -52,8 +83,8 @@ export class SearchModel {
     }
   }
 
-  setDefaultSearches(fetchData) {
-    [this.recentSearches, this.recommendSearches] = fetchData;
+  clearIndex() {
+    this.selectSuggestionIndex = -1;
   }
 
   onChanged(name, callback) {
